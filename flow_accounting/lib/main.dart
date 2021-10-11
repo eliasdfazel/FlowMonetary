@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'main_interface.dart';
 
 void main() {
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    systemNavigationBarColor: Colors.pinkAccent,
+    statusBarColor: Colors.pinkAccent,
+  ));
+
   runApp(const FlowDashboard());
 }
 
@@ -12,14 +18,18 @@ class FlowDashboard extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Flow Accounting',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.cyan,
+        primaryColorDark: Colors.blue,
+        backgroundColor: Colors.cyan,
+        scaffoldBackgroundColor: Colors.white,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomePage(title: 'Flutter Demo Home Page'),
+      home: const HomePage(title: 'Flow Monetary'),
     );
   }
 
 }
-
