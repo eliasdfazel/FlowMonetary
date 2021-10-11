@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="co.geeksempire.flow.accounting.flow_accounting">
    <application
-        android:label="flow_accounting"
+        android:label="Flow Accounting"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

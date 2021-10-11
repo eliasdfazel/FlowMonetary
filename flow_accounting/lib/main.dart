@@ -6,7 +6,7 @@ import 'main_interface.dart';
 void main() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     systemNavigationBarColor: Colors.pinkAccent,
-    statusBarColor: Colors.pinkAccent,
+    statusBarColor: Colors.cyanAccent,
   ));
 
   runApp(const FlowDashboard());
