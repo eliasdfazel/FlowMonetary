@@ -21,26 +21,51 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-          decoration: const BoxDecoration(
-            color: Colors.white,
-          ),
-          child: Center(
+
+    Widget titleSection = Container(
+      padding: const EdgeInsets.fromLTRB(19, 51, 19, 13),
+      child: Row(
+        children: [
+          Expanded(
+            /*1*/
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                const Text(
-                  'You have pushed the button this many times:',
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                /*2*/
+                Container(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: const Text(
+                    'Oeschinen Lake Campground',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
                 Text(
-                  '$_counter',
-                  style: Theme.of(context).textTheme.headline4,
+                  'Kandersteg, Switzerland',
+                  style: TextStyle(
+                    color: Colors.grey[500],
+                  ),
                 ),
               ],
             ),
-          )
+          ),
+          /*3*/
+          Icon(
+            Icons.star,
+            color: Colors.red[500],
+          ),
+          const Text('41'),
+        ],
       ),
+    );
+
+    return Scaffold(
+        body: Column(
+          children: [
+            titleSection
+          ]
+        ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
