@@ -38,6 +38,7 @@ class _HomePageState extends State<HomePage> {
                     'Oeschinen Lake Campground',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
+                      color: Colors.grey,
                     ),
                   ),
                 ),
