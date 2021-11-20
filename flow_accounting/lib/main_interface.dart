@@ -1,4 +1,4 @@
-import 'package:flow_accounting/database/operations/inputs.dart';
+import 'package:flow_accounting/database/operations/queries.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -62,17 +62,20 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  int aCounter = 0;
-
   void tapAction() {
 
-    var databaseInputs = DatabaseInputs();
+   // var databaseInputs = DatabaseInputs();
+    //var firstEntry = FinancialReports(id: 1, name: "2020-12-12", type: 37);
+ //   databaseInputs.insertFinancialReport(firstEntry);
 
+    var databaseQueries = DatabaseQueries();
 
-    aCounter = aCounter * 2;
+    var allDatabase = databaseQueries.getAllFinancialReports();
+
+    print(allDatabase);
 
     setState(() {
-      aCounter++;
+      allDatabase;
     });
   }
 }

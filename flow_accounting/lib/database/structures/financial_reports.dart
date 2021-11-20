@@ -24,6 +24,6 @@ class FinancialReports {
   // each dog when using the print statement.
   @override
   String toString() {
-    return 'FinancialReports{id: $id, name: $name, age: $type}';
+    return 'FinancialReports{id: $id, name: $name, type: $type}';
   }
 }
