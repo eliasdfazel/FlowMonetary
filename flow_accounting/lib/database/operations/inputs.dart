@@ -7,21 +7,6 @@ import 'package:sqflite/sqflite.dart';
 
 class DatabaseInputs {
 
-  Future<void> deleteFinancialReport(int id) async {
-
-    final database = openDatabase(
-      join(await getDatabasesPath(), 'financial_reports_database.db'),
-    );
-
-    final databaseInstance = await database;
-
-    await databaseInstance.delete(
-      'financial_reports_database',
-      where: 'id = ?',
-      whereArgs: [id],
-    );
-  }
-
   Future<void> insertFinancialReport(FinancialReports financialReports) async {
 
     final database = openDatabase(
@@ -45,6 +30,37 @@ class DatabaseInputs {
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
 
+  }
+
+  Future<void> updateDog(FinancialReports financialReports) async {
+
+    final database = openDatabase(
+      join(await getDatabasesPath(), 'financial_reports_database.db'),
+    );
+
+    final databaseInstance = await database;
+
+    await databaseInstance.update(
+      'financial_reports_database',
+      financialReports.toMap(),
+      where: 'id = ?',
+      whereArgs: [financialReports.id],
+    );
+  }
+
+  Future<void> deleteFinancialReport(int id) async {
+
+    final database = openDatabase(
+      join(await getDatabasesPath(), 'financial_reports_database.db'),
+    );
+
+    final databaseInstance = await database;
+
+    await databaseInstance.delete(
+      'financial_reports_database',
+      where: 'id = ?',
+      whereArgs: [id],
+    );
   }
 
 }

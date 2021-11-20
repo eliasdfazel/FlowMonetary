@@ -1,4 +1,6 @@
+import 'package:flow_accounting/database/operations/inputs.dart';
 import 'package:flow_accounting/database/operations/queries.dart';
+import 'package:flow_accounting/database/structures/financial_reports.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -62,17 +64,18 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void tapAction() {
+  void tapAction() async {
 
-   // var databaseInputs = DatabaseInputs();
-    //var firstEntry = FinancialReports(id: 1, name: "2020-12-12", type: 37);
- //   databaseInputs.insertFinancialReport(firstEntry);
+   var databaseInputs = DatabaseInputs();
+   databaseInputs.insertFinancialReport(FinancialReports(id: 0, name: "2020-1-11", type: 31));
+   databaseInputs.insertFinancialReport(FinancialReports(id: 1, name: "2020-2-12", type: 37));
+   databaseInputs.insertFinancialReport(FinancialReports(id: 2, name: "2020-3-13", type: 41));
 
     var databaseQueries = DatabaseQueries();
 
     var allDatabase = databaseQueries.getAllFinancialReports();
 
-    print(allDatabase);
+    print(await allDatabase);
 
     setState(() {
       allDatabase;
