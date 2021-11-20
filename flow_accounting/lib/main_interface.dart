@@ -1,3 +1,4 @@
+import 'package:flow_accounting/database/operations/inputs.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -10,18 +11,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-
     Widget titleSection = Container(
       padding: const EdgeInsets.fromLTRB(19, 51, 19, 13),
       child: Row(
@@ -62,16 +53,26 @@ class _HomePageState extends State<HomePage> {
     );
 
     return Scaffold(
-        body: Column(
-          children: [
-            titleSection
-          ]
-        ),
+      body: Column(children: [titleSection]),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: tapAction,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
     );
+  }
+
+  int aCounter = 0;
+
+  void tapAction() {
+
+    var databaseInputs = DatabaseInputs();
+
+
+    aCounter = aCounter * 2;
+
+    setState(() {
+      aCounter++;
+    });
   }
 }
