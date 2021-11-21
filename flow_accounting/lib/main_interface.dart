@@ -1,20 +1,24 @@
-import 'package:flow_accounting/database/operations/inputs.dart';
 import 'package:flow_accounting/database/operations/queries.dart';
-import 'package:flow_accounting/database/structures/financial_reports.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
+
+  const HomePage({Key? key, required this.title}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+
+  String nameQuery = '';
+  String typeQuery = '';
+
   @override
   Widget build(BuildContext context) {
+
     Widget titleSection = Container(
       padding: const EdgeInsets.fromLTRB(19, 51, 19, 13),
       child: Row(
@@ -27,16 +31,16 @@ class _HomePageState extends State<HomePage> {
                 /*2*/
                 Container(
                   padding: const EdgeInsets.only(bottom: 8),
-                  child: const Text(
-                    'Oeschinen Lake Campground',
-                    style: TextStyle(
+                  child: Text(
+                    typeQuery,
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.grey,
                     ),
                   ),
                 ),
                 Text(
-                  'Kandersteg, Switzerland',
+                  nameQuery,
                   style: TextStyle(
                     color: Colors.grey[500],
                   ),
@@ -66,19 +70,16 @@ class _HomePageState extends State<HomePage> {
 
   void tapAction() async {
 
-   var databaseInputs = DatabaseInputs();
-   databaseInputs.insertFinancialReport(FinancialReports(id: 0, name: "2020-1-11", type: 31));
-   databaseInputs.insertFinancialReport(FinancialReports(id: 1, name: "2020-2-12", type: 37));
-   databaseInputs.insertFinancialReport(FinancialReports(id: 2, name: "2020-3-13", type: 41));
-
     var databaseQueries = DatabaseQueries();
 
-    var allDatabase = databaseQueries.getAllFinancialReports();
+   var databaseContents = await databaseQueries.queryFinancialReport(3);
 
-    print(await allDatabase);
+    nameQuery = databaseContents[0]["name"].toString();
+    typeQuery = databaseContents[0]["type"].toString();
 
     setState(() {
-      allDatabase;
+      nameQuery;
+      typeQuery;
     });
   }
 }

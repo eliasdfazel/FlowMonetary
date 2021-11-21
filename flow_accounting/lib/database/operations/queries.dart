@@ -27,4 +27,19 @@ class DatabaseQueries {
 
   }
 
+  Future<List<Map<String, Object?>>> queryFinancialReport(int id) async {
+
+    final database = openDatabase(
+      join(await getDatabasesPath(), 'financial_reports_database.db'),
+    );
+
+    final databaseInstance = await database;
+
+    return await databaseInstance.query(
+      'financial_reports_database',
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+  }
+
 }
