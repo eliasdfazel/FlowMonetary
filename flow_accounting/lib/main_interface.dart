@@ -72,10 +72,10 @@ class _HomePageState extends State<HomePage> {
 
     var databaseQueries = DatabaseQueries();
 
-   var databaseContents = await databaseQueries.queryFinancialReport(3);
+   var databaseContents = await databaseQueries.queryFinancialReport(1);
 
-    nameQuery = databaseContents[0]["name"].toString();
-    typeQuery = databaseContents[0]["type"].toString();
+    nameQuery = (await databaseQueries.extractFinancialReport(databaseContents)).name;
+    typeQuery = (await databaseQueries.extractFinancialReport(databaseContents)).type.toString();
 
     setState(() {
       nameQuery;

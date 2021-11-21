@@ -27,7 +27,7 @@ class DatabaseQueries {
 
   }
 
-  Future<List<Map<String, Object?>>> queryFinancialReport(int id) async {
+  Future<Map<String, Object?>> queryFinancialReport(int id) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), 'financial_reports_database.db'),
@@ -35,11 +35,20 @@ class DatabaseQueries {
 
     final databaseInstance = await database;
 
-    return await databaseInstance.query(
+    var databaseContents = await databaseInstance.query(
       'financial_reports_database',
       where: 'id = ?',
       whereArgs: [id],
     );
+
+    return databaseContents[0];
+  }
+
+  Future<FinancialReports> extractFinancialReport(Map<String, Object?>inputData) async {
+
+    return FinancialReports(id: inputData["id"] as int,
+        name: inputData["name"].toString(),
+        type: inputData["type"] as int);
   }
 
 }
