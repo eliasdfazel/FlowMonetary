@@ -1,4 +1,5 @@
 import 'package:flow_accounting/database/operations/queries.dart';
+import 'package:flow_accounting/interface/new_document.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -22,7 +23,7 @@ class _HomePageState extends State<HomePage> {
     Widget titleSection = Container(
       padding: const EdgeInsets.fromLTRB(19, 51, 19, 13),
       child: Row(
-        children: [
+        children: <Widget>[
           Expanded(
             /*1*/
             child: Column(
@@ -58,8 +59,12 @@ class _HomePageState extends State<HomePage> {
       ),
     );
 
+    initializeReportsOverview();
+
     return Scaffold(
-      body: Column(children: [titleSection]),
+      body: Column(
+          children: [titleSection]
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: tapAction,
         tooltip: 'Increment',
@@ -68,11 +73,11 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void tapAction() async {
+  void initializeReportsOverview() async {
 
     var databaseQueries = DatabaseQueries();
 
-   var databaseContents = await databaseQueries.queryFinancialReport(1);
+    var databaseContents = await databaseQueries.queryFinancialReport(1);
 
     nameQuery = (await databaseQueries.extractFinancialReport(databaseContents)).name;
     typeQuery = (await databaseQueries.extractFinancialReport(databaseContents)).type.toString();
@@ -81,5 +86,15 @@ class _HomePageState extends State<HomePage> {
       nameQuery;
       typeQuery;
     });
+
+  }
+
+  void tapAction() async {
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const MyApp()),
+    );
+
   }
 }
