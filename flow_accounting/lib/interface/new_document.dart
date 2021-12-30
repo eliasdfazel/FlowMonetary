@@ -1,5 +1,5 @@
-import 'package:flow_accounting/database/operations/inputs.dart';
-import 'package:flow_accounting/database/structures/financial_reports.dart';
+import 'package:flow_accounting/transactions/database/io/operations/inputs.dart';
+import 'package:flow_accounting/transactions/database/structures/financial_reports.dart';
 import 'package:flutter/material.dart';
 
 void main() {

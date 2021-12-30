@@ -1,5 +1,5 @@
-import 'package:flow_accounting/database/operations/queries.dart';
 import 'package:flow_accounting/interface/new_document.dart';
+import 'package:flow_accounting/transactions/database/io/operations/queries.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {

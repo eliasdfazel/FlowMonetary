@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:core';
 
-import 'package:flow_accounting/database/structures/financial_reports.dart';
+import 'package:flow_accounting/transactions/database/structures/financial_reports.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
