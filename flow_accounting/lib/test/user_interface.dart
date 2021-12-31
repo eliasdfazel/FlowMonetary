@@ -58,7 +58,13 @@ class SelectCard extends StatelessWidget {
 
     final TextStyle? textStyle = Theme.of(context).textTheme.bodyText1;
 
-    return Card(
+    return GestureDetector(
+      onTap: () {
+
+        print(">>> " + choice.title);
+
+      },
+      child: Card(
         color: Colors.orange,
         child: Center(child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -66,8 +72,19 @@ class SelectCard extends StatelessWidget {
               Expanded(child: Icon(choice.icon, size:50.0, color: textStyle!.color)),
               Text(choice.title, style: textStyle),
             ]
-        ),
-        )
+        ),),
+      ),
     );
+
+    // return Card(
+    //     color: Colors.orange,
+    //     child: Center(child: Column(
+    //         crossAxisAlignment: CrossAxisAlignment.center,
+    //         children: <Widget>[
+    //           Expanded(child: Icon(choice.icon, size:50.0, color: textStyle!.color)),
+    //           Text(choice.title, style: textStyle),
+    //         ]
+    //     ),),
+    // );
   }
 }
