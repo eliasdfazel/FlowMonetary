@@ -9,12 +9,12 @@ class DatabaseInputs {
 
   String databaseTableName = "all_transactions";
 
-  static const TransactionDatabase = "transactions_database.db";
+  static const transactionDatabase = "transactions_database.db";
 
   Future<void> insertFinancialReport(FinancialReports financialReports) async {
 
     final database = openDatabase(
-      join(await getDatabasesPath(), TransactionDatabase),
+      join(await getDatabasesPath(), transactionDatabase),
       onCreate: (databaseInstance, version) {
 
         return databaseInstance.execute(
@@ -41,7 +41,7 @@ class DatabaseInputs {
   Future<void> updateDog(FinancialReports financialReports) async {
 
     final database = openDatabase(
-      join(await getDatabasesPath(), TransactionDatabase),
+      join(await getDatabasesPath(), transactionDatabase),
     );
 
     final databaseInstance = await database;
@@ -64,7 +64,7 @@ class DatabaseInputs {
   Future<void> deleteFinancialReport(int id) async {
 
     final database = openDatabase(
-      join(await getDatabasesPath(), TransactionDatabase),
+      join(await getDatabasesPath(), transactionDatabase),
     );
 
     final databaseInstance = await database;
