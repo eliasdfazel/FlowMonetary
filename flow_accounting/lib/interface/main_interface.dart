@@ -1,5 +1,5 @@
-import 'package:flow_accounting/interface/new_document.dart';
 import 'package:flow_accounting/transactions/database/io/queries.dart';
+import 'package:flow_accounting/transactions/input/ui/transactions_view.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -93,7 +93,7 @@ class _HomePageState extends State<HomePage> {
 
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const MyApp()),
+      MaterialPageRoute(builder: (context) => const TransactionsView()),
     );
 
   }

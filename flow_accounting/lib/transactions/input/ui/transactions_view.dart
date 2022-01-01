@@ -3,17 +3,17 @@ import 'package:flow_accounting/transactions/database/structures/financial_repor
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MaterialApp( home: MyApp()));
+  runApp(const MaterialApp( home: TransactionsView()));
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+class TransactionsView extends StatefulWidget {
+  const TransactionsView({Key? key}) : super(key: key);
 
   @override
   _State createState() => _State();
 }
 
-class _State extends State<MyApp> {
+class _State extends State<TransactionsView> {
 
   TextEditingController textEditorControllerName = TextEditingController();
   TextEditingController textEditorControllerEmail = TextEditingController();
@@ -39,11 +39,12 @@ class _State extends State<MyApp> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Expanded(
+                      flex: 1,
                       child: Padding(
-                        padding: EdgeInsets.all(15),
+                        padding: const EdgeInsets.all(15),
                         child: TextField(
                           controller: textEditorControllerName,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: 'Full Name',
                             hintText: 'Enter Your Name',
@@ -52,12 +53,13 @@ class _State extends State<MyApp> {
                       ),
                     ),
                     Expanded(
+                      flex: 1,
                       child: Padding(
-                        padding: EdgeInsets.all(15),
+                        padding: const EdgeInsets.all(15),
                         child: TextField(
                           obscureText: false,
                           controller: textEditorControllerEmail,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: 'Email Address',
                             hintText: 'Enter Email Address',
@@ -77,7 +79,17 @@ class _State extends State<MyApp> {
 
                     databaseInputs.insertFinancialReport(FinancialReports(id: 666, name: textEditorControllerName.text, type: 1));
 
-                    print(">>> >> > " + textEditorControllerName.text + " | " + textEditorControllerEmail.text);
+                    final snackBar = SnackBar(
+                      content: Text("${textEditorControllerName.text} |  ${textEditorControllerEmail.text}"),
+                      action: SnackBarAction(
+                        label: 'OK',
+                        onPressed: () {
+                          // Some code to undo the change.
+                        },
+                      ),
+                    );
+
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
                     
                   },
                 )
