@@ -39,7 +39,7 @@ class _State extends State<TransactionsView> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Expanded(
-                      flex: 1,
+                      flex: 3,
                       child: Padding(
                         padding: const EdgeInsets.all(15),
                         child: TextField(
@@ -53,7 +53,7 @@ class _State extends State<TransactionsView> {
                       ),
                     ),
                     Expanded(
-                      flex: 1,
+                      flex: 7,
                       child: Padding(
                         padding: const EdgeInsets.all(15),
                         child: TextField(
