@@ -46,6 +46,13 @@ class DatabaseInputs {
       where: 'id = ?',
       whereArgs: [financialReports.id],
     );
+
+    if (databaseInstance.isOpen) {
+
+      databaseInstance.close();
+
+    }
+
   }
 
   Future<void> deleteFinancialReport(int id) async {
@@ -56,6 +63,8 @@ class DatabaseInputs {
 
     final databaseInstance = await database;
 
+    //SELECT * FROM WHERE
+    //  Future<int> delete(String table, {String? where, List<Object?>? whereArgs});
     await databaseInstance.delete(
       'financial_reports_database',
       where: 'id = ?',
