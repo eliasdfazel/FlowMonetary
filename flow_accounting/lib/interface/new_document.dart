@@ -15,7 +15,8 @@ class MyApp extends StatefulWidget {
 
 class _State extends State<MyApp> {
 
-  TextEditingController textEditorController = TextEditingController();
+  TextEditingController textEditorControllerName = TextEditingController();
+  TextEditingController textEditorControllerEmail = TextEditingController();
 
   @override
   void dispose() {
@@ -30,48 +31,53 @@ class _State extends State<MyApp> {
 
 
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Flutter TextField Example'),
-        ),
         body: Padding(
             padding: const EdgeInsets.all(15),
             child: Column(
               children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.all(15),
-                  child: TextField(
-                    controller: textEditorController,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Full Name',
-                      hintText: 'Enter Your Name',
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.all(15),
+                        child: TextField(
+                          controller: textEditorControllerName,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: 'Full Name',
+                            hintText: 'Enter Your Name',
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(15),
-                  child: TextField(
-                    obscureText: false,
-                    controller: textEditorController,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Email Address',
-                      hintText: 'Enter Email Address',
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.all(15),
+                        child: TextField(
+                          obscureText: false,
+                          controller: textEditorControllerEmail,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: 'Email Address',
+                            hintText: 'Enter Email Address',
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
+                  ],
                 ),
-                RaisedButton(
+                MaterialButton(
                   textColor: Colors.white,
                   color: Colors.blue,
-                  child: const Text('Saved'),
+                  child: const Text('Insert'),
                   onPressed: (){
 
                     var databaseInputs = DatabaseInputs();
 
-                    databaseInputs.insertFinancialReport(FinancialReports(id:
-                    666, name: textEditorController.text, type: 1));
+                    databaseInputs.insertFinancialReport(FinancialReports(id: 666, name: textEditorControllerName.text, type: 1));
 
-                    print(">>> >> > " + textEditorController.text);
+                    print(">>> >> > " + textEditorControllerName.text + " | " + textEditorControllerEmail.text);
                     
                   },
                 )
