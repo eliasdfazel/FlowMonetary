@@ -7,15 +7,25 @@ import 'package:sqflite/sqflite.dart';
 
 class DatabaseInputs {
 
+  String databaseTableName = "all_transactions";
+
+  DatabaseInputs(String databaseTableName) {
+    this.databaseTableName = databaseTableName;
+  }
+
+  static const TransactionDatabase = "transactions_database.db";
+
   Future<void> insertFinancialReport(FinancialReports financialReports) async {
 
     final database = openDatabase(
-      join(await getDatabasesPath(), 'financial_reports_database.db'),
+      join(await getDatabasesPath(), TransactionDatabase),
       onCreate: (databaseInstance, version) {
+
         return databaseInstance.execute(
-          'CREATE TABLE IF NOT EXISTS financial_reports_database(id INTEGER PRIMARY KEY, '
-              'name'
-              ' TEXT, type INTEGER)',
+          'CREATE TABLE IF NOT EXISTS $databaseTableName(id INTEGER PRIMARY KEY, '
+              'name TEXT, '
+              'type INTEGER'
+              ')',
         );
       },
 
@@ -25,7 +35,7 @@ class DatabaseInputs {
     final databaseInstance = await database;
 
     await databaseInstance.insert(
-      'financial_reports_database',
+      databaseTableName,
       financialReports.toMap(),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
@@ -35,13 +45,13 @@ class DatabaseInputs {
   Future<void> updateDog(FinancialReports financialReports) async {
 
     final database = openDatabase(
-      join(await getDatabasesPath(), 'financial_reports_database.db'),
+      join(await getDatabasesPath(), TransactionDatabase),
     );
 
     final databaseInstance = await database;
 
     await databaseInstance.update(
-      'financial_reports_database',
+      databaseTableName,
       financialReports.toMap(),
       where: 'id = ?',
       whereArgs: [financialReports.id],
@@ -58,7 +68,7 @@ class DatabaseInputs {
   Future<void> deleteFinancialReport(int id) async {
 
     final database = openDatabase(
-      join(await getDatabasesPath(), 'financial_reports_database.db'),
+      join(await getDatabasesPath(), TransactionDatabase),
     );
 
     final databaseInstance = await database;
