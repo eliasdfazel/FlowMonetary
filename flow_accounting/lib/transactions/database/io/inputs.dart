@@ -9,9 +9,7 @@ class DatabaseInputs {
 
   String databaseTableName = "all_transactions";
 
-  DatabaseInputs(String databaseTableName) {
-    this.databaseTableName = databaseTableName;
-  }
+  DatabaseInputs(this.databaseTableName);
 
   static const TransactionDatabase = "transactions_database.db";
 
