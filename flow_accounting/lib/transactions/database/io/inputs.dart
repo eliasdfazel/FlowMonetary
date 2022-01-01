@@ -9,8 +9,6 @@ class DatabaseInputs {
 
   String databaseTableName = "all_transactions";
 
-  DatabaseInputs(this.databaseTableName);
-
   static const TransactionDatabase = "transactions_database.db";
 
   Future<void> insertFinancialReport(FinancialReports financialReports) async {
