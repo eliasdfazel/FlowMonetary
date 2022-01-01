@@ -75,16 +75,5 @@ class SelectCard extends StatelessWidget {
         ),),
       ),
     );
-
-    // return Card(
-    //     color: Colors.orange,
-    //     child: Center(child: Column(
-    //         crossAxisAlignment: CrossAxisAlignment.center,
-    //         children: <Widget>[
-    //           Expanded(child: Icon(choice.icon, size:50.0, color: textStyle!.color)),
-    //           Text(choice.title, style: textStyle),
-    //         ]
-    //     ),),
-    // );
   }
 }
