@@ -35,25 +35,30 @@ class _State extends State<TransactionsView> {
             padding: const EdgeInsets.all(15),
             child: Column(
               children: <Widget>[
-                Expanded(
-                  flex: 1,
-                  child: Padding(
-                    padding: const EdgeInsets.all(15),
-                    child:  Text(
-                      'Transactions',
-                      style: TextStyle(
-                        fontSize: 32,
-                        color: Colors.black87,
-                        shadows: [
-                          Shadow(
-                            color: Colors.blue.shade900.withOpacity(0.5),
-                            offset: Offset(13, 13),
-                            blurRadius: 0.3,
-                          )
-                        ],
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: Padding(
+                        padding: const EdgeInsets.all(15),
+                        child:  Text(
+                          'Transactions',
+                          style: TextStyle(
+                            fontSize: 32,
+                            color: Colors.black87,
+                            shadows: [
+                              Shadow(
+                                color: Colors.black.withOpacity(0.5),
+                                offset: Offset(3, 3),
+                                blurRadius: 7,
+                              )
+                            ],
+                          ),
+                        ),
                       ),
                     ),
-                  ),
+                  ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
