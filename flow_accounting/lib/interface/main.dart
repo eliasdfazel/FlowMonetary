@@ -33,7 +33,7 @@ class FlowDashboard extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: const HomePage(title: 'Flow Monetary'),
+      home: const HomePage(title: 'Flow Accounting'),
     );
   }
 
