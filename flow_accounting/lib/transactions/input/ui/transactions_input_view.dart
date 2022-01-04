@@ -27,8 +27,6 @@ class _State extends State<TransactionsView> {
   @override
   Widget build(BuildContext context) {
 
-
-
     return Scaffold(
         body: Padding(
             padding: const EdgeInsets.all(15),
