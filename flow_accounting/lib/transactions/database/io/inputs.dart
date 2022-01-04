@@ -11,14 +11,16 @@ class DatabaseInputs {
 
   static const transactionDatabase = "transactions_database.db";
 
-  Future<void> insertFinancialReport(TransactionsData financialReports) async {
+  Future<void> insertTransactionData(TransactionsData transactionsData, String? tableName) async {
+
+    var tableNameQuery = (tableName != null) ? tableName : DatabaseInputs.databaseTableName;
 
     final database = openDatabase(
       join(await getDatabasesPath(), transactionDatabase),
       onCreate: (databaseInstance, version) {
 
         return databaseInstance.execute(
-          'CREATE TABLE IF NOT EXISTS $databaseTableName(id INTEGER PRIMARY KEY, '
+          'CREATE TABLE IF NOT EXISTS $tableNameQuery(id INTEGER PRIMARY KEY, '
               'sourceCardNumber TEXT, '
               'targetCardNumber TEXT, '
               'sourceBankName TEXT'
@@ -37,14 +39,14 @@ class DatabaseInputs {
     final databaseInstance = await database;
 
     await databaseInstance.insert(
-      databaseTableName,
-      financialReports.toMap(),
+      tableNameQuery,
+      transactionsData.toMap(),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
 
   }
 
-  Future<void> updateDog(TransactionsData financialReports) async {
+  Future<void> updateTransactionData(TransactionsData transactionsData, String? tableName) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), transactionDatabase),
@@ -52,11 +54,13 @@ class DatabaseInputs {
 
     final databaseInstance = await database;
 
+    var tableNameQuery = (tableName != null) ? tableName : DatabaseInputs.databaseTableName;
+
     await databaseInstance.update(
-      databaseTableName,
-      financialReports.toMap(),
+      tableNameQuery,
+      transactionsData.toMap(),
       where: 'id = ?',
-      whereArgs: [financialReports.id],
+      whereArgs: [transactionsData.id],
     );
 
     if (databaseInstance.isOpen) {
@@ -67,7 +71,7 @@ class DatabaseInputs {
 
   }
 
-  Future<void> deleteFinancialReport(int id) async {
+  Future<void> deleteFinancialReport(int id, String? tableName) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), transactionDatabase),
@@ -75,10 +79,10 @@ class DatabaseInputs {
 
     final databaseInstance = await database;
 
-    //SELECT * FROM WHERE
-    //  Future<int> delete(String table, {String? where, List<Object?>? whereArgs});
+    var tableNameQuery = (tableName != null) ? tableName : DatabaseInputs.databaseTableName;
+
     await databaseInstance.delete(
-      'financial_reports_database',
+      tableNameQuery,
       where: 'id = ?',
       whereArgs: [id],
     );
