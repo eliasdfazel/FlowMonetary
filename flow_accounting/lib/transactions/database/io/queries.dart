@@ -8,7 +8,7 @@ import 'package:sqflite/sqflite.dart';
 
 class DatabaseQueries {
 
-  Future<List<TransactionsData>> getAllFinancialReports() async {
+  Future<List<TransactionsData>> getAllTransactions(String? tableName) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), DatabaseInputs.transactionDatabase),
@@ -16,7 +16,9 @@ class DatabaseQueries {
 
     final databaseInstance = await database;
 
-    final List<Map<String, dynamic>> maps = await databaseInstance.query('table_nameXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
+    var tableNameQuery = (tableName != null) ? tableName : DatabaseInputs.databaseTableName;
+
+    final List<Map<String, dynamic>> maps = await databaseInstance.query(tableNameQuery);
 
     return List.generate(maps.length, (i) {
       return TransactionsData(
