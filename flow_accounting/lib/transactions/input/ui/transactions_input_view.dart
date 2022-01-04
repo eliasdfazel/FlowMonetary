@@ -1,3 +1,4 @@
+import 'package:flow_accounting/resources/colors.dart';
 import 'package:flow_accounting/transactions/database/io/inputs.dart';
 import 'package:flutter/material.dart';
 
@@ -27,9 +28,26 @@ class _State extends State<TransactionsView> {
   @override
   Widget build(BuildContext context) {
 
-    return SafeArea(child: MaterialApp(
+    return SafeArea (child: MaterialApp (
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
-          body: Column (
+        backgroundColor: ColorsPalette.black,
+        body: Container (
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.only(topLeft: Radius.circular(17), topRight: Radius.circular(17),
+                bottomLeft: Radius.circular(17), bottomRight: Radius.circular(17)),
+            gradient: LinearGradient(
+                colors: [
+                  ColorsPalette.white,
+                  ColorsPalette.primaryColorLighter,
+                ],
+                begin: FractionalOffset(0.0, 0.0),
+                end: FractionalOffset(1.0, 0.0),
+                stops: [0.0, 1.0],
+                transform: GradientRotation(45),
+                tileMode: TileMode.clamp),
+          ),
+          child: Column (
             children: [
               Expanded(child: Padding(
                 padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
@@ -120,7 +138,8 @@ class _State extends State<TransactionsView> {
                 },
               )
             ],
-          )
+          ),
+        ),
       ),
     ));
   }
