@@ -30,28 +30,28 @@ class _State extends State<TransactionsView> {
 
     return SafeArea (child: MaterialApp (
       debugShowCheckedModeBanner: false,
+      color: ColorsPalette.black,
       home: Scaffold(
         backgroundColor: ColorsPalette.black,
-        body: Container (
-          decoration: const BoxDecoration(
-            borderRadius: BorderRadius.only(topLeft: Radius.circular(17), topRight: Radius.circular(17),
-                bottomLeft: Radius.circular(17), bottomRight: Radius.circular(17)),
-            gradient: LinearGradient(
-                colors: [
-                  ColorsPalette.white,
-                  ColorsPalette.primaryColorLighter,
-                ],
-                begin: FractionalOffset(0.0, 0.0),
-                end: FractionalOffset(1.0, 0.0),
-                stops: [0.0, 1.0],
-                transform: GradientRotation(45),
-                tileMode: TileMode.clamp),
-          ),
-          child: Column (
-            children: [
-              Expanded(child: Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                child: Expanded(child: ListView(children: [
+        body: Padding(
+          padding: const EdgeInsets.fromLTRB(/*left*/1.1, /*top*/3, /*right*/1.1, /*bottom*/3),
+          child: Container (
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.only(topLeft: Radius.circular(17), topRight: Radius.circular(17), bottomLeft: Radius.circular(17), bottomRight: Radius.circular(17)),
+              gradient: LinearGradient(
+                  colors: [
+                    ColorsPalette.white,
+                    ColorsPalette.primaryColorLighter,
+                  ],
+                  begin: FractionalOffset(0.0, 0.0),
+                  end: FractionalOffset(1.0, 0.0),
+                  stops: [0.0, 1.0],
+                  transform: GradientRotation(45),
+                  tileMode: TileMode.clamp),
+            ),
+            child: Column (
+              children: [
+                Expanded(child: ListView(children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -111,35 +111,34 @@ class _State extends State<TransactionsView> {
                       ),
                     ],
                   ),
-                ],)),
-              )),
-              MaterialButton(
-                textColor: Colors.white,
-                color: Colors.blue,
-                child: const Text('Insert'),
-                onPressed: () {
+                ])),
+                MaterialButton(
+                  textColor: Colors.white,
+                  color: Colors.blue,
+                  child: const Text('Insert'),
+                  onPressed: () {
 
-                  var databaseInputs = DatabaseInputs();
+                    var databaseInputs = DatabaseInputs();
 
-                  final snackBar = SnackBar(
-                    content: Text("${textEditorControllerName.text} |  ${textEditorControllerEmail.text}"),
-                    action: SnackBarAction(
-                      label: 'OK',
-                      onPressed: () {
+                    final snackBar = SnackBar(
+                      content: Text("${textEditorControllerName.text} |  ${textEditorControllerEmail.text}"),
+                      action: SnackBarAction(
+                        label: 'OK',
+                        onPressed: () {
 
-                        // databaseInputs.insertFinancialReport(TransactionsData(id: 666, sourceCardNumber: textEditorControllerName.text, type: 1));
+                          // databaseInputs.insertFinancialReport(TransactionsData(id: 666, sourceCardNumber: textEditorControllerName.text, type: 1));
 
-                      },
-                    ),
-                  );
+                        },
+                      ),
+                    );
 
-                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
-                },
-              )
-            ],
-          ),
-        ),
+                  },
+                )
+              ],
+            ),
+          ),),
       ),
     ));
   }
