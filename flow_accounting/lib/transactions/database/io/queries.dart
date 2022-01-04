@@ -1,42 +1,51 @@
 import 'dart:async';
 import 'dart:core';
 
-import 'package:flow_accounting/transactions/database/structures/financial_reports.dart';
+import 'package:flow_accounting/transactions/database/io/inputs.dart';
+import 'package:flow_accounting/transactions/database/structures/tables_structure.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DatabaseQueries {
 
-  Future<List<FinancialReports>> getAllFinancialReports() async {
+  Future<List<TransactionsData>> getAllFinancialReports() async {
 
     final database = openDatabase(
-      join(await getDatabasesPath(), 'financial_reports_database.db'),
+      join(await getDatabasesPath(), DatabaseInputs.transactionDatabase),
     );
 
     final databaseInstance = await database;
 
-    final List<Map<String, dynamic>> maps = await databaseInstance.query('financial_reports_database');
+    final List<Map<String, dynamic>> maps = await databaseInstance.query('table_nameXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
 
     return List.generate(maps.length, (i) {
-      return FinancialReports(
+      return TransactionsData(
         id: maps[i]['id'],
-        name: maps[i]['name'],
-        type: maps[i]['type'],
+        sourceCardNumber: maps[i]['sourceCardNumber'],
+        targetCardNumber: maps[i]['targetCardNumber'],
+        sourceBankName: maps[i]['sourceBankName'],
+        targetBankName: maps[i]['targetBankName'],
+        sourceUsername: maps[i]['sourceUsername'],
+        targetUsername: maps[i]['targetUsername'],
+        amountMoney: maps[i]['amountMoney'],
+        transactionTime: maps[i]['transactionTime'],
       );
     });
 
   }
 
-  Future<Map<String, Object?>> queryFinancialReport(int id) async {
+  Future<Map<String, Object?>> queryFinancialReport(int id, String? tableName) async {
 
     final database = openDatabase(
-      join(await getDatabasesPath(), 'financial_reports_database.db'),
+      join(await getDatabasesPath(), DatabaseInputs.transactionDatabase),
     );
 
     final databaseInstance = await database;
 
+    var tableNameQuery = (tableName != null) ? tableName : DatabaseInputs.databaseTableName;
+
     var databaseContents = await databaseInstance.query(
-      'financial_reports_database',
+      tableNameQuery,
       where: 'id = ?',
       whereArgs: [id],
     );
@@ -44,11 +53,18 @@ class DatabaseQueries {
     return databaseContents[0];
   }
 
-  Future<FinancialReports> extractFinancialReport(Map<String, Object?>inputData) async {
+  Future<TransactionsData> extractFinancialReport(Map<String, Object?>inputData) async {
 
-    return FinancialReports(id: inputData["id"] as int,
-        name: inputData["name"].toString(),
-        type: inputData["type"] as int);
+    return TransactionsData(id: inputData["id"] as int,
+      sourceCardNumber: inputData['sourceCardNumber'].toString(),
+      targetCardNumber: inputData['targetCardNumber'].toString(),
+      sourceBankName: inputData['sourceBankName'].toString(),
+      targetBankName: inputData['targetBankName'].toString(),
+      sourceUsername: inputData['sourceUsername'].toString(),
+      targetUsername: inputData['targetUsername'].toString(),
+      amountMoney: inputData['amountMoney'].toString(),
+      transactionTime: inputData['transactionTime'].toString(),
+    );
   }
 
 }

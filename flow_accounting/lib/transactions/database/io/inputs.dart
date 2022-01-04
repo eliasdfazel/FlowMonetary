@@ -1,17 +1,17 @@
 import 'dart:async';
 import 'dart:core';
 
-import 'package:flow_accounting/transactions/database/structures/financial_reports.dart';
+import 'package:flow_accounting/transactions/database/structures/tables_structure.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DatabaseInputs {
 
-  String databaseTableName = "all_transactions";
+  static const String databaseTableName = "all_transactions";
 
   static const transactionDatabase = "transactions_database.db";
 
-  Future<void> insertFinancialReport(FinancialReports financialReports) async {
+  Future<void> insertFinancialReport(TransactionsData financialReports) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), transactionDatabase),
@@ -19,8 +19,14 @@ class DatabaseInputs {
 
         return databaseInstance.execute(
           'CREATE TABLE IF NOT EXISTS $databaseTableName(id INTEGER PRIMARY KEY, '
-              'name TEXT, '
-              'type INTEGER'
+              'sourceCardNumber TEXT, '
+              'targetCardNumber TEXT, '
+              'sourceBankName TEXT'
+              'targetBankName TEXT'
+              'sourceName TEXT'
+              'targetName TEXT'
+              'amount TEXT'
+              'time TEXT'
               ')',
         );
       },
@@ -38,7 +44,7 @@ class DatabaseInputs {
 
   }
 
-  Future<void> updateDog(FinancialReports financialReports) async {
+  Future<void> updateDog(TransactionsData financialReports) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), transactionDatabase),

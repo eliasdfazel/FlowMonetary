@@ -1,5 +1,4 @@
 import 'package:flow_accounting/transactions/database/io/inputs.dart';
-import 'package:flow_accounting/transactions/database/structures/financial_reports.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -102,14 +101,14 @@ class _State extends State<TransactionsView> {
 
                     var databaseInputs = DatabaseInputs();
 
-                    databaseInputs.insertFinancialReport(FinancialReports(id: 666, name: textEditorControllerName.text, type: 1));
-
                     final snackBar = SnackBar(
                       content: Text("${textEditorControllerName.text} |  ${textEditorControllerEmail.text}"),
                       action: SnackBarAction(
                         label: 'OK',
                         onPressed: () {
-                          // Some code to undo the change.
+
+                          // databaseInputs.insertFinancialReport(TransactionsData(id: 666, sourceCardNumber: textEditorControllerName.text, type: 1));
+
                         },
                       ),
                     );

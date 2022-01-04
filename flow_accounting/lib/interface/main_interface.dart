@@ -1,5 +1,4 @@
-import 'package:flow_accounting/transactions/database/io/queries.dart';
-import 'package:flow_accounting/transactions/input/ui/transactions_view.dart';
+import 'package:flow_accounting/transactions/input/ui/transactions_input_view.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -75,17 +74,17 @@ class _HomePageState extends State<HomePage> {
 
   void initializeReportsOverview() async {
 
-    var databaseQueries = DatabaseQueries();
-
-    var databaseContents = await databaseQueries.queryFinancialReport(1);
-
-    nameQuery = (await databaseQueries.extractFinancialReport(databaseContents)).name;
-    typeQuery = (await databaseQueries.extractFinancialReport(databaseContents)).type.toString();
-
-    setState(() {
-      nameQuery;
-      typeQuery;
-    });
+    // var databaseQueries = DatabaseQueries();
+    //
+    // var databaseContents = await databaseQueries.queryFinancialReport(1);
+    //
+    // nameQuery = (await databaseQueries.extractFinancialReport(databaseContents)).sourceCardNumber;
+    // typeQuery = (await databaseQueries.extractFinancialReport(databaseContents)).type.toString();
+    //
+    // setState(() {
+    //   nameQuery;
+    //   typeQuery;
+    // });
 
   }
 

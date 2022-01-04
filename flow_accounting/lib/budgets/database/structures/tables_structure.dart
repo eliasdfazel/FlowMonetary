@@ -1,13 +1,9 @@
-class FinancialReports {
+class BudgetsData {
+
   final int id;
 
-  final String name;
-  final int type;
-
-  FinancialReports({
+  BudgetsData({
     required this.id,
-    required this.name,
-    required this.type,
   });
 
   // Convert a Dog into a Map. The keys must correspond to the names of the
@@ -15,8 +11,6 @@ class FinancialReports {
   Map<String, dynamic> toMap() {
     return {
       'id': id,
-      'name': name,
-      'type': type,
     };
   }
 
@@ -24,6 +18,6 @@ class FinancialReports {
   // each dog when using the print statement.
   @override
   String toString() {
-    return 'FinancialReports{id: $id, name: $name, type: $type}';
+    return 'BudgetsData{id: $id}';
   }
 }
