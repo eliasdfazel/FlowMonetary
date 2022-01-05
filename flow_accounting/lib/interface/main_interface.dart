@@ -1,3 +1,4 @@
+import 'package:flow_accounting/resources/colors.dart';
 import 'package:flow_accounting/transactions/input/ui/transactions_input_view.dart';
 import 'package:flutter/material.dart';
 
@@ -13,63 +14,107 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  String nameQuery = '';
-  String typeQuery = '';
-
   @override
   Widget build(BuildContext context) {
 
-    Widget titleSection = Container(
-      padding: const EdgeInsets.fromLTRB(19, 51, 19, 13),
-      child: Row(
-        children: <Widget>[
-          Expanded(
-            /*1*/
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                /*2*/
-                Container(
-                  padding: const EdgeInsets.only(bottom: 8),
-                  child: Text(
-                    typeQuery,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey,
-                    ),
-                  ),
-                ),
-                Text(
-                  nameQuery,
-                  style: TextStyle(
-                    color: Colors.grey[500],
-                  ),
-                ),
-              ],
-            ),
-          ),
-          /*3*/
-          Icon(
-            Icons.star,
-            color: Colors.red[500],
-          ),
-          const Text('41'),
-        ],
-      ),
-    );
-
     initializeReportsOverview();
 
-    return Scaffold(
-      body: Column(
-          children: [titleSection]
+    return SafeArea (child: MaterialApp (
+      debugShowCheckedModeBanner: false,
+      color: ColorsPalette.black,
+      home: Scaffold(
+        backgroundColor: ColorsPalette.black,
+        body: Padding(
+          padding: const EdgeInsets.fromLTRB(/*left*/1.1, /*top*/3, /*right*/1.1, /*bottom*/3),
+          child: Container (
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.only(topLeft: Radius.circular(17), topRight: Radius.circular(17), bottomLeft: Radius.circular(17), bottomRight: Radius.circular(17)),
+              gradient: LinearGradient(
+                  colors: [
+                    ColorsPalette.white,
+                    ColorsPalette.primaryColorLighter,
+                  ],
+                  begin: FractionalOffset(0.0, 0.0),
+                  end: FractionalOffset(1.0, 0.0),
+                  stops: [0.0, 1.0],
+                  transform: GradientRotation(45),
+                  tileMode: TileMode.clamp),
+            ),
+            child: Column (
+              children: [
+                Expanded(child: ListView(children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: Padding(
+                          padding: const EdgeInsets.all(15),
+                          child:  Text(
+                            'Transactions',
+                            style: TextStyle(
+                              fontSize: 32,
+                              color: Colors.black87,
+                              shadows: [
+                                Shadow(
+                                  color: Colors.black.withOpacity(0.5),
+                                  offset: Offset(3, 3),
+                                  blurRadius: 7,
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Expanded(
+                        flex: 3,
+                        child: Padding(
+                          padding: const EdgeInsets.all(15),
+                          child: TextField(
+                            decoration: const InputDecoration(
+                              border: OutlineInputBorder(),
+                              labelText: 'Full Name',
+                              hintText: 'Enter Your Name',
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 7,
+                        child: Padding(
+                          padding: const EdgeInsets.all(15),
+                          child: TextField(
+                            obscureText: false,
+                            decoration: const InputDecoration(
+                              border: OutlineInputBorder(),
+                              labelText: 'Email Address',
+                              hintText: 'Enter Email Address',
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ])),
+                MaterialButton(
+                  textColor: Colors.white,
+                  color: Colors.blue,
+                  child: const Text('Insert'),
+                  onPressed: () {
+
+
+                  },
+                )
+              ],
+            ),
+          ),),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: tapAction,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
-    );
+    ));
   }
 
   void initializeReportsOverview() async {

@@ -24,17 +24,7 @@ class FlowDashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return MaterialApp(
-      title: 'Flow Accounting',
-      theme: ThemeData(
-        primarySwatch: Colors.cyan,
-        primaryColorDark: Colors.blue,
-        backgroundColor: Colors.cyan,
-        scaffoldBackgroundColor: Colors.white,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: const HomePage(title: 'Flow Accounting'),
-    );
+    return const HomePage(title: 'Flow Accounting');
   }
 
 }
