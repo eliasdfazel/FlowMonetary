@@ -49,7 +49,7 @@ class _State extends State<TransactionsView> {
                   transform: GradientRotation(45),
                   tileMode: TileMode.clamp),
             ),
-            child: Column (
+            child: Column ( /*** Page Content ***/
               children: [
                 Expanded(child: ListView(children: [
                   Row(
