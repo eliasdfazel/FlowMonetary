@@ -1,4 +1,5 @@
 import 'package:flow_accounting/resources/colors.dart';
+import 'package:flow_accounting/resources/strings.dart';
 import 'package:flow_accounting/transactions/input/ui/transactions_input_view.dart';
 import 'package:flutter/material.dart';
 
@@ -22,6 +23,7 @@ class _HomePageState extends State<HomePage> {
     return SafeArea (child: MaterialApp (
       debugShowCheckedModeBanner: false,
       color: ColorsPalette.black,
+      theme: ThemeData(fontFamily: 'Sans'),
       home: Scaffold(
         backgroundColor: ColorsPalette.black,
         body: Padding(
@@ -51,7 +53,8 @@ class _HomePageState extends State<HomePage> {
                         child: Padding(
                           padding: const EdgeInsets.all(15),
                           child:  Text(
-                            'Transactions',
+                            Strings.applicationName,
+                            textDirection: TextDirection.rtl,
                             style: TextStyle(
                               fontSize: 32,
                               color: Colors.black87,

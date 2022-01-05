@@ -2,18 +2,22 @@ import 'package:flow_accounting/resources/colors.dart';
 import 'package:flow_accounting/transactions/database/io/inputs.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+
+  WidgetsFlutterBinding.ensureInitialized();
+
   runApp(const MaterialApp( home: TransactionsView()));
+
 }
 
 class TransactionsView extends StatefulWidget {
   const TransactionsView({Key? key}) : super(key: key);
 
   @override
-  _State createState() => _State();
+  _TransactionsViewState createState() => _TransactionsViewState();
 }
 
-class _State extends State<TransactionsView> {
+class _TransactionsViewState extends State<TransactionsView> {
 
   TextEditingController textEditorControllerName = TextEditingController();
   TextEditingController textEditorControllerEmail = TextEditingController();
@@ -31,6 +35,7 @@ class _State extends State<TransactionsView> {
     return SafeArea (child: MaterialApp (
       debugShowCheckedModeBanner: false,
       color: ColorsPalette.black,
+      theme: ThemeData(fontFamily: 'Sans'),
       home: Scaffold(
         backgroundColor: ColorsPalette.black,
         body: Padding(
