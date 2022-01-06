@@ -31,6 +31,7 @@ class DatabaseQueries {
         targetUsername: maps[i]['targetUsername'],
         amountMoney: maps[i]['amountMoney'],
         transactionTime: maps[i]['transactionTime'],
+        reminderTime: maps[i]['reminderTime'],
       );
     });
 
@@ -66,6 +67,7 @@ class DatabaseQueries {
       targetUsername: inputData['targetUsername'].toString(),
       amountMoney: inputData['amountMoney'].toString(),
       transactionTime: inputData['transactionTime'].toString(),
+      reminderTime: inputData['reminderTime'].toString(),
     );
   }
 
