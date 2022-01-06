@@ -72,4 +72,20 @@ class _State extends State<TransactionsView> {
       ),
     ));
   }
+
+  void initializeReportsOverview() async {
+
+    // var databaseQueries = DatabaseQueries();
+    //
+    // var databaseContents = await databaseQueries.queryFinancialReport(1);
+    //
+    // nameQuery = (await databaseQueries.extractFinancialReport(databaseContents)).sourceCardNumber;
+    // typeQuery = (await databaseQueries.extractFinancialReport(databaseContents)).type.toString();
+    //
+    // setState(() {
+    //   nameQuery;
+    //   typeQuery;
+    // });
+
+  }
 }

@@ -1,5 +1,5 @@
 class Strings {
 
-  static const String applicationName = "حسابداری موج";
+  static const String applicationName = "حسابداری جریان";
 
 }

@@ -1,6 +1,5 @@
 import 'package:flow_accounting/resources/colors.dart';
 import 'package:flow_accounting/resources/strings.dart';
-import 'package:flow_accounting/transactions/input/ui/transactions_input_view.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,8 +16,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-
-    initializeReportsOverview();
 
     return SafeArea (child: MaterialApp (
       debugShowCheckedModeBanner: false,
@@ -78,12 +75,8 @@ class _HomePageState extends State<HomePage> {
                         flex: 3,
                         child: Padding(
                           padding: const EdgeInsets.all(15),
-                          child: TextField(
-                            decoration: const InputDecoration(
-                              border: OutlineInputBorder(),
-                              labelText: 'Full Name',
-                              hintText: 'Enter Your Name',
-                            ),
+                          child: Text(
+                            "123",
                           ),
                         ),
                       ),
@@ -91,14 +84,9 @@ class _HomePageState extends State<HomePage> {
                         flex: 7,
                         child: Padding(
                           padding: const EdgeInsets.all(15),
-                          child: TextField(
-                            obscureText: false,
-                            decoration: const InputDecoration(
-                              border: OutlineInputBorder(),
-                              labelText: 'Email Address',
-                              hintText: 'Enter Email Address',
-                            ),
-                          ),
+                          child: Text(
+                          "XYZ",
+                        ),
                         ),
                       ),
                     ],
@@ -120,28 +108,4 @@ class _HomePageState extends State<HomePage> {
     ));
   }
 
-  void initializeReportsOverview() async {
-
-    // var databaseQueries = DatabaseQueries();
-    //
-    // var databaseContents = await databaseQueries.queryFinancialReport(1);
-    //
-    // nameQuery = (await databaseQueries.extractFinancialReport(databaseContents)).sourceCardNumber;
-    // typeQuery = (await databaseQueries.extractFinancialReport(databaseContents)).type.toString();
-    //
-    // setState(() {
-    //   nameQuery;
-    //   typeQuery;
-    // });
-
-  }
-
-  void tapAction() async {
-
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const TransactionsView()),
-    );
-
-  }
 }
