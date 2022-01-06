@@ -45,28 +45,38 @@ class FlowDashboard extends StatelessWidget {
             ),
             child: Column ( /*** Page Content ***/
               children: [
-                Expanded(child: RotatedBox (
-                  quarterTurns: 2,
-                  child: WaveWidget(
-                    config: CustomConfig(
-                      colors: [
-                        Colors.blue.shade200,
-                        Colors.blue.shade400,
-                        Colors.blue.shade600,
-                        Colors.blue.shade900,
-                      ],
-                      durations: [32000, 21000, 18000, 5000],
-                      heightPercentages: [0.25, 0.26, 0.28, 0.31],
-                      blur: MaskFilter.blur(BlurStyle.outer, 3.0),
-                    ),
-                    backgroundColor: Colors.transparent,
-                    size: const Size(double.infinity, double.infinity),
-                    waveAmplitude: 7,
+                SizedBox(
+                  width: double.infinity,
+                  height: 500,
+                  child: Stack(
+                    children: [
+                      Expanded(child: RotatedBox (
+                          quarterTurns: 2,
+                          child: WaveWidget(
+                            config: CustomConfig(
+                              colors: [
+                                Colors.green.shade50,
+                                Colors.green.shade200,
+                                Colors.green.shade300,
+                                Colors.green.shade500,
+                              ],
+                              durations: [32000, 21000, 18000, 3000],
+                              heightPercentages: [0.30, 0.25, 0.35, 0.40],
+                              blur: const MaskFilter.blur(BlurStyle.normal, 3.0),
+                            ),
+                            backgroundColor: Colors.transparent,
+                            size: const Size(double.infinity, 300),
+                            waveAmplitude: 7,
+                          )
+                      )),
+                      Expanded(
+                          child: Text(
+                              "Test Title ${DateTime.now()}"
+                          )
+                      )
+                    ],
                   ),
-                )),
-                Expanded(child: Text(
-                    "Test Title"
-                ))
+                )
               ],
             ),
           ),),

@@ -1,6 +1,8 @@
 import 'package:flow_accounting/resources/colors.dart';
 import 'package:flow_accounting/resources/strings.dart';
 import 'package:flutter/material.dart';
+import 'package:wave/config.dart';
+import 'package:wave/wave.dart';
 
 class HomePage extends StatefulWidget {
 
@@ -41,31 +43,63 @@ class _HomePageState extends State<HomePage> {
             ),
             child: Column ( /*** Page Content ***/
               children: [
+                SizedBox(
+                  width: double.infinity,
+                  height: 100,
+                  child: Stack(
+                    children: [
+                      RotatedBox (
+                          quarterTurns: 2,
+                          child: WaveWidget(
+                            config: CustomConfig(
+                              colors: [
+                                Colors.green.shade50,
+                                Colors.green.shade100,
+                                Colors.green.shade300,
+                                Colors.green.shade300,
+                                Colors.green.shade700,
+                              ],
+                              durations: [11000, 11000, 13000, 7700, 9000],
+                              heightPercentages: [0.50, 0.25, 0.35, 0.91, 0.79],
+                              blur: const MaskFilter.blur(BlurStyle.normal, 1.9),
+                            ),
+                            backgroundColor: Colors.transparent,
+                            size: const Size(double.infinity, 300),
+                            waveAmplitude: 7,
+                          )
+                      ),
+                      Expanded(
+                        child: SizedBox(
+                          width: double.infinity,
+                          height: 100,
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(0, 19, 15, 0),
+                            child: Text(
+                              Strings.applicationName,
+                              textDirection: TextDirection.rtl,
+                              style: TextStyle(
+                                fontSize: 32,
+                                color: Colors.black54,
+                                shadows: [
+                                  Shadow(
+                                    color: Colors.white.withOpacity(0.7),
+                                    offset: Offset(3, 3),
+                                    blurRadius: 11,
+                                  )
+                                ],
+                              ),
+                            ),
+                          )
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
                 Expanded(child: ListView(children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Expanded(
-                        flex: 1,
-                        child: Padding(
-                          padding: const EdgeInsets.all(15),
-                          child:  Text(
-                            Strings.applicationName,
-                            textDirection: TextDirection.rtl,
-                            style: TextStyle(
-                              fontSize: 32,
-                              color: Colors.black87,
-                              shadows: [
-                                Shadow(
-                                  color: Colors.black.withOpacity(0.5),
-                                  offset: Offset(3, 3),
-                                  blurRadius: 7,
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
+
                     ],
                   ),
                   Row(
