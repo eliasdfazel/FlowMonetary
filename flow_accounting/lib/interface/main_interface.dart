@@ -77,10 +77,6 @@ class _HomePageState extends State<HomePage> {
                       Expanded(child: ListView(children: [
                         const TopBarView(),
                         const CreditCardView(),
-                        const CreditCardView(),
-                        const CreditCardView(),
-                        const CreditCardView(),
-                        const CreditCardView(),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
@@ -110,16 +106,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ],
                         ),
-                      ])),
-                      MaterialButton(
-                        textColor: Colors.white,
-                        color: Colors.blue,
-                        child: const Text('Insert'),
-                        onPressed: () {
-
-
-                        },
-                      )
+                      ]))
                     ],
                   ),
                 ),

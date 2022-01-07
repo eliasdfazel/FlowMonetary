@@ -148,3 +148,23 @@ class _TransactionsViewState extends State<TransactionsView> {
     ));
   }
 }
+
+/*Positioned(
+                          bottom: 13,
+                          left: 10.0,
+                          right: 10.0,
+                          child: SizedBox(
+                            width: 150,
+                            height: 53,
+                            child: MaterialButton(
+                              elevation: 7,
+                              textColor: Colors.white,
+                              color: Colors.blue,
+                              child: const Text('Insert'),
+                              onPressed: () {
+
+
+                              },
+                            ),
+                          )
+                      )*/
