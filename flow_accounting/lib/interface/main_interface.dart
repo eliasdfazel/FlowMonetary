@@ -1,9 +1,10 @@
+import 'package:flow_accounting/interface/sections/credit_card_view.dart';
 import 'package:flow_accounting/resources/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:wave/config.dart';
 import 'package:wave/wave.dart';
 
-import 'sections/top_bar.dart';
+import 'sections/top_bar_view.dart';
 
 class HomePage extends StatefulWidget {
 
@@ -44,77 +45,84 @@ class _HomePageState extends State<HomePage> {
             ),
             child: Column ( /*** Page Content ***/
               children: [
-                SizedBox(
-                  width: double.infinity,
-                  height: 179,
+                Expanded(
                   child: Stack(
                     children: [
-                      RotatedBox (
-                          quarterTurns: 2,
-                          child: WaveWidget(
-                            config: CustomConfig(
-                              colors: [
-                                ColorsResources.primaryColorLighter,
-                                ColorsResources.primaryColorLight,
-                                ColorsResources.primaryColor,
-                                ColorsResources.primaryColorTransparent,
-                                ColorsResources.primaryColorDarkTransparent,
-                              ],
-                              heightPercentages: [0.13, 0.37, 0.57, 0.79, 0.93],
-                              durations: [13000, 7000, 9900, 21000, 19000],
-                              blur: const MaskFilter.blur(BlurStyle.normal, 3.1),
-                            ),
-                            backgroundColor: Colors.transparent,
-                            size: const Size(double.infinity, 300),
-                            waveAmplitude: 7,
-                            duration: 1000,
-                            isLoop: true,
-                          )
+                      SizedBox(
+                        width: double.infinity,
+                        height: 179,
+                        child: RotatedBox (
+                            quarterTurns: 2,
+                            child: WaveWidget(
+                              config: CustomConfig(
+                                colors: [
+                                  ColorsResources.primaryColorLighter,
+                                  ColorsResources.primaryColorLight,
+                                  ColorsResources.primaryColor,
+                                  ColorsResources.primaryColorTransparent,
+                                  ColorsResources.primaryColorDarkTransparent,
+                                ],
+                                heightPercentages: [0.13, 0.37, 0.57, 0.79, 0.93],
+                                durations: [13000, 7000, 9900, 21000, 19000],
+                                blur: const MaskFilter.blur(BlurStyle.normal, 3.1),
+                              ),
+                              backgroundColor: Colors.transparent,
+                              size: const Size(double.infinity, 300),
+                              waveAmplitude: 7,
+                              duration: 1000,
+                              isLoop: true,
+                            )
+                        ),
                       ),
-                      const TopBar(),
+                      Expanded(child: ListView(children: [
+                        const TopBarView(),
+                        const CreditCardView(),
+                        const CreditCardView(),
+                        const CreditCardView(),
+                        const CreditCardView(),
+                        const CreditCardView(),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Expanded(
+                              flex: 3,
+                              child: Padding(
+                                padding: const EdgeInsets.all(15),
+                                child: Text(
+                                  "123",
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              flex: 7,
+                              child: Padding(
+                                padding: const EdgeInsets.all(15),
+                                child: Text(
+                                  "XYZ",
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ])),
+                      MaterialButton(
+                        textColor: Colors.white,
+                        color: Colors.blue,
+                        child: const Text('Insert'),
+                        onPressed: () {
+
+
+                        },
+                      )
                     ],
                   ),
                 ),
-                Expanded(child: ListView(children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Expanded(
-                        flex: 3,
-                        child: Padding(
-                          padding: const EdgeInsets.all(15),
-                          child: Text(
-                            "123",
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 7,
-                        child: Padding(
-                          padding: const EdgeInsets.all(15),
-                          child: Text(
-                          "XYZ",
-                        ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ])),
-                MaterialButton(
-                  textColor: Colors.white,
-                  color: Colors.blue,
-                  child: const Text('Insert'),
-                  onPressed: () {
-
-
-                  },
-                )
               ],
             ),
           ),),

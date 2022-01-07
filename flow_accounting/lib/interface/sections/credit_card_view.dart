@@ -2,8 +2,8 @@ import 'package:flow_accounting/resources/IconsResources.dart';
 import 'package:flow_accounting/resources/colors.dart';
 import 'package:flutter/material.dart';
 
-class TopBar extends StatelessWidget {
-  const TopBar({Key? key}) : super(key: key);
+class CreditCardView extends StatelessWidget {
+  const CreditCardView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
