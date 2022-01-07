@@ -15,9 +15,6 @@ class TransactionsData {
   /// Transaction Time In Millisecond
   final String transactionTime;
 
-  /// Reminder Time In Millisecond
-  final String reminderTime;
-
   TransactionsData({
     required this.id,
 
@@ -32,7 +29,6 @@ class TransactionsData {
 
     required this.amountMoney,
     required this.transactionTime,
-    required this.reminderTime,
   });
 
   // Convert a Dog into a Map. The keys must correspond to the names of the
@@ -52,8 +48,6 @@ class TransactionsData {
 
       'amountMoney': amountMoney,
       'transactionTime': transactionTime,
-
-      'reminderTime': reminderTime,
     };
   }
 
@@ -73,8 +67,6 @@ class TransactionsData {
 
         'amountMoney: $amountMoney,'
         'transactionTime: $transactionTime,'
-        'reminderTime: $reminderTime,'
-        'reminderTime: $reminderTime,'
         '}';
   }
 }

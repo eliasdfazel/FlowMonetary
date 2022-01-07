@@ -8,7 +8,7 @@ import 'package:sqflite/sqflite.dart';
 
 class DatabaseQueries {
 
-  Future<List<TransactionsData>> getAllTransactions(String? tableName) async {
+  Future<List<TransactionsData>> getAllTransactions(String? tableName, {String usernameId = ""}) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), DatabaseInputs.transactionDatabase),
@@ -17,6 +17,7 @@ class DatabaseQueries {
     final databaseInstance = await database;
 
     var tableNameQuery = (tableName != null) ? tableName : DatabaseInputs.databaseTableName;
+    tableNameQuery = "${usernameId}-${tableNameQuery}";
 
     final List<Map<String, dynamic>> maps = await databaseInstance.query(tableNameQuery);
 
@@ -31,13 +32,12 @@ class DatabaseQueries {
         targetUsername: maps[i]['targetUsername'],
         amountMoney: maps[i]['amountMoney'],
         transactionTime: maps[i]['transactionTime'],
-        reminderTime: maps[i]['reminderTime'],
       );
     });
 
   }
 
-  Future<Map<String, Object?>> queryFinancialReport(int id, String? tableName) async {
+  Future<Map<String, Object?>> queryFinancialReport(int id, String? tableName, {String usernameId = ""}) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), DatabaseInputs.transactionDatabase),
@@ -46,6 +46,7 @@ class DatabaseQueries {
     final databaseInstance = await database;
 
     var tableNameQuery = (tableName != null) ? tableName : DatabaseInputs.databaseTableName;
+    tableNameQuery = "${usernameId}-${tableNameQuery}";
 
     var databaseContents = await databaseInstance.query(
       tableNameQuery,
@@ -67,7 +68,6 @@ class DatabaseQueries {
       targetUsername: inputData['targetUsername'].toString(),
       amountMoney: inputData['amountMoney'].toString(),
       transactionTime: inputData['transactionTime'].toString(),
-      reminderTime: inputData['reminderTime'].toString(),
     );
   }
 

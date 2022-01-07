@@ -11,9 +11,10 @@ class DatabaseInputs {
 
   static const transactionDatabase = "transactions_database.db";
 
-  Future<void> insertTransactionData(TransactionsData transactionsData, String? tableName) async {
+  Future<void> insertTransactionData(TransactionsData transactionsData, String? tableName, {String usernameId = ""}) async {
 
     var tableNameQuery = (tableName != null) ? tableName : DatabaseInputs.databaseTableName;
+    tableNameQuery = "${usernameId}-${tableNameQuery}";
 
     final database = openDatabase(
       join(await getDatabasesPath(), transactionDatabase),
@@ -46,7 +47,7 @@ class DatabaseInputs {
 
   }
 
-  Future<void> updateTransactionData(TransactionsData transactionsData, String? tableName) async {
+  Future<void> updateTransactionData(TransactionsData transactionsData, String? tableName, {String usernameId = ""}) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), transactionDatabase),
@@ -55,6 +56,7 @@ class DatabaseInputs {
     final databaseInstance = await database;
 
     var tableNameQuery = (tableName != null) ? tableName : DatabaseInputs.databaseTableName;
+    tableNameQuery = "${usernameId}-${tableNameQuery}";
 
     await databaseInstance.update(
       tableNameQuery,
@@ -71,7 +73,7 @@ class DatabaseInputs {
 
   }
 
-  Future<void> deleteFinancialReport(int id, String? tableName) async {
+  Future<void> deleteFinancialReport(int id, String? tableName, {String usernameId = ""}) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), transactionDatabase),
@@ -80,6 +82,7 @@ class DatabaseInputs {
     final databaseInstance = await database;
 
     var tableNameQuery = (tableName != null) ? tableName : DatabaseInputs.databaseTableName;
+    tableNameQuery = "${usernameId}-${tableNameQuery}";
 
     await databaseInstance.delete(
       tableNameQuery,
