@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
               children: [
                 SizedBox(
                   width: double.infinity,
-                  height: 100,
+                  height: 179,
                   child: Stack(
                     children: [
                       RotatedBox (
@@ -71,13 +71,7 @@ class _HomePageState extends State<HomePage> {
                             isLoop: true,
                           )
                       ),
-                      Expanded(
-                        child: SizedBox(
-                          width: double.infinity,
-                          height: 100,
-                          child: TopBar(),
-                        ),
-                      ),
+                      const TopBar(),
                     ],
                   ),
                 ),
