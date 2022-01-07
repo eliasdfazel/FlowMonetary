@@ -19,7 +19,7 @@ class FlowDashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return const HomePage(title: 'Flow Accounting');
+    return const HomePage(applicationName: 'Flow Accounting');
   }
 
 }

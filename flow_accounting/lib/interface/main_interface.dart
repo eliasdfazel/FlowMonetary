@@ -1,14 +1,15 @@
 import 'package:flow_accounting/resources/colors.dart';
-import 'package:flow_accounting/resources/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:wave/config.dart';
 import 'package:wave/wave.dart';
 
+import 'sections/top_bar.dart';
+
 class HomePage extends StatefulWidget {
 
-  final String title;
+  final String applicationName;
 
-  const HomePage({Key? key, required this.title}) : super(key: key);
+  const HomePage({Key? key, required this.applicationName}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -21,10 +22,10 @@ class _HomePageState extends State<HomePage> {
 
     return SafeArea (child: MaterialApp (
       debugShowCheckedModeBanner: false,
-      color: ColorsPalette.black,
+      color: ColorsResources.black,
       theme: ThemeData(fontFamily: 'Sans'),
       home: Scaffold(
-        backgroundColor: ColorsPalette.black,
+        backgroundColor: ColorsResources.black,
         body: Padding(
           padding: const EdgeInsets.fromLTRB(/*left*/1.1, /*top*/3, /*right*/1.1, /*bottom*/3),
           child: Container (
@@ -32,8 +33,8 @@ class _HomePageState extends State<HomePage> {
               borderRadius: BorderRadius.only(topLeft: Radius.circular(17), topRight: Radius.circular(17), bottomLeft: Radius.circular(17), bottomRight: Radius.circular(17)),
               gradient: LinearGradient(
                   colors: [
-                    ColorsPalette.white,
-                    ColorsPalette.primaryColorLighter,
+                    ColorsResources.white,
+                    ColorsResources.primaryColorLighter,
                   ],
                   begin: FractionalOffset(0.0, 0.0),
                   end: FractionalOffset(1.0, 0.0),
@@ -53,43 +54,28 @@ class _HomePageState extends State<HomePage> {
                           child: WaveWidget(
                             config: CustomConfig(
                               colors: [
-                                Colors.green.shade50,
-                                Colors.green.shade100,
-                                Colors.green.shade300,
-                                Colors.green.shade300,
-                                Colors.green.shade700,
+                                ColorsResources.primaryColorLighter,
+                                ColorsResources.primaryColorLight,
+                                ColorsResources.primaryColor,
+                                ColorsResources.primaryColorTransparent,
+                                ColorsResources.primaryColorDarkTransparent,
                               ],
-                              durations: [11000, 11000, 13000, 7700, 19000],
-                              heightPercentages: [0.50, 0.25, 0.35, 0.51, 0.91],
-                              blur: const MaskFilter.blur(BlurStyle.normal, 1.9),
+                              heightPercentages: [0.13, 0.37, 0.57, 0.79, 0.93],
+                              durations: [13000, 7000, 9900, 21000, 19000],
+                              blur: const MaskFilter.blur(BlurStyle.normal, 3.1),
                             ),
                             backgroundColor: Colors.transparent,
                             size: const Size(double.infinity, 300),
                             waveAmplitude: 7,
+                            duration: 1000,
+                            isLoop: true,
                           )
                       ),
                       Expanded(
                         child: SizedBox(
                           width: double.infinity,
                           height: 100,
-                          child: Padding(
-                            padding: EdgeInsets.fromLTRB(0, 19, 15, 0),
-                            child: Text(
-                              Strings.applicationName,
-                              textDirection: TextDirection.rtl,
-                              style: TextStyle(
-                                fontSize: 32,
-                                color: Colors.black54,
-                                shadows: [
-                                  Shadow(
-                                    color: Colors.white.withOpacity(0.7),
-                                    offset: Offset(3, 3),
-                                    blurRadius: 11,
-                                  )
-                                ],
-                              ),
-                            ),
-                          )
+                          child: TopBar(),
                         ),
                       ),
                     ],

@@ -34,10 +34,10 @@ class _TransactionsViewState extends State<TransactionsView> {
 
     return SafeArea (child: MaterialApp (
       debugShowCheckedModeBanner: false,
-      color: ColorsPalette.black,
+      color: ColorsResources.black,
       theme: ThemeData(fontFamily: 'Sans'),
       home: Scaffold(
-        backgroundColor: ColorsPalette.black,
+        backgroundColor: ColorsResources.black,
         body: Padding(
           padding: const EdgeInsets.fromLTRB(/*left*/1.1, /*top*/3, /*right*/1.1, /*bottom*/3),
           child: Container (
@@ -45,8 +45,8 @@ class _TransactionsViewState extends State<TransactionsView> {
               borderRadius: BorderRadius.only(topLeft: Radius.circular(17), topRight: Radius.circular(17), bottomLeft: Radius.circular(17), bottomRight: Radius.circular(17)),
               gradient: LinearGradient(
                   colors: [
-                    ColorsPalette.white,
-                    ColorsPalette.primaryColorLighter,
+                    ColorsResources.white,
+                    ColorsResources.primaryColorLighter,
                   ],
                   begin: FractionalOffset(0.0, 0.0),
                   end: FractionalOffset(1.0, 0.0),
