@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
     return SafeArea (child: MaterialApp (
       debugShowCheckedModeBanner: false,
       color: ColorsResources.black,
-      theme: ThemeData(fontFamily: 'Sans'),
+      theme: ThemeData(fontFamily: 'Sans', colorScheme: ColorScheme.fromSwatch().copyWith(secondary: ColorsResources.primaryColorLight)),
       home: Scaffold(
         backgroundColor: ColorsResources.black,
         body: Padding(
@@ -43,74 +43,70 @@ class _HomePageState extends State<HomePage> {
                   transform: GradientRotation(45),
                   tileMode: TileMode.clamp),
             ),
-            child: Column ( /*** Page Content ***/
-              children: [
-                Expanded(
-                  child: Stack(
-                    children: [
-                      SizedBox(
-                        width: double.infinity,
-                        height: 179,
-                        child: RotatedBox (
-                            quarterTurns: 2,
-                            child: WaveWidget(
-                              config: CustomConfig(
-                                colors: [
-                                  ColorsResources.primaryColorLighter,
-                                  ColorsResources.primaryColorLight,
-                                  ColorsResources.primaryColor,
-                                  ColorsResources.primaryColorTransparent,
-                                  ColorsResources.primaryColorDarkTransparent,
-                                ],
-                                heightPercentages: [0.13, 0.37, 0.57, 0.79, 0.93],
-                                durations: [13000, 7000, 9900, 21000, 19000],
-                                blur: const MaskFilter.blur(BlurStyle.normal, 3.1),
-                              ),
-                              backgroundColor: Colors.transparent,
-                              size: const Size(double.infinity, 300),
-                              waveAmplitude: 7,
-                              duration: 1000,
-                              isLoop: true,
-                            )
-                        ),
-                      ),
-                      Expanded(child: ListView(children: [
-                        const TopBarView(),
-                        const CreditCardView(),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Expanded(
-                              flex: 3,
-                              child: Padding(
-                                padding: const EdgeInsets.all(15),
-                                child: Text(
-                                  "123",
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              flex: 7,
-                              child: Padding(
-                                padding: const EdgeInsets.all(15),
-                                child: Text(
-                                  "XYZ",
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ]))
-                    ],
+            child: Expanded(
+              child: Stack(
+                children: [
+                  SizedBox(
+                    width: double.infinity,
+                    height: 179,
+                    child: RotatedBox (
+                        quarterTurns: 2,
+                        child: WaveWidget(
+                          config: CustomConfig(
+                            colors: [
+                              ColorsResources.primaryColorLighter,
+                              ColorsResources.primaryColorLight,
+                              ColorsResources.primaryColor,
+                              ColorsResources.primaryColorTransparent,
+                              ColorsResources.primaryColorDarkTransparent,
+                            ],
+                            heightPercentages: [0.13, 0.37, 0.57, 0.79, 0.93],
+                            durations: [13000, 7000, 9900, 21000, 19000],
+                            blur: const MaskFilter.blur(BlurStyle.normal, 3.1),
+                          ),
+                          backgroundColor: Colors.transparent,
+                          size: const Size(double.infinity, 300),
+                          waveAmplitude: 7,
+                          duration: 1000,
+                          isLoop: true,
+                        )
+                    ),
                   ),
-                ),
-              ],
+                  Expanded(child: ListView(children: [
+                    const TopBarView(),
+                    const CreditCardView(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Expanded(
+                          flex: 3,
+                          child: Padding(
+                            padding: const EdgeInsets.all(15),
+                            child: Text(
+                              "123",
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 7,
+                          child: Padding(
+                            padding: const EdgeInsets.all(15),
+                            child: Text(
+                              "XYZ",
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ]))
+                ],
+              ),
             ),
           ),),
       ),
