@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flow_accounting/resources/IconsResources.dart';
 import 'package:flow_accounting/resources/colors.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CreditCardView extends StatefulWidget {
@@ -67,7 +68,7 @@ class _CreditCardView extends State<CreditCardView> with SingleTickerProviderSta
   @override
   Widget build(BuildContext context) {
 
-    return Padding(padding: const EdgeInsets.fromLTRB(0, 19, 0, 0),
+    return Padding(padding: const EdgeInsets.fromLTRB(13, 23, 0, 0),
       child: Column(
         children: [
           SizedBox(
@@ -161,18 +162,15 @@ class AwesomeCard extends StatelessWidget {
 Widget frontCardLayout(String cardNumber, String cardExpiry, String cardHolderName, String cvv, String bankName) {
 
   return Container(
-    width: 200,
-    height: 70,
+    width: double.infinity,
+    height: double.infinity,
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Colors.black,
+          color: ColorsResources.dark.withOpacity(0.5),
           blurRadius: 12.0,
           spreadRadius: 0.2,
-          offset: Offset(
-            3.0, // horizontal, move right 10
-            3.0, // vertical, move down 10
-          ),
+          offset: Offset(3.0, 3.0),
         )
       ],
     ),
@@ -180,19 +178,30 @@ Widget frontCardLayout(String cardNumber, String cardExpiry, String cardHolderNa
       borderRadius: BorderRadius.circular(11.0),
       child: Stack(
         children: [
-          // Background for card
           Container(
             width: double.maxFinite,
             height: double.maxFinite,
-            color: Color(0xff0B0B0F),
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.only(topLeft: Radius.circular(17), topRight: Radius.circular(17), bottomLeft: Radius.circular(17), bottomRight: Radius.circular(17)),
+              gradient: LinearGradient(
+                  colors: [
+                    ColorsResources.primaryColor,
+                    ColorsResources.primaryColorLighter,
+                  ],
+                  begin: FractionalOffset(0.0, 0.0),
+                  end: FractionalOffset(1.0, 0.0),
+                  stops: [0.0, 1.0],
+                  transform: GradientRotation(45),
+                  tileMode: TileMode.clamp),
+            ),
           ),
-
-          // Front Side Layout
-          Container(
-            width: double.maxFinite,
-            height: double.maxFinite,
-            color: Color(0xff0000ff),
+          const Image(
+            image: AssetImage('pattern_card_background.png'),
+            fit: BoxFit.cover,
+            width: double.infinity,
+            height: double.infinity,
           ),
+          // Image(image: AssetImage('graphics/background.png'))
         ],
       ),
     ),
@@ -202,18 +211,15 @@ Widget frontCardLayout(String cardNumber, String cardExpiry, String cardHolderNa
 Widget backCardLayout(String cvv) {
 
   return Container(
-    width: 200,
-    height: 70,
+    width: double.infinity,
+    height: double.infinity,
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Colors.black,
+          color: ColorsResources.dark.withOpacity(0.5),
           blurRadius: 12.0,
           spreadRadius: 0.2,
-          offset: Offset(
-            3.0, // horizontal, move right 10
-            3.0, // vertical, move down 10
-          ),
+          offset: Offset(3.0, 3.0),
         )
       ],
     ),
@@ -225,7 +231,7 @@ Widget backCardLayout(String cvv) {
           Container(
             width: double.maxFinite,
             height: double.maxFinite,
-            color: Color(0xff0B0B0F),
+            color: ColorsResources.dark,
           ),
 
           // Back Side Layout
