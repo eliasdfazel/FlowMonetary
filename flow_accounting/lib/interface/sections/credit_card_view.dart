@@ -3,18 +3,38 @@ import 'package:flow_accounting/resources/IconsResources.dart';
 import 'package:flow_accounting/resources/colors.dart';
 import 'package:flutter/material.dart';
 
-class CreditCardView extends StatelessWidget {
+class CreditCardView extends StatefulWidget {
   const CreditCardView({Key? key}) : super(key: key);
+
+  @override
+  State<CreditCardView> createState() => _CreditCardView();
+
+}
+
+class _CreditCardView extends State<CreditCardView> {
+
+  var showCardsBack = false;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
 
-    return Padding(padding: const EdgeInsets.fromLTRB(0, 3, 0, 0),
+
+    return Padding(padding: const EdgeInsets.fromLTRB(0, 13, 0, 0),
       child: Column(
         children: [
           SizedBox(
             width: double.infinity,
-            height: 173,
+            height: 179,
             child: Padding(
               padding: const EdgeInsets.fromLTRB(3, 1, 3, 0),
               child: Row(
@@ -25,11 +45,17 @@ class CreditCardView extends StatelessWidget {
                       child: GestureDetector(
                         onTap: () {
 
+                          setState(() {
+                            showCardsBack = true;
+                          });
+
+                          print(">>> ${showCardsBack}");
+
 
 
                         },
                         child: Container(
-                          color: Colors.lightGreenAccent,
+                          color: Colors.transparent,
                           alignment: AlignmentDirectional.center,
                           child: CreditCard(
                             cardNumber: "cardNumber",
@@ -37,7 +63,7 @@ class CreditCardView extends StatelessWidget {
                             cardHolderName: "cardHolderName",
                             cvv: "cvv",
                             bankName: 'Axis Bank',
-                            showBackSide: false,
+                            showBackSide: showCardsBack,
                             frontBackground: CardBackgrounds.black,
                             backBackground: CardBackgrounds.white,
                             showShadow: true,
@@ -68,4 +94,6 @@ class CreditCardView extends StatelessWidget {
         ],
       ),);
   }
+
+
 }
