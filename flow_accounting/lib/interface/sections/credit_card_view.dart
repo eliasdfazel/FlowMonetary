@@ -4,7 +4,14 @@ import 'package:flow_accounting/resources/colors.dart';
 import 'package:flutter/material.dart';
 
 class CreditCardView extends StatefulWidget {
-  const CreditCardView({Key? key}) : super(key: key);
+
+  final String cardNumber;
+  final String cardExpiry;
+  final String cardHolderName;
+  final String cvv;
+  final String bankName;
+
+  const CreditCardView({Key? key, required this.cardNumber, required this.cardExpiry, required this.cardHolderName, required this.cvv, required this.bankName}) : super(key: key);
 
   @override
   State<CreditCardView> createState() => _CreditCardView();
@@ -28,20 +35,19 @@ class _CreditCardView extends State<CreditCardView> {
   @override
   Widget build(BuildContext context) {
 
-
-    return Padding(padding: const EdgeInsets.fromLTRB(0, 13, 0, 0),
+    return Padding(padding: const EdgeInsets.fromLTRB(0, 19, 0, 0),
       child: Column(
         children: [
           SizedBox(
             width: double.infinity,
-            height: 179,
+            height: 199,
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(3, 1, 3, 0),
+              padding: const EdgeInsets.fromLTRB(0, 3, 3, 0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Expanded(
-                      flex: 11,
+                      flex: 13,
                       child: GestureDetector(
                         onTap: () {
 
@@ -53,17 +59,21 @@ class _CreditCardView extends State<CreditCardView> {
                         child: Container(
                           color: Colors.transparent,
                           alignment: AlignmentDirectional.center,
-                          child: CreditCard(
-                            cardNumber: "cardNumber",
-                            cardExpiry: "expiryDate",
-                            cardHolderName: "cardHolderName",
-                            cvv: "cvv",
-                            bankName: 'Axis Bank',
-                            showBackSide: showCardsBack,
-                            frontBackground: CardBackgrounds.black,
-                            backBackground: CardBackgrounds.white,
-                            showShadow: true,
-                            mask: getCardTypeMask(cardType: CardType.americanExpress),
+                          child: Stack(
+                            children: [
+                              CreditCard(
+                                cardNumber: "${widget.cardNumber}",
+                                cardExpiry: "${widget.cardExpiry}",
+                                cardHolderName: "${widget.cardHolderName}",
+                                cvv: "${widget.cvv}",
+                                bankName: "${widget.bankName}",
+                                showBackSide: showCardsBack,
+                                frontBackground: CardBackgrounds.custom(ColorsResources.darkTransparent.value),
+                                backBackground: CardBackgrounds.custom(ColorsResources.light.value),
+                                showShadow: true,
+                                horizontalMargin: 3,
+                              )
+                            ],
                           ),
                         ),
                       )
@@ -77,7 +87,7 @@ class _CreditCardView extends State<CreditCardView> {
 
                         },
                         child: Container(
-                          color: Colors.redAccent,
+                          color: Colors.transparent,
                           alignment: AlignmentDirectional.center,
                           child: const Icon(IconsResources.share, size: 23.0, color: ColorsResources.dark),
                         ),

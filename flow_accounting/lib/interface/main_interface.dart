@@ -23,6 +23,12 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
 
+    var cardBankName = 'اقتصاد نوین';
+    var cardHolderName = "آبان آبسالان";
+    var cardNumber = '۶۲۷۴۱۲۱۲۱۶۶۴۷۳۹۱';
+    var cardCVV = '۱۳۷۱';
+    var cardExpiryDate = '۰۷/۰۵';
+
     return SafeArea (
         child: MaterialApp (
           debugShowCheckedModeBanner: false,
@@ -99,11 +105,12 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       ListView(
-                        padding: const EdgeInsets.fromLTRB(7, 3, 7, 3),
+                          physics: const BouncingScrollPhysics(),
+                          padding: const EdgeInsets.fromLTRB(7, 3, 7, 3),
                           children: [
                             const TopBarView(),
                             const GeneralDataView(),
-                            const CreditCardView(),
+                            CreditCardView(bankName: cardBankName, cardHolderName: cardHolderName, cardNumber: cardNumber, cardExpiry: cardExpiryDate, cvv: cardCVV),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
