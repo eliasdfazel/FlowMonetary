@@ -97,11 +97,11 @@ class _CreditCardView extends State<CreditCardView> with SingleTickerProviderSta
                             children: [
                               AwesomeCard(
                                 animation: _moveToBack,
-                                child: _buildFrontCard(widget.cardNumber, widget.cardExpiry, widget.cardHolderName, widget.cvv, widget.bankName),
+                                child: frontCardLayout(widget.cardNumber, widget.cardExpiry, widget.cardHolderName, widget.cvv, widget.bankName),
                               ),
                               AwesomeCard(
                                 animation: _moveToFront,
-                                child: _buildBackCard(widget.cvv),
+                                child: backCardLayout(widget.cvv),
                               ),
                             ],
                           ),
@@ -134,10 +134,12 @@ class _CreditCardView extends State<CreditCardView> with SingleTickerProviderSta
 }
 
 class AwesomeCard extends StatelessWidget {
+
   final Animation<double>? animation;
+
   final Widget child;
 
-  AwesomeCard({required this.animation, required this.child});
+  const AwesomeCard({Key? key, required this.animation, required this.child}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -145,7 +147,6 @@ class AwesomeCard extends StatelessWidget {
       animation: animation!,
       builder: (BuildContext context, Widget? child) {
         return Transform(
-          // https://blog.codemagic.io/flutter-matrix4-perspective-transformations/
           transform: Matrix4.identity()
             ..setEntry(3, 2, 0.001)
             ..rotateY(animation!.value),
@@ -157,7 +158,8 @@ class AwesomeCard extends StatelessWidget {
   }
 }
 
-Widget _buildFrontCard(String cardNumber, String cardExpiry, String cardHolderName, String cvv, String bankName) {
+Widget frontCardLayout(String cardNumber, String cardExpiry, String cardHolderName, String cvv, String bankName) {
+
   return Container(
     width: 200,
     height: 70,
@@ -197,7 +199,8 @@ Widget _buildFrontCard(String cardNumber, String cardExpiry, String cardHolderNa
   );
 }
 
-Widget _buildBackCard(String cvv) {
+Widget backCardLayout(String cvv) {
+
   return Container(
     width: 200,
     height: 70,
