@@ -46,12 +46,8 @@ class _CreditCardView extends State<CreditCardView> {
                         onTap: () {
 
                           setState(() {
-                            showCardsBack = true;
+                            showCardsBack = !showCardsBack;
                           });
-
-                          print(">>> ${showCardsBack}");
-
-
 
                         },
                         child: Container(
