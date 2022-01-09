@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:awesome_card/awesome_card.dart';
 import 'package:flow_accounting/resources/IconsResources.dart';
 import 'package:flow_accounting/resources/colors.dart';
 import 'package:flutter/material.dart';
