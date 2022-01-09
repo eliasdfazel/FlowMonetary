@@ -26,6 +26,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
   String cardNumber = '';
   String cardHolderName = '';
   String expiryDate = '';
