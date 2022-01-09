@@ -57,12 +57,34 @@ class _HomePageState extends State<HomePage> {
                               ColorsResources.primaryColorLighter,
                               ColorsResources.primaryColorLight,
                               ColorsResources.primaryColor,
-                              ColorsResources.primaryColorTransparent,
-                              ColorsResources.primaryColorDarkTransparent,
                             ],
-                            heightPercentages: [0.13, 0.37, 0.57, 0.79, 0.93],
-                            durations: [13000, 7000, 9900, 21000, 19000],
+                            heightPercentages: [0.13, 0.57, 0.79],
+                            durations: [13000, 21000, 19000],
                             blur: const MaskFilter.blur(BlurStyle.normal, 3.1),
+                          ),
+                          backgroundColor: Colors.transparent,
+                          size: const Size(double.infinity, 300),
+                          waveAmplitude: 7,
+                          duration: 1000,
+                          isLoop: true,
+                        )
+                    ),
+                  ),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 179,
+                    child: RotatedBox (
+                        quarterTurns: 2,
+                        child: WaveWidget(
+                          config: CustomConfig(
+                            colors: [
+                              ColorsResources.primaryColor,
+                              ColorsResources.primaryColor,
+                              ColorsResources.primaryColorDark,
+                            ],
+                            heightPercentages: [0.13, 0.57, 0.79],
+                            durations: [13000, 21000, 19000],
+                            blur: const MaskFilter.blur(BlurStyle.outer, 3.7),
                           ),
                           backgroundColor: Colors.transparent,
                           size: const Size(double.infinity, 300),
