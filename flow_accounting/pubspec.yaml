@@ -37,7 +37,6 @@ dependencies:
   sqflite:
   path:
   wave: ^0.2.0
-  awesome_card: ^1.1.6
 
 dev_dependencies:
   flutter_test:

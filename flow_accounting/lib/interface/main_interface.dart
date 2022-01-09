@@ -25,8 +25,8 @@ class _HomePageState extends State<HomePage> {
 
     var cardBankName = 'اقتصاد نوین';
     var cardHolderName = "آبان آبسالان";
-    var cardNumber = '۶۲۷۴۱۲۱۲۱۶۶۴۷۳۹۱';
-    var cardCVV = '۱۳۷۱';
+    var cardNumber = "6274121111111111";
+    var cardCVV = '456';
     var cardExpiryDate = '۰۷/۰۵';
 
     return SafeArea (
