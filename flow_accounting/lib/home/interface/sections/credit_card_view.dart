@@ -1,7 +1,7 @@
 import 'dart:math';
 
-import 'package:flow_accounting/resources/IconsResources.dart';
 import 'package:flow_accounting/resources/colors.dart';
+import 'package:flow_accounting/resources/strings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -207,17 +207,66 @@ class _CreditCardView extends State<CreditCardView> with SingleTickerProviderSta
             SizedBox(
                 height: 279,
                 width: 53,
-                child: GestureDetector(
-                  onTap: () {
+                child: InkWell(
+                    onTap: () {
 
 
 
-                  },
-                  child: Container(
-                    color: Colors.red,
-                    alignment: AlignmentDirectional.center,
-                    child: const Icon(IconsResources.share, size: 23.0, color: ColorsResources.dark),
-                  ),
+                    },
+                    child: Stack(
+                      children: [
+                        Container(
+                          alignment: AlignmentDirectional.center,
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.only(topLeft: Radius.circular(7), topRight: Radius.circular(7), bottomLeft: Radius.circular(7), bottomRight: Radius.circular(7)),
+                            gradient: LinearGradient(
+                                colors: [
+                                  ColorsResources.white,
+                                  ColorsResources.light,
+                                ],
+                                begin: FractionalOffset(0.0, 0.0),
+                                end: FractionalOffset(1.0, 0.0),
+                                stops: [0.0, 1.0],
+                                transform: GradientRotation(45),
+                                tileMode: TileMode.clamp),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(3, 3, 3, 3),
+                          child: Container(
+                            decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.only(topLeft: Radius.circular(7), topRight: Radius.circular(7), bottomLeft: Radius.circular(7), bottomRight: Radius.circular(7)),
+                              gradient: LinearGradient(
+                                  colors: [
+                                    ColorsResources.light,
+                                    ColorsResources.white,
+                                  ],
+                                  begin: FractionalOffset(0.0, 0.0),
+                                  end: FractionalOffset(1.0, 0.0),
+                                  stops: [0.0, 1.0],
+                                  transform: GradientRotation(45),
+                                  tileMode: TileMode.clamp),
+                            ),
+                            alignment: AlignmentDirectional.center,
+                            child: const RotatedBox(
+                              quarterTurns: 3,
+                              child: Align(
+                                alignment: Alignment.center,
+                                child: Text(StringsResources.detailsText,
+                                  style: TextStyle(fontSize: 23,shadows: [
+                                    Shadow(
+                                        color: ColorsResources.light,
+                                        offset: Offset(0, 0),
+                                        blurRadius: 7
+                                    )
+                                  ]),
+                                ),
+                              )
+                            ),
+                          ),
+                        )
+                      ],
+                    )
                 )
             ),
           ],
@@ -280,8 +329,8 @@ Widget frontCardLayout(String cardNumber, String cardExpiry, String cardHolderNa
               borderRadius: BorderRadius.only(topLeft: Radius.circular(17), topRight: Radius.circular(17), bottomLeft: Radius.circular(17), bottomRight: Radius.circular(17)),
               gradient: LinearGradient(
                   colors: [
-                    ColorsResources.primaryColor,
-                    ColorsResources.primaryColorLighter,
+                    ColorsResources.light,
+                    ColorsResources.white,
                   ],
                   begin: FractionalOffset(0.0, 0.0),
                   end: FractionalOffset(1.0, 0.0),

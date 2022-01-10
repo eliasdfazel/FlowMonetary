@@ -120,17 +120,18 @@ class _HomePageState extends State<HomePage> {
                                 cvv: cardCVV,
                                 cardBalance: cardBalance,
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-
-                              ],
+                            const Divider(
+                              height: 31,
+                              color: Colors.white,
+                              thickness: 3,
+                              indent: 13,
+                              endIndent: 13,
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Expanded(
-                                  flex: 3,
+                                  flex: 1,
                                   child: Padding(
                                     padding: const EdgeInsets.all(15),
                                     child: Text(
@@ -139,7 +140,7 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                 ),
                                 Expanded(
-                                  flex: 7,
+                                  flex: 1,
                                   child: Padding(
                                     padding: const EdgeInsets.all(15),
                                     child: Text(
