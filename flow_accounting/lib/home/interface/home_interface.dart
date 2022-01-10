@@ -1,11 +1,11 @@
-import 'package:flow_accounting/interface/sections/credit_card_view.dart';
-import 'package:flow_accounting/interface/sections/general_data_view.dart';
 import 'package:flow_accounting/resources/colors.dart';
 import 'package:flow_accounting/resources/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:wave/config.dart';
 import 'package:wave/wave.dart';
 
+import 'sections/credit_card_view.dart';
+import 'sections/general_data_view.dart';
 import 'sections/top_bar_view.dart';
 
 class HomePage extends StatefulWidget {
