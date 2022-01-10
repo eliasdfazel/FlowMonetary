@@ -107,10 +107,17 @@ class _HomePageState extends State<HomePage> {
                       ListView(
                           physics: const BouncingScrollPhysics(),
                           padding: const EdgeInsets.fromLTRB(7, 3, 7, 3),
+                          scrollDirection: Axis.vertical,
                           children: [
                             const TopBarView(),
                             const GeneralDataView(),
-                            CreditCardView(bankName: cardBankName, cardHolderName: cardHolderName, cardNumber: cardNumber, cardExpiry: cardExpiryDate, cvv: cardCVV),
+                            CreditCardView(
+                                bankName: cardBankName,
+                                cardHolderName: cardHolderName,
+                                cardNumber: cardNumber,
+                                cardExpiry: cardExpiryDate,
+                                cvv: cardCVV
+                            ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
