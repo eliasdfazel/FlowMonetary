@@ -27,7 +27,8 @@ class _HomePageState extends State<HomePage> {
     var cardHolderName = "آبان آبسالان";
     var cardNumber = "6274121111111111";
     var cardCVV = '456';
-    var cardExpiryDate = '۰۷/۰۵';
+    var cardExpiryDate = '07-05';
+    var cardBalance = "7777";
 
     return SafeArea (
         child: MaterialApp (
@@ -116,7 +117,8 @@ class _HomePageState extends State<HomePage> {
                                 cardHolderName: cardHolderName,
                                 cardNumber: cardNumber,
                                 cardExpiry: cardExpiryDate,
-                                cvv: cardCVV
+                                cvv: cardCVV,
+                                cardBalance: cardBalance,
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,

@@ -12,8 +12,9 @@ class CreditCardView extends StatefulWidget {
   final String cardHolderName;
   final String cvv;
   final String bankName;
+  final String cardBalance;
 
-  const CreditCardView({Key? key, required this.cardNumber, required this.cardExpiry, required this.cardHolderName, required this.cvv, required this.bankName}) : super(key: key);
+  const CreditCardView({Key? key, required this.cardNumber, required this.cardExpiry, required this.cardHolderName, required this.cvv, required this.bankName, required this.cardBalance}) : super(key: key);
 
   @override
   State<CreditCardView> createState() => _CreditCardView();
@@ -68,18 +69,48 @@ class _CreditCardView extends State<CreditCardView> with SingleTickerProviderSta
   @override
   Widget build(BuildContext context) {
 
-    return Padding(padding: const EdgeInsets.fromLTRB(13, 23, 0, 0),
+    return Padding(padding: const EdgeInsets.fromLTRB(0, 23, 0, 0),
       child: Column(
         children: [
           SizedBox(
-            height: 199,
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(0, 3, 3, 0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Expanded(
-                      flex: 13,
+            height: 299,
+            width: double.infinity,
+            child: ListView(
+              physics: const BouncingScrollPhysics(),
+              scrollDirection: Axis.horizontal,
+              padding: EdgeInsets.fromLTRB(3, 11, 0, 11),
+              children: [
+                creditCardWidgetItem(widget.cardNumber, widget.cardExpiry, widget.cardHolderName, widget.cvv, widget.bankName, widget.cardBalance),
+                creditCardWidgetItem(widget.cardNumber, widget.cardExpiry, widget.cardHolderName, widget.cvv, widget.bankName, widget.cardBalance),
+                creditCardWidgetItem(widget.cardNumber, widget.cardExpiry, widget.cardHolderName, widget.cvv, widget.bankName, widget.cardBalance),
+                creditCardWidgetItem(widget.cardNumber, widget.cardExpiry, widget.cardHolderName, widget.cvv, widget.bankName, widget.cardBalance),
+                creditCardWidgetItem(widget.cardNumber, widget.cardExpiry, widget.cardHolderName, widget.cvv, widget.bankName, widget.cardBalance),
+                creditCardWidgetItem(widget.cardNumber, widget.cardExpiry, widget.cardHolderName, widget.cvv, widget.bankName, widget.cardBalance),
+              ],
+            ),
+          )
+        ],
+      ),);
+  }
+
+  Widget creditCardWidgetItem(String cardNumber, String cardExpiry, String
+  cardHolderName, String cvv, String bankName, String cardBalance) {
+
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(0, 0, 19, 0),
+      child: SizedBox(
+        height: 279,
+        width: 373,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 13, 0),
+                  child: SizedBox(
+                      height: 199,
+                      width: 291,
                       child: GestureDetector(
                         onTap: () {
 
@@ -109,27 +140,91 @@ class _CreditCardView extends State<CreditCardView> with SingleTickerProviderSta
                         ),
                       )
                   ),
-                  Expanded(
-                      flex: 3,
-                      child: GestureDetector(
-                        onTap: () {
-
-
-
-                        },
-                        child: Container(
-                          color: Colors.transparent,
-                          alignment: AlignmentDirectional.center,
-                          child: const Icon(IconsResources.share, size: 23.0, color: ColorsResources.dark),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 20, 13, 0),
+                  child: SizedBox(
+                    height: 53,
+                    width: 291,
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Container(
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.only(topLeft: Radius.circular(7), topRight: Radius.circular(7), bottomLeft: Radius.circular(7), bottomRight: Radius.circular(7)),
+                            gradient: LinearGradient(
+                                colors: [
+                                  ColorsResources.white,
+                                  ColorsResources.light,
+                                ],
+                                begin: FractionalOffset(0.0, 0.0),
+                                end: FractionalOffset(1.0, 0.0),
+                                stops: [0.0, 1.0],
+                                transform: GradientRotation(45),
+                                tileMode: TileMode.clamp),
+                          ),
                         ),
-                      )
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(3, 3, 3, 3),
+                          child: Container(
+                            decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.only(topLeft: Radius.circular(7), topRight: Radius.circular(7), bottomLeft: Radius.circular(7), bottomRight: Radius.circular(7)),
+                              gradient: LinearGradient(
+                                  colors: [
+                                    ColorsResources.light,
+                                    ColorsResources.white,
+                                  ],
+                                  begin: FractionalOffset(0.0, 0.0),
+                                  end: FractionalOffset(1.0, 0.0),
+                                  stops: [0.0, 1.0],
+                                  transform: GradientRotation(45),
+                                  tileMode: TileMode.clamp),
+                            ),
+                            child: Align(
+                                alignment: AlignmentDirectional.bottomStart,
+                                child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(7, 0, 0, 0),
+                                  child: Text(
+                                    cardBalance,
+                                    style: const TextStyle(fontSize: 27,shadows: [
+                                      Shadow(
+                                          color: ColorsResources.light,
+                                          offset: Offset(0, 0),
+                                          blurRadius: 7
+                                      )
+                                    ]),
+                                  ),
+                                )
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          )
-        ],
-      ),);
+            SizedBox(
+                height: 279,
+                width: 53,
+                child: GestureDetector(
+                  onTap: () {
+
+
+
+                  },
+                  child: Container(
+                    color: Colors.red,
+                    alignment: AlignmentDirectional.center,
+                    child: const Icon(IconsResources.share, size: 23.0, color: ColorsResources.dark),
+                  ),
+                )
+            ),
+          ],
+        ),
+      ),
+    );
+
   }
 
 }
@@ -245,3 +340,4 @@ Widget backCardLayout(String cvv) {
     ),
   );
 }
+

@@ -113,7 +113,6 @@ class WelcomePage extends StatelessWidget {
                                                 blurRadius: 7
                                               )
                                             ]),
-
                                           ),
                                           height: 79,
                                           minWidth: double.infinity,
