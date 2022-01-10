@@ -1,3 +1,5 @@
+import 'package:flow_accounting/home/home.dart';
+import 'package:flow_accounting/utils/navigations/navigations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -94,6 +96,12 @@ class WelcomePage extends StatelessWidget {
                                       child: Center(
                                         child: MaterialButton(
                                           onPressed: () {
+
+                                            Future.delayed(const Duration(milliseconds: 199), () {
+
+                                              NavigationProcess().goTo(context, const FlowDashboard());
+
+                                            });
 
                                           },
                                           child: Text(

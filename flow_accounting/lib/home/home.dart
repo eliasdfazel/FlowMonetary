@@ -11,11 +11,16 @@ void main() async {
 
 }
 
-class FlowDashboard extends StatelessWidget {
-
+class FlowDashboard extends StatefulWidget {
   const FlowDashboard({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
+  @override
+  State<FlowDashboard> createState() => _FlowDashboard();
+
+}
+
+class _FlowDashboard extends State<FlowDashboard> {
+
   @override
   Widget build(BuildContext context) {
 
