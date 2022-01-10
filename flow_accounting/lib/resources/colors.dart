@@ -7,6 +7,7 @@ class ColorsResources {
 
   static const Color primaryColorLight = Color.fromARGB(255, 128, 255, 183);
   static const Color primaryColorLighter = Color.fromARGB(255, 201, 255, 225);
+  static const Color primaryColorLightest = Color.fromARGB(255, 238, 255, 245);
   static const Color primaryColorLightTransparent = Color.fromARGB(130, 128, 255, 183);
 
   static const Color primaryColorDark = Color.fromARGB(255, 14, 207, 17);

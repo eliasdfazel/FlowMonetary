@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
                   gradient: LinearGradient(
                       colors: [
                         ColorsResources.white,
-                        ColorsResources.primaryColorLighter,
+                        ColorsResources.primaryColorLightest,
                       ],
                       begin: FractionalOffset(0.0, 0.0),
                       end: FractionalOffset(1.0, 0.0),
