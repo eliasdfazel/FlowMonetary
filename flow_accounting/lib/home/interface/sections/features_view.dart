@@ -212,34 +212,76 @@ Widget featuresOptionsItem(String featureTitle, String featureDescription,
             ),
             SizedBox(
                 height: 53,
-                child: Container(
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.only(topLeft: Radius.circular(7), topRight: Radius.circular(7), bottomLeft: Radius.circular(7), bottomRight: Radius.circular(7)),
-                    gradient: LinearGradient(
-                        colors: [
-                          Colors.transparent,
-                          ColorsResources.primaryColorLightest,
-                        ],
-                        begin: FractionalOffset(0.0, 0.0),
-                        end: FractionalOffset(1.0, 0.0),
-                        stops: [0.0, 1.0],
-                        transform: GradientRotation(45),
-                        tileMode: TileMode.clamp),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 7, 7, 0),
-                    child: Align(
-                      alignment: Alignment.topRight,
-                      child: Text(featureDescription,
-                        style: const TextStyle(fontSize: 11,shadows: [
-                          Shadow(
-                              color: ColorsResources.light,
-                              offset: Offset(0, 0),
-                              blurRadius: 7
-                          )
-                        ]),
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(1, 1, 1, 1),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: MaterialButton(
+                          onPressed: () {
+
+                            Future.delayed(const Duration(milliseconds: 199), () {
+
+                              //NavigationProcess().goTo(context, constFlowDashboard());
+
+                            });
+
+                          },
+                          child: const Text(
+                            StringsResources.presentText,
+                            style: TextStyle(fontSize: 13,shadows: [
+                              Shadow(
+                                  color: ColorsResources.light,
+                                  offset: Offset(0, 0),
+                                  blurRadius: 7
+                              )
+                            ]),
+                          ),
+                          height: 79,
+                          minWidth: double.infinity,
+                          color: Colors.white.withOpacity(0.3),
+                          splashColor: ColorsResources.primaryColor,
+                          textColor: ColorsResources.light,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(topLeft: Radius.circular(7), topRight: Radius.circular(7), bottomLeft: Radius.circular(7), bottomRight: Radius.circular(7)),
+                          ),
+                        )
                       ),
-                    ),
+                      Expanded(
+                        flex: 1,
+                        child: MaterialButton(
+                          onPressed: () {
+
+                            Future.delayed(const Duration(milliseconds: 199), () {
+
+                              //NavigationProcess().goTo(context, constFlowDashboard());
+
+                            });
+
+                          },
+                          child: const Text(
+                            StringsResources.submitText,
+                            style: TextStyle(fontSize: 13,shadows: [
+                              Shadow(
+                                  color: ColorsResources.light,
+                                  offset: Offset(0, 0),
+                                  blurRadius: 7
+                              )
+                            ]),
+                          ),
+                          height: 79,
+                          minWidth: double.infinity,
+                          color: Colors.white.withOpacity(0.3),
+                          splashColor: ColorsResources.primaryColor,
+                          textColor: ColorsResources.light,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(topLeft: Radius.circular(7), topRight: Radius.circular(7), bottomLeft: Radius.circular(7), bottomRight: Radius.circular(7)),
+                          ),
+                        )
+                      )
+                    ],
                   ),
                 )
             ),
