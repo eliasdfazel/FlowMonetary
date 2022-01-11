@@ -79,11 +79,10 @@ class _CreditCardView extends State<CreditCardsView> with SingleTickerProviderSt
       ),);
   }
 
-  Widget creditCardWidgetItem(String cardNumber, String cardExpiry, String
-  cardHolderName, String cvv, String bankName, String cardBalance) {
+  Widget creditCardWidgetItem(String cardNumber, String cardExpiry, String cardHolderName, String cvv, String bankName, String cardBalance) {
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 0, 19, 0),
+      padding: const EdgeInsets.fromLTRB(0, 0, 31, 0),
       child: SizedBox(
         height: 279,
         width: 373,

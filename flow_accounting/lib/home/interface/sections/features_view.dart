@@ -130,11 +130,11 @@ Widget featuresOptionsItem(String featureTitle, String featureDescription,
       padding: const EdgeInsets.all(15),
       child: Container (
         decoration: const BoxDecoration(
-          borderRadius: BorderRadius.only(topLeft: Radius.circular(17), topRight: Radius.circular(17), bottomLeft: Radius.circular(17), bottomRight: Radius.circular(17)),
+          borderRadius: BorderRadius.only(topLeft: Radius.circular(7), topRight: Radius.circular(7), bottomLeft: Radius.circular(7), bottomRight: Radius.circular(7)),
           gradient: LinearGradient(
               colors: [
                 ColorsResources.gameGeeksEmpire,
-                ColorsResources.primaryColorLightest,
+                ColorsResources.applicationGeeksEmpire,
               ],
               begin: FractionalOffset(0.0, 0.0),
               end: FractionalOffset(1.0, 0.0),
@@ -146,19 +146,103 @@ Widget featuresOptionsItem(String featureTitle, String featureDescription,
           children: [
             SizedBox(
               height: 50,
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: Text(StringsResources.featureTransactionsTitle,
-                  style: TextStyle(fontSize: 23,shadows: [
-                    Shadow(
-                        color: ColorsResources.light,
-                        offset: Offset(0, 0),
-                        blurRadius: 7
-                    )
-                  ]),
+              child: Container(
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(topLeft: Radius.circular(7), topRight: Radius.circular(7), bottomLeft: Radius.circular(7), bottomRight: Radius.circular(7)),
+                    gradient: LinearGradient(
+                        colors: [
+                          Colors.transparent,
+                          ColorsResources.primaryColorLightest,
+                        ],
+                        begin: FractionalOffset(0.0, 0.0),
+                        end: FractionalOffset(1.0, 0.0),
+                        stops: [0.0, 1.0],
+                        transform: GradientRotation(45),
+                        tileMode: TileMode.clamp),
+                  ),
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 7, 0),
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: Text(featureTitle,
+                      style: const TextStyle(fontSize: 19,shadows: [
+                        Shadow(
+                            color: ColorsResources.light,
+                            offset: Offset(0, 0),
+                            blurRadius: 7
+                        )
+                      ]),
+                    ),
+                  ),
                 ),
-              ),
-            )
+              )
+            ),
+            SizedBox(
+                height: 119,
+                child: Container(
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(topLeft: Radius.circular(7), topRight: Radius.circular(7), bottomLeft: Radius.circular(7), bottomRight: Radius.circular(7)),
+                    gradient: LinearGradient(
+                        colors: [
+                          Colors.transparent,
+                          ColorsResources.primaryColorLightest,
+                        ],
+                        begin: FractionalOffset(0.0, 0.0),
+                        end: FractionalOffset(1.0, 0.0),
+                        stops: [0.0, 1.0],
+                        transform: GradientRotation(45),
+                        tileMode: TileMode.clamp),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 7, 7, 0),
+                    child: Align(
+                      alignment: Alignment.topRight,
+                      child: Text(featureDescription,
+                        style: const TextStyle(fontSize: 11,shadows: [
+                          Shadow(
+                              color: ColorsResources.light,
+                              offset: Offset(0, 0),
+                              blurRadius: 7
+                          )
+                        ]),
+                      ),
+                    ),
+                  ),
+                )
+            ),
+            SizedBox(
+                height: 53,
+                child: Container(
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(topLeft: Radius.circular(7), topRight: Radius.circular(7), bottomLeft: Radius.circular(7), bottomRight: Radius.circular(7)),
+                    gradient: LinearGradient(
+                        colors: [
+                          Colors.transparent,
+                          ColorsResources.primaryColorLightest,
+                        ],
+                        begin: FractionalOffset(0.0, 0.0),
+                        end: FractionalOffset(1.0, 0.0),
+                        stops: [0.0, 1.0],
+                        transform: GradientRotation(45),
+                        tileMode: TileMode.clamp),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 7, 7, 0),
+                    child: Align(
+                      alignment: Alignment.topRight,
+                      child: Text(featureDescription,
+                        style: const TextStyle(fontSize: 11,shadows: [
+                          Shadow(
+                              color: ColorsResources.light,
+                              offset: Offset(0, 0),
+                              blurRadius: 7
+                          )
+                        ]),
+                      ),
+                    ),
+                  ),
+                )
+            ),
           ],
         ),
       ),
