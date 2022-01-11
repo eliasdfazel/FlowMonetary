@@ -325,8 +325,8 @@ Widget frontCardLayout(String cardNumber, String cardExpiry, String cardHolderNa
                   tileMode: TileMode.clamp),
             ),
           ),
-          const Image(
-            image: AssetImage('pattern_card_background_one.png'),
+          Image(
+            image: AssetImage(generateBackgroundPattern()),
             fit: BoxFit.cover,
             width: double.infinity,
             height: double.infinity,
@@ -379,3 +379,14 @@ Widget backCardLayout(String cvv) {
   );
 }
 
+String generateBackgroundPattern() {
+
+  List listOfPattern = [];
+  listOfPattern.add("pattern_card_background_one.png");
+  listOfPattern.add("pattern_card_background_two.png");
+  listOfPattern.add("pattern_card_background_three.png");
+  listOfPattern.add("pattern_card_background_four.png");
+  listOfPattern.add("pattern_card_background_five.png");
+
+  return listOfPattern[Random().nextInt(listOfPattern.length)];
+}
