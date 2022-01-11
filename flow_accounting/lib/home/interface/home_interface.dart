@@ -124,9 +124,9 @@ class _HomePageState extends State<HomePage> {
                             const Divider(
                               height: 31,
                               color: Colors.white,
-                              thickness: 3,
-                              indent: 23,
-                              endIndent: 23,
+                              thickness: 1,
+                              indent: 73,
+                              endIndent: 73,
                             ),
                             const FeaturesOptionsView(),
                           ]

@@ -129,9 +129,10 @@ Widget featuresOptionsItem(String featureTitle, String featureDescription,
     child: Padding(
       padding: const EdgeInsets.all(15),
       child: Container (
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.only(topLeft: Radius.circular(7), topRight: Radius.circular(7), bottomLeft: Radius.circular(7), bottomRight: Radius.circular(7)),
-          gradient: LinearGradient(
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.only(topLeft: Radius.circular(7),
+              topRight: Radius.circular(7), bottomLeft: Radius.circular(7), bottomRight: Radius.circular(7)),
+          gradient: const LinearGradient(
               colors: [
                 ColorsResources.gameGeeksEmpire,
                 ColorsResources.applicationGeeksEmpire,
@@ -141,6 +142,14 @@ Widget featuresOptionsItem(String featureTitle, String featureDescription,
               stops: [0.0, 1.0],
               transform: GradientRotation(45),
               tileMode: TileMode.clamp),
+          boxShadow: [
+            BoxShadow(
+              color: ColorsResources.dark.withOpacity(0.5),
+              blurRadius: 12.0,
+              spreadRadius: 0.2,
+              offset: const Offset(0.0, 1.7),
+            ),
+          ],
         ),
         child: Column(
           children: [
