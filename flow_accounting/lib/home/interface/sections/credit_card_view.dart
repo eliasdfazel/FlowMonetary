@@ -21,29 +21,10 @@ class CreditCardsView extends StatefulWidget {
 
 }
 
-class _CreditCardView extends State<CreditCardsView> with SingleTickerProviderStateMixin {
-
-  var showCardsBack = false;
-
-  late AnimationController animationController;
-  Animation<double>? moveToBack;
-  Animation<double>? moveToFront;
+class _CreditCardView extends State<CreditCardsView> with TickerProviderStateMixin {
 
   @override
   void initState() {
-
-    animationController = AnimationController(duration: const Duration(milliseconds: 1000), vsync: this);
-
-    moveToBack = TweenSequence<double>([
-      TweenSequenceItem<double>(tween: Tween<double>(begin: 0.0, end: pi / 2).chain(CurveTween(curve: Curves.easeInBack)), weight: 50.0),
-      TweenSequenceItem<double>(tween: ConstantTween<double>(pi / 2), weight: 50.0)
-    ]).animate(animationController);
-
-    moveToFront = TweenSequence<double>([
-      TweenSequenceItem<double>(tween: ConstantTween<double>(pi / 2), weight: 50.0,),
-      TweenSequenceItem<double>(tween: Tween<double>(begin: -pi / 2, end: 0.0).chain(CurveTween(curve: Curves.easeOutBack)), weight: 50.0,),
-    ],).animate(animationController);
-
     super.initState();
   }
 
@@ -70,8 +51,6 @@ class _CreditCardView extends State<CreditCardsView> with SingleTickerProviderSt
                 creditCardWidgetItem(widget.cardNumber, widget.cardExpiry, widget.cardHolderName, widget.cvv, widget.bankName, widget.cardBalance),
                 creditCardWidgetItem(widget.cardNumber, widget.cardExpiry, widget.cardHolderName, widget.cvv, widget.bankName, widget.cardBalance),
                 creditCardWidgetItem(widget.cardNumber, widget.cardExpiry, widget.cardHolderName, widget.cvv, widget.bankName, widget.cardBalance),
-                creditCardWidgetItem(widget.cardNumber, widget.cardExpiry, widget.cardHolderName, widget.cvv, widget.bankName, widget.cardBalance),
-                creditCardWidgetItem(widget.cardNumber, widget.cardExpiry, widget.cardHolderName, widget.cvv, widget.bankName, widget.cardBalance),
               ],
             ),
           )
@@ -79,7 +58,27 @@ class _CreditCardView extends State<CreditCardsView> with SingleTickerProviderSt
       ),);
   }
 
-  Widget creditCardWidgetItem(String cardNumber, String cardExpiry, String cardHolderName, String cvv, String bankName, String cardBalance) {
+  Widget creditCardWidgetItem(String cardNumber,
+      String cardExpiry,
+      String cardHolderName,
+      String cvv,
+      String bankName,
+      String cardBalance) {
+
+    var showCardsBack = false;
+
+    AnimationController animationController = AnimationController(
+        duration: const Duration(milliseconds: 1000), vsync: this
+    );
+
+    Animation<double>? moveToBack = TweenSequence<double>([
+      TweenSequenceItem<double>(tween: Tween<double>(begin: 0.0, end: pi / 2).chain(CurveTween(curve: Curves.easeInBack)), weight: 50.0),
+      TweenSequenceItem<double>(tween: ConstantTween<double>(pi / 2), weight: 50.0)
+    ]).animate(animationController);
+    Animation<double>? moveToFront = TweenSequence<double>([
+      TweenSequenceItem<double>(tween: ConstantTween<double>(pi / 2), weight: 50.0,),
+      TweenSequenceItem<double>(tween: Tween<double>(begin: -pi / 2, end: 0.0).chain(CurveTween(curve: Curves.easeOutBack)), weight: 50.0,),
+    ],).animate(animationController);
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 0, 31, 0),
