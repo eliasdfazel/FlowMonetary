@@ -112,7 +112,7 @@ class _HomePageState extends State<HomePage> {
                           children: [
                             const TopBarView(),
                             const GeneralDataView(),
-                            CreditCardView(
+                            CreditCardsView(
                                 bankName: cardBankName,
                                 cardHolderName: cardHolderName,
                                 cardNumber: cardNumber,

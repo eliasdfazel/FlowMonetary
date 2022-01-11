@@ -63,7 +63,11 @@ flutter:
   uses-material-design: true
 
   assets:
-    - pattern_card_background.png
+    - pattern_card_background_one.png
+    - pattern_card_background_two.png
+    - pattern_card_background_three.png
+    - pattern_card_background_four.png
+    - pattern_card_background_five.png
 
   fonts:
     - family: Sans

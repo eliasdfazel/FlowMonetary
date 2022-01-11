@@ -5,7 +5,7 @@ import 'package:flow_accounting/resources/strings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class CreditCardView extends StatefulWidget {
+class CreditCardsView extends StatefulWidget {
 
   final String cardNumber;
   final String cardExpiry;
@@ -14,49 +14,35 @@ class CreditCardView extends StatefulWidget {
   final String bankName;
   final String cardBalance;
 
-  const CreditCardView({Key? key, required this.cardNumber, required this.cardExpiry, required this.cardHolderName, required this.cvv, required this.bankName, required this.cardBalance}) : super(key: key);
+  const CreditCardsView({Key? key, required this.cardNumber, required this.cardExpiry, required this.cardHolderName, required this.cvv, required this.bankName, required this.cardBalance}) : super(key: key);
 
   @override
-  State<CreditCardView> createState() => _CreditCardView();
+  State<CreditCardsView> createState() => _CreditCardView();
 
 }
 
-class _CreditCardView extends State<CreditCardView> with SingleTickerProviderStateMixin {
+class _CreditCardView extends State<CreditCardsView> with SingleTickerProviderStateMixin {
 
   var showCardsBack = false;
 
-  late AnimationController _controller;
-  Animation<double>? _moveToBack;
-  Animation<double>? _moveToFront;
+  late AnimationController animationController;
+  Animation<double>? moveToBack;
+  Animation<double>? moveToFront;
 
   @override
   void initState() {
 
-    _controller = AnimationController(
-        duration: Duration(milliseconds: 1000), vsync: this);
+    animationController = AnimationController(duration: const Duration(milliseconds: 1000), vsync: this);
 
-    _moveToBack = TweenSequence<double>([
-      TweenSequenceItem<double>(
-          tween: Tween<double>(begin: 0.0, end: pi / 2)
-              .chain(CurveTween(curve: Curves.easeInBack)),
-          weight: 50.0),
-      TweenSequenceItem<double>(
-          tween: ConstantTween<double>(pi / 2), weight: 50.0)
-    ]).animate(_controller);
+    moveToBack = TweenSequence<double>([
+      TweenSequenceItem<double>(tween: Tween<double>(begin: 0.0, end: pi / 2).chain(CurveTween(curve: Curves.easeInBack)), weight: 50.0),
+      TweenSequenceItem<double>(tween: ConstantTween<double>(pi / 2), weight: 50.0)
+    ]).animate(animationController);
 
-    _moveToFront = TweenSequence<double>(
-      [
-        TweenSequenceItem<double>(
-          tween: ConstantTween<double>(pi / 2),
-          weight: 50.0,
-        ),
-        TweenSequenceItem<double>(
-          tween: Tween<double>(begin: -pi / 2, end: 0.0)
-              .chain(CurveTween(curve: Curves.easeOutBack)),
-          weight: 50.0,
-        ),
-      ],
-    ).animate(_controller);
+    moveToFront = TweenSequence<double>([
+      TweenSequenceItem<double>(tween: ConstantTween<double>(pi / 2), weight: 50.0,),
+      TweenSequenceItem<double>(tween: Tween<double>(begin: -pi / 2, end: 0.0).chain(CurveTween(curve: Curves.easeOutBack)), weight: 50.0,),
+    ],).animate(animationController);
 
     super.initState();
   }
@@ -78,7 +64,7 @@ class _CreditCardView extends State<CreditCardView> with SingleTickerProviderSta
             child: ListView(
               physics: const BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,
-              padding: EdgeInsets.fromLTRB(3, 11, 0, 11),
+              padding: const EdgeInsets.fromLTRB(3, 11, 0, 11),
               children: [
                 creditCardWidgetItem(widget.cardNumber, widget.cardExpiry, widget.cardHolderName, widget.cvv, widget.bankName, widget.cardBalance),
                 creditCardWidgetItem(widget.cardNumber, widget.cardExpiry, widget.cardHolderName, widget.cvv, widget.bankName, widget.cardBalance),
@@ -115,9 +101,9 @@ class _CreditCardView extends State<CreditCardView> with SingleTickerProviderSta
                         onTap: () {
 
                           if (showCardsBack) {
-                            _controller.reverse();
+                            animationController.reverse();
                           } else {
-                            _controller.forward();  }
+                            animationController.forward();  }
 
                           showCardsBack = !showCardsBack;
 
@@ -128,11 +114,11 @@ class _CreditCardView extends State<CreditCardView> with SingleTickerProviderSta
                           child: Stack(
                             children: [
                               AwesomeCard(
-                                animation: _moveToBack,
+                                animation: moveToBack,
                                 child: frontCardLayout(widget.cardNumber, widget.cardExpiry, widget.cardHolderName, widget.cvv, widget.bankName),
                               ),
                               AwesomeCard(
-                                animation: _moveToFront,
+                                animation: moveToFront,
                                 child: backCardLayout(widget.cvv),
                               ),
                             ],
@@ -314,7 +300,7 @@ Widget frontCardLayout(String cardNumber, String cardExpiry, String cardHolderNa
           color: ColorsResources.dark.withOpacity(0.5),
           blurRadius: 12.0,
           spreadRadius: 0.2,
-          offset: Offset(3.0, 3.0),
+          offset: const Offset(3.0, 3.0),
         )
       ],
     ),
@@ -340,11 +326,14 @@ Widget frontCardLayout(String cardNumber, String cardExpiry, String cardHolderNa
             ),
           ),
           const Image(
-            image: AssetImage('pattern_card_background.png'),
+            image: AssetImage('pattern_card_background_one.png'),
             fit: BoxFit.cover,
             width: double.infinity,
             height: double.infinity,
           ),
+          Container(
+
+          )
           // Image(image: AssetImage('graphics/background.png'))
         ],
       ),
@@ -363,7 +352,7 @@ Widget backCardLayout(String cvv) {
           color: ColorsResources.dark.withOpacity(0.5),
           blurRadius: 12.0,
           spreadRadius: 0.2,
-          offset: Offset(3.0, 3.0),
+          offset: const Offset(3.0, 3.0),
         )
       ],
     ),
