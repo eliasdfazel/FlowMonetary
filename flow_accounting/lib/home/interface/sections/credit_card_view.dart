@@ -172,7 +172,7 @@ class _CreditCardView extends State<CreditCardsView> with SingleTickerProviderSt
                                   padding: const EdgeInsets.fromLTRB(7, 0, 0, 0),
                                   child: Text(
                                     cardBalance,
-                                    style: const TextStyle(fontSize: 27,shadows: [
+                                    style: const TextStyle(fontSize: 23, shadows: [
                                       Shadow(
                                           color: ColorsResources.light,
                                           offset: Offset(0, 0),
