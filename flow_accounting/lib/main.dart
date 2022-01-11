@@ -3,8 +3,8 @@ import 'package:flow_accounting/utils/navigations/navigations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import 'resources/colors.dart';
-import 'resources/strings.dart';
+import 'resources/ColorsResources.dart';
+import 'resources/StringsResources.dart';
 
 void main() async {
 

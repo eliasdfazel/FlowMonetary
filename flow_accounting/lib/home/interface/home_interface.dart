@@ -1,10 +1,11 @@
-import 'package:flow_accounting/resources/colors.dart';
-import 'package:flow_accounting/resources/strings.dart';
+import 'package:flow_accounting/resources/ColorsResources.dart';
+import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flutter/material.dart';
 import 'package:wave/config.dart';
 import 'package:wave/wave.dart';
 
 import 'sections/credit_card_view.dart';
+import 'sections/features_view.dart';
 import 'sections/general_data_view.dart';
 import 'sections/top_bar_view.dart';
 
@@ -124,32 +125,10 @@ class _HomePageState extends State<HomePage> {
                               height: 31,
                               color: Colors.white,
                               thickness: 3,
-                              indent: 13,
-                              endIndent: 13,
+                              indent: 23,
+                              endIndent: 23,
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Expanded(
-                                  flex: 1,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(15),
-                                    child: Text(
-                                      "123",
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 1,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(15),
-                                    child: Text(
-                                      "XYZ",
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
+                            const FeaturesOptionsView(),
                           ]
                       )
                     ],

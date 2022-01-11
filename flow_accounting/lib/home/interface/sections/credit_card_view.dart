@@ -1,7 +1,7 @@
 import 'dart:math';
 
-import 'package:flow_accounting/resources/colors.dart';
-import 'package:flow_accounting/resources/strings.dart';
+import 'package:flow_accounting/resources/ColorsResources.dart';
+import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

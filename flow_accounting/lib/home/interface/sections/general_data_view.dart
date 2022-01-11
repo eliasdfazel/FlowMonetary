@@ -1,5 +1,5 @@
+import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/IconsResources.dart';
-import 'package:flow_accounting/resources/colors.dart';
 import 'package:flutter/material.dart';
 
 class GeneralDataView extends StatelessWidget {

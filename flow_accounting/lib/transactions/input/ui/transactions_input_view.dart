@@ -1,4 +1,4 @@
-import 'package:flow_accounting/resources/colors.dart';
+import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/transactions/database/io/inputs.dart';
 import 'package:flutter/material.dart';
 
