@@ -296,8 +296,8 @@ class AwesomeCard extends StatelessWidget {
 Widget frontCardLayout(String cardNumber, String cardExpiry, String cardHolderName, String cvv, String bankName) {
 
   return Container(
+    height: 279,
     width: double.infinity,
-    height: double.infinity,
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
@@ -335,8 +335,52 @@ Widget frontCardLayout(String cardNumber, String cardExpiry, String cardHolderNa
             width: double.infinity,
             height: double.infinity,
           ),
-          Container(
-
+          Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(7, 7, 7, 0),
+                child: SizedBox(
+                  height: 79,
+                  width: double.infinity,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Expanded(
+                        flex: 13,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 0, 11, 0),
+                          child: Text(
+                            bankName,
+                            textAlign: TextAlign.right,
+                            style: TextStyle(
+                              fontSize: 27,
+                              color: ColorsResources.dark,
+                              shadows: [
+                                Shadow(
+                                  color: ColorsResources.dark.withOpacity(0.37),
+                                  blurRadius: 7,
+                                  offset: const Offset(1.9, 1.9),
+                                )
+                              ],
+                            ),
+                          ),
+                        )
+                      ),
+                      Expanded(
+                        flex: 3,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 0, 7, 0),
+                           child: ClipRRect(
+                             borderRadius: BorderRadius.circular(51.0),
+                             child: Image.network(generateBankLogoLink(bankName)),
+                           ),
+                        )
+                      )
+                    ],
+                  ),
+                ),
+              )
+            ],
           )
           // Image(image: AssetImage('graphics/background.png'))
         ],
@@ -393,4 +437,9 @@ String generateBackgroundPattern() {
   listOfPattern.add("pattern_card_background_five.png");
 
   return listOfPattern[Random().nextInt(listOfPattern.length)];
+}
+
+String generateBankLogoLink(String bankName) {
+  
+  return "https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_170,w_170,f_auto,b_white,q_auto:eco,dpr_1/ryleq1a8z10ytvgoxvcq";
 }

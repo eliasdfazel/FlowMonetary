@@ -125,24 +125,37 @@ class _HomePageState extends State<HomePage> {
 
   List<CreditCardsData> prepareCreditCardsData() {
 
-    var cardNumber = "6274121111111111";
-    var cardExpiryDate = '07-05';
-    var cardHolderName = "آبان آبسالان";
-    var cardCVV = '456';
-    var cardBankName = 'اقتصاد نوین';
-    var cardBalance = "7777";
-
     //Get From Database
 
-    return [CreditCardsData(
-      id: 1,
-      cardNumber: cardNumber,
-      cardExpiry: cardExpiryDate,
-      cardHolderName: cardHolderName,
-      cvv: cardCVV,
-      bankName: cardBankName,
-      cardBalance: cardBalance
-    )];
+    return [
+      CreditCardsData(
+          id: 1,
+          cardNumber: "6274121111111111",
+          cardExpiry: "07-05",
+          cardHolderName: "آبان آبسالان",
+          cvv: "456",
+          bankName: "اقتصاد نوین",
+          cardBalance: "17777"
+      ),
+      CreditCardsData(
+          id: 2,
+          cardNumber: "6274121111111111",
+          cardExpiry: "07-05",
+          cardHolderName: "آبان آبسالان",
+          cvv: "456",
+          bankName: "اقتصاد نوین",
+          cardBalance: "27777"
+      ),
+      CreditCardsData(
+          id: 3,
+          cardNumber: "6274121111111111",
+          cardExpiry: "07-05",
+          cardHolderName: "آبان آبسالان",
+          cvv: "456",
+          bankName: "اقتصاد نوین",
+          cardBalance: "37777"
+      )
+    ];
   }
 
 }
