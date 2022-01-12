@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flow_accounting/credit_cards/database/structures/tables_structure.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,14 +8,9 @@ import 'package:flutter/material.dart';
 
 class CreditCardsView extends StatefulWidget {
 
-  final String cardNumber;
-  final String cardExpiry;
-  final String cardHolderName;
-  final String cvv;
-  final String bankName;
-  final String cardBalance;
+  List<CreditCardsData> allCreditCardsData = [];
 
-  const CreditCardsView({Key? key, required this.cardNumber, required this.cardExpiry, required this.cardHolderName, required this.cvv, required this.bankName, required this.cardBalance}) : super(key: key);
+  CreditCardsView({Key? key, required this.allCreditCardsData}) : super(key: key);
 
   @override
   State<CreditCardsView> createState() => _CreditCardView();
@@ -36,6 +32,21 @@ class _CreditCardView extends State<CreditCardsView> with TickerProviderStateMix
   @override
   Widget build(BuildContext context) {
 
+    List<Widget> creditCardWidgets = [];
+
+    widget.allCreditCardsData.forEach((element) {
+
+      creditCardWidgets.add(creditCardWidgetItem(
+        element.cardNumber,
+        element.cardExpiry,
+        element.cardHolderName,
+        element.cvv,
+        element.bankName,
+        element.cardBalance
+      ));
+
+    });
+
     return Padding(padding: const EdgeInsets.fromLTRB(0, 23, 0, 0),
       child: Column(
         children: [
@@ -46,12 +57,7 @@ class _CreditCardView extends State<CreditCardsView> with TickerProviderStateMix
               physics: const BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.fromLTRB(3, 11, 0, 11),
-              children: [
-                creditCardWidgetItem(widget.cardNumber, widget.cardExpiry, widget.cardHolderName, widget.cvv, widget.bankName, widget.cardBalance),
-                creditCardWidgetItem(widget.cardNumber, widget.cardExpiry, widget.cardHolderName, widget.cvv, widget.bankName, widget.cardBalance),
-                creditCardWidgetItem(widget.cardNumber, widget.cardExpiry, widget.cardHolderName, widget.cvv, widget.bankName, widget.cardBalance),
-                creditCardWidgetItem(widget.cardNumber, widget.cardExpiry, widget.cardHolderName, widget.cvv, widget.bankName, widget.cardBalance),
-              ],
+              children: creditCardWidgets,
             ),
           )
         ],
