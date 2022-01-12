@@ -1,4 +1,5 @@
 import 'package:flow_accounting/credit_cards/database/structures/tables_structure.dart';
+import 'package:flow_accounting/home/interface/sections/search_bar_view.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flutter/material.dart';
@@ -110,13 +111,7 @@ class _HomePageState extends State<HomePage> {
                             CreditCardsView(
                                 allCreditCardsData: prepareCreditCardsData(),
                             ),
-                            const Divider(
-                              height: 31,
-                              color: Colors.white,
-                              thickness: 1,
-                              indent: 73,
-                              endIndent: 73,
-                            ),
+                            const SearchBarView(),
                             const FeaturesOptionsView(),
                           ]
                       )
