@@ -1,3 +1,4 @@
+import 'package:flow_accounting/credit_cards/database/structures/tables_structure.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flutter/material.dart';
@@ -23,13 +24,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-
-    var cardBankName = 'اقتصاد نوین';
-    var cardHolderName = "آبان آبسالان";
-    var cardNumber = "6274121111111111";
-    var cardCVV = '456';
-    var cardExpiryDate = '07-05';
-    var cardBalance = "7777";
 
     return SafeArea (
         child: MaterialApp (
@@ -114,12 +108,7 @@ class _HomePageState extends State<HomePage> {
                             const TopBarView(),
                             const GeneralDataView(),
                             CreditCardsView(
-                                bankName: cardBankName,
-                                cardHolderName: cardHolderName,
-                                cardNumber: cardNumber,
-                                cardExpiry: cardExpiryDate,
-                                cvv: cardCVV,
-                                cardBalance: cardBalance,
+                                allCreditCardsData: prepareCreditCardsData(),
                             ),
                             const Divider(
                               height: 31,
@@ -137,6 +126,28 @@ class _HomePageState extends State<HomePage> {
               ),),
           ),
         ));
+  }
+
+  List<CreditCardsData> prepareCreditCardsData() {
+
+    var cardNumber = "6274121111111111";
+    var cardExpiryDate = '07-05';
+    var cardHolderName = "آبان آبسالان";
+    var cardCVV = '456';
+    var cardBankName = 'اقتصاد نوین';
+    var cardBalance = "7777";
+
+    //Get From Database
+
+    return [CreditCardsData(
+      id: 1,
+      cardNumber: cardNumber,
+      cardExpiry: cardExpiryDate,
+      cardHolderName: cardHolderName,
+      cvv: cardCVV,
+      bankName: cardBankName,
+      cardBalance: cardBalance
+    )];
   }
 
 }
