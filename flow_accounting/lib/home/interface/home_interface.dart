@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:wave/config.dart';
 import 'package:wave/wave.dart';
 
-import 'sections/credit_card_view.dart';
+import 'sections/credit_cards_list_view.dart';
 import 'sections/features_view.dart';
 import 'sections/general_data_view.dart';
 import 'sections/top_bar_view.dart';
@@ -108,7 +108,7 @@ class _HomePageState extends State<HomePage> {
                           children: [
                             const TopBarView(),
                             const GeneralDataView(),
-                            CreditCardsView(
+                            CreditCardsListView(
                                 allCreditCardsData: prepareCreditCardsData(),
                             ),
                             const SearchBarView(),

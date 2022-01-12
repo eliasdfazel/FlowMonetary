@@ -6,18 +6,18 @@ import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class CreditCardsView extends StatefulWidget {
+class CreditCardsListView extends StatefulWidget {
 
   List<CreditCardsData> allCreditCardsData = [];
 
-  CreditCardsView({Key? key, required this.allCreditCardsData}) : super(key: key);
+  CreditCardsListView({Key? key, required this.allCreditCardsData}) : super(key: key);
 
   @override
-  State<CreditCardsView> createState() => _CreditCardView();
+  State<CreditCardsListView> createState() => _CreditCardsListView();
 
 }
 
-class _CreditCardView extends State<CreditCardsView> with TickerProviderStateMixin {
+class _CreditCardsListView extends State<CreditCardsListView> with TickerProviderStateMixin {
 
   @override
   void initState() {
