@@ -311,7 +311,7 @@ Widget frontCardLayout(String cardNumber, String cardExpiry, String cardHolderNa
     child: ClipRRect(
       borderRadius: BorderRadius.circular(11.0),
       child: Stack(
-        children: [
+        children: <Widget> [
           Container(
             width: double.maxFinite,
             height: double.maxFinite,
@@ -614,7 +614,6 @@ Widget frontCardLayout(String cardNumber, String cardExpiry, String cardHolderNa
               ),
             ],
           )
-          // Image(image: AssetImage('graphics/background.png'))
         ],
       ),
     ),
@@ -639,20 +638,100 @@ Widget backCardLayout(String cvv) {
     child: ClipRRect(
       borderRadius: BorderRadius.circular(10.0),
       child: Stack(
-        children: <Widget>[
-          // Background for card
+        children: <Widget> [
           Container(
             width: double.maxFinite,
             height: double.maxFinite,
-            color: ColorsResources.dark,
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.only(topLeft: Radius.circular(17), topRight: Radius.circular(17), bottomLeft: Radius.circular(17), bottomRight: Radius.circular(17)),
+              gradient: LinearGradient(
+                  colors: [
+                    ColorsResources.light,
+                    ColorsResources.white,
+                  ],
+                  begin: FractionalOffset(0.0, 0.0),
+                  end: FractionalOffset(1.0, 0.0),
+                  stops: [0.0, 1.0],
+                  transform: GradientRotation(45),
+                  tileMode: TileMode.clamp),
+            ),
           ),
-
-          // Back Side Layout
-          Container(
-            width: double.maxFinite,
-            height: double.maxFinite,
-            color: Color(0xffff00ae),
+          Image(
+            image: AssetImage(generateBackgroundPattern()),
+            fit: BoxFit.cover,
+            width: double.infinity,
+            height: double.infinity,
           ),
+          Column(
+            children: [
+              const Padding(
+                padding: EdgeInsets.fromLTRB(0, 19, 0, 0),
+                child: SizedBox(
+                  height: 59,
+                  width: double.infinity,
+                  child: ColoredBox(
+                    color: ColorsResources.dark,
+                  ),
+                ),
+              ),
+              Container(
+                color: Colors.transparent,
+                child: const Padding(
+                  padding: EdgeInsets.fromLTRB(7, 0, 11, 0),
+                  child: SizedBox(
+                    height: 51,
+                    width: double.infinity,
+                  ),
+                ),
+              ),
+              Container(
+                color: Colors.transparent,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 11),
+                  child: SizedBox(
+                    height: 57,
+                    width: double.infinity,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Expanded(
+                            flex: 17,
+                            child: Image.network(
+                              "https://www.crushpixel.com/big-static15/preview4/natural-dark-gray-slate-stone-2112567.jpg",
+                              fit: BoxFit.cover,
+                            )
+                        ),
+                        Expanded(
+                            flex: 7,
+                            child: Padding(
+                                padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    cvv,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 23,
+                                      color: ColorsResources.dark,
+                                      shadows: [
+                                        Shadow(
+                                          color: ColorsResources.dark.withOpacity(0.37),
+                                          blurRadius: 7,
+                                          offset: const Offset(1.9, 1.9),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                )
+                            )
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          )
         ],
       ),
     ),
