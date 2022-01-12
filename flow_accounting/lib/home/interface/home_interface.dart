@@ -37,6 +37,7 @@ class _HomePageState extends State<HomePage> {
             body: Padding(
               padding: const EdgeInsets.fromLTRB(/*left*/1.1, /*top*/3, /*right*/1.1, /*bottom*/3),
               child: Container (
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                 decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(topLeft: Radius.circular(17), topRight: Radius.circular(17), bottomLeft: Radius.circular(17), bottomRight: Radius.circular(17)),
                   gradient: LinearGradient(
@@ -58,23 +59,26 @@ class _HomePageState extends State<HomePage> {
                         height: 179,
                         child: RotatedBox (
                             quarterTurns: 2,
-                            child: WaveWidget(
-                              config: CustomConfig(
-                                colors: [
-                                  ColorsResources.primaryColorLighter,
-                                  ColorsResources.primaryColorLight,
-                                  ColorsResources.primaryColor,
-                                ],
-                                heightPercentages: [0.13, 0.57, 0.79],
-                                durations: [13000, 21000, 19000],
-                                blur: const MaskFilter.blur(BlurStyle.normal, 3.1),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(17.0),
+                              child: WaveWidget(
+                                config: CustomConfig(
+                                  colors: [
+                                    ColorsResources.primaryColor,
+                                    ColorsResources.primaryColorDark,
+                                    ColorsResources.black,
+                                  ],
+                                  heightPercentages: [0.13, 0.57, 0.79],
+                                  durations: [13000, 21000, 19000],
+                                  blur: const MaskFilter.blur(BlurStyle.normal, 3.1),
+                                ),
+                                backgroundColor: Colors.transparent,
+                                size: const Size(double.infinity, 300),
+                                waveAmplitude: 7,
+                                duration: 1000,
+                                isLoop: true,
                               ),
-                              backgroundColor: Colors.transparent,
-                              size: const Size(double.infinity, 300),
-                              waveAmplitude: 7,
-                              duration: 1000,
-                              isLoop: true,
-                            )
+                            ),
                         ),
                       ),
                       SizedBox(
@@ -82,23 +86,27 @@ class _HomePageState extends State<HomePage> {
                         height: 179,
                         child: RotatedBox (
                             quarterTurns: 2,
-                            child: WaveWidget(
-                              config: CustomConfig(
-                                colors: [
-                                  ColorsResources.primaryColor,
-                                  ColorsResources.primaryColor,
-                                  ColorsResources.primaryColorDark,
-                                ],
-                                heightPercentages: [0.13, 0.57, 0.79],
-                                durations: [13000, 21000, 19000],
-                                blur: const MaskFilter.blur(BlurStyle.outer, 3.7),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(17.0),
+
+                              child: WaveWidget(
+                                config: CustomConfig(
+                                  colors: [
+                                    ColorsResources.primaryColor,
+                                    ColorsResources.primaryColor,
+                                    ColorsResources.primaryColorDark,
+                                  ],
+                                  heightPercentages: [0.13, 0.57, 0.79],
+                                  durations: [13000, 21000, 19000],
+                                  blur: const MaskFilter.blur(BlurStyle.outer, 3.7),
+                                ),
+                                backgroundColor: Colors.transparent,
+                                size: const Size(double.infinity, 300),
+                                waveAmplitude: 7,
+                                duration: 1000,
+                                isLoop: true,
                               ),
-                              backgroundColor: Colors.transparent,
-                              size: const Size(double.infinity, 300),
-                              waveAmplitude: 7,
-                              duration: 1000,
-                              isLoop: true,
-                            )
+                            ),
                         ),
                       ),
                       ListView(
@@ -109,16 +117,17 @@ class _HomePageState extends State<HomePage> {
                             const TopBarView(),
                             const GeneralDataView(),
                             CreditCardsListView(
-                                allCreditCardsData: prepareCreditCardsData(),
+                              allCreditCardsData: prepareCreditCardsData(),
                             ),
                             const SearchBarView(),
                             const FeaturesOptionsView(),
                           ]
-                      )
+                      ),
                     ],
                   ),
                 ),
-              ),),
+              ),
+            ),
           ),
         ));
   }
