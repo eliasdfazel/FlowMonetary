@@ -2,6 +2,23 @@ import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flutter/material.dart';
 
+class FeaturesOptionsData {
+
+  String featuresTitle;
+  String featuresDescription;
+
+  StatefulWidget targetViewToSubmitData;
+  StatefulWidget targetViewToPresentData;
+
+  FeaturesOptionsData({
+    required this.featuresTitle,
+    required this.featuresDescription,
+    required this.targetViewToSubmitData,
+    required this.targetViewToPresentData
+  });
+
+}
+
 class FeaturesOptionsView extends StatefulWidget {
   const FeaturesOptionsView({Key? key}) : super(key: key);
 
@@ -11,6 +28,7 @@ class FeaturesOptionsView extends StatefulWidget {
 }
 
 class _FeaturesOptionsView extends State<FeaturesOptionsView> {
+
 
   @override
   void initState() {
@@ -25,100 +43,95 @@ class _FeaturesOptionsView extends State<FeaturesOptionsView> {
   @override
   Widget build(BuildContext context) {
 
+    List<Widget> allFeaturesOptionsWidgets = [];
+    allFeaturesOptionsWidgets.add(featuresOptionsRow(
+        StringsResources.featureTransactionsTitle,
+        StringsResources.featureProductsTitle,
+        StringsResources.featureTransactionsDescription,
+        StringsResources.featureProductsDescription,
+        null,
+        null,
+        null,
+        null
+    ));
+    allFeaturesOptionsWidgets.add(featuresOptionsRow(
+        StringsResources.featureChequesTitle,
+        StringsResources.featureCustomersTitle,
+        StringsResources.featureChequesDescription,
+        StringsResources.featureCustomersDescription,
+        null,
+        null,
+        null,
+        null
+    ));
+    allFeaturesOptionsWidgets.add(featuresOptionsRow(
+        StringsResources.featureSellInvoicesTitle,
+        StringsResources.featureBuyInvoicesTitle,
+        StringsResources.featureSellInvoicesDescription,
+        StringsResources.featureBuyInvoicesDescription,
+        null,
+        null,
+        null,
+        null
+    ));
+    allFeaturesOptionsWidgets.add(featuresOptionsRow(
+        StringsResources.featureDebtorsTitle,
+        StringsResources.featureCreditorsTitle,
+        StringsResources.featureDebtorsDescription,
+        StringsResources.featureCreditorsDescription,
+        null,
+        null,
+        null,
+        null
+    ));
+    allFeaturesOptionsWidgets.add(featuresOptionsRow(
+        StringsResources.featureBudgetManagementsTitle,
+        StringsResources.featureLoansTitle,
+        StringsResources.featureBudgetManagementsDescription,
+        StringsResources.featureLoansDescription,
+        null,
+        null,
+        null,
+        null
+    ));
+
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+      padding: const EdgeInsets.fromLTRB(0, 3, 0, 0),
       child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              featuresOptionsItem(
-                  StringsResources.featureTransactionsTitle,
-                  StringsResources.featureTransactionsDescription,
-                  null,
-                  null
-              ),
-              featuresOptionsItem(
-                  StringsResources.featureChequesTitle,
-                  StringsResources.featureChequesDescription,
-                  null,
-                  null
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              featuresOptionsItem(
-                  StringsResources.featureCustomersTitle,
-                  StringsResources.featureCustomersDescription,
-                  null,
-                  null
-              ),
-              featuresOptionsItem(
-                  StringsResources.featureProductsTitle,
-                  StringsResources.featureProductsDescription,
-                  null,
-                  null
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              featuresOptionsItem(
-                  StringsResources.featureSellInvoicesTitle,
-                  StringsResources.featureSellInvoicesDescription,
-                  null,
-                  null
-              ),
-              featuresOptionsItem(
-                  StringsResources.featureBuyInvoicesTitle,
-                  StringsResources.featureBuyInvoicesDescription,
-                  null,
-                  null
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              featuresOptionsItem(
-                  StringsResources.featureDebtorsTitle,
-                  StringsResources.featureDebtorsDescription,
-                  null,
-                  null
-              ),
-              featuresOptionsItem(
-                  StringsResources.featureCreditorsTitle,
-                  StringsResources.featureCreditorsDescription,
-                  null,
-                  null
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              featuresOptionsItem(
-                  StringsResources.featureBudgetManagementsTitle,
-                  StringsResources.featureBudgetManagementsDescription,
-                  null,
-                  null
-              ),
-              featuresOptionsItem(
-                  StringsResources.featureLoansTitle,
-                  StringsResources.featureLoansDescription,
-                  null,
-                  null
-              ),
-            ],
-          ),
-        ],
+        children: allFeaturesOptionsWidgets
       ),
     );
   }
 
+}
+
+Widget featuresOptionsRow(
+    String featureOneTitle,
+    String featureTwoTitle,
+    String featureOneDescription,
+    String featureTwoDescription,
+    StatefulWidget? featureOneTargetViewToSubmitData,
+    StatefulWidget? featureTwoTargetViewToSubmitData,
+    StatefulWidget? featureOneTargetViewToPresentData,
+    StatefulWidget? featureTwoTargetViewToPresentData) {
+
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    children: [
+      featuresOptionsItem(
+          featureOneTitle,
+          featureOneDescription,
+          featureOneTargetViewToSubmitData,
+          featureOneTargetViewToPresentData
+      ),
+      featuresOptionsItem(
+          featureTwoTitle,
+          featureTwoDescription,
+          featureTwoTargetViewToSubmitData,
+          featureTwoTargetViewToPresentData
+      ),
+    ],
+  );
 }
 
 Widget featuresOptionsItem(String featureTitle, String featureDescription,
