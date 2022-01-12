@@ -119,11 +119,11 @@ class _CreditCardView extends State<CreditCardsView> with TickerProviderStateMix
                             children: [
                               AwesomeCard(
                                 animation: moveToBack,
-                                child: frontCardLayout(widget.cardNumber, widget.cardExpiry, widget.cardHolderName, widget.cvv, widget.bankName),
+                                child: frontCardLayout(cardNumber, cardExpiry, cardHolderName, cvv, bankName),
                               ),
                               AwesomeCard(
                                 animation: moveToFront,
-                                child: backCardLayout(widget.cvv),
+                                child: backCardLayout(cvv),
                               ),
                             ],
                           ),
