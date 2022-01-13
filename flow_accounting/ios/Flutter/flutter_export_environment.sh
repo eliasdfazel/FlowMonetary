@@ -1,4 +1,14 @@
 #!/bin/sh
+#
+# Copyright © 2022 By Geeks Empire.
+#
+# Created by Elias Fazel
+# Last modified 1/13/22, 6:44 AM
+#
+# Licensed Under MIT License.
+# https://opensource.org/licenses/MIT
+#
+
 # This is a generated file; do not edit or check into version control.
 export "FLUTTER_ROOT=X:\Xemonstration\Flutter\Setup\FlutterSdk"
 export "FLUTTER_APPLICATION_PATH=X:\Xlutter\FlowAccounting\flow_accounting"

@@ -1,3 +1,13 @@
+/*
+ * Copyright © 2022 By Geeks Empire.
+ *
+ * Created by Elias Fazel
+ * Last modified 1/13/22, 6:44 AM
+ *
+ * Licensed Under MIT License.
+ * https://opensource.org/licenses/MIT
+ */
+
 import 'package:flow_accounting/budgets/database/io/inputs.dart';
 import 'package:flow_accounting/budgets/database/structures/tables_structure.dart';
 import 'package:flutter/material.dart';
