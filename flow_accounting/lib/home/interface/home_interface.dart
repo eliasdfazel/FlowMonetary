@@ -35,6 +35,7 @@ class _HomePageState extends State<HomePage> {
             backgroundColor: ColorsResources.black,
             body: Stack(
               children: [
+                // Gradient Background
                 Container(
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.only(topLeft: Radius.circular(17), topRight: Radius.circular(17), bottomLeft: Radius.circular(17), bottomRight: Radius.circular(17)),
@@ -51,6 +52,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
+                // Wave
                 SizedBox(
                   width: double.infinity,
                   height: 179,
@@ -78,6 +80,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
+                // Wave Line
                 SizedBox(
                   width: double.infinity,
                   height: 179,
@@ -105,6 +108,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
+                // Rounded Borders
                 Container(
                   decoration: const BoxDecoration(
                       borderRadius: BorderRadius.only(topLeft: Radius.circular(17), topRight: Radius.circular(17), bottomLeft: Radius.circular(17), bottomRight: Radius.circular(17)),
@@ -129,6 +133,7 @@ class _HomePageState extends State<HomePage> {
                       color: Colors.transparent
                   ),
                 ),
+                // All Contents
                 Padding(
                   padding: const EdgeInsets.fromLTRB(/*left*/1.1, /*top*/3, /*right*/1.1, /*bottom*/7.3),
                   child: Container (
