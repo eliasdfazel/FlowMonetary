@@ -25,8 +25,11 @@ class ColorsResources {
 
   static const Color blueGreen = Color.fromARGB(255, 48, 105, 116);
   static const Color blueGray = Color.fromARGB(255, 55, 71, 79);
+  static const Color greenGray = Color.fromARGB(255, 55, 79, 67);
   static const Color blueGrayLight = Color.fromARGB(255, 120, 144, 156);
-  static const Color greenGrayLight = Color.fromARGB(255, 224, 236, 222);
+  static const Color greenGrayLight = Color.fromARGB(255, 220, 238, 217);
+  static const Color grayLight = Color.fromARGB(255, 203, 203, 203);
+
 
   static const Color light = Color.fromARGB(255, 242, 247, 255);
   static const Color lightTransparent = Color.fromARGB(130, 242, 247, 255);

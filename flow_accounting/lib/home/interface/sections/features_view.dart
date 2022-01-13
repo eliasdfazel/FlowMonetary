@@ -175,30 +175,24 @@ Widget featuresOptionsItem(String featureTitle, String featureDescription,
       padding: const EdgeInsets.all(15),
       child: Container (
         decoration: BoxDecoration(
-          borderRadius: const BorderRadius.only(topLeft: Radius.circular(7),
-              topRight: Radius.circular(7), bottomLeft: Radius.circular(7), bottomRight: Radius.circular(7)),
-          gradient: LinearGradient(
-              colors: [
-                ColorsResources.white.withOpacity(0.3),
-                ColorsResources.primaryColor.withOpacity(0.3),
-              ],
-              begin: const FractionalOffset(0.0, 0.0),
-              end: const FractionalOffset(1.0, 0.0),
-              stops: const [0.0, 1.0],
-              transform: const GradientRotation(45),
-              tileMode: TileMode.clamp),
+          borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(13),
+              topRight: Radius.circular(13),
+              bottomLeft: Radius.circular(13),
+              bottomRight: Radius.circular(13)),
+          color: ColorsResources.primaryColorLightest,
           boxShadow: [
             BoxShadow(
               color: ColorsResources.dark.withOpacity(0.7),
               blurRadius: 12.0,
               spreadRadius: 0.3,
-              offset: const Offset(3.0, 3.0),
+              offset: const Offset(7.0, 7.0),
             ),
-            BoxShadow(
-              color: ColorsResources.white.withOpacity(0.7),
+            const BoxShadow(
+              color: ColorsResources.white,
               blurRadius: 12.0,
-              spreadRadius: 0.7,
-              offset: const Offset(-3.0, -3.0),
+              spreadRadius: 0.5,
+              offset: Offset(-5.0, -5.0),
             ),
           ],
         ),
@@ -213,7 +207,7 @@ Widget featuresOptionsItem(String featureTitle, String featureDescription,
                     gradient: LinearGradient(
                         colors: [
                           ColorsResources.white.withOpacity(0.3),
-                          ColorsResources.primaryColorLight.withOpacity(0.3),
+                          ColorsResources.light,
                         ],
                         begin: const FractionalOffset(0.0, 0.0),
                         end: const FractionalOffset(1.0, 0.0),
@@ -226,7 +220,9 @@ Widget featuresOptionsItem(String featureTitle, String featureDescription,
                     child: Align(
                       alignment: Alignment.centerRight,
                       child: Text(featureTitle,
-                        style: const TextStyle(fontSize: 19, color: ColorsResources.dark,
+                        style: const TextStyle(
+                            fontSize: 19,
+                            color: ColorsResources.dark,
                             shadows: [
                               Shadow(
                                   color: ColorsResources.light,
@@ -248,7 +244,7 @@ Widget featuresOptionsItem(String featureTitle, String featureDescription,
                     gradient: LinearGradient(
                         colors: [
                           ColorsResources.white.withOpacity(0.3),
-                          ColorsResources.primaryColorLight.withOpacity(0.3),
+                          ColorsResources.light.withOpacity(0.3),
                         ],
                         begin: const FractionalOffset(0.0, 0.0),
                         end: const FractionalOffset(1.0, 0.0),
@@ -261,7 +257,9 @@ Widget featuresOptionsItem(String featureTitle, String featureDescription,
                     child: Align(
                       alignment: Alignment.topRight,
                       child: Text(featureDescription,
-                        style: const TextStyle(fontSize: 11, color: ColorsResources.dark,
+                        style: const TextStyle(
+                            fontSize: 13,
+                            color: ColorsResources.blueGreen,
                             shadows: [
                               Shadow(
                                   color: ColorsResources.light,
@@ -278,12 +276,12 @@ Widget featuresOptionsItem(String featureTitle, String featureDescription,
             SizedBox(
                 height: 53,
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(1, 1, 1, 1),
+                  padding: const EdgeInsets.fromLTRB(3, 1, 3, 3),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Expanded(
-                          flex: 1,
+                          flex: 31,
                           child: MaterialButton(
                             onPressed: () {
 
@@ -306,19 +304,25 @@ Widget featuresOptionsItem(String featureTitle, String featureDescription,
                             ),
                             height: 79,
                             minWidth: double.infinity,
-                            color: ColorsResources.light.withOpacity(0.7),
+                            color: ColorsResources.light,
                             splashColor: ColorsResources.primaryColor,
                             textColor: ColorsResources.dark,
-                            shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(0),
-                                topRight: Radius.circular(0),
-                                bottomLeft: Radius.circular(7),
-                                bottomRight: Radius.circular(0)
-                            )),
+                            shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(13),
+                                    topRight: Radius.circular(13),
+                                    bottomLeft: Radius.circular(13),
+                                    bottomRight: Radius.circular(0)
+                                )
+                            ),
                           )
                       ),
+                      const Expanded(
+                        flex: 1,
+                        child: ColoredBox(color: Colors.transparent,),
+                      ),
                       Expanded(
-                          flex: 1,
+                          flex: 31,
                           child: MaterialButton(
                             onPressed: () {
 
@@ -341,15 +345,17 @@ Widget featuresOptionsItem(String featureTitle, String featureDescription,
                             ),
                             height: 79,
                             minWidth: double.infinity,
-                            color: ColorsResources.light.withOpacity(0.7),
+                            color: ColorsResources.light,
                             splashColor: ColorsResources.primaryColor,
                             textColor: ColorsResources.dark,
-                            shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(0),
-                                topRight: Radius.circular(0),
-                                bottomLeft: Radius.circular(0),
-                                bottomRight: Radius.circular(7)
-                            )),
+                            shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(13),
+                                    topRight: Radius.circular(13),
+                                    bottomLeft: Radius.circular(0),
+                                    bottomRight: Radius.circular(13)
+                                )
+                            ),
                           )
                       )
                     ],

@@ -50,8 +50,8 @@ class _HomePageState extends State<HomePage> {
                     borderRadius: BorderRadius.only(topLeft: Radius.circular(17), topRight: Radius.circular(17), bottomLeft: Radius.circular(17), bottomRight: Radius.circular(17)),
                     gradient: LinearGradient(
                         colors: [
-                          ColorsResources.white,
-                          ColorsResources.primaryColorLightest,
+                          ColorsResources.grayLight,
+                          ColorsResources.greenGrayLight,
                         ],
                         begin: FractionalOffset(0.0, 0.0),
                         end: FractionalOffset(1.0, 0.0),
