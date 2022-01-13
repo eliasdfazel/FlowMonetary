@@ -42,44 +42,65 @@ class _SearchBarView extends State<SearchBarView> {
   Widget build(BuildContext context) {
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 7, 0, 0),
+      padding: const EdgeInsets.fromLTRB(13, 7, 13, 3),
       child: Column(
         children: [
           SizedBox(
             width: double.infinity,
             height: 50,
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(3, 1, 3, 0),
+              padding: const EdgeInsets.fromLTRB(1, 1, 1, 1),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Expanded(
                       flex: 11,
-                      child: GestureDetector(
-                        onTap: () {
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(1, 1, 1, 1),
+                        child: GestureDetector(
+                          onTap: () {
 
 
 
-                        },
-                        child: Container(
-                          color: Colors.lightGreenAccent,
-                          alignment: AlignmentDirectional.center,
-                          child: const Icon(IconsResources.share, size: 23.0, color: ColorsResources.dark),
+                          },
+                          child: Container(
+                            decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(13),
+                                  topRight: Radius.circular(13),
+                                  bottomLeft: Radius.circular(13),
+                                  bottomRight: Radius.circular(13)),
+                              color: ColorsResources.primaryColorLightest,
+                            ),
+                            alignment: AlignmentDirectional.center,
+                            child: const Icon(IconsResources.share, size: 23.0, color: ColorsResources.dark),
+                          ),
                         ),
                       )
                   ),
                   Expanded(
                       flex: 3,
-                      child: GestureDetector(
-                        onTap: () {
+                      child: Padding(
+                          padding: const EdgeInsets.fromLTRB(1, 1, 1, 1),
+                          child: GestureDetector(
+                          onTap: () {
 
 
 
-                        },
-                        child: Container(
-                          color: Colors.blueGrey,
-                          alignment: AlignmentDirectional.center,
-                          child: const Icon(IconsResources.share, size: 23.0, color: ColorsResources.dark),
+                          },
+                          child: Container(
+                            decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(13),
+                                  topRight: Radius.circular(13),
+                                  bottomLeft: Radius.circular(13),
+                                  bottomRight: Radius.circular(13)),
+                              color: ColorsResources.primaryColorLightest,
+                            ),
+                            alignment: AlignmentDirectional.center,
+                            child: const Icon(Icons.search_sharp, size: 23.0, color:
+                            ColorsResources.dark),
+                          ),
                         ),
                       )
                   ),
