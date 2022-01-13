@@ -151,7 +151,7 @@ class _HomePageState extends State<HomePage> {
                             CreditCardsListView(
                               allCreditCardsData: prepareCreditCardsData(),
                             ),
-                            const FeaturesOptionsView(),
+                            const StateFeaturesOptionsView(),
                           ]
                       ),
                     ),

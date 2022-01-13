@@ -2,11 +2,14 @@ import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/IconsResources.dart';
 import 'package:flutter/material.dart';
 
+import 'features_view.dart';
+
 class SearchBarView extends StatefulWidget {
 
   List<Widget> allFeaturesOptionsWidgets;
+  StateFeaturesOptionsView featuresOptionsView;
 
-  SearchBarView({Key? key, required this.allFeaturesOptionsWidgets}) : super(key: key);
+  SearchBarView({Key? key, required this.allFeaturesOptionsWidgets, required this.featuresOptionsView}) : super(key: key);
 
   @override
   State<SearchBarView> createState() => _SearchBarView();

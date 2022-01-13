@@ -25,10 +25,10 @@ class FeaturesOptionsView extends StatefulWidget {
   const FeaturesOptionsView({Key? key}) : super(key: key);
 
   @override
-  State<FeaturesOptionsView> createState() => _FeaturesOptionsView();
+  State<FeaturesOptionsView> createState() => StateFeaturesOptionsView();
 
 }
-class _FeaturesOptionsView extends State<FeaturesOptionsView> {
+class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
 
   List<Widget> allFeaturesOptionsWidgets = [];
 
@@ -101,13 +101,28 @@ class _FeaturesOptionsView extends State<FeaturesOptionsView> {
       padding: const EdgeInsets.fromLTRB(0, 3, 0, 0),
       child: Column(
         children: [
-          SearchBarView(allFeaturesOptionsWidgets: allFeaturesOptionsWidgets,),
+          SearchBarView(featuresOptionsView: this, allFeaturesOptionsWidgets: allFeaturesOptionsWidgets,),
           Column(
             children: allFeaturesOptionsWidgets,
           )
         ]
       ),
     );
+  }
+
+  void updateAvailableFeaturesOptions(
+      List<Widget> availableFeaturesOptionsWidgets) {
+
+    allFeaturesOptionsWidgets.clear();
+
+    allFeaturesOptionsWidgets.addAll(availableFeaturesOptionsWidgets);
+
+    setState(() {
+
+      allFeaturesOptionsWidgets;
+
+    });
+
   }
 
 }
