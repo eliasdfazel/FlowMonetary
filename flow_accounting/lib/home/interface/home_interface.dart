@@ -72,8 +72,8 @@ class _HomePageState extends State<HomePage> {
                       child: WaveWidget(
                         config: CustomConfig(
                           colors: [
-                            ColorsResources.primaryColorDark,
-                            ColorsResources.dark,
+                            ColorsResources.greenGrayLight,
+                            ColorsResources.blueGreen,
                             ColorsResources.black,
                           ],
                           heightPercentages: [0.13, 0.57, 0.79],
@@ -100,9 +100,9 @@ class _HomePageState extends State<HomePage> {
                       child: WaveWidget(
                         config: CustomConfig(
                           colors: [
-                            ColorsResources.primaryColor,
-                            ColorsResources.primaryColor,
-                            ColorsResources.primaryColor,
+                            ColorsResources.primaryColorLighter,
+                            ColorsResources.primaryColorLight,
+                            ColorsResources.primaryColorLight,
                           ],
                           heightPercentages: [0.13, 0.57, 0.79],
                           durations: [13000, 21000, 19000],

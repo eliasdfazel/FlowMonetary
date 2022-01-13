@@ -23,6 +23,11 @@ class ColorsResources {
   static const Color primaryColorDark = Color.fromARGB(255, 14, 207, 17);
   static const Color primaryColorDarkTransparent = Color.fromARGB(130, 14, 207, 17);
 
+  static const Color blueGreen = Color.fromARGB(255, 48, 105, 116);
+  static const Color blueGray = Color.fromARGB(255, 55, 71, 79);
+  static const Color blueGrayLight = Color.fromARGB(255, 120, 144, 156);
+  static const Color greenGrayLight = Color.fromARGB(255, 224, 236, 222);
+
   static const Color light = Color.fromARGB(255, 242, 247, 255);
   static const Color lightTransparent = Color.fromARGB(130, 242, 247, 255);
   static const Color dark = Color.fromARGB(255, 10, 15, 24);
