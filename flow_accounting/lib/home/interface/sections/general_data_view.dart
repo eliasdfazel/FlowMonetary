@@ -9,7 +9,6 @@
  */
 
 import 'package:flow_accounting/resources/ColorsResources.dart';
-import 'package:flow_accounting/resources/IconsResources.dart';
 import 'package:flutter/material.dart';
 
 class GeneralDataView extends StatelessWidget {
@@ -17,6 +16,12 @@ class GeneralDataView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    String totalEarning = "1000";
+
+    String totalBalance = "793";
+
+    String totalSpending = "207";
 
     return Padding(padding: const EdgeInsets.fromLTRB(0, 3, 0, 0),
       child: Column(
@@ -38,9 +43,46 @@ class GeneralDataView extends StatelessWidget {
 
                         },
                         child: Container(
-                          color: Colors.lightGreenAccent,
                           alignment: AlignmentDirectional.center,
-                          child: const Icon(IconsResources.share, size: 23.0, color: ColorsResources.dark),
+                          decoration: BoxDecoration(
+                              borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(17),
+                                  topRight: Radius.circular(0),
+                                  bottomLeft: Radius.circular(17),
+                                  bottomRight: Radius.circular(0)),
+                              border: const Border(
+                                  top: BorderSide(
+                                    color: ColorsResources.light,
+                                    width: 1,
+                                  ),
+                                  bottom: BorderSide(
+                                    color: ColorsResources.light,
+                                    width: 1,
+                                  ),
+                                  left: BorderSide(
+                                    color: ColorsResources.light,
+                                    width: 1,
+                                  ),
+                                  right: BorderSide(
+                                    color: ColorsResources.light,
+                                    width: 1,
+                                  )
+                              ),
+                              color: ColorsResources.light.withOpacity(0.3)
+                          ),
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: Text(totalEarning,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(fontSize: 17,shadows: [
+                                Shadow(
+                                    color: ColorsResources.white,
+                                    offset: Offset(0, 0),
+                                    blurRadius: 11
+                                )
+                              ]),
+                            ),
+                          ),
                         ),
                       )
                   ),
@@ -53,9 +95,46 @@ class GeneralDataView extends StatelessWidget {
 
                         },
                         child: Container(
-                          color: Colors.blueGrey,
                           alignment: AlignmentDirectional.center,
-                          child: const Icon(IconsResources.share, size: 23.0, color: ColorsResources.dark),
+                          decoration: BoxDecoration(
+                              borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(0),
+                                  topRight: Radius.circular(0),
+                                  bottomLeft: Radius.circular(0),
+                                  bottomRight: Radius.circular(0)),
+                              border: const Border(
+                                  top: BorderSide(
+                                    color: ColorsResources.light,
+                                    width: 1,
+                                  ),
+                                  bottom: BorderSide(
+                                    color: ColorsResources.light,
+                                    width: 1,
+                                  ),
+                                  left: BorderSide(
+                                    color: ColorsResources.light,
+                                    width: 1,
+                                  ),
+                                  right: BorderSide(
+                                    color: ColorsResources.light,
+                                    width: 1,
+                                  )
+                              ),
+                              color: ColorsResources.light.withOpacity(0.3)
+                          ),
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: Text(totalBalance,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(fontSize: 23,shadows: [
+                                Shadow(
+                                    color: ColorsResources.white,
+                                    offset: Offset(0, 0),
+                                    blurRadius: 11
+                                )
+                              ]),
+                            ),
+                          ),
                         ),
                       )
                   ),
@@ -68,9 +147,46 @@ class GeneralDataView extends StatelessWidget {
 
                         },
                         child: Container(
-                          color: Colors.redAccent,
                           alignment: AlignmentDirectional.center,
-                          child: const Icon(IconsResources.share, size: 23.0, color: ColorsResources.dark),
+                          decoration: BoxDecoration(
+                              borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(0),
+                                  topRight: Radius.circular(17),
+                                  bottomLeft: Radius.circular(0),
+                                  bottomRight: Radius.circular(17)),
+                              border: const Border(
+                                  top: BorderSide(
+                                    color: ColorsResources.light,
+                                    width: 1,
+                                  ),
+                                  bottom: BorderSide(
+                                    color: ColorsResources.light,
+                                    width: 1,
+                                  ),
+                                  left: BorderSide(
+                                    color: ColorsResources.light,
+                                    width: 1,
+                                  ),
+                                  right: BorderSide(
+                                    color: ColorsResources.light,
+                                    width: 1,
+                                  )
+                              ),
+                              color: ColorsResources.light.withOpacity(0.3)
+                          ),
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: Text(totalSpending,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(fontSize: 17,shadows: [
+                                Shadow(
+                                    color: ColorsResources.white,
+                                    offset: Offset(0, 0),
+                                    blurRadius: 11
+                                )
+                              ]),
+                            ),
+                          ),
                         ),
                       )
                   ),

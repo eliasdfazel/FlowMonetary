@@ -14,7 +14,6 @@ import 'package:flow_accounting/credit_cards/database/structures/tables_structur
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/utils/colors/color_extractor.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CreditCardsListView extends StatefulWidget {
