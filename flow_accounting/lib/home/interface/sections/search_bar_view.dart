@@ -8,8 +8,10 @@
  * https://opensource.org/licenses/MIT
  */
 
+import 'dart:ui';
+
 import 'package:flow_accounting/resources/ColorsResources.dart';
-import 'package:flow_accounting/resources/IconsResources.dart';
+import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flutter/material.dart';
 
 import 'features_view.dart';
@@ -28,6 +30,8 @@ class SearchBarView extends StatefulWidget {
 
 class _SearchBarView extends State<SearchBarView> {
 
+  TextEditingController textEditorControllerQuery = TextEditingController();
+
   @override
   void initState() {
     super.initState();
@@ -42,7 +46,7 @@ class _SearchBarView extends State<SearchBarView> {
   Widget build(BuildContext context) {
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(13, 7, 13, 3),
+      padding: const EdgeInsets.fromLTRB(17, 7, 17, 3),
       child: Column(
         children: [
           SizedBox(
@@ -54,9 +58,9 @@ class _SearchBarView extends State<SearchBarView> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Expanded(
-                      flex: 11,
+                      flex: 17,
                       child: Padding(
-                        padding: const EdgeInsets.fromLTRB(1, 1, 1, 1),
+                        padding: const EdgeInsets.fromLTRB(1, 1, 7, 1),
                         child: GestureDetector(
                           onTap: () {
 
@@ -69,11 +73,33 @@ class _SearchBarView extends State<SearchBarView> {
                                   topLeft: Radius.circular(13),
                                   topRight: Radius.circular(13),
                                   bottomLeft: Radius.circular(13),
-                                  bottomRight: Radius.circular(13)),
+                                  bottomRight: Radius.circular(13)
+                              ),
                               color: ColorsResources.primaryColorLightest,
                             ),
-                            alignment: AlignmentDirectional.center,
-                            child: const Icon(IconsResources.share, size: 23.0, color: ColorsResources.dark),
+                            child: TextField(
+                              controller: textEditorControllerQuery,
+                              textAlign: TextAlign.right,
+                              textAlignVertical: TextAlignVertical.bottom,
+                              maxLines: 1,
+                              cursorColor: ColorsResources.primaryColor,
+                              autocorrect: true,
+                              autofocus: false,
+                              decoration: const InputDecoration(
+                                border: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.red, width: 5.0),
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(13),
+                                        topRight: Radius.circular(13),
+                                        bottomLeft: Radius.circular(13),
+                                        bottomRight: Radius.circular(13)
+                                    ),
+                                    gapPadding: 3
+                                ),
+                                labelText: StringsResources.searchText,
+                                hintText: StringsResources.searchFeaturesText,
+                              ),
+                            ),
                           ),
                         ),
                       )
@@ -81,10 +107,12 @@ class _SearchBarView extends State<SearchBarView> {
                   Expanded(
                       flex: 3,
                       child: Padding(
-                          padding: const EdgeInsets.fromLTRB(1, 1, 1, 1),
-                          child: GestureDetector(
+                        padding: const EdgeInsets.fromLTRB(1, 1, 1, 1),
+                        child: InkWell(
+                          splashColor: ColorsResources.primaryColor,
                           onTap: () {
 
+                            String searchQuery = textEditorControllerQuery.text;
 
 
                           },

@@ -17,6 +17,9 @@ class StringsResources {
   static const String submitText = "ثبت";
   static const String presentText = "نمایش";
 
+  static const String searchText = "جستجو";
+  static const String searchFeaturesText = "امکان مورد نظر خود را جستجو کنید";
+
   static const String featureTransactionsTitle = "تراکنش";
   static const String featureTransactionsDescription = "تراکنش";
 
