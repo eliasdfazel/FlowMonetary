@@ -7,6 +7,7 @@
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
+
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flutter/material.dart';
