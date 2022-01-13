@@ -17,7 +17,6 @@ class CreditCardsListView extends StatefulWidget {
   State<CreditCardsListView> createState() => _CreditCardsListView();
 
 }
-
 class _CreditCardsListView extends State<CreditCardsListView> with TickerProviderStateMixin {
 
   @override
