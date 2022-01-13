@@ -2,6 +2,8 @@ import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flutter/material.dart';
 
+import 'search_bar_view.dart';
+
 class FeaturesOptionsData {
 
   String featuresTitle;
@@ -26,24 +28,13 @@ class FeaturesOptionsView extends StatefulWidget {
   State<FeaturesOptionsView> createState() => _FeaturesOptionsView();
 
 }
-
 class _FeaturesOptionsView extends State<FeaturesOptionsView> {
 
+  List<Widget> allFeaturesOptionsWidgets = [];
 
   @override
   void initState() {
-    super.initState();
-  }
 
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-
-    List<Widget> allFeaturesOptionsWidgets = [];
     allFeaturesOptionsWidgets.add(featuresOptionsRow(
         StringsResources.featureTransactionsTitle,
         StringsResources.featureProductsTitle,
@@ -95,10 +86,26 @@ class _FeaturesOptionsView extends State<FeaturesOptionsView> {
         null
     ));
 
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 3, 0, 0),
       child: Column(
-        children: allFeaturesOptionsWidgets
+        children: [
+          SearchBarView(allFeaturesOptionsWidgets: allFeaturesOptionsWidgets,),
+          Column(
+            children: allFeaturesOptionsWidgets,
+          )
+        ]
       ),
     );
   }

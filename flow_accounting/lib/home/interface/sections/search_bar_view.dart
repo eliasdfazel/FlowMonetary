@@ -2,8 +2,28 @@ import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/IconsResources.dart';
 import 'package:flutter/material.dart';
 
-class SearchBarView extends StatelessWidget {
-  const SearchBarView({Key? key}) : super(key: key);
+class SearchBarView extends StatefulWidget {
+
+  List<Widget> allFeaturesOptionsWidgets;
+
+  SearchBarView({Key? key, required this.allFeaturesOptionsWidgets}) : super(key: key);
+
+  @override
+  State<SearchBarView> createState() => _SearchBarView();
+
+}
+
+class _SearchBarView extends State<SearchBarView> {
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,4 +77,5 @@ class SearchBarView extends StatelessWidget {
         ],
       ),);
   }
+
 }
