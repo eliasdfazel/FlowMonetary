@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/13/22, 6:44 AM
+ * Last modified 1/13/22, 6:50 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -72,8 +72,8 @@ class _HomePageState extends State<HomePage> {
                       child: WaveWidget(
                         config: CustomConfig(
                           colors: [
-                            ColorsResources.primaryColor,
                             ColorsResources.primaryColorDark,
+                            ColorsResources.dark,
                             ColorsResources.black,
                           ],
                           heightPercentages: [0.13, 0.57, 0.79],
@@ -102,7 +102,7 @@ class _HomePageState extends State<HomePage> {
                           colors: [
                             ColorsResources.primaryColor,
                             ColorsResources.primaryColor,
-                            ColorsResources.primaryColorDark,
+                            ColorsResources.primaryColor,
                           ],
                           heightPercentages: [0.13, 0.57, 0.79],
                           durations: [13000, 21000, 19000],
