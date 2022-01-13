@@ -42,12 +42,12 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
     for (var creditCardData in widget.allCreditCardsData) {
 
       creditCardWidgets.add(creditCardWidgetItem(
-        creditCardData.cardNumber,
-        creditCardData.cardExpiry,
-        creditCardData.cardHolderName,
-        creditCardData.cvv,
-        creditCardData.bankName,
-        creditCardData.cardBalance
+          creditCardData.cardNumber,
+          creditCardData.cardExpiry,
+          creditCardData.cardHolderName,
+          creditCardData.cvv,
+          creditCardData.bankName,
+          creditCardData.cardBalance
       ));
 
     }
@@ -69,7 +69,8 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
       ),);
   }
 
-  Widget creditCardWidgetItem(String cardNumber,
+  Widget creditCardWidgetItem(
+      String cardNumber,
       String cardExpiry,
       String cardHolderName,
       String cvv,
@@ -244,19 +245,19 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
                             ),
                             alignment: AlignmentDirectional.center,
                             child: const RotatedBox(
-                              quarterTurns: 3,
-                              child: Align(
-                                alignment: Alignment.center,
-                                child: Text(StringsResources.detailsText,
-                                  style: TextStyle(fontSize: 23,shadows: [
-                                    Shadow(
-                                        color: ColorsResources.light,
-                                        offset: Offset(0, 0),
-                                        blurRadius: 7
-                                    )
-                                  ]),
-                                ),
-                              )
+                                quarterTurns: 3,
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: Text(StringsResources.detailsText,
+                                    style: TextStyle(fontSize: 23,shadows: [
+                                      Shadow(
+                                          color: ColorsResources.light,
+                                          offset: Offset(0, 0),
+                                          blurRadius: 7
+                                      )
+                                    ]),
+                                  ),
+                                )
                             ),
                           ),
                         )
@@ -678,9 +679,12 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
                         children: [
                           Expanded(
                               flex: 17,
-                              child: Image.network(
-                                "https://www.crushpixel.com/big-static15/preview4/natural-dark-gray-slate-stone-2112567.jpg",
-                                fit: BoxFit.cover,
+                              child: Container(
+                                color: ColorsResources.dark,
+                                child: Image.network(
+                                  "https://www.crushpixel.com/big-static15/preview4/natural-dark-gray-slate-stone-2112567.jpg",
+                                  fit: BoxFit.cover,
+                                ),
                               )
                           ),
                           Expanded(
