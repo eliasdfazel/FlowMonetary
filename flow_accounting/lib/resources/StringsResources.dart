@@ -23,31 +23,31 @@ class StringsResources {
   static const String featureTransactionsTitle = "تراکنش";
   static const String featureTransactionsDescription = "تراکنش";
 
-  static const String featureChequesTitle = "تراکنش";
-  static const String featureChequesDescription = "تراکنش";
+  static const String featureChequesTitle = "چک";
+  static const String featureChequesDescription = "چک";
 
-  static const String featureCustomersTitle = "تراکنش";
-  static const String featureCustomersDescription = "تراکنش";
+  static const String featureCustomersTitle = "مشتری";
+  static const String featureCustomersDescription = "مشتری";
 
-  static const String featureProductsTitle = "تراکنش";
-  static const String featureProductsDescription = "تراکنش";
+  static const String featureProductsTitle = "محصول";
+  static const String featureProductsDescription = "محصول";
 
-  static const String featureSellInvoicesTitle = "تراکنش";
-  static const String featureSellInvoicesDescription = "تراکنش";
+  static const String featureSellInvoicesTitle = "فاکتور فروش";
+  static const String featureSellInvoicesDescription = "فاکتور فروش";
 
-  static const String featureBuyInvoicesTitle = "تراکنش";
-  static const String featureBuyInvoicesDescription = "تراکنش";
+  static const String featureBuyInvoicesTitle = "فاکتور خرید";
+  static const String featureBuyInvoicesDescription = "فاکتور خرید";
 
-  static const String featureDebtorsTitle = "تراکنش";
-  static const String featureDebtorsDescription = "تراکنش";
+  static const String featureDebtorsTitle = "بدهکار";
+  static const String featureDebtorsDescription = "بدهکار";
 
-  static const String featureCreditorsTitle = "تراکنش";
-  static const String featureCreditorsDescription = "تراکنش";
+  static const String featureCreditorsTitle = "طلبکار";
+  static const String featureCreditorsDescription = "طلبکار";
 
-  static const String featureBudgetManagementsTitle = "تراکنش";
-  static const String featureBudgetManagementsDescription = "تراکنش";
+  static const String featureBudgetManagementsTitle = "مدیریت بودجه";
+  static const String featureBudgetManagementsDescription = "مدیریت بودجه";
 
-  static const String featureLoansTitle = "تراکنش";
-  static const String featureLoansDescription = "تراکنش";
+  static const String featureLoansTitle = "وام";
+  static const String featureLoansDescription = "وام";
 
 }
