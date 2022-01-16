@@ -8,6 +8,7 @@
  * https://opensource.org/licenses/MIT
  */
 
+import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -34,7 +35,7 @@ class _FlowDashboard extends State<FlowDashboard> {
   @override
   Widget build(BuildContext context) {
 
-    return const HomePage(applicationName: 'Flow Accounting');
+    return const HomePage(applicationName: StringsResources.applicationName);
   }
 
 }

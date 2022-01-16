@@ -46,7 +46,7 @@ class _SearchBarView extends State<SearchBarView> {
   Widget build(BuildContext context) {
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(17, 7, 17, 3),
+      padding: const EdgeInsets.fromLTRB(13, 7, 13, 3),
       child: Column(
         children: [
           SizedBox(

@@ -9,6 +9,7 @@
  */
 
 import 'package:flow_accounting/credit_cards/database/structures/tables_structure.dart';
+import 'package:flow_accounting/home/interface/sections/latest_transactions_view.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flutter/material.dart';
@@ -155,8 +156,9 @@ class _HomePageState extends State<HomePage> {
                           physics: const BouncingScrollPhysics(),
                           padding: const EdgeInsets.fromLTRB(7, 3, 7, 3),
                           scrollDirection: Axis.vertical,
-                          children: [
+                          children: [ // List Of All Contents
                             const TopBarView(),
+                            LatestTransactionsView(),
                             const GeneralDataView(),
                             CreditCardsListView(
                               allCreditCardsData: prepareCreditCardsData(),

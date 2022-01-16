@@ -12,6 +12,9 @@ class StringsResources {
 
   static const String applicationName = "حسابداری جریان";
 
+  static const String welcomeText = "به جریان مالی خودتان خوش آمدید";
+  static const String getStartedText = "شروع";
+
   static const String detailsText = "جزئیات";
 
   static const String submitText = "ثبت";

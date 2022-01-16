@@ -61,12 +61,12 @@ class WelcomePage extends StatelessWidget {
                     height: double.infinity,
                     child: Stack(
                       children: [
-                        Positioned(
+                        const Positioned(
                             top: 39,
                             left: 13,
                             right: 13,
                             child: Center(
-                              child: Text("Welcome To Flow Accounting",
+                              child: Text(StringsResources.welcomeText,
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 23
@@ -90,7 +90,7 @@ class WelcomePage extends StatelessWidget {
                                     flex: 11,
                                     child: Container(
                                       height: 79,
-                                      decoration: BoxDecoration(
+                                      decoration: const BoxDecoration(
                                         borderRadius: BorderRadius.only(topLeft: Radius.circular(17), topRight: Radius.circular(17), bottomLeft: Radius.circular(17), bottomRight: Radius.circular(17)),
                                         gradient: LinearGradient(
                                             colors: [
@@ -114,8 +114,8 @@ class WelcomePage extends StatelessWidget {
                                             });
 
                                           },
-                                          child: Text(
-                                            "Get Started",
+                                          child: const Text(
+                                            StringsResources.getStartedText,
                                             style: TextStyle(fontSize: 29,shadows: [
                                               Shadow(
                                                 color: ColorsResources.light,
@@ -129,7 +129,7 @@ class WelcomePage extends StatelessWidget {
                                           color: Colors.white.withOpacity(0.3),
                                           splashColor: ColorsResources.primaryColor,
                                           textColor: ColorsResources.light,
-                                          shape: RoundedRectangleBorder(
+                                          shape: const RoundedRectangleBorder(
                                             borderRadius: BorderRadius.all(Radius.circular(17),),
                                           ),
                                         )
