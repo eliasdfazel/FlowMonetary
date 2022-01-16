@@ -60,4 +60,11 @@ class _LatestTransactionsView extends State<LatestTransactionsView> {
     );
   }
 
+  Widget transactionSummaryItem() {
+
+    return Container(
+
+    );
+  }
+
 }
