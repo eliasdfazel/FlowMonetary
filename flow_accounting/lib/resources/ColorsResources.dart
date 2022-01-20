@@ -40,6 +40,7 @@ class ColorsResources {
   static const Color black = Color.fromARGB(255, 0, 0, 0);
 
   static const Color applicationGeeksEmpire = Color.fromARGB(255, 35, 125, 174);
+  static const Color applicationDarkGeeksEmpire = Color.fromARGB(255, 10, 65, 94);
   static const Color gameGeeksEmpire = Color.fromARGB(255, 174, 35, 87);
 
 }

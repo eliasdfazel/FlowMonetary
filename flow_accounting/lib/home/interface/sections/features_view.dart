@@ -47,24 +47,15 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
 
     allFeaturesOptionsWidgets.add(featuresOptionsRow(
         StringsResources.featureTransactionsTitle,
-        StringsResources.featureProductsTitle,
+        null,
         StringsResources.featureTransactionsDescription,
-        StringsResources.featureProductsDescription,
         null,
-        null,
-        null,
-        null
-    ));
-    allFeaturesOptionsWidgets.add(featuresOptionsRow(
-        StringsResources.featureChequesTitle,
-        StringsResources.featureCustomersTitle,
-        StringsResources.featureChequesDescription,
-        StringsResources.featureCustomersDescription,
         null,
         null,
         null,
         null
     ));
+
     allFeaturesOptionsWidgets.add(featuresOptionsRow(
         StringsResources.featureSellInvoicesTitle,
         StringsResources.featureBuyInvoicesTitle,
@@ -75,6 +66,29 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
         null,
         null
     ));
+
+    allFeaturesOptionsWidgets.add(featuresOptionsRow(
+        StringsResources.featureProductsTitle,
+        null,
+        StringsResources.featureProductsDescription,
+        null,
+        null,
+        null,
+        null,
+        null
+    ));
+
+    allFeaturesOptionsWidgets.add(featuresOptionsRow(
+        StringsResources.featureChequesTitle,
+        null,
+        StringsResources.featureChequesDescription,
+        null,
+        null,
+        null,
+        null,
+        null
+    ));
+
     allFeaturesOptionsWidgets.add(featuresOptionsRow(
         StringsResources.featureDebtorsTitle,
         StringsResources.featureCreditorsTitle,
@@ -85,6 +99,18 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
         null,
         null
     ));
+
+    allFeaturesOptionsWidgets.add(featuresOptionsRow(
+        StringsResources.featureCustomersTitle,
+        null,
+        StringsResources.featureCustomersDescription,
+        null,
+        null,
+        null,
+        null,
+        null
+    ));
+
     allFeaturesOptionsWidgets.add(featuresOptionsRow(
         StringsResources.featureBudgetManagementsTitle,
         StringsResources.featureLoansTitle,
@@ -139,29 +165,41 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
 
 Widget featuresOptionsRow(
     String featureOneTitle,
-    String featureTwoTitle,
+    String? featureTwoTitle,
     String featureOneDescription,
-    String featureTwoDescription,
+    String? featureTwoDescription,
     StatefulWidget? featureOneTargetViewToSubmitData,
     StatefulWidget? featureTwoTargetViewToSubmitData,
     StatefulWidget? featureOneTargetViewToPresentData,
     StatefulWidget? featureTwoTargetViewToPresentData) {
 
+  Widget firstWidget = featuresOptionsItem(
+      featureOneTitle,
+      featureOneDescription,
+      featureOneTargetViewToSubmitData,
+      featureOneTargetViewToPresentData
+  );
+
+  Widget secondWidget = Container(
+    color: Colors.transparent,
+  );
+
+  if (featureTwoTitle != null && featureTwoDescription != null) {
+
+    secondWidget = featuresOptionsItem(
+        featureTwoTitle,
+        featureTwoDescription,
+        featureTwoTargetViewToSubmitData,
+        featureTwoTargetViewToPresentData
+    );
+
+  }
+
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
     children: [
-      featuresOptionsItem(
-          featureOneTitle,
-          featureOneDescription,
-          featureOneTargetViewToSubmitData,
-          featureOneTargetViewToPresentData
-      ),
-      featuresOptionsItem(
-          featureTwoTitle,
-          featureTwoDescription,
-          featureTwoTargetViewToSubmitData,
-          featureTwoTargetViewToPresentData
-      ),
+      firstWidget,
+      secondWidget,
     ],
   );
 }
@@ -183,8 +221,8 @@ Widget featuresOptionsItem(String featureTitle, String featureDescription,
           color: ColorsResources.primaryColorLightest,
           boxShadow: [
             BoxShadow(
-              color: ColorsResources.dark.withOpacity(0.7),
-              blurRadius: 12.0,
+              color: ColorsResources.dark.withOpacity(0.3),
+              blurRadius: 13.0,
               spreadRadius: 0.3,
               offset: const Offset(7.0, 7.0),
             ),
@@ -306,7 +344,7 @@ Widget featuresOptionsItem(String featureTitle, String featureDescription,
                             minWidth: double.infinity,
                             color: ColorsResources.light,
                             splashColor: ColorsResources.primaryColor,
-                            textColor: ColorsResources.dark,
+                            textColor: ColorsResources.applicationDarkGeeksEmpire,
                             shape: const RoundedRectangleBorder(
                                 borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(13),
@@ -347,7 +385,7 @@ Widget featuresOptionsItem(String featureTitle, String featureDescription,
                             minWidth: double.infinity,
                             color: ColorsResources.light,
                             splashColor: ColorsResources.primaryColor,
-                            textColor: ColorsResources.dark,
+                            textColor: ColorsResources.applicationDarkGeeksEmpire,
                             shape: const RoundedRectangleBorder(
                                 borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(13),

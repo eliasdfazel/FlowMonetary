@@ -80,6 +80,7 @@ class _SearchBarView extends State<SearchBarView> {
                             child: TextField(
                               controller: textEditorControllerQuery,
                               textAlign: TextAlign.right,
+                              textDirection: TextDirection.rtl,
                               textAlignVertical: TextAlignVertical.bottom,
                               maxLines: 1,
                               cursorColor: ColorsResources.primaryColor,
@@ -94,7 +95,7 @@ class _SearchBarView extends State<SearchBarView> {
                                         bottomLeft: Radius.circular(13),
                                         bottomRight: Radius.circular(13)
                                     ),
-                                    gapPadding: 3
+                                    gapPadding: 5
                                 ),
                                 labelText: StringsResources.searchText,
                                 hintText: StringsResources.searchFeaturesText,
