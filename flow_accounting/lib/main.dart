@@ -37,7 +37,13 @@ class WelcomePage extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: StringsResources.applicationName,
           color: ColorsResources.primaryColor,
-          theme: ThemeData(fontFamily: 'Sans', colorScheme: ColorScheme.fromSwatch().copyWith(secondary: ColorsResources.primaryColor)),
+          theme: ThemeData(fontFamily: 'Sans',
+            colorScheme: ColorScheme.fromSwatch().copyWith(secondary: ColorsResources.primaryColor),
+            pageTransitionsTheme: const PageTransitionsTheme(builders: {
+              TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+              TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+            }),
+          ),
           home: Scaffold(
               backgroundColor: ColorsResources.black,
               body: Padding (

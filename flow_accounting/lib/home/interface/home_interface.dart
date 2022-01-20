@@ -41,7 +41,14 @@ class _HomePageState extends State<HomePage> {
           debugShowCheckedModeBanner: false,
           title: StringsResources.applicationName,
           color: ColorsResources.black,
-          theme: ThemeData(fontFamily: 'Sans', colorScheme: ColorScheme.fromSwatch().copyWith(secondary: ColorsResources.primaryColorLight)),
+          theme: ThemeData(
+            fontFamily: 'Sans',
+            colorScheme: ColorScheme.fromSwatch().copyWith(secondary: ColorsResources.primaryColorLight),
+            pageTransitionsTheme: const PageTransitionsTheme(builders: {
+              TargetPlatform.android: ZoomPageTransitionsBuilder(),
+              TargetPlatform.iOS: ZoomPageTransitionsBuilder(),
+            }),
+          ),
           home: Scaffold(
             backgroundColor: ColorsResources.black,
             body: Stack(
