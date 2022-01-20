@@ -16,18 +16,18 @@ void main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
 
-  runApp(const MaterialApp( home: TransactionsView()));
+  runApp(const MaterialApp( home: TransactionsInputView()));
 
 }
 
-class TransactionsView extends StatefulWidget {
-  const TransactionsView({Key? key}) : super(key: key);
+class TransactionsInputView extends StatefulWidget {
+  const TransactionsInputView({Key? key}) : super(key: key);
 
   @override
-  _TransactionsViewState createState() => _TransactionsViewState();
+  _TransactionsInputViewState createState() => _TransactionsInputViewState();
 }
 
-class _TransactionsViewState extends State<TransactionsView> {
+class _TransactionsInputViewState extends State<TransactionsInputView> {
 
   TextEditingController textEditorControllerName = TextEditingController();
   TextEditingController textEditorControllerEmail = TextEditingController();

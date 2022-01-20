@@ -11,17 +11,17 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MaterialApp( home: TransactionsView()));
+  runApp(const MaterialApp( home: TransactionsOutputView()));
 }
 
-class TransactionsView extends StatefulWidget {
-  const TransactionsView({Key? key}) : super(key: key);
+class TransactionsOutputView extends StatefulWidget {
+  const TransactionsOutputView({Key? key}) : super(key: key);
 
   @override
   _State createState() => _State();
 }
 
-class _State extends State<TransactionsView> {
+class _State extends State<TransactionsOutputView> {
 
   TextEditingController textEditorControllerName = TextEditingController();
   TextEditingController textEditorControllerEmail = TextEditingController();
