@@ -41,6 +41,7 @@ class DatabaseQueries {
         sourceUsername: maps[i]['sourceUsername'],
         targetUsername: maps[i]['targetUsername'],
         amountMoney: maps[i]['amountMoney'],
+        transactionType: maps[i]['transactionType'],
         transactionTime: maps[i]['transactionTime'],
       );
     });
@@ -77,6 +78,7 @@ class DatabaseQueries {
       sourceUsername: inputData['sourceUsername'].toString(),
       targetUsername: inputData['targetUsername'].toString(),
       amountMoney: inputData['amountMoney'].toString(),
+      transactionType: inputData['transactionType'].toString(),
       transactionTime: inputData['transactionTime'].toString(),
     );
   }

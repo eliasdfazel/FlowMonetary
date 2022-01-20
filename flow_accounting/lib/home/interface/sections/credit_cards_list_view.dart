@@ -307,343 +307,396 @@ ImageProvider? bankLogoImageProvider;
 
 Color dominantColor = ColorsResources.white;
 
-Widget frontCardLayout(String cardNumber, String cardExpiry, String cardHolderName, String cvv, String bankName) {
+class CreditCardFrontLayout extends StatefulWidget {
 
-  Image bankLogo = Image.network(generateBankLogoLink(bankName));
+  String cardNumber;
+  String cardExpiry;
+  String cardHolderName;
+  String cvv;
+  String bankName;
 
-  bankLogoImageProvider = bankLogo.image;
+  CreditCardFrontLayout({Key? key, required this.cardNumber, required this.cardExpiry, required this.cardHolderName, required this.bankName, required this.cvv}) :super(key: key);
 
-  return Container(
-    height: 279,
-    width: double.infinity,
-    decoration: BoxDecoration(
-      boxShadow: [
-        BoxShadow(
-          color: ColorsResources.dark.withOpacity(0.5),
-          blurRadius: 12.0,
-          spreadRadius: 0.2,
-          offset: const Offset(3.0, 3.0),
-        )
-      ],
-    ),
-    child: ClipRRect(
-      borderRadius: BorderRadius.circular(11.0),
-      child: Stack(
-        children: <Widget> [
-          Container(
-            width: double.maxFinite,
-            height: double.maxFinite,
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.only(topLeft: Radius.circular(17), topRight: Radius.circular(17), bottomLeft: Radius.circular(17), bottomRight: Radius.circular(17)),
-              gradient: LinearGradient(
-                  colors: [
-                    ColorsResources.light,
-                    ColorsResources.white,
-                  ],
-                  begin: FractionalOffset(0.0, 0.0),
-                  end: FractionalOffset(1.0, 0.0),
-                  stops: [0.0, 1.0],
-                  transform: GradientRotation(45),
-                  tileMode: TileMode.clamp),
-            ),
-          ),
-          Image(
-            image: AssetImage(generateBackgroundPattern()),
-            fit: BoxFit.cover,
-            width: double.infinity,
-            height: double.infinity,
-          ),
-          Column(
-            children: [
-              Container(
-                color: Colors.transparent,
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(7, 11, 11, 0),
-                  child: SizedBox(
-                    height: 59,
-                    width: double.infinity,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Expanded(
-                            flex: 13,
-                            child: Padding(
-                                padding: const EdgeInsets.fromLTRB(0, 0, 17, 0),
-                                child: Align(
-                                  alignment: Alignment.centerRight,
-                                  child: Text(
-                                    bankName,
-                                    textAlign: TextAlign.right,
-                                    style: TextStyle(
-                                      fontSize: 21,
-                                      color: ColorsResources.dark,
-                                      shadows: [
-                                        Shadow(
-                                          color: ColorsResources.dark.withOpacity(0.37),
-                                          blurRadius: 7,
-                                          offset: const Offset(1.9, 1.9),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                )
-                            )
-                        ),
-                        Expanded(
-                            flex: 3,
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(0, 0, 7, 0),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(51.0),
-                                child: bankLogo,
-                              ),
-                            )
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              Container(
-                color: Colors.transparent,
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(7, 0, 11, 0),
-                  child: SizedBox(
-                    height: 63,
-                    width: double.infinity,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Expanded(
-                            flex: 1,
-                            child: Padding(
-                                padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    cardNumber.substring(0, 4),
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontSize: 19,
-                                      fontWeight: FontWeight.bold,
-                                      color: ColorsResources.dark,
-                                      shadows: [
-                                        Shadow(
-                                          color: ColorsResources.dark.withOpacity(0.37),
-                                          blurRadius: 7,
-                                          offset: const Offset(1.9, 1.9),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                )
-                            )
-                        ),
-                        Expanded(
-                            flex: 1,
-                            child: Padding(
-                                padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    cardNumber.substring(4, 8),
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontSize: 19,
-                                      fontWeight: FontWeight.bold,
-                                      color: ColorsResources.dark,
-                                      shadows: [
-                                        Shadow(
-                                          color: ColorsResources.dark.withOpacity(0.37),
-                                          blurRadius: 7,
-                                          offset: const Offset(1.9, 1.9),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                )
-                            )
-                        ),
-                        Expanded(
-                            flex: 1,
-                            child: Padding(
-                                padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    cardNumber.substring(8, 12),
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontSize: 19,
-                                      fontWeight: FontWeight.bold,
-                                      color: ColorsResources.dark,
-                                      shadows: [
-                                        Shadow(
-                                          color: ColorsResources.dark.withOpacity(0.37),
-                                          blurRadius: 7,
-                                          offset: const Offset(1.9, 1.9),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                )
-                            )
-                        ),
-                        Expanded(
-                            flex: 1,
-                            child: Padding(
-                                padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    cardNumber.substring(12, 16),
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontSize: 19,
-                                      fontWeight: FontWeight.bold,
-                                      color: ColorsResources.dark,
-                                      shadows: [
-                                        Shadow(
-                                          color: ColorsResources.dark.withOpacity(0.37),
-                                          blurRadius: 7,
-                                          offset: const Offset(1.9, 1.9),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                )
-                            )
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              Container(
-                color: Colors.transparent,
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(7, 5, 11, 1),
-                  child: SizedBox(
-                    height: 59,
-                    width: double.infinity,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Expanded(
-                            flex: 19,
-                            child: Padding(
-                                padding: const EdgeInsets.fromLTRB(11, 0, 0, 0),
-                                child: Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text(
-                                    cardHolderName,
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                      fontSize: 21,
-                                      color: ColorsResources.dark,
-                                      shadows: [
-                                        Shadow(
-                                          color: ColorsResources.dark.withOpacity(0.37),
-                                          blurRadius: 7,
-                                          offset: const Offset(1.9, 1.9),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                )
-                            )
-                        ),
-                        Expanded(
-                            flex: 3,
-                            child: Padding(
-                                padding: const EdgeInsets.fromLTRB(7, 0, 0, 0),
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    cardExpiry.substring(0, 2),
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontSize: 19,
-                                      color: ColorsResources.dark,
-                                      shadows: [
-                                        Shadow(
-                                          color: ColorsResources.dark.withOpacity(0.37),
-                                          blurRadius: 7,
-                                          offset: const Offset(1.9, 1.9),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                )
-                            )
-                        ),
-                        Expanded(
-                            flex: 1,
-                            child: Padding(
-                                padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    "/",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontSize: 23,
-                                      color: ColorsResources.dark,
-                                      shadows: [
-                                        Shadow(
-                                          color: ColorsResources.dark.withOpacity(0.37),
-                                          blurRadius: 7,
-                                          offset: const Offset(1.9, 1.9),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                )
-                            )
-                        ),
-                        Expanded(
-                            flex: 3,
-                            child: Padding(
-                                padding: const EdgeInsets.fromLTRB(0, 0, 7, 0),
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    cardExpiry.substring(3, 5),
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontSize: 19,
-                                      color: ColorsResources.dark,
-                                      shadows: [
-                                        Shadow(
-                                          color: ColorsResources.dark.withOpacity(0.37),
-                                          blurRadius: 7,
-                                          offset: const Offset(1.9, 1.9),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                )
-                            )
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ],
+  @override
+  State<CreditCardFrontLayout> createState() => _CreditCardFrontLayout();
+
+}
+class _CreditCardFrontLayout extends State<CreditCardFrontLayout> {
+
+  @override
+  void initState() {
+
+    extractBankDominantColor();
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+
+    return frontCardLayout(widget.cardNumber, widget.cardExpiry, widget.cardHolderName, widget.cvv, widget.bankName);
+  }
+
+  Widget frontCardLayout(String cardNumber, String cardExpiry, String cardHolderName, String cvv, String bankName) {
+
+    Image bankLogo = Image.network(generateBankLogoLink(bankName));
+
+    bankLogoImageProvider = bankLogo.image;
+
+    return Container(
+      height: 279,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: ColorsResources.dark.withOpacity(0.5),
+            blurRadius: 12.0,
+            spreadRadius: 0.2,
+            offset: const Offset(3.0, 3.0),
           )
         ],
       ),
-    ),
-  );
-}
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(11.0),
+        child: Stack(
+          children: <Widget> [
+            Container(
+              width: double.maxFinite,
+              height: double.maxFinite,
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(17), topRight: Radius.circular(17), bottomLeft: Radius.circular(17), bottomRight: Radius.circular(17)),
+                gradient: LinearGradient(
+                    colors: [
+                      ColorsResources.light,
+                      ColorsResources.white,
+                    ],
+                    begin: FractionalOffset(0.0, 0.0),
+                    end: FractionalOffset(1.0, 0.0),
+                    stops: [0.0, 1.0],
+                    transform: GradientRotation(45),
+                    tileMode: TileMode.clamp),
+              ),
+            ),
+            Image(
+              image: AssetImage(generateBackgroundPattern()),
+              fit: BoxFit.cover,
+              width: double.infinity,
+              height: double.infinity,
+            ),
+            Column(
+              children: [
+                Container(
+                  color: Colors.transparent,
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(7, 11, 11, 0),
+                    child: SizedBox(
+                      height: 59,
+                      width: double.infinity,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Expanded(
+                              flex: 13,
+                              child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(0, 0, 17, 0),
+                                  child: Align(
+                                    alignment: Alignment.centerRight,
+                                    child: Text(
+                                      bankName,
+                                      textAlign: TextAlign.right,
+                                      style: TextStyle(
+                                        fontSize: 21,
+                                        color: ColorsResources.dark,
+                                        shadows: [
+                                          Shadow(
+                                            color: ColorsResources.dark.withOpacity(0.37),
+                                            blurRadius: 7,
+                                            offset: const Offset(1.9, 1.9),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                              )
+                          ),
+                          Expanded(
+                              flex: 3,
+                              child: Padding(
+                                padding: const EdgeInsets.fromLTRB(0, 0, 7, 0),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(51.0),
+                                  child: bankLogo,
+                                ),
+                              )
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  color: Colors.transparent,
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(7, 0, 11, 0),
+                    child: SizedBox(
+                      height: 63,
+                      width: double.infinity,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Expanded(
+                              flex: 1,
+                              child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                  child: Align(
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      cardNumber.substring(0, 4),
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontSize: 19,
+                                        fontWeight: FontWeight.bold,
+                                        color: ColorsResources.dark,
+                                        shadows: [
+                                          Shadow(
+                                            color: ColorsResources.dark.withOpacity(0.37),
+                                            blurRadius: 7,
+                                            offset: const Offset(1.9, 1.9),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                              )
+                          ),
+                          Expanded(
+                              flex: 1,
+                              child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                  child: Align(
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      cardNumber.substring(4, 8),
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontSize: 19,
+                                        fontWeight: FontWeight.bold,
+                                        color: ColorsResources.dark,
+                                        shadows: [
+                                          Shadow(
+                                            color: ColorsResources.dark.withOpacity(0.37),
+                                            blurRadius: 7,
+                                            offset: const Offset(1.9, 1.9),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                              )
+                          ),
+                          Expanded(
+                              flex: 1,
+                              child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                  child: Align(
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      cardNumber.substring(8, 12),
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontSize: 19,
+                                        fontWeight: FontWeight.bold,
+                                        color: ColorsResources.dark,
+                                        shadows: [
+                                          Shadow(
+                                            color: ColorsResources.dark.withOpacity(0.37),
+                                            blurRadius: 7,
+                                            offset: const Offset(1.9, 1.9),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                              )
+                          ),
+                          Expanded(
+                              flex: 1,
+                              child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                  child: Align(
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      cardNumber.substring(12, 16),
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontSize: 19,
+                                        fontWeight: FontWeight.bold,
+                                        color: ColorsResources.dark,
+                                        shadows: [
+                                          Shadow(
+                                            color: ColorsResources.dark.withOpacity(0.37),
+                                            blurRadius: 7,
+                                            offset: const Offset(1.9, 1.9),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                              )
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  color: Colors.transparent,
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(7, 5, 11, 1),
+                    child: SizedBox(
+                      height: 59,
+                      width: double.infinity,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Expanded(
+                              flex: 19,
+                              child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(11, 0, 0, 0),
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      cardHolderName,
+                                      textAlign: TextAlign.left,
+                                      style: TextStyle(
+                                        fontSize: 21,
+                                        color: ColorsResources.dark,
+                                        shadows: [
+                                          Shadow(
+                                            color: ColorsResources.dark.withOpacity(0.37),
+                                            blurRadius: 7,
+                                            offset: const Offset(1.9, 1.9),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                              )
+                          ),
+                          Expanded(
+                              flex: 3,
+                              child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(7, 0, 0, 0),
+                                  child: Align(
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      cardExpiry.substring(0, 2),
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontSize: 19,
+                                        color: ColorsResources.dark,
+                                        shadows: [
+                                          Shadow(
+                                            color: ColorsResources.dark.withOpacity(0.37),
+                                            blurRadius: 7,
+                                            offset: const Offset(1.9, 1.9),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                              )
+                          ),
+                          Expanded(
+                              flex: 1,
+                              child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                  child: Align(
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      "/",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontSize: 23,
+                                        color: ColorsResources.dark,
+                                        shadows: [
+                                          Shadow(
+                                            color: ColorsResources.dark.withOpacity(0.37),
+                                            blurRadius: 7,
+                                            offset: const Offset(1.9, 1.9),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                              )
+                          ),
+                          Expanded(
+                              flex: 3,
+                              child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(0, 0, 7, 0),
+                                  child: Align(
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      cardExpiry.substring(3, 5),
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontSize: 19,
+                                        color: ColorsResources.dark,
+                                        shadows: [
+                                          Shadow(
+                                            color: ColorsResources.dark.withOpacity(0.37),
+                                            blurRadius: 7,
+                                            offset: const Offset(1.9, 1.9),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                              )
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
+      ),
+    );
+  }
 
-// class CreditCardFrontLayout extends StatefulWidget {
-//
-// }
-// class _CreditCardFrontLayout extends State<CreditCardFrontLayout> {
-//
-// }
+  void extractBankDominantColor() async {
+
+    if (bankLogoImageProvider != null) {
+
+      Future<Color?> bankDominantColor = imageDominantColor(bankLogoImageProvider!);
+
+      bankDominantColor.then((extractedColor) {
+
+        if (extractedColor != null) {
+          dominantColor = extractedColor;
+
+          setState(() {
+            dominantColor;
+          });
+
+        }
+
+      });
+
+    }
+
+  }
+
+}
 
 class CreditCardBackLayout extends StatefulWidget {
 
