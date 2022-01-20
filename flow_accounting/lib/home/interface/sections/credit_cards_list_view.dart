@@ -638,6 +638,13 @@ Widget frontCardLayout(String cardNumber, String cardExpiry, String cardHolderNa
   );
 }
 
+// class CreditCardFrontLayout extends StatefulWidget {
+//
+// }
+// class _CreditCardFrontLayout extends State<CreditCardFrontLayout> {
+//
+// }
+
 class CreditCardBackLayout extends StatefulWidget {
 
   String cardBankName;
@@ -737,9 +744,9 @@ class _CreditCardBackLayout extends State<CreditCardBackLayout> {
                 Container(
                   color: Colors.transparent,
                   child: Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 11),
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 15),
                     child: SizedBox(
-                      height: 57,
+                      height: 55,
                       width: double.infinity,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
