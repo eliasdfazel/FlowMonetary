@@ -129,7 +129,7 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
                             children: [
                               AwesomeCard(
                                 animation: moveToBack,
-                                child: frontCardLayout(cardNumber, cardExpiry, cardHolderName, cvv, bankName),
+                                child: CreditCardFrontLayout(bankName: bankName, cardExpiry: cardExpiry, cardHolderName: cardHolderName, cardNumber: cardNumber, cvv: cvv,),
                               ),
                               AwesomeCard(
                                 animation: moveToFront,
@@ -305,8 +305,6 @@ class AwesomeCard extends StatelessWidget {
 
 ImageProvider? bankLogoImageProvider;
 
-Color dominantColor = ColorsResources.white;
-
 class CreditCardFrontLayout extends StatefulWidget {
 
   String cardNumber;
@@ -323,11 +321,12 @@ class CreditCardFrontLayout extends StatefulWidget {
 }
 class _CreditCardFrontLayout extends State<CreditCardFrontLayout> {
 
+  Color dominantColorForFrontLayout = ColorsResources.dark;
+
+  bool frontLayoutDecorated = false;
+
   @override
   void initState() {
-
-    extractBankDominantColor();
-
     super.initState();
   }
 
@@ -348,21 +347,27 @@ class _CreditCardFrontLayout extends State<CreditCardFrontLayout> {
 
     bankLogoImageProvider = bankLogo.image;
 
+    if (!frontLayoutDecorated) {
+      frontLayoutDecorated = true;
+
+      extractBankDominantColor();
+    }
+
     return Container(
       height: 279,
       width: double.infinity,
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: ColorsResources.dark.withOpacity(0.5),
-            blurRadius: 12.0,
-            spreadRadius: 0.2,
-            offset: const Offset(3.0, 3.0),
+            color: dominantColorForFrontLayout.withOpacity(0.3),
+            blurRadius: 13.0,
+            spreadRadius: 0.3,
+            offset: const Offset(3.9, 3.9),
           )
         ],
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(11.0),
+        borderRadius: BorderRadius.circular(13.0),
         child: Stack(
           children: <Widget> [
             Container(
@@ -682,10 +687,10 @@ class _CreditCardFrontLayout extends State<CreditCardFrontLayout> {
       bankDominantColor.then((extractedColor) {
 
         if (extractedColor != null) {
-          dominantColor = extractedColor;
+          dominantColorForFrontLayout = extractedColor;
 
           setState(() {
-            dominantColor;
+            dominantColorForFrontLayout;
           });
 
         }
@@ -710,6 +715,8 @@ class CreditCardBackLayout extends StatefulWidget {
 
 }
 class _CreditCardBackLayout extends State<CreditCardBackLayout> {
+
+  Color dominantColorForBackLayout = ColorsResources.white;
 
   @override
   void initState() {
@@ -738,15 +745,15 @@ class _CreditCardBackLayout extends State<CreditCardBackLayout> {
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: ColorsResources.dark.withOpacity(0.5),
-            blurRadius: 12.0,
-            spreadRadius: 0.2,
-            offset: const Offset(3.0, 3.0),
+            color: dominantColorForBackLayout.withOpacity(0.5),
+            blurRadius: 13.0,
+            spreadRadius: 0.3,
+            offset: const Offset(3.9, 3.9),
           )
         ],
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(10.0),
+        borderRadius: BorderRadius.circular(13.0),
         child: Stack(
           children: <Widget> [
             Container(
@@ -757,7 +764,7 @@ class _CreditCardBackLayout extends State<CreditCardBackLayout> {
                 gradient: LinearGradient(
                     colors: [
                       ColorsResources.light,
-                      dominantColor,
+                      dominantColorForBackLayout,
                     ],
                     begin: const FractionalOffset(0.0, 0.0),
                     end: const FractionalOffset(1.0, 0.0),
@@ -860,10 +867,10 @@ class _CreditCardBackLayout extends State<CreditCardBackLayout> {
       bankDominantColor.then((extractedColor) {
 
         if (extractedColor != null) {
-          dominantColor = extractedColor;
+          dominantColorForBackLayout = extractedColor;
 
           setState(() {
-            dominantColor;
+            dominantColorForBackLayout;
           });
 
         }
