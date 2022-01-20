@@ -1,3 +1,6 @@
+import 'package:blur/blur.dart';
+import 'package:flow_accounting/resources/ColorsResources.dart';
+import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -28,45 +31,77 @@ class _State extends State<TransactionsOutputView> {
 
     return SafeArea(child: MaterialApp(
       home: Scaffold(
-          body: CustomScrollView(
-            slivers: <Widget>[
-              const SliverAppBar(
-                pinned: true,
-                expandedHeight: 250.0,
-                flexibleSpace: FlexibleSpaceBar(
-                  title: Text('Demo'),
-                ),
+          body: Stack(
+            children: [
+              CustomScrollView(
+                slivers: <Widget>[
+                  const SliverAppBar(
+                    pinned: true,
+                    expandedHeight: 70.0,
+                    flexibleSpace: FlexibleSpaceBar(
+                      title: Text('Demo'),
+                    ),
+                  ),
+                  SliverGrid(
+                    gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                      maxCrossAxisExtent: 200.0,
+                      mainAxisSpacing: 10.0,
+                      crossAxisSpacing: 10.0,
+                      childAspectRatio: 4.0,
+                    ),
+                    delegate: SliverChildBuilderDelegate(
+                          (BuildContext context, int index) {
+                        return Container(
+                          alignment: Alignment.center,
+                          color: Colors.teal[100 * (index % 9)],
+                          child: Text('Grid Item $index'),
+                        );
+                      },
+                      childCount: 20,
+                    ),
+                  ),
+                  SliverFixedExtentList(
+                    itemExtent: 50.0,
+                    delegate: SliverChildBuilderDelegate(
+                          (BuildContext context, int index) {
+                        return Container(
+                          alignment: Alignment.center,
+                          color: Colors.lightBlue[100 * (index % 9)],
+                          child: Text('List Item $index'),
+                        );
+                      },
+                    ),
+                  ),
+                ],
               ),
-              SliverGrid(
-                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 200.0,
-                  mainAxisSpacing: 10.0,
-                  crossAxisSpacing: 10.0,
-                  childAspectRatio: 4.0,
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(17),
+                      topRight: Radius.circular(17),
+                      bottomLeft: Radius.circular(17),
+                      bottomRight: Radius.circular(17)
+                  ),
+                  gradient: LinearGradient(
+                      colors: [
+                        ColorsResources.grayLight.withOpacity(0.5),
+                        ColorsResources.greenGrayLight.withOpacity(0.5),
+                      ],
+                      begin: FractionalOffset(0.0, 0.0),
+                      end: FractionalOffset(1.0, 0.0),
+                      stops: [0.0, 1.0],
+                      transform: GradientRotation(45),
+                      tileMode: TileMode.clamp
+                  ),
                 ),
-                delegate: SliverChildBuilderDelegate(
-                      (BuildContext context, int index) {
-                    return Container(
-                      alignment: Alignment.center,
-                      color: Colors.teal[100 * (index % 9)],
-                      child: Text('Grid Item $index'),
-                    );
-                  },
-                  childCount: 20,
+                child: Text(
+                  StringsResources.submitText,
+                ).frosted(
+                  blur: 7.0,
+                  borderRadius: BorderRadius.circular(17),
+                  padding: EdgeInsets.fromLTRB(11, 5, 11, 5),
                 ),
-              ),
-              SliverFixedExtentList(
-                itemExtent: 50.0,
-                delegate: SliverChildBuilderDelegate(
-                      (BuildContext context, int index) {
-                    return Container(
-                      alignment: Alignment.center,
-                      color: Colors.lightBlue[100 * (index % 9)],
-                      child: Text('List Item $index'),
-                    );
-                  },
-                ),
-              ),
+              )
             ],
           )
       ),

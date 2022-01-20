@@ -37,6 +37,7 @@ dependencies:
   sqflite:
   path:
   wave: ^0.2.0
+  blur: ^3.0.0
   flutter_svg: ^1.0.0
   simple_gradient_text: ^1.2.2
   palette_generator: ^0.3.2

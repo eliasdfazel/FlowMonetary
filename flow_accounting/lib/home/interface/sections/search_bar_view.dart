@@ -77,30 +77,41 @@ class _SearchBarView extends State<SearchBarView> {
                               ),
                               color: ColorsResources.primaryColorLightest,
                             ),
-                            child: TextField(
-                              controller: textEditorControllerQuery,
-                              textAlign: TextAlign.right,
+                            child: Directionality(
                               textDirection: TextDirection.rtl,
-                              textAlignVertical: TextAlignVertical.bottom,
-                              maxLines: 1,
-                              cursorColor: ColorsResources.primaryColor,
-                              autocorrect: true,
-                              autofocus: false,
-                              decoration: const InputDecoration(
-                                border: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.red, width: 5.0),
-                                    borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(13),
-                                        topRight: Radius.circular(13),
-                                        bottomLeft: Radius.circular(13),
-                                        bottomRight: Radius.circular(13)
-                                    ),
-                                    gapPadding: 5
+                              child: TextField(
+                                controller: textEditorControllerQuery,
+                                textAlign: TextAlign.right,
+                                textDirection: TextDirection.rtl,
+                                textAlignVertical: TextAlignVertical.bottom,
+                                maxLines: 1,
+                                cursorColor: ColorsResources.primaryColor,
+                                autocorrect: true,
+                                autofocus: false,
+                                decoration: const InputDecoration(
+                                  border: OutlineInputBorder(
+                                      borderSide: BorderSide(color: Colors.blueGrey, width: 5.0),
+                                      borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(13),
+                                          topRight: Radius.circular(13),
+                                          bottomLeft: Radius.circular(13),
+                                          bottomRight: Radius.circular(13)
+                                      ),
+                                      gapPadding: 5
+                                  ),
+                                  hintText: StringsResources.searchFeaturesText,
+                                  hintStyle: TextStyle(
+                                      color: ColorsResources.dark,
+                                      fontSize: 17.0
+                                  ),
+                                  labelText: StringsResources.searchText,
+                                  labelStyle: TextStyle(
+                                    color: ColorsResources.dark,
+                                    fontSize: 17.0
+                                  ),
                                 ),
-                                labelText: StringsResources.searchText,
-                                hintText: StringsResources.searchFeaturesText,
                               ),
-                            ),
+                            )
                           ),
                         ),
                       )

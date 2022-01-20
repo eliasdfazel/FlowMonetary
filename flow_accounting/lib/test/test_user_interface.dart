@@ -8,6 +8,8 @@
  * https://opensource.org/licenses/MIT
  */
 
+import 'package:blur/blur.dart';
+import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flutter/material.dart';
 
 void main() {runApp(MyApp());}
@@ -34,21 +36,63 @@ class MyApp extends StatelessWidget {
       const Choice(title: 'Setting', icon: Icons.settings),
       const Choice(title: 'Album', icon: Icons.photo_album),
       const Choice(title: 'WiFi', icon: Icons.wifi),
+      const Choice(title: 'Home', icon: Icons.home),
+      const Choice(title: 'Contact', icon: Icons.contacts),
+      const Choice(title: 'Map', icon: Icons.map),
+      const Choice(title: 'Phone', icon: Icons.phone),
+      const Choice(title: 'Camera', icon: Icons.camera_alt),
+      const Choice(title: 'Setting', icon: Icons.settings),
+      const Choice(title: 'Album', icon: Icons.photo_album),
+      const Choice(title: 'WiFi', icon: Icons.wifi),
+      const Choice(title: 'Home', icon: Icons.home),
+      const Choice(title: 'Contact', icon: Icons.contacts),
+      const Choice(title: 'Map', icon: Icons.map),
+      const Choice(title: 'Phone', icon: Icons.phone),
+      const Choice(title: 'Camera', icon: Icons.camera_alt),
+      const Choice(title: 'Setting', icon: Icons.settings),
+      const Choice(title: 'Album', icon: Icons.photo_album),
+      const Choice(title: 'WiFi', icon: Icons.wifi),
+      const Choice(title: 'Home', icon: Icons.home),
+      const Choice(title: 'Contact', icon: Icons.contacts),
+      const Choice(title: 'Map', icon: Icons.map),
+      const Choice(title: 'Phone', icon: Icons.phone),
+      const Choice(title: 'Camera', icon: Icons.camera_alt),
+      const Choice(title: 'Setting', icon: Icons.settings),
+      const Choice(title: 'Album', icon: Icons.photo_album),
+      const Choice(title: 'WiFi', icon: Icons.wifi),
     ];
 
     return MaterialApp(
         home: Scaffold(appBar: AppBar(
-          title: Text("Flutter GridView Demo"),
+          title: const Text("Flutter GridView Demo"),
         ),
-            body: GridView.count(
-                crossAxisCount: 3,
-                crossAxisSpacing: 4.0,
-                mainAxisSpacing: 8.0,
-                children: List.generate(choices.length, (index) {
-                  return Center(
-                    child: SelectCard(choice: choices[index]),
-                  );
-                })
+            body: Stack(
+              children: [
+                GridView.count(
+                    crossAxisCount: 3,
+                    crossAxisSpacing: 4.0,
+                    mainAxisSpacing: 8.0,
+                    children: List.generate(choices.length, (index) {
+                      return Center(
+                        child: SelectCard(choice: choices[index]),
+                      );
+                    })
+                ),
+                Blur(
+                  blurColor: ColorsResources.primaryColorTransparent,
+                  blur: 7.0,
+                  borderRadius: BorderRadius.all(Radius.circular(51)),
+                  overlay: SizedBox(
+                    width: 300,
+                    height: 300,
+                    child: Text("Blurry View"),
+                  ),
+                  child: SizedBox(
+                    width: 300,
+                    height: 300,
+                  ),
+                )
+              ],
             )
         )
     );
