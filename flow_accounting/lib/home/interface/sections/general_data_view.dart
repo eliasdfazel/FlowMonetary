@@ -23,14 +23,14 @@ class GeneralDataView extends StatelessWidget {
 
     String totalSpending = "207";
 
-    return Padding(padding: const EdgeInsets.fromLTRB(0, 3, 0, 0),
+    return Padding(padding: const EdgeInsets.fromLTRB(13, 3, 13, 0),
       child: Column(
         children: [
           SizedBox(
             width: double.infinity,
             height: 50,
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(3, 1, 3, 0),
+              padding: const EdgeInsets.fromLTRB(0, 1, 0, 0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -46,9 +46,9 @@ class GeneralDataView extends StatelessWidget {
                           alignment: AlignmentDirectional.center,
                           decoration: BoxDecoration(
                               borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(17),
+                                  topLeft: Radius.circular(23),
                                   topRight: Radius.circular(0),
-                                  bottomLeft: Radius.circular(17),
+                                  bottomLeft: Radius.circular(23),
                                   bottomRight: Radius.circular(0)),
                               border: const Border(
                                   top: BorderSide(
@@ -151,9 +151,9 @@ class GeneralDataView extends StatelessWidget {
                           decoration: BoxDecoration(
                               borderRadius: const BorderRadius.only(
                                   topLeft: Radius.circular(0),
-                                  topRight: Radius.circular(17),
+                                  topRight: Radius.circular(23),
                                   bottomLeft: Radius.circular(0),
-                                  bottomRight: Radius.circular(17)),
+                                  bottomRight: Radius.circular(23)),
                               border: const Border(
                                   top: BorderSide(
                                     color: ColorsResources.light,

@@ -10,6 +10,9 @@
 
 class TransactionsData {
 
+  static const TransactionType_Send = "-";
+  static const TransactionType_Receive = "+";
+
   final int id;
 
   final String sourceCardNumber;
@@ -22,6 +25,7 @@ class TransactionsData {
   final String targetUsername;
 
   final String amountMoney;
+  final String transactionType;
   /// Transaction Time In Millisecond
   final String transactionTime;
 
@@ -38,6 +42,7 @@ class TransactionsData {
     required this.targetUsername,
 
     required this.amountMoney,
+    required this.transactionType,
     required this.transactionTime,
   });
 
@@ -57,6 +62,7 @@ class TransactionsData {
       'targetUsername': targetUsername,
 
       'amountMoney': amountMoney,
+      'transactionType': transactionType,
       'transactionTime': transactionTime,
     };
   }
@@ -76,6 +82,7 @@ class TransactionsData {
         'targetUsername: $targetUsername,'
 
         'amountMoney: $amountMoney,'
+        'transactionType: $transactionType,'
         'transactionTime: $transactionTime,'
         '}';
   }

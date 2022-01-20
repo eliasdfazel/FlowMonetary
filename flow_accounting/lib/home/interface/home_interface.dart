@@ -12,6 +12,7 @@ import 'package:flow_accounting/credit_cards/database/structures/tables_structur
 import 'package:flow_accounting/home/interface/sections/latest_transactions_view.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
+import 'package:flow_accounting/transactions/database/structures/tables_structure.dart';
 import 'package:flutter/material.dart';
 import 'package:wave/config.dart';
 import 'package:wave/wave.dart';
@@ -158,7 +159,9 @@ class _HomePageState extends State<HomePage> {
                           scrollDirection: Axis.vertical,
                           children: [ // List Of All Contents
                             const TopBarView(),
-                            LatestTransactionsView(),
+                            LatestTransactionsView(
+                                latestTransactionsData: retrieveLatestTransactions()
+                            ),
                             const GeneralDataView(),
                             CreditCardsListView(
                               allCreditCardsData: prepareCreditCardsData(),
@@ -173,6 +176,99 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ));
+  }
+
+  List<TransactionsData> retrieveLatestTransactions() {
+
+    List<TransactionsData> latestTransactions = [];
+
+    //Get From Database
+    latestTransactions.add(TransactionsData(
+      id: 1,
+      amountMoney: "500",
+      transactionType: TransactionsData.TransactionType_Receive,
+      sourceBankName: "EnBank",
+      sourceCardNumber: "1111222233334458",
+      sourceUsername: "Elias",
+      targetBankName: "Saderat",
+      targetCardNumber: "9999888877776541",
+      targetUsername: "Aban",
+      transactionTime: "13:19 - 8/7/2013"
+    ));
+    latestTransactions.add(TransactionsData(
+        id: 2,
+        amountMoney: "1100",
+        transactionType: TransactionsData.TransactionType_Receive,
+        sourceBankName: "EnBank",
+        sourceCardNumber: "1111222233334458",
+        sourceUsername: "Elias",
+        targetBankName: "Saderat",
+        targetCardNumber: "9999888877776541",
+        targetUsername: "Aban",
+        transactionTime: "13:19 - 8/7/2013"
+    ));
+    latestTransactions.add(TransactionsData(
+        id: 3,
+        amountMoney: "9990",
+        transactionType: TransactionsData.TransactionType_Receive,
+        sourceBankName: "EnBank",
+        sourceCardNumber: "1111222233334458",
+        sourceUsername: "Elias",
+        targetBankName: "Saderat",
+        targetCardNumber: "9999888877776541",
+        targetUsername: "Aban",
+        transactionTime: "13:19 - 8/7/2013"
+    ));
+    latestTransactions.add(TransactionsData(
+        id: 4,
+        amountMoney: "330",
+        transactionType: TransactionsData.TransactionType_Send,
+        sourceBankName: "EnBank",
+        sourceCardNumber: "1111222233334458",
+        sourceUsername: "Elias",
+        targetBankName: "Saderat",
+        targetCardNumber: "9999888877776541",
+        targetUsername: "Aban",
+        transactionTime: "13:19 - 8/7/2013"
+    ));
+    latestTransactions.add(TransactionsData(
+        id: 5,
+        amountMoney: "550",
+        transactionType: TransactionsData.TransactionType_Send,
+        sourceBankName: "EnBank",
+        sourceCardNumber: "1111222233334458",
+        sourceUsername: "Elias",
+        targetBankName: "Saderat",
+        targetCardNumber: "9999888877776541",
+        targetUsername: "Aban",
+        transactionTime: "13:19 - 8/7/2013"
+    ));
+    latestTransactions.add(TransactionsData(
+        id: 6,
+        amountMoney: "300",
+        transactionType: TransactionsData.TransactionType_Receive,
+        sourceBankName: "EnBank",
+        sourceCardNumber: "1111222233334458",
+        sourceUsername: "Elias",
+        targetBankName: "Saderat",
+        targetCardNumber: "9999888877776541",
+        targetUsername: "Aban",
+        transactionTime: "13:19 - 8/7/2013"
+    ));
+    latestTransactions.add(TransactionsData(
+        id: 7,
+        amountMoney: "900",
+        transactionType: TransactionsData.TransactionType_Receive,
+        sourceBankName: "EnBank",
+        sourceCardNumber: "1111222233334458",
+        sourceUsername: "Elias",
+        targetBankName: "Saderat",
+        targetCardNumber: "9999888877776541",
+        targetUsername: "Aban",
+        transactionTime: "13:19 - 8/7/2013"
+    ));
+
+    return latestTransactions;
   }
 
   List<CreditCardsData> prepareCreditCardsData() {
