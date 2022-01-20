@@ -2,6 +2,15 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
+ * Last modified 1/13/22, 6:44 AM
+ *
+ * Licensed Under MIT License.
+ * https://opensource.org/licenses/MIT
+ */
+/*
+ * Copyright © 2022 By Geeks Empire.
+ *
+ * Created by Elias Fazel
  * Last modified 1/13/22, 6:51 AM
  *
  * Licensed Under MIT License.
@@ -158,23 +167,3 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
     ));
   }
 }
-
-/*Positioned(
-                          bottom: 13,
-                          left: 10.0,
-                          right: 10.0,
-                          child: SizedBox(
-                            width: 150,
-                            height: 53,
-                            child: MaterialButton(
-                              elevation: 7,
-                              textColor: Colors.white,
-                              color: Colors.blue,
-                              child: const Text('Insert'),
-                              onPressed: () {
-
-
-                              },
-                            ),
-                          )
-                      )*/

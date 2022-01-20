@@ -10,8 +10,8 @@
 
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
-import 'package:flow_accounting/transactions/input/ui/transactions_input_view.dart';
-import 'package:flow_accounting/transactions/output/ui/transactions_output_view.dart';
+import 'package:flow_accounting/transactions/input/ui/transactions_output_view.dart';
+import 'package:flow_accounting/transactions/output/ui/transactions_input_view.dart';
 import 'package:flow_accounting/utils/navigations/navigations.dart';
 import 'package:flutter/material.dart';
 
@@ -53,9 +53,9 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
         /* featureTwoTitle */ null,
         /* featureOneDescription */ StringsResources.featureTransactionsDescription,
         /* featureTwoDescription */ null,
-        /* featureOneTargetViewToSubmitData */ const TransactionsOutputView(),
+        /* featureOneTargetViewToSubmitData */ const TransactionsInputView(),
         /* featureTwoTargetViewToSubmitData */ null,
-        /* featureOneTargetViewToPresentData */ const TransactionsInputView(),
+        /* featureOneTargetViewToPresentData */ const TransactionsOutputView(),
         /* featureTwoTargetViewToPresentData */ null,
         /* Context */ context
     ));
