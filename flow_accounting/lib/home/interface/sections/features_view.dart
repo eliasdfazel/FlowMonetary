@@ -10,6 +10,7 @@
 
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
+import 'package:flow_accounting/utils/navigations/navigations.dart';
 import 'package:flutter/material.dart';
 
 import 'search_bar_view.dart';
@@ -53,7 +54,8 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
         null,
         null,
         null,
-        null
+        null,
+        context
     ));
 
     allFeaturesOptionsWidgets.add(featuresOptionsRow(
@@ -64,7 +66,8 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
         null,
         null,
         null,
-        null
+        null,
+        context
     ));
 
     allFeaturesOptionsWidgets.add(featuresOptionsRow(
@@ -75,7 +78,8 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
         null,
         null,
         null,
-        null
+        null,
+        context
     ));
 
     allFeaturesOptionsWidgets.add(featuresOptionsRow(
@@ -86,7 +90,8 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
         null,
         null,
         null,
-        null
+        null,
+        context
     ));
 
     allFeaturesOptionsWidgets.add(featuresOptionsRow(
@@ -97,7 +102,8 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
         null,
         null,
         null,
-        null
+        null,
+        context
     ));
 
     allFeaturesOptionsWidgets.add(featuresOptionsRow(
@@ -108,7 +114,8 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
         null,
         null,
         null,
-        null
+        null,
+        context
     ));
 
     allFeaturesOptionsWidgets.add(featuresOptionsRow(
@@ -119,7 +126,8 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
         null,
         null,
         null,
-        null
+        null,
+        context
     ));
 
     super.initState();
@@ -171,13 +179,15 @@ Widget featuresOptionsRow(
     StatefulWidget? featureOneTargetViewToSubmitData,
     StatefulWidget? featureTwoTargetViewToSubmitData,
     StatefulWidget? featureOneTargetViewToPresentData,
-    StatefulWidget? featureTwoTargetViewToPresentData) {
+    StatefulWidget? featureTwoTargetViewToPresentData,
+    BuildContext context) {
 
   Widget firstWidget = featuresOptionsItem(
       featureOneTitle,
       featureOneDescription,
       featureOneTargetViewToSubmitData,
-      featureOneTargetViewToPresentData
+      featureOneTargetViewToPresentData,
+      context
   );
 
   Widget secondWidget = Container(
@@ -190,7 +200,8 @@ Widget featuresOptionsRow(
         featureTwoTitle,
         featureTwoDescription,
         featureTwoTargetViewToSubmitData,
-        featureTwoTargetViewToPresentData
+        featureTwoTargetViewToPresentData,
+        context
     );
 
   }
@@ -204,8 +215,11 @@ Widget featuresOptionsRow(
   );
 }
 
-Widget featuresOptionsItem(String featureTitle, String featureDescription,
-    StatefulWidget? targetViewToSubmitData, StatefulWidget? targetViewToPresentData) {
+Widget featuresOptionsItem(String featureTitle,
+    String featureDescription,
+    StatefulWidget? targetViewToSubmitData,
+    StatefulWidget? targetViewToPresentData,
+    BuildContext context) {
 
   return Expanded(
     flex: 1,
@@ -325,7 +339,11 @@ Widget featuresOptionsItem(String featureTitle, String featureDescription,
 
                               Future.delayed(const Duration(milliseconds: 199), () {
 
-                                //NavigationProcess().goTo(context, constFlowDashboard());
+                                if (targetViewToPresentData != null) {
+
+                                  NavigationProcess().goTo(context, targetViewToPresentData);
+
+                                }
 
                               });
 
@@ -366,8 +384,11 @@ Widget featuresOptionsItem(String featureTitle, String featureDescription,
 
                               Future.delayed(const Duration(milliseconds: 199), () {
 
-                                //NavigationProcess().goTo(context, constFlowDashboard());
+                                if (targetViewToSubmitData != null) {
 
+                                  NavigationProcess().goTo(context, targetViewToSubmitData);
+
+                                }
                               });
 
                             },
