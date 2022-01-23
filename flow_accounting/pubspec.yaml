@@ -41,6 +41,7 @@ dependencies:
   flutter_svg: ^1.0.0
   simple_gradient_text: ^1.2.2
   palette_generator: ^0.3.2
+  flutter_datetime_picker: ^1.5.1
 
 dev_dependencies:
   flutter_test:
