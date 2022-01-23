@@ -8,6 +8,8 @@
  * https://opensource.org/licenses/MIT
  */
 
+import 'package:flow_accounting/resources/ColorsResources.dart';
+
 class TransactionsData {
 
   static const TransactionType_Send = "-";
@@ -29,6 +31,8 @@ class TransactionsData {
   /// Transaction Time In Millisecond
   final String transactionTime;
 
+  int colorTag = ColorsResources.dark.value;
+
   TransactionsData({
     required this.id,
 
@@ -44,6 +48,8 @@ class TransactionsData {
     required this.amountMoney,
     required this.transactionType,
     required this.transactionTime,
+
+    required this.colorTag,
   });
 
   // Convert a Dog into a Map. The keys must correspond to the names of the
@@ -64,6 +70,8 @@ class TransactionsData {
       'amountMoney': amountMoney,
       'transactionType': transactionType,
       'transactionTime': transactionTime,
+
+      'colorTag': colorTag,
     };
   }
 
@@ -84,6 +92,8 @@ class TransactionsData {
         'amountMoney: $amountMoney,'
         'transactionType: $transactionType,'
         'transactionTime: $transactionTime,'
+
+        'colorTag: $colorTag,'
         '}';
   }
 }

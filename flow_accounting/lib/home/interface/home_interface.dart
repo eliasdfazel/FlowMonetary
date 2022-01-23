@@ -131,22 +131,22 @@ class _HomePageState extends State<HomePage> {
                   decoration: const BoxDecoration(
                       borderRadius: BorderRadius.only(topLeft: Radius.circular(17), topRight: Radius.circular(17), bottomLeft: Radius.circular(17), bottomRight: Radius.circular(17)),
                       border: Border(
-                        top: BorderSide(
-                          color: Colors.black,
-                          width: 7,
-                        ),
-                        bottom: BorderSide(
-                          color: Colors.black,
-                          width: 7,
-                        ),
-                        left: BorderSide(
-                          color: Colors.black,
-                          width: 7,
-                        ),
-                        right: BorderSide(
-                          color: Colors.black,
-                          width: 7,
-                        )
+                          top: BorderSide(
+                            color: Colors.black,
+                            width: 7,
+                          ),
+                          bottom: BorderSide(
+                            color: Colors.black,
+                            width: 7,
+                          ),
+                          left: BorderSide(
+                            color: Colors.black,
+                            width: 7,
+                          ),
+                          right: BorderSide(
+                            color: Colors.black,
+                            width: 7,
+                          )
                       ),
                       color: Colors.transparent
                   ),
@@ -200,79 +200,86 @@ class _HomePageState extends State<HomePage> {
       targetBankName: "Saderat",
       targetCardNumber: "9999888877776541",
       targetUsername: "Aban",
-      transactionTime: "13:19 - 8/7/2013"
+      transactionTime: "13:19 - 8/7/2013",
+      colorTag: ColorsResources.black.value,
     ));
     latestTransactions.add(TransactionsData(
-        id: 2,
-        amountMoney: "1100",
-        transactionType: TransactionsData.TransactionType_Receive,
-        sourceBankName: "EnBank",
-        sourceCardNumber: "1111222233334458",
-        sourceUsername: "Elias",
-        targetBankName: "Saderat",
-        targetCardNumber: "9999888877776541",
-        targetUsername: "Aban",
-        transactionTime: "13:19 - 8/7/2013"
+      id: 2,
+      amountMoney: "1100",
+      transactionType: TransactionsData.TransactionType_Receive,
+      sourceBankName: "EnBank",
+      sourceCardNumber: "1111222233334458",
+      sourceUsername: "Elias",
+      targetBankName: "Saderat",
+      targetCardNumber: "9999888877776541",
+      targetUsername: "Aban",
+      transactionTime: "13:19 - 8/7/2013",
+      colorTag: ColorsResources.black.value,
     ));
     latestTransactions.add(TransactionsData(
-        id: 3,
-        amountMoney: "9990",
-        transactionType: TransactionsData.TransactionType_Receive,
-        sourceBankName: "EnBank",
-        sourceCardNumber: "1111222233334458",
-        sourceUsername: "Elias",
-        targetBankName: "Saderat",
-        targetCardNumber: "9999888877776541",
-        targetUsername: "Aban",
-        transactionTime: "13:19 - 8/7/2013"
+      id: 3,
+      amountMoney: "9990",
+      transactionType: TransactionsData.TransactionType_Receive,
+      sourceBankName: "EnBank",
+      sourceCardNumber: "1111222233334458",
+      sourceUsername: "Elias",
+      targetBankName: "Saderat",
+      targetCardNumber: "9999888877776541",
+      targetUsername: "Aban",
+      transactionTime: "13:19 - 8/7/2013",
+      colorTag: ColorsResources.greenGray.value,
     ));
     latestTransactions.add(TransactionsData(
-        id: 4,
-        amountMoney: "330",
-        transactionType: TransactionsData.TransactionType_Send,
-        sourceBankName: "EnBank",
-        sourceCardNumber: "1111222233334458",
-        sourceUsername: "Elias",
-        targetBankName: "Saderat",
-        targetCardNumber: "9999888877776541",
-        targetUsername: "Aban",
-        transactionTime: "13:19 - 8/7/2013"
+      id: 4,
+      amountMoney: "330",
+      transactionType: TransactionsData.TransactionType_Send,
+      sourceBankName: "EnBank",
+      sourceCardNumber: "1111222233334458",
+      sourceUsername: "Elias",
+      targetBankName: "Saderat",
+      targetCardNumber: "9999888877776541",
+      targetUsername: "Aban",
+      transactionTime: "13:19 - 8/7/2013",
+      colorTag: ColorsResources.gameGeeksEmpire.value,
     ));
     latestTransactions.add(TransactionsData(
-        id: 5,
-        amountMoney: "550",
-        transactionType: TransactionsData.TransactionType_Send,
-        sourceBankName: "EnBank",
-        sourceCardNumber: "1111222233334458",
-        sourceUsername: "Elias",
-        targetBankName: "Saderat",
-        targetCardNumber: "9999888877776541",
-        targetUsername: "Aban",
-        transactionTime: "13:19 - 8/7/2013"
+      id: 5,
+      amountMoney: "550",
+      transactionType: TransactionsData.TransactionType_Send,
+      sourceBankName: "EnBank",
+      sourceCardNumber: "1111222233334458",
+      sourceUsername: "Elias",
+      targetBankName: "Saderat",
+      targetCardNumber: "9999888877776541",
+      targetUsername: "Aban",
+      transactionTime: "13:19 - 8/7/2013",
+      colorTag: ColorsResources.black.value,
     ));
     latestTransactions.add(TransactionsData(
-        id: 6,
-        amountMoney: "300",
-        transactionType: TransactionsData.TransactionType_Receive,
-        sourceBankName: "EnBank",
-        sourceCardNumber: "1111222233334458",
-        sourceUsername: "Elias",
-        targetBankName: "Saderat",
-        targetCardNumber: "9999888877776541",
-        targetUsername: "Aban",
-        transactionTime: "13:19 - 8/7/2013"
+      id: 6,
+      amountMoney: "300",
+      transactionType: TransactionsData.TransactionType_Receive,
+      sourceBankName: "EnBank",
+      sourceCardNumber: "1111222233334458",
+      sourceUsername: "Elias",
+      targetBankName: "Saderat",
+      targetCardNumber: "9999888877776541",
+      targetUsername: "Aban",
+      transactionTime: "13:19 - 8/7/2013",
+      colorTag: ColorsResources.black.value,
     ));
     latestTransactions.add(TransactionsData(
-        id: 7,
-        amountMoney: "900",
-        transactionType: TransactionsData.TransactionType_Receive,
-        sourceBankName: "EnBank",
-        sourceCardNumber: "1111222233334458",
-        sourceUsername: "Elias",
-        targetBankName: "Saderat",
-        targetCardNumber: "9999888877776541",
-        targetUsername: "Aban",
-        transactionTime: "13:19 - 8/7/2013"
+      id: 7,
+      amountMoney: "900",
+      transactionType: TransactionsData.TransactionType_Receive,
+      sourceBankName: "EnBank",
+      sourceCardNumber: "1111222233334458",
+      sourceUsername: "Elias",
+      targetBankName: "Saderat",
+      targetCardNumber: "9999888877776541",
+      targetUsername: "Aban",
+      transactionTime: "13:19 - 8/7/2013",
+      colorTag: ColorsResources.primaryColor.value,
     ));
 
     return latestTransactions;
