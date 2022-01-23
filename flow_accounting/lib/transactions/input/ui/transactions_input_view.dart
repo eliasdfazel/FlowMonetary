@@ -218,7 +218,11 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                   child: InkWell(
                     onTap: () {
 
+                      int timeNow = DateTime.now().millisecond;
+
                       var databaseInputs = DatabaseInputs();
+
+
 
 
                     },
