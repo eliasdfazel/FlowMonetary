@@ -119,70 +119,131 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Expanded(
-                              flex: 3,
+                              flex: 1,
                               child: Padding(
-                                padding: const EdgeInsets.fromLTRB(13, 0, 3, 0),
-                                child: Directionality(
-                                  textDirection: TextDirection.rtl,
-                                  child: DropdownButtonFormField(
-                                    items: <DropdownMenuItem> [
-                                      Text(StringsResources.transactionSend),
-                                      Text(StringsResources.transactionReceive),
-                                    ],
-                                    onChanged: (value) {
-
-                                    },
-                                  ),
-                                )
-                              ),
-                            ),
-                            Expanded(
-                              flex: 7,
-                              child: Padding(
-                                padding: const EdgeInsets.fromLTRB(3, 0, 13, 0),
-                                child: Directionality(
-                                  textDirection: TextDirection.rtl,
-                                  child: TextField(
-                                    controller: textControllerTransactionType,
-                                    textAlign: TextAlign.right,
+                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                  child: Directionality(
                                     textDirection: TextDirection.rtl,
-                                    textAlignVertical: TextAlignVertical.bottom,
-                                    maxLines: 1,
-                                    cursorColor: ColorsResources.primaryColor,
-                                    autocorrect: true,
-                                    autofocus: false,
-                                    decoration: const InputDecoration(
-                                      alignLabelWithHint: true,
-                                      border: OutlineInputBorder(
-                                          borderSide: BorderSide(color: Colors.blueGrey, width: 5.0),
-                                          borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(13),
-                                              topRight: Radius.circular(13),
-                                              bottomLeft: Radius.circular(13),
-                                              bottomRight: Radius.circular(13)
-                                          ),
-                                          gapPadding: 5
-                                      ),
-                                      filled: true,
-                                      fillColor: ColorsResources.lightTransparent,
-                                      labelText: StringsResources.transactionAmount,
-                                      labelStyle: TextStyle(
-                                          color: ColorsResources.dark,
-                                          fontSize: 17.0
-                                      ),
-                                      hintText: StringsResources.transactionAmountHint,
-                                      hintStyle: TextStyle(
-                                          color: ColorsResources.dark,
-                                          fontSize: 17.0
+                                    child: TextField(
+                                      controller: textControllerTransactionType,
+                                      textAlign: TextAlign.right,
+                                      textDirection: TextDirection.rtl,
+                                      textAlignVertical: TextAlignVertical.bottom,
+                                      maxLines: 1,
+                                      cursorColor: ColorsResources.primaryColor,
+                                      autocorrect: true,
+                                      autofocus: false,
+                                      decoration: const InputDecoration(
+                                        alignLabelWithHint: true,
+                                        border: OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.blueGrey, width: 5.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        filled: true,
+                                        fillColor: ColorsResources.lightTransparent,
+                                        labelText: StringsResources.transactionAmount,
+                                        labelStyle: TextStyle(
+                                            color: ColorsResources.dark,
+                                            fontSize: 17.0
+                                        ),
+                                        hintText: StringsResources.transactionAmountHint,
+                                        hintStyle: TextStyle(
+                                            color: ColorsResources.dark,
+                                            fontSize: 17.0
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                )
+                                  )
                               ),
                             ),
                           ],
                         ),
                       ),
+                      Divider(
+                        height: 13,
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 99,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: Padding(
+                                padding: EdgeInsets.fromLTRB(13, 0, 0, 0),
+                                child: Text("TTTT"),
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(7, 0, 13, 0),
+                                  child: Directionality(
+                                    textDirection: TextDirection.rtl,
+                                    child: DropdownButtonFormField(
+                                      isDense: true,
+                                      decoration: InputDecoration(
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: ColorsResources.applicationGeeksEmpire,
+                                            width: 1,
+                                          ),
+                                          borderRadius: BorderRadius.circular(13),
+                                        ),
+                                        border: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: ColorsResources.applicationGeeksEmpire,
+                                              width: 1
+                                          ),
+                                          borderRadius: BorderRadius.circular(13),
+                                        ),
+                                        filled: true,
+                                        fillColor: Colors.transparent,
+                                      ),
+                                      value: StringsResources.transactionTypeSend,
+                                      autovalidateMode: AutovalidateMode.always,
+                                      validator: (value) => value == null ?
+                                      StringsResources.transactionTypeHint : StringsResources.transactionTypeHint,
+                                      items: <String> [
+                                        StringsResources.transactionTypeSend,
+                                        StringsResources.transactionTypeReceive
+                                      ].map<DropdownMenuItem<String>>((String value) {
+
+                                        return DropdownMenuItem<String>(
+                                          value: value,
+                                          child: SizedBox(
+                                            height: 27,
+                                            child: Padding(
+                                              padding: EdgeInsets.fromLTRB(0, 0, 11, 0),
+                                              child: Align(
+                                                alignment:
+                                                AlignmentDirectional.center,
+                                                child: Text(value),
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      }).toList(),
+                                      onChanged: (value) {
+
+
+
+                                      },
+
+                                    ),
+                                  )
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
                     ]
                 ),
                 Positioned(
@@ -201,88 +262,88 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
                     },
                     child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(51),
-                            topRight: Radius.circular(51),
-                            bottomLeft: Radius.circular(51),
-                            bottomRight: Radius.circular(51)
-                        ),
-                        border: const Border(
-                            top: BorderSide(
-                              color: ColorsResources.primaryColorLight,
-                              width: 1,
-                            ),
-                            bottom: BorderSide(
-                              color: ColorsResources.primaryColorLight,
-                              width: 1,
-                            ),
-                            left: BorderSide(
-                              color: ColorsResources.primaryColorLight,
-                              width: 1,
-                            ),
-                            right: BorderSide(
-                              color: ColorsResources.primaryColorLight,
-                              width: 1,
-                            )
-                        ),
-                        gradient: LinearGradient(
-                            colors: [
-                              ColorsResources.primaryColor.withOpacity(0.3),
-                              ColorsResources.primaryColorLight.withOpacity(0.3),
-                            ],
-                            begin: const FractionalOffset(0.0, 0.0),
-                            end: const FractionalOffset(1.0, 0.0),
-                            stops: const [0.0, 1.0],
-                            transform: const GradientRotation(45),
-                            tileMode: TileMode.clamp
-                        ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: ColorsResources.dark.withOpacity(0.179),
-                            blurRadius: 13.0,
-                            spreadRadius: 0.3,
-                            offset: const Offset(3.0, 3.0),
+                        decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(51),
+                              topRight: Radius.circular(51),
+                              bottomLeft: Radius.circular(51),
+                              bottomRight: Radius.circular(51)
                           ),
-                        ],
-                      ),
-                      child: Stack(
-                        children: [
-                          Blur(
-                            blur: 3.0,
-                            borderRadius: BorderRadius.circular(51),
-                            alignment: AlignmentDirectional.center,
-                            blurColor: Colors.blue,
-                            colorOpacity: 0.0,
-                            child: const SizedBox(
-                              width: double.infinity,
-                              height: 53,
-                            ),
-                          ),
-                          const SizedBox(
-                            width: double.infinity,
-                            height: 53,
-                            child: Align(
-                              alignment: AlignmentDirectional.center,
-                              child: Text(
-                                StringsResources.submitText,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 19,
-                                  color: ColorsResources.darkTransparent,
-                                  shadows: [
-                                    Shadow(
-                                      color: ColorsResources.primaryColorDark,
-                                      blurRadius: 7.0,
-                                      offset: Offset(1, 1)
-                                    )
-                                  ]
-                                ),
+                          border: const Border(
+                              top: BorderSide(
+                                color: ColorsResources.primaryColorLight,
+                                width: 1,
                               ),
+                              bottom: BorderSide(
+                                color: ColorsResources.primaryColorLight,
+                                width: 1,
+                              ),
+                              left: BorderSide(
+                                color: ColorsResources.primaryColorLight,
+                                width: 1,
+                              ),
+                              right: BorderSide(
+                                color: ColorsResources.primaryColorLight,
+                                width: 1,
+                              )
+                          ),
+                          gradient: LinearGradient(
+                              colors: [
+                                ColorsResources.primaryColor.withOpacity(0.3),
+                                ColorsResources.primaryColorLight.withOpacity(0.3),
+                              ],
+                              begin: const FractionalOffset(0.0, 0.0),
+                              end: const FractionalOffset(1.0, 0.0),
+                              stops: const [0.0, 1.0],
+                              transform: const GradientRotation(45),
+                              tileMode: TileMode.clamp
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: ColorsResources.dark.withOpacity(0.179),
+                              blurRadius: 13.0,
+                              spreadRadius: 0.3,
+                              offset: const Offset(3.0, 3.0),
+                            ),
+                          ],
+                        ),
+                        child: Stack(
+                          children: [
+                            Blur(
+                              blur: 3.0,
+                              borderRadius: BorderRadius.circular(51),
+                              alignment: AlignmentDirectional.center,
+                              blurColor: Colors.blue,
+                              colorOpacity: 0.0,
+                              child: const SizedBox(
+                                width: double.infinity,
+                                height: 53,
+                              ),
+                            ),
+                            const SizedBox(
+                                width: double.infinity,
+                                height: 53,
+                                child: Align(
+                                  alignment: AlignmentDirectional.center,
+                                  child: Text(
+                                    StringsResources.submitText,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontSize: 19,
+                                        color: ColorsResources.darkTransparent,
+                                        shadows: [
+                                          Shadow(
+                                              color: ColorsResources.primaryColorDark,
+                                              blurRadius: 7.0,
+                                              offset: Offset(1, 1)
+                                          )
+                                        ]
+                                    ),
+                                  ),
+                                )
                             )
-                          )
-                        ],
-                      )
+                          ],
+                        )
                     ),
                   ),
                 )
