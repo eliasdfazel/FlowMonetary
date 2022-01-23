@@ -23,6 +23,15 @@ class StringsResources {
   static const String searchText = "جستجو";
   static const String searchFeaturesText = "امکان مورد نظر خود را جستجو کنید";
 
+  static const String transactionAmount = "مبلغ واریزی یا برداشتی را وارد"
+      " کنید";
+  static const String transactionAmountHint = "مبلغ پول";
+
+  static const String transactionType = "تراکنش دریافتی یا پرداختی است؟";
+  static const String transactionTypeHint = "نوع تراکنش";
+  static const String transactionReceive = "دریافت";
+  static const String transactionSend = "پرداخت";
+
   static const String featureTransactionsTitle = "تراکنش";
   static const String featureTransactionsDescription = "تراکنش";
 
