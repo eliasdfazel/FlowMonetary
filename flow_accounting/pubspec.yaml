@@ -71,6 +71,7 @@ flutter:
     - pattern_card_background_three.png
     - pattern_card_background_four.png
     - pattern_card_background_five.png
+    - input_background_pattern.png
 
   fonts:
     - family: Sans

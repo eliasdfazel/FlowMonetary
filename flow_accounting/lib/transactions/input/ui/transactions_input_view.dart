@@ -52,7 +52,13 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
     return SafeArea (child: MaterialApp (
       debugShowCheckedModeBanner: false,
       color: ColorsResources.black,
-      theme: ThemeData(fontFamily: 'Sans'),
+      theme: ThemeData(
+        fontFamily: 'Sans',
+        pageTransitionsTheme: const PageTransitionsTheme(builders: {
+          TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+          TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+        }),
+      ),
       home: Scaffold(
         backgroundColor: ColorsResources.black,
         body: Padding(
@@ -73,6 +79,15 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
             ),
             child: Stack ( /*** Page Content ***/
               children: [
+                const Opacity(
+                  opacity: 0.03,
+                  child: Image(
+                    image: AssetImage("input_background_pattern.png"),
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                    height: double.infinity,
+                  ),
+                ),
                 ListView(
                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                     children: [
@@ -165,8 +180,9 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                           ],
                         ),
                       ),
-                      Divider(
+                      const Divider(
                         height: 13,
+                        color: Colors.transparent,
                       ),
                       SizedBox(
                         width: double.infinity,
@@ -191,21 +207,21 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                       isDense: true,
                                       decoration: InputDecoration(
                                         enabledBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
+                                          borderSide: const BorderSide(
                                             color: ColorsResources.applicationGeeksEmpire,
                                             width: 1,
                                           ),
                                           borderRadius: BorderRadius.circular(13),
                                         ),
                                         border: OutlineInputBorder(
-                                          borderSide: BorderSide(
+                                          borderSide: const BorderSide(
                                               color: ColorsResources.applicationGeeksEmpire,
                                               width: 1
                                           ),
                                           borderRadius: BorderRadius.circular(13),
                                         ),
                                         filled: true,
-                                        fillColor: Colors.transparent,
+                                        fillColor: ColorsResources.lightTransparent,
                                       ),
                                       value: StringsResources.transactionTypeSend,
                                       autovalidateMode: AutovalidateMode.always,
@@ -349,7 +365,8 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                 )
               ],
             ),
-          ),),
+          ),
+        ),
       ),
     ));
   }
