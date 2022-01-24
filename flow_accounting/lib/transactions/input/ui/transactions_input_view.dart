@@ -13,6 +13,7 @@ import 'package:blur/blur.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/database/io/inputs.dart';
+import 'package:flow_accounting/utils/calendar/ui/calendar_view.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
@@ -41,13 +42,13 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
   @override
   void dispose() {
-    // Clean up the controller when the widget is disposed.
-    // textEditorController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+
+    CalendarView calendarView = CalendarView();
 
     return SafeArea (child: MaterialApp (
       debugShowCheckedModeBanner: false,
@@ -193,8 +194,39 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                             Expanded(
                               flex: 1,
                               child: Padding(
-                                padding: EdgeInsets.fromLTRB(13, 0, 0, 0),
-                                child: Text("TTTT"),
+                                padding: const EdgeInsets.fromLTRB(13, 4, 0, 0),
+                                child: Align(
+                                  alignment: AlignmentDirectional.topCenter,
+                                  child: Container(
+                                    decoration: const BoxDecoration(
+                                      borderRadius: BorderRadius.only(topLeft: Radius.circular(17), topRight: Radius.circular(17), bottomLeft: Radius.circular(17), bottomRight: Radius.circular(17)),
+                                      border: Border(
+                                          top: BorderSide(
+                                            color: ColorsResources.darkTransparent,
+                                            width: 1,
+                                          ),
+                                          bottom: BorderSide(
+                                            color: ColorsResources.darkTransparent,
+                                            width: 1,
+                                          ),
+                                          left: BorderSide(
+                                            color: ColorsResources.darkTransparent,
+                                            width: 1,
+                                          ),
+                                          right: BorderSide(
+                                            color: ColorsResources.darkTransparent,
+                                            width: 1,
+                                          )
+                                      ),
+                                      color: ColorsResources.lightTransparent,
+                                    ),
+                                    child: SizedBox(
+                                      height: 62,
+                                      width: double.infinity,
+                                      child: calendarView,
+                                    ),
+                                  ),
+                                ),
                               ),
                             ),
                             Expanded(
@@ -222,6 +254,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                         ),
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
+                                        focusColor: ColorsResources.dark
                                       ),
                                       value: StringsResources.transactionTypeSend,
                                       autovalidateMode: AutovalidateMode.always,

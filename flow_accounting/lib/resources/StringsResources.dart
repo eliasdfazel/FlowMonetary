@@ -27,6 +27,8 @@ class StringsResources {
       " کنید";
   static const String transactionAmountHint = "مبلغ پول";
 
+  static const String transactionTime = "زمان تراکنش";
+
   static const String transactionType = "تراکنش دریافتی یا پرداختی است؟";
   static const String transactionTypeHint = "نوع تراکنش";
   static const String transactionTypeReceive = "دریافت";
