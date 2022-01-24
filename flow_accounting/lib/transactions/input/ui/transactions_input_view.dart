@@ -199,7 +199,12 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                   alignment: AlignmentDirectional.topCenter,
                                   child: Container(
                                     decoration: const BoxDecoration(
-                                      borderRadius: BorderRadius.only(topLeft: Radius.circular(17), topRight: Radius.circular(17), bottomLeft: Radius.circular(17), bottomRight: Radius.circular(17)),
+                                      borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(13),
+                                          topRight: Radius.circular(13),
+                                          bottomLeft: Radius.circular(13),
+                                          bottomRight: Radius.circular(13)
+                                      ),
                                       border: Border(
                                           top: BorderSide(
                                             color: ColorsResources.darkTransparent,

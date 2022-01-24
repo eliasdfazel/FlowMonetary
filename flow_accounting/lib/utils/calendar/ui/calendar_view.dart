@@ -12,12 +12,14 @@ import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
-
-DateTime pickedDateTime = DateTime.now();
-String pickedDataTimeText = StringsResources.transactionTime;
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
 
 class CalendarView extends StatefulWidget {
-  const CalendarView({Key? key}) : super(key: key);
+  CalendarView({Key? key}) : super(key: key);
+
+  DateTime pickedDateTime = DateTime.now();
+  String pickedDataTimeText = StringsResources.transactionTime;
 
   @override
   _CalendarView createState() => _CalendarView();
@@ -29,6 +31,9 @@ class _CalendarView extends State<CalendarView> {
 
   @override
   void initState() {
+
+    initializeDateFormatting();
+
     super.initState();
   }
 
@@ -45,47 +50,58 @@ class _CalendarView extends State<CalendarView> {
       child: Container (
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.only(topLeft: Radius.circular(17), topRight: Radius.circular(17), bottomLeft: Radius.circular(17), bottomRight: Radius.circular(17)),
-          gradient: LinearGradient(
-              colors: [
-                ColorsResources.white,
-                ColorsResources.primaryColorLighter,
-              ],
-              begin: FractionalOffset(0.0, 0.0),
-              end: FractionalOffset(1.0, 0.0),
-              stops: [0.0, 1.0],
-              transform: GradientRotation(45),
-              tileMode: TileMode.clamp),
+          color: ColorsResources.lightTransparent
         ),
         child: TextButton(
             onPressed: () {
-              DatePicker.showDatePicker(
+              DatePicker.showDateTimePicker(
                   context,
                   theme: DatePickerTheme(
-                    backgroundColor: ColorsResources.lightTransparent,
+                    backgroundColor: ColorsResources.primaryColorLightest.withOpacity(0.5),
+                    itemHeight: 73,
+                    headerColor: Colors.transparent,
+                    doneStyle: const TextStyle(
+                      color: ColorsResources.applicationGeeksEmpire,
+                      fontSize: 19,
+                      fontFamily: 'Sans',
+                    ),
+                    cancelStyle: const TextStyle(
+                      color: ColorsResources.darkTransparent,
+                      fontSize: 19,
+                      fontFamily: 'Sans',
+                    ),
+                    itemStyle: const TextStyle(
+                      color: ColorsResources.dark,
+                      fontSize: 23,
+                      fontFamily: 'Sans',
+                    ),
                   ),
                   showTitleActions: true,
                   onChanged: (date) {
 
-                    print('change $date');
-                    pickedDateTime = date;
-
                   },
                   onConfirm: (date) {
 
-                    print('confirm $date');
-
                     setState(() {
 
-                      pickedDataTimeText = date.toString();
+                      widget.pickedDataTimeText = DateFormat.yMMMMEEEEd("fa").format(date) +
+                          "\n" +
+                          DateFormat.Hms("fa").format(date);
+
 
                     });
 
                   },
                   currentTime: DateTime.now(), locale: LocaleType.fa);
             },
-            child: Text(
-              pickedDataTimeText,
-              style: TextStyle(color: Colors.blue),
+            child: Align(
+              alignment: AlignmentDirectional.center,
+              child: Text(
+                widget.pickedDataTimeText,
+                style: const TextStyle(
+                    color: ColorsResources.dark,
+                ),
+              ),
             )
         ),
       ),
