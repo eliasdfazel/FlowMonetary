@@ -56,21 +56,23 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
 
     }
 
-    return Padding(padding: const EdgeInsets.fromLTRB(0, 23, 0, 0),
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(0, 23, 0, 0),
       child: Column(
         children: [
           SizedBox(
             height: 299,
             width: double.infinity,
             child: ListView(
-              physics: const BouncingScrollPhysics(),
+              physics: const PageScrollPhysics(),
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.fromLTRB(3, 11, 0, 11),
               children: creditCardWidgets,
             ),
           )
         ],
-      ),);
+      ),
+    );
   }
 
   Widget creditCardWidgetItem(
@@ -97,7 +99,7 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
     ],).animate(animationController);
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 0, 31, 0),
+      padding: const EdgeInsets.fromLTRB(0, 0, 7, 0),
       child: SizedBox(
         height: 279,
         width: 373,
@@ -107,7 +109,7 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
             Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 13, 0),
+                  padding: const EdgeInsets.fromLTRB(0, 0, 7, 0),
                   child: SizedBox(
                       height: 199,
                       width: 291,
@@ -142,7 +144,7 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 20, 13, 0),
+                  padding: const EdgeInsets.fromLTRB(0, 20, 7, 0),
                   child: SizedBox(
                     height: 53,
                     width: 291,
