@@ -297,7 +297,11 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                             ),
                           ],
                         ),
-                      )
+                      ),
+                      const Divider(
+                        height: 13,
+                        color: Colors.transparent,
+                      ),
                     ]
                 ),
                 Positioned(

@@ -35,28 +35,29 @@ class StringsResources {
   static const String transactionTypeSend = "پرداخت";
 
   static const String featureTransactionsTitle = "تراکنش";
-  static const String featureTransactionsDescription = "تراکنش";
+  static const String featureTransactionsDescription = "شما میتوانید تمام اطلاعات مرتبط با تراکنش های اخیر خود را اعم از تاریخ انجام تراکنش / مبلغ و ... را کادر زیر در ردیف/ستون خواسته شده وارد کنید.";
 
   static const String featureChequesTitle = "چک";
-  static const String featureChequesDescription = "چک";
+  static const String featureChequesDescription = "شما میتوانید تمام اطلاعات مرتبط با چک خود را اعم از مبلغ / نام / تاریخ صدور و ... را کادر زیر در ردیف/ستون خواسته شده وارد کنید.";
 
   static const String featureCustomersTitle = "مشتری";
-  static const String featureCustomersDescription = "مشتری";
+  static const String featureCustomersDescription = "شما میتوانید تمام "
+      "اطلاعات مرتبط با اطلاعات مشتری خود را اعم از نام / اطلاعات شخصی و ... را کادر زیر در ردیف/ستون خواسته شده وارد کنید.";
 
   static const String featureProductsTitle = "محصول";
-  static const String featureProductsDescription = "محصول";
+  static const String featureProductsDescription = "شما میتوانید تمام اطلاعات مرتبط با محصولات خود را اعم از نام محصول / قیمت محصول و ... را کادر زیر در ردیف/ستون خواسته شده وارد کنید.";
 
   static const String featureSellInvoicesTitle = "فاکتور فروش";
-  static const String featureSellInvoicesDescription = "فاکتور فروش";
+  static const String featureSellInvoicesDescription = "شما میتوانید تمام اطلاعات مرتبط با فاکتور فروش خود را اعم از تاریخ / شماره مشتری و فاکتور و ... را کادر زیر در ردیف/ستون خواسته شده وارد کنید.";
 
   static const String featureBuyInvoicesTitle = "فاکتور خرید";
-  static const String featureBuyInvoicesDescription = "فاکتور خرید";
+  static const String featureBuyInvoicesDescription = "شما میتوانید تمام اطلاعات مرتبط با فاکتور خرید خود را اعم از تاریخ / شماره مشتری و فاکتور و ... را کادر زیر در ردیف/ستون خواسته شده وارد کنید.";
 
   static const String featureDebtorsTitle = "بدهکار";
-  static const String featureDebtorsDescription = "بدهکار";
+  static const String featureDebtorsDescription = "شما میتوانید تمام اطلاعات مرتبط با مقدار بدهکاری خود را اعم از مبلغ بدهی/ مقدار پرداختی ها و ... را کادر زیر در ردیف/ستون خواسته شده وارد کنید.";
 
-  static const String featureCreditorsTitle = "طلبکار";
-  static const String featureCreditorsDescription = "طلبکار";
+  static const String featureCreditorsTitle = "بستانکار";
+  static const String featureCreditorsDescription = "شما میتوانید تمام اطلاعات مرتبط با فاکتور خرید خود را اعم از مبلغ بستانکاری / اطلاعات کل حساب و ... را کادر زیر در ردیف/ستون خواسته شده وارد کنید.";
 
   static const String featureBudgetManagementsTitle = "مدیریت بودجه";
   static const String featureBudgetManagementsDescription = "مدیریت بودجه";
