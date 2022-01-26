@@ -756,7 +756,6 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
                         Navigator.pop(context);
 
-
                       },
                       child: const Image(
                         image: AssetImage("go_previous_icon.png"),
