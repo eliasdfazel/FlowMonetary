@@ -81,7 +81,7 @@ class _ColorSelectorView extends State<ColorSelectorView> {
           height: 103,
           width: double.infinity,
           child: ListView(
-            padding: const EdgeInsets.fromLTRB(3, 0, 3, 0),
+            padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
             scrollDirection: Axis.horizontal,
             physics: const BouncingScrollPhysics(),
             children: colorItem,
