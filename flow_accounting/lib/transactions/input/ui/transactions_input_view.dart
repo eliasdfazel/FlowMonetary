@@ -14,6 +14,7 @@ import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/database/io/inputs.dart';
 import 'package:flow_accounting/utils/calendar/ui/calendar_view.dart';
+import 'package:flow_accounting/utils/colors/color_selector.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
@@ -617,6 +618,25 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                       const Divider(
                         height: 13,
                         color: Colors.transparent,
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 99,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                  child: Directionality(
+                                    textDirection: TextDirection.rtl,
+                                    child: ColorSelectorView(),
+                                  )
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ]
                 ),

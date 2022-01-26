@@ -26,9 +26,6 @@ class CalendarView extends StatefulWidget {
 }
 class _CalendarView extends State<CalendarView> {
 
-  TextEditingController textControllerMoneyAmount = TextEditingController();
-  TextEditingController textControllerTransactionType = TextEditingController();
-
   @override
   void initState() {
 

@@ -47,6 +47,9 @@ class StringsResources {
   static const String transactionTypeReceive = "دریافت";
   static const String transactionTypeSend = "پرداخت";
 
+  static const String colorSelectorHint = "برای تمایز و دسته بندی رنگ مورد "
+      "نظر خود را انتخاب کنید";
+
   static const String featureTransactionsTitle = "تراکنش";
   static const String featureTransactionsDescription = "شما میتوانید تمام اطلاعات مرتبط با تراکنش های اخیر خود را اعم از تاریخ انجام تراکنش / مبلغ و ... را کادر زیر در ردیف/ستون خواسته شده وارد کنید.";
 
