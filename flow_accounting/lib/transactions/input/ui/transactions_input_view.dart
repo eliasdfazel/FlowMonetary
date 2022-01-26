@@ -758,7 +758,12 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
 
                       },
-                      child: Text("Back"),
+                      child: const Image(
+                        image: AssetImage("go_previous_icon.png"),
+                        fit: BoxFit.cover,
+                        width: 71,
+                        height: 71,
+                      ),
                     )
                 ),
                 Positioned(
