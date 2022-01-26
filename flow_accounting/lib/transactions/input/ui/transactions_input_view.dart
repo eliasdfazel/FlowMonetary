@@ -103,7 +103,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                   ),
                 ),
                 ListView(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 93),
+                    padding: const EdgeInsets.fromLTRB(0, 7, 0, 93),
                     scrollDirection: Axis.vertical,
                     physics: const BouncingScrollPhysics(),
                     children: [
@@ -126,7 +126,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(13, 7, 13, 19),
+                        padding: const EdgeInsets.fromLTRB(13, 13, 13, 19),
                         child: Text(
                           StringsResources.featureTransactionsDescription,
                           textDirection: TextDirection.rtl,
@@ -759,9 +759,9 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                       },
                       child: const Image(
                         image: AssetImage("go_previous_icon.png"),
-                        fit: BoxFit.cover,
-                        width: 71,
-                        height: 71,
+                        fit: BoxFit.scaleDown,
+                        width: 41,
+                        height: 41,
                       ),
                     )
                 ),
