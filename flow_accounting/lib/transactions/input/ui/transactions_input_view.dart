@@ -792,8 +792,6 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
                       databaseInputs.insertTransactionData(transactionData, DatabaseInputs.databaseTableName);
 
-                      print("object");
-
                     },
                     child: Container(
                         decoration: BoxDecoration(

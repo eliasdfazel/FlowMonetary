@@ -56,7 +56,7 @@ class _CalendarView extends State<CalendarView> {
                   theme: DatePickerTheme(
                     backgroundColor: ColorsResources.primaryColorLightest.withOpacity(0.5),
                     itemHeight: 73,
-                    headerColor: Colors.transparent,
+                    headerColor: ColorsResources.lightTransparent,
                     doneStyle: const TextStyle(
                       color: ColorsResources.applicationGeeksEmpire,
                       fontSize: 19,

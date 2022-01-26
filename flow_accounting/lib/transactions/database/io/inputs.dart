@@ -24,7 +24,7 @@ class DatabaseInputs {
   Future<void> insertTransactionData(TransactionsData transactionsData, String? tableName, {String usernameId = "Unknown"}) async {
 
     var tableNameQuery = (tableName != null) ? tableName : DatabaseInputs.databaseTableName;
-    tableNameQuery = "${usernameId}-${tableNameQuery}";
+    tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     final database = openDatabase(
       join(await getDatabasesPath(), transactionDatabase),
@@ -34,12 +34,14 @@ class DatabaseInputs {
           'CREATE TABLE IF NOT EXISTS $tableNameQuery(id INTEGER PRIMARY KEY, '
               'sourceCardNumber TEXT, '
               'targetCardNumber TEXT, '
-              'sourceBankName TEXT'
-              'targetBankName TEXT'
-              'sourceName TEXT'
-              'targetName TEXT'
-              'amount TEXT'
-              'time TEXT'
+              'sourceBankName TEXT, '
+              'targetBankName TEXT, '
+              'sourceUsername TEXT, '
+              'targetUsername TEXT, '
+              'amountMoney TEXT, '
+              'transactionType TEXT, '
+              'transactionTime TEXT, '
+              'colorTag TEXT'
               ')',
         );
       },
@@ -66,7 +68,7 @@ class DatabaseInputs {
     final databaseInstance = await database;
 
     var tableNameQuery = (tableName != null) ? tableName : DatabaseInputs.databaseTableName;
-    tableNameQuery = "${usernameId}-${tableNameQuery}";
+    tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     await databaseInstance.update(
       tableNameQuery,
@@ -92,7 +94,7 @@ class DatabaseInputs {
     final databaseInstance = await database;
 
     var tableNameQuery = (tableName != null) ? tableName : DatabaseInputs.databaseTableName;
-    tableNameQuery = "${usernameId}-${tableNameQuery}";
+    tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     await databaseInstance.delete(
       tableNameQuery,
