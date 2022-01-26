@@ -51,6 +51,8 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
     CalendarView calendarView = CalendarView();
 
+    ColorSelectorView colorSelectorView = ColorSelectorView();
+
     return SafeArea (child: MaterialApp (
       debugShowCheckedModeBanner: false,
       color: ColorsResources.black,
@@ -92,6 +94,8 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                 ),
                 ListView(
                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 93),
+                    scrollDirection: Axis.vertical,
+                    physics: const BouncingScrollPhysics(),
                     children: [
                       Padding(
                         padding: const EdgeInsets.fromLTRB(13, 13, 13, 0),
@@ -621,6 +625,30 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                       ),
                       SizedBox(
                         width: double.infinity,
+                        height: 37,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: const [
+                            Expanded(
+                              flex: 1,
+                              child: Padding(
+                                  padding: EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                  child: Directionality(
+                                    textDirection: TextDirection.rtl,
+                                    child: Text(
+                                      StringsResources.colorSelectorHint,
+                                      style: TextStyle(
+                                        fontSize: 15
+                                      ),
+                                    ),
+                                  )
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: double.infinity,
                         height: 99,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -629,10 +657,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                               flex: 1,
                               child: Padding(
                                   padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
-                                  child: Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: ColorSelectorView(),
-                                  )
+                                  child: colorSelectorView,
                               ),
                             ),
                           ],
