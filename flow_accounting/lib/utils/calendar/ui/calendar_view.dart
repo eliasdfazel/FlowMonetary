@@ -13,7 +13,7 @@ import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:intl/intl.dart';
+import 'package:shamsi_date/shamsi_date.dart';
 
 class CalendarView extends StatefulWidget {
   CalendarView({Key? key}) : super(key: key);
@@ -82,11 +82,26 @@ class _CalendarView extends State<CalendarView> {
                   },
                   onConfirm: (date) {
 
+                    Gregorian gregorianCalendar = Gregorian(date.year, date.month, date.day, date.hour, date.minute, 0, 0);
+                    var iranianCalendar = gregorianCalendar.toJalali();
+
+                    String yearNumber = iranianCalendar.formatter.yyyy.toString();
+                    String dayNumber = iranianCalendar.formatter.dd.toString();
+
+                    String weekdayName = iranianCalendar.formatter.wN.toString();
+                    String monthName = iranianCalendar.formatter.mN.toString();
+
                     setState(() {
 
-                      widget.pickedDataTimeText = DateFormat.yMMMMEEEEd("fa").format(date) +
-                          "\n" +
-                          DateFormat.Hms("fa").format(date);
+                      widget.pickedDataTimeText = "" +
+                          weekdayName + " " +
+                          dayNumber + " " +
+                          monthName + " " +
+                          yearNumber +
+                          "\n"
+                          "ساعت" + " " +
+                          "${iranianCalendar.hour}:${iranianCalendar.minute}";
+
 
 
                     });
@@ -96,10 +111,13 @@ class _CalendarView extends State<CalendarView> {
             },
             child: Align(
               alignment: AlignmentDirectional.center,
-              child: Text(
-                widget.pickedDataTimeText,
-                style: const TextStyle(
+              child: Directionality(
+                textDirection: TextDirection.rtl,
+                child: Text(
+                  widget.pickedDataTimeText,
+                  style: const TextStyle(
                     color: ColorsResources.dark,
+                  ),
                 ),
               ),
             )

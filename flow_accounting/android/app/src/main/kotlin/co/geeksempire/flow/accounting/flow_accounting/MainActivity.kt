@@ -1,10 +1,13 @@
 package co.geeksempire.flow.accounting.flow_accounting
 
 import io.flutter.embedding.android.FlutterActivity
+import android.view.WindowManager;
+import android.view.WindowManager.LayoutParams;
+import android.os.Bundle;
 
 class MainActivity: FlutterActivity() {
-    override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
+    override fun onCreate(bundle: Bundle?) {
         window.addFlags(LayoutParams.FLAG_SECURE)
-        super.configureFlutterEngine(flutterEngine)
+        super.onCreate(bundle)
     }
 }
