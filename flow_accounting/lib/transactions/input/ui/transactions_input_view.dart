@@ -649,7 +649,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                       ),
                       SizedBox(
                         width: double.infinity,
-                        height: 99,
+                        height: 103,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [

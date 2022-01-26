@@ -8,7 +8,6 @@
  * https://opensource.org/licenses/MIT
  */
 
-import 'dart:math';
 
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +16,7 @@ import 'package:intl/date_symbol_data_local.dart';
 class ColorSelectorView extends StatefulWidget {
   ColorSelectorView({Key? key}) : super(key: key);
 
-  Color backgroundColor = ColorsResources.dark;
+  Color backgroundColor = ColorsResources.primaryColor.withOpacity(0.7);
 
   @override
   _ColorSelectorView createState() => _ColorSelectorView();
@@ -44,24 +43,21 @@ class _ColorSelectorView extends State<ColorSelectorView> {
     List<Widget> colorItem = [];
 
     List<Color> listOfColors = [
-      ColorsResources.dark,
+      ColorsResources.primaryColor,
       Colors.pinkAccent,
-      Colors.deepOrange,
       Colors.blueGrey,
+      Colors.deepOrange,
       Colors.blue,
+      Colors.yellowAccent,
       Colors.cyan,
       Colors.redAccent,
-      Colors.greenAccent,
-      Colors.green,
       Colors.lightGreenAccent,
-      Colors.yellowAccent,
       Colors.indigoAccent,
-      Colors.deepPurple
+      Colors.red.shade700,
+      Colors.green,
+      Colors.deepPurple,
+      Colors.greenAccent
     ];
-
-    int randomSeed = Random().nextInt(listOfColors.length - 1);
-
-    listOfColors.shuffle(Random(listOfColors.length~/randomSeed));
 
     for (var aColor in listOfColors) {
 
@@ -79,13 +75,13 @@ class _ColorSelectorView extends State<ColorSelectorView> {
               bottomLeft: Radius.circular(17),
               bottomRight: Radius.circular(17)
           ),
-          color: widget.backgroundColor
+          color: widget.backgroundColor.withOpacity(0.9)
         ),
         child: SizedBox(
-          height: 99,
+          height: 103,
           width: double.infinity,
           child: ListView(
-            padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+            padding: const EdgeInsets.fromLTRB(3, 0, 3, 0),
             scrollDirection: Axis.horizontal,
             physics: const BouncingScrollPhysics(),
             children: colorItem,
@@ -110,10 +106,10 @@ class _ColorSelectorView extends State<ColorSelectorView> {
       child: Align(
         alignment: Alignment.center,
         child: Padding(
-          padding: EdgeInsets.fromLTRB(3, 0, 3, 0),
+          padding: const EdgeInsets.fromLTRB(3, 0, 3, 0),
           child: Container(
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(51.0),
                     topRight: Radius.circular(51.0),
                     bottomLeft: Radius.circular(51.0),
@@ -121,19 +117,19 @@ class _ColorSelectorView extends State<ColorSelectorView> {
                 ),
                 border: Border(
                     top: BorderSide(
-                      color: ColorsResources.lightTransparent,
+                      color: ColorsResources.white.withOpacity(0.7),
                       width: 3,
                     ),
                     bottom: BorderSide(
-                      color: ColorsResources.lightTransparent,
+                      color: ColorsResources.white.withOpacity(0.7),
                       width: 3,
                     ),
                     left: BorderSide(
-                      color: ColorsResources.lightTransparent,
+                      color: ColorsResources.white.withOpacity(0.7),
                       width: 3,
                     ),
                     right: BorderSide(
-                      color: ColorsResources.lightTransparent,
+                      color: ColorsResources.white.withOpacity(0.7),
                       width: 3,
                     )
                 ),
