@@ -1,20 +1,20 @@
-import 'package:blur/blur.dart';
-import 'package:flow_accounting/resources/ColorsResources.dart';
-import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flutter/material.dart';
 
 void main() {
+
+  WidgetsFlutterBinding.ensureInitialized();
+
   runApp(const MaterialApp( home: TransactionsOutputView()));
+
 }
 
 class TransactionsOutputView extends StatefulWidget {
   const TransactionsOutputView({Key? key}) : super(key: key);
 
   @override
-  _State createState() => _State();
+  _TransactionsOutputView createState() => _TransactionsOutputView();
 }
-
-class _State extends State<TransactionsOutputView> {
+class _TransactionsOutputView extends State<TransactionsOutputView> {
 
   TextEditingController textEditorControllerName = TextEditingController();
   TextEditingController textEditorControllerEmail = TextEditingController();
@@ -74,34 +74,23 @@ class _State extends State<TransactionsOutputView> {
                   ),
                 ],
               ),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(17),
-                      topRight: Radius.circular(17),
-                      bottomLeft: Radius.circular(17),
-                      bottomRight: Radius.circular(17)
-                  ),
-                  gradient: LinearGradient(
-                      colors: [
-                        ColorsResources.grayLight.withOpacity(0.5),
-                        ColorsResources.greenGrayLight.withOpacity(0.5),
-                      ],
-                      begin: FractionalOffset(0.0, 0.0),
-                      end: FractionalOffset(1.0, 0.0),
-                      stops: [0.0, 1.0],
-                      transform: GradientRotation(45),
-                      tileMode: TileMode.clamp
-                  ),
-                ),
-                child: Text(
-                  StringsResources.submitText,
-                ).frosted(
-                  blur: 7.0,
-                  borderRadius: BorderRadius.circular(17),
-                  padding: EdgeInsets.fromLTRB(11, 5, 11, 5),
-                ),
-              )
+              Positioned(
+                  top: 19,
+                  left: 13,
+                  child: InkWell(
+                    onTap: () {
+
+                      Navigator.pop(context);
+
+                    },
+                    child: const Image(
+                      image: AssetImage("go_previous_icon.png"),
+                      fit: BoxFit.scaleDown,
+                      width: 41,
+                      height: 41,
+                    ),
+                  )
+              ),
             ],
           )
       ),
