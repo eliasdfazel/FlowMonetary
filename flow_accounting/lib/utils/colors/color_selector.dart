@@ -8,6 +8,8 @@
  * https://opensource.org/licenses/MIT
  */
 
+import 'dart:math';
+
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -43,14 +45,23 @@ class _ColorSelectorView extends State<ColorSelectorView> {
 
     List<Color> listOfColors = [
       ColorsResources.dark,
-      ColorsResources.blueGray,
-      ColorsResources.blueGreen,
-      ColorsResources.greenGray,
-      ColorsResources.grayLight,
-      ColorsResources.primaryColor,
-      ColorsResources.primaryColorLight,
-      ColorsResources.gameGeeksEmpire,
+      Colors.pinkAccent,
+      Colors.deepOrange,
+      Colors.blueGrey,
+      Colors.blue,
+      Colors.cyan,
+      Colors.redAccent,
+      Colors.greenAccent,
+      Colors.green,
+      Colors.lightGreenAccent,
+      Colors.yellowAccent,
+      Colors.indigoAccent,
+      Colors.deepPurple
     ];
+
+    int randomSeed = Random().nextInt(listOfColors.length - 1);
+
+    listOfColors.shuffle(Random(listOfColors.length~/randomSeed));
 
     for (var aColor in listOfColors) {
 
