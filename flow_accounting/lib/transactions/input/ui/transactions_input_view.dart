@@ -591,6 +591,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                       cursorColor: ColorsResources.primaryColor,
                                       autocorrect: true,
                                       autofocus: false,
+                                      keyboardType: TextInputType.number,
                                       decoration: const InputDecoration(
                                         alignLabelWithHint: true,
                                         border: OutlineInputBorder(
@@ -658,6 +659,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                       cursorColor: ColorsResources.primaryColor,
                                       autocorrect: true,
                                       autofocus: false,
+                                      keyboardType: TextInputType.number,
                                       decoration: const InputDecoration(
                                         alignLabelWithHint: true,
                                         border: OutlineInputBorder(
@@ -747,6 +749,19 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                     ]
                 ),
                 Positioned(
+                    top: 19,
+                    left: 13,
+                    child: InkWell(
+                      onTap: () {
+
+                        Navigator.pop(context);
+
+
+                      },
+                      child: Text("Back"),
+                    )
+                ),
+                Positioned(
                   bottom: 19,
                   left: 71,
                   right: 71,
@@ -778,7 +793,6 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                       databaseInputs.insertTransactionData(transactionData, DatabaseInputs.databaseTableName);
 
                       print("object");
-                      Navigator.pop(context);
 
                     },
                     child: Container(
