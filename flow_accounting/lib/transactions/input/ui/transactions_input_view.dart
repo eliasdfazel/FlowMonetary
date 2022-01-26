@@ -164,6 +164,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                       cursorColor: ColorsResources.primaryColor,
                                       autocorrect: true,
                                       autofocus: false,
+                                      keyboardType: TextInputType.number,
                                       decoration: const InputDecoration(
                                         alignLabelWithHint: true,
                                         border: OutlineInputBorder(
@@ -187,6 +188,16 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                         hintStyle: TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
+                                        ),
+                                        errorBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.red, width: 5.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
                                         ),
                                       ),
                                     ),
@@ -362,6 +373,16 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
+                                        errorBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.red, width: 5.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
                                       ),
                                     ),
                                   )
@@ -405,6 +426,16 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                         hintStyle: TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
+                                        ),
+                                        errorBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.red, width: 5.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
                                         ),
                                       ),
                                     ),
@@ -463,6 +494,16 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
+                                        errorBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.red, width: 5.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
                                       ),
                                     ),
                                   )
@@ -506,6 +547,16 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                         hintStyle: TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
+                                        ),
+                                        errorBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.red, width: 5.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
                                         ),
                                       ),
                                     ),
@@ -564,6 +615,16 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
+                                        errorBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.red, width: 5.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
                                       ),
                                     ),
                                   )
@@ -620,6 +681,16 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                         hintStyle: TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
+                                        ),
+                                        errorBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.red, width: 5.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
                                         ),
                                       ),
                                     ),
@@ -705,6 +776,9 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                       );
 
                       databaseInputs.insertTransactionData(transactionData, DatabaseInputs.databaseTableName);
+
+                      print("object");
+                      Navigator.pop(context);
 
                     },
                     child: Container(
