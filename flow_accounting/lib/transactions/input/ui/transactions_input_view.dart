@@ -34,8 +34,17 @@ class TransactionsInputView extends StatefulWidget {
 }
 class _TransactionsInputViewState extends State<TransactionsInputView> {
 
-  TextEditingController textControllerMoneyAmount = TextEditingController();
-  TextEditingController textControllerTransactionType = TextEditingController();
+  TextEditingController controllerMoneyAmount = TextEditingController();
+
+  TextEditingController controllerTransactionSourceName = TextEditingController();
+  TextEditingController controllerTransactionSourceBank = TextEditingController();
+  TextEditingController controllerTransactionSourceCard = TextEditingController();
+
+  TextEditingController controllerTransactionTargetName = TextEditingController();
+  TextEditingController controllerTransactionTargetBank = TextEditingController();
+  TextEditingController controllerTransactionTargetCard = TextEditingController();
+
+  String transactionType = TransactionsData.TransactionType_Send;
 
   @override
   void initState() {
@@ -147,7 +156,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: TextField(
-                                      controller: textControllerTransactionType,
+                                      controller: controllerMoneyAmount,
                                       textAlign: TextAlign.right,
                                       textDirection: TextDirection.rtl,
                                       textAlignVertical: TextAlignVertical.bottom,
@@ -293,7 +302,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                       }).toList(),
                                       onChanged: (value) {
 
-
+                                        transactionType = value.toString();
 
                                       },
 
@@ -321,7 +330,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: TextField(
-                                      controller: textControllerTransactionType,
+                                      controller: controllerTransactionSourceName,
                                       textAlign: TextAlign.right,
                                       textDirection: TextDirection.rtl,
                                       textAlignVertical: TextAlignVertical.bottom,
@@ -365,7 +374,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: TextField(
-                                      controller: textControllerTransactionType,
+                                      controller: controllerTransactionTargetName,
                                       textAlign: TextAlign.right,
                                       textDirection: TextDirection.rtl,
                                       textAlignVertical: TextAlignVertical.bottom,
@@ -422,7 +431,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: TextField(
-                                      controller: textControllerTransactionType,
+                                      controller: controllerTransactionSourceBank,
                                       textAlign: TextAlign.right,
                                       textDirection: TextDirection.rtl,
                                       textAlignVertical: TextAlignVertical.bottom,
@@ -466,7 +475,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: TextField(
-                                      controller: textControllerTransactionType,
+                                      controller: controllerTransactionTargetBank,
                                       textAlign: TextAlign.right,
                                       textDirection: TextDirection.rtl,
                                       textAlignVertical: TextAlignVertical.bottom,
@@ -523,7 +532,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: TextField(
-                                      controller: textControllerTransactionType,
+                                      controller: controllerTransactionSourceCard,
                                       textAlign: TextAlign.right,
                                       textDirection: TextDirection.rtl,
                                       textAlignVertical: TextAlignVertical.bottom,
@@ -580,7 +589,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: TextField(
-                                      controller: textControllerTransactionType,
+                                      controller: controllerTransactionTargetCard,
                                       textAlign: TextAlign.right,
                                       textDirection: TextDirection.rtl,
                                       textAlignVertical: TextAlignVertical.bottom,
@@ -680,17 +689,17 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                       TransactionsData transactionData = TransactionsData(
                         id: timeNow,
 
-                        amountMoney: '',
-                        transactionType: '',
+                        amountMoney: controllerMoneyAmount.text,
+                        transactionType: transactionType,
                         transactionTime: calendarView.pickedDataTimeText,
 
-                        sourceUsername: '',
-                        sourceBankName: '',
-                        sourceCardNumber: '',
+                        sourceUsername: controllerTransactionSourceName.text,
+                        sourceBankName: controllerTransactionSourceBank.text,
+                        sourceCardNumber: controllerTransactionSourceCard.text,
 
-                        targetUsername: '',
-                        targetBankName: '',
-                        targetCardNumber: '',
+                        targetUsername: controllerTransactionTargetName.text,
+                        targetBankName: controllerTransactionTargetBank.text,
+                        targetCardNumber: controllerTransactionTargetCard.text,
 
                         colorTag: colorSelectorView.selectedColor.value,
                       );
