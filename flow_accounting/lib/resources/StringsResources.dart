@@ -27,10 +27,20 @@ class StringsResources {
   static const String transactionAmount = "مبلغ  دریافتی یا پرداختی را وارد"
       " کنید";
   static const String transactionAmountHint = "مبلغ پول";
+
   static const String transactionSourceName = "نام صاحب حساب مبدا";
   static const String transactionSourceNameHint = "نام مبدا";
+  static const String transactionSourceBank = "نام بانک حساب مبدا";
+  static const String transactionSourceBankHint = "نام بانک";
+  static const String transactionSourceCard = "شماره کارت مبدا را وارد کنید";
+  static const String transactionSourceCardHint = "کارت مبدا";
+
   static const String transactionTargetName = "نام صاحب حساب مقصد";
   static const String transactionTargetNameHint = "نام مقصد";
+  static const String transactionTargetBank = "نام بانک حساب مقصد";
+  static const String transactionTargetBankHint = "نام بانک";
+  static const String transactionTargetCard = "شماره کارت مقصد را وارد کنید";
+  static const String transactionTargetCardHint = "کارت مقصد";
 
   static const String transactionType = "تراکنش دریافتی یا پرداختی است؟";
   static const String transactionTypeHint = "نوع تراکنش";
