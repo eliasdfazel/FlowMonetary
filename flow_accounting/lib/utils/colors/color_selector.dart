@@ -16,7 +16,7 @@ import 'package:intl/date_symbol_data_local.dart';
 class ColorSelectorView extends StatefulWidget {
   ColorSelectorView({Key? key}) : super(key: key);
 
-  Color backgroundColor = ColorsResources.primaryColor.withOpacity(0.7);
+  Color selectedColor = ColorsResources.primaryColor.withOpacity(0.7);
 
   @override
   _ColorSelectorView createState() => _ColorSelectorView();
@@ -75,7 +75,7 @@ class _ColorSelectorView extends State<ColorSelectorView> {
               bottomLeft: Radius.circular(17),
               bottomRight: Radius.circular(17)
           ),
-          color: widget.backgroundColor.withOpacity(0.9)
+          color: widget.selectedColor.withOpacity(0.9)
         ),
         child: SizedBox(
           height: 103,
@@ -98,7 +98,7 @@ class _ColorSelectorView extends State<ColorSelectorView> {
 
         setState(() {
 
-          widget.backgroundColor = aColor;
+          widget.selectedColor = aColor;
 
         });
 

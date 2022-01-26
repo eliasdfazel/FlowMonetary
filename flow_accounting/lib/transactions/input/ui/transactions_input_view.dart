@@ -13,6 +13,7 @@ import 'package:blur/blur.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/database/io/inputs.dart';
+import 'package:flow_accounting/transactions/database/structures/tables_structure.dart';
 import 'package:flow_accounting/utils/calendar/ui/calendar_view.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
 import 'package:flutter/material.dart';
@@ -676,8 +677,25 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
                       var databaseInputs = DatabaseInputs();
 
+                      TransactionsData transactionData = TransactionsData(
+                        id: timeNow,
 
+                        amountMoney: '',
+                        transactionType: '',
+                        transactionTime: calendarView.pickedDataTimeText,
 
+                        sourceUsername: '',
+                        sourceBankName: '',
+                        sourceCardNumber: '',
+
+                        targetUsername: '',
+                        targetBankName: '',
+                        targetCardNumber: '',
+
+                        colorTag: colorSelectorView.selectedColor.value,
+                      );
+
+                      databaseInputs.insertTransactionData(transactionData, DatabaseInputs.databaseTableName);
 
                     },
                     child: Container(
