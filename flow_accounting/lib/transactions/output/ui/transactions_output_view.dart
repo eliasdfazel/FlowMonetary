@@ -1,3 +1,5 @@
+import 'package:flow_accounting/resources/ColorsResources.dart';
+import 'package:flow_accounting/transactions/database/structures/tables_structure.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,9 +18,6 @@ class TransactionsOutputView extends StatefulWidget {
 }
 class _TransactionsOutputView extends State<TransactionsOutputView> {
 
-  TextEditingController textEditorControllerName = TextEditingController();
-  TextEditingController textEditorControllerEmail = TextEditingController();
-
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
@@ -29,72 +28,76 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
   @override
   Widget build(BuildContext context) {
 
+    List<TransactionsData> allTransactions = [];
+
+
     return SafeArea(child: MaterialApp(
+      debugShowCheckedModeBanner: false,
+      color: ColorsResources.black,
+      theme: ThemeData(
+        fontFamily: 'Sans',
+        pageTransitionsTheme: const PageTransitionsTheme(builders: {
+          TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+          TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+        }),
+      ),
       home: Scaffold(
-          body: Stack(
-            children: [
-              CustomScrollView(
-                slivers: <Widget>[
-                  const SliverAppBar(
-                    pinned: true,
-                    expandedHeight: 70.0,
-                    flexibleSpace: FlexibleSpaceBar(
-                      title: Text('Demo'),
-                    ),
-                  ),
-                  SliverGrid(
-                    gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                      maxCrossAxisExtent: 200.0,
-                      mainAxisSpacing: 10.0,
-                      crossAxisSpacing: 10.0,
-                      childAspectRatio: 4.0,
-                    ),
-                    delegate: SliverChildBuilderDelegate(
-                          (BuildContext context, int index) {
-                        return Container(
-                          alignment: Alignment.center,
-                          color: Colors.teal[100 * (index % 9)],
-                          child: Text('Grid Item $index'),
-                        );
-                      },
-                      childCount: 20,
-                    ),
-                  ),
-                  SliverFixedExtentList(
-                    itemExtent: 50.0,
-                    delegate: SliverChildBuilderDelegate(
-                          (BuildContext context, int index) {
-                        return Container(
-                          alignment: Alignment.center,
-                          color: Colors.lightBlue[100 * (index % 9)],
-                          child: Text('List Item $index'),
-                        );
-                      },
-                    ),
-                  ),
-                ],
-              ),
-              Positioned(
-                  top: 19,
-                  left: 13,
-                  child: InkWell(
-                    onTap: () {
+        body: Stack(
+          children: [
+            CustomScrollView(
+              physics: const BouncingScrollPhysics(),
+              slivers: <Widget> [
+                SliverFixedExtentList(
+                  itemExtent: 50.0,
+                  delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
 
-                      Navigator.pop(context);
+                    return outputItem(index, allTransactions[index]);
 
-                    },
+                  }, childCount:  allTransactions.length),
+                ),
+              ],
+            ),
+            Positioned(
+                top: 19,
+                left: 13,
+                child:  InkWell(
+                  onTap: () {
+
+                    Navigator.pop(context);
+
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                              color: ColorsResources.blueGrayLight.withOpacity(0.7),
+                              blurRadius: 7,
+                              spreadRadius: 0.1,
+                              offset: const Offset(0.0, 3.7)
+                          )
+                        ]
+                    ),
                     child: const Image(
                       image: AssetImage("go_previous_icon.png"),
                       fit: BoxFit.scaleDown,
                       width: 41,
                       height: 41,
                     ),
-                  )
-              ),
-            ],
-          )
+                  ),
+                )
+            ),
+          ],
+        )
       ),
     ));
+  }
+
+  Widget outputItem(int itemIndex, TransactionsData transactionsData) {
+
+    return Container(
+      child: Text("Test"),
+    );
   }
 
   void initializeReportsOverview() async {
