@@ -220,7 +220,7 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
                   Expanded(
                     flex: 7,
                     child: Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 7, 0),
+                      padding: const EdgeInsets.fromLTRB(0, 0, 7, 0),
                       child: Container(
                         color: Colors.transparent,
                         child: Align(
@@ -257,11 +257,11 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
 
     var databaseContents = await databaseQueries.getAllTransactions(DatabaseInputs.databaseTableName);
 
-    databaseContents.forEach((element) {
+    for (var element in databaseContents) {
 
       preparedAllTransactionsItem.add(outputItem(element));
 
-    });
+    }
 
     setState(() {
 
