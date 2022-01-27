@@ -2,6 +2,7 @@ import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/transactions/database/io/inputs.dart';
 import 'package:flow_accounting/transactions/database/io/queries.dart';
 import 'package:flow_accounting/transactions/database/structures/tables_structure.dart';
+import 'package:flow_accounting/utils/extensions/CreditCardNumber.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -145,27 +146,28 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
               )
             ]
         ),
-        child: Row(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Expanded(
-              flex: 19,
-              child: Padding(
-                padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                child: Container(
-                  color: Colors.black,
-                ),
-              ),
-            ),
-            Expanded(
-                flex: 5,
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(0, 7, 7, 0),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 59,
-                        width: double.infinity,
+            SizedBox(
+              height: 99,
+              width: double.infinity,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Expanded(
+                    flex: 19,
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                      child: Container(
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                      flex: 5,
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 7, 7, 0),
                         child: Align(
                           alignment: Alignment.center,
                           child: Container(
@@ -179,16 +181,48 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
                                 transactionTypeMark,
                                 style: TextStyle(
                                     color: transactionTypeColor,
-                                    fontSize: 47
+                                    fontSize: 65
                                 ),
                               ),
                             ),
                           ),
                         ),
+                      )
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 51,
+              width: double.infinity,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Expanded(
+                      flex: 13,
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
+                        child: Container(
+                          color: Colors.transparent,
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: Text(
+                              prepareCreditCard(transactionsData.sourceCardNumber),
+                              style: const TextStyle(
+                                  color: ColorsResources.dark,
+                                  fontSize: 17
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
-                      SizedBox(
-                        height: 51,
-                        width: double.infinity,
+                  ),
+                  Expanded(
+                    flex: 7,
+                    child: Padding(
+                      padding: EdgeInsets.fromLTRB(0, 0, 7, 0),
+                      child: Container(
+                        color: Colors.transparent,
                         child: Align(
                           alignment: Alignment.center,
                           child: Directionality(
@@ -196,17 +230,19 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
                             child: Text(
                               transactionsData.transactionTime,
                               style: const TextStyle(
-                                  color: ColorsResources.dark,
-                                  fontSize: 12
+                                color: ColorsResources.dark,
+                                fontSize: 11,
+                                fontWeight: FontWeight.bold
                               ),
                             ),
                           ),
                         ),
                       ),
-                    ],
+                    ),
                   ),
-                )
-            ),
+                ],
+              ),
+            )
           ],
         ),
       ),
