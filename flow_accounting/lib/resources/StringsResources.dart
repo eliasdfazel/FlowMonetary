@@ -76,9 +76,9 @@ class StringsResources {
   static const String featureCreditorsDescription = "شما میتوانید تمام اطلاعات مرتبط با فاکتور خرید خود را اعم از مبلغ بستانکاری / اطلاعات کل حساب و ... را کادر زیر در ردیف/ستون خواسته شده وارد کنید.";
 
   static const String featureBudgetManagementsTitle = "مدیریت بودجه";
-  static const String featureBudgetManagementsDescription = "مدیریت بودجه";
+  static const String featureBudgetManagementsDescription = "شما میتوانید تمام اطلاعات مرتبط با مدیریت بودجه بندی خود را اعم از ثبت تاریخ دقیق کارها/ بررسی دقیق هزینه ها و ... را کادر زیر در ردیف/ستون خواسته شده وارد کنید.";
 
   static const String featureLoansTitle = "وام";
-  static const String featureLoansDescription = "وام";
+  static const String featureLoansDescription = "شما میتوانید تمام اطلاعات مرتبط با وام گرفته شده خود را اعم از مبلغ وام/ تاریخ و ... را کادر زیر در ردیف/ستون خواسته شده وارد کنید.";
 
 }
