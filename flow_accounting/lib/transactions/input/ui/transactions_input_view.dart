@@ -750,27 +750,6 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                 ),
                 Positioned(
                     top: 19,
-                    left: 0,
-                    child: SizedBox(
-                      height: 51,
-                      width: 71,
-                      child: Container(
-                        decoration: const BoxDecoration(
-                          gradient: RadialGradient(
-                              colors: [
-                                ColorsResources.primaryColor,
-                                Colors.transparent,
-                              ],
-                              center: Alignment.center,
-                              radius: 0.47,
-                              tileMode: TileMode.clamp
-                          ),
-                        ),
-                      ),
-                    )
-                ),
-                Positioned(
-                    top: 19,
                     left: 13,
                     child:  InkWell(
                       onTap: () {
@@ -778,11 +757,24 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                         Navigator.pop(context);
 
                       },
-                      child: const Image(
-                        image: AssetImage("go_previous_icon.png"),
-                        fit: BoxFit.scaleDown,
-                        width: 41,
-                        height: 41,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                            BoxShadow(
+                              color: ColorsResources.blueGrayLight.withOpacity(0.7),
+                              blurRadius: 7,
+                              spreadRadius: 0.1,
+                              offset: const Offset(0.0, 3.7)
+                            )
+                          ]
+                        ),
+                        child: const Image(
+                          image: AssetImage("go_previous_icon.png"),
+                          fit: BoxFit.scaleDown,
+                          width: 41,
+                          height: 41,
+                        ),
                       ),
                     )
                 ),

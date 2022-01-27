@@ -105,11 +105,7 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
     //
     // nameQuery = (await databaseQueries.extractFinancialReport(databaseContents)).sourceCardNumber;
     // typeQuery = (await databaseQueries.extractFinancialReport(databaseContents)).type.toString();
-    //
-    // setState(() {
-    //   nameQuery;
-    //   typeQuery;
-    // });
+
 
   }
 }
