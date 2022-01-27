@@ -21,6 +21,7 @@ class TransactionsOutputView extends StatefulWidget {
 class _TransactionsOutputView extends State<TransactionsOutputView> {
 
   List<TransactionsData> allTransactions = [];
+  List<Widget> allTransactionsItems = [];
 
   @override
   void dispose() {
@@ -51,18 +52,10 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
       home: Scaffold(
         body: Stack(
           children: [
-            CustomScrollView(
+            ListView(
+              padding: const EdgeInsets.fromLTRB(0, 73, 0, 0),
               physics: const BouncingScrollPhysics(),
-              slivers: <Widget> [
-                SliverFixedExtentList(
-                  itemExtent: 50.0,
-                  delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
-
-                    return outputItem(index, allTransactions[index]);
-
-                  }, childCount:  allTransactions.length),
-                ),
-              ],
+              children: allTransactionsItems,
             ),
             Positioned(
                 top: 19,
@@ -100,28 +93,146 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
     ));
   }
 
-  Widget outputItem(int itemIndex, TransactionsData transactionsData) {
+  Widget outputItem(TransactionsData transactionsData) {
 
-    return Container(
-      child: Text(transactionsData.id.toString()),
+    String transactionTypeMark = TransactionsData.TransactionType_Send;
+    Color transactionTypeColor = ColorsResources.dark;
+
+    switch (transactionsData.transactionType) {
+      case TransactionsData.TransactionType_Send: {
+
+        transactionTypeMark = TransactionsData.TransactionType_Send;
+        transactionTypeColor = Colors.red;
+
+        break;
+      }
+      case TransactionsData.TransactionType_Receive: {
+
+        transactionTypeMark = TransactionsData.TransactionType_Receive;
+        transactionTypeColor = Colors.green;
+
+        break;
+      }
+    }
+
+    return Padding(
+      padding: const  EdgeInsets.fromLTRB(13, 7, 13, 13),
+      child: Container(
+        decoration: BoxDecoration(
+            borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(17),
+                topRight: Radius.circular(17),
+                bottomLeft: Radius.circular(17),
+                bottomRight: Radius.circular(17)
+            ),
+            gradient: const LinearGradient(
+                colors: [
+                  ColorsResources.white,
+                  ColorsResources.light,
+                ],
+                begin: FractionalOffset(0.0, 0.0),
+                end: FractionalOffset(1.0, 0.0),
+                stops: [0.0, 1.0],
+                transform: GradientRotation(45),
+                tileMode: TileMode.clamp),
+            boxShadow: [
+              BoxShadow(
+                  color: Color(transactionsData.colorTag),
+                  blurRadius: 7,
+                  spreadRadius: 0,
+                  blurStyle: BlurStyle.normal,
+                  offset: const Offset(0.0, 7.0)
+              )
+            ]
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Expanded(
+              flex: 19,
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                child: Container(
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            Expanded(
+                flex: 5,
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(0, 7, 7, 0),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 59,
+                        width: double.infinity,
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: transactionTypeColor.withOpacity(0.3),
+                            ),
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: Text(
+                                transactionTypeMark,
+                                style: TextStyle(
+                                    color: transactionTypeColor,
+                                    fontSize: 47
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 51,
+                        width: double.infinity,
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Directionality(
+                            textDirection: TextDirection.rtl,
+                            child: Text(
+                              transactionsData.transactionTime,
+                              style: const TextStyle(
+                                  color: ColorsResources.dark,
+                                  fontSize: 12
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+            ),
+          ],
+        ),
+      ),
     );
   }
 
   void retrieveAllTransactions() async {
 
+    List<Widget> preparedAllTransactionsItem = [];
+
     var databaseQueries = DatabaseQueries();
 
     var databaseContents = await databaseQueries.getAllTransactions(DatabaseInputs.databaseTableName);
 
-    setState(() {
+    databaseContents.forEach((element) {
 
-      allTransactions = databaseContents;
+      preparedAllTransactionsItem.add(outputItem(element));
 
     });
 
-    // nameQuery = (await databaseQueries.extractFinancialReport(databaseContents)).sourceCardNumber;
-    // typeQuery = (await databaseQueries.extractFinancialReport(databaseContents)).type.toString();
+    setState(() {
 
+      allTransactionsItems = preparedAllTransactionsItem;
+
+    });
 
   }
+
 }

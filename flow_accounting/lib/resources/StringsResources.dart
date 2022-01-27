@@ -23,6 +23,7 @@ class StringsResources {
   static const String searchText = "جستجو";
   static const String searchFeaturesText = "امکان مورد نظر خود را جستجو کنید";
 
+  static const String transactionAll = "تمام تراکنش ها";
   static const String transactionTime = "زمان تراکنش";
   static const String transactionAmount = "مبلغ  دریافتی یا پرداختی را وارد"
       " کنید";
