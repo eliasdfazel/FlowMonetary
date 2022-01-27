@@ -18,7 +18,7 @@ import 'package:sqflite/sqflite.dart';
 
 class DatabaseQueries {
 
-  Future<List<TransactionsData>> getAllTransactions(String? tableName, {String usernameId = ""}) async {
+  Future<List<TransactionsData>> getAllTransactions(String? tableName, {String usernameId = "Unknown"}) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), DatabaseInputs.transactionDatabase),
@@ -27,7 +27,7 @@ class DatabaseQueries {
     final databaseInstance = await database;
 
     var tableNameQuery = (tableName != null) ? tableName : DatabaseInputs.databaseTableName;
-    tableNameQuery = "${usernameId}-${tableNameQuery}";
+    tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     final List<Map<String, dynamic>> maps = await databaseInstance.query(tableNameQuery);
 
@@ -43,13 +43,13 @@ class DatabaseQueries {
         amountMoney: maps[i]['amountMoney'],
         transactionType: maps[i]['transactionType'],
         transactionTime: maps[i]['transactionTime'],
-        colorTag: maps[i]['colorTag'],
+        colorTag: int.parse(maps[i]['colorTag'].toString()),
       );
     });
 
   }
 
-  Future<Map<String, Object?>> queryFinancialReport(int id, String? tableName, {String usernameId = ""}) async {
+  Future<Map<String, Object?>> queryFinancialReport(int id, String? tableName, {String usernameId = "Unknown"}) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), DatabaseInputs.transactionDatabase),
@@ -58,7 +58,7 @@ class DatabaseQueries {
     final databaseInstance = await database;
 
     var tableNameQuery = (tableName != null) ? tableName : DatabaseInputs.databaseTableName;
-    tableNameQuery = "${usernameId}-${tableNameQuery}";
+    tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     var databaseContents = await databaseInstance.query(
       tableNameQuery,
