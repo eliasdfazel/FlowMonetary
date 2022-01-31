@@ -128,162 +128,160 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
 
     return Padding(
       padding: const  EdgeInsets.fromLTRB(13, 7, 13, 13),
-      child: Container(
-        decoration: BoxDecoration(
-            borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(17),
-                topRight: Radius.circular(17),
-                bottomLeft: Radius.circular(17),
-                bottomRight: Radius.circular(17)
-            ),
-            gradient: const LinearGradient(
-                colors: [
-                  ColorsResources.white,
-                  ColorsResources.light,
-                ],
-                begin: FractionalOffset(0.0, 0.0),
-                end: FractionalOffset(1.0, 0.0),
-                stops: [0.0, 1.0],
-                transform: GradientRotation(45),
-                tileMode: TileMode.clamp),
-            boxShadow: [
-              BoxShadow(
-                  color: Color(transactionsData.colorTag),
-                  blurRadius: 7,
-                  spreadRadius: 0,
-                  blurStyle: BlurStyle.normal,
-                  offset: const Offset(0.0, 7.0)
-              )
-            ]
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            SizedBox(
-              height: 99,
-              width: double.infinity,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Expanded(
-                    flex: 19,
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          SizedBox(
-                            height: 59,
-                            width: double.infinity,
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(13, 11, 13, 0),
-                              child: Align(
-                                alignment: Alignment.center,
-                                child: Marquee(
-                                  text: transactionsData.amountMoney,
-                                  style: const TextStyle(
-                                    color: ColorsResources.dark,
-                                    fontSize: 41,
-                                    fontFamily: "Numbers",
-                                  ),
-                                  scrollAxis: Axis.horizontal,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  blankSpace: 173.0,
-                                  velocity: 37.0,
-                                  pauseAfterRound: const Duration(milliseconds: 500),
-                                  showFadingOnlyWhenScrolling: true,
-                                  startPadding: 13.0,
-                                  accelerationDuration: const Duration(milliseconds: 500),
-                                  accelerationCurve: Curves.linear,
-                                  decelerationDuration: const Duration(milliseconds: 500),
-                                  decelerationCurve: Curves.easeOut,
-                                )
+      child: PhysicalModel(
+        color: ColorsResources.light,
+        elevation: 7,
+        shadowColor: transactionTypeColor,
+        shape: BoxShape.rectangle,
+        borderRadius: const BorderRadius.all(Radius.circular(17)),
+        child: Container(
+          decoration: const BoxDecoration(
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(17),
+                  topRight: Radius.circular(17),
+                  bottomLeft: Radius.circular(17),
+                  bottomRight: Radius.circular(17)
+              ),
+              gradient: LinearGradient(
+                  colors: [
+                    ColorsResources.white,
+                    ColorsResources.light,
+                  ],
+                  begin: FractionalOffset(0.0, 0.0),
+                  end: FractionalOffset(1.0, 0.0),
+                  stops: [0.0, 1.0],
+                  transform: GradientRotation(45),
+                  tileMode: TileMode.clamp
+              ),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              SizedBox(
+                height: 99,
+                width: double.infinity,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Expanded(
+                      flex: 19,
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            SizedBox(
+                              height: 59,
+                              width: double.infinity,
+                              child: Padding(
+                                padding: const EdgeInsets.fromLTRB(13, 11, 13, 0),
+                                child: Align(
+                                    alignment: Alignment.center,
+                                    child: Marquee(
+                                      text: transactionsData.amountMoney,
+                                      style: const TextStyle(
+                                        color: ColorsResources.dark,
+                                        fontSize: 41,
+                                        fontFamily: "Numbers",
+                                      ),
+                                      scrollAxis: Axis.horizontal,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      blankSpace: 173.0,
+                                      velocity: 37.0,
+                                      pauseAfterRound: const Duration(milliseconds: 500),
+                                      showFadingOnlyWhenScrolling: true,
+                                      startPadding: 13.0,
+                                      accelerationDuration: const Duration(milliseconds: 500),
+                                      accelerationCurve: Curves.linear,
+                                      decelerationDuration: const Duration(milliseconds: 500),
+                                      decelerationCurve: Curves.easeOut,
+                                    )
+                                ),
                               ),
                             ),
-                          ),
-                          SizedBox(
-                            height: 39,
-                            width: double.infinity,
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(13, 11, 13, 0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Expanded(
-                                    flex: 1,
-                                    child: Directionality(
-                                      textDirection: TextDirection.rtl,
-                                      child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: Text(
-                                          transactionName,
-                                          style: TextStyle(
-                                            color: ColorsResources.dark.withOpacity(0.579),
-                                            fontSize: 13,
+                            SizedBox(
+                                height: 39,
+                                width: double.infinity,
+                                child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(13, 11, 13, 0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Expanded(
+                                        flex: 1,
+                                        child: Directionality(
+                                          textDirection: TextDirection.rtl,
+                                          child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: Text(
+                                              transactionName,
+                                              style: TextStyle(
+                                                color: ColorsResources.dark.withOpacity(0.579),
+                                                fontSize: 13,
+                                              ),
+                                            ),
                                           ),
                                         ),
                                       ),
-                                    ),
+                                      Expanded(
+                                        flex: 1,
+                                        child: Directionality(
+                                          textDirection: TextDirection.rtl,
+                                          child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: Text(
+                                              transactionBank,
+                                              style: TextStyle(
+                                                color: ColorsResources.dark.withOpacity(0.579),
+                                                fontSize: 13,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      )
+                                    ],
                                   ),
-                                  Expanded(
-                                    flex: 1,
-                                    child: Directionality(
-                                      textDirection: TextDirection.rtl,
-                                      child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: Text(
-                                          transactionBank,
-                                          style: TextStyle(
-                                            color: ColorsResources.dark.withOpacity(0.579),
-                                            fontSize: 13,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
+                                )
                             )
-                          )
-                        ],
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 7, 7, 0),
-                        child: Align(
-                          alignment: Alignment.center,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: transactionTypeColor.withOpacity(0.3),
-                            ),
-                            child: Align(
-                              alignment: Alignment.center,
-                              child: Text(
-                                transactionTypeMark,
-                                style: TextStyle(
-                                    color: transactionTypeColor,
-                                    fontSize: 65
+                    Expanded(
+                        flex: 5,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 7, 7, 0),
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: transactionTypeColor.withOpacity(0.3),
+                              ),
+                              child: Align(
+                                alignment: Alignment.center,
+                                child: Text(
+                                  transactionTypeMark,
+                                  style: TextStyle(
+                                      color: transactionTypeColor,
+                                      fontSize: 65
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                      )
-                  ),
-                ],
+                        )
+                    ),
+                  ],
+                ),
               ),
-            ),
-            SizedBox(
-              height: 51,
-              width: double.infinity,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Expanded(
+              SizedBox(
+                height: 51,
+                width: double.infinity,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Expanded(
                       flex: 13,
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(11, 0, 11, 0),
@@ -301,34 +299,35 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
                           ),
                         ),
                       ),
-                  ),
-                  Expanded(
-                    flex: 7,
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 0, 11, 0),
-                      child: Container(
-                        color: Colors.transparent,
-                        child: Align(
-                          alignment: Alignment.center,
-                          child: Directionality(
-                            textDirection: TextDirection.rtl,
-                            child: Text(
-                              transactionsData.transactionTime,
-                              style: TextStyle(
-                                color: ColorsResources.dark.withOpacity(0.59),
-                                fontSize: 11,
-                                fontWeight: FontWeight.bold
+                    ),
+                    Expanded(
+                      flex: 7,
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 0, 11, 0),
+                        child: Container(
+                          color: Colors.transparent,
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: Directionality(
+                              textDirection: TextDirection.rtl,
+                              child: Text(
+                                transactionsData.transactionTime,
+                                style: TextStyle(
+                                    color: ColorsResources.dark.withOpacity(0.59),
+                                    fontSize: 11,
+                                    fontWeight: FontWeight.bold
+                                ),
                               ),
                             ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            )
-          ],
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
