@@ -341,6 +341,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: TextField(
+                                      autofillHints: const [AutofillHints.name, AutofillHints.familyName],
                                       controller: controllerTransactionSourceName,
                                       textAlign: TextAlign.right,
                                       textDirection: TextDirection.rtl,
@@ -395,6 +396,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: TextField(
+                                      autofillHints: const [AutofillHints.name, AutofillHints.familyName],
                                       controller: controllerTransactionTargetName,
                                       textAlign: TextAlign.right,
                                       textDirection: TextDirection.rtl,
