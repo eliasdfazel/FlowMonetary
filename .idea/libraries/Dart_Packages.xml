@@ -58,6 +58,13 @@
             </list>
           </value>
         </entry>
+        <entry key="fading_edge_scrollview">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../Xemonstration/Flutter/Setup/FlutterSdk/.pub-cache/hosted/pub.dartlang.org/fading_edge_scrollview-2.0.1/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="fake_async">
           <value>
             <list>
@@ -111,6 +118,13 @@
           <value>
             <list>
               <option value="$PROJECT_DIR$/../../Xemonstration/Flutter/Setup/FlutterSdk/.pub-cache/hosted/pub.dartlang.org/lints-1.0.1/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="marquee">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../Xemonstration/Flutter/Setup/FlutterSdk/.pub-cache/hosted/pub.dartlang.org/marquee-2.2.0/lib" />
             </list>
           </value>
         </entry>
@@ -286,12 +300,14 @@
       <root url="file://$PROJECT_DIR$/../../Xemonstration/Flutter/Setup/FlutterSdk/.pub-cache/hosted/pub.dartlang.org/clock-1.1.0/lib" />
       <root url="file://$PROJECT_DIR$/../../Xemonstration/Flutter/Setup/FlutterSdk/.pub-cache/hosted/pub.dartlang.org/collection-1.15.0/lib" />
       <root url="file://$PROJECT_DIR$/../../Xemonstration/Flutter/Setup/FlutterSdk/.pub-cache/hosted/pub.dartlang.org/cupertino_icons-1.0.4/lib" />
+      <root url="file://$PROJECT_DIR$/../../Xemonstration/Flutter/Setup/FlutterSdk/.pub-cache/hosted/pub.dartlang.org/fading_edge_scrollview-2.0.1/lib" />
       <root url="file://$PROJECT_DIR$/../../Xemonstration/Flutter/Setup/FlutterSdk/.pub-cache/hosted/pub.dartlang.org/fake_async-1.2.0/lib" />
       <root url="file://$PROJECT_DIR$/../../Xemonstration/Flutter/Setup/FlutterSdk/.pub-cache/hosted/pub.dartlang.org/flutter_datetime_picker-1.5.1/lib" />
       <root url="file://$PROJECT_DIR$/../../Xemonstration/Flutter/Setup/FlutterSdk/.pub-cache/hosted/pub.dartlang.org/flutter_lints-1.0.4/lib" />
       <root url="file://$PROJECT_DIR$/../../Xemonstration/Flutter/Setup/FlutterSdk/.pub-cache/hosted/pub.dartlang.org/flutter_svg-1.0.0/lib" />
       <root url="file://$PROJECT_DIR$/../../Xemonstration/Flutter/Setup/FlutterSdk/.pub-cache/hosted/pub.dartlang.org/intl-0.17.0/lib" />
       <root url="file://$PROJECT_DIR$/../../Xemonstration/Flutter/Setup/FlutterSdk/.pub-cache/hosted/pub.dartlang.org/lints-1.0.1/lib" />
+      <root url="file://$PROJECT_DIR$/../../Xemonstration/Flutter/Setup/FlutterSdk/.pub-cache/hosted/pub.dartlang.org/marquee-2.2.0/lib" />
       <root url="file://$PROJECT_DIR$/../../Xemonstration/Flutter/Setup/FlutterSdk/.pub-cache/hosted/pub.dartlang.org/matcher-0.12.11/lib" />
       <root url="file://$PROJECT_DIR$/../../Xemonstration/Flutter/Setup/FlutterSdk/.pub-cache/hosted/pub.dartlang.org/meta-1.7.0/lib" />
       <root url="file://$PROJECT_DIR$/../../Xemonstration/Flutter/Setup/FlutterSdk/.pub-cache/hosted/pub.dartlang.org/palette_generator-0.3.2/lib" />

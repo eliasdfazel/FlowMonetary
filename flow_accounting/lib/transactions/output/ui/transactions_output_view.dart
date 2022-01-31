@@ -4,6 +4,7 @@ import 'package:flow_accounting/transactions/database/io/queries.dart';
 import 'package:flow_accounting/transactions/database/structures/tables_structure.dart';
 import 'package:flow_accounting/utils/extensions/CreditCardNumber.dart';
 import 'package:flutter/material.dart';
+import 'package:marquee/marquee.dart';
 
 void main() {
 
@@ -99,11 +100,18 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
     String transactionTypeMark = TransactionsData.TransactionType_Send;
     Color transactionTypeColor = ColorsResources.dark;
 
+    String transactionCardNumber = transactionsData.sourceCardNumber;
+
+    String transactionName = transactionsData.sourceUsername;
+    String transactionBank = transactionsData.sourceBankName;
+
     switch (transactionsData.transactionType) {
       case TransactionsData.TransactionType_Send: {
 
         transactionTypeMark = TransactionsData.TransactionType_Send;
         transactionTypeColor = Colors.red;
+
+        transactionName = transactionsData.targetUsername;
 
         break;
       }
@@ -111,6 +119,8 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
 
         transactionTypeMark = TransactionsData.TransactionType_Receive;
         transactionTypeColor = Colors.green;
+
+        transactionName = transactionsData.sourceUsername;
 
         break;
       }
@@ -159,8 +169,83 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
                     flex: 19,
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                      child: Container(
-                        color: Colors.black,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          SizedBox(
+                            height: 59,
+                            width: double.infinity,
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(13, 11, 13, 0),
+                              child: Align(
+                                alignment: Alignment.center,
+                                child: Marquee(
+                                  text: transactionsData.amountMoney,
+                                  style: const TextStyle(
+                                    color: ColorsResources.dark,
+                                    fontSize: 41,
+                                    fontFamily: "Numbers",
+                                  ),
+                                  scrollAxis: Axis.horizontal,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  blankSpace: 173.0,
+                                  velocity: 37.0,
+                                  pauseAfterRound: const Duration(milliseconds: 500),
+                                  showFadingOnlyWhenScrolling: true,
+                                  startPadding: 13.0,
+                                  accelerationDuration: const Duration(milliseconds: 500),
+                                  accelerationCurve: Curves.linear,
+                                  decelerationDuration: const Duration(milliseconds: 500),
+                                  decelerationCurve: Curves.easeOut,
+                                )
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 39,
+                            width: double.infinity,
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(13, 11, 13, 0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Expanded(
+                                    flex: 1,
+                                    child: Directionality(
+                                      textDirection: TextDirection.rtl,
+                                      child: Align(
+                                        alignment: Alignment.centerRight,
+                                        child: Text(
+                                          transactionName,
+                                          style: TextStyle(
+                                            color: ColorsResources.dark.withOpacity(0.579),
+                                            fontSize: 13,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    flex: 1,
+                                    child: Directionality(
+                                      textDirection: TextDirection.rtl,
+                                      child: Align(
+                                        alignment: Alignment.centerRight,
+                                        child: Text(
+                                          transactionBank,
+                                          style: TextStyle(
+                                            color: ColorsResources.dark.withOpacity(0.579),
+                                            fontSize: 13,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            )
+                          )
+                        ],
                       ),
                     ),
                   ),
@@ -201,13 +286,13 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
                   Expanded(
                       flex: 13,
                       child: Padding(
-                        padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
+                        padding: const EdgeInsets.fromLTRB(11, 0, 11, 0),
                         child: Container(
                           color: Colors.transparent,
                           child: Align(
                             alignment: Alignment.center,
                             child: Text(
-                              prepareCreditCard(transactionsData.sourceCardNumber),
+                              prepareCreditCard(transactionCardNumber),
                               style: const TextStyle(
                                   color: ColorsResources.dark,
                                   fontSize: 17
@@ -220,7 +305,7 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
                   Expanded(
                     flex: 7,
                     child: Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 0, 7, 0),
+                      padding: const EdgeInsets.fromLTRB(0, 0, 11, 0),
                       child: Container(
                         color: Colors.transparent,
                         child: Align(
@@ -229,8 +314,8 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
                             textDirection: TextDirection.rtl,
                             child: Text(
                               transactionsData.transactionTime,
-                              style: const TextStyle(
-                                color: ColorsResources.dark,
+                              style: TextStyle(
+                                color: ColorsResources.dark.withOpacity(0.59),
                                 fontSize: 11,
                                 fontWeight: FontWeight.bold
                               ),
