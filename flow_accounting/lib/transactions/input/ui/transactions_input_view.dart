@@ -347,18 +347,33 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                         },
                                         itemBuilder: (context, suggestion) {
 
-                                          return ListTile(title: Text(suggestion),);
+                                          return ListTile(title: Directionality(
+                                            textDirection: TextDirection.rtl,
+                                            child: Text(
+                                              suggestion,
+                                              style: const TextStyle(
+                                                  color: ColorsResources.darkTransparent,
+                                                  fontSize: 15
+                                              ),
+                                            ),
+                                          ));
                                         },
                                         onSuggestionSelected: (suggestion) {
 
                                           controllerTransactionTargetName.text = suggestion.toString();
 
                                         },
+                                        suggestionsBoxDecoration: SuggestionsBoxDecoration(
+                                          elevation: 7,
+                                          color: ColorsResources.light,
+                                          shadowColor: ColorsResources.darkTransparent,
+                                          borderRadius: BorderRadius.circular(17)
+                                        ),
                                         textFieldConfiguration: TextFieldConfiguration(
+                                          controller: controllerTransactionTargetName,
                                           autofocus: false,
                                           maxLines: 1,
                                           cursorColor: ColorsResources.primaryColor,
-                                          controller: controllerTransactionTargetName,
                                           decoration: const InputDecoration(
                                             alignLabelWithHint: true,
                                             border: OutlineInputBorder(
@@ -412,18 +427,33 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                         },
                                         itemBuilder: (context, suggestion) {
 
-                                          return ListTile(title: Text(suggestion),);
+                                          return ListTile(title: Directionality(
+                                            textDirection: TextDirection.rtl,
+                                            child: Text(
+                                              suggestion,
+                                              style: const TextStyle(
+                                                  color: ColorsResources.darkTransparent,
+                                                  fontSize: 15
+                                              ),
+                                            ),
+                                          ));
                                         },
                                         onSuggestionSelected: (suggestion) {
 
                                           controllerTransactionSourceName.text = suggestion.toString();
 
                                         },
+                                        suggestionsBoxDecoration: SuggestionsBoxDecoration(
+                                            elevation: 7,
+                                            color: ColorsResources.light,
+                                            shadowColor: ColorsResources.darkTransparent,
+                                            borderRadius: BorderRadius.circular(17)
+                                        ),
                                         textFieldConfiguration: TextFieldConfiguration(
+                                          controller: controllerTransactionSourceName,
                                           autofocus: false,
                                           maxLines: 1,
                                           cursorColor: ColorsResources.primaryColor,
-                                          controller: controllerTransactionSourceName,
                                           decoration: const InputDecoration(
                                             alignLabelWithHint: true,
                                             border: OutlineInputBorder(
@@ -933,6 +963,18 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
     List<String> listOfNames = [];
     listOfNames.add(mySelf);
     listOfNames.addAll(["Test", "Aban", "Elias", "One", "Mr. Fazel", "Geeks Empire"]);
+
+    return listOfNames;
+  }
+
+  Future<List<String>> getBanksName() async {
+
+    List<String> listOfNames = [];
+    listOfNames.add("ملی");
+    listOfNames.add("اقتصاد نوین");
+    listOfNames.add("صادرات");
+    listOfNames.add("ملت");
+    listOfNames.add("سپه");
 
     return listOfNames;
   }
