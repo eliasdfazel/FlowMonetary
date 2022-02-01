@@ -8,7 +8,6 @@
  * https://opensource.org/licenses/MIT
  */
 
-
 import 'package:blur/blur.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
