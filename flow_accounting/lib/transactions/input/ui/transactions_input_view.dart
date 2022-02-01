@@ -268,24 +268,26 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                     textDirection: TextDirection.rtl,
                                     child: DropdownButtonFormField(
                                       isDense: true,
+                                      elevation: 7,
+                                      dropdownColor: ColorsResources.light,
                                       decoration: InputDecoration(
-                                        enabledBorder: OutlineInputBorder(
-                                          borderSide: const BorderSide(
-                                            color: ColorsResources.applicationGeeksEmpire,
-                                            width: 1,
+                                          enabledBorder: OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                                color: ColorsResources.applicationDarkGeeksEmpire,
+                                                width: 1
+                                            ),
+                                            borderRadius: BorderRadius.circular(13),
                                           ),
-                                          borderRadius: BorderRadius.circular(13),
-                                        ),
-                                        border: OutlineInputBorder(
-                                          borderSide: const BorderSide(
-                                              color: ColorsResources.applicationGeeksEmpire,
-                                              width: 1
+                                          border: OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                                color: ColorsResources.applicationDarkGeeksEmpire,
+                                                width: 1
+                                            ),
+                                            borderRadius: BorderRadius.circular(13),
                                           ),
-                                          borderRadius: BorderRadius.circular(13),
-                                        ),
-                                        filled: true,
-                                        fillColor: ColorsResources.lightTransparent,
-                                        focusColor: ColorsResources.dark
+                                          filled: true,
+                                          fillColor: ColorsResources.lightTransparent,
+                                          focusColor: ColorsResources.dark
                                       ),
                                       value: StringsResources.transactionTypeSend,
                                       autovalidateMode: AutovalidateMode.always,
@@ -301,11 +303,17 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                           child: SizedBox(
                                             height: 27,
                                             child: Padding(
-                                              padding: EdgeInsets.fromLTRB(0, 0, 11, 0),
+                                              padding: const EdgeInsets.fromLTRB(0, 0, 11, 0),
                                               child: Align(
                                                 alignment:
                                                 AlignmentDirectional.center,
-                                                child: Text(value),
+                                                child: Text(
+                                                  value,
+                                                  style: const TextStyle(
+                                                    color: ColorsResources.darkTransparent,
+                                                    fontSize: 15,
+                                                  ),
+                                                ),
                                               ),
                                             ),
                                           ),
