@@ -341,71 +341,6 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: TypeAheadField<String>(
-                                      suggestionsCallback: (pattern) async {
-
-                                        return await getCustomersName();
-                                      },
-                                      itemBuilder: (context, suggestion) {
-
-                                        return ListTile(title: Text(suggestion),);
-                                      },
-                                      onSuggestionSelected: (suggestion) {
-
-                                        controllerTransactionSourceName.text = suggestion.toString();
-
-                                      },
-                                      textFieldConfiguration: TextFieldConfiguration(
-                                        autofocus: false,
-                                        maxLines: 1,
-                                        cursorColor: ColorsResources.primaryColor,
-                                        controller: controllerTransactionSourceName,
-                                        decoration: const InputDecoration(
-                                          alignLabelWithHint: true,
-                                          border: OutlineInputBorder(
-                                              borderSide: BorderSide(color: Colors.blueGrey, width: 5.0),
-                                              borderRadius: BorderRadius.only(
-                                                  topLeft: Radius.circular(13),
-                                                  topRight: Radius.circular(13),
-                                                  bottomLeft: Radius.circular(13),
-                                                  bottomRight: Radius.circular(13)
-                                              ),
-                                              gapPadding: 5
-                                          ),
-                                          filled: true,
-                                          fillColor: ColorsResources.lightTransparent,
-                                          labelText: StringsResources.transactionSourceName,
-                                          labelStyle: TextStyle(
-                                              color: ColorsResources.dark,
-                                              fontSize: 17.0
-                                          ),
-                                          hintText: StringsResources.transactionSourceNameHint,
-                                          hintStyle: TextStyle(
-                                              color: ColorsResources.dark,
-                                              fontSize: 17.0
-                                          ),
-                                          errorBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(color: Colors.red, width: 5.0),
-                                              borderRadius: BorderRadius.only(
-                                                  topLeft: Radius.circular(13),
-                                                  topRight: Radius.circular(13),
-                                                  bottomLeft: Radius.circular(13),
-                                                  bottomRight: Radius.circular(13)
-                                              ),
-                                              gapPadding: 5
-                                          ),
-                                        ),
-                                      )
-                                    ),
-                                  )
-                              ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
-                                  child: Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: TypeAheadField<String>(
                                         suggestionsCallback: (pattern) async {
 
                                           return await getCustomersName();
@@ -444,6 +379,71 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                                 fontSize: 17.0
                                             ),
                                             hintText: StringsResources.transactionTargetNameHint,
+                                            hintStyle: TextStyle(
+                                                color: ColorsResources.dark,
+                                                fontSize: 17.0
+                                            ),
+                                            errorBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.red, width: 5.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
+                                                    bottomRight: Radius.circular(13)
+                                                ),
+                                                gapPadding: 5
+                                            ),
+                                          ),
+                                        )
+                                    ),
+                                  )
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                  child: Directionality(
+                                    textDirection: TextDirection.rtl,
+                                    child: TypeAheadField<String>(
+                                        suggestionsCallback: (pattern) async {
+
+                                          return await getCustomersName();
+                                        },
+                                        itemBuilder: (context, suggestion) {
+
+                                          return ListTile(title: Text(suggestion),);
+                                        },
+                                        onSuggestionSelected: (suggestion) {
+
+                                          controllerTransactionSourceName.text = suggestion.toString();
+
+                                        },
+                                        textFieldConfiguration: TextFieldConfiguration(
+                                          autofocus: false,
+                                          maxLines: 1,
+                                          cursorColor: ColorsResources.primaryColor,
+                                          controller: controllerTransactionSourceName,
+                                          decoration: const InputDecoration(
+                                            alignLabelWithHint: true,
+                                            border: OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.blueGrey, width: 5.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
+                                                    bottomRight: Radius.circular(13)
+                                                ),
+                                                gapPadding: 5
+                                            ),
+                                            filled: true,
+                                            fillColor: ColorsResources.lightTransparent,
+                                            labelText: StringsResources.transactionSourceName,
+                                            labelStyle: TextStyle(
+                                                color: ColorsResources.dark,
+                                                fontSize: 17.0
+                                            ),
+                                            hintText: StringsResources.transactionSourceNameHint,
                                             hintStyle: TextStyle(
                                                 color: ColorsResources.dark,
                                                 fontSize: 17.0
