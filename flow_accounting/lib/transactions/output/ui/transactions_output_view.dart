@@ -181,7 +181,7 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
                                       text: transactionsData.amountMoney,
                                       style: const TextStyle(
                                         color: ColorsResources.dark,
-                                        fontSize: 41,
+                                        fontSize: 31,
                                         fontFamily: "Numbers",
                                       ),
                                       scrollAxis: Axis.horizontal,
