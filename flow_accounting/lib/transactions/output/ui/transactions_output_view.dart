@@ -1,3 +1,4 @@
+import 'package:blur/blur.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/transactions/database/io/inputs.dart';
 import 'package:flow_accounting/transactions/database/io/queries.dart';
@@ -62,7 +63,7 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
             Positioned(
                 top: 19,
                 left: 13,
-                child:  InkWell(
+                child: InkWell(
                   onTap: () {
 
                     Navigator.pop(context);
@@ -86,6 +87,35 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
                       width: 41,
                       height: 41,
                     ),
+                  ),
+                )
+            ),
+            Positioned(
+                top: 19,
+                right: 13,
+                child: SizedBox(
+                  height: 43,
+                  width: 321,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: Blur(
+                          blur: 7,
+                          borderRadius: BorderRadius.circular(51),
+                          child: Text("123"),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: Blur(
+                          blur: 7,
+                          borderRadius: BorderRadius.circular(51),
+                          child: Text("777"),
+                        ),
+                      ),
+                    ],
                   ),
                 )
             ),
