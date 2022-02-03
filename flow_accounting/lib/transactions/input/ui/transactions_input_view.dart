@@ -94,7 +94,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
             child: Stack ( /*** Page Content ***/
               children: [
                 const Opacity(
-                  opacity: 0.03,
+                  opacity: 0.07,
                   child: Image(
                     image: AssetImage("input_background_pattern.png"),
                     fit: BoxFit.cover,
