@@ -100,19 +100,122 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Expanded(
-                        flex: 1,
-                        child: Blur(
-                          blur: 7,
-                          borderRadius: BorderRadius.circular(51),
-                          child: Text("123"),
+                        flex: 11,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(3, 0, 3, 0),
+                          child: Stack(
+                            children: [
+                              SizedBox(
+                                height: 43,
+                                width: double.infinity,
+                                child: Blur(
+                                  blur: 5,
+                                  borderRadius: BorderRadius.circular(51),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        gradient: LinearGradient(
+                                            colors: [
+                                              ColorsResources.white.withOpacity(0.3),
+                                              ColorsResources.primaryColorLighter.withOpacity(0.3),
+                                            ],
+                                            begin: const FractionalOffset(0.0, 0.0),
+                                            end: const FractionalOffset(1.0, 0.0),
+                                            stops: const [0.0, 1.0],
+                                            transform: const GradientRotation(45),
+                                            tileMode: TileMode.clamp
+                                        )
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 43,
+                                width: double.infinity,
+                                child: Text("789"),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                       Expanded(
-                        flex: 1,
-                        child: Blur(
-                          blur: 7,
-                          borderRadius: BorderRadius.circular(51),
-                          child: Text("777"),
+                        flex: 11,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(3, 0, 3, 0),
+                          child: Stack(
+                            children: [
+                              SizedBox(
+                                height: 43,
+                                width: double.infinity,
+                                child: Blur(
+                                  blur: 5,
+                                  borderRadius: BorderRadius.circular(51),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        gradient: LinearGradient(
+                                            colors: [
+                                              ColorsResources.white.withOpacity(0.3),
+                                              ColorsResources.primaryColorLighter.withOpacity(0.3),
+                                            ],
+                                            begin: const FractionalOffset(0.0, 0.0),
+                                            end: const FractionalOffset(1.0, 0.0),
+                                            stops: const [0.0, 1.0],
+                                            transform: const GradientRotation(45),
+                                            tileMode: TileMode.clamp
+                                        )
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 43,
+                                width: double.infinity,
+                                child: Text("123"),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 3,
+                        child: Stack(
+                          children: [
+                            SizedBox(
+                              height: 43,
+                              width: double.infinity,
+                              child: Blur(
+                                blur: 3,
+                                borderRadius: BorderRadius.circular(51),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                        colors: [
+                                          ColorsResources.white.withOpacity(0.3),
+                                          ColorsResources.primaryColorLighter.withOpacity(0.3),
+                                        ],
+                                        begin: const FractionalOffset(0.0, 0.0),
+                                        end: const FractionalOffset(1.0, 0.0),
+                                        stops: const [0.0, 1.0],
+                                        transform: const GradientRotation(45),
+                                        tileMode: TileMode.clamp
+                                    )
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Align(
+                              alignment: Alignment.center,
+                              child: InkWell(
+                                onTap: () {
+
+                                },
+                                child: const Icon(
+                                    Icons.refresh,
+                                    size: 31.0,
+                                    color: ColorsResources.primaryColorDark
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
