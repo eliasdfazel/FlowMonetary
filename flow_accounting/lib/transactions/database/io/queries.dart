@@ -49,7 +49,7 @@ class DatabaseQueries {
 
   }
 
-  Future<Map<String, Object?>> queryFinancialReport(int id, String? tableName, {String usernameId = "Unknown"}) async {
+  Future<Map<String, Object?>> querySpecificTransaction(int id, String? tableName, {String usernameId = "Unknown"}) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), DatabaseInputs.transactionDatabase),
@@ -69,7 +69,7 @@ class DatabaseQueries {
     return databaseContents[0];
   }
 
-  Future<TransactionsData> extractFinancialReport(Map<String, Object?>inputData) async {
+  Future<TransactionsData> extractTransactionsQuery(Map<String, Object?>inputData) async {
 
     return TransactionsData(id: inputData["id"] as int,
       sourceCardNumber: inputData['sourceCardNumber'].toString(),

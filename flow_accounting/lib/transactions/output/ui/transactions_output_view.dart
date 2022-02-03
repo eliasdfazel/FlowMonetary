@@ -161,16 +161,23 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
                                       ),
                                     ),
                                   ),
-                                  const SizedBox(
-                                    height: 43,
-                                    width: double.infinity,
-                                    child: Align(
-                                      alignment: Alignment.center,
-                                      child: Text(
-                                        StringsResources.sortMoneyAmountHigh,
-                                        style: TextStyle(
-                                          fontSize: 13,
-                                          color: ColorsResources.applicationGeeksEmpire,
+                                  InkWell(
+                                    onTap: () {
+
+                                      sortTransactionsByMoneyAmount(allTransactions);
+
+                                    },
+                                    child: const SizedBox(
+                                      height: 43,
+                                      width: double.infinity,
+                                      child: Align(
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          StringsResources.sortMoneyAmountHigh,
+                                          style: TextStyle(
+                                            fontSize: 13,
+                                            color: ColorsResources.applicationGeeksEmpire,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -208,16 +215,23 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
                                       ),
                                     ),
                                   ),
-                                  const SizedBox(
-                                    height: 43,
-                                    width: double.infinity,
-                                    child: Align(
-                                      alignment: Alignment.center,
-                                      child: Text(
-                                        StringsResources.sortTimeNew,
-                                        style: TextStyle(
-                                          fontSize: 13,
-                                          color: ColorsResources.applicationGeeksEmpire,
+                                  InkWell(
+                                    onTap: () {
+
+                                      sortTransactionsByTime(allTransactions);
+
+                                    },
+                                    child: const SizedBox(
+                                      height: 43,
+                                      width: double.infinity,
+                                      child: Align(
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          StringsResources.sortTimeNew,
+                                          style: TextStyle(
+                                            fontSize: 13,
+                                            color: ColorsResources.applicationGeeksEmpire,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -533,9 +547,62 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
 
     var databaseQueries = DatabaseQueries();
 
-    var databaseContents = await databaseQueries.getAllTransactions(DatabaseInputs.databaseTableName);
+    allTransactions = await databaseQueries.getAllTransactions(DatabaseInputs.databaseTableName);
 
-    for (var element in databaseContents) {
+    for (var element in allTransactions) {
+
+      preparedAllTransactionsItem.add(outputItem(element));
+
+    }
+
+    setState(() {
+
+      allTransactionsItems = preparedAllTransactionsItem;
+
+    });
+
+  }
+
+  void sortTransactionsByTime(
+      List<TransactionsData> inputTransactionsList) {
+
+    if (allTransactionsItems.isNotEmpty) {
+
+      allTransactionsItems.clear();
+
+    }
+
+    inputTransactionsList.sort((a, b) => (a.transactionTime).compareTo(b.transactionTime));
+
+    List<Widget> preparedAllTransactionsItem = [];
+
+    for (var element in inputTransactionsList) {
+
+      preparedAllTransactionsItem.add(outputItem(element));
+
+    }
+
+    setState(() {
+
+      allTransactionsItems = preparedAllTransactionsItem;
+
+    });
+
+  }
+
+  void sortTransactionsByMoneyAmount(
+      List<TransactionsData> inputTransactionsList) {
+
+    if (allTransactionsItems.isNotEmpty) {
+
+      allTransactionsItems.clear();
+
+    }
+    inputTransactionsList.sort((a, b) => (a.amountMoney).compareTo(b.amountMoney));
+
+    List<Widget> preparedAllTransactionsItem = [];
+
+    for (var element in inputTransactionsList) {
 
       preparedAllTransactionsItem.add(outputItem(element));
 
