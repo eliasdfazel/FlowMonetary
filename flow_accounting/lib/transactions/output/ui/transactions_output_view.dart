@@ -102,7 +102,7 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
                       Expanded(
                         flex: 11,
                         child: Padding(
-                          padding: const EdgeInsets.fromLTRB(3, 0, 3, 0),
+                          padding: const EdgeInsets.fromLTRB(3, 0, 0, 0),
                           child: Stack(
                             children: [
                               SizedBox(
@@ -140,7 +140,7 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
                       Expanded(
                         flex: 11,
                         child: Padding(
-                          padding: const EdgeInsets.fromLTRB(3, 0, 3, 0),
+                          padding: const EdgeInsets.fromLTRB(0, 0, 3, 0),
                           child: Stack(
                             children: [
                               SizedBox(
