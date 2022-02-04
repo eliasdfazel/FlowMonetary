@@ -315,8 +315,6 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
 
                                 String searchQuery = textEditorControllerQuery.text;
 
-                                print(">>> >> > $searchQuery");
-
                               },
                               child: const SizedBox(
                                 height: 59,
