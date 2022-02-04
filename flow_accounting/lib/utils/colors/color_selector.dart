@@ -8,7 +8,6 @@
  * https://opensource.org/licenses/MIT
  */
 
-
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -16,13 +15,14 @@ import 'package:intl/date_symbol_data_local.dart';
 class ColorSelectorView extends StatefulWidget {
   ColorSelectorView({Key? key}) : super(key: key);
 
-  Color selectedColor = ColorsResources.primaryColor.withOpacity(0.7);
+  Color selectedColor = ColorsResources.primaryColor;
+
+  ValueNotifier<Color> selectedColorNotifier = ValueNotifier(ColorsResources.primaryColor);
 
   @override
   _ColorSelectorView createState() => _ColorSelectorView();
 }
 class _ColorSelectorView extends State<ColorSelectorView> {
-
 
   @override
   void initState() {
@@ -99,6 +99,12 @@ class _ColorSelectorView extends State<ColorSelectorView> {
         setState(() {
 
           widget.selectedColor = aColor;
+
+        });
+
+        Future.delayed(const Duration(milliseconds: 199), () {
+
+          widget.selectedColorNotifier.value = (aColor);
 
         });
 

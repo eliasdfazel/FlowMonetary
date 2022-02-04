@@ -5,6 +5,7 @@ import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/database/io/inputs.dart';
 import 'package:flow_accounting/transactions/database/io/queries.dart';
 import 'package:flow_accounting/transactions/database/structures/tables_structure.dart';
+import 'package:flow_accounting/utils/colors/color_selector.dart';
 import 'package:flow_accounting/utils/extensions/CreditCardNumber.dart';
 import 'package:flutter/material.dart';
 import 'package:marquee/marquee.dart';
@@ -24,6 +25,8 @@ class TransactionsOutputView extends StatefulWidget {
   _TransactionsOutputView createState() => _TransactionsOutputView();
 }
 class _TransactionsOutputView extends State<TransactionsOutputView> {
+
+  ColorSelectorView colorSelectorView = ColorSelectorView();
 
   List<TransactionsData> allTransactions = [];
   List<Widget> allTransactionsItems = [];
@@ -45,6 +48,20 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
 
   @override
   Widget build(BuildContext context) {
+
+
+    colorSelectorView.selectedColorNotifier.addListener(() {
+
+      filterByColorTag(allTransactions, colorSelectorView.selectedColorNotifier.value);
+
+    });
+
+    List<Widget> allListContentWidgets = [];
+    allListContentWidgets.add(Padding(
+      padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+      child: colorSelectorView,
+    ));
+    allListContentWidgets.addAll(allTransactionsItems);
 
     return SafeArea(child: MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -91,9 +108,9 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
                   ),
                 ),
                 ListView(
-                  padding: const EdgeInsets.fromLTRB(0, 73, 0, 0),
+                  padding: const EdgeInsets.fromLTRB(0, 73, 0, 79),
                   physics: const BouncingScrollPhysics(),
-                  children: allTransactionsItems,
+                  children: allListContentWidgets,
                 ),
                 Positioned(
                     top: 19,
@@ -723,6 +740,36 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
 
   }
 
+  void filterByColorTag(List<TransactionsData> inputTransactionsList, Color colorQuery) {
+
+    List<TransactionsData> searchResult = [];
+
+    for (var element in inputTransactionsList) {
+
+      if (element.colorTag == colorQuery.value) {
+
+        searchResult.add(element);
+
+      }
+
+      List<Widget> preparedAllTransactionsItem = [];
+
+      for (var element in searchResult) {
+
+        preparedAllTransactionsItem.add(outputItem(element));
+
+      }
+
+      setState(() {
+
+        allTransactionsItems = preparedAllTransactionsItem;
+
+      });
+
+    }
+
+  }
+
   void searchTransactions(List<TransactionsData> inputTransactionsList, String searchQuery) {
 
     List<TransactionsData> searchResult = [];
@@ -743,7 +790,7 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
 
       List<Widget> preparedAllTransactionsItem = [];
 
-      for (var element in inputTransactionsList) {
+      for (var element in searchResult) {
 
         preparedAllTransactionsItem.add(outputItem(element));
 
