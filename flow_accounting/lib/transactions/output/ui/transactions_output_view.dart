@@ -412,6 +412,8 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
     String transactionName = transactionsData.sourceUsername;
     String transactionBank = transactionsData.sourceBankName;
 
+    Color transactionColorTag = Color(transactionsData.colorTag);
+
     switch (transactionsData.transactionType) {
       case TransactionsData.TransactionType_Send: {
 
@@ -438,7 +440,7 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
       child: PhysicalModel(
         color: ColorsResources.light,
         elevation: 7,
-        shadowColor: transactionTypeColor.withOpacity(0.7),
+        shadowColor: transactionColorTag.withOpacity(0.7),
         shape: BoxShape.rectangle,
         borderRadius: const BorderRadius.all(Radius.circular(17)),
         child: Container(
@@ -718,6 +720,42 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
       allTransactionsItems = preparedAllTransactionsItem;
 
     });
+
+  }
+
+  void searchTransactions(List<TransactionsData> inputTransactionsList, String searchQuery) {
+
+    List<TransactionsData> searchResult = [];
+
+    for (var element in inputTransactionsList) {
+
+      if (element.transactionTime.contains(searchQuery) ||
+          element.sourceUsername.contains(searchQuery) ||
+          element.sourceBankName.contains(searchQuery) ||
+          element.sourceCardNumber.contains(searchQuery) ||
+          element.targetUsername.contains(searchQuery) ||
+          element.targetBankName.contains(searchQuery) ||
+          element.targetCardNumber.contains(searchQuery)) {
+
+        searchResult.add(element);
+
+      }
+
+      List<Widget> preparedAllTransactionsItem = [];
+
+      for (var element in inputTransactionsList) {
+
+        preparedAllTransactionsItem.add(outputItem(element));
+
+      }
+
+      setState(() {
+
+        allTransactionsItems = preparedAllTransactionsItem;
+
+      });
+
+    }
 
   }
 
