@@ -77,6 +77,7 @@ flutter:
     - pattern_card_background_five.png
     - input_background_pattern.png
     - go_previous_icon.png
+    - search_shape.png
 
   fonts:
     - family: Sans

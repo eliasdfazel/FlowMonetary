@@ -28,6 +28,8 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
   List<TransactionsData> allTransactions = [];
   List<Widget> allTransactionsItems = [];
 
+  TextEditingController textEditorControllerQuery = TextEditingController();
+
   @override
   void dispose() {
     super.dispose();
@@ -289,6 +291,91 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
                       ),
                     )
                 ),
+                Positioned(
+                  bottom: 19,
+                  left: 11,
+                  right: 11,
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: SizedBox(
+                      height: 59,
+                      width: 199,
+                      child: Stack(
+                        children: [
+                          const Image(
+                            image: AssetImage("search_shape.png"),
+                            height: 59,
+                            width: 213,
+                            color: ColorsResources.primaryColorDark,
+                          ),
+                          Align(
+                            alignment: Alignment.centerRight,
+                            child: InkWell(
+                              onTap: () {
+
+                                String searchQuery = textEditorControllerQuery.text;
+
+                                print(">>> >> > $searchQuery");
+
+                              },
+                              child: const SizedBox(
+                                height: 59,
+                                width: 41,
+                                child: Icon(
+                                  Icons.search_rounded,
+                                  size: 23,
+                                  color: ColorsResources.darkTransparent,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: SizedBox(
+                                width: 143,
+                                height: 40,
+                                child: Directionality(
+                                  textDirection: TextDirection.rtl,
+                                  child: TextField(
+                                    controller: textEditorControllerQuery,
+                                    textAlign: TextAlign.right,
+                                    textDirection: TextDirection.rtl,
+                                    textAlignVertical: TextAlignVertical.bottom,
+                                    maxLines: 1,
+                                    cursorColor: ColorsResources.primaryColor,
+                                    autocorrect: true,
+                                    autofocus: false,
+                                    decoration: const InputDecoration(
+                                      border: OutlineInputBorder(
+                                          borderSide: BorderSide(color: Colors.transparent, width: 1.0),
+                                          borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(51),
+                                              topRight: Radius.circular(51),
+                                              bottomLeft: Radius.circular(51),
+                                              bottomRight: Radius.circular(51)
+                                          ),
+                                          gapPadding: 5
+                                      ),
+                                      hintText: StringsResources.searchTransactionsText,
+                                      hintStyle: TextStyle(
+                                          color: ColorsResources.dark,
+                                          fontSize: 13.0
+                                      ),
+                                      labelText: StringsResources.searchText,
+                                      labelStyle: TextStyle(
+                                          color: ColorsResources.dark,
+                                          fontSize: 15.0
+                                      ),
+                                    ),
+                                  ),
+                                )
+                            ),
+                          )
+                        ],
+                      ),
+                    )
+                  ),
+                )
               ],
             ),
           ),
