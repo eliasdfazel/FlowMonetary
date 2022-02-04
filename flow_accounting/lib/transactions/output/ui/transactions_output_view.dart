@@ -331,7 +331,7 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
                             alignment: Alignment.centerLeft,
                             child: SizedBox(
                                 width: 153,
-                                height: 46,
+                                height: 45,
                                 child: Directionality(
                                   textDirection: TextDirection.rtl,
                                   child: TextField(
@@ -345,6 +345,26 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
                                     autofocus: false,
                                     decoration: const InputDecoration(
                                       border: OutlineInputBorder(
+                                          borderSide: BorderSide(color: Colors.transparent, width: 1.0),
+                                          borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(51),
+                                              topRight: Radius.circular(51),
+                                              bottomLeft: Radius.circular(51),
+                                              bottomRight: Radius.circular(51)
+                                          ),
+                                          gapPadding: 5
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(color: Colors.transparent, width: 1.0),
+                                          borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(51),
+                                              topRight: Radius.circular(51),
+                                              bottomLeft: Radius.circular(51),
+                                              bottomRight: Radius.circular(51)
+                                          ),
+                                          gapPadding: 5
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(color: Colors.transparent, width: 1.0),
                                           borderRadius: BorderRadius.only(
                                               topLeft: Radius.circular(51),
