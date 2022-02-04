@@ -26,12 +26,14 @@ class TransactionsOutputView extends StatefulWidget {
 }
 class _TransactionsOutputView extends State<TransactionsOutputView> {
 
-  ColorSelectorView colorSelectorView = ColorSelectorView();
+  late ColorSelectorView colorSelectorView;
 
   List<TransactionsData> allTransactions = [];
   List<Widget> allTransactionsItems = [];
 
   TextEditingController textEditorControllerQuery = TextEditingController();
+
+  bool colorSelectorInitialized = false;
 
   @override
   void dispose() {
@@ -49,6 +51,13 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
   @override
   Widget build(BuildContext context) {
 
+    if (!colorSelectorInitialized) {
+
+      colorSelectorView = ColorSelectorView();
+
+      colorSelectorInitialized = true;
+
+    }
 
     colorSelectorView.selectedColorNotifier.addListener(() {
 
@@ -678,6 +687,8 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
       preparedAllTransactionsItem.add(outputItem(element));
 
     }
+
+    colorSelectorInitialized = false;
 
     setState(() {
 

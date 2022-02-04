@@ -15,9 +15,9 @@ import 'package:intl/date_symbol_data_local.dart';
 class ColorSelectorView extends StatefulWidget {
   ColorSelectorView({Key? key}) : super(key: key);
 
-  Color selectedColor = ColorsResources.primaryColor;
+  Color selectedColor = ColorsResources.white;
 
-  ValueNotifier<Color> selectedColorNotifier = ValueNotifier(ColorsResources.primaryColor);
+  ValueNotifier<Color> selectedColorNotifier = ValueNotifier(Colors.transparent);
 
   @override
   _ColorSelectorView createState() => _ColorSelectorView();
