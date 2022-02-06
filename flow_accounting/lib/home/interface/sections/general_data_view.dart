@@ -36,7 +36,7 @@ class GeneralDataView extends StatelessWidget {
                 children: [
                   Expanded(
                       flex: 3,
-                      child: GestureDetector(
+                      child: InkWell(
                         onTap: () {
 
 
@@ -47,7 +47,7 @@ class GeneralDataView extends StatelessWidget {
                           decoration: BoxDecoration(
                               borderRadius: const BorderRadius.only(
                                   topLeft: Radius.circular(23),
-                                  topRight: Radius.circular(0),
+                                  topRight: Radius.circular(23),
                                   bottomLeft: Radius.circular(23),
                                   bottomRight: Radius.circular(0)),
                               border: const Border(
@@ -98,8 +98,8 @@ class GeneralDataView extends StatelessWidget {
                           alignment: AlignmentDirectional.center,
                           decoration: BoxDecoration(
                               borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(0),
-                                  topRight: Radius.circular(0),
+                                  topLeft: Radius.circular(31),
+                                  topRight: Radius.circular(31),
                                   bottomLeft: Radius.circular(0),
                                   bottomRight: Radius.circular(0)),
                               border: const Border(
@@ -150,7 +150,7 @@ class GeneralDataView extends StatelessWidget {
                           alignment: AlignmentDirectional.center,
                           decoration: BoxDecoration(
                               borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(0),
+                                  topLeft: Radius.circular(23),
                                   topRight: Radius.circular(23),
                                   bottomLeft: Radius.circular(0),
                                   bottomRight: Radius.circular(23)),
