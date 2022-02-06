@@ -271,23 +271,26 @@ Widget featuresOptionsItem(String featureTitle,
                   ),
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(0, 0, 7, 0),
-                    child: Align(
-                      alignment: Alignment.centerRight,
-                      child: Text(
-                        featureTitle,
-                        style: const TextStyle(
-                            fontSize: 19,
-                            color: ColorsResources.dark,
-                            shadows: [
-                              Shadow(
-                                  color: ColorsResources.light,
-                                  offset: Offset(0, 0),
-                                  blurRadius: 7
-                              )
-                            ]
+                    child: Directionality(
+                      textDirection: TextDirection.rtl,
+                      child: Align(
+                        alignment: Alignment.centerRight,
+                        child: Text(
+                          featureTitle,
+                          style: const TextStyle(
+                              fontSize: 19,
+                              color: ColorsResources.dark,
+                              shadows: [
+                                Shadow(
+                                    color: ColorsResources.light,
+                                    offset: Offset(0, 0),
+                                    blurRadius: 7
+                                )
+                              ]
+                          ),
                         ),
                       ),
-                    ),
+                    )
                   ),
                 )
             ),
@@ -309,23 +312,26 @@ Widget featuresOptionsItem(String featureTitle,
                   ),
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(0, 7, 7, 0),
-                    child: Align(
-                      alignment: Alignment.topRight,
-                      child: Text(
-                        featureDescription,
-                        style: const TextStyle(
-                            fontSize: 13,
-                            color: ColorsResources.blueGreen,
-                            shadows: [
-                              Shadow(
-                                  color: ColorsResources.light,
-                                  offset: Offset(0, 0),
-                                  blurRadius: 7
-                              )
-                            ]
+                    child: Directionality(
+                      textDirection: TextDirection.rtl,
+                      child: Align(
+                        alignment: Alignment.topRight,
+                        child: Text(
+                          featureDescription,
+                          style: const TextStyle(
+                              fontSize: 13,
+                              color: ColorsResources.blueGreen,
+                              shadows: [
+                                Shadow(
+                                    color: ColorsResources.light,
+                                    offset: Offset(0, 0),
+                                    blurRadius: 7
+                                )
+                              ]
+                          ),
                         ),
                       ),
-                    ),
+                    )
                   ),
                 )
             ),
