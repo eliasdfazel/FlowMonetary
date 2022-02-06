@@ -1016,7 +1016,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                           autofocus: false,
                                           maxLines: 1,
                                           cursorColor: ColorsResources.primaryColor,
-                                          decoration: InputDecoration(
+                                          decoration: const InputDecoration(
                                             alignLabelWithHint: true,
                                             border: OutlineInputBorder(
                                                 borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
