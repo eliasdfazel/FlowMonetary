@@ -147,11 +147,6 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
 
           alreadyTwo = false;
 
-          int currentIndex = index;
-          int nextIndex = index + 1;
-
-
-
           allFeaturesOptionsWidgets.add(featuresOptionsRow(
               allFeaturesStructure[index].featuresTitle,
               allFeaturesStructure[index + 1].featuresTitle,
