@@ -381,7 +381,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                     child: TypeAheadField<String>(
                                         suggestionsCallback: (pattern) async {
 
-                                          return await getCustomersName();
+                                          return await getCustomersNames();
                                         },
                                         itemBuilder: (context, suggestion) {
 
@@ -481,7 +481,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                     child: TypeAheadField<String>(
                                         suggestionsCallback: (pattern) async {
 
-                                          return await getCustomersName();
+                                          return await getCustomersNames();
                                         },
                                         itemBuilder: (context, suggestion) {
 
@@ -594,7 +594,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                     child: TypeAheadField<String>(
                                         suggestionsCallback: (pattern) async {
 
-                                          return await getBanksName();
+                                          return await getBanksNames();
                                         },
                                         itemBuilder: (context, suggestion) {
 
@@ -694,7 +694,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                     child: TypeAheadField<String>(
                                         suggestionsCallback: (pattern) async {
 
-                                          return await getBanksName();
+                                          return await getBanksNames();
                                         },
                                         itemBuilder: (context, suggestion) {
 
@@ -968,7 +968,115 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                         height: 13,
                         color: Colors.transparent,
                       ),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 73,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                  child: Directionality(
+                                    textDirection: TextDirection.rtl,
+                                    child: TypeAheadField<String>(
+                                        suggestionsCallback: (pattern) async {
 
+                                          return await getBudgetNames();
+                                        },
+                                        itemBuilder: (context, suggestion) {
+
+                                          return ListTile(title: Directionality(
+                                            textDirection: TextDirection.rtl,
+                                            child: Text(
+                                              suggestion,
+                                              style: const TextStyle(
+                                                  color: ColorsResources.darkTransparent,
+                                                  fontSize: 15
+                                              ),
+                                            ),
+                                          ));
+                                        },
+                                        onSuggestionSelected: (suggestion) {
+
+                                          budgetName = suggestion.toString();
+
+                                        },
+                                        suggestionsBoxDecoration: SuggestionsBoxDecoration(
+                                            elevation: 7,
+                                            color: ColorsResources.light,
+                                            shadowColor: ColorsResources.darkTransparent,
+                                            borderRadius: BorderRadius.circular(17)
+                                        ),
+                                        textFieldConfiguration: TextFieldConfiguration(
+                                          controller: controllerTransactionTargetName,
+                                          autofocus: false,
+                                          maxLines: 1,
+                                          cursorColor: ColorsResources.primaryColor,
+                                          decoration: const InputDecoration(
+                                            alignLabelWithHint: true,
+                                            border: OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
+                                                    bottomRight: Radius.circular(13)
+                                                ),
+                                                gapPadding: 5
+                                            ),
+                                            enabledBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
+                                                    bottomRight: Radius.circular(13)
+                                                ),
+                                                gapPadding: 5
+                                            ),
+                                            focusedBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
+                                                    bottomRight: Radius.circular(13)
+                                                ),
+                                                gapPadding: 5
+                                            ),
+                                            errorBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.red, width: 1.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
+                                                    bottomRight: Radius.circular(13)
+                                                ),
+                                                gapPadding: 5
+                                            ),
+                                            filled: true,
+                                            fillColor: ColorsResources.lightTransparent,
+                                            labelText: StringsResources.transactionBudgetName,
+                                            labelStyle: TextStyle(
+                                                color: ColorsResources.dark,
+                                                fontSize: 17.0
+                                            ),
+                                            hintText: StringsResources.transactionBudgetNameHint,
+                                            hintStyle: TextStyle(
+                                                color: ColorsResources.dark,
+                                                fontSize: 17.0
+                                            ),
+                                          ),
+                                        )
+                                    ),
+                                  )
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                       const Divider(
                         height: 13,
                         color: Colors.transparent,
@@ -1173,7 +1281,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
     ));
   }
 
-  Future<List<String>> getCustomersName() async {
+  Future<List<String>> getCustomersNames() async {
 
     String mySelf = StringsResources.mySelfText;
 
@@ -1184,9 +1292,20 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
     return listOfNames;
   }
 
-  Future<List<String>> getBanksName() async {
+  Future<List<String>> getBanksNames() async {
 
     return StringsResources.listOfBanksIran;
+  }
+
+  Future<List<String>> getBudgetNames() async {
+
+    String noBudget = StringsResources.noBudgetText;
+
+    List<String> listOfBudgets = [];
+    listOfBudgets.add(noBudget);
+    listOfBudgets.addAll(["آکواریم", "شرکت", "خانه", "گربه"]);
+
+    return listOfBudgets;
   }
 
 }
