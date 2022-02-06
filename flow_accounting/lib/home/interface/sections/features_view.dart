@@ -147,7 +147,7 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
       padding: const EdgeInsets.fromLTRB(0, 3, 0, 0),
       child: Column(
         children: [
-          SearchBarView(featuresOptionsView: this, allFeaturesOptionsWidgets: allFeaturesOptionsWidgets,),
+          SearchBarView(),
           Column(
             children: allFeaturesOptionsWidgets,
           )
@@ -319,7 +319,7 @@ Widget featuresOptionsItem(String featureTitle,
                         child: Text(
                           featureDescription,
                           style: const TextStyle(
-                              fontSize: 13,
+                              fontSize: 12,
                               color: ColorsResources.blueGreen,
                               shadows: [
                                 Shadow(

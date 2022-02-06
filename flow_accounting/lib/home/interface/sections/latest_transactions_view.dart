@@ -106,7 +106,7 @@ class _LatestTransactionsView extends State<LatestTransactionsView> {
           child: Align(
             alignment: Alignment.center,
             child: Text(
-              "${transactionsData.transactionType}💲${transactionsData.amountMoney}",
+              "${transactionsData.transactionType} \$${transactionsData.amountMoney}",
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 17,
@@ -114,7 +114,7 @@ class _LatestTransactionsView extends State<LatestTransactionsView> {
                 shadows: [
                   Shadow(
                     color: Colors.black.withOpacity(0.5),
-                    offset: Offset(3, 3),
+                    offset: const Offset(3, 3),
                     blurRadius: 7,
                   )
                 ],
