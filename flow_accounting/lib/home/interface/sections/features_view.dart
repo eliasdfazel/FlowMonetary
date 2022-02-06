@@ -273,7 +273,8 @@ Widget featuresOptionsItem(String featureTitle,
                     padding: const EdgeInsets.fromLTRB(0, 0, 7, 0),
                     child: Align(
                       alignment: Alignment.centerRight,
-                      child: Text(featureTitle,
+                      child: Text(
+                        featureTitle,
                         style: const TextStyle(
                             fontSize: 19,
                             color: ColorsResources.dark,
@@ -310,7 +311,8 @@ Widget featuresOptionsItem(String featureTitle,
                     padding: const EdgeInsets.fromLTRB(0, 7, 7, 0),
                     child: Align(
                       alignment: Alignment.topRight,
-                      child: Text(featureDescription,
+                      child: Text(
+                        featureDescription,
                         style: const TextStyle(
                             fontSize: 13,
                             color: ColorsResources.blueGreen,

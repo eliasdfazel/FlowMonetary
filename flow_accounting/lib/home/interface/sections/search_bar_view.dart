@@ -61,13 +61,7 @@ class _SearchBarView extends State<SearchBarView> {
                       flex: 17,
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(1, 1, 7, 1),
-                        child: GestureDetector(
-                          onTap: () {
-
-
-
-                          },
-                          child: Container(
+                        child: Container(
                             decoration: const BoxDecoration(
                               borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(13),
@@ -106,13 +100,12 @@ class _SearchBarView extends State<SearchBarView> {
                                   ),
                                   labelText: StringsResources.searchText,
                                   labelStyle: TextStyle(
-                                    color: ColorsResources.dark,
-                                    fontSize: 17.0
+                                      color: ColorsResources.dark,
+                                      fontSize: 17.0
                                   ),
                                 ),
                               ),
                             )
-                          ),
                         ),
                       )
                   ),
