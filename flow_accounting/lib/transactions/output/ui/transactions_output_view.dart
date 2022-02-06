@@ -793,7 +793,8 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
           element.sourceCardNumber.contains(searchQuery) ||
           element.targetUsername.contains(searchQuery) ||
           element.targetBankName.contains(searchQuery) ||
-          element.targetCardNumber.contains(searchQuery)) {
+          element.targetCardNumber.contains(searchQuery) ||
+          element.budgetName.contains(searchQuery)) {
 
         searchResult.add(element);
 

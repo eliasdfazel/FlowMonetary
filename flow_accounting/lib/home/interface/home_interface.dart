@@ -202,6 +202,7 @@ class _HomePageState extends State<HomePage> {
       targetUsername: "Aban",
       transactionTime: "13:19 - 8/7/2013",
       colorTag: ColorsResources.black.value,
+      budgetName: "خانه",
     ));
     latestTransactions.add(TransactionsData(
       id: 2,
@@ -215,6 +216,7 @@ class _HomePageState extends State<HomePage> {
       targetUsername: "Aban",
       transactionTime: "13:19 - 8/7/2013",
       colorTag: ColorsResources.black.value,
+      budgetName: "خانه",
     ));
     latestTransactions.add(TransactionsData(
       id: 3,
@@ -228,6 +230,7 @@ class _HomePageState extends State<HomePage> {
       targetUsername: "Aban",
       transactionTime: "13:19 - 8/7/2013",
       colorTag: ColorsResources.greenGray.value,
+      budgetName: "مغازه",
     ));
     latestTransactions.add(TransactionsData(
       id: 4,
@@ -241,6 +244,7 @@ class _HomePageState extends State<HomePage> {
       targetUsername: "Aban",
       transactionTime: "13:19 - 8/7/2013",
       colorTag: ColorsResources.gameGeeksEmpire.value,
+      budgetName: "گربه",
     ));
     latestTransactions.add(TransactionsData(
       id: 5,
@@ -254,6 +258,7 @@ class _HomePageState extends State<HomePage> {
       targetUsername: "Aban",
       transactionTime: "13:19 - 8/7/2013",
       colorTag: ColorsResources.black.value,
+      budgetName: "آکواریوم",
     ));
     latestTransactions.add(TransactionsData(
       id: 6,
@@ -267,6 +272,7 @@ class _HomePageState extends State<HomePage> {
       targetUsername: "Aban",
       transactionTime: "13:19 - 8/7/2013",
       colorTag: ColorsResources.black.value,
+      budgetName: "خانه",
     ));
     latestTransactions.add(TransactionsData(
       id: 7,
@@ -280,6 +286,7 @@ class _HomePageState extends State<HomePage> {
       targetUsername: "Aban",
       transactionTime: "13:19 - 8/7/2013",
       colorTag: ColorsResources.primaryColor.value,
+      budgetName: "خانه",
     ));
 
     return latestTransactions;

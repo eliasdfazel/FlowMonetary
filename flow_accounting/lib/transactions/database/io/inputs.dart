@@ -42,6 +42,7 @@ class DatabaseInputs {
               'transactionType TEXT, '
               'transactionTime TEXT, '
               'colorTag TEXT'
+              'budgetName TEXT'
               ')',
         );
       },

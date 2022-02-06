@@ -46,6 +46,8 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
   String transactionType = TransactionsData.TransactionType_Send;
 
+  String budgetName = TransactionsData.TransactionBudgetName;
+
   @override
   void initState() {
     super.initState();
@@ -917,6 +919,8 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                         targetCardNumber: controllerTransactionTargetCard.text,
 
                         colorTag: colorSelectorView.selectedColor.value,
+
+                        budgetName: budgetName,
                       );
 
                       databaseInputs.insertTransactionData(transactionData, DatabaseInputs.databaseTableName);

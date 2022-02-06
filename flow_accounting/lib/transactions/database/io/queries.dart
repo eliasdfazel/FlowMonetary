@@ -44,6 +44,7 @@ class DatabaseQueries {
         transactionType: maps[i]['transactionType'],
         transactionTime: maps[i]['transactionTime'],
         colorTag: int.parse(maps[i]['colorTag'].toString()),
+        budgetName: maps[i]['budgetName'],
       );
     });
 
@@ -82,6 +83,7 @@ class DatabaseQueries {
       transactionType: inputData['transactionType'].toString(),
       transactionTime: inputData['transactionTime'].toString(),
       colorTag: int.parse(inputData['colorTag'].toString()),
+      budgetName: inputData['budgetName'].toString(),
     );
   }
 

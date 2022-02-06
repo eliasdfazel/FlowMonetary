@@ -15,6 +15,8 @@ class TransactionsData {
   static const TransactionType_Send = "-";
   static const TransactionType_Receive = "+";
 
+  static const String TransactionBudgetName = "";
+
   final int id;
 
   final String sourceCardNumber;
@@ -33,6 +35,8 @@ class TransactionsData {
 
   int colorTag = ColorsResources.dark.value;
 
+  final String budgetName;
+
   TransactionsData({
     required this.id,
 
@@ -50,6 +54,8 @@ class TransactionsData {
     required this.transactionTime,
 
     required this.colorTag,
+
+    required this.budgetName,
   });
 
   // Convert a Dog into a Map. The keys must correspond to the names of the
@@ -72,6 +78,8 @@ class TransactionsData {
       'transactionTime': transactionTime,
 
       'colorTag': colorTag,
+
+      'budgetName': budgetName,
     };
   }
 
@@ -94,6 +102,8 @@ class TransactionsData {
         'transactionTime: $transactionTime,'
 
         'colorTag: $colorTag,'
+
+        'budgetName: $budgetName,'
         '}';
   }
 }
