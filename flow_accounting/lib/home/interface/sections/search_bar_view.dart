@@ -14,9 +14,15 @@ import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flutter/material.dart';
 
+import 'features_view.dart';
+
 class SearchBarView extends StatefulWidget {
 
-  SearchBarView({Key? key}) : super(key: key);
+  List<FeaturesStructure> allFeaturesStructure = [];
+
+  SearchBarView({Key? key, required this.allFeaturesStructure}) : super(key: key);
+
+  ValueNotifier<List<FeaturesStructure>> searchableFeaturesList = ValueNotifier([]);
 
   @override
   State<SearchBarView> createState() => _SearchBarView();
@@ -79,7 +85,28 @@ class _SearchBarView extends State<SearchBarView> {
                                 autofocus: false,
                                 decoration: const InputDecoration(
                                   border: OutlineInputBorder(
-                                      borderSide: BorderSide(color: Colors.blueGrey, width: 5.0),
+                                      borderSide: BorderSide(color: ColorsResources.applicationGeeksEmpire,
+                                          width: 1.0),
+                                      borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(13),
+                                          topRight: Radius.circular(13),
+                                          bottomLeft: Radius.circular(13),
+                                          bottomRight: Radius.circular(13)
+                                      ),
+                                      gapPadding: 5
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(color: ColorsResources.applicationGeeksEmpire, width: 1.0),
+                                      borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(13),
+                                          topRight: Radius.circular(13),
+                                          bottomLeft: Radius.circular(13),
+                                          bottomRight: Radius.circular(13)
+                                      ),
+                                      gapPadding: 5
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(color: ColorsResources.applicationGeeksEmpire, width: 1.0),
                                       borderRadius: BorderRadius.only(
                                           topLeft: Radius.circular(13),
                                           topRight: Radius.circular(13),
@@ -90,7 +117,7 @@ class _SearchBarView extends State<SearchBarView> {
                                   ),
                                   hintText: StringsResources.searchFeaturesText,
                                   hintStyle: TextStyle(
-                                      color: ColorsResources.dark,
+                                      color: ColorsResources.darkTransparent,
                                       fontSize: 17.0
                                   ),
                                   labelText: StringsResources.searchText,
@@ -114,7 +141,20 @@ class _SearchBarView extends State<SearchBarView> {
 
                             String searchQuery = textEditorControllerQuery.text;
 
+                            List<FeaturesStructure> foundAllFeaturesStructure = [];
 
+                            for (var element in widget.allFeaturesStructure) {
+
+                              if (element.featuresTitle.contains(searchQuery) ||
+                                  element.featuresDescription.contains(searchQuery)) {
+
+                                foundAllFeaturesStructure.add(element);
+
+                                widget.searchableFeaturesList.value = foundAllFeaturesStructure;
+
+                              }
+
+                            }
 
                           },
                           child: Container(

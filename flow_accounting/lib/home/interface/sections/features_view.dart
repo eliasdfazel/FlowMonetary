@@ -44,18 +44,82 @@ class FeaturesOptionsView extends StatefulWidget {
 }
 class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
 
+  List<FeaturesStructure> allFeaturesStructure = [];
+
   List<Widget> allFeaturesOptionsWidgets = [];
 
   @override
   void initState() {
 
-    List<FeaturesStructure> allFeaturesStructure = [];
+    initializeFeatures();
+
+    initializeFeaturesCheckpoint();
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+
+    SearchBarView searchBarView = SearchBarView(allFeaturesStructure: initializeFeatures());
+
+    searchBarView.searchableFeaturesList.addListener(() {
+
+      allFeaturesStructure = searchBarView.searchableFeaturesList.value;
+
+      print(">>> ${allFeaturesStructure.length}");
+
+      initializeFeaturesCheckpoint();
+
+      setState(() {
+
+        allFeaturesOptionsWidgets;
+
+      });
+
+    });
+
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(0, 3, 0, 0),
+      child: Column(
+        children: [
+          searchBarView,
+          Column(
+            children: allFeaturesOptionsWidgets,
+          )
+        ]
+      ),
+    );
+  }
+
+  void updateAvailableFeaturesOptions(
+      List<Widget> availableFeaturesOptionsWidgets) {
+
+    allFeaturesOptionsWidgets.clear();
+
+    allFeaturesOptionsWidgets.addAll(availableFeaturesOptionsWidgets);
+
+    setState(() {
+
+      allFeaturesOptionsWidgets;
+
+    });
+
+  }
+
+  List<FeaturesStructure> initializeFeatures() {
+
     allFeaturesStructure.add(FeaturesStructure(
-        importantFeature: true,
-        featuresTitle: StringsResources.featureTransactionsTitle,
-        featuresDescription: StringsResources.featureTransactionsDescription,
-        featureViewToSubmitData: const TransactionsInputView(),
-        featureToPresentData: const TransactionsOutputView(),
+      importantFeature: true,
+      featuresTitle: StringsResources.featureTransactionsTitle,
+      featuresDescription: StringsResources.featureTransactionsDescription,
+      featureViewToSubmitData: const TransactionsInputView(),
+      featureToPresentData: const TransactionsOutputView(),
     ));
     allFeaturesStructure.add(FeaturesStructure(
         importantFeature: false,
@@ -121,9 +185,16 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
         featureToPresentData: null
     ));
 
+    return allFeaturesStructure;
+  }
+
+  void initializeFeaturesCheckpoint() {
+
     bool alreadyTwo = false;
 
     allFeaturesStructure.forEachIndexed((index, element) {
+      print(">>> ${element.importantFeature}");
+      print(">>> ${element.featuresTitle}");
 
       if (element.importantFeature) {
 
@@ -147,6 +218,16 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
 
           alreadyTwo = false;
 
+          if ((index + 1) == (allFeaturesStructure.length - 1)) {
+
+            alreadyTwo = true;
+
+          } else {
+
+
+
+          }
+
           allFeaturesOptionsWidgets.add(featuresOptionsRow(
               allFeaturesStructure[index].featuresTitle,
               allFeaturesStructure[index + 1].featuresTitle,
@@ -164,43 +245,6 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
         }
 
       }
-
-    });
-
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 3, 0, 0),
-      child: Column(
-        children: [
-          SearchBarView(),
-          Column(
-            children: allFeaturesOptionsWidgets,
-          )
-        ]
-      ),
-    );
-  }
-
-  void updateAvailableFeaturesOptions(
-      List<Widget> availableFeaturesOptionsWidgets) {
-
-    allFeaturesOptionsWidgets.clear();
-
-    allFeaturesOptionsWidgets.addAll(availableFeaturesOptionsWidgets);
-
-    setState(() {
-
-      allFeaturesOptionsWidgets;
 
     });
 
