@@ -48,6 +48,61 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
   @override
   void initState() {
 
+    List<FeaturesStructure> allFeaturesStructure = [];
+    allFeaturesStructure.add(FeaturesStructure(
+        importantFeature: true,
+        featuresTitle: StringsResources.featureTransactionsTitle,
+        featuresDescription: StringsResources.featureTransactionsDescription
+    ));
+    allFeaturesStructure.add(FeaturesStructure(
+        importantFeature: false,
+        featuresTitle: StringsResources.featureSellInvoicesTitle,
+        featuresDescription: StringsResources.featureSellInvoicesDescription
+    ));
+    allFeaturesStructure.add(FeaturesStructure(
+        importantFeature: false,
+        featuresTitle: StringsResources.featureBuyInvoicesTitle,
+        featuresDescription: StringsResources.featureBuyInvoicesDescription
+    ));
+    allFeaturesStructure.add(FeaturesStructure(
+        importantFeature: true,
+        featuresTitle: StringsResources.featureProductsTitle,
+        featuresDescription: StringsResources.featureProductsDescription
+    ));
+    allFeaturesStructure.add(FeaturesStructure(
+        importantFeature: true,
+        featuresTitle: StringsResources.featureChequesTitle,
+        featuresDescription: StringsResources.featureChequesDescription
+    ));
+    allFeaturesStructure.add(FeaturesStructure(
+        importantFeature: false,
+        featuresTitle: StringsResources.featureDebtorsTitle,
+        featuresDescription: StringsResources.featureDebtorsDescription
+    ));
+    allFeaturesStructure.add(FeaturesStructure(
+        importantFeature: false,
+        featuresTitle: StringsResources.featureCreditorsTitle,
+        featuresDescription: StringsResources.featureCreditorsDescription
+    ));
+    allFeaturesStructure.add(FeaturesStructure(
+        importantFeature: true,
+        featuresTitle: StringsResources.featureCustomersTitle,
+        featuresDescription: StringsResources.featureCustomersDescription
+    ));
+    allFeaturesStructure.add(FeaturesStructure(
+        importantFeature: false,
+        featuresTitle: StringsResources.featureBudgetManagementsTitle,
+        featuresDescription: StringsResources.featureBudgetManagementsDescription
+    ));
+    allFeaturesStructure.add(FeaturesStructure(
+        importantFeature: false,
+        featuresTitle: StringsResources.featureLoansTitle,
+        featuresDescription: StringsResources.featureLoansDescription
+    ));
+
+
+
+
     allFeaturesOptionsWidgets.add(featuresOptionsRow(
         /* featureOneTitle */ StringsResources.featureTransactionsTitle,
         /* featureTwoTitle */ null,
@@ -436,4 +491,19 @@ Widget featuresOptionsItem(String featureTitle,
       ),
     ),
   );
+}
+
+class FeaturesStructure {
+
+  final bool importantFeature;
+
+  final String featuresTitle;
+  final String featuresDescription;
+
+  FeaturesStructure({
+    required this.importantFeature,
+    required this.featuresTitle,
+    required this.featuresDescription
+  });
+
 }
