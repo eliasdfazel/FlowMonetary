@@ -1009,12 +1009,11 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                             shadowColor: ColorsResources.darkTransparent,
                                             borderRadius: BorderRadius.circular(17)
                                         ),
-                                        textFieldConfiguration: TextFieldConfiguration(
-                                          controller: controllerTransactionTargetName,
+                                        textFieldConfiguration: const TextFieldConfiguration(
                                           autofocus: false,
                                           maxLines: 1,
                                           cursorColor: ColorsResources.primaryColor,
-                                          decoration: const InputDecoration(
+                                          decoration: InputDecoration(
                                             alignLabelWithHint: true,
                                             border: OutlineInputBorder(
                                                 borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
