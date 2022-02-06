@@ -324,13 +324,13 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
                   child: Align(
                     alignment: Alignment.center,
                     child: SizedBox(
-                      height: 71,
+                      height: 73,
                       width: 219,
                       child: Stack(
                         children: [
                           const Image(
                             image: AssetImage("search_shape.png"),
-                            height: 71,
+                            height: 73,
                             width: 213,
                             color: ColorsResources.primaryColorDark,
                           ),
@@ -357,7 +357,7 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
                             alignment: Alignment.centerLeft,
                             child: SizedBox(
                                 width: 153,
-                                height: 45,
+                                height: 47,
                                 child: Directionality(
                                   textDirection: TextDirection.rtl,
                                   child: TextField(
