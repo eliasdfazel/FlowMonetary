@@ -8,6 +8,7 @@
  * https://opensource.org/licenses/MIT
  */
 
+import 'package:collection/collection.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/input/ui/transactions_input_view.dart';
@@ -52,140 +53,124 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
     allFeaturesStructure.add(FeaturesStructure(
         importantFeature: true,
         featuresTitle: StringsResources.featureTransactionsTitle,
-        featuresDescription: StringsResources.featureTransactionsDescription
+        featuresDescription: StringsResources.featureTransactionsDescription,
+        featureViewToSubmitData: const TransactionsInputView(),
+        featureToPresentData: const TransactionsOutputView(),
     ));
     allFeaturesStructure.add(FeaturesStructure(
         importantFeature: false,
         featuresTitle: StringsResources.featureSellInvoicesTitle,
-        featuresDescription: StringsResources.featureSellInvoicesDescription
+        featuresDescription: StringsResources.featureSellInvoicesDescription,
+        featureViewToSubmitData: null,
+        featureToPresentData: null
     ));
     allFeaturesStructure.add(FeaturesStructure(
         importantFeature: false,
         featuresTitle: StringsResources.featureBuyInvoicesTitle,
-        featuresDescription: StringsResources.featureBuyInvoicesDescription
+        featuresDescription: StringsResources.featureBuyInvoicesDescription,
+        featureViewToSubmitData: null,
+        featureToPresentData: null
     ));
     allFeaturesStructure.add(FeaturesStructure(
         importantFeature: true,
         featuresTitle: StringsResources.featureProductsTitle,
-        featuresDescription: StringsResources.featureProductsDescription
+        featuresDescription: StringsResources.featureProductsDescription,
+        featureViewToSubmitData: null,
+        featureToPresentData: null
     ));
     allFeaturesStructure.add(FeaturesStructure(
         importantFeature: true,
         featuresTitle: StringsResources.featureChequesTitle,
-        featuresDescription: StringsResources.featureChequesDescription
+        featuresDescription: StringsResources.featureChequesDescription,
+        featureViewToSubmitData: null,
+        featureToPresentData: null
     ));
     allFeaturesStructure.add(FeaturesStructure(
         importantFeature: false,
         featuresTitle: StringsResources.featureDebtorsTitle,
-        featuresDescription: StringsResources.featureDebtorsDescription
+        featuresDescription: StringsResources.featureDebtorsDescription,
+        featureViewToSubmitData: null,
+        featureToPresentData: null
     ));
     allFeaturesStructure.add(FeaturesStructure(
         importantFeature: false,
         featuresTitle: StringsResources.featureCreditorsTitle,
-        featuresDescription: StringsResources.featureCreditorsDescription
+        featuresDescription: StringsResources.featureCreditorsDescription,
+        featureViewToSubmitData: null,
+        featureToPresentData: null
     ));
     allFeaturesStructure.add(FeaturesStructure(
         importantFeature: true,
         featuresTitle: StringsResources.featureCustomersTitle,
-        featuresDescription: StringsResources.featureCustomersDescription
+        featuresDescription: StringsResources.featureCustomersDescription,
+        featureViewToSubmitData: null,
+        featureToPresentData: null
     ));
     allFeaturesStructure.add(FeaturesStructure(
         importantFeature: false,
         featuresTitle: StringsResources.featureBudgetManagementsTitle,
-        featuresDescription: StringsResources.featureBudgetManagementsDescription
+        featuresDescription: StringsResources.featureBudgetManagementsDescription,
+        featureViewToSubmitData: null,
+        featureToPresentData: null
     ));
     allFeaturesStructure.add(FeaturesStructure(
         importantFeature: false,
         featuresTitle: StringsResources.featureLoansTitle,
-        featuresDescription: StringsResources.featureLoansDescription
+        featuresDescription: StringsResources.featureLoansDescription,
+        featureViewToSubmitData: null,
+        featureToPresentData: null
     ));
 
+    bool alreadyTwo = false;
+
+    allFeaturesStructure.forEachIndexed((index, element) {
+
+      if (element.importantFeature) {
+
+        allFeaturesOptionsWidgets.add(featuresOptionsRow(
+          /* featureOneTitle */ allFeaturesStructure[index].featuresTitle,
+            /* featureTwoTitle */ null,
+            /* featureOneDescription */ allFeaturesStructure[index].featuresDescription,
+            /* featureTwoDescription */ null,
+            /* featureOneTargetViewToSubmitData */ allFeaturesStructure[index].featureViewToSubmitData,
+            /* featureTwoTargetViewToSubmitData */ null,
+            /* featureOneTargetViewToPresentData */ allFeaturesStructure[index].featureToPresentData,
+            /* featureTwoTargetViewToPresentData */ null,
+            /* Context */ context
+        ));
+
+        alreadyTwo = false;
+
+      } else {
+
+        if (!alreadyTwo) {
+
+          alreadyTwo = false;
+
+          int currentIndex = index;
+          int nextIndex = index + 1;
 
 
 
-    allFeaturesOptionsWidgets.add(featuresOptionsRow(
-        /* featureOneTitle */ StringsResources.featureTransactionsTitle,
-        /* featureTwoTitle */ null,
-        /* featureOneDescription */ StringsResources.featureTransactionsDescription,
-        /* featureTwoDescription */ null,
-        /* featureOneTargetViewToSubmitData */ const TransactionsInputView(),
-        /* featureTwoTargetViewToSubmitData */ null,
-        /* featureOneTargetViewToPresentData */ const TransactionsOutputView(),
-        /* featureTwoTargetViewToPresentData */ null,
-        /* Context */ context
-    ));
+          allFeaturesOptionsWidgets.add(featuresOptionsRow(
+              allFeaturesStructure[index].featuresTitle,
+              allFeaturesStructure[index + 1].featuresTitle,
+              allFeaturesStructure[index].featuresDescription,
+              allFeaturesStructure[index + 1].featuresDescription,
+              null,
+              null,
+              null,
+              null,
+              context
+          ));
 
-    allFeaturesOptionsWidgets.add(featuresOptionsRow(
-        StringsResources.featureSellInvoicesTitle,
-        StringsResources.featureBuyInvoicesTitle,
-        StringsResources.featureSellInvoicesDescription,
-        StringsResources.featureBuyInvoicesDescription,
-        null,
-        null,
-        null,
-        null,
-        context
-    ));
+          alreadyTwo = true;
 
-    allFeaturesOptionsWidgets.add(featuresOptionsRow(
-        StringsResources.featureProductsTitle,
-        null,
-        StringsResources.featureProductsDescription,
-        null,
-        null,
-        null,
-        null,
-        null,
-        context
-    ));
+        }
 
-    allFeaturesOptionsWidgets.add(featuresOptionsRow(
-        StringsResources.featureChequesTitle,
-        null,
-        StringsResources.featureChequesDescription,
-        null,
-        null,
-        null,
-        null,
-        null,
-        context
-    ));
+      }
 
-    allFeaturesOptionsWidgets.add(featuresOptionsRow(
-        StringsResources.featureDebtorsTitle,
-        StringsResources.featureCreditorsTitle,
-        StringsResources.featureDebtorsDescription,
-        StringsResources.featureCreditorsDescription,
-        null,
-        null,
-        null,
-        null,
-        context
-    ));
-
-    allFeaturesOptionsWidgets.add(featuresOptionsRow(
-        StringsResources.featureCustomersTitle,
-        null,
-        StringsResources.featureCustomersDescription,
-        null,
-        null,
-        null,
-        null,
-        null,
-        context
-    ));
-
-    allFeaturesOptionsWidgets.add(featuresOptionsRow(
-        StringsResources.featureBudgetManagementsTitle,
-        StringsResources.featureLoansTitle,
-        StringsResources.featureBudgetManagementsDescription,
-        StringsResources.featureLoansDescription,
-        null,
-        null,
-        null,
-        null,
-        context
-    ));
+    });
 
     super.initState();
   }
@@ -500,10 +485,15 @@ class FeaturesStructure {
   final String featuresTitle;
   final String featuresDescription;
 
+  final StatefulWidget? featureViewToSubmitData;
+  final StatefulWidget? featureToPresentData;
+
   FeaturesStructure({
     required this.importantFeature,
     required this.featuresTitle,
-    required this.featuresDescription
+    required this.featuresDescription,
+    required this.featureViewToSubmitData,
+    required this.featureToPresentData,
   });
 
 }
