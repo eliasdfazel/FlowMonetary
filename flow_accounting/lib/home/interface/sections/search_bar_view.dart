@@ -18,11 +18,12 @@ import 'features_view.dart';
 
 class SearchBarView extends StatefulWidget {
 
-  List<FeaturesStructure> allFeaturesStructure = [];
+  List<FeaturesStructure> initialFeaturesStructure = [];
 
-  SearchBarView({Key? key, required this.allFeaturesStructure}) : super(key: key);
+  SearchBarView({Key? key, required this.initialFeaturesStructure}) : super(key: key);
 
   ValueNotifier<List<FeaturesStructure>> searchableFeaturesList = ValueNotifier([]);
+  ValueNotifier<bool> resetFeaturesList = ValueNotifier(false);
 
   @override
   State<SearchBarView> createState() => _SearchBarView();
@@ -139,7 +140,11 @@ class _SearchBarView extends State<SearchBarView> {
                           splashColor: ColorsResources.primaryColor,
                           onDoubleTap: () {
 
-                            widget.searchableFeaturesList.value = widget.allFeaturesStructure;
+                            Future.delayed(const Duration(milliseconds: 199), () {
+
+                              widget.resetFeaturesList.value = true;
+
+                            });
 
                           },
                           onTap: () {
@@ -149,7 +154,7 @@ class _SearchBarView extends State<SearchBarView> {
                             List<FeaturesStructure> foundAllFeaturesStructure = [];
                             foundAllFeaturesStructure.clear();
 
-                            for (var element in widget.allFeaturesStructure) {
+                            for (var element in widget.initialFeaturesStructure) {
 
                               if (element.featuresTitle.contains(searchQuery) ||
                                   element.featuresDescription.contains(searchQuery)) {
@@ -161,7 +166,12 @@ class _SearchBarView extends State<SearchBarView> {
                             }
 
                             widget.searchableFeaturesList.value.clear();
-                            widget.searchableFeaturesList.value = foundAllFeaturesStructure;
+
+                            Future.delayed(const Duration(milliseconds: 199), () {
+
+                              widget.searchableFeaturesList.value = foundAllFeaturesStructure;
+
+                            });
 
                           },
                           child: Container(

@@ -115,7 +115,7 @@ class SelectCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
 
-        print(">>> " + choice.title);
+        // print(">>> " + choice.title);
 
       },
       child: Card(

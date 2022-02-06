@@ -44,6 +44,10 @@ class FeaturesOptionsView extends StatefulWidget {
 }
 class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
 
+  List<FeaturesStructure> allFeaturesStructureUntouch = [];
+
+  List<Widget> allFeaturesOptionsWidgetsUntouch = [];
+
   List<FeaturesStructure> allFeaturesStructure = [];
 
   List<Widget> allFeaturesOptionsWidgets = [];
@@ -52,8 +56,10 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
   void initState() {
 
     initializeFeatures();
+    allFeaturesStructureUntouch = allFeaturesStructure;
 
     initializeFeaturesCheckpoint();
+    allFeaturesOptionsWidgetsUntouch = allFeaturesOptionsWidgets;
 
     super.initState();
   }
@@ -66,16 +72,30 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
   @override
   Widget build(BuildContext context) {
 
-    SearchBarView searchBarView = SearchBarView(allFeaturesStructure: initializeFeatures());
+    SearchBarView searchBarView = SearchBarView(initialFeaturesStructure: initializeFeatures());
+
+    searchBarView.resetFeaturesList.addListener(() {
+
+      initializeFeatures();
+
+      initializeFeaturesCheckpoint();
+      
+      setState(() {
+
+        allFeaturesOptionsWidgets;
+
+      });
+
+    });
 
     searchBarView.searchableFeaturesList.addListener(() {
 
       allFeaturesStructure.clear();
       allFeaturesOptionsWidgets.clear();
 
-      allFeaturesStructure = searchBarView.searchableFeaturesList.value;
+      allFeaturesStructure.addAll(searchBarView.searchableFeaturesList.value);
 
-      initializeFeaturesCheckpoint();
+      searchFeaturesCheckpoint();
 
       setState(() {
 
@@ -98,22 +118,9 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
     );
   }
 
-  void updateAvailableFeaturesOptions(
-      List<Widget> availableFeaturesOptionsWidgets) {
-
-    allFeaturesOptionsWidgets.clear();
-
-    allFeaturesOptionsWidgets.addAll(availableFeaturesOptionsWidgets);
-
-    setState(() {
-
-      allFeaturesOptionsWidgets;
-
-    });
-
-  }
-
   List<FeaturesStructure> initializeFeatures() {
+
+    allFeaturesStructure.clear();
 
     allFeaturesStructure.add(FeaturesStructure(
       importantFeature: true,
@@ -191,6 +198,8 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
 
   void initializeFeaturesCheckpoint() {
 
+    allFeaturesOptionsWidgets.clear();
+
     bool alreadyTwo = false;
 
     allFeaturesStructure.forEachIndexed((index, element) {
@@ -240,6 +249,26 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
         }
 
       }
+
+    });
+
+  }
+
+  void searchFeaturesCheckpoint() {
+
+    allFeaturesStructure.forEachIndexed((index, element) {
+
+      allFeaturesOptionsWidgets.add(featuresOptionsRow(
+        /* featureOneTitle */ allFeaturesStructure[index].featuresTitle,
+          /* featureTwoTitle */ null,
+          /* featureOneDescription */ allFeaturesStructure[index].featuresDescription,
+          /* featureTwoDescription */ null,
+          /* featureOneTargetViewToSubmitData */ allFeaturesStructure[index].featureViewToSubmitData,
+          /* featureTwoTargetViewToSubmitData */ null,
+          /* featureOneTargetViewToPresentData */ allFeaturesStructure[index].featureToPresentData,
+          /* featureTwoTargetViewToPresentData */ null,
+          /* Context */ context
+      ));
 
     });
 
