@@ -44,6 +44,8 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
   TextEditingController controllerTransactionTargetBank = TextEditingController();
   TextEditingController controllerTransactionTargetCard = TextEditingController();
 
+  TextEditingController controllerBudget = TextEditingController();
+
   String transactionType = TransactionsData.TransactionType_Send;
 
   String budgetName = TransactionsData.TransactionBudgetName;
@@ -1009,7 +1011,8 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                             shadowColor: ColorsResources.darkTransparent,
                                             borderRadius: BorderRadius.circular(17)
                                         ),
-                                        textFieldConfiguration: const TextFieldConfiguration(
+                                        textFieldConfiguration: TextFieldConfiguration(
+                                          controller: controllerBudget,
                                           autofocus: false,
                                           maxLines: 1,
                                           cursorColor: ColorsResources.primaryColor,
