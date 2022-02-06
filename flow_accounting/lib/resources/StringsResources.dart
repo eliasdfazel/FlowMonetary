@@ -91,4 +91,12 @@ class StringsResources {
 
   static const String mySelfText = "خودم";
 
+  static const List<String> listOfBanksIran = [
+    "ملی",
+    "اقتصاد نوین",
+    "صادرات",
+    "ملت",
+    "سپه"m
+  ];
+
 }

@@ -820,6 +820,11 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                         height: 13,
                         color: Colors.transparent,
                       ),
+
+                      const Divider(
+                        height: 13,
+                        color: Colors.transparent,
+                      ),
                       SizedBox(
                         width: double.infinity,
                         height: 37,
@@ -1033,14 +1038,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
   Future<List<String>> getBanksName() async {
 
-    List<String> listOfNames = [];
-    listOfNames.add("ملی");
-    listOfNames.add("اقتصاد نوین");
-    listOfNames.add("صادرات");
-    listOfNames.add("ملت");
-    listOfNames.add("سپه");
-
-    return listOfNames;
+    return StringsResources.listOfBanksIran;
   }
 
 }
