@@ -159,8 +159,8 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                     textDirection: TextDirection.rtl,
                                     child: TextField(
                                       controller: controllerMoneyAmount,
-                                      textAlign: TextAlign.right,
-                                      textDirection: TextDirection.rtl,
+                                      textAlign: TextAlign.center,
+                                      textDirection: TextDirection.ltr,
                                       textAlignVertical: TextAlignVertical.bottom,
                                       maxLines: 1,
                                       cursorColor: ColorsResources.primaryColor,
@@ -170,7 +170,37 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                       decoration: const InputDecoration(
                                         alignLabelWithHint: true,
                                         border: OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.blueGrey, width: 5.0),
+                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        enabledBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        errorBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.red, width: 1.0),
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(13),
                                                 topRight: Radius.circular(13),
@@ -190,16 +220,6 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                         hintStyle: TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
-                                        ),
-                                        errorBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.red, width: 5.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
                                         ),
                                       ),
                                     ),
@@ -271,16 +291,24 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                     child: DropdownButtonFormField(
                                       isDense: true,
                                       elevation: 7,
+                                      focusColor: ColorsResources.applicationDarkGeeksEmpire,
                                       dropdownColor: ColorsResources.light,
                                       decoration: InputDecoration(
-                                          enabledBorder: OutlineInputBorder(
+                                          border: OutlineInputBorder(
                                             borderSide: const BorderSide(
                                                 color: ColorsResources.applicationDarkGeeksEmpire,
                                                 width: 1
                                             ),
                                             borderRadius: BorderRadius.circular(13),
                                           ),
-                                          border: OutlineInputBorder(
+                                          enabledBorder: OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                              color: ColorsResources.applicationDarkGeeksEmpire,
+                                              width: 1
+                                            ),
+                                            borderRadius: BorderRadius.circular(13),
+                                          ),
+                                          focusedBorder: OutlineInputBorder(
                                             borderSide: const BorderSide(
                                                 color: ColorsResources.applicationDarkGeeksEmpire,
                                                 width: 1
