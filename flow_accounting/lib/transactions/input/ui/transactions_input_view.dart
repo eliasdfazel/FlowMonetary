@@ -353,7 +353,15 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                       }).toList(),
                                       onChanged: (value) {
 
-                                        transactionType = value.toString();
+                                        if (value.toString() == StringsResources.transactionTypeReceive) {
+
+                                          transactionType = TransactionsData.TransactionType_Receive;
+
+                                        } else if (value.toString() == StringsResources.transactionTypeSend) {
+
+                                          transactionType = TransactionsData.TransactionType_Send;
+
+                                        }
 
                                       },
 
@@ -1002,6 +1010,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                         },
                                         onSuggestionSelected: (suggestion) {
 
+                                          controllerBudget.text = suggestion.toString();
                                           budgetName = suggestion.toString();
 
                                         },
