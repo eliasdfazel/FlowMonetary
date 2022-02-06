@@ -402,7 +402,7 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
                                       ),
                                       hintText: StringsResources.searchTransactionsText,
                                       hintStyle: TextStyle(
-                                          color: ColorsResources.dark,
+                                          color: ColorsResources.darkTransparent,
                                           fontSize: 13.0
                                       ),
                                       labelText: StringsResources.searchText,

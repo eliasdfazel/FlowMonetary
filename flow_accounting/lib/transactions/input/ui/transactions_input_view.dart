@@ -220,7 +220,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                         ),
                                         hintText: StringsResources.transactionAmountHint,
                                         hintStyle: TextStyle(
-                                            color: ColorsResources.dark,
+                                            color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
                                         ),
                                       ),
@@ -473,7 +473,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                             ),
                                             hintText: StringsResources.transactionTargetNameHint,
                                             hintStyle: TextStyle(
-                                                color: ColorsResources.dark,
+                                                color: ColorsResources.darkTransparent,
                                                 fontSize: 17.0
                                             ),
                                           ),
@@ -573,7 +573,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                             ),
                                             hintText: StringsResources.transactionSourceNameHint,
                                             hintStyle: TextStyle(
-                                                color: ColorsResources.dark,
+                                                color: ColorsResources.darkTransparent,
                                                 fontSize: 17.0
                                             ),
                                           ),
@@ -686,7 +686,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                             ),
                                             hintText: StringsResources.transactionSourceBankHint,
                                             hintStyle: TextStyle(
-                                                color: ColorsResources.dark,
+                                                color: ColorsResources.darkTransparent,
                                                 fontSize: 17.0
                                             ),
                                           ),
@@ -786,7 +786,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                             ),
                                             hintText: StringsResources.transactionTargetBankHint,
                                             hintStyle: TextStyle(
-                                                color: ColorsResources.dark,
+                                                color: ColorsResources.darkTransparent,
                                                 fontSize: 17.0
                                             ),
                                           ),
@@ -875,7 +875,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                         ),
                                         hintText: StringsResources.transactionSourceCardHint,
                                         hintStyle: TextStyle(
-                                            color: ColorsResources.dark,
+                                            color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
                                         ),
                                       ),
@@ -963,7 +963,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                         ),
                                         hintText: StringsResources.transactionTargetCardHint,
                                         hintStyle: TextStyle(
-                                            color: ColorsResources.dark,
+                                            color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
                                         ),
                                       ),
@@ -1076,7 +1076,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                             ),
                                             hintText: StringsResources.transactionBudgetNameHint,
                                             hintStyle: TextStyle(
-                                                color: ColorsResources.dark,
+                                                color: ColorsResources.darkTransparent,
                                                 fontSize: 17.0
                                             ),
                                           ),

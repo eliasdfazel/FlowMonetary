@@ -70,9 +70,10 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
 
     searchBarView.searchableFeaturesList.addListener(() {
 
-      allFeaturesStructure = searchBarView.searchableFeaturesList.value;
+      allFeaturesStructure.clear();
+      allFeaturesOptionsWidgets.clear();
 
-      print(">>> ${allFeaturesStructure.length}");
+      allFeaturesStructure = searchBarView.searchableFeaturesList.value;
 
       initializeFeaturesCheckpoint();
 
@@ -193,8 +194,6 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
     bool alreadyTwo = false;
 
     allFeaturesStructure.forEachIndexed((index, element) {
-      print(">>> ${element.importantFeature}");
-      print(">>> ${element.featuresTitle}");
 
       if (element.importantFeature) {
 
@@ -222,11 +221,7 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
 
             alreadyTwo = true;
 
-          } else {
-
-
-
-          }
+          } else {}
 
           allFeaturesOptionsWidgets.add(featuresOptionsRow(
               allFeaturesStructure[index].featuresTitle,

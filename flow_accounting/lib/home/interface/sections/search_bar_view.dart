@@ -137,11 +137,17 @@ class _SearchBarView extends State<SearchBarView> {
                         padding: const EdgeInsets.fromLTRB(1, 1, 1, 1),
                         child: InkWell(
                           splashColor: ColorsResources.primaryColor,
+                          onDoubleTap: () {
+
+                            widget.searchableFeaturesList.value = widget.allFeaturesStructure;
+
+                          },
                           onTap: () {
 
                             String searchQuery = textEditorControllerQuery.text;
 
                             List<FeaturesStructure> foundAllFeaturesStructure = [];
+                            foundAllFeaturesStructure.clear();
 
                             for (var element in widget.allFeaturesStructure) {
 
@@ -150,11 +156,12 @@ class _SearchBarView extends State<SearchBarView> {
 
                                 foundAllFeaturesStructure.add(element);
 
-                                widget.searchableFeaturesList.value = foundAllFeaturesStructure;
-
                               }
 
                             }
+
+                            widget.searchableFeaturesList.value.clear();
+                            widget.searchableFeaturesList.value = foundAllFeaturesStructure;
 
                           },
                           child: Container(
