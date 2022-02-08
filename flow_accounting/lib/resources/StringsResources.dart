@@ -24,6 +24,9 @@ class StringsResources {
   static const String searchFeaturesText = "امکان مورد نظر خود را جستجو کنید";
   static const String searchTransactionsText = "جستجو در تراکنش ها";
 
+  static const String editText = "ویرایش";
+  static const String deleteText = "حذف";
+
   static const String transactionAll = "تمام تراکنش ها";
   static const String transactionTime = "زمان تراکنش";
   static const String transactionAmount = "مبلغ  دریافتی یا پرداختی را وارد"

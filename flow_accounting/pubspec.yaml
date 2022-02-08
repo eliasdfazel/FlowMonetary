@@ -46,6 +46,7 @@ dependencies:
   shamsi_date: ^1.0.1
   marquee: ^2.2.0
   flutter_typeahead: ^3.2.4
+  flutter_slidable: ^1.2.0
 
 dev_dependencies:
   flutter_test:
