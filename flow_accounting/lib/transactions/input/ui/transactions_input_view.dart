@@ -67,7 +67,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
     ColorSelectorView colorSelectorView = ColorSelectorView();
 
-    return SafeArea (child: MaterialApp (
+    return MaterialApp (
       debugShowCheckedModeBanner: false,
       color: ColorsResources.black,
       theme: ThemeData(
@@ -305,8 +305,8 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                           ),
                                           enabledBorder: OutlineInputBorder(
                                             borderSide: const BorderSide(
-                                              color: ColorsResources.applicationDarkGeeksEmpire,
-                                              width: 1
+                                                color: ColorsResources.applicationDarkGeeksEmpire,
+                                                width: 1
                                             ),
                                             borderRadius: BorderRadius.circular(13),
                                           ),
@@ -412,10 +412,10 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
                                         },
                                         suggestionsBoxDecoration: SuggestionsBoxDecoration(
-                                          elevation: 7,
-                                          color: ColorsResources.light,
-                                          shadowColor: ColorsResources.darkTransparent,
-                                          borderRadius: BorderRadius.circular(17)
+                                            elevation: 7,
+                                            color: ColorsResources.light,
+                                            shadowColor: ColorsResources.darkTransparent,
+                                            borderRadius: BorderRadius.circular(17)
                                         ),
                                         textFieldConfiguration: TextFieldConfiguration(
                                           controller: controllerTransactionTargetName,
@@ -1107,7 +1107,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                     child: Text(
                                       StringsResources.colorSelectorHint,
                                       style: TextStyle(
-                                        fontSize: 15
+                                          fontSize: 15
                                       ),
                                     ),
                                   )
@@ -1125,8 +1125,8 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                             Expanded(
                               flex: 1,
                               child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
-                                  child: colorSelectorView,
+                                padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                child: colorSelectorView,
                               ),
                             ),
                           ],
@@ -1145,15 +1145,15 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                       },
                       child: Container(
                         decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          boxShadow: [
-                            BoxShadow(
-                              color: ColorsResources.blueGrayLight.withOpacity(0.7),
-                              blurRadius: 7,
-                              spreadRadius: 0.1,
-                              offset: const Offset(0.0, 3.7)
-                            )
-                          ]
+                            shape: BoxShape.circle,
+                            boxShadow: [
+                              BoxShadow(
+                                  color: ColorsResources.blueGrayLight.withOpacity(0.7),
+                                  blurRadius: 7,
+                                  spreadRadius: 0.1,
+                                  offset: const Offset(0.0, 3.7)
+                              )
+                            ]
                         ),
                         child: const Image(
                           image: AssetImage("go_previous_icon.png"),
@@ -1289,7 +1289,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
           ),
         ),
       ),
-    ));
+    );
   }
 
   Future<List<String>> getCustomersNames() async {

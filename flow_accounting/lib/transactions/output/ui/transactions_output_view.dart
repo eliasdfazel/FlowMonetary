@@ -72,7 +72,7 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
     ));
     allListContentWidgets.addAll(allTransactionsItems);
 
-    return SafeArea(child: MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       color: ColorsResources.black,
       theme: ThemeData(
@@ -85,347 +85,347 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
       home: Scaffold(
           backgroundColor: ColorsResources.black,
           body: Padding(
-          padding: const EdgeInsets.fromLTRB(1.1, 3, 1.1, 3),
-          child: Container(
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(17),
-                  topRight: Radius.circular(17),
-                  bottomLeft: Radius.circular(17),
-                  bottomRight: Radius.circular(17)
+            padding: const EdgeInsets.fromLTRB(1.1, 3, 1.1, 3),
+            child: Container(
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(17),
+                    topRight: Radius.circular(17),
+                    bottomLeft: Radius.circular(17),
+                    bottomRight: Radius.circular(17)
+                ),
+                gradient: LinearGradient(
+                    colors: [
+                      ColorsResources.white,
+                      ColorsResources.primaryColorLighter,
+                    ],
+                    begin: FractionalOffset(0.0, 0.0),
+                    end: FractionalOffset(1.0, 0.0),
+                    stops: [0.0, 1.0],
+                    transform: GradientRotation(45),
+                    tileMode: TileMode.clamp),
               ),
-              gradient: LinearGradient(
-                  colors: [
-                    ColorsResources.white,
-                    ColorsResources.primaryColorLighter,
-                  ],
-                  begin: FractionalOffset(0.0, 0.0),
-                  end: FractionalOffset(1.0, 0.0),
-                  stops: [0.0, 1.0],
-                  transform: GradientRotation(45),
-                  tileMode: TileMode.clamp),
-            ),
-            child: Stack(
-              children: [
-                const Opacity(
-                  opacity: 0.07,
-                  child: Image(
-                    image: AssetImage("input_background_pattern.png"),
-                    fit: BoxFit.cover,
-                    width: double.infinity,
-                    height: double.infinity,
+              child: Stack(
+                children: [
+                  const Opacity(
+                    opacity: 0.07,
+                    child: Image(
+                      image: AssetImage("input_background_pattern.png"),
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                      height: double.infinity,
+                    ),
                   ),
-                ),
-                ListView(
-                  padding: const EdgeInsets.fromLTRB(0, 73, 0, 79),
-                  physics: const BouncingScrollPhysics(),
-                  children: allListContentWidgets,
-                ),
-                Positioned(
-                    top: 19,
-                    left: 13,
-                    child: InkWell(
-                      onTap: () {
+                  ListView(
+                    padding: const EdgeInsets.fromLTRB(0, 73, 0, 79),
+                    physics: const BouncingScrollPhysics(),
+                    children: allListContentWidgets,
+                  ),
+                  Positioned(
+                      top: 19,
+                      left: 13,
+                      child: InkWell(
+                        onTap: () {
 
-                        Navigator.pop(context);
+                          Navigator.pop(context);
 
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            boxShadow: [
-                              BoxShadow(
-                                  color: ColorsResources.blueGrayLight.withOpacity(0.7),
-                                  blurRadius: 7,
-                                  spreadRadius: 0.1,
-                                  offset: const Offset(0.0, 3.7)
-                              )
-                            ]
-                        ),
-                        child: const Image(
-                          image: AssetImage("go_previous_icon.png"),
-                          fit: BoxFit.scaleDown,
-                          width: 41,
-                          height: 41,
-                        ),
-                      ),
-                    )
-                ),
-                Positioned(
-                    top: 19,
-                    right: 13,
-                    child: SizedBox(
-                      height: 43,
-                      width: 321,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Expanded(
-                            flex: 11,
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(3, 0, 0, 0),
-                              child: Stack(
-                                children: [
-                                  SizedBox(
-                                    height: 43,
-                                    width: double.infinity,
-                                    child: Blur(
-                                      blur: 5,
-                                      borderRadius: BorderRadius.circular(51),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                            gradient: LinearGradient(
-                                                colors: [
-                                                  ColorsResources.white.withOpacity(0.3),
-                                                  ColorsResources.primaryColorLighter.withOpacity(0.3),
-                                                ],
-                                                begin: const FractionalOffset(0.0, 0.0),
-                                                end: const FractionalOffset(1.0, 0.0),
-                                                stops: const [0.0, 1.0],
-                                                transform: const GradientRotation(45),
-                                                tileMode: TileMode.clamp
-                                            )
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  InkWell(
-                                    onTap: () {
-
-                                      sortTransactionsByMoneyAmount(allTransactions);
-
-                                    },
-                                    child: const SizedBox(
-                                      height: 43,
-                                      width: double.infinity,
-                                      child: Align(
-                                        alignment: Alignment.center,
-                                        child: Text(
-                                          StringsResources.sortMoneyAmountHigh,
-                                          style: TextStyle(
-                                            fontSize: 13,
-                                            color: ColorsResources.applicationGeeksEmpire,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            flex: 11,
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(0, 0, 3, 0),
-                              child: Stack(
-                                children: [
-                                  SizedBox(
-                                    height: 43,
-                                    width: double.infinity,
-                                    child: Blur(
-                                      blur: 5,
-                                      borderRadius: BorderRadius.circular(51),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                            gradient: LinearGradient(
-                                                colors: [
-                                                  ColorsResources.white.withOpacity(0.3),
-                                                  ColorsResources.primaryColorLighter.withOpacity(0.3),
-                                                ],
-                                                begin: const FractionalOffset(0.0, 0.0),
-                                                end: const FractionalOffset(1.0, 0.0),
-                                                stops: const [0.0, 1.0],
-                                                transform: const GradientRotation(45),
-                                                tileMode: TileMode.clamp
-                                            )
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  InkWell(
-                                    onTap: () {
-
-                                      sortTransactionsByTime(allTransactions);
-
-                                    },
-                                    child: const SizedBox(
-                                      height: 43,
-                                      width: double.infinity,
-                                      child: Align(
-                                        alignment: Alignment.center,
-                                        child: Text(
-                                          StringsResources.sortTimeNew,
-                                          style: TextStyle(
-                                            fontSize: 13,
-                                            color: ColorsResources.applicationGeeksEmpire,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            flex: 3,
-                            child: Stack(
-                              children: [
-                                SizedBox(
-                                  height: 43,
-                                  width: 43,
-                                  child: Blur(
-                                    blur: 3,
-                                    borderRadius: BorderRadius.circular(51),
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                          gradient: LinearGradient(
-                                              colors: [
-                                                ColorsResources.white.withOpacity(0.3),
-                                                ColorsResources.primaryColorLighter.withOpacity(0.3),
-                                              ],
-                                              begin: const FractionalOffset(0.0, 0.0),
-                                              end: const FractionalOffset(1.0, 0.0),
-                                              stops: const [0.0, 1.0],
-                                              transform: const GradientRotation(45),
-                                              tileMode: TileMode.clamp
-                                          )
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Align(
-                                  alignment: Alignment.center,
-                                  child: InkWell(
-                                    onTap: () {
-
-                                      retrieveAllTransactions();
-
-                                    },
-                                    child: const Icon(
-                                        Icons.refresh_rounded,
-                                        size: 31.0,
-                                        color: ColorsResources.primaryColorDark
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
-                ),
-                Positioned(
-                  bottom: 19,
-                  left: 11,
-                  right: 11,
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: SizedBox(
-                      height: 73,
-                      width: 219,
-                      child: Stack(
-                        children: [
-                          const Image(
-                            image: AssetImage("search_shape.png"),
-                            height: 73,
-                            width: 213,
-                            color: ColorsResources.primaryColorDark,
-                          ),
-                          Align(
-                            alignment: Alignment.centerRight,
-                            child: InkWell(
-                              onTap: () {
-
-                                String searchQuery = textEditorControllerQuery.text;
-
-                              },
-                              child: const SizedBox(
-                                height: 71,
-                                width: 53,
-                                child: Icon(
-                                  Icons.search_rounded,
-                                  size: 23,
-                                  color: ColorsResources.darkTransparent,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: SizedBox(
-                                width: 153,
-                                height: 47,
-                                child: Directionality(
-                                  textDirection: TextDirection.rtl,
-                                  child: TextField(
-                                    controller: textEditorControllerQuery,
-                                    textAlign: TextAlign.right,
-                                    textDirection: TextDirection.rtl,
-                                    textAlignVertical: TextAlignVertical.bottom,
-                                    maxLines: 1,
-                                    cursorColor: ColorsResources.primaryColor,
-                                    autocorrect: true,
-                                    autofocus: false,
-                                    decoration: const InputDecoration(
-                                      border: OutlineInputBorder(
-                                          borderSide: BorderSide(color: Colors.transparent, width: 1.0),
-                                          borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(51),
-                                              topRight: Radius.circular(51),
-                                              bottomLeft: Radius.circular(51),
-                                              bottomRight: Radius.circular(51)
-                                          ),
-                                          gapPadding: 5
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(color: Colors.transparent, width: 1.0),
-                                          borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(51),
-                                              topRight: Radius.circular(51),
-                                              bottomLeft: Radius.circular(51),
-                                              bottomRight: Radius.circular(51)
-                                          ),
-                                          gapPadding: 5
-                                      ),
-                                      enabledBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(color: Colors.transparent, width: 1.0),
-                                          borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(51),
-                                              topRight: Radius.circular(51),
-                                              bottomLeft: Radius.circular(51),
-                                              bottomRight: Radius.circular(51)
-                                          ),
-                                          gapPadding: 5
-                                      ),
-                                      hintText: StringsResources.searchTransactionsText,
-                                      hintStyle: TextStyle(
-                                          color: ColorsResources.darkTransparent,
-                                          fontSize: 13.0
-                                      ),
-                                      labelText: StringsResources.searchText,
-                                      labelStyle: TextStyle(
-                                          color: ColorsResources.dark,
-                                          fontSize: 15.0
-                                      ),
-                                    ),
-                                  ),
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              boxShadow: [
+                                BoxShadow(
+                                    color: ColorsResources.blueGrayLight.withOpacity(0.7),
+                                    blurRadius: 7,
+                                    spreadRadius: 0.1,
+                                    offset: const Offset(0.0, 3.7)
                                 )
-                            ),
-                          )
-                        ],
-                      ),
-                    )
+                              ]
+                          ),
+                          child: const Image(
+                            image: AssetImage("go_previous_icon.png"),
+                            fit: BoxFit.scaleDown,
+                            width: 41,
+                            height: 41,
+                          ),
+                        ),
+                      )
                   ),
-                )
-              ],
+                  Positioned(
+                      top: 19,
+                      right: 13,
+                      child: SizedBox(
+                        height: 43,
+                        width: 321,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Expanded(
+                              flex: 11,
+                              child: Padding(
+                                padding: const EdgeInsets.fromLTRB(3, 0, 0, 0),
+                                child: Stack(
+                                  children: [
+                                    SizedBox(
+                                      height: 43,
+                                      width: double.infinity,
+                                      child: Blur(
+                                        blur: 5,
+                                        borderRadius: BorderRadius.circular(51),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              gradient: LinearGradient(
+                                                  colors: [
+                                                    ColorsResources.white.withOpacity(0.3),
+                                                    ColorsResources.primaryColorLighter.withOpacity(0.3),
+                                                  ],
+                                                  begin: const FractionalOffset(0.0, 0.0),
+                                                  end: const FractionalOffset(1.0, 0.0),
+                                                  stops: const [0.0, 1.0],
+                                                  transform: const GradientRotation(45),
+                                                  tileMode: TileMode.clamp
+                                              )
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+
+                                        sortTransactionsByMoneyAmount(allTransactions);
+
+                                      },
+                                      child: const SizedBox(
+                                        height: 43,
+                                        width: double.infinity,
+                                        child: Align(
+                                          alignment: Alignment.center,
+                                          child: Text(
+                                            StringsResources.sortMoneyAmountHigh,
+                                            style: TextStyle(
+                                              fontSize: 13,
+                                              color: ColorsResources.applicationGeeksEmpire,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              flex: 11,
+                              child: Padding(
+                                padding: const EdgeInsets.fromLTRB(0, 0, 3, 0),
+                                child: Stack(
+                                  children: [
+                                    SizedBox(
+                                      height: 43,
+                                      width: double.infinity,
+                                      child: Blur(
+                                        blur: 5,
+                                        borderRadius: BorderRadius.circular(51),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              gradient: LinearGradient(
+                                                  colors: [
+                                                    ColorsResources.white.withOpacity(0.3),
+                                                    ColorsResources.primaryColorLighter.withOpacity(0.3),
+                                                  ],
+                                                  begin: const FractionalOffset(0.0, 0.0),
+                                                  end: const FractionalOffset(1.0, 0.0),
+                                                  stops: const [0.0, 1.0],
+                                                  transform: const GradientRotation(45),
+                                                  tileMode: TileMode.clamp
+                                              )
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+
+                                        sortTransactionsByTime(allTransactions);
+
+                                      },
+                                      child: const SizedBox(
+                                        height: 43,
+                                        width: double.infinity,
+                                        child: Align(
+                                          alignment: Alignment.center,
+                                          child: Text(
+                                            StringsResources.sortTimeNew,
+                                            style: TextStyle(
+                                              fontSize: 13,
+                                              color: ColorsResources.applicationGeeksEmpire,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              flex: 3,
+                              child: Stack(
+                                children: [
+                                  SizedBox(
+                                    height: 43,
+                                    width: 43,
+                                    child: Blur(
+                                      blur: 3,
+                                      borderRadius: BorderRadius.circular(51),
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            gradient: LinearGradient(
+                                                colors: [
+                                                  ColorsResources.white.withOpacity(0.3),
+                                                  ColorsResources.primaryColorLighter.withOpacity(0.3),
+                                                ],
+                                                begin: const FractionalOffset(0.0, 0.0),
+                                                end: const FractionalOffset(1.0, 0.0),
+                                                stops: const [0.0, 1.0],
+                                                transform: const GradientRotation(45),
+                                                tileMode: TileMode.clamp
+                                            )
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: Alignment.center,
+                                    child: InkWell(
+                                      onTap: () {
+
+                                        retrieveAllTransactions();
+
+                                      },
+                                      child: const Icon(
+                                          Icons.refresh_rounded,
+                                          size: 31.0,
+                                          color: ColorsResources.primaryColorDark
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                  ),
+                  Positioned(
+                    bottom: 19,
+                    left: 11,
+                    right: 11,
+                    child: Align(
+                        alignment: Alignment.center,
+                        child: SizedBox(
+                          height: 73,
+                          width: 219,
+                          child: Stack(
+                            children: [
+                              const Image(
+                                image: AssetImage("search_shape.png"),
+                                height: 73,
+                                width: 213,
+                                color: ColorsResources.primaryColorDark,
+                              ),
+                              Align(
+                                alignment: Alignment.centerRight,
+                                child: InkWell(
+                                  onTap: () {
+
+                                    String searchQuery = textEditorControllerQuery.text;
+
+                                  },
+                                  child: const SizedBox(
+                                    height: 71,
+                                    width: 53,
+                                    child: Icon(
+                                      Icons.search_rounded,
+                                      size: 23,
+                                      color: ColorsResources.darkTransparent,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: SizedBox(
+                                    width: 153,
+                                    height: 47,
+                                    child: Directionality(
+                                      textDirection: TextDirection.rtl,
+                                      child: TextField(
+                                        controller: textEditorControllerQuery,
+                                        textAlign: TextAlign.right,
+                                        textDirection: TextDirection.rtl,
+                                        textAlignVertical: TextAlignVertical.bottom,
+                                        maxLines: 1,
+                                        cursorColor: ColorsResources.primaryColor,
+                                        autocorrect: true,
+                                        autofocus: false,
+                                        decoration: const InputDecoration(
+                                          border: OutlineInputBorder(
+                                              borderSide: BorderSide(color: Colors.transparent, width: 1.0),
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(51),
+                                                  topRight: Radius.circular(51),
+                                                  bottomLeft: Radius.circular(51),
+                                                  bottomRight: Radius.circular(51)
+                                              ),
+                                              gapPadding: 5
+                                          ),
+                                          focusedBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(color: Colors.transparent, width: 1.0),
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(51),
+                                                  topRight: Radius.circular(51),
+                                                  bottomLeft: Radius.circular(51),
+                                                  bottomRight: Radius.circular(51)
+                                              ),
+                                              gapPadding: 5
+                                          ),
+                                          enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(color: Colors.transparent, width: 1.0),
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(51),
+                                                  topRight: Radius.circular(51),
+                                                  bottomLeft: Radius.circular(51),
+                                                  bottomRight: Radius.circular(51)
+                                              ),
+                                              gapPadding: 5
+                                          ),
+                                          hintText: StringsResources.searchTransactionsText,
+                                          hintStyle: TextStyle(
+                                              color: ColorsResources.darkTransparent,
+                                              fontSize: 13.0
+                                          ),
+                                          labelText: StringsResources.searchText,
+                                          labelStyle: TextStyle(
+                                              color: ColorsResources.dark,
+                                              fontSize: 15.0
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                ),
+                              )
+                            ],
+                          ),
+                        )
+                    ),
+                  )
+                ],
+              ),
             ),
-          ),
-        )
+          )
       ),
-    ));
+    );
   }
 
   Widget outputItem(TransactionsData transactionsData) {

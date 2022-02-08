@@ -64,7 +64,7 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
             height: 299,
             width: double.infinity,
             child: ListView(
-              physics: const PageScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.fromLTRB(3, 11, 0, 11),
               children: creditCardWidgets,
