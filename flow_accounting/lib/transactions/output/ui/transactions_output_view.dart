@@ -768,6 +768,8 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
 
   void editTransaction(BuildContext context, TransactionsData transactionsData) async {
 
+
+
   }
 
   void retrieveAllTransactions(BuildContext context) async {
