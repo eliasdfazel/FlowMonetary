@@ -65,8 +65,8 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
       theme: ThemeData(
         fontFamily: 'Sans',
         pageTransitionsTheme: const PageTransitionsTheme(builders: {
-          TargetPlatform.android: CupertinoPageTransitionsBuilder(),
-          TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+          TargetPlatform.android: ZoomPageTransitionsBuilder(),
+          TargetPlatform.iOS: ZoomPageTransitionsBuilder(),
         }),
       ),
       home: Scaffold(
