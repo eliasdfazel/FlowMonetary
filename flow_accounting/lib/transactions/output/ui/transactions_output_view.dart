@@ -758,7 +758,11 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
 
   void deleteTransaction(BuildContext context, TransactionsData transactionsData) async {
 
+    var databaseQueries = DatabaseQueries();
 
+    databaseQueries.queryDeleteTransaction(transactionsData.id, DatabaseInputs.databaseTableName);
+
+    retrieveAllTransactions(context);
 
   }
 
