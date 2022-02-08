@@ -16,6 +16,9 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:shamsi_date/shamsi_date.dart';
 
 class CalendarView extends StatefulWidget {
+
+  String? inputDateTime;
+
   CalendarView({Key? key}) : super(key: key);
 
   DateTime pickedDateTime = DateTime.now();
@@ -41,6 +44,12 @@ class _CalendarView extends State<CalendarView> {
 
   @override
   Widget build(BuildContext context) {
+
+    if (widget.inputDateTime != null) {
+
+      widget.pickedDataTimeText = widget.inputDateTime!;
+
+    }
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(/*left*/1.1, /*top*/3, /*right*/1.1, /*bottom*/3),

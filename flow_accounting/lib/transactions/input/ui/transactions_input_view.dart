@@ -18,14 +18,6 @@ import 'package:flow_accounting/utils/colors/color_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 
-void main() async {
-
-  WidgetsFlutterBinding.ensureInitialized();
-
-  runApp(const MaterialApp( home: TransactionsInputView()));
-
-}
-
 class TransactionsInputView extends StatefulWidget {
   const TransactionsInputView({Key? key}) : super(key: key);
 

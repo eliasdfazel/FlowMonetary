@@ -13,6 +13,9 @@ import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 class ColorSelectorView extends StatefulWidget {
+
+  Color? inputColor;
+
   ColorSelectorView({Key? key}) : super(key: key);
 
   Color selectedColor = ColorsResources.white;
@@ -39,6 +42,12 @@ class _ColorSelectorView extends State<ColorSelectorView> {
 
   @override
   Widget build(BuildContext context) {
+
+    if (widget.inputColor != null) {
+
+      widget.selectedColor = widget.inputColor!;
+
+    }
 
     List<Widget> colorItem = [];
 

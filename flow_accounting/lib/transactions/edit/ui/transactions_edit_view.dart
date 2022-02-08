@@ -18,21 +18,16 @@ import 'package:flow_accounting/utils/colors/color_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 
-void main() async {
+class TransactionsEditView extends StatefulWidget {
 
-  WidgetsFlutterBinding.ensureInitialized();
+  final TransactionsData transactionsData;
 
-  runApp(const MaterialApp( home: TransactionsInputView()));
-
-}
-
-class TransactionsInputView extends StatefulWidget {
-  const TransactionsInputView({Key? key}) : super(key: key);
+  const TransactionsEditView({Key? key, required this.transactionsData}) : super(key: key);
 
   @override
-  _TransactionsInputViewState createState() => _TransactionsInputViewState();
+  _TransactionsEditViewState createState() => _TransactionsEditViewState();
 }
-class _TransactionsInputViewState extends State<TransactionsInputView> {
+class _TransactionsEditViewState extends State<TransactionsEditView> {
 
   TextEditingController controllerMoneyAmount = TextEditingController();
 
@@ -64,8 +59,10 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
   Widget build(BuildContext context) {
 
     CalendarView calendarView = CalendarView();
+    calendarView.inputDateTime = widget.transactionsData.transactionTime;
 
     ColorSelectorView colorSelectorView = ColorSelectorView();
+    colorSelectorView.inputColor = Color(widget.transactionsData.colorTag);
 
     return MaterialApp (
       debugShowCheckedModeBanner: false,

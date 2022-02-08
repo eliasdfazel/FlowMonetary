@@ -11,14 +11,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:marquee/marquee.dart';
 
-void main() {
-
-  WidgetsFlutterBinding.ensureInitialized();
-
-  runApp(const MaterialApp( home: TransactionsOutputView()));
-
-}
-
 class TransactionsOutputView extends StatefulWidget {
   const TransactionsOutputView({Key? key}) : super(key: key);
 
