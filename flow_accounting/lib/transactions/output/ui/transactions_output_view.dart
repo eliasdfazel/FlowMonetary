@@ -5,6 +5,7 @@ import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/database/io/inputs.dart';
 import 'package:flow_accounting/transactions/database/io/queries.dart';
 import 'package:flow_accounting/transactions/database/structures/tables_structure.dart';
+import 'package:flow_accounting/transactions/edit/ui/transactions_edit_view.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
 import 'package:flow_accounting/utils/extensions/CreditCardNumber.dart';
 import 'package:flutter/material.dart';
@@ -760,7 +761,10 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
 
   void editTransaction(BuildContext context, TransactionsData transactionsData) async {
 
-
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => TransactionsEditView(transactionsData: transactionsData)),
+    );
 
   }
 

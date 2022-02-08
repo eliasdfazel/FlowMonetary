@@ -333,6 +333,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                           focusColor: ColorsResources.dark
                                       ),
                                       value: transactionType,
+
                                       autovalidateMode: AutovalidateMode.always,
                                       validator: (value) => value == null ?
                                       StringsResources.transactionTypeHint : StringsResources.transactionTypeHint,
