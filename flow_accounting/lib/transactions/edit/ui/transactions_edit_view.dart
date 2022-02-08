@@ -76,7 +76,19 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
 
     controllerBudget.text = widget.transactionsData.budgetName;
 
-    transactionType = widget.transactionsData.transactionType;
+    if (widget.transactionsData.transactionType == TransactionsData.TransactionType_Send) {
+
+      transactionType = StringsResources.transactionTypeSend;
+
+    } else if (widget.transactionsData.transactionType == TransactionsData.TransactionType_Receive) {
+
+      transactionType = StringsResources.transactionTypeReceive;
+
+    } else {
+
+      transactionType = StringsResources.transactionTypeSend;
+
+    }
 
     return MaterialApp (
       debugShowCheckedModeBanner: false,
@@ -333,7 +345,6 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                           focusColor: ColorsResources.dark
                                       ),
                                       value: transactionType,
-
                                       autovalidateMode: AutovalidateMode.always,
                                       validator: (value) => value == null ?
                                       StringsResources.transactionTypeHint : StringsResources.transactionTypeHint,
@@ -1275,7 +1286,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                 child: Align(
                                   alignment: AlignmentDirectional.center,
                                   child: Text(
-                                    StringsResources.submitText,
+                                    StringsResources.editText,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         fontSize: 19,
