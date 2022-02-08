@@ -511,7 +511,8 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
                                   height: 59,
                                   width: double.infinity,
                                   child: Padding(
-                                    padding: const EdgeInsets.fromLTRB(13, 11, 13, 0),
+                                    padding: const EdgeInsets.fromLTRB(27,
+                                        11, 13, 0),
                                     child: Align(
                                         alignment: Alignment.center,
                                         child: Marquee(
@@ -525,6 +526,10 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           blankSpace: 173.0,
                                           velocity: 37.0,
+                                          fadingEdgeStartFraction: 0.13,
+                                          fadingEdgeEndFraction: 0.13,
+                                          startAfter: const Duration(milliseconds: 777),
+                                          numberOfRounds: 3,
                                           pauseAfterRound: const Duration(milliseconds: 500),
                                           showFadingOnlyWhenScrolling: true,
                                           startPadding: 13.0,
@@ -591,22 +596,22 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
                                   height: 27,
                                   width: 79,
                                   child: Container(
-                                    decoration: const BoxDecoration(
-                                      borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(17),
+                                    decoration: BoxDecoration(
+                                      borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(0),
                                           topRight: Radius.circular(17),
                                           bottomLeft: Radius.circular(17),
                                           bottomRight: Radius.circular(0)
                                       ),
                                       gradient: LinearGradient(
                                           colors: [
-                                            ColorsResources.white,
                                             ColorsResources.light,
+                                            transactionColorTag.withOpacity(0.7),
                                           ],
-                                          begin: FractionalOffset(0.0, 0.0),
-                                          end: FractionalOffset(1.0, 0.0),
-                                          stops: [0.0, 1.0],
-                                          transform: GradientRotation(45),
+                                          begin: const FractionalOffset(0.0, 0.0),
+                                          end: const FractionalOffset(1.0, 0.0),
+                                          stops: const [0.0, 1.0],
+                                          transform: const GradientRotation(-45),
                                           tileMode: TileMode.clamp
                                       ),
                                     ),
