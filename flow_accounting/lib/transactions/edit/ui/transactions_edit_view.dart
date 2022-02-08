@@ -64,6 +64,20 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
     ColorSelectorView colorSelectorView = ColorSelectorView();
     colorSelectorView.inputColor = Color(widget.transactionsData.colorTag);
 
+    controllerMoneyAmount.text = widget.transactionsData.amountMoney;
+
+    controllerTransactionSourceName.text = widget.transactionsData.sourceUsername;
+    controllerTransactionSourceBank.text = widget.transactionsData.sourceBankName;
+    controllerTransactionSourceCard.text = widget.transactionsData.sourceCardNumber;
+
+    controllerTransactionTargetName.text = widget.transactionsData.targetUsername;
+    controllerTransactionTargetBank.text = widget.transactionsData.targetBankName;
+    controllerTransactionTargetCard.text = widget.transactionsData.targetCardNumber;
+
+    controllerBudget.text = widget.transactionsData.budgetName;
+
+    transactionType = widget.transactionsData.transactionType;
+
     return MaterialApp (
       debugShowCheckedModeBanner: false,
       color: ColorsResources.black,
@@ -318,7 +332,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                           fillColor: ColorsResources.lightTransparent,
                                           focusColor: ColorsResources.dark
                                       ),
-                                      value: StringsResources.transactionTypeSend,
+                                      value: transactionType,
                                       autovalidateMode: AutovalidateMode.always,
                                       validator: (value) => value == null ?
                                       StringsResources.transactionTypeHint : StringsResources.transactionTypeHint,
