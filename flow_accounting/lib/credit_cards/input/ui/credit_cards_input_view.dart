@@ -11,7 +11,6 @@
 import 'package:blur/blur.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
-import 'package:flow_accounting/transactions/database/io/inputs.dart';
 import 'package:flow_accounting/transactions/database/structures/tables_structure.dart';
 import 'package:flow_accounting/utils/calendar/ui/calendar_view.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
@@ -838,29 +837,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> {
 
                       int timeNow = DateTime.now().millisecondsSinceEpoch;
 
-                      var databaseInputs = DatabaseInputs();
 
-                      TransactionsData transactionData = TransactionsData(
-                        id: timeNow,
-
-                        amountMoney: controllerMoneyAmount.text,
-                        transactionType: transactionType,
-                        transactionTime: calendarView.pickedDataTimeText,
-
-                        sourceUsername: controllerTransactionSourceName.text,
-                        sourceBankName: controllerTransactionSourceBank.text,
-                        sourceCardNumber: controllerTransactionSourceCard.text,
-
-                        targetUsername: controllerTransactionTargetName.text,
-                        targetBankName: controllerTransactionTargetBank.text,
-                        targetCardNumber: controllerTransactionTargetCard.text,
-
-                        colorTag: colorSelectorView.selectedColor.value,
-
-                        budgetName: budgetName,
-                      );
-
-                      databaseInputs.insertTransactionData(transactionData, DatabaseInputs.databaseTableName);
 
                     },
                     child: Container(
