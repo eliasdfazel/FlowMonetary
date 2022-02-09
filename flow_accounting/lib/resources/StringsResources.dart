@@ -113,6 +113,11 @@ class StringsResources {
   static const String creditCardsNameHolder = "نام";
   static const String creditCardsNameHolderHint = "نام صاحب کارت";
 
+  static const String creditCardExpiryMonth = "ماه";
+  static const String creditCardExpiryMonthHint = "ماه انقضا";
+  static const String creditCardExpiryYear = "سال";
+  static const String creditCardExpiryYearHint = "سال انقضا";
+
 
   static const List<String> listOfBanksIran = [
     "ملی",
