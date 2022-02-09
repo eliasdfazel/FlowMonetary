@@ -78,7 +78,10 @@ flutter:
     - pattern_card_background_five.png
     - input_background_pattern.png
     - add_credit_card_icon.png
+    - add_profile_icon.png
     - go_previous_icon.png
+    - share_icon.png
+    - instagram_icon.png
     - search_shape.png
 
   fonts:

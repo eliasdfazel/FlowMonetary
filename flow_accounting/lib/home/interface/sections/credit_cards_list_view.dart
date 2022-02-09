@@ -11,9 +11,11 @@
 import 'dart:math';
 
 import 'package:flow_accounting/credit_cards/database/structures/tables_structure.dart';
+import 'package:flow_accounting/credit_cards/input/ui/credit_cards_input_view.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/utils/colors/color_extractor.dart';
+import 'package:flow_accounting/utils/navigations/navigations.dart';
 import 'package:flutter/material.dart';
 
 class CreditCardsListView extends StatefulWidget {
@@ -41,14 +43,17 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
   @override
   Widget build(BuildContext context) {
 
-    Widget creditCardsPlaceholder = const Padding(
-      padding: EdgeInsets.fromLTRB(0, 23, 0, 0),
-      child: SizedBox(
-        height: 299,
-        width: double.infinity,
-        child: Image(
+    Widget creditCardsPlaceholder = SizedBox(
+      height: 199,
+      width: double.infinity,
+      child: InkWell(
+        onTap: () {
+
+          NavigationProcess().goTo(context, const CreditCardsInputView());
+
+        },
+        child: const Image(
           image: AssetImage("add_credit_card_icon.png"),
-          fit: BoxFit.cover,
           width: double.infinity,
           height: double.infinity,
         ),
