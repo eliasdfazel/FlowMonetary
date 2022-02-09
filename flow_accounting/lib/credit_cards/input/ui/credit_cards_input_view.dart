@@ -19,10 +19,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 
 
-TextEditingController creditCardBankName = TextEditingController();
-TextEditingController creditCardNameController = TextEditingController();
+TextEditingController creditCardBankNameController = TextEditingController();
+TextEditingController creditCardNameHolderController = TextEditingController();
 
 TextEditingController creditCardNumberController = TextEditingController();
+
+TextEditingController creditCardYearController = TextEditingController();
+TextEditingController creditCardMonthController = TextEditingController();
+
+TextEditingController creditCardCvvController = TextEditingController();
 
 class CreditCardsInputView extends StatefulWidget {
   const CreditCardsInputView({Key? key}) : super(key: key);
@@ -34,6 +39,17 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
 
   @override
   void initState() {
+
+    creditCardBankNameController.text = StringsResources.creditCardsBankName;
+    creditCardNameHolderController.text = StringsResources.creditCardsNameHolder;
+
+    creditCardNumberController.text = "0000000000000000";
+
+    creditCardYearController.text = "00";
+    creditCardMonthController.text = "00";
+
+    creditCardCvvController.text = "000";
+
     super.initState();
   }
 
@@ -128,11 +144,15 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                         ),
                       ),
                       creditCardWidgetItem(
-                          "0000000000000000",
-                          "00/00",
-                          "نام صاحب کارت",
-                          "000",
-                          "نام بانک"),
+                          creditCardNumberController.text,
+                          "${creditCardYearController.text}/${creditCardMonthController.text}}",
+                          creditCardNameHolderController.text,
+                          creditCardCvvController.text,
+                          creditCardBankNameController.text),
+                      const Divider(
+                        height: 19,
+                        color: Colors.transparent,
+                      ),
                       const Divider(
                         height: 13,
                         color: Colors.transparent,
@@ -169,7 +189,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                         },
                                         onSuggestionSelected: (suggestion) {
 
-                                          creditCardBankName.text = suggestion.toString();
+                                          creditCardBankNameController.text = suggestion.toString();
 
                                         },
                                         suggestionsBoxDecoration: SuggestionsBoxDecoration(
@@ -179,7 +199,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                             borderRadius: BorderRadius.circular(17)
                                         ),
                                         textFieldConfiguration: TextFieldConfiguration(
-                                          controller: creditCardBankName,
+                                          controller: creditCardBankNameController,
                                           autofocus: false,
                                           maxLines: 1,
                                           cursorColor: ColorsResources.primaryColor,
@@ -227,12 +247,12 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                             ),
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
-                                            labelText: StringsResources.transactionTargetName,
+                                            labelText: StringsResources.creditCardsBankName,
                                             labelStyle: TextStyle(
                                                 color: ColorsResources.dark,
                                                 fontSize: 17.0
                                             ),
-                                            hintText: StringsResources.transactionTargetNameHint,
+                                            hintText: StringsResources.creditCardsBankNameHint,
                                             hintStyle: TextStyle(
                                                 color: ColorsResources.darkTransparent,
                                                 fontSize: 17.0
@@ -250,7 +270,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: TextField(
-                                      controller: creditCardNameController,
+                                      controller: creditCardNameHolderController,
                                       textAlign: TextAlign.center,
                                       textDirection: TextDirection.ltr,
                                       textAlignVertical: TextAlignVertical.bottom,
@@ -303,12 +323,12 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                         ),
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.transactionAmount,
+                                        labelText: StringsResources.creditCardsNameHolder,
                                         labelStyle: TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.transactionAmountHint,
+                                        hintText: StringsResources.creditCardsNameHolderHint,
                                         hintStyle: TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
@@ -321,7 +341,98 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                           ],
                         ),
                       ),
-
+                      const Divider(
+                        height: 13,
+                        color: Colors.transparent,
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 73,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                  child: Directionality(
+                                    textDirection: TextDirection.rtl,
+                                    child: TextField(
+                                      controller: creditCardNumberController,
+                                      textAlign: TextAlign.center,
+                                      textDirection: TextDirection.rtl,
+                                      textAlignVertical: TextAlignVertical.bottom,
+                                      maxLines: 1,
+                                      cursorColor: ColorsResources.primaryColor,
+                                      autocorrect: true,
+                                      autofocus: false,
+                                      keyboardType: TextInputType.number,
+                                      decoration: const InputDecoration(
+                                        alignLabelWithHint: true,
+                                        border: OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        enabledBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        errorBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.red, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        filled: true,
+                                        fillColor: ColorsResources.lightTransparent,
+                                        labelText: StringsResources.transactionTargetCard,
+                                        labelStyle: TextStyle(
+                                            color: ColorsResources.dark,
+                                            fontSize: 17.0
+                                        ),
+                                        hintText: StringsResources.transactionTargetCardHint,
+                                        hintStyle: TextStyle(
+                                            color: ColorsResources.darkTransparent,
+                                            fontSize: 17.0
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Divider(
+                        height: 13,
+                        color: Colors.transparent,
+                      ),
                       SizedBox(
                         width: double.infinity,
                         height: 37,
@@ -701,9 +812,13 @@ class _CreditCardFrontLayout extends State<CreditCardFrontLayout> {
                                   padding: const EdgeInsets.fromLTRB(0, 0, 17, 0),
                                   child: Align(
                                     alignment: Alignment.centerRight,
-                                    child: Text(
-                                      bankName,
+                                    child: TextField(
+                                      controller: creditCardBankNameController,
                                       textAlign: TextAlign.right,
+                                      enabled: false,
+                                      decoration: const InputDecoration(
+                                          disabledBorder: InputBorder.none
+                                      ),
                                       style: TextStyle(
                                         fontSize: 21,
                                         color: ColorsResources.dark,
@@ -737,114 +852,29 @@ class _CreditCardFrontLayout extends State<CreditCardFrontLayout> {
                 Container(
                   color: Colors.transparent,
                   child: Padding(
-                    padding: const EdgeInsets.fromLTRB(7, 29, 11, 0),
+                    padding: const EdgeInsets.fromLTRB(7, 33, 7, 0),
                     child: SizedBox(
                       height: 71,
                       width: double.infinity,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Expanded(
-                              flex: 1,
-                              child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                  child: Align(
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      cardNumber.substring(0, 4),
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontSize: 25,
-                                        fontWeight: FontWeight.bold,
-                                        color: ColorsResources.dark,
-                                        shadows: [
-                                          Shadow(
-                                            color: ColorsResources.dark.withOpacity(0.37),
-                                            blurRadius: 7,
-                                            offset: const Offset(1.9, 1.9),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  )
-                              )
-                          ),
-                          Expanded(
-                              flex: 1,
-                              child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                  child: Align(
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      cardNumber.substring(4, 8),
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontSize: 25,
-                                        fontWeight: FontWeight.bold,
-                                        color: ColorsResources.dark,
-                                        shadows: [
-                                          Shadow(
-                                            color: ColorsResources.dark.withOpacity(0.37),
-                                            blurRadius: 7,
-                                            offset: const Offset(1.9, 1.9),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  )
-                              )
-                          ),
-                          Expanded(
-                              flex: 1,
-                              child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                  child: Align(
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      cardNumber.substring(8, 12),
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontSize: 25,
-                                        fontWeight: FontWeight.bold,
-                                        color: ColorsResources.dark,
-                                        shadows: [
-                                          Shadow(
-                                            color: ColorsResources.dark.withOpacity(0.37),
-                                            blurRadius: 7,
-                                            offset: const Offset(1.9, 1.9),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  )
-                              )
-                          ),
-                          Expanded(
-                              flex: 1,
-                              child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                  child: Align(
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      cardNumber.substring(12, 16),
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontSize: 25,
-                                        fontWeight: FontWeight.bold,
-                                        color: ColorsResources.dark,
-                                        shadows: [
-                                          Shadow(
-                                            color: ColorsResources.dark.withOpacity(0.37),
-                                            blurRadius: 7,
-                                            offset: const Offset(1.9, 1.9),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  )
-                              )
-                          ),
-                        ],
+                      child: TextFormField(
+                        controller: creditCardNumberController,
+                        textAlign: TextAlign.center,
+                        enabled: false,
+                        decoration: const InputDecoration(
+                            disabledBorder: InputBorder.none
+                        ),
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontFamily: "Numbers",
+                          color: ColorsResources.dark,
+                          shadows: [
+                            Shadow(
+                              color: ColorsResources.dark.withOpacity(0.37),
+                              blurRadius: 7,
+                              offset: const Offset(1.9, 1.9),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -852,9 +882,9 @@ class _CreditCardFrontLayout extends State<CreditCardFrontLayout> {
                 Container(
                   color: Colors.transparent,
                   child: Padding(
-                    padding: const EdgeInsets.fromLTRB(7, 1, 11, 1),
+                    padding: const EdgeInsets.fromLTRB(11, 1, 11, 1),
                     child: SizedBox(
-                      height: 59,
+                      height: 57,
                       width: double.infinity,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -866,7 +896,7 @@ class _CreditCardFrontLayout extends State<CreditCardFrontLayout> {
                                   child: Align(
                                     alignment: Alignment.centerLeft,
                                     child: TextFormField(
-                                      controller: creditCardNameController,
+                                      controller: creditCardNameHolderController,
                                       textAlign: TextAlign.left,
                                       enabled: false,
                                       decoration: const InputDecoration(

@@ -108,6 +108,12 @@ class StringsResources {
   static const String mySelfText = "خودم";
   static const String noBudgetText = "هیچ";
 
+  static const String creditCardsBankName = "بانک صادر کننده";
+  static const String creditCardsBankNameHint = "نام بانک";
+  static const String creditCardsNameHolder = "نام";
+  static const String creditCardsNameHolderHint = "نام صاحب کارت";
+
+
   static const List<String> listOfBanksIran = [
     "ملی",
     "اقتصاد نوین",
