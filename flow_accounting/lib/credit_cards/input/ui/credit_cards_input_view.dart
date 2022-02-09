@@ -106,7 +106,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(13, 13, 13, 0),
                         child:  Text(
-                          StringsResources.featureTransactionsTitle,
+                          StringsResources.featureCreditCardTitle,
                           textDirection: TextDirection.rtl,
                           style: TextStyle(
                             fontSize: 23,
@@ -124,7 +124,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(13, 13, 13, 19),
                         child: Text(
-                          StringsResources.featureTransactionsDescription,
+                          StringsResources.featureCreditCardDescription,
                           textDirection: TextDirection.rtl,
                           style: TextStyle(
                             fontSize: 15,
@@ -357,219 +357,6 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> {
 
                                       },
 
-                                    ),
-                                  )
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const Divider(
-                        height: 13,
-                        color: Colors.transparent,
-                      ),
-                      SizedBox(
-                        width: double.infinity,
-                        height: 73,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Expanded(
-                              flex: 1,
-                              child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
-                                  child: Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: TypeAheadField<String>(
-                                        suggestionsCallback: (pattern) async {
-
-                                          return await getCustomersNames();
-                                        },
-                                        itemBuilder: (context, suggestion) {
-
-                                          return ListTile(title: Directionality(
-                                            textDirection: TextDirection.rtl,
-                                            child: Text(
-                                              suggestion,
-                                              style: const TextStyle(
-                                                  color: ColorsResources.darkTransparent,
-                                                  fontSize: 15
-                                              ),
-                                            ),
-                                          ));
-                                        },
-                                        onSuggestionSelected: (suggestion) {
-
-                                          controllerTransactionTargetName.text = suggestion.toString();
-
-                                        },
-                                        suggestionsBoxDecoration: SuggestionsBoxDecoration(
-                                            elevation: 7,
-                                            color: ColorsResources.light,
-                                            shadowColor: ColorsResources.darkTransparent,
-                                            borderRadius: BorderRadius.circular(17)
-                                        ),
-                                        textFieldConfiguration: TextFieldConfiguration(
-                                          controller: controllerTransactionTargetName,
-                                          autofocus: false,
-                                          maxLines: 1,
-                                          cursorColor: ColorsResources.primaryColor,
-                                          decoration: const InputDecoration(
-                                            alignLabelWithHint: true,
-                                            border: OutlineInputBorder(
-                                                borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                                borderRadius: BorderRadius.only(
-                                                    topLeft: Radius.circular(13),
-                                                    topRight: Radius.circular(13),
-                                                    bottomLeft: Radius.circular(13),
-                                                    bottomRight: Radius.circular(13)
-                                                ),
-                                                gapPadding: 5
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                                borderRadius: BorderRadius.only(
-                                                    topLeft: Radius.circular(13),
-                                                    topRight: Radius.circular(13),
-                                                    bottomLeft: Radius.circular(13),
-                                                    bottomRight: Radius.circular(13)
-                                                ),
-                                                gapPadding: 5
-                                            ),
-                                            focusedBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
-                                                borderRadius: BorderRadius.only(
-                                                    topLeft: Radius.circular(13),
-                                                    topRight: Radius.circular(13),
-                                                    bottomLeft: Radius.circular(13),
-                                                    bottomRight: Radius.circular(13)
-                                                ),
-                                                gapPadding: 5
-                                            ),
-                                            errorBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(color: Colors.red, width: 1.0),
-                                                borderRadius: BorderRadius.only(
-                                                    topLeft: Radius.circular(13),
-                                                    topRight: Radius.circular(13),
-                                                    bottomLeft: Radius.circular(13),
-                                                    bottomRight: Radius.circular(13)
-                                                ),
-                                                gapPadding: 5
-                                            ),
-                                            filled: true,
-                                            fillColor: ColorsResources.lightTransparent,
-                                            labelText: StringsResources.transactionTargetName,
-                                            labelStyle: TextStyle(
-                                                color: ColorsResources.dark,
-                                                fontSize: 17.0
-                                            ),
-                                            hintText: StringsResources.transactionTargetNameHint,
-                                            hintStyle: TextStyle(
-                                                color: ColorsResources.darkTransparent,
-                                                fontSize: 17.0
-                                            ),
-                                          ),
-                                        )
-                                    ),
-                                  )
-                              ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
-                                  child: Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: TypeAheadField<String>(
-                                        suggestionsCallback: (pattern) async {
-
-                                          return await getCustomersNames();
-                                        },
-                                        itemBuilder: (context, suggestion) {
-
-                                          return ListTile(title: Directionality(
-                                            textDirection: TextDirection.rtl,
-                                            child: Text(
-                                              suggestion,
-                                              style: const TextStyle(
-                                                  color: ColorsResources.darkTransparent,
-                                                  fontSize: 15
-                                              ),
-                                            ),
-                                          ));
-                                        },
-                                        onSuggestionSelected: (suggestion) {
-
-                                          controllerTransactionSourceName.text = suggestion.toString();
-
-                                        },
-                                        suggestionsBoxDecoration: SuggestionsBoxDecoration(
-                                            elevation: 7,
-                                            color: ColorsResources.light,
-                                            shadowColor: ColorsResources.darkTransparent,
-                                            borderRadius: BorderRadius.circular(17)
-                                        ),
-                                        textFieldConfiguration: TextFieldConfiguration(
-                                          controller: controllerTransactionSourceName,
-                                          autofocus: false,
-                                          maxLines: 1,
-                                          cursorColor: ColorsResources.primaryColor,
-                                          decoration: const InputDecoration(
-                                            alignLabelWithHint: true,
-                                            border: OutlineInputBorder(
-                                                borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                                borderRadius: BorderRadius.only(
-                                                    topLeft: Radius.circular(13),
-                                                    topRight: Radius.circular(13),
-                                                    bottomLeft: Radius.circular(13),
-                                                    bottomRight: Radius.circular(13)
-                                                ),
-                                                gapPadding: 5
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                                borderRadius: BorderRadius.only(
-                                                    topLeft: Radius.circular(13),
-                                                    topRight: Radius.circular(13),
-                                                    bottomLeft: Radius.circular(13),
-                                                    bottomRight: Radius.circular(13)
-                                                ),
-                                                gapPadding: 5
-                                            ),
-                                            focusedBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
-                                                borderRadius: BorderRadius.only(
-                                                    topLeft: Radius.circular(13),
-                                                    topRight: Radius.circular(13),
-                                                    bottomLeft: Radius.circular(13),
-                                                    bottomRight: Radius.circular(13)
-                                                ),
-                                                gapPadding: 5
-                                            ),
-                                            errorBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(color: Colors.red, width: 1.0),
-                                                borderRadius: BorderRadius.only(
-                                                    topLeft: Radius.circular(13),
-                                                    topRight: Radius.circular(13),
-                                                    bottomLeft: Radius.circular(13),
-                                                    bottomRight: Radius.circular(13)
-                                                ),
-                                                gapPadding: 5
-                                            ),
-                                            filled: true,
-                                            fillColor: ColorsResources.lightTransparent,
-                                            labelText: StringsResources.transactionSourceName,
-                                            labelStyle: TextStyle(
-                                                color: ColorsResources.dark,
-                                                fontSize: 17.0
-                                            ),
-                                            hintText: StringsResources.transactionSourceNameHint,
-                                            hintStyle: TextStyle(
-                                                color: ColorsResources.darkTransparent,
-                                                fontSize: 17.0
-                                            ),
-                                          ),
-                                        )
                                     ),
                                   )
                               ),
@@ -972,120 +759,6 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> {
                       ),
                       SizedBox(
                         width: double.infinity,
-                        height: 73,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Expanded(
-                              flex: 1,
-                              child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
-                                  child: Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: TypeAheadField<String>(
-                                        suggestionsCallback: (pattern) async {
-
-                                          return await getBudgetNames();
-                                        },
-                                        itemBuilder: (context, suggestion) {
-
-                                          return ListTile(title: Directionality(
-                                            textDirection: TextDirection.rtl,
-                                            child: Text(
-                                              suggestion,
-                                              style: const TextStyle(
-                                                  color: ColorsResources.darkTransparent,
-                                                  fontSize: 15
-                                              ),
-                                            ),
-                                          ));
-                                        },
-                                        onSuggestionSelected: (suggestion) {
-
-                                          controllerBudget.text = suggestion.toString();
-                                          budgetName = suggestion.toString();
-
-                                        },
-                                        suggestionsBoxDecoration: SuggestionsBoxDecoration(
-                                            elevation: 7,
-                                            color: ColorsResources.light,
-                                            shadowColor: ColorsResources.darkTransparent,
-                                            borderRadius: BorderRadius.circular(17)
-                                        ),
-                                        textFieldConfiguration: TextFieldConfiguration(
-                                          controller: controllerBudget,
-                                          autofocus: false,
-                                          maxLines: 1,
-                                          cursorColor: ColorsResources.primaryColor,
-                                          decoration: const InputDecoration(
-                                            alignLabelWithHint: true,
-                                            border: OutlineInputBorder(
-                                                borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                                borderRadius: BorderRadius.only(
-                                                    topLeft: Radius.circular(13),
-                                                    topRight: Radius.circular(13),
-                                                    bottomLeft: Radius.circular(13),
-                                                    bottomRight: Radius.circular(13)
-                                                ),
-                                                gapPadding: 5
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                                borderRadius: BorderRadius.only(
-                                                    topLeft: Radius.circular(13),
-                                                    topRight: Radius.circular(13),
-                                                    bottomLeft: Radius.circular(13),
-                                                    bottomRight: Radius.circular(13)
-                                                ),
-                                                gapPadding: 5
-                                            ),
-                                            focusedBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
-                                                borderRadius: BorderRadius.only(
-                                                    topLeft: Radius.circular(13),
-                                                    topRight: Radius.circular(13),
-                                                    bottomLeft: Radius.circular(13),
-                                                    bottomRight: Radius.circular(13)
-                                                ),
-                                                gapPadding: 5
-                                            ),
-                                            errorBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(color: Colors.red, width: 1.0),
-                                                borderRadius: BorderRadius.only(
-                                                    topLeft: Radius.circular(13),
-                                                    topRight: Radius.circular(13),
-                                                    bottomLeft: Radius.circular(13),
-                                                    bottomRight: Radius.circular(13)
-                                                ),
-                                                gapPadding: 5
-                                            ),
-                                            filled: true,
-                                            fillColor: ColorsResources.lightTransparent,
-                                            labelText: StringsResources.transactionBudgetName,
-                                            labelStyle: TextStyle(
-                                                color: ColorsResources.dark,
-                                                fontSize: 17.0
-                                            ),
-                                            hintText: StringsResources.transactionBudgetNameHint,
-                                            hintStyle: TextStyle(
-                                                color: ColorsResources.darkTransparent,
-                                                fontSize: 17.0
-                                            ),
-                                          ),
-                                        )
-                                    ),
-                                  )
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const Divider(
-                        height: 13,
-                        color: Colors.transparent,
-                      ),
-                      SizedBox(
-                        width: double.infinity,
                         height: 37,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -1284,31 +957,9 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> {
     );
   }
 
-  Future<List<String>> getCustomersNames() async {
-
-    String mySelf = StringsResources.mySelfText;
-
-    List<String> listOfNames = [];
-    listOfNames.add(mySelf);
-    listOfNames.addAll(["Test", "Aban", "Elias", "One", "Mr. Fazel", "Geeks Empire"]);
-
-    return listOfNames;
-  }
-
   Future<List<String>> getBanksNames() async {
 
     return StringsResources.listOfBanksIran;
-  }
-
-  Future<List<String>> getBudgetNames() async {
-
-    String noBudget = StringsResources.noBudgetText;
-
-    List<String> listOfBudgets = [];
-    listOfBudgets.add(noBudget);
-    listOfBudgets.addAll(["آکواریم", "شرکت", "خانه", "گربه"]);
-
-    return listOfBudgets;
   }
 
 }

@@ -70,6 +70,10 @@ class StringsResources {
   static const String transactionBudgetName = "بودجه مورد نظر را انتخاب کنید";
   static const String transactionBudgetNameHint = "نام بودجه";
 
+  static const String featureCreditCardTitle = "کارت بانکی";
+  static const String featureCreditCardDescription = "اطلاعات کار بانکی خود "
+      "را وارد کنید تا بتوانید راحت تر حسابرسی انجام بدهید";
+
   static const String featureTransactionsTitle = "تراکنش";
   static const String featureTransactionsDescription = "شما میتوانید تمام اطلاعات مرتبط با تراکنش های اخیر خود را اعم از تاریخ انجام تراکنش / مبلغ و ... را کادر زیر در ردیف/ستون خواسته شده وارد کنید.";
 
