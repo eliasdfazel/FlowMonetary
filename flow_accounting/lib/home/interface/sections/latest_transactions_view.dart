@@ -71,8 +71,6 @@ class _LatestTransactionsView extends State<LatestTransactionsView> {
 
   Widget transactionSummaryItem(TransactionsData transactionsData) {
 
-
-
     return Padding(
       padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
       child: Container(
