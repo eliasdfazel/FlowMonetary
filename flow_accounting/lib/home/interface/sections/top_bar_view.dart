@@ -8,7 +8,10 @@
  * https://opensource.org/licenses/MIT
  */
 
+import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flutter/material.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class TopBarView extends StatelessWidget {
   const TopBarView({Key? key}) : super(key: key);
@@ -30,7 +33,7 @@ class TopBarView extends StatelessWidget {
                   child: GestureDetector(
                     onTap: () {
 
-
+                      Share.share(StringsResources.sharingText);
 
                     },
                     child:  const Align(
@@ -46,9 +49,9 @@ class TopBarView extends StatelessWidget {
               Expanded(
                   flex: 3,
                   child: GestureDetector(
-                    onTap: () {
+                    onTap: () async {
 
-
+                      await launch(StringsResources.instagramLink);
 
                     },
                     child:  const Align(

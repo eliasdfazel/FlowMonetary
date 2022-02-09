@@ -11,6 +11,12 @@
 class StringsResources {
 
   static const String applicationName = "حسابداری جریان";
+  static const String sharingText = "حسابداری جریان - جریان اقتصادی خود را در"
+      " دست بگیرید."
+      "\n"
+      "\n"
+      "https://instagram.com/flowaccounting";
+  static const String instagramLink = "https://instagram.com/flowaccounting";
 
   static const String welcomeText = "به جریان مالی خودتان خوش آمدید";
   static const String getStartedText = "شروع";
