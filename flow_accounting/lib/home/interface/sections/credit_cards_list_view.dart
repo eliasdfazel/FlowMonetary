@@ -41,18 +41,47 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
   @override
   Widget build(BuildContext context) {
 
-    List<Widget> creditCardWidgets = [];
+    Widget creditCardsPlaceholder = const Padding(
+      padding: EdgeInsets.fromLTRB(0, 23, 0, 0),
+      child: SizedBox(
+        height: 299,
+        width: double.infinity,
+        child: Image(
+          image: AssetImage("add_credit_card_icon.png"),
+          fit: BoxFit.cover,
+          width: double.infinity,
+          height: double.infinity,
+        ),
+      ),
+    );
 
-    for (var creditCardData in widget.allCreditCardsData) {
+    if (widget.allCreditCardsData.isNotEmpty) {
 
-      creditCardWidgets.add(creditCardWidgetItem(
-          creditCardData.cardNumber,
-          creditCardData.cardExpiry,
-          creditCardData.cardHolderName,
-          creditCardData.cvv,
-          creditCardData.bankName,
-          creditCardData.cardBalance
-      ));
+      List<Widget> creditCardWidgets = [];
+
+      for (var creditCardData in widget.allCreditCardsData) {
+
+        creditCardWidgets.add(creditCardWidgetItem(
+            creditCardData.cardNumber,
+            creditCardData.cardExpiry,
+            creditCardData.cardHolderName,
+            creditCardData.cvv,
+            creditCardData.bankName,
+            creditCardData.cardBalance
+        ));
+
+      }
+
+      creditCardsPlaceholder = SizedBox(
+        height: 299,
+        width: double.infinity,
+        child: ListView(
+          physics: const BouncingScrollPhysics(),
+          scrollDirection: Axis.horizontal,
+          padding: const EdgeInsets.fromLTRB(3, 11, 0, 11),
+          children: creditCardWidgets,
+        ),
+      );
 
     }
 
@@ -60,16 +89,7 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
       padding: const EdgeInsets.fromLTRB(0, 23, 0, 0),
       child: Column(
         children: [
-          SizedBox(
-            height: 299,
-            width: double.infinity,
-            child: ListView(
-              physics: const BouncingScrollPhysics(),
-              scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.fromLTRB(3, 11, 0, 11),
-              children: creditCardWidgets,
-            ),
-          )
+          creditCardsPlaceholder
         ],
       ),
     );

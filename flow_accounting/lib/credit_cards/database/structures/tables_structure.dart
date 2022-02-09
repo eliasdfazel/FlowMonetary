@@ -8,6 +8,8 @@
  * https://opensource.org/licenses/MIT
  */
 
+import 'package:flow_accounting/resources/ColorsResources.dart';
+
 class CreditCardsData {
 
   final int id;
@@ -19,6 +21,8 @@ class CreditCardsData {
   final String bankName;
   final String cardBalance;
 
+  int colorTag = ColorsResources.dark.value;
+
   CreditCardsData({
     required this.id,
 
@@ -28,6 +32,8 @@ class CreditCardsData {
     required this.cvv,
     required this.bankName,
     required this.cardBalance,
+
+    required this.colorTag,
   });
 
   // Convert a Dog into a Map. The keys must correspond to the names of the
@@ -42,18 +48,23 @@ class CreditCardsData {
       'cvv': cvv,
       'bankName': bankName,
       'cardBalance': cardBalance,
+
+      'colorTag': colorTag,
     };
   }
 
   @override
   String toString() {
     return 'TransactionsData{id: $id, '
+
         'cardNumber: $cardNumber, '
         'cardExpiry: $cardExpiry'
         'cardHolderName: $cardHolderName,'
         'cvv: $cvv,'
         'bankName: $bankName,'
         'cardBalance: $cardBalance,'
+
+        'colorTag: $colorTag,'
         '}';
   }
 }
