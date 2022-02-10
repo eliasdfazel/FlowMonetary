@@ -49,7 +49,15 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
       child: InkWell(
         onTap: () {
 
-          NavigationProcess().goTo(context, const CreditCardsInputView());
+          NavigationProcess().goTo(context, CreditCardsInputView
+            (creditCardsData: CreditCardsData(id: 0,
+              bankName: '',
+              cardNumber: '',
+              cardHolderName: '',
+              cvv: '',
+              cardBalance: '',
+              cardExpiry: '',
+              colorTag: Colors.transparent.value)));
 
         },
         child: const Image(

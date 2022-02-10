@@ -11,6 +11,7 @@
 import 'dart:math';
 
 import 'package:blur/blur.dart';
+import 'package:flow_accounting/credit_cards/database/structures/tables_structure.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/utils/colors/color_extractor.dart';
@@ -30,7 +31,10 @@ TextEditingController creditCardMonthController = TextEditingController();
 TextEditingController creditCardCvvController = TextEditingController();
 
 class CreditCardsInputView extends StatefulWidget {
-  const CreditCardsInputView({Key? key}) : super(key: key);
+
+  CreditCardsData creditCardsData;
+
+  CreditCardsInputView({Key? key, required this.creditCardsData}) : super(key: key);
 
   @override
   _CreditCardsInputViewState createState() => _CreditCardsInputViewState();
@@ -40,15 +44,15 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
   @override
   void initState() {
 
-    creditCardBankNameController.text = StringsResources.creditCardsBankName;
-    creditCardNameHolderController.text = StringsResources.creditCardsNameHolder;
+    creditCardBankNameController.text = widget.creditCardsData.bankName.isEmpty ? StringsResources.creditCardsBankName : widget.creditCardsData.bankName;
+    creditCardNameHolderController.text = widget.creditCardsData.cardHolderName.isEmpty ? StringsResources.creditCardsNameHolder : widget.creditCardsData.cardHolderName;
 
-    creditCardNumberController.text = "0000000000000000";
+    creditCardNumberController.text = widget.creditCardsData.cardNumber.isEmpty ? "0000000000000000" : widget.creditCardsData.cardNumber;
 
-    creditCardYearController.text = "00";
-    creditCardMonthController.text = "00";
+    creditCardYearController.text = widget.creditCardsData.cardExpiry.isEmpty ? "00" : widget.creditCardsData.cardExpiry.split("/")[0];
+    creditCardMonthController.text = widget.creditCardsData.cardExpiry.isEmpty ? "00" : widget.creditCardsData.cardExpiry.split("/")[1];
 
-    creditCardCvvController.text = "000";
+    creditCardCvvController.text = widget.creditCardsData.cvv.isEmpty ? "00" : widget.creditCardsData.cvv;
 
     super.initState();
   }
@@ -820,11 +824,11 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                 children: [
                   AwesomeCard(
                     animation: moveToBack,
-                    child: CreditCardFrontLayout(bankName: bankName, cardExpiry: cardExpiry, cardHolderName: cardHolderName, cardNumber: cardNumber, cvv: cvv,),
+                    child: CreditCardFrontLayout(creditCardsData: widget.creditCardsData),
                   ),
                   AwesomeCard(
                     animation: moveToFront,
-                    child: CreditCardBackLayout(cardBankName: bankName, cardCVV: cvv,),
+                    child: CreditCardBackLayout(creditCardsData: widget.creditCardsData),
                   ),
                 ],
               ),
@@ -871,13 +875,9 @@ ImageProvider? bankLogoImageProvider;
 
 class CreditCardFrontLayout extends StatefulWidget {
 
-  String cardNumber;
-  String cardExpiry;
-  String cardHolderName;
-  String cvv;
-  String bankName;
+  CreditCardsData creditCardsData;
 
-  CreditCardFrontLayout({Key? key, required this.cardNumber, required this.cardExpiry, required this.cardHolderName, required this.bankName, required this.cvv}) :super(key: key);
+  CreditCardFrontLayout({Key? key, required this.creditCardsData}) :super(key: key);
 
   @override
   State<CreditCardFrontLayout> createState() => _CreditCardFrontLayout();
@@ -902,7 +902,11 @@ class _CreditCardFrontLayout extends State<CreditCardFrontLayout> {
   @override
   Widget build(BuildContext context) {
 
-    return frontCardLayout(widget.cardNumber, widget.cardExpiry, widget.cardHolderName, widget.cvv, widget.bankName);
+    return frontCardLayout(widget.creditCardsData.cardNumber,
+        widget.creditCardsData.cardExpiry,
+        widget.creditCardsData.cardHolderName,
+        widget.creditCardsData.cvv,
+        widget.creditCardsData.bankName);
   }
 
   Widget frontCardLayout(String cardNumber, String cardExpiry, String cardHolderName, String cvv, String bankName) {
@@ -1200,10 +1204,9 @@ class _CreditCardFrontLayout extends State<CreditCardFrontLayout> {
 
 class CreditCardBackLayout extends StatefulWidget {
 
-  String cardBankName;
-  String cardCVV;
+  CreditCardsData creditCardsData;
 
-  CreditCardBackLayout({Key? key, required this.cardBankName, required this.cardCVV}) :super(key: key);
+  CreditCardBackLayout({Key? key, required this.creditCardsData}) :super(key: key);
 
   @override
   State<CreditCardBackLayout> createState() => _CreditCardBackLayout();
@@ -1229,7 +1232,7 @@ class _CreditCardBackLayout extends State<CreditCardBackLayout> {
   @override
   Widget build(BuildContext context) {
 
-    return backCardLayout(widget.cardCVV);
+    return backCardLayout(widget.creditCardsData.cvv);
   }
 
   Widget backCardLayout(String cvv) {
