@@ -1218,7 +1218,30 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                         budgetName: budgetName,
                       );
 
-                      databaseInputs.insertTransactionData(transactionData, TransactionsDatabaseInputs.databaseTableName);
+                      databaseInputs.updateTransactionData(transactionData, TransactionsDatabaseInputs.databaseTableName);
+
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: const Text(
+                          StringsResources.updatedText,
+                          style: TextStyle(
+                              color: ColorsResources.dark
+                          ),
+                        ),
+                        margin: const EdgeInsets.fromLTRB(0, 0, 0, 19),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        behavior: SnackBarBehavior.floating,
+                        dismissDirection: DismissDirection.horizontal,
+                        duration: const Duration(milliseconds: 1500),
+                        action: SnackBarAction(
+                          label: StringsResources.returnText,
+                          textColor: ColorsResources.greenGray,
+                          onPressed: () {
+                            // Some code to undo the change.
+                          },
+                        ),
+                      ));
 
                     },
                     child: Container(

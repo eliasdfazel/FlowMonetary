@@ -122,6 +122,9 @@ class StringsResources {
   static const String creditCardExpiryYear = "سال";
   static const String creditCardExpiryYearHint = "سال انقضا";
 
+  static const String creditCardBalance = "موجودی";
+  static const String creditCardBalanceHint = "مبلغ موجودی را وارد کنید";
+
   static const String creditCardCvv = "CVV";
   static const String creditCardCvvHint = "CVV";
 
