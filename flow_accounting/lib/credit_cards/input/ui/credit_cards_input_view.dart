@@ -863,7 +863,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                   bottom: 19,
                   left: 71,
                   right: 71,
-                  child: GestureDetector(
+                  child: InkWell(
                     onTap: () {
 
                       int timeNow = DateTime.now().millisecondsSinceEpoch;
