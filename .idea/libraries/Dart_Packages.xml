@@ -170,6 +170,13 @@
             </list>
           </value>
         </entry>
+        <entry key="fluttertoast">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../Xemonstration/Flutter/Setup/FlutterSdk/.pub-cache/hosted/pub.dartlang.org/fluttertoast-8.0.8/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="intl">
           <value>
             <list>
@@ -502,6 +509,7 @@
       <root url="file://$PROJECT_DIR$/../../Xemonstration/Flutter/Setup/FlutterSdk/.pub-cache/hosted/pub.dartlang.org/flutter_slidable-1.2.0/lib" />
       <root url="file://$PROJECT_DIR$/../../Xemonstration/Flutter/Setup/FlutterSdk/.pub-cache/hosted/pub.dartlang.org/flutter_svg-1.0.0/lib" />
       <root url="file://$PROJECT_DIR$/../../Xemonstration/Flutter/Setup/FlutterSdk/.pub-cache/hosted/pub.dartlang.org/flutter_typeahead-3.2.4/lib" />
+      <root url="file://$PROJECT_DIR$/../../Xemonstration/Flutter/Setup/FlutterSdk/.pub-cache/hosted/pub.dartlang.org/fluttertoast-8.0.8/lib" />
       <root url="file://$PROJECT_DIR$/../../Xemonstration/Flutter/Setup/FlutterSdk/.pub-cache/hosted/pub.dartlang.org/intl-0.17.0/lib" />
       <root url="file://$PROJECT_DIR$/../../Xemonstration/Flutter/Setup/FlutterSdk/.pub-cache/hosted/pub.dartlang.org/js-0.6.3/lib" />
       <root url="file://$PROJECT_DIR$/../../Xemonstration/Flutter/Setup/FlutterSdk/.pub-cache/hosted/pub.dartlang.org/lints-1.0.1/lib" />
