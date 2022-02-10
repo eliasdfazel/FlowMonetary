@@ -15,7 +15,7 @@ import 'package:flow_accounting/transactions/database/structures/tables_structur
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-class DatabaseInputs {
+class TransactionsDatabaseInputs {
 
   static const String databaseTableName = "all_transactions";
 
@@ -23,7 +23,7 @@ class DatabaseInputs {
 
   Future<void> insertTransactionData(TransactionsData transactionsData, String? tableName, {String usernameId = "Unknown"}) async {
 
-    var tableNameQuery = (tableName != null) ? tableName : DatabaseInputs.databaseTableName;
+    var tableNameQuery = (tableName != null) ? tableName : TransactionsDatabaseInputs.databaseTableName;
     tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     final database = openDatabase(
@@ -68,7 +68,7 @@ class DatabaseInputs {
 
     final databaseInstance = await database;
 
-    var tableNameQuery = (tableName != null) ? tableName : DatabaseInputs.databaseTableName;
+    var tableNameQuery = (tableName != null) ? tableName : TransactionsDatabaseInputs.databaseTableName;
     tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     await databaseInstance.update(
@@ -94,7 +94,7 @@ class DatabaseInputs {
 
     final databaseInstance = await database;
 
-    var tableNameQuery = (tableName != null) ? tableName : DatabaseInputs.databaseTableName;
+    var tableNameQuery = (tableName != null) ? tableName : TransactionsDatabaseInputs.databaseTableName;
     tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     await databaseInstance.delete(

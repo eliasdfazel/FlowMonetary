@@ -15,7 +15,7 @@ import 'package:flow_accounting/budgets/database/structures/tables_structure.dar
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-class DatabaseQueries {
+class BudgetDatabaseQueries {
 
   Future<List<BudgetsData>> getAllFinancialReports() async {
 

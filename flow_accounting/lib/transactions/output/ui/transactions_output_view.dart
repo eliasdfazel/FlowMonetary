@@ -758,9 +758,9 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
 
   void deleteTransaction(BuildContext context, TransactionsData transactionsData) async {
 
-    var databaseQueries = DatabaseQueries();
+    var databaseQueries = TransactionsDatabaseQueries();
 
-    databaseQueries.queryDeleteTransaction(transactionsData.id, DatabaseInputs.databaseTableName);
+    databaseQueries.queryDeleteTransaction(transactionsData.id, TransactionsDatabaseInputs.databaseTableName);
 
     retrieveAllTransactions(context);
 
@@ -785,9 +785,9 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
 
     List<Widget> preparedAllTransactionsItem = [];
 
-    var databaseQueries = DatabaseQueries();
+    var databaseQueries = TransactionsDatabaseQueries();
 
-    allTransactions = await databaseQueries.getAllTransactions(DatabaseInputs.databaseTableName);
+    allTransactions = await databaseQueries.getAllTransactions(TransactionsDatabaseInputs.databaseTableName);
 
     for (var element in allTransactions) {
 

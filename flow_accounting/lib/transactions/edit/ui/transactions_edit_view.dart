@@ -1196,7 +1196,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
 
                       int timeNow = DateTime.now().millisecondsSinceEpoch;
 
-                      var databaseInputs = DatabaseInputs();
+                      var databaseInputs = TransactionsDatabaseInputs();
 
                       TransactionsData transactionData = TransactionsData(
                         id: timeNow,
@@ -1218,7 +1218,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                         budgetName: budgetName,
                       );
 
-                      databaseInputs.insertTransactionData(transactionData, DatabaseInputs.databaseTableName);
+                      databaseInputs.insertTransactionData(transactionData, TransactionsDatabaseInputs.databaseTableName);
 
                     },
                     child: Container(

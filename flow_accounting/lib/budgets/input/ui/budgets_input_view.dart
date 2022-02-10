@@ -108,7 +108,7 @@ class _State extends State<BudgetsView> {
                   child: const Text('Insert'),
                   onPressed: (){
 
-                    var databaseInputs = DatabaseInputs();
+                    var databaseInputs = BudgetDatabaseInputs();
 
                     databaseInputs.insertBudget(BudgetsData(id: DateTime.now().millisecondsSinceEpoch));
 

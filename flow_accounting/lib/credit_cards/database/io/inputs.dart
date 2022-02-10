@@ -15,7 +15,7 @@ import 'package:flow_accounting/credit_cards/database/structures/tables_structur
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-class DatabaseInputs {
+class CreditCardsDatabaseInputs {
 
   static const String databaseTableName = "all_credit_cards";
 
@@ -23,7 +23,7 @@ class DatabaseInputs {
 
   Future<void> insertCreditCardsData(CreditCardsData creditCardsData, String?tableName, {String usernameId = "Unknown"}) async {
 
-    var tableNameQuery = (tableName != null) ? tableName : DatabaseInputs.databaseTableName;
+    var tableNameQuery = (tableName != null) ? tableName : CreditCardsDatabaseInputs.databaseTableName;
     tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     final database = openDatabase(
@@ -65,7 +65,7 @@ class DatabaseInputs {
 
     final databaseInstance = await database;
 
-    var tableNameQuery = (tableName != null) ? tableName : DatabaseInputs.databaseTableName;
+    var tableNameQuery = (tableName != null) ? tableName : CreditCardsDatabaseInputs.databaseTableName;
     tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     await databaseInstance.update(
@@ -92,7 +92,7 @@ class DatabaseInputs {
 
     final databaseInstance = await database;
 
-    var tableNameQuery = (tableName != null) ? tableName : DatabaseInputs.databaseTableName;
+    var tableNameQuery = (tableName != null) ? tableName : CreditCardsDatabaseInputs.databaseTableName;
     tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     await databaseInstance.delete(

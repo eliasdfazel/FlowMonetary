@@ -8,6 +8,8 @@
  * https://opensource.org/licenses/MIT
  */
 
+import 'package:flow_accounting/credit_cards/database/io/inputs.dart';
+import 'package:flow_accounting/credit_cards/database/io/queries.dart';
 import 'package:flow_accounting/credit_cards/database/structures/tables_structure.dart';
 import 'package:flow_accounting/home/interface/sections/latest_transactions_view.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
@@ -201,9 +203,9 @@ class _HomePageState extends State<HomePage> {
 
   void retrieveLatestTransactions() async {
 
-    DatabaseQueries databaseQueries = DatabaseQueries();
+    TransactionsDatabaseQueries transactionsDatabaseQueries = TransactionsDatabaseQueries();
 
-    List<TransactionsData> latestTransactions = await databaseQueries.getAllTransactions(DatabaseInputs.databaseTableName);
+    List<TransactionsData> latestTransactions = await transactionsDatabaseQueries.getAllTransactions(TransactionsDatabaseInputs.databaseTableName);
 
     if (latestTransactions.length > 10) {
 
@@ -223,7 +225,9 @@ class _HomePageState extends State<HomePage> {
 
   void prepareCreditCardsData() async {
 
-    List<CreditCardsData> listOfAllCreditCards = [];
+    CreditCardsDatabaseQueries databaseQueries = CreditCardsDatabaseQueries();
+
+    List<CreditCardsData> listOfAllCreditCards = await databaseQueries.getAllCreditCards(CreditCardsDatabaseInputs.databaseTableName);
 
     setState(() {
 

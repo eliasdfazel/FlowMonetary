@@ -776,9 +776,9 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                           colorTag: colorSelectorView.selectedColor.value
                       );
 
-                      DatabaseInputs databaseInputs = DatabaseInputs();
+                      CreditCardsDatabaseInputs databaseInputs = CreditCardsDatabaseInputs();
 
-                      databaseInputs.insertCreditCardsData(creditCardsData, DatabaseInputs.databaseTableName);
+                      databaseInputs.insertCreditCardsData(creditCardsData, CreditCardsDatabaseInputs.databaseTableName);
 
                     },
                     child: Container(

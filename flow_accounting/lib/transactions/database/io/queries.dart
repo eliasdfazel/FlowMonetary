@@ -16,17 +16,17 @@ import 'package:flow_accounting/transactions/database/structures/tables_structur
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-class DatabaseQueries {
+class TransactionsDatabaseQueries {
 
   Future<List<TransactionsData>> getAllTransactions(String? tableName, {String usernameId = "Unknown"}) async {
 
     final database = openDatabase(
-      join(await getDatabasesPath(), DatabaseInputs.transactionDatabase),
+      join(await getDatabasesPath(), TransactionsDatabaseInputs.transactionDatabase),
     );
 
     final databaseInstance = await database;
 
-    var tableNameQuery = (tableName != null) ? tableName : DatabaseInputs.databaseTableName;
+    var tableNameQuery = (tableName != null) ? tableName : TransactionsDatabaseInputs.databaseTableName;
     tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     final List<Map<String, dynamic>> maps = await databaseInstance.query(tableNameQuery);
@@ -54,12 +54,12 @@ class DatabaseQueries {
       String? tableName, {String usernameId = "Unknown"}) async {
 
     final database = openDatabase(
-      join(await getDatabasesPath(), DatabaseInputs.transactionDatabase),
+      join(await getDatabasesPath(), TransactionsDatabaseInputs.transactionDatabase),
     );
 
     final databaseInstance = await database;
 
-    var tableNameQuery = (tableName != null) ? tableName : DatabaseInputs.databaseTableName;
+    var tableNameQuery = (tableName != null) ? tableName : TransactionsDatabaseInputs.databaseTableName;
     tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     var databaseContents = await databaseInstance.query(
@@ -75,12 +75,12 @@ class DatabaseQueries {
       String? tableName, {String usernameId = "Unknown"}) async {
 
     final database = openDatabase(
-      join(await getDatabasesPath(), DatabaseInputs.transactionDatabase),
+      join(await getDatabasesPath(), TransactionsDatabaseInputs.transactionDatabase),
     );
 
     final databaseInstance = await database;
 
-    var tableNameQuery = (tableName != null) ? tableName : DatabaseInputs.databaseTableName;
+    var tableNameQuery = (tableName != null) ? tableName : TransactionsDatabaseInputs.databaseTableName;
     tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     var queryResult = await databaseInstance.delete(
