@@ -105,7 +105,6 @@ class _ColorSelectorView extends State<ColorSelectorView> {
     return GestureDetector(
       onTap: () {
 
-        print(">>> >> > color");
         setState(() {
 
           widget.selectedColor = aColor;
