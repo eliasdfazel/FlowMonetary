@@ -17,6 +17,7 @@ import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/database/io/inputs.dart';
 import 'package:flow_accounting/transactions/database/io/queries.dart';
 import 'package:flow_accounting/transactions/database/structures/tables_structure.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:wave/config.dart';
 import 'package:wave/wave.dart';
@@ -47,7 +48,22 @@ class _HomePageState extends State<HomePage> {
     retrieveLatestTransactions();
 
     super.initState();
+
+    WidgetsBinding.instance!.addObserver(
+        LifecycleEventHandler(resumeCallBack: () async => setState(() {
+
+          retrieveLatestTransactions();
+
+        }))
+    );
+
   }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -234,6 +250,49 @@ class _HomePageState extends State<HomePage> {
       allCreditCards = listOfAllCreditCards;
 
     });
+
+  }
+
+}
+
+class LifecycleEventHandler extends WidgetsBindingObserver {
+
+  final AsyncCallback resumeCallBack;
+
+  LifecycleEventHandler({
+    required this.resumeCallBack,
+  });
+
+  @override
+  Future<void> didChangeAppLifecycleState(AppLifecycleState state) async {
+
+    switch (state) {
+      case AppLifecycleState.resumed: {
+        print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+
+        await resumeCallBack();
+
+        break;
+      }
+      case AppLifecycleState.paused: {
+
+
+
+        break;
+      }
+      case AppLifecycleState.inactive: {
+
+
+
+        break;
+      }
+      case AppLifecycleState.detached: {
+
+
+
+        break;
+      }
+    }
 
   }
 

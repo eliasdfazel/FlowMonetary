@@ -43,6 +43,10 @@ class CreditCardsInputView extends StatefulWidget {
 }
 class _CreditCardsInputViewState extends State<CreditCardsInputView> with TickerProviderStateMixin {
 
+  late FocusNode focusNode;
+
+  bool showCardsBack = false;
+
   @override
   void initState() {
 
@@ -59,6 +63,18 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
     creditCardCvvController.text = widget.creditCardsData.cvv.isEmpty ? "000" : widget.creditCardsData.cvv;
 
     super.initState();
+
+    focusNode = FocusNode();
+    focusNode.addListener(() {
+
+      setState(() {
+
+        focusNode.hasFocus ? showCardsBack = true : showCardsBack = false;
+
+      });
+
+    });
+
   }
 
   @override
@@ -70,7 +86,8 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
   Widget build(BuildContext context) {
 
     ColorSelectorView colorSelectorView = ColorSelectorView();
-    colorSelectorView.inputColor = (widget.creditCardsData.colorTag == Colors.transparent.value) ? ColorsResources.primaryColor : Color(widget.creditCardsData.colorTag);
+    colorSelectorView.inputColor = (widget.creditCardsData.colorTag == Colors.transparent.value) ?
+      ColorsResources.primaryColor : Color(widget.creditCardsData.colorTag);
 
     return MaterialApp (
       debugShowCheckedModeBanner: false,
@@ -455,7 +472,8 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: TextField(
-                                      controller: creditCardMonthController,
+                                      focusNode: focusNode,
+                                      controller: creditCardCvvController,
                                       textAlign: TextAlign.center,
                                       textDirection: TextDirection.ltr,
                                       textAlignVertical: TextAlignVertical.bottom,
@@ -763,8 +781,6 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
 
                       int id = widget.creditCardsData.id == 0 ? timeNow : widget.creditCardsData.id;
 
-                      print(">>> >> > id ::: ${id}");
-
                       CreditCardsData creditCardsData = CreditCardsData(
                           id: id,
                           cardNumber: creditCardNumberController.text,
@@ -778,7 +794,33 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
 
                       CreditCardsDatabaseInputs databaseInputs = CreditCardsDatabaseInputs();
 
-                      databaseInputs.insertCreditCardsData(creditCardsData, CreditCardsDatabaseInputs.databaseTableName);
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: const Text(StringsResources.updatedText),
+                        width: 333,
+                        margin: EdgeInsets.fromLTRB(0, 0, 0, 19),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        behavior: SnackBarBehavior.floating,
+                        dismissDirection: DismissDirection.horizontal,
+                        duration: const Duration(milliseconds: 1500),
+                        action: SnackBarAction(
+                          label: StringsResources.returnText,
+                          onPressed: () {
+                            // Some code to undo the change.
+                          },
+                        ),
+                      ));
+
+                      if (widget.creditCardsData.id == 0) {
+
+                        databaseInputs.insertCreditCardsData(creditCardsData, CreditCardsDatabaseInputs.databaseTableName);
+
+                      } else {
+
+                        databaseInputs.updateCreditCardsData(creditCardsData, CreditCardsDatabaseInputs.databaseTableName);
+
+                      }
 
                     },
                     child: Container(
@@ -881,8 +923,6 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
       String cardHolderName,
       String cvv,
       String bankName) {
-
-    var showCardsBack = false;
 
     AnimationController animationController = AnimationController(
         duration: const Duration(milliseconds: 1000), vsync: this

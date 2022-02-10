@@ -264,7 +264,7 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
                                   cvv: cvv,
                                   cardBalance: cardBalance,
                                   cardExpiry: cardExpiry,
-                                  colorTag: Colors.transparent.value
+                                  colorTag: colorTag
                               )
                           )
                       );

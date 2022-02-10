@@ -11,6 +11,7 @@
 class StringsResources {
 
   static const String applicationName = "حسابداری جریان";
+
   static const String sharingText = "حسابداری جریان - جریان اقتصادی خود را در"
       " دست بگیرید."
       "\n"
@@ -25,6 +26,9 @@ class StringsResources {
 
   static const String submitText = "ثبت";
   static const String presentText = "نمایش";
+
+  static const String returnText = "بازگشت";
+  static const String updatedText = "بروز رسانی انجام شد";
 
   static const String searchText = "جستجو";
   static const String searchFeaturesText = "امکان مورد نظر خود را جستجو کنید";
