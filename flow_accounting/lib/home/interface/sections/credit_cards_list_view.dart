@@ -49,15 +49,20 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
       child: InkWell(
         onTap: () {
 
-          NavigationProcess().goTo(context, CreditCardsInputView
-            (creditCardsData: CreditCardsData(id: 0,
-              bankName: '',
-              cardNumber: '',
-              cardHolderName: '',
-              cvv: '',
-              cardBalance: '',
-              cardExpiry: '',
-              colorTag: Colors.transparent.value)));
+          NavigationProcess().goTo(context,
+              CreditCardsInputView(
+                creditCardsData: CreditCardsData(
+                  id: 0,
+                  bankName: "",
+                  cardNumber: "",
+                  cardHolderName: "",
+                  cvv: "",
+                  cardBalance: "",
+                  cardExpiry: "",
+                  colorTag: Colors.transparent.value
+                )
+              )
+          );
 
         },
         child: const Image(
@@ -75,12 +80,14 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
       for (var creditCardData in widget.allCreditCardsData) {
 
         creditCardWidgets.add(creditCardWidgetItem(
-            creditCardData.cardNumber,
-            creditCardData.cardExpiry,
-            creditCardData.cardHolderName,
-            creditCardData.cvv,
-            creditCardData.bankName,
-            creditCardData.cardBalance
+          creditCardData.id,
+          creditCardData.cardNumber,
+          creditCardData.cardExpiry,
+          creditCardData.cardHolderName,
+          creditCardData.cvv,
+          creditCardData.bankName,
+          creditCardData.cardBalance,
+          creditCardData.colorTag
         ));
 
       }
@@ -109,12 +116,14 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
   }
 
   Widget creditCardWidgetItem(
+      int id,
       String cardNumber,
       String cardExpiry,
       String cardHolderName,
       String cvv,
       String bankName,
-      String cardBalance) {
+      String cardBalance,
+      int colorTag) {
 
     var showCardsBack = false;
 
@@ -245,7 +254,20 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
                 child: InkWell(
                     onTap: () {
 
-
+                      NavigationProcess().goTo(context,
+                          CreditCardsInputView(
+                              creditCardsData: CreditCardsData(
+                                  id: id,
+                                  bankName: bankName,
+                                  cardNumber: cardNumber,
+                                  cardHolderName: cardHolderName,
+                                  cvv: cvv,
+                                  cardBalance: cardBalance,
+                                  cardExpiry: cardExpiry,
+                                  colorTag: Colors.transparent.value
+                              )
+                          )
+                      );
 
                     },
                     child: Stack(
