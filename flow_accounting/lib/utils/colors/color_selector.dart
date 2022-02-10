@@ -30,6 +30,12 @@ class _ColorSelectorView extends State<ColorSelectorView> {
   @override
   void initState() {
 
+    if (widget.inputColor != null) {
+
+      widget.selectedColor = widget.inputColor!;
+
+    }
+
     initializeDateFormatting();
 
     super.initState();
@@ -42,12 +48,6 @@ class _ColorSelectorView extends State<ColorSelectorView> {
 
   @override
   Widget build(BuildContext context) {
-
-    if (widget.inputColor != null) {
-
-      widget.selectedColor = widget.inputColor!;
-
-    }
 
     List<Widget> colorItem = [];
 
@@ -105,6 +105,7 @@ class _ColorSelectorView extends State<ColorSelectorView> {
     return GestureDetector(
       onTap: () {
 
+        print(">>> >> > color");
         setState(() {
 
           widget.selectedColor = aColor;

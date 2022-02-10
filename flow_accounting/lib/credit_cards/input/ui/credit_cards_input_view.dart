@@ -56,7 +56,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
 
     creditCardBalanceController.text = widget.creditCardsData.cardBalance.isEmpty ? "0" : widget.creditCardsData.cardBalance;
 
-    creditCardCvvController.text = widget.creditCardsData.cvv.isEmpty ? "00" : widget.creditCardsData.cvv;
+    creditCardCvvController.text = widget.creditCardsData.cvv.isEmpty ? "000" : widget.creditCardsData.cvv;
 
     super.initState();
   }
@@ -455,6 +455,81 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: TextField(
+                                      controller: creditCardMonthController,
+                                      textAlign: TextAlign.center,
+                                      textDirection: TextDirection.ltr,
+                                      textAlignVertical: TextAlignVertical.bottom,
+                                      maxLines: 1,
+                                      cursorColor: ColorsResources.primaryColor,
+                                      autocorrect: true,
+                                      autofocus: false,
+                                      keyboardType: TextInputType.number,
+                                      decoration: const InputDecoration(
+                                        alignLabelWithHint: true,
+                                        border: OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        enabledBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        errorBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.red, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        filled: true,
+                                        fillColor: ColorsResources.lightTransparent,
+                                        labelText: StringsResources.creditCardCvv,
+                                        labelStyle: TextStyle(
+                                            color: ColorsResources.dark,
+                                            fontSize: 17.0
+                                        ),
+                                        hintText: StringsResources.creditCardCvvHint,
+                                        hintStyle: TextStyle(
+                                            color: ColorsResources.darkTransparent,
+                                            fontSize: 17.0
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                  child: Directionality(
+                                    textDirection: TextDirection.rtl,
+                                    child: TextField(
                                       controller: creditCardYearController,
                                       textAlign: TextAlign.center,
                                       textDirection: TextDirection.ltr,
@@ -687,6 +762,8 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                       int timeNow = DateTime.now().millisecondsSinceEpoch;
 
                       int id = widget.creditCardsData.id == 0 ? timeNow : widget.creditCardsData.id;
+
+                      print(">>> >> > id ::: ${id}");
 
                       CreditCardsData creditCardsData = CreditCardsData(
                           id: id,
