@@ -463,7 +463,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                       cursorColor: ColorsResources.primaryColor,
                                       autocorrect: true,
                                       autofocus: false,
-                                      keyboardType: TextInputType.name,
+                                      keyboardType: TextInputType.number,
                                       decoration: const InputDecoration(
                                         alignLabelWithHint: true,
                                         border: OutlineInputBorder(
@@ -508,12 +508,12 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                         ),
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.creditCardsNameHolder,
+                                        labelText: StringsResources.creditCardExpiryYear,
                                         labelStyle: TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.creditCardsNameHolderHint,
+                                        hintText: StringsResources.creditCardExpiryYearHint,
                                         hintStyle: TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
@@ -538,7 +538,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                       cursorColor: ColorsResources.primaryColor,
                                       autocorrect: true,
                                       autofocus: false,
-                                      keyboardType: TextInputType.name,
+                                      keyboardType: TextInputType.number,
                                       decoration: const InputDecoration(
                                         alignLabelWithHint: true,
                                         border: OutlineInputBorder(
@@ -583,12 +583,12 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                         ),
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.creditCardsNameHolder,
+                                        labelText: StringsResources.creditCardExpiryMonth,
                                         labelStyle: TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.creditCardsNameHolderHint,
+                                        hintText: StringsResources.creditCardExpiryMonthHint,
                                         hintStyle: TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0

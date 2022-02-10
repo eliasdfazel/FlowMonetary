@@ -39,8 +39,8 @@ class TopBarView extends StatelessWidget {
                     child:  const Align(
                       alignment: Alignment.center,
                       child: SizedBox(
-                        height: 47,
-                        width: 47,
+                        height: 43,
+                        width: 43,
                         child: Image(image: AssetImage("share_icon.png")),
                       ),
                     ),
@@ -57,8 +57,8 @@ class TopBarView extends StatelessWidget {
                     child:  const Align(
                       alignment: Alignment.center,
                       child: SizedBox(
-                        height: 47,
-                        width: 47,
+                        height: 43,
+                        width: 43,
                         child: Image(image: AssetImage("instagram_icon.png")),
                       ),
                     ),
@@ -81,8 +81,8 @@ class TopBarView extends StatelessWidget {
                     child: const Align(
                       alignment: Alignment.center,
                       child: SizedBox(
-                        height: 47,
-                        width: 47,
+                        height: 43,
+                        width: 43,
                         child: Image(image: AssetImage("add_profile_icon.png")),
                       ),
                     ),
