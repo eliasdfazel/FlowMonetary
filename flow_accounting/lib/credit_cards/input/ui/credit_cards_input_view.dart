@@ -11,6 +11,7 @@
 import 'dart:math';
 
 import 'package:blur/blur.dart';
+import 'package:flow_accounting/credit_cards/database/io/inputs.dart';
 import 'package:flow_accounting/credit_cards/database/structures/tables_structure.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
@@ -19,7 +20,6 @@ import 'package:flow_accounting/utils/colors/color_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 
-
 TextEditingController creditCardBankNameController = TextEditingController();
 TextEditingController creditCardNameHolderController = TextEditingController();
 
@@ -27,6 +27,8 @@ TextEditingController creditCardNumberController = TextEditingController();
 
 TextEditingController creditCardYearController = TextEditingController();
 TextEditingController creditCardMonthController = TextEditingController();
+
+TextEditingController creditCardBalanceController = TextEditingController();
 
 TextEditingController creditCardCvvController = TextEditingController();
 
@@ -52,6 +54,8 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
     creditCardYearController.text = widget.creditCardsData.cardExpiry.isEmpty ? "00" : widget.creditCardsData.cardExpiry.split("/")[0];
     creditCardMonthController.text = widget.creditCardsData.cardExpiry.isEmpty ? "00" : widget.creditCardsData.cardExpiry.split("/")[1];
 
+    creditCardBalanceController.text = widget.creditCardsData.cardBalance.isEmpty ? "0" : widget.creditCardsData.cardBalance;
+
     creditCardCvvController.text = widget.creditCardsData.cvv.isEmpty ? "00" : widget.creditCardsData.cvv;
 
     super.initState();
@@ -66,6 +70,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
   Widget build(BuildContext context) {
 
     ColorSelectorView colorSelectorView = ColorSelectorView();
+    colorSelectorView.inputColor = (widget.creditCardsData.colorTag == Colors.transparent.value) ? ColorsResources.primaryColor : Color(widget.creditCardsData.colorTag);
 
     return MaterialApp (
       debugShowCheckedModeBanner: false,
@@ -681,7 +686,22 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
 
                       int timeNow = DateTime.now().millisecondsSinceEpoch;
 
+                      int id = widget.creditCardsData.id == 0 ? timeNow : widget.creditCardsData.id;
 
+                      CreditCardsData creditCardsData = CreditCardsData(
+                          id: id,
+                          cardNumber: creditCardNumberController.text,
+                          cardExpiry: "${creditCardYearController.text}/${creditCardMonthController.text}",
+                          cardHolderName: creditCardNameHolderController.text,
+                          cvv: creditCardCvvController.text,
+                          bankName: creditCardBankNameController.text,
+                          cardBalance: creditCardBalanceController.text,
+                          colorTag: colorSelectorView.selectedColor.value
+                      );
+
+                      DatabaseInputs databaseInputs = DatabaseInputs();
+
+                      databaseInputs.insertCreditCardsData(creditCardsData, DatabaseInputs.databaseTableName);
 
                     },
                     child: Container(

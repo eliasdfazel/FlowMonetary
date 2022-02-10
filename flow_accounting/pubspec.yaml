@@ -49,6 +49,7 @@ dependencies:
   flutter_slidable: ^1.2.0
   share_plus: ^3.0.4
   url_launcher: ^6.0.18
+  lottie: ^1.2.1
 
 dev_dependencies:
   flutter_test:

@@ -11,17 +11,17 @@
 import 'dart:async';
 import 'dart:core';
 
-import 'package:flow_accounting/transactions/database/structures/tables_structure.dart';
+import 'package:flow_accounting/credit_cards/database/structures/tables_structure.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DatabaseInputs {
 
-  static const String databaseTableName = "all_transactions";
+  static const String databaseTableName = "all_credit_cards";
 
-  static const transactionDatabase = "transactions_database.db";
+  static const transactionDatabase = "credit_cards_database.db";
 
-  Future<void> insertTransactionData(TransactionsData transactionsData, String? tableName, {String usernameId = "Unknown"}) async {
+  Future<void> insertCreditCardsData(CreditCardsData creditCardsData, String?tableName, {String usernameId = "Unknown"}) async {
 
     var tableNameQuery = (tableName != null) ? tableName : DatabaseInputs.databaseTableName;
     tableNameQuery = "${usernameId}_${tableNameQuery}";
@@ -32,17 +32,14 @@ class DatabaseInputs {
 
         return databaseInstance.execute(
           'CREATE TABLE IF NOT EXISTS $tableNameQuery(id INTEGER PRIMARY KEY, '
-              'sourceCardNumber TEXT, '
+              'cardNumber TEXT, '
               'targetCardNumber TEXT, '
-              'sourceBankName TEXT, '
-              'targetBankName TEXT, '
-              'sourceUsername TEXT, '
-              'targetUsername TEXT, '
-              'amountMoney TEXT, '
-              'transactionType TEXT, '
-              'transactionTime TEXT, '
-              'colorTag TEXT, '
-              'budgetName TEXT'
+              'cardExpiry TEXT, '
+              'cardHolderName TEXT, '
+              'cvv TEXT, '
+              'bankName TEXT, '
+              'cardBalance TEXT, '
+              'colorTag TEXT '
               ')',
         );
       },
@@ -54,13 +51,13 @@ class DatabaseInputs {
 
     await databaseInstance.insert(
       tableNameQuery,
-      transactionsData.toMap(),
+      creditCardsData.toMap(),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
 
   }
 
-  Future<void> updateTransactionData(TransactionsData transactionsData, String? tableName, {String usernameId = "Unknown"}) async {
+  Future<void> updateCreditCardsData(CreditCardsData creditCardsData, String?tableName, {String usernameId = "Unknown"}) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), transactionDatabase),
@@ -73,9 +70,9 @@ class DatabaseInputs {
 
     await databaseInstance.update(
       tableNameQuery,
-      transactionsData.toMap(),
+      creditCardsData.toMap(),
       where: 'id = ?',
-      whereArgs: [transactionsData.id],
+      whereArgs: [creditCardsData.id],
     );
 
     if (databaseInstance.isOpen) {
@@ -86,7 +83,8 @@ class DatabaseInputs {
 
   }
 
-  Future<void> deleteTransactionsData(int id, String? tableName, {String usernameId = "Unknown"}) async {
+  Future<void> deleteCreditCardsData(int id, String? tableName,
+      {String usernameId = "Unknown"}) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), transactionDatabase),
