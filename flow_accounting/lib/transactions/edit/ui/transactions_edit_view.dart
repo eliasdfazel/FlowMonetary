@@ -1192,6 +1192,8 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                   left: 71,
                   right: 71,
                   child: InkWell(
+                    splashColor: ColorsResources.applicationGeeksEmpire.withOpacity(0.5),
+                    splashFactory: InkRipple.splashFactory,
                     onTap: () {
 
                       int timeNow = DateTime.now().millisecondsSinceEpoch;
