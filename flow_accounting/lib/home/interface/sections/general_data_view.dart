@@ -48,7 +48,7 @@ class GeneralDataView extends StatelessWidget {
                               borderRadius: const BorderRadius.only(
                                   topLeft: Radius.circular(23),
                                   topRight: Radius.circular(23),
-                                  bottomLeft: Radius.circular(23),
+                                  bottomLeft: Radius.circular(13),
                                   bottomRight: Radius.circular(0)),
                               border: const Border(
                                   top: BorderSide(
@@ -74,13 +74,16 @@ class GeneralDataView extends StatelessWidget {
                             alignment: Alignment.center,
                             child: Text(totalEarning,
                               textAlign: TextAlign.center,
-                              style: const TextStyle(fontSize: 17,shadows: [
-                                Shadow(
-                                    color: ColorsResources.white,
-                                    offset: Offset(0, 0),
-                                    blurRadius: 11
-                                )
-                              ]),
+                              style: const TextStyle(
+                                  color: ColorsResources.dark,
+                                  fontSize: 17,
+                                  shadows: [
+                                    Shadow(
+                                        color: ColorsResources.white,
+                                        offset: Offset(0, 0),
+                                        blurRadius: 11
+                                    )
+                                  ]),
                             ),
                           ),
                         ),
@@ -126,13 +129,17 @@ class GeneralDataView extends StatelessWidget {
                             alignment: Alignment.center,
                             child: Text(totalBalance,
                               textAlign: TextAlign.center,
-                              style: const TextStyle(fontSize: 23,shadows: [
-                                Shadow(
-                                    color: ColorsResources.white,
-                                    offset: Offset(0, 0),
-                                    blurRadius: 11
-                                )
-                              ]),
+                              style: const TextStyle(
+                                  color: ColorsResources.black,
+                                  fontSize: 27,
+                                  shadows: [
+                                    Shadow(
+                                        color: ColorsResources.white,
+                                        offset: Offset(0, 0),
+                                        blurRadius: 11
+                                    )
+                                  ]
+                              ),
                             ),
                           ),
                         ),
@@ -153,7 +160,7 @@ class GeneralDataView extends StatelessWidget {
                                   topLeft: Radius.circular(23),
                                   topRight: Radius.circular(23),
                                   bottomLeft: Radius.circular(0),
-                                  bottomRight: Radius.circular(23)),
+                                  bottomRight: Radius.circular(13)),
                               border: const Border(
                                   top: BorderSide(
                                     color: ColorsResources.light,
@@ -178,13 +185,16 @@ class GeneralDataView extends StatelessWidget {
                             alignment: Alignment.center,
                             child: Text(totalSpending,
                               textAlign: TextAlign.center,
-                              style: const TextStyle(fontSize: 17,shadows: [
-                                Shadow(
-                                    color: ColorsResources.white,
-                                    offset: Offset(0, 0),
-                                    blurRadius: 11
-                                )
-                              ]),
+                              style: const TextStyle(
+                                  color: ColorsResources.dark,
+                                  fontSize: 17,
+                                  shadows: [
+                                    Shadow(
+                                        color: ColorsResources.white,
+                                        offset: Offset(0, 0),
+                                        blurRadius: 11
+                                    )
+                                  ]),
                             ),
                           ),
                         ),

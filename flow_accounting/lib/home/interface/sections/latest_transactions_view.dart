@@ -78,10 +78,10 @@ class _LatestTransactionsView extends State<LatestTransactionsView> {
           decoration: const BoxDecoration(
             color: ColorsResources.lightTransparent,
             borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(51),
-                topRight: Radius.circular(51),
-                bottomLeft: Radius.circular(51),
-                bottomRight: Radius.circular(51)),
+                topLeft: Radius.circular(13),
+                topRight: Radius.circular(13),
+                bottomLeft: Radius.circular(13),
+                bottomRight: Radius.circular(13)),
             border: Border(
                 top: BorderSide(
                   color: ColorsResources.light,
@@ -104,7 +104,7 @@ class _LatestTransactionsView extends State<LatestTransactionsView> {
           child: Align(
             alignment: Alignment.center,
             child: Text(
-              "${transactionsData.transactionType} \$${transactionsData.amountMoney}",
+              "${transactionsData.transactionType} ${transactionsData.amountMoney}",
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 17,
