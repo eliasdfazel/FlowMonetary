@@ -1604,8 +1604,3 @@ String generateBackgroundPattern() {
 
   return listOfPattern[Random().nextInt(listOfPattern.length)];
 }
-
-String generateBankLogoLink(String bankName) {
-
-  return "https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_170,w_170,f_auto,b_white,q_auto:eco,dpr_1/ryleq1a8z10ytvgoxvcq";
-}
