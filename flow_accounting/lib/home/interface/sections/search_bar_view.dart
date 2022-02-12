@@ -86,8 +86,7 @@ class _SearchBarView extends State<SearchBarView> {
                                 autofocus: false,
                                 decoration: const InputDecoration(
                                   border: OutlineInputBorder(
-                                      borderSide: BorderSide(color: ColorsResources.applicationGeeksEmpire,
-                                          width: 1.0),
+                                      borderSide: BorderSide(color: ColorsResources.applicationGeeksEmpire, width: 1.0),
                                       borderRadius: BorderRadius.only(
                                           topLeft: Radius.circular(13),
                                           topRight: Radius.circular(13),
@@ -182,10 +181,17 @@ class _SearchBarView extends State<SearchBarView> {
                                   bottomLeft: Radius.circular(13),
                                   bottomRight: Radius.circular(13)),
                               color: ColorsResources.primaryColorLightest,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: ColorsResources.applicationGeeksEmpire,
+                                  blurRadius: 7,
+                                  spreadRadius: 1,
+                                  offset: Offset(3.0, 3.0)
+                                )
+                              ]
                             ),
                             alignment: AlignmentDirectional.center,
-                            child: const Icon(Icons.search_sharp, size: 23.0, color:
-                            ColorsResources.dark),
+                            child: const Icon(Icons.search_sharp, size: 23.0, color: ColorsResources.applicationDarkGeeksEmpire),
                           ),
                         ),
                       )
