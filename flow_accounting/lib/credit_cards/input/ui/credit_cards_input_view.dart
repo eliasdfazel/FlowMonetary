@@ -21,6 +21,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 
 TextEditingController creditCardBankNameController = TextEditingController();
+
 TextEditingController creditCardNameHolderController = TextEditingController();
 
 TextEditingController creditCardNumberController = TextEditingController();
@@ -170,12 +171,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                           ),
                         ),
                       ),
-                      creditCardWidgetItem(
-                          creditCardNumberController.text,
-                          "${creditCardYearController.text}/${creditCardMonthController.text}}",
-                          creditCardNameHolderController.text,
-                          creditCardCvvController.text,
-                          creditCardBankNameController.text),
+                      creditCardWidgetItem(),
                       const Divider(
                         height: 19,
                         color: Colors.transparent,
@@ -1000,12 +996,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
     );
   }
 
-  Widget creditCardWidgetItem(
-      String cardNumber,
-      String cardExpiry,
-      String cardHolderName,
-      String cvv,
-      String bankName) {
+  Widget creditCardWidgetItem() {
 
     Animation<double>? moveToBack = TweenSequence<double>([
       TweenSequenceItem<double>(tween: Tween<double>(begin: 0.0, end: pi / 2).chain(CurveTween(curve: Curves.easeInBack)), weight: 50.0),

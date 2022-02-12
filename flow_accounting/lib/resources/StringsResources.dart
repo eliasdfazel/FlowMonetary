@@ -129,11 +129,71 @@ class StringsResources {
   static const String creditCardCvvHint = "CVV";
 
   static const List<String> listOfBanksIran = [
-    "ملی",
-    "اقتصاد نوین",
-    "صادرات",
-    "ملت",
+    "انصار"
+    "دی"
+    "اقتصاد نوین"
+    "گردشگری"
+    "قوامین"
+    "حکمت ایرانیان"
+    "ایران ونزویلا"
+    "ایران زمین"
+    "کار آفرین"
+    "کشاورزی"
+    "خاورمیانه"
+    "مسکن"
+    "مهر"
+    "ملت"
+    "ملی"
+    "پارسیان"
+    "پاسارگاد"
+    "پست بانک"
+    "رفا"
+    "رسالت"
+    "صادرات"
+    "سامان"
+    "صنعت و معدن"
+    "سرمایه"
     "سپه"
+    "شهر"
+    "سینا"
+    "تجارت"
+    "توسعه صادرات"
+    "توسعه تعاون"
+    "سایر"
   ];
+
+  static const Map<String, String> mapBanksIranLogo = {
+    "انصار": "Ansar_Icon.png",
+    "دی": "Day_Icon.jpg",
+    "اقتصاد نوین": "Eghtesad_Novin_Icon.jpg",
+    "گردشگری": "Gardeshgari_Icon.jpg",
+    "قوامین": "Ghavamin_Icon.png",
+    "حکمت ایرانیان": "Hekmat_Iranian_Icon.jpg",
+    "ایران ونزویلا": "Iran_Venezuela_Icon.png",
+    "ایران زمین": "Iranzamin_Icon.png",
+    "کار آفرین": "Karafarin_Icon.jpg",
+    "کشاورزی": "Keshavarzi_Icon.png",
+    "خاورمیانه": "Khavarmiyaneh_Icon.jpg",
+    "مسکن": "Maskan_Icon.jpg",
+    "مهر": "Mehre_Iran_Icon.jpg",
+    "ملت": "Mellat_Icon.png",
+    "ملی": "Melli_Icon.png",
+    "پارسیان": "Parsian_Icon.jpg",
+    "پاسارگاد": "Pasargad_Icon.jpg",
+    "پست بانک": "Postbank_Icon.jpg",
+    "رفا": "Refah_Icon.jpg",
+    "رسالت": "Resalat_Icon.jpeg",
+    "صادرات": "Saderat_Icon.jpg",
+    "سامان": "Saman_Icon.png",
+    "صنعت و معدن": "Sanat_Madan_Icon.png",
+    "سرمایه": "Sarmayeh_Icon.png",
+    "سپه": "Sepah_Icon.png",
+    "شهر": "Shahr_Icon.jpg",
+    "سینا": "Sina_Icon.jpg",
+    "تجارت": "Tejarat_Icon.jpg",
+    "توسعه صادرات": "Tosee_Saderat_Iran_Icon.jpg",
+    "توسعه تعاون": "Tosee_Taavon_Icon.png",
+    "سایر": "Other_Banks.png",
+  };
 
 }
