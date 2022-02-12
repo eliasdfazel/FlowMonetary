@@ -17,6 +17,7 @@ import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/utils/colors/color_extractor.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
+import 'package:flow_accounting/utils/extensions/BankLogos.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 
@@ -32,6 +33,16 @@ TextEditingController creditCardMonthController = TextEditingController();
 TextEditingController creditCardBalanceController = TextEditingController();
 
 TextEditingController creditCardCvvController = TextEditingController();
+
+Image? bankLogoImageView = Image.network(
+  generateBankLogoUrl(""),
+  height: 51,
+  width: 51,
+  fit: BoxFit.contain,
+);
+
+Color dominantColorForFrontLayout = ColorsResources.dark;
+Color dominantColorForBackLayout = ColorsResources.white;
 
 class CreditCardsInputView extends StatefulWidget {
 
@@ -49,6 +60,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
   bool showCardsBack = false;
 
   AnimationController? animationController = null;
+
 
   @override
   void initState() {
@@ -176,10 +188,6 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                         height: 19,
                         color: Colors.transparent,
                       ),
-                      const Divider(
-                        height: 13,
-                        color: Colors.transparent,
-                      ),
                       SizedBox(
                         width: double.infinity,
                         height: 73,
@@ -211,6 +219,14 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                           ));
                                         },
                                         onSuggestionSelected: (suggestion) {
+
+                                          setState(() {
+
+                                            bankLogoImageView = Image.network(generateBankLogoUrl(suggestion.toString()));
+
+                                          });
+
+                                          extractBankDominantColor(bankLogoImageView?.image);
 
                                           creditCardBankNameController.text = suggestion.toString();
 
@@ -1052,6 +1068,31 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
     return StringsResources.listOfBanksIran;
   }
 
+  void extractBankDominantColor(ImageProvider? bankLogoImageProvider) async {
+
+    if (bankLogoImageProvider != null) {
+
+      Future<Color?> bankDominantColor = imageDominantColor(bankLogoImageProvider);
+
+      bankDominantColor.then((extractedColor) {
+
+        if (extractedColor != null) {
+
+          setState(() {
+
+            dominantColorForFrontLayout = extractedColor;
+            dominantColorForBackLayout = extractedColor;
+
+          });
+
+        }
+
+      });
+
+    }
+
+  }
+
 }
 
 class AwesomeCard extends StatelessWidget {
@@ -1079,8 +1120,6 @@ class AwesomeCard extends StatelessWidget {
   }
 }
 
-ImageProvider? bankLogoImageProvider;
-
 class CreditCardFrontLayout extends StatefulWidget {
 
   CreditCardsData creditCardsData;
@@ -1092,8 +1131,6 @@ class CreditCardFrontLayout extends StatefulWidget {
 
 }
 class _CreditCardFrontLayout extends State<CreditCardFrontLayout> {
-
-  Color dominantColorForFrontLayout = ColorsResources.dark;
 
   bool frontLayoutDecorated = false;
 
@@ -1113,21 +1150,10 @@ class _CreditCardFrontLayout extends State<CreditCardFrontLayout> {
     return frontCardLayout(widget.creditCardsData.cardNumber,
         widget.creditCardsData.cardExpiry,
         widget.creditCardsData.cardHolderName,
-        widget.creditCardsData.cvv,
-        widget.creditCardsData.bankName);
+        widget.creditCardsData.cvv);
   }
 
-  Widget frontCardLayout(String cardNumber, String cardExpiry, String cardHolderName, String cvv, String bankName) {
-
-    Image bankLogo = Image.network(generateBankLogoLink(bankName));
-
-    bankLogoImageProvider = bankLogo.image;
-
-    if (!frontLayoutDecorated) {
-      frontLayoutDecorated = true;
-
-      extractBankDominantColor();
-    }
+  Widget frontCardLayout(String cardNumber, String cardExpiry, String cardHolderName, String cvv) {
 
     return Container(
       height: 279,
@@ -1135,7 +1161,7 @@ class _CreditCardFrontLayout extends State<CreditCardFrontLayout> {
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: dominantColorForFrontLayout.withOpacity(0.3),
+            color: dominantColorForFrontLayout.withOpacity(0.37),
             blurRadius: 13.0,
             spreadRadius: 0.3,
             offset: const Offset(3.9, 3.9),
@@ -1214,8 +1240,11 @@ class _CreditCardFrontLayout extends State<CreditCardFrontLayout> {
                               child: Padding(
                                 padding: const EdgeInsets.fromLTRB(0, 0, 7, 0),
                                 child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(51.0),
-                                  child: bankLogo,
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  child: Container(
+                                    color: ColorsResources.white,
+                                    child: bankLogoImageView,
+                                  ),
                                 ),
                               )
                           )
@@ -1385,29 +1414,6 @@ class _CreditCardFrontLayout extends State<CreditCardFrontLayout> {
     );
   }
 
-  void extractBankDominantColor() async {
-
-    if (bankLogoImageProvider != null) {
-
-      Future<Color?> bankDominantColor = imageDominantColor(bankLogoImageProvider!);
-
-      bankDominantColor.then((extractedColor) {
-
-        if (extractedColor != null) {
-          dominantColorForFrontLayout = extractedColor;
-
-          setState(() {
-            dominantColorForFrontLayout;
-          });
-
-        }
-
-      });
-
-    }
-
-  }
-
 }
 
 class CreditCardBackLayout extends StatefulWidget {
@@ -1422,13 +1428,9 @@ class CreditCardBackLayout extends StatefulWidget {
 }
 class _CreditCardBackLayout extends State<CreditCardBackLayout> {
 
-  Color dominantColorForBackLayout = ColorsResources.white;
 
   @override
   void initState() {
-
-    extractBankDominantColor();
-
     super.initState();
   }
 
@@ -1566,29 +1568,6 @@ class _CreditCardBackLayout extends State<CreditCardBackLayout> {
         ),
       ),
     );
-  }
-
-  void extractBankDominantColor() async {
-
-    if (bankLogoImageProvider != null) {
-
-      Future<Color?> bankDominantColor = imageDominantColor(bankLogoImageProvider!);
-
-      bankDominantColor.then((extractedColor) {
-
-        if (extractedColor != null) {
-          dominantColorForBackLayout = extractedColor;
-
-          setState(() {
-            dominantColorForBackLayout;
-          });
-
-        }
-
-      });
-
-    }
-
   }
 
 }

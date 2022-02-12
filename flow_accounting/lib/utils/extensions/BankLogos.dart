@@ -8,7 +8,17 @@
  * https://opensource.org/licenses/MIT
  */
 
+import 'package:flow_accounting/resources/StringsResources.dart';
+
 String generateBankLogoUrl(String bankLogoFileName) {
 
-  return "https://myhousestore.ir/wp-content/uploads/2022/02/${bankLogoFileName}";
+  String logoFileName = "Other_Banks.png";
+
+  if (StringsResources.mapBanksIranLogo.keys.contains(bankLogoFileName)) {
+
+    logoFileName = StringsResources.mapBanksIranLogo[bankLogoFileName].toString();
+
+  }
+
+  return "https://myhousestore.ir/wp-content/uploads/2022/02/${logoFileName}";
 }

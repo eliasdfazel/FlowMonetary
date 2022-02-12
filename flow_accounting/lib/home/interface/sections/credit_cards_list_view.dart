@@ -15,6 +15,7 @@ import 'package:flow_accounting/credit_cards/input/ui/credit_cards_input_view.da
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/utils/colors/color_extractor.dart';
+import 'package:flow_accounting/utils/extensions/BankLogos.dart';
 import 'package:flow_accounting/utils/navigations/navigations.dart';
 import 'package:flutter/material.dart';
 
@@ -91,6 +92,36 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
         ));
 
       }
+
+      creditCardWidgets.add(SizedBox(
+        height: 199,
+        width: 373,
+        child: InkWell(
+          onTap: () {
+
+            NavigationProcess().goTo(context,
+                CreditCardsInputView(
+                    creditCardsData: CreditCardsData(
+                        id: 0,
+                        bankName: "",
+                        cardNumber: "",
+                        cardHolderName: "",
+                        cvv: "",
+                        cardBalance: "",
+                        cardExpiry: "",
+                        colorTag: Colors.transparent.value
+                    )
+                )
+            );
+
+          },
+          child: const Image(
+            image: AssetImage("add_credit_card_icon.png"),
+            width: double.infinity,
+            height: double.infinity,
+          ),
+        ),
+      ));
 
       creditCardsPlaceholder = SizedBox(
         height: 299,
@@ -400,9 +431,14 @@ class _CreditCardFrontLayout extends State<CreditCardFrontLayout> {
 
   Widget frontCardLayout(String cardNumber, String cardExpiry, String cardHolderName, String cvv, String bankName) {
 
-    Image bankLogo = Image.network(generateBankLogoLink(bankName));
+    Image bankLogoImageView = Image.network(
+      generateBankLogoUrl(bankName),
+      height: 51,
+      width: 51,
+      fit: BoxFit.contain,
+    );
 
-    bankLogoImageProvider = bankLogo.image;
+    bankLogoImageProvider = bankLogoImageView.image;
 
     if (!frontLayoutDecorated) {
       frontLayoutDecorated = true;
@@ -416,7 +452,7 @@ class _CreditCardFrontLayout extends State<CreditCardFrontLayout> {
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: dominantColorForFrontLayout.withOpacity(0.3),
+            color: dominantColorForFrontLayout.withOpacity(0.37),
             blurRadius: 13.0,
             spreadRadius: 0.3,
             offset: const Offset(3.9, 3.9),
@@ -491,8 +527,11 @@ class _CreditCardFrontLayout extends State<CreditCardFrontLayout> {
                               child: Padding(
                                 padding: const EdgeInsets.fromLTRB(0, 0, 7, 0),
                                 child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(51.0),
-                                  child: bankLogo,
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  child: Container(
+                                    color: ColorsResources.white,
+                                    child: bankLogoImageView,
+                                  ),
                                 ),
                               )
                           )
@@ -744,10 +783,11 @@ class _CreditCardFrontLayout extends State<CreditCardFrontLayout> {
       bankDominantColor.then((extractedColor) {
 
         if (extractedColor != null) {
-          dominantColorForFrontLayout = extractedColor;
 
           setState(() {
-            dominantColorForFrontLayout;
+
+            dominantColorForFrontLayout = extractedColor;
+
           });
 
         }
@@ -950,9 +990,4 @@ String generateBackgroundPattern() {
   listOfPattern.add("pattern_card_background_five.png");
 
   return listOfPattern[Random().nextInt(listOfPattern.length)];
-}
-
-String generateBankLogoLink(String bankName) {
-
-  return "https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_170,w_170,f_auto,b_white,q_auto:eco,dpr_1/ryleq1a8z10ytvgoxvcq";
 }
