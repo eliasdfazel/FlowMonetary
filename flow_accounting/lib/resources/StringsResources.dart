@@ -37,6 +37,10 @@ class StringsResources {
   static const String editText = "ویرایش";
   static const String deleteText = "حذف";
 
+  static const String totalBalanceText = "موجودی کلی";
+  static const String totalEarningText = "درآمد کلی";
+  static const String totalSpendingText = "مخارج کلی";
+
   static const String transactionAll = "تمام تراکنش ها";
   static const String transactionTime = "زمان تراکنش";
   static const String transactionAmount = "مبلغ  دریافتی یا پرداختی را وارد"
