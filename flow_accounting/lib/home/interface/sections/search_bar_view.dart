@@ -145,10 +145,10 @@ class _SearchBarView extends State<SearchBarView> {
                                       });
 
                                     },
-                                    child: SizedBox(
-                                      height: 51,
-                                      width: 51,
-                                      child: const Icon(Icons.search_sharp,
+                                    child: const SizedBox(
+                                      height: 50,
+                                      width: 50,
+                                      child: Icon(Icons.search_sharp,
                                           size: 23.0,
                                           color: ColorsResources.applicationDarkGeeksEmpire
                                       ),
