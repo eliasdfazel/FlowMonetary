@@ -204,11 +204,22 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
                             children: [
                               AwesomeCard(
                                 animation: moveToBack,
-                                child: CreditCardFrontLayout(bankName: bankName, cardExpiry: cardExpiry, cardHolderName: cardHolderName, cardNumber: cardNumber, cvv: cvv,),
+                                child: CreditCardFrontLayout(
+                                  bankName: bankName,
+                                  cardExpiry: cardExpiry,
+                                  cardHolderName: cardHolderName,
+                                  cardNumber: cardNumber,
+                                  cvv: cvv,
+                                  colorTag: colorTag,
+                                ),
                               ),
                               AwesomeCard(
                                 animation: moveToFront,
-                                child: CreditCardBackLayout(cardBankName: bankName, cardCVV: cvv,),
+                                child: CreditCardBackLayout(
+                                  cardBankName: bankName,
+                                  cardCVV: cvv,
+                                  colorTag: colorTag,
+                                ),
                               ),
                             ],
                           ),
@@ -401,7 +412,9 @@ class CreditCardFrontLayout extends StatefulWidget {
   String cvv;
   String bankName;
 
-  CreditCardFrontLayout({Key? key, required this.cardNumber, required this.cardExpiry, required this.cardHolderName, required this.bankName, required this.cvv}) :super(key: key);
+  int colorTag = Colors.transparent.value;
+
+  CreditCardFrontLayout({Key? key, required this.cardNumber, required this.cardExpiry, required this.cardHolderName, required this.bankName, required this.cvv, required this.colorTag}) :super(key: key);
 
   @override
   State<CreditCardFrontLayout> createState() => _CreditCardFrontLayout();
@@ -527,10 +540,33 @@ class _CreditCardFrontLayout extends State<CreditCardFrontLayout> {
                               child: Padding(
                                 padding: const EdgeInsets.fromLTRB(0, 0, 7, 0),
                                 child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(10.0),
+                                  borderRadius: BorderRadius.circular(13.0),
                                   child: Container(
-                                    color: ColorsResources.white,
-                                    child: bankLogoImageView,
+                                    decoration: BoxDecoration(
+                                      color: ColorsResources.white,
+                                      border: Border(
+                                          top: BorderSide(
+                                            color: Color(widget.colorTag),
+                                            width: 1.7,
+                                          ),
+                                          bottom: BorderSide(
+                                            color: Color(widget.colorTag),
+                                            width: 1.7,
+                                          ),
+                                          left: BorderSide(
+                                            color: Color(widget.colorTag),
+                                            width: 1.7,
+                                          ),
+                                          right: BorderSide(
+                                            color: Color(widget.colorTag),
+                                            width: 1.7,
+                                          )
+                                      ),
+                                    ),
+                                    child: Align(
+                                      alignment: AlignmentDirectional.center,
+                                      child: bankLogoImageView,
+                                    ),
                                   ),
                                 ),
                               )
@@ -805,7 +841,9 @@ class CreditCardBackLayout extends StatefulWidget {
   String cardBankName;
   String cardCVV;
 
-  CreditCardBackLayout({Key? key, required this.cardBankName, required this.cardCVV}) :super(key: key);
+  int colorTag = Colors.transparent.value;
+
+  CreditCardBackLayout({Key? key, required this.cardBankName, required this.cardCVV, required this.colorTag}) :super(key: key);
 
   @override
   State<CreditCardBackLayout> createState() => _CreditCardBackLayout();
@@ -913,8 +951,10 @@ class _CreditCardBackLayout extends State<CreditCardBackLayout> {
                               child: Container(
                                 color: ColorsResources.dark,
                                 child: Image.network(
-                                  "https://www.crushpixel.com/big-static15/preview4/natural-dark-gray-slate-stone-2112567.jpg",
+                                  "https://myhousestore.ir/wp-content/uploads/2022/02/GraphitTexture.jpg",
                                   fit: BoxFit.cover,
+                                  color: Color(widget.colorTag),
+                                  colorBlendMode: BlendMode.overlay,
                                 ),
                               )
                           ),
