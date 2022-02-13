@@ -29,7 +29,6 @@ class SearchBarView extends StatefulWidget {
   State<SearchBarView> createState() => _SearchBarView();
 
 }
-
 class _SearchBarView extends State<SearchBarView> {
 
   TextEditingController textEditorControllerQuery = TextEditingController();
@@ -48,7 +47,7 @@ class _SearchBarView extends State<SearchBarView> {
   Widget build(BuildContext context) {
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(13, 7, 13, 3),
+      padding: const EdgeInsets.fromLTRB(13, 19, 13, 3),
       child: Column(
         children: [
           SizedBox(
@@ -60,9 +59,93 @@ class _SearchBarView extends State<SearchBarView> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Expanded(
+                      flex: 3,
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(1, 1, 1, 1),
+                        child: InkWell(
+                          splashColor: ColorsResources.primaryColor,
+                          onDoubleTap: () {
+
+                            Future.delayed(const Duration(milliseconds: 199), () {
+
+                              widget.resetFeaturesList.value = true;
+
+                            });
+
+                          },
+                          onTap: () {
+
+                            String searchQuery = textEditorControllerQuery.text;
+
+                            List<FeaturesStructure> foundAllFeaturesStructure = [];
+                            foundAllFeaturesStructure.clear();
+
+                            for (var element in widget.initialFeaturesStructure) {
+
+                              if (element.featuresTitle.contains(searchQuery) ||
+                                  element.featuresDescription.contains(searchQuery)) {
+
+                                foundAllFeaturesStructure.add(element);
+
+                              }
+
+                            }
+
+                            widget.searchableFeaturesList.value.clear();
+
+                            Future.delayed(const Duration(milliseconds: 199), () {
+
+                              widget.searchableFeaturesList.value = foundAllFeaturesStructure;
+
+                            });
+
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(13),
+                                  topRight: Radius.circular(13),
+                                  bottomLeft: Radius.circular(13),
+                                  bottomRight: Radius.circular(13)
+                              ),
+                              border: const Border(
+                                  top: BorderSide(
+                                    color: ColorsResources.applicationGeeksEmpire,
+                                    width: 1,
+                                  ),
+                                  bottom: BorderSide(
+                                    color: ColorsResources.applicationGeeksEmpire,
+                                    width: 1,
+                                  ),
+                                  left: BorderSide(
+                                    color: ColorsResources.applicationGeeksEmpire,
+                                    width: 1,
+                                  ),
+                                  right: BorderSide(
+                                    color: ColorsResources.applicationGeeksEmpire,
+                                    width: 1,
+                                  )
+                              ),
+                              color: ColorsResources.primaryColorLightest,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: ColorsResources.applicationGeeksEmpire.withOpacity(0.7),
+                                  blurRadius: 37,
+                                  spreadRadius: 7,
+                                  offset: const Offset(-7.0, 0.0)
+                                )
+                              ]
+                            ),
+                            alignment: AlignmentDirectional.center,
+                            child: const Icon(Icons.search_sharp, size: 23.0, color: ColorsResources.applicationDarkGeeksEmpire),
+                          ),
+                        ),
+                      )
+                  ),
+                  Expanded(
                       flex: 17,
                       child: Padding(
-                        padding: const EdgeInsets.fromLTRB(1, 1, 7, 1),
+                        padding: const EdgeInsets.fromLTRB(7, 1, 3, 1),
                         child: Container(
                             decoration: const BoxDecoration(
                               borderRadius: BorderRadius.only(
@@ -131,77 +214,13 @@ class _SearchBarView extends State<SearchBarView> {
                         ),
                       )
                   ),
-                  Expanded(
-                      flex: 3,
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(1, 1, 1, 1),
-                        child: InkWell(
-                          splashColor: ColorsResources.primaryColor,
-                          onDoubleTap: () {
-
-                            Future.delayed(const Duration(milliseconds: 199), () {
-
-                              widget.resetFeaturesList.value = true;
-
-                            });
-
-                          },
-                          onTap: () {
-
-                            String searchQuery = textEditorControllerQuery.text;
-
-                            List<FeaturesStructure> foundAllFeaturesStructure = [];
-                            foundAllFeaturesStructure.clear();
-
-                            for (var element in widget.initialFeaturesStructure) {
-
-                              if (element.featuresTitle.contains(searchQuery) ||
-                                  element.featuresDescription.contains(searchQuery)) {
-
-                                foundAllFeaturesStructure.add(element);
-
-                              }
-
-                            }
-
-                            widget.searchableFeaturesList.value.clear();
-
-                            Future.delayed(const Duration(milliseconds: 199), () {
-
-                              widget.searchableFeaturesList.value = foundAllFeaturesStructure;
-
-                            });
-
-                          },
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(13),
-                                  topRight: Radius.circular(13),
-                                  bottomLeft: Radius.circular(13),
-                                  bottomRight: Radius.circular(13)),
-                              color: ColorsResources.primaryColorLightest,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: ColorsResources.applicationGeeksEmpire,
-                                  blurRadius: 7,
-                                  spreadRadius: 1,
-                                  offset: Offset(3.0, 3.0)
-                                )
-                              ]
-                            ),
-                            alignment: AlignmentDirectional.center,
-                            child: const Icon(Icons.search_sharp, size: 23.0, color: ColorsResources.applicationDarkGeeksEmpire),
-                          ),
-                        ),
-                      )
-                  ),
                 ],
               ),
             ),
           )
         ],
-      ),);
+      ),
+    );
   }
 
 }
