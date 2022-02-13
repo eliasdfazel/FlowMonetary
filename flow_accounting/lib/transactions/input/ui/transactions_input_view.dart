@@ -17,6 +17,7 @@ import 'package:flow_accounting/utils/calendar/ui/calendar_view.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class TransactionsInputView extends StatefulWidget {
   const TransactionsInputView({Key? key}) : super(key: key);
@@ -1196,7 +1197,15 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
                           databaseInputs.insertTransactionData(transactionData, TransactionsDatabaseInputs.databaseTableName);
 
-
+                          Fluttertoast.showToast(
+                              msg: StringsResources.updatedText,
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.CENTER,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: ColorsResources.lightTransparent,
+                              textColor: ColorsResources.dark,
+                              fontSize: 16.0
+                          );
 
                         },
                         child: Container(
