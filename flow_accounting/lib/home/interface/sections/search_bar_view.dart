@@ -62,84 +62,101 @@ class _SearchBarView extends State<SearchBarView> {
                       flex: 3,
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(1, 1, 1, 1),
-                        child: InkWell(
-                          splashColor: ColorsResources.primaryColor,
-                          onDoubleTap: () {
-
-                            Future.delayed(const Duration(milliseconds: 199), () {
-
-                              widget.resetFeaturesList.value = true;
-
-                            });
-
-                          },
-                          onTap: () {
-
-                            String searchQuery = textEditorControllerQuery.text;
-
-                            List<FeaturesStructure> foundAllFeaturesStructure = [];
-                            foundAllFeaturesStructure.clear();
-
-                            for (var element in widget.initialFeaturesStructure) {
-
-                              if (element.featuresTitle.contains(searchQuery) ||
-                                  element.featuresDescription.contains(searchQuery)) {
-
-                                foundAllFeaturesStructure.add(element);
-
-                              }
-
-                            }
-
-                            widget.searchableFeaturesList.value.clear();
-
-                            Future.delayed(const Duration(milliseconds: 199), () {
-
-                              widget.searchableFeaturesList.value = foundAllFeaturesStructure;
-
-                            });
-
-                          },
                           child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(13),
-                                  topRight: Radius.circular(13),
-                                  bottomLeft: Radius.circular(13),
-                                  bottomRight: Radius.circular(13)
+                              decoration: BoxDecoration(
+                                  borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(13),
+                                      topRight: Radius.circular(13),
+                                      bottomLeft: Radius.circular(13),
+                                      bottomRight: Radius.circular(13)
+                                  ),
+                                  border: const Border(
+                                      top: BorderSide(
+                                        color: ColorsResources.applicationGeeksEmpire,
+                                        width: 1,
+                                      ),
+                                      bottom: BorderSide(
+                                        color: ColorsResources.applicationGeeksEmpire,
+                                        width: 1,
+                                      ),
+                                      left: BorderSide(
+                                        color: ColorsResources.applicationGeeksEmpire,
+                                        width: 1,
+                                      ),
+                                      right: BorderSide(
+                                        color: ColorsResources.applicationGeeksEmpire,
+                                        width: 1,
+                                      )
+                                  ),
+                                  color: ColorsResources.primaryColorLightest,
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: ColorsResources.applicationGeeksEmpire.withOpacity(0.7),
+                                        blurRadius: 51,
+                                        spreadRadius: 7,
+                                        offset: const Offset(-7.0, 0.0)
+                                    )
+                                  ]
                               ),
-                              border: const Border(
-                                  top: BorderSide(
-                                    color: ColorsResources.applicationGeeksEmpire,
-                                    width: 1,
+                              alignment: AlignmentDirectional.center,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(13),
+                                child: Material(
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(9)),
+                                  shadowColor: Colors.transparent,
+                                  color: Colors.transparent,
+                                  child: InkWell(
+                                    splashColor: ColorsResources
+                                        .applicationGeeksEmpire.withOpacity(0.5),
+                                    splashFactory: InkRipple.splashFactory,
+                                    onDoubleTap: () {
+
+                                      Future.delayed(const Duration(milliseconds: 199), () {
+
+                                        widget.resetFeaturesList.value = true;
+
+                                      });
+
+                                    },
+                                    onTap: () {
+
+                                      String searchQuery = textEditorControllerQuery.text;
+
+                                      List<FeaturesStructure> foundAllFeaturesStructure = [];
+                                      foundAllFeaturesStructure.clear();
+
+                                      for (var element in widget.initialFeaturesStructure) {
+
+                                        if (element.featuresTitle.contains(searchQuery) ||
+                                            element.featuresDescription.contains(searchQuery)) {
+
+                                          foundAllFeaturesStructure.add(element);
+
+                                        }
+
+                                      }
+
+                                      widget.searchableFeaturesList.value.clear();
+
+                                      Future.delayed(const Duration(milliseconds: 199), () {
+
+                                        widget.searchableFeaturesList.value = foundAllFeaturesStructure;
+
+                                      });
+
+                                    },
+                                    child: SizedBox(
+                                      height: 51,
+                                      width: 51,
+                                      child: const Icon(Icons.search_sharp,
+                                          size: 23.0,
+                                          color: ColorsResources.applicationDarkGeeksEmpire
+                                      ),
+                                    ),
                                   ),
-                                  bottom: BorderSide(
-                                    color: ColorsResources.applicationGeeksEmpire,
-                                    width: 1,
-                                  ),
-                                  left: BorderSide(
-                                    color: ColorsResources.applicationGeeksEmpire,
-                                    width: 1,
-                                  ),
-                                  right: BorderSide(
-                                    color: ColorsResources.applicationGeeksEmpire,
-                                    width: 1,
-                                  )
-                              ),
-                              color: ColorsResources.primaryColorLightest,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: ColorsResources.applicationGeeksEmpire.withOpacity(0.7),
-                                  blurRadius: 37,
-                                  spreadRadius: 7,
-                                  offset: const Offset(-7.0, 0.0)
-                                )
-                              ]
-                            ),
-                            alignment: AlignmentDirectional.center,
-                            child: const Icon(Icons.search_sharp, size: 23.0, color: ColorsResources.applicationDarkGeeksEmpire),
-                          ),
-                        ),
+                                ),
+                              )
+                          )
                       )
                   ),
                   Expanded(
