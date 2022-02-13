@@ -10,6 +10,9 @@
 
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
+import 'package:flow_accounting/transactions/database/io/inputs.dart';
+import 'package:flow_accounting/transactions/database/io/queries.dart';
+import 'package:flow_accounting/transactions/database/structures/tables_structure.dart';
 import 'package:flutter/material.dart';
 
 class GeneralDataView extends StatefulWidget {
@@ -21,14 +24,17 @@ class GeneralDataView extends StatefulWidget {
 }
 class _GeneralDataView extends State<GeneralDataView> {
 
-  String totalEarning = "1000";
+  int totalEarning = 0;
 
-  String totalBalance = "793";
+  int totalBalance = 0;
 
-  String totalSpending = "207";
+  int totalSpending = 0;
 
   @override
   void initState() {
+
+    retrieveTotalEarning();
+
     super.initState();
   }
 
@@ -112,7 +118,7 @@ class _GeneralDataView extends State<GeneralDataView> {
                               child: Align(
                                 alignment: Alignment.center,
                                 child: Text(
-                                  totalEarning,
+                                  "${totalEarning}",
                                   textAlign: TextAlign.center,
                                   style: const TextStyle(
                                       color: ColorsResources.dark,
@@ -191,7 +197,7 @@ class _GeneralDataView extends State<GeneralDataView> {
                               child: Align(
                                 alignment: Alignment.center,
                                 child: Text(
-                                  totalBalance,
+                                  "${totalBalance}",
                                   textAlign: TextAlign.center,
                                   style: const TextStyle(
                                       color: ColorsResources.dark,
@@ -269,7 +275,7 @@ class _GeneralDataView extends State<GeneralDataView> {
                               child: Align(
                                 alignment: Alignment.center,
                                 child: Text(
-                                  totalSpending,
+                                  "${totalSpending}",
                                   textAlign: TextAlign.center,
                                   style: const TextStyle(
                                       color: ColorsResources.dark,
@@ -299,23 +305,67 @@ class _GeneralDataView extends State<GeneralDataView> {
 
   void retrieveTotalEarning() async {
 
+    int calculatedEarning = 0;
+
+    TransactionsDatabaseQueries transactionsDatabaseQueries = TransactionsDatabaseQueries();
+
+    List<TransactionsData> allTransactions = await transactionsDatabaseQueries.getAllTransactions(TransactionsDatabaseInputs.databaseTableName);
+
+    for (TransactionsData element in allTransactions) {
+
+      if (element.transactionType == TransactionsData.TransactionType_Receive) {
+
+        calculatedEarning += int.parse(element.amountMoney);
+
+      }
+
+    }
+
     setState(() {
 
-      totalEarning = "1000";
+      totalEarning = calculatedEarning;
 
     });
 
-  }
-
-  void retrieveTotalBalance() async {
-
-    totalBalance = "793";
+    retrieveTotalSpending();
 
   }
 
   void retrieveTotalSpending() async {
 
-    totalSpending = "207";
+    int calculatedSpending = 0;
+
+    TransactionsDatabaseQueries transactionsDatabaseQueries = TransactionsDatabaseQueries();
+
+    List<TransactionsData> allTransactions = await transactionsDatabaseQueries.getAllTransactions(TransactionsDatabaseInputs.databaseTableName);
+
+    for (TransactionsData element in allTransactions) {
+
+      if (element.transactionType == TransactionsData.TransactionType_Send) {
+
+        calculatedSpending += int.parse(element.amountMoney);
+
+      }
+
+    }
+
+    setState(() {
+
+      totalSpending = calculatedSpending;
+
+    });
+
+    retrieveTotalBalance();
+
+  }
+
+  void retrieveTotalBalance() async {
+
+    setState(() {
+
+      totalBalance = totalEarning - totalSpending;
+
+    });
 
   }
 
