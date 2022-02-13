@@ -48,7 +48,7 @@ class _LatestTransactionsView extends State<LatestTransactionsView> {
     });
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(13, 3, 13, 3),
+      padding: const EdgeInsets.fromLTRB(13, 13, 13, 3),
       child: Column(
         children: [
           SizedBox(
@@ -71,32 +71,44 @@ class _LatestTransactionsView extends State<LatestTransactionsView> {
 
   Widget transactionSummaryItem(TransactionsData transactionsData) {
 
+    Color transactionColor = ColorsResources.light;
+
+    if (transactionsData.transactionType == TransactionsData.TransactionType_Receive) {
+
+      transactionColor = ColorsResources.primaryColorDark;
+
+    } else if (transactionsData.transactionType == TransactionsData.TransactionType_Send) {
+
+      transactionColor = ColorsResources.gameGeeksEmpire;
+
+    }
+
     return Padding(
       padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
       child: Container(
           padding: const EdgeInsets.fromLTRB(11, 0, 11, 0),
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             color: ColorsResources.lightTransparent,
-            borderRadius: BorderRadius.only(
+            borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(13),
                 topRight: Radius.circular(13),
                 bottomLeft: Radius.circular(13),
                 bottomRight: Radius.circular(13)),
             border: Border(
                 top: BorderSide(
-                  color: ColorsResources.light,
+                  color: transactionColor,
                   width: 1,
                 ),
                 bottom: BorderSide(
-                  color: ColorsResources.light,
+                  color: transactionColor,
                   width: 1,
                 ),
                 left: BorderSide(
-                  color: ColorsResources.light,
+                  color: transactionColor,
                   width: 1,
                 ),
                 right: BorderSide(
-                  color: ColorsResources.light,
+                  color: transactionColor,
                   width: 1,
                 )
             ),
