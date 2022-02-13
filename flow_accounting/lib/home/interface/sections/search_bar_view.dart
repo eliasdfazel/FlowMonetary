@@ -70,21 +70,21 @@ class _SearchBarView extends State<SearchBarView> {
                                       bottomLeft: Radius.circular(13),
                                       bottomRight: Radius.circular(13)
                                   ),
-                                  border: const Border(
+                                  border: Border(
                                       top: BorderSide(
-                                        color: ColorsResources.applicationGeeksEmpire,
+                                        color: ColorsResources.applicationGeeksEmpire.withOpacity(0.7),
                                         width: 1,
                                       ),
                                       bottom: BorderSide(
-                                        color: ColorsResources.applicationGeeksEmpire,
+                                        color: ColorsResources.applicationGeeksEmpire.withOpacity(0.7),
                                         width: 1,
                                       ),
                                       left: BorderSide(
-                                        color: ColorsResources.applicationGeeksEmpire,
+                                        color: ColorsResources.applicationGeeksEmpire.withOpacity(0.7),
                                         width: 1,
                                       ),
                                       right: BorderSide(
-                                        color: ColorsResources.applicationGeeksEmpire,
+                                        color: ColorsResources.applicationGeeksEmpire.withOpacity(0.7),
                                         width: 1,
                                       )
                                   ),
@@ -92,7 +92,7 @@ class _SearchBarView extends State<SearchBarView> {
                                   boxShadow: [
                                     BoxShadow(
                                         color: ColorsResources.applicationGeeksEmpire.withOpacity(0.7),
-                                        blurRadius: 51,
+                                        blurRadius: 73,
                                         spreadRadius: 7,
                                         offset: const Offset(-7.0, 0.0)
                                     )
