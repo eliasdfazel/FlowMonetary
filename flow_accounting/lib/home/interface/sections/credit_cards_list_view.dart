@@ -10,6 +10,8 @@
 
 import 'dart:math';
 
+import 'package:flow_accounting/credit_cards/database/io/inputs.dart';
+import 'package:flow_accounting/credit_cards/database/io/queries.dart';
 import 'package:flow_accounting/credit_cards/database/structures/tables_structure.dart';
 import 'package:flow_accounting/credit_cards/input/ui/credit_cards_input_view.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
@@ -192,9 +194,39 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
                           if (showCardsBack) {
                             animationController.reverse();
                           } else {
-                            animationController.forward();  }
+                            animationController.forward();
+                          }
 
                           showCardsBack = !showCardsBack;
+
+                        },
+                        onLongPress: () {
+
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            behavior: SnackBarBehavior.floating,
+                            content: Text(
+                              cardNumber,
+                              style: const TextStyle(
+                                color: ColorsResources.light
+                              ),
+                            ),
+                            duration: const Duration(seconds: 7),
+                            elevation: 7,
+                            margin: const EdgeInsets.fromLTRB(19, 0, 19, 31),
+                            backgroundColor: ColorsResources.dark,
+                            shape:  const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(51)),
+                            ),
+                            action: SnackBarAction(
+                              label: StringsResources.deleteText,
+                              onPressed: () {
+
+                                CreditCardsDatabaseQueries()
+                                    .queryDeleteCreditCard(id, CreditCardsDatabaseInputs.databaseTableName);
+
+                              },
+                            ),
+                          ));
 
                         },
                         child: Container(
@@ -372,6 +404,20 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
         ),
       ),
     );
+
+  }
+
+  void prepareCreditCardsData() async {
+
+    CreditCardsDatabaseQueries databaseQueries = CreditCardsDatabaseQueries();
+
+    List<CreditCardsData> listOfAllCreditCards = await databaseQueries.getAllCreditCards(CreditCardsDatabaseInputs.databaseTableName);
+
+    setState(() {
+
+      widget.allCreditCardsData = listOfAllCreditCards;
+
+    });
 
   }
 
