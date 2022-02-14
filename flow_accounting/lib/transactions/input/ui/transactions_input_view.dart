@@ -1260,7 +1260,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                               fontSize: 16.0
                           );
 
-                          processCreditCards(transactionData);
+                          processCreditCardsBalance(transactionData);
 
                         },
                         child: Container(
@@ -1397,9 +1397,9 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
     return listOfCreditCards;
   }
 
-  Future processCreditCards(TransactionsData transactionData) async {
+  Future processCreditCardsBalance(TransactionsData transactionsData) async {
 
-    if (transactionData.transactionType == TransactionsData.TransactionType_Send) {
+    if (transactionsData.transactionType == TransactionsData.TransactionType_Send) {
 
       var creditCardsDatabaseQueries = CreditCardsDatabaseQueries();
 
@@ -1407,7 +1407,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
           await creditCardsDatabaseQueries.querySpecificCreditCardByCardNumber(controllerTransactionSourceCard.text, CreditCardsDatabaseInputs.databaseTableName)
       );
 
-      var newCardBalance = (int.parse(sourceCreditCardData.cardBalance) - int.parse(transactionData.amountMoney)).toString();
+      var newCardBalance = (int.parse(sourceCreditCardData.cardBalance) - int.parse(transactionsData.amountMoney)).toString();
 
       var creditCardsDatabaseInputs = CreditCardsDatabaseInputs();
 
@@ -1434,7 +1434,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
               .querySpecificCreditCardByCardNumber(controllerTransactionTargetCard.text, CreditCardsDatabaseInputs.databaseTableName)
       );
 
-      var newCardBalance = (int.parse(sourceCreditCardData.cardBalance) + int.parse(transactionData.amountMoney)).toString();
+      var newCardBalance = (int.parse(sourceCreditCardData.cardBalance) + int.parse(transactionsData.amountMoney)).toString();
 
       var creditCardsDatabaseInputs = CreditCardsDatabaseInputs();
 
@@ -1453,6 +1453,12 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
       );
 
     }
+
+  }
+
+  Future processBudgetBalance(TransactionsData transactionsData) async {
+
+
 
   }
 
