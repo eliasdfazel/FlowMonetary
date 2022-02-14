@@ -12,18 +12,40 @@ class BudgetsData {
 
   final int id;
 
+  final String budgetName;
+  final String budgetDescription;
+
+  final String budgetBalance;
+
   BudgetsData({
     required this.id,
+
+    required this.budgetName,
+    required this.budgetDescription,
+
+    required this.budgetBalance,
   });
 
   Map<String, dynamic> toMap() {
     return {
       'id': id,
+
+      'budgetName': budgetName,
+      'budgetDescription': budgetDescription,
+
+      'budgetBalance': budgetBalance,
     };
   }
 
   @override
   String toString() {
-    return 'BudgetsData{id: $id}';
+    return 'BudgetsData{'
+      'id: $id,'
+
+      'budgetName: $budgetName,'
+      'budgetDescription: $budgetDescription,'
+
+      'budgetBalance: $budgetBalance,'
+    '}';
   }
 }
