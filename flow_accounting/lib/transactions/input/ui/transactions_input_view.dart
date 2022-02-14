@@ -9,6 +9,9 @@
  */
 
 import 'package:blur/blur.dart';
+import 'package:flow_accounting/credit_cards/database/io/inputs.dart';
+import 'package:flow_accounting/credit_cards/database/io/queries.dart';
+import 'package:flow_accounting/credit_cards/database/structures/tables_structure.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/database/io/inputs.dart';
@@ -807,71 +810,96 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                   padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
-                                    child: TextField(
-                                      controller: controllerTransactionSourceCard,
-                                      textAlign: TextAlign.center,
-                                      textDirection: TextDirection.rtl,
-                                      textAlignVertical: TextAlignVertical.bottom,
-                                      maxLines: 1,
-                                      cursorColor: ColorsResources.primaryColor,
-                                      autocorrect: true,
-                                      autofocus: false,
-                                      keyboardType: TextInputType.number,
-                                      decoration: const InputDecoration(
-                                        alignLabelWithHint: true,
-                                        border: OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
+                                    child: TypeAheadField<CreditCardsData>(
+                                        suggestionsCallback: (pattern) async {
+
+                                          return await getCreditCards();
+                                        },
+                                        itemBuilder: (context, suggestion) {
+
+                                          return ListTile(title: Directionality(
+                                            textDirection: TextDirection.rtl,
+                                            child: Text(
+                                              suggestion.cardNumber,
+                                              style: const TextStyle(
+                                                  color: ColorsResources.darkTransparent,
+                                                  fontSize: 15
+                                              ),
                                             ),
-                                            gapPadding: 5
+                                          ));
+                                        },
+                                        onSuggestionSelected: (suggestion) {
+
+                                          controllerTransactionSourceCard.text = suggestion.toString();
+
+                                        },
+                                        suggestionsBoxDecoration: SuggestionsBoxDecoration(
+                                            elevation: 7,
+                                            color: ColorsResources.light,
+                                            shadowColor: ColorsResources.darkTransparent,
+                                            borderRadius: BorderRadius.circular(17)
                                         ),
-                                        enabledBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
+                                        textFieldConfiguration: TextFieldConfiguration(
+                                          controller: controllerTransactionSourceCard,
+                                          autofocus: false,
+                                          maxLines: 1,
+                                          cursorColor: ColorsResources.primaryColor,
+                                          decoration: const InputDecoration(
+                                            alignLabelWithHint: true,
+                                            border: OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
+                                                    bottomRight: Radius.circular(13)
+                                                ),
+                                                gapPadding: 5
                                             ),
-                                            gapPadding: 5
-                                        ),
-                                        focusedBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
+                                            enabledBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
+                                                    bottomRight: Radius.circular(13)
+                                                ),
+                                                gapPadding: 5
                                             ),
-                                            gapPadding: 5
-                                        ),
-                                        errorBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.red, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
+                                            focusedBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
+                                                    bottomRight: Radius.circular(13)
+                                                ),
+                                                gapPadding: 5
                                             ),
-                                            gapPadding: 5
-                                        ),
-                                        filled: true,
-                                        fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.transactionSourceCard,
-                                        labelStyle: TextStyle(
-                                            color: ColorsResources.dark,
-                                            fontSize: 17.0
-                                        ),
-                                        hintText: StringsResources.transactionSourceCardHint,
-                                        hintStyle: TextStyle(
-                                            color: ColorsResources.darkTransparent,
-                                            fontSize: 17.0
-                                        ),
-                                      ),
+                                            errorBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.red, width: 1.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
+                                                    bottomRight: Radius.circular(13)
+                                                ),
+                                                gapPadding: 5
+                                            ),
+                                            filled: true,
+                                            fillColor: ColorsResources.lightTransparent,
+                                            labelText: StringsResources.transactionSourceCard,
+                                            labelStyle: TextStyle(
+                                                color: ColorsResources.dark,
+                                                fontSize: 17.0
+                                            ),
+                                            hintText: StringsResources.transactionSourceCardHint,
+                                            hintStyle: TextStyle(
+                                                color: ColorsResources.darkTransparent,
+                                                fontSize: 17.0
+                                            ),
+                                          ),
+                                        )
                                     ),
                                   )
                               ),
@@ -895,71 +923,96 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                   padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
-                                    child: TextField(
-                                      controller: controllerTransactionTargetCard,
-                                      textAlign: TextAlign.center,
-                                      textDirection: TextDirection.rtl,
-                                      textAlignVertical: TextAlignVertical.bottom,
-                                      maxLines: 1,
-                                      cursorColor: ColorsResources.primaryColor,
-                                      autocorrect: true,
-                                      autofocus: false,
-                                      keyboardType: TextInputType.number,
-                                      decoration: const InputDecoration(
-                                        alignLabelWithHint: true,
-                                        border: OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
+                                    child: TypeAheadField<CreditCardsData>(
+                                        suggestionsCallback: (pattern) async {
+
+                                          return await getCreditCards();
+                                        },
+                                        itemBuilder: (context, suggestion) {
+
+                                          return ListTile(title: Directionality(
+                                            textDirection: TextDirection.rtl,
+                                            child: Text(
+                                              suggestion.cardNumber,
+                                              style: const TextStyle(
+                                                  color: ColorsResources.darkTransparent,
+                                                  fontSize: 15
+                                              ),
                                             ),
-                                            gapPadding: 5
+                                          ));
+                                        },
+                                        onSuggestionSelected: (suggestion) {
+
+                                          controllerTransactionTargetCard.text = suggestion.toString();
+
+                                        },
+                                        suggestionsBoxDecoration: SuggestionsBoxDecoration(
+                                            elevation: 7,
+                                            color: ColorsResources.light,
+                                            shadowColor: ColorsResources.darkTransparent,
+                                            borderRadius: BorderRadius.circular(17)
                                         ),
-                                        enabledBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
+                                        textFieldConfiguration: TextFieldConfiguration(
+                                          controller: controllerTransactionTargetCard,
+                                          autofocus: false,
+                                          maxLines: 1,
+                                          cursorColor: ColorsResources.primaryColor,
+                                          decoration: const InputDecoration(
+                                            alignLabelWithHint: true,
+                                            border: OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
+                                                    bottomRight: Radius.circular(13)
+                                                ),
+                                                gapPadding: 5
                                             ),
-                                            gapPadding: 5
-                                        ),
-                                        focusedBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
+                                            enabledBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
+                                                    bottomRight: Radius.circular(13)
+                                                ),
+                                                gapPadding: 5
                                             ),
-                                            gapPadding: 5
-                                        ),
-                                        errorBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.red, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
+                                            focusedBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
+                                                    bottomRight: Radius.circular(13)
+                                                ),
+                                                gapPadding: 5
                                             ),
-                                            gapPadding: 5
-                                        ),
-                                        filled: true,
-                                        fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.transactionTargetCard,
-                                        labelStyle: TextStyle(
-                                            color: ColorsResources.dark,
-                                            fontSize: 17.0
-                                        ),
-                                        hintText: StringsResources.transactionTargetCardHint,
-                                        hintStyle: TextStyle(
-                                            color: ColorsResources.darkTransparent,
-                                            fontSize: 17.0
-                                        ),
-                                      ),
+                                            errorBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.red, width: 1.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
+                                                    bottomRight: Radius.circular(13)
+                                                ),
+                                                gapPadding: 5
+                                            ),
+                                            filled: true,
+                                            fillColor: ColorsResources.lightTransparent,
+                                            labelText: StringsResources.transactionTargetCard,
+                                            labelStyle: TextStyle(
+                                                color: ColorsResources.dark,
+                                                fontSize: 17.0
+                                            ),
+                                            hintText: StringsResources.transactionTargetCardHint,
+                                            hintStyle: TextStyle(
+                                                color: ColorsResources.darkTransparent,
+                                                fontSize: 17.0
+                                            ),
+                                          ),
+                                        )
                                     ),
                                   )
                               ),
@@ -1329,6 +1382,17 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
     listOfBudgets.addAll(["آکواریم", "شرکت", "خانه", "گربه"]);
 
     return listOfBudgets;
+  }
+
+  Future<List<CreditCardsData>> getCreditCards() async {
+
+    List<CreditCardsData> listOfCreditCards = [];
+
+    CreditCardsDatabaseQueries creditCardsDatabaseQueries = CreditCardsDatabaseQueries();
+
+    listOfCreditCards.addAll(await creditCardsDatabaseQueries.getAllCreditCards(CreditCardsDatabaseInputs.databaseTableName));
+
+    return listOfCreditCards;
   }
 
 }
