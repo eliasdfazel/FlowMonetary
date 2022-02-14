@@ -224,6 +224,8 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
                                 CreditCardsDatabaseQueries()
                                     .queryDeleteCreditCard(id, CreditCardsDatabaseInputs.databaseTableName);
 
+                                prepareCreditCardsData();
+
                               },
                             ),
                           ));
