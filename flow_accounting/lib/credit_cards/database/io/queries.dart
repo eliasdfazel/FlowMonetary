@@ -68,6 +68,28 @@ class CreditCardsDatabaseQueries {
     return databaseContents[0];
   }
 
+  Future<Map<String, Object?>> querySpecificCreditCardByCardNumber(
+      String cardNumber,
+      String? tableName, {String usernameId = "Unknown"}) async {
+
+    final database = openDatabase(
+      join(await getDatabasesPath(), CreditCardsDatabaseInputs.transactionDatabase),
+    );
+
+    final databaseInstance = await database;
+
+    var tableNameQuery = (tableName != null) ? tableName : CreditCardsDatabaseInputs.databaseTableName;
+    tableNameQuery = "${usernameId}_${tableNameQuery}";
+
+    var databaseContents = await databaseInstance.query(
+      tableNameQuery,
+      where: 'cardNumber = ?',
+      whereArgs: [cardNumber],
+    );
+
+    return databaseContents[0];
+  }
+
   Future<int> queryDeleteCreditCard(int id,
       String? tableName, {String usernameId = "Unknown"}) async {
 
@@ -89,7 +111,8 @@ class CreditCardsDatabaseQueries {
     return queryResult;
   }
 
-  Future<CreditCardsData> extractTransactionsQuery(Map<String, Object?>inputData) async {
+  Future<CreditCardsData> extractTransactionsQuery(
+      Map<String, Object?> inputData) async {
 
     return CreditCardsData(
       id: inputData["id"] as int,

@@ -1260,6 +1260,8 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                               fontSize: 16.0
                           );
 
+                          processCreditCards(transactionData);
+
                         },
                         child: Container(
                             decoration: BoxDecoration(
@@ -1393,6 +1395,65 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
     listOfCreditCards.addAll(await creditCardsDatabaseQueries.getAllCreditCards(CreditCardsDatabaseInputs.databaseTableName));
 
     return listOfCreditCards;
+  }
+
+  Future processCreditCards(TransactionsData transactionData) async {
+
+    if (transactionData.transactionType == TransactionsData.TransactionType_Send) {
+
+      var creditCardsDatabaseQueries = CreditCardsDatabaseQueries();
+
+      var sourceCreditCardData = await creditCardsDatabaseQueries.extractTransactionsQuery(
+          await creditCardsDatabaseQueries.querySpecificCreditCardByCardNumber(controllerTransactionSourceCard.text, CreditCardsDatabaseInputs.databaseTableName)
+      );
+
+      var newCardBalance = (int.parse(sourceCreditCardData.cardBalance) - int.parse(transactionData.amountMoney)).toString();
+
+      var creditCardsDatabaseInputs = CreditCardsDatabaseInputs();
+
+      creditCardsDatabaseInputs.updateCreditCardsData(
+        CreditCardsData(
+            id: sourceCreditCardData.id,
+            cardNumber: sourceCreditCardData.cardNumber,
+            cardExpiry: sourceCreditCardData.cardExpiry,
+            cardHolderName: sourceCreditCardData.cardHolderName,
+            cvv: sourceCreditCardData.cvv,
+            bankName: sourceCreditCardData.bankName,
+            cardBalance: newCardBalance,
+            colorTag: sourceCreditCardData.colorTag
+        ),
+        CreditCardsDatabaseInputs.databaseTableName
+      );
+
+    } else if (transactionType == TransactionsData.TransactionType_Receive) {
+
+      var creditCardsDatabaseQueries = CreditCardsDatabaseQueries();
+
+      var sourceCreditCardData = await creditCardsDatabaseQueries.extractTransactionsQuery(
+          await creditCardsDatabaseQueries
+              .querySpecificCreditCardByCardNumber(controllerTransactionTargetCard.text, CreditCardsDatabaseInputs.databaseTableName)
+      );
+
+      var newCardBalance = (int.parse(sourceCreditCardData.cardBalance) + int.parse(transactionData.amountMoney)).toString();
+
+      var creditCardsDatabaseInputs = CreditCardsDatabaseInputs();
+
+      creditCardsDatabaseInputs.updateCreditCardsData(
+          CreditCardsData(
+              id: sourceCreditCardData.id,
+              cardNumber: sourceCreditCardData.cardNumber,
+              cardExpiry: sourceCreditCardData.cardExpiry,
+              cardHolderName: sourceCreditCardData.cardHolderName,
+              cvv: sourceCreditCardData.cvv,
+              bankName: sourceCreditCardData.bankName,
+              cardBalance: newCardBalance,
+              colorTag: sourceCreditCardData.colorTag
+          ),
+          CreditCardsDatabaseInputs.databaseTableName
+      );
+
+    }
+
   }
 
 }
