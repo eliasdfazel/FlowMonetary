@@ -14,7 +14,7 @@ import 'package:flow_accounting/budgets/database/structures/tables_structure.dar
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-class BudgetDatabaseInputs {
+class BudgetsDatabaseInputs {
 
   static const String databaseTableName = "all_budgets";
 
@@ -23,7 +23,7 @@ class BudgetDatabaseInputs {
   Future<void> insertTransactionData(BudgetsData transactionsData, String? tableName,
       {String usernameId = "Unknown"}) async {
 
-    var tableNameQuery = (tableName != null) ? tableName : BudgetDatabaseInputs.databaseTableName;
+    var tableNameQuery = (tableName != null) ? tableName : BudgetsDatabaseInputs.databaseTableName;
     tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     final database = openDatabase(
