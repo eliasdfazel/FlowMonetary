@@ -8,22 +8,15 @@
  * https://opensource.org/licenses/MIT
  */
 
-import 'package:flow_accounting/budgets/database/io/inputs.dart';
-import 'package:flow_accounting/budgets/database/structures/tables_structure.dart';
 import 'package:flutter/material.dart';
-
-void main() {
-  runApp(const MaterialApp( home: BudgetsView()));
-}
 
 class BudgetsView extends StatefulWidget {
   const BudgetsView({Key? key}) : super(key: key);
 
   @override
-  _State createState() => _State();
+  _BudgetsViewState createState() => _BudgetsViewState();
 }
-
-class _State extends State<BudgetsView> {
+class _BudgetsViewState extends State<BudgetsView> {
 
   TextEditingController textEditorControllerName = TextEditingController();
   TextEditingController textEditorControllerEmail = TextEditingController();
@@ -102,30 +95,6 @@ class _State extends State<BudgetsView> {
                     ),
                   ],
                 ),
-                MaterialButton(
-                  textColor: Colors.white,
-                  color: Colors.blue,
-                  child: const Text('Insert'),
-                  onPressed: (){
-
-                    var databaseInputs = BudgetDatabaseInputs();
-
-                    databaseInputs.insertBudget(BudgetsData(id: DateTime.now().millisecondsSinceEpoch));
-
-                    final snackBar = SnackBar(
-                      content: Text("${textEditorControllerName.text} |  ${textEditorControllerEmail.text}"),
-                      action: SnackBarAction(
-                        label: 'OK',
-                        onPressed: () {
-                          // Some code to undo the change.
-                        },
-                      ),
-                    );
-
-                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-
-                  },
-                )
               ],
             )
         )
