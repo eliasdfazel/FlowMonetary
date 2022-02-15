@@ -17,7 +17,7 @@ import 'package:flow_accounting/utils/colors/color_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-class BudgetsView extends StatefulWidget {
+class BudgetsInputView extends StatefulWidget {
 
   BudgetsData? budgetsData = BudgetsData(
       id: 0,
@@ -27,12 +27,12 @@ class BudgetsView extends StatefulWidget {
       colorTag: ColorsResources.white.value
   );
 
-  BudgetsView({Key? key, this.budgetsData}) : super(key: key);
+  BudgetsInputView({Key? key, this.budgetsData}) : super(key: key);
 
   @override
-  _BudgetsViewState createState() => _BudgetsViewState();
+  _BudgetsInputViewState createState() => _BudgetsInputViewState();
 }
-class _BudgetsViewState extends State<BudgetsView> {
+class _BudgetsInputViewState extends State<BudgetsInputView> {
 
   TextEditingController controllerBudgetName = TextEditingController();
   TextEditingController controllerBudgetDescription = TextEditingController();

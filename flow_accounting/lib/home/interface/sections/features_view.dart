@@ -10,6 +10,7 @@
 
 import 'package:collection/collection.dart';
 import 'package:flow_accounting/budgets/input/ui/budgets_input_view.dart';
+import 'package:flow_accounting/budgets/output/ui/budgets_output_view.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/input/ui/transactions_input_view.dart';
@@ -183,8 +184,8 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
         importantFeature: false,
         featuresTitle: StringsResources.featureBudgetManagementsTitle,
         featuresDescription: StringsResources.featureBudgetManagementsDescription,
-        featureViewToSubmitData: BudgetsView(),
-        featureToPresentData: null
+        featureViewToSubmitData: BudgetsInputView(),
+        featureToPresentData: const BudgetsOutputView()
     ));
     allFeaturesStructure.add(FeaturesStructure(
         importantFeature: false,
