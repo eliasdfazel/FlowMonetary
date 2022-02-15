@@ -495,6 +495,16 @@ class _BudgetsViewState extends State<BudgetsView> {
 
                             int timeNow = DateTime.now().millisecondsSinceEpoch;
 
+                            if (widget.budgetsData != null) {
+
+                              if ((widget.budgetsData?.id)! != 0) {
+
+                                timeNow = (widget.budgetsData?.id)!;
+
+                              }
+
+                            }
+
                             var databaseInputs = BudgetsDatabaseInputs();
 
                             BudgetsData transactionData = BudgetsData(
@@ -508,7 +518,19 @@ class _BudgetsViewState extends State<BudgetsView> {
                               colorTag: colorSelectorView.selectedColor.value
                             );
 
-                            databaseInputs.insertTransactionData(transactionData, BudgetsDatabaseInputs.databaseTableName);
+                            if (widget.budgetsData != null) {
+
+                              if ((widget.budgetsData?.id)! != 0) {
+
+                                databaseInputs.updateBudgetData(transactionData, BudgetsDatabaseInputs.databaseTableName);
+
+                              }
+
+                            } else {
+
+                              databaseInputs.insertBudgetData(transactionData, BudgetsDatabaseInputs.databaseTableName);
+
+                            }
 
                             Fluttertoast.showToast(
                                 msg: StringsResources.updatedText,
