@@ -9,6 +9,7 @@
  */
 
 import 'package:collection/collection.dart';
+import 'package:flow_accounting/budgets/input/ui/budgets_input_view.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/input/ui/transactions_input_view.dart';
@@ -182,7 +183,7 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
         importantFeature: false,
         featuresTitle: StringsResources.featureBudgetManagementsTitle,
         featuresDescription: StringsResources.featureBudgetManagementsDescription,
-        featureViewToSubmitData: null,
+        featureViewToSubmitData: const BudgetsView(),
         featureToPresentData: null
     ));
     allFeaturesStructure.add(FeaturesStructure(
@@ -208,14 +209,14 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
 
         allFeaturesOptionsWidgets.add(featuresOptionsRow(
           /* featureOneTitle */ allFeaturesStructure[index].featuresTitle,
-            /* featureTwoTitle */ null,
-            /* featureOneDescription */ allFeaturesStructure[index].featuresDescription,
-            /* featureTwoDescription */ null,
-            /* featureOneTargetViewToSubmitData */ allFeaturesStructure[index].featureViewToSubmitData,
-            /* featureTwoTargetViewToSubmitData */ null,
-            /* featureOneTargetViewToPresentData */ allFeaturesStructure[index].featureToPresentData,
-            /* featureTwoTargetViewToPresentData */ null,
-            /* Context */ context
+          /* featureTwoTitle */ null,
+          /* featureOneDescription */ allFeaturesStructure[index].featuresDescription,
+          /* featureTwoDescription */ null,
+          /* featureOneTargetViewToSubmitData */ allFeaturesStructure[index].featureViewToSubmitData,
+          /* featureTwoTargetViewToSubmitData */ null,
+          /* featureOneTargetViewToPresentData */ allFeaturesStructure[index].featureToPresentData,
+          /* featureTwoTargetViewToPresentData */ null,
+          /* Context */ context
         ));
 
         alreadyTwo = false;
