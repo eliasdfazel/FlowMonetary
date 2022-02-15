@@ -23,7 +23,8 @@ class BudgetsView extends StatefulWidget {
       id: 0,
       budgetName: "",
       budgetDescription: "",
-      budgetBalance: "0"
+      budgetBalance: "0",
+      colorTag: ColorsResources.white.value
   );
 
   BudgetsView({Key? key, this.budgetsData}) : super(key: key);
