@@ -530,10 +530,6 @@ class _BudgetsViewState extends State<BudgetsView> {
 
                               databaseInputs.insertBudgetData(transactionData, BudgetsDatabaseInputs.databaseTableName);
 
-                              setState(() {
-
-                              });
-
                             }
 
                             Fluttertoast.showToast(
