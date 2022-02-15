@@ -1269,12 +1269,10 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                         splashFactory: InkRipple.splashFactory,
                         onTap: () {
 
-                          int timeNow = DateTime.now().millisecondsSinceEpoch;
-
                           var databaseInputs = TransactionsDatabaseInputs();
 
                           TransactionsData transactionData = TransactionsData(
-                            id: timeNow,
+                            id: widget.transactionsData.id,
 
                             amountMoney: controllerMoneyAmount.text,
                             transactionType: transactionType,

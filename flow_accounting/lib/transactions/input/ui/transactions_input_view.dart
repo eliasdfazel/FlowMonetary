@@ -46,6 +46,8 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
   String budgetName = TransactionsData.TransactionBudgetName;
 
+  int timeNow = DateTime.now().millisecondsSinceEpoch;
+
   @override
   void initState() {
     super.initState();
@@ -1238,8 +1240,6 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                         splashColor: ColorsResources.applicationGeeksEmpire.withOpacity(0.5),
                         splashFactory: InkRipple.splashFactory,
                         onTap: () {
-
-                          int timeNow = DateTime.now().millisecondsSinceEpoch;
 
                           var databaseInputs = TransactionsDatabaseInputs();
 

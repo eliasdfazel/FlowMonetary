@@ -39,6 +39,8 @@ class _BudgetsViewState extends State<BudgetsView> {
 
   TextEditingController controllerBudgetBalance = TextEditingController();
 
+  int timeNow = DateTime.now().millisecondsSinceEpoch;
+
   @override
   void dispose() {
     super.dispose();
@@ -385,7 +387,7 @@ class _BudgetsViewState extends State<BudgetsView> {
                                         ),
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.budgetInitialText,
+                                        labelText: StringsResources.budgetInitialTextHint,
                                         labelStyle: TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
@@ -493,8 +495,6 @@ class _BudgetsViewState extends State<BudgetsView> {
                           splashFactory: InkRipple.splashFactory,
                           onTap: () {
 
-                            int timeNow = DateTime.now().millisecondsSinceEpoch;
-
                             if (widget.budgetsData != null) {
 
                               if ((widget.budgetsData?.id)! != 0) {
@@ -529,6 +529,10 @@ class _BudgetsViewState extends State<BudgetsView> {
                             } else {
 
                               databaseInputs.insertBudgetData(transactionData, BudgetsDatabaseInputs.databaseTableName);
+
+                              setState(() {
+
+                              });
 
                             }
 
