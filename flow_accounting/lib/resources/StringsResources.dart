@@ -84,7 +84,9 @@ class StringsResources {
   static const String sortTimeNew = "بر اساس: زمان جدید";
   static const String sortTimeOld = "بر اساس: زمان گذشته";
   static const String sortMoneyAmountLow = "مرتب سازی: تراکنش کمک";
-  static const String sortMoneyAmountHigh = "مرتب سازی: تراکنش زیاد";
+  static const String sortTransactionAmountHigh = "مرتب سازی: تراکنش زیاد";
+
+  static const String sortBudgetAmountHigh = "مرتب سازی: مبلغ بوجه";
 
   static const String colorSelectorHint = "برای تمایز و دسته بندی رنگ مورد "
       "نظر خود را انتخاب کنید";

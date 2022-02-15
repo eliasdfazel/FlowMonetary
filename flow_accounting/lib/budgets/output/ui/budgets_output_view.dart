@@ -1,4 +1,5 @@
 
+import 'package:blur/blur.dart';
 import 'package:flow_accounting/budgets/database/io/inputs.dart';
 import 'package:flow_accounting/budgets/database/io/queries.dart';
 import 'package:flow_accounting/budgets/database/structures/tables_structure.dart';
@@ -140,6 +141,118 @@ class _BudgetOutputView extends State<BudgetsOutputView> {
                             width: 41,
                             height: 41,
                           ),
+                        ),
+                      )
+                  ),
+                  Positioned(
+                      top: 19,
+                      right: 13,
+                      child: SizedBox(
+                        height: 43,
+                        width: 321,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Expanded(
+                              flex: 11,
+                              child: Padding(
+                                padding: const EdgeInsets.fromLTRB(3, 0, 0, 0),
+                                child: Stack(
+                                  children: [
+                                    SizedBox(
+                                      height: 43,
+                                      width: double.infinity,
+                                      child: Blur(
+                                        blur: 5,
+                                        borderRadius: BorderRadius.circular(51),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              gradient: LinearGradient(
+                                                  colors: [
+                                                    ColorsResources.white.withOpacity(0.3),
+                                                    ColorsResources.primaryColorLighter.withOpacity(0.3),
+                                                  ],
+                                                  begin: const FractionalOffset(0.0, 0.0),
+                                                  end: const FractionalOffset(1.0, 0.0),
+                                                  stops: const [0.0, 1.0],
+                                                  transform: const GradientRotation(45),
+                                                  tileMode: TileMode.clamp
+                                              )
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+
+                                        sortBudgetsByBalance(context, allBudgets);
+
+                                      },
+                                      child: const SizedBox(
+                                        height: 43,
+                                        width: double.infinity,
+                                        child: Align(
+                                          alignment: Alignment.center,
+                                          child: Text(
+                                            StringsResources.sortBudgetAmountHigh,
+                                            style: TextStyle(
+                                              fontSize: 13,
+                                              color: ColorsResources.applicationGeeksEmpire,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              flex: 3,
+                              child: Stack(
+                                children: [
+                                  SizedBox(
+                                    height: 43,
+                                    width: 43,
+                                    child: Blur(
+                                      blur: 3,
+                                      borderRadius: BorderRadius.circular(51),
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            gradient: LinearGradient(
+                                                colors: [
+                                                  ColorsResources.white.withOpacity(0.3),
+                                                  ColorsResources.primaryColorLighter.withOpacity(0.3),
+                                                ],
+                                                begin: const FractionalOffset(0.0, 0.0),
+                                                end: const FractionalOffset(1.0, 0.0),
+                                                stops: const [0.0, 1.0],
+                                                transform: const GradientRotation(45),
+                                                tileMode: TileMode.clamp
+                                            )
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: Alignment.center,
+                                    child: InkWell(
+                                      onTap: () {
+
+                                        retrieveAllTransactions(context);
+
+                                      },
+                                      child: const Icon(
+                                          Icons.refresh_rounded,
+                                          size: 31.0,
+                                          color: ColorsResources.primaryColorDark
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
                       )
                   ),
@@ -301,7 +414,7 @@ class _BudgetOutputView extends State<BudgetsOutputView> {
         child: PhysicalModel(
           color: ColorsResources.light,
           elevation: 7,
-          shadowColor: budgetColorTag.withOpacity(0.7),
+          shadowColor: budgetColorTag.withOpacity(0.79),
           shape: BoxShape.rectangle,
           borderRadius: const BorderRadius.all(Radius.circular(17)),
           child: InkWell(
@@ -330,124 +443,131 @@ class _BudgetOutputView extends State<BudgetsOutputView> {
                     tileMode: TileMode.clamp
                 ),
               ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  SizedBox(
-                    height: 99,
-                    width: double.infinity,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Expanded(
-                          flex: 19,
-                          child: Padding(
-                              padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                              child: Stack(
-                                children: [
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      SizedBox(
-                                        height: 59,
-                                        width: double.infinity,
-                                        child: Padding(
-                                          padding: const EdgeInsets.fromLTRB(27,
-                                              11, 13, 0),
-                                          child: Align(
-                                              alignment: Alignment.center,
-                                              child: Marquee(
-                                                text: budgetBalance,
-                                                style: const TextStyle(
-                                                  color: ColorsResources.dark,
-                                                  fontSize: 31,
-                                                  fontFamily: "Numbers",
-                                                ),
-                                                scrollAxis: Axis.horizontal,
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                blankSpace: 173.0,
-                                                velocity: 37.0,
-                                                fadingEdgeStartFraction: 0.13,
-                                                fadingEdgeEndFraction: 0.13,
-                                                startAfter: const Duration(milliseconds: 777),
-                                                numberOfRounds: 3,
-                                                pauseAfterRound: const Duration(milliseconds: 500),
-                                                showFadingOnlyWhenScrolling: true,
-                                                startPadding: 13.0,
-                                                accelerationDuration: const Duration(milliseconds: 500),
-                                                accelerationCurve: Curves.linear,
-                                                decelerationDuration: const Duration(milliseconds: 500),
-                                                decelerationCurve: Curves.easeOut,
-                                              )
+              child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                  child: Stack(
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          SizedBox(
+                            height: 59,
+                            width: double.infinity,
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(27, 11, 13, 0),
+                              child: Align(
+                                  alignment: Alignment.center,
+                                  child: Marquee(
+                                    text: budgetBalance,
+                                    style: const TextStyle(
+                                      color: ColorsResources.dark,
+                                      fontSize: 31,
+                                      fontFamily: "Numbers",
+                                    ),
+                                    scrollAxis: Axis.horizontal,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    blankSpace: 199.0,
+                                    velocity: 37.0,
+                                    fadingEdgeStartFraction: 0.13,
+                                    fadingEdgeEndFraction: 0.13,
+                                    startAfter: const Duration(milliseconds: 777),
+                                    numberOfRounds: 3,
+                                    pauseAfterRound: const Duration(milliseconds: 500),
+                                    showFadingOnlyWhenScrolling: true,
+                                    startPadding: 13.0,
+                                    accelerationDuration: const Duration(milliseconds: 500),
+                                    accelerationCurve: Curves.linear,
+                                    decelerationDuration: const Duration(milliseconds: 500),
+                                    decelerationCurve: Curves.easeOut,
+                                  )
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                              height: 39,
+                              width: double.infinity,
+                              child: Padding(
+                                padding: const EdgeInsets.fromLTRB(19, 11, 19, 0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Expanded(
+                                      flex: 1,
+                                      child: Directionality(
+                                        textDirection: TextDirection.rtl,
+                                        child: Align(
+                                          alignment: Alignment.centerRight,
+                                          child: Text(
+                                            budgetName,
+                                            style: const TextStyle(
+                                              color: ColorsResources.dark,
+                                              fontSize: 19,
+                                            ),
                                           ),
                                         ),
                                       ),
-                                      SizedBox(
-                                          height: 39,
-                                          width: double.infinity,
-                                          child: Padding(
-                                            padding: const EdgeInsets.fromLTRB(13, 11, 13, 0),
-                                            child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                              children: [
-                                                Expanded(
-                                                  flex: 1,
-                                                  child: Directionality(
-                                                    textDirection: TextDirection.rtl,
-                                                    child: Align(
-                                                      alignment: Alignment.centerRight,
-                                                      child: Text(
-                                                        budgetName,
-                                                        style: TextStyle(
-                                                          color: ColorsResources.dark.withOpacity(0.579),
-                                                          fontSize: 13,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          )
-                                      )
-                                    ],
-                                  ),
-                                ],
+                                    ),
+                                  ],
+                                ),
                               )
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 51,
-                    width: double.infinity,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Expanded(
-                          flex: 13,
-                          child: Padding(
-                            padding: const EdgeInsets.fromLTRB(11, 0, 11, 0),
-                            child: Container(
-                              color: Colors.transparent,
-                              child: Align(
-                                alignment: Alignment.center,
-                                child: Text(
-                                  budgetDescription,
-                                  style: const TextStyle(
-                                      color: ColorsResources.dark,
-                                      fontSize: 17
+                          SizedBox(
+                            height: 51,
+                            width: double.infinity,
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
+                              child: Container(
+                                color: Colors.transparent,
+                                child: Align(
+                                  alignment: Alignment.centerRight,
+                                  child: Text(
+                                    budgetDescription,
+                                    textAlign: TextAlign.right,
+                                    style: TextStyle(
+                                        color: ColorsResources.dark.withOpacity(0.537),
+                                        fontSize: 15
+                                    ),
                                   ),
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                      Positioned(
+                        left: 0,
+                        bottom: 0,
+                        child: RotatedBox(
+                          quarterTurns: 3,
+                          child: SizedBox(
+                            height: 27,
+                            width: 79,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(17),
+                                    topRight: Radius.circular(0),
+                                    bottomLeft: Radius.circular(0),
+                                    bottomRight: Radius.circular(17)
+                                ),
+                                gradient: LinearGradient(
+                                    colors: [
+                                      budgetColorTag.withOpacity(0.7),
+                                      ColorsResources.light,
+                                    ],
+                                    begin: const FractionalOffset(0.0, 0.0),
+                                    end: const FractionalOffset(1.0, 0.0),
+                                    stops: const [0.0, 1.0],
+                                    transform: const GradientRotation(45),
+                                    tileMode: TileMode.clamp
                                 ),
                               ),
                             ),
                           ),
                         ),
-                      ],
-                    ),
+                      )
+                    ],
                   )
-                ],
               ),
             ),
           ),

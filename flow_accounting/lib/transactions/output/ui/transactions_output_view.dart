@@ -195,7 +195,7 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
                                         child: Align(
                                           alignment: Alignment.center,
                                           child: Text(
-                                            StringsResources.sortMoneyAmountHigh,
+                                            StringsResources.sortTransactionAmountHigh,
                                             style: TextStyle(
                                               fontSize: 13,
                                               color: ColorsResources.applicationGeeksEmpire,
