@@ -1,11 +1,11 @@
 
-import 'package:blur/blur.dart';
+import 'package:flow_accounting/budgets/database/io/inputs.dart';
+import 'package:flow_accounting/budgets/database/io/queries.dart';
 import 'package:flow_accounting/budgets/database/structures/tables_structure.dart';
 import 'package:flow_accounting/budgets/input/ui/budgets_input_view.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
-import 'package:flow_accounting/utils/extensions/CreditCardNumber.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:marquee/marquee.dart';
@@ -20,8 +20,8 @@ class _BudgetOutputView extends State<BudgetsOutputView> {
 
   late ColorSelectorView colorSelectorView;
 
-  List<BudgetsData> allTransactions = [];
-  List<Widget> allTransactionsItems = [];
+  List<BudgetsData> allBudgets = [];
+  List<Widget> allBudgetsItems = [];
 
   TextEditingController textEditorControllerQuery = TextEditingController();
 
@@ -53,7 +53,7 @@ class _BudgetOutputView extends State<BudgetsOutputView> {
 
     colorSelectorView.selectedColorNotifier.addListener(() {
 
-      filterByColorTag(context, allTransactions, colorSelectorView.selectedColorNotifier.value);
+      filterByColorTag(context, allBudgets, colorSelectorView.selectedColorNotifier.value);
 
     });
 
@@ -62,7 +62,7 @@ class _BudgetOutputView extends State<BudgetsOutputView> {
       padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
       child: colorSelectorView,
     ));
-    allListContentWidgets.addAll(allTransactionsItems);
+    allListContentWidgets.addAll(allBudgetsItems);
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -140,172 +140,6 @@ class _BudgetOutputView extends State<BudgetsOutputView> {
                             width: 41,
                             height: 41,
                           ),
-                        ),
-                      )
-                  ),
-                  Positioned(
-                      top: 19,
-                      right: 13,
-                      child: SizedBox(
-                        height: 43,
-                        width: 321,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Expanded(
-                              flex: 11,
-                              child: Padding(
-                                padding: const EdgeInsets.fromLTRB(3, 0, 0, 0),
-                                child: Stack(
-                                  children: [
-                                    SizedBox(
-                                      height: 43,
-                                      width: double.infinity,
-                                      child: Blur(
-                                        blur: 5,
-                                        borderRadius: BorderRadius.circular(51),
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                              gradient: LinearGradient(
-                                                  colors: [
-                                                    ColorsResources.white.withOpacity(0.3),
-                                                    ColorsResources.primaryColorLighter.withOpacity(0.3),
-                                                  ],
-                                                  begin: const FractionalOffset(0.0, 0.0),
-                                                  end: const FractionalOffset(1.0, 0.0),
-                                                  stops: const [0.0, 1.0],
-                                                  transform: const GradientRotation(45),
-                                                  tileMode: TileMode.clamp
-                                              )
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {
-
-                                        sortTransactionsByMoneyAmount(context, allTransactions);
-
-                                      },
-                                      child: const SizedBox(
-                                        height: 43,
-                                        width: double.infinity,
-                                        child: Align(
-                                          alignment: Alignment.center,
-                                          child: Text(
-                                            StringsResources.sortMoneyAmountHigh,
-                                            style: TextStyle(
-                                              fontSize: 13,
-                                              color: ColorsResources.applicationGeeksEmpire,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              flex: 11,
-                              child: Padding(
-                                padding: const EdgeInsets.fromLTRB(0, 0, 3, 0),
-                                child: Stack(
-                                  children: [
-                                    SizedBox(
-                                      height: 43,
-                                      width: double.infinity,
-                                      child: Blur(
-                                        blur: 5,
-                                        borderRadius: BorderRadius.circular(51),
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                              gradient: LinearGradient(
-                                                  colors: [
-                                                    ColorsResources.white.withOpacity(0.3),
-                                                    ColorsResources.primaryColorLighter.withOpacity(0.3),
-                                                  ],
-                                                  begin: const FractionalOffset(0.0, 0.0),
-                                                  end: const FractionalOffset(1.0, 0.0),
-                                                  stops: const [0.0, 1.0],
-                                                  transform: const GradientRotation(45),
-                                                  tileMode: TileMode.clamp
-                                              )
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {
-
-                                        sortTransactionsByTime(context, allTransactions);
-
-                                      },
-                                      child: const SizedBox(
-                                        height: 43,
-                                        width: double.infinity,
-                                        child: Align(
-                                          alignment: Alignment.center,
-                                          child: Text(
-                                            StringsResources.sortTimeNew,
-                                            style: TextStyle(
-                                              fontSize: 13,
-                                              color: ColorsResources.applicationGeeksEmpire,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              flex: 3,
-                              child: Stack(
-                                children: [
-                                  SizedBox(
-                                    height: 43,
-                                    width: 43,
-                                    child: Blur(
-                                      blur: 3,
-                                      borderRadius: BorderRadius.circular(51),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                            gradient: LinearGradient(
-                                                colors: [
-                                                  ColorsResources.white.withOpacity(0.3),
-                                                  ColorsResources.primaryColorLighter.withOpacity(0.3),
-                                                ],
-                                                begin: const FractionalOffset(0.0, 0.0),
-                                                end: const FractionalOffset(1.0, 0.0),
-                                                stops: const [0.0, 1.0],
-                                                transform: const GradientRotation(45),
-                                                tileMode: TileMode.clamp
-                                            )
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.center,
-                                    child: InkWell(
-                                      onTap: () {
-
-                                        retrieveAllTransactions(context);
-
-                                      },
-                                      child: const Icon(
-                                          Icons.refresh_rounded,
-                                          size: 31.0,
-                                          color: ColorsResources.primaryColorDark
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
                         ),
                       )
                   ),
@@ -420,38 +254,14 @@ class _BudgetOutputView extends State<BudgetsOutputView> {
     );
   }
 
-  Widget outputItem(BuildContext context, BudgetsData transactionsData) {
+  Widget outputItem(BuildContext context, BudgetsData budgetsData) {
 
-    String transactionTypeMark = BudgetsData.TransactionType_Send;
-    Color transactionTypeColor = ColorsResources.dark;
+    String budgetName = budgetsData.budgetName;
+    String budgetDescription = budgetsData.budgetDescription;
 
-    String transactionCardNumber = transactionsData.sourceCardNumber;
+    String budgetBalance = budgetsData.budgetBalance;
 
-    String transactionName = transactionsData.sourceUsername;
-    String transactionBank = transactionsData.sourceBankName;
-
-    Color transactionColorTag = Color(transactionsData.colorTag);
-
-    switch (transactionsData.transactionType) {
-      case TransactionsData.TransactionType_Send: {
-
-        transactionTypeMark = TransactionsData.TransactionType_Send;
-        transactionTypeColor = Colors.red;
-
-        transactionName = transactionsData.targetUsername;
-
-        break;
-      }
-      case TransactionsData.TransactionType_Receive: {
-
-        transactionTypeMark = TransactionsData.TransactionType_Receive;
-        transactionTypeColor = Colors.green;
-
-        transactionName = transactionsData.sourceUsername;
-
-        break;
-      }
-    }
+    Color budgetColorTag = Color(budgetsData.colorTag);
 
     return Slidable(
       closeOnScroll: true,
@@ -462,7 +272,7 @@ class _BudgetOutputView extends State<BudgetsOutputView> {
             flex: 1,
             onPressed: (BuildContext context) {
 
-              deleteTransaction(context, transactionsData);
+              deleteTransaction(context, budgetsData);
 
             },
             backgroundColor: Colors.transparent,
@@ -475,7 +285,7 @@ class _BudgetOutputView extends State<BudgetsOutputView> {
             flex: 1,
             onPressed: (BuildContext context) {
 
-              editTransaction(context, transactionsData);
+              editTransaction(context, budgetsData);
 
             },
             backgroundColor: Colors.transparent,
@@ -491,13 +301,13 @@ class _BudgetOutputView extends State<BudgetsOutputView> {
         child: PhysicalModel(
           color: ColorsResources.light,
           elevation: 7,
-          shadowColor: transactionColorTag.withOpacity(0.7),
+          shadowColor: budgetColorTag.withOpacity(0.7),
           shape: BoxShape.rectangle,
           borderRadius: const BorderRadius.all(Radius.circular(17)),
           child: InkWell(
             onTap: () {
 
-              editTransaction(context, transactionsData);
+              editTransaction(context, budgetsData);
 
             },
             child: Container(
@@ -547,7 +357,7 @@ class _BudgetOutputView extends State<BudgetsOutputView> {
                                           child: Align(
                                               alignment: Alignment.center,
                                               child: Marquee(
-                                                text: transactionsData.amountMoney,
+                                                text: budgetBalance,
                                                 style: const TextStyle(
                                                   color: ColorsResources.dark,
                                                   fontSize: 31,
@@ -587,7 +397,7 @@ class _BudgetOutputView extends State<BudgetsOutputView> {
                                                     child: Align(
                                                       alignment: Alignment.centerRight,
                                                       child: Text(
-                                                        transactionName,
+                                                        budgetName,
                                                         style: TextStyle(
                                                           color: ColorsResources.dark.withOpacity(0.579),
                                                           fontSize: 13,
@@ -596,99 +406,15 @@ class _BudgetOutputView extends State<BudgetsOutputView> {
                                                     ),
                                                   ),
                                                 ),
-                                                Expanded(
-                                                  flex: 1,
-                                                  child: Directionality(
-                                                    textDirection: TextDirection.rtl,
-                                                    child: Align(
-                                                      alignment: Alignment.centerRight,
-                                                      child: Text(
-                                                        transactionBank,
-                                                        style: TextStyle(
-                                                          color: ColorsResources.dark.withOpacity(0.579),
-                                                          fontSize: 13,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                )
                                               ],
                                             ),
                                           )
                                       )
                                     ],
                                   ),
-                                  Positioned(
-                                    left: 0,
-                                    top: 0,
-                                    child: RotatedBox(
-                                      quarterTurns: 3,
-                                      child: SizedBox(
-                                        height: 27,
-                                        width: 79,
-                                        child: Container(
-                                            decoration: BoxDecoration(
-                                              borderRadius: const BorderRadius.only(
-                                                  topLeft: Radius.circular(0),
-                                                  topRight: Radius.circular(17),
-                                                  bottomLeft: Radius.circular(17),
-                                                  bottomRight: Radius.circular(0)
-                                              ),
-                                              gradient: LinearGradient(
-                                                  colors: [
-                                                    ColorsResources.light,
-                                                    transactionColorTag.withOpacity(0.7),
-                                                  ],
-                                                  begin: const FractionalOffset(0.0, 0.0),
-                                                  end: const FractionalOffset(1.0, 0.0),
-                                                  stops: const [0.0, 1.0],
-                                                  transform: const GradientRotation(-45),
-                                                  tileMode: TileMode.clamp
-                                              ),
-                                            ),
-                                            child: Align(
-                                              alignment: Alignment.center,
-                                              child: Text(
-                                                transactionsData.budgetName,
-                                                maxLines: 1,
-                                                style: const TextStyle(
-                                                  color: ColorsResources.dark,
-                                                  fontSize: 13,
-                                                ),
-                                              ),
-                                            )
-                                        ),
-                                      ),
-                                    ),
-                                  )
                                 ],
                               )
                           ),
-                        ),
-                        Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(0, 7, 7, 0),
-                              child: Align(
-                                alignment: Alignment.center,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: transactionTypeColor.withOpacity(0.3),
-                                  ),
-                                  child: Align(
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      transactionTypeMark,
-                                      style: TextStyle(
-                                          color: transactionTypeColor,
-                                          fontSize: 65
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            )
                         ),
                       ],
                     ),
@@ -708,33 +434,10 @@ class _BudgetOutputView extends State<BudgetsOutputView> {
                               child: Align(
                                 alignment: Alignment.center,
                                 child: Text(
-                                  prepareCreditCard(transactionCardNumber),
+                                  budgetDescription,
                                   style: const TextStyle(
                                       color: ColorsResources.dark,
                                       fontSize: 17
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 7,
-                          child: Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 0, 11, 0),
-                            child: Container(
-                              color: Colors.transparent,
-                              child: Align(
-                                alignment: Alignment.center,
-                                child: Directionality(
-                                  textDirection: TextDirection.rtl,
-                                  child: Text(
-                                    transactionsData.transactionTime,
-                                    style: TextStyle(
-                                        color: ColorsResources.dark.withOpacity(0.59),
-                                        fontSize: 11,
-                                        fontWeight: FontWeight.bold
-                                    ),
                                   ),
                                 ),
                               ),
@@ -754,11 +457,11 @@ class _BudgetOutputView extends State<BudgetsOutputView> {
 
   }
 
-  void deleteTransaction(BuildContext context, BudgetsData transactionsData) async {
+  void deleteTransaction(BuildContext context, BudgetsData budgetsData) async {
 
-    var databaseQueries = TransactionsDatabaseQueries();
+    var databaseQueries = BudgetsDatabaseQueries();
 
-    databaseQueries.queryDeleteTransaction(transactionsData.id, TransactionsDatabaseInputs.databaseTableName);
+    databaseQueries.queryDeleteBudget(budgetsData.id, BudgetsDatabaseInputs.databaseTableName);
 
     retrieveAllTransactions(context);
 
@@ -775,19 +478,20 @@ class _BudgetOutputView extends State<BudgetsOutputView> {
 
   void retrieveAllTransactions(BuildContext context) async {
 
-    if (allTransactionsItems.isNotEmpty) {
+    if (allBudgetsItems.isNotEmpty) {
 
-      allTransactionsItems.clear();
+      allBudgetsItems.clear();
 
     }
 
     List<Widget> preparedAllTransactionsItem = [];
 
-    var databaseQueries = TransactionsDatabaseQueries();
+    var databaseQueries = BudgetsDatabaseQueries();
 
-    allTransactions = await databaseQueries.getAllTransactions(TransactionsDatabaseInputs.databaseTableName);
+    allBudgets = await databaseQueries.getAllBudgets(BudgetsDatabaseInputs.databaseTableName);
 
-    for (var element in allTransactions) {
+    for (var element in allBudgets) {
+      print(">>> >> > ${element.budgetBalance}");
 
       preparedAllTransactionsItem.add(outputItem(context, element));
 
@@ -797,26 +501,24 @@ class _BudgetOutputView extends State<BudgetsOutputView> {
 
     setState(() {
 
-      allTransactionsItems = preparedAllTransactionsItem;
+      allBudgetsItems = preparedAllTransactionsItem;
 
     });
 
   }
 
-  void sortTransactionsByTime(BuildContext context,
-      List<BudgetsData> inputTransactionsList) {
+  void sortBudgetsByBalance(BuildContext context, List<BudgetsData> inputBudgetsList) {
 
-    if (allTransactionsItems.isNotEmpty) {
+    if (allBudgetsItems.isNotEmpty) {
 
-      allTransactionsItems.clear();
+      allBudgetsItems.clear();
 
     }
-
-    inputTransactionsList.sort((a, b) => (a.transactionTime).compareTo(b.transactionTime));
+    inputBudgetsList.sort((a, b) => (a.budgetBalance).compareTo(b.budgetBalance));
 
     List<Widget> preparedAllTransactionsItem = [];
 
-    for (var element in inputTransactionsList) {
+    for (var element in inputBudgetsList) {
 
       preparedAllTransactionsItem.add(outputItem(context, element));
 
@@ -824,33 +526,7 @@ class _BudgetOutputView extends State<BudgetsOutputView> {
 
     setState(() {
 
-      allTransactionsItems = preparedAllTransactionsItem;
-
-    });
-
-  }
-
-  void sortTransactionsByMoneyAmount(BuildContext context,
-      List<BudgetsData> inputTransactionsList) {
-
-    if (allTransactionsItems.isNotEmpty) {
-
-      allTransactionsItems.clear();
-
-    }
-    inputTransactionsList.sort((a, b) => (a.amountMoney).compareTo(b.amountMoney));
-
-    List<Widget> preparedAllTransactionsItem = [];
-
-    for (var element in inputTransactionsList) {
-
-      preparedAllTransactionsItem.add(outputItem(context, element));
-
-    }
-
-    setState(() {
-
-      allTransactionsItems = preparedAllTransactionsItem;
+      allBudgetsItems = preparedAllTransactionsItem;
 
     });
 
@@ -859,7 +535,7 @@ class _BudgetOutputView extends State<BudgetsOutputView> {
   void filterByColorTag(BuildContext context,
       List<BudgetsData> inputTransactionsList, Color colorQuery) {
 
-    List<TransactionsData> searchResult = [];
+    List<BudgetsData> searchResult = [];
 
     for (var element in inputTransactionsList) {
 
@@ -879,7 +555,7 @@ class _BudgetOutputView extends State<BudgetsOutputView> {
 
       setState(() {
 
-        allTransactionsItems = preparedAllTransactionsItem;
+        allBudgetsItems = preparedAllTransactionsItem;
 
       });
 
@@ -890,18 +566,13 @@ class _BudgetOutputView extends State<BudgetsOutputView> {
   void searchTransactions(BuildContext context,
       List<BudgetsData> inputTransactionsList, String searchQuery) {
 
-    List<TransactionsData> searchResult = [];
+    List<BudgetsData> searchResult = [];
 
     for (var element in inputTransactionsList) {
 
-      if (element.transactionTime.contains(searchQuery) ||
-          element.sourceUsername.contains(searchQuery) ||
-          element.sourceBankName.contains(searchQuery) ||
-          element.sourceCardNumber.contains(searchQuery) ||
-          element.targetUsername.contains(searchQuery) ||
-          element.targetBankName.contains(searchQuery) ||
-          element.targetCardNumber.contains(searchQuery) ||
-          element.budgetName.contains(searchQuery)) {
+      if (element.budgetName.contains(searchQuery) ||
+          element.budgetDescription.contains(searchQuery)
+      ) {
 
         searchResult.add(element);
 
@@ -917,7 +588,7 @@ class _BudgetOutputView extends State<BudgetsOutputView> {
 
       setState(() {
 
-        allTransactionsItems = preparedAllTransactionsItem;
+        allBudgetsItems = preparedAllTransactionsItem;
 
       });
 

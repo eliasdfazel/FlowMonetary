@@ -513,7 +513,7 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
                               budgetName: controllerBudgetName.text,
                               budgetDescription: controllerBudgetDescription.text,
 
-                              budgetBalance: controllerBudgetName.text,
+                              budgetBalance: controllerBudgetBalance.text,
 
                               colorTag: colorSelectorView.selectedColor.value
                             );
