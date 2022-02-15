@@ -183,7 +183,7 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
         importantFeature: false,
         featuresTitle: StringsResources.featureBudgetManagementsTitle,
         featuresDescription: StringsResources.featureBudgetManagementsDescription,
-        featureViewToSubmitData: const BudgetsView(),
+        featureViewToSubmitData: BudgetsView(),
         featureToPresentData: null
     ));
     allFeaturesStructure.add(FeaturesStructure(

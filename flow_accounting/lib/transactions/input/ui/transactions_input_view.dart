@@ -165,6 +165,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                       autocorrect: true,
                                       autofocus: false,
                                       keyboardType: TextInputType.number,
+                                      textInputAction: TextInputAction.next,
                                       decoration: const InputDecoration(
                                         alignLabelWithHint: true,
                                         border: OutlineInputBorder(
@@ -418,6 +419,8 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                           autofocus: false,
                                           maxLines: 1,
                                           cursorColor: ColorsResources.primaryColor,
+                                          keyboardType: TextInputType.name,
+                                          textInputAction: TextInputAction.next,
                                           decoration: const InputDecoration(
                                             alignLabelWithHint: true,
                                             border: OutlineInputBorder(
@@ -518,6 +521,8 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                           autofocus: false,
                                           maxLines: 1,
                                           cursorColor: ColorsResources.primaryColor,
+                                          keyboardType: TextInputType.name,
+                                          textInputAction: TextInputAction.next,
                                           decoration: const InputDecoration(
                                             alignLabelWithHint: true,
                                             border: OutlineInputBorder(
@@ -631,6 +636,8 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                           autofocus: false,
                                           maxLines: 1,
                                           cursorColor: ColorsResources.primaryColor,
+                                          keyboardType: TextInputType.name,
+                                          textInputAction: TextInputAction.next,
                                           decoration: const InputDecoration(
                                             alignLabelWithHint: true,
                                             border: OutlineInputBorder(
@@ -731,6 +738,8 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                           autofocus: false,
                                           maxLines: 1,
                                           cursorColor: ColorsResources.primaryColor,
+                                          keyboardType: TextInputType.name,
+                                          textInputAction: TextInputAction.next,
                                           decoration: const InputDecoration(
                                             alignLabelWithHint: true,
                                             border: OutlineInputBorder(
@@ -830,7 +839,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                         },
                                         onSuggestionSelected: (suggestion) {
 
-                                          controllerTransactionSourceCard.text = suggestion.toString();
+                                          controllerTransactionSourceCard.text = suggestion.cardNumber.toString();
 
                                         },
                                         suggestionsBoxDecoration: SuggestionsBoxDecoration(
@@ -844,6 +853,8 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                           autofocus: false,
                                           maxLines: 1,
                                           cursorColor: ColorsResources.primaryColor,
+                                          keyboardType: TextInputType.number,
+                                          textInputAction: TextInputAction.next,
                                           decoration: const InputDecoration(
                                             alignLabelWithHint: true,
                                             border: OutlineInputBorder(
@@ -943,7 +954,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                         },
                                         onSuggestionSelected: (suggestion) {
 
-                                          controllerTransactionTargetCard.text = suggestion.toString();
+                                          controllerTransactionTargetCard.text = suggestion.cardNumber.toString();
 
                                         },
                                         suggestionsBoxDecoration: SuggestionsBoxDecoration(
@@ -957,6 +968,8 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                           autofocus: false,
                                           maxLines: 1,
                                           cursorColor: ColorsResources.primaryColor,
+                                          keyboardType: TextInputType.number,
+                                          textInputAction: TextInputAction.next,
                                           decoration: const InputDecoration(
                                             alignLabelWithHint: true,
                                             border: OutlineInputBorder(
@@ -1071,6 +1084,8 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                           autofocus: false,
                                           maxLines: 1,
                                           cursorColor: ColorsResources.primaryColor,
+                                          keyboardType: TextInputType.text,
+                                          textInputAction: TextInputAction.done,
                                           decoration: const InputDecoration(
                                             alignLabelWithHint: true,
                                             border: OutlineInputBorder(

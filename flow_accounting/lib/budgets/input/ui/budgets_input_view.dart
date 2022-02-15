@@ -18,7 +18,15 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class BudgetsView extends StatefulWidget {
-  const BudgetsView({Key? key}) : super(key: key);
+
+  BudgetsData? budgetsData = BudgetsData(
+      id: 0,
+      budgetName: "",
+      budgetDescription: "",
+      budgetBalance: "0"
+  );
+
+  BudgetsView({Key? key, this.budgetsData}) : super(key: key);
 
   @override
   _BudgetsViewState createState() => _BudgetsViewState();
@@ -37,6 +45,12 @@ class _BudgetsViewState extends State<BudgetsView> {
 
   @override
   void initState(){
+
+    controllerBudgetName.text = widget.budgetsData?.budgetName == null ? "" : (widget.budgetsData?.budgetName)!;
+    controllerBudgetDescription.text = widget.budgetsData?.budgetDescription == null ? "" : (widget.budgetsData?.budgetDescription)!;
+
+    controllerBudgetBalance.text = widget.budgetsData?.budgetBalance == null ? "0" : (widget.budgetsData?.budgetBalance)!;
+
     super.initState();
   }
 
@@ -92,7 +106,7 @@ class _BudgetsViewState extends State<BudgetsView> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(13, 13, 13, 0),
                         child:  Text(
-                          StringsResources.featureTransactionsTitle,
+                          StringsResources.featureBudgetManagementsTitle,
                           textDirection: TextDirection.rtl,
                           style: TextStyle(
                             fontSize: 23,
@@ -110,7 +124,7 @@ class _BudgetsViewState extends State<BudgetsView> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(13, 13, 13, 19),
                         child: Text(
-                          StringsResources.featureTransactionsDescription,
+                          StringsResources.featureBudgetManagementsDescription,
                           textDirection: TextDirection.rtl,
                           style: TextStyle(
                             fontSize: 15,
@@ -139,14 +153,15 @@ class _BudgetsViewState extends State<BudgetsView> {
                                     textDirection: TextDirection.rtl,
                                     child: TextField(
                                       controller: controllerBudgetName,
-                                      textAlign: TextAlign.center,
+                                      textAlign: TextAlign.right,
                                       textDirection: TextDirection.ltr,
                                       textAlignVertical: TextAlignVertical.bottom,
                                       maxLines: 1,
                                       cursorColor: ColorsResources.primaryColor,
                                       autocorrect: true,
                                       autofocus: false,
-                                      keyboardType: TextInputType.number,
+                                      keyboardType: TextInputType.text,
+                                      textInputAction: TextInputAction.next,
                                       decoration: const InputDecoration(
                                         alignLabelWithHint: true,
                                         border: OutlineInputBorder(
@@ -191,12 +206,12 @@ class _BudgetsViewState extends State<BudgetsView> {
                                         ),
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.transactionAmount,
+                                        labelText: StringsResources.budgetNameText,
                                         labelStyle: TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.transactionAmountHint,
+                                        hintText: StringsResources.budgetNameTextHint,
                                         hintStyle: TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
@@ -227,14 +242,15 @@ class _BudgetsViewState extends State<BudgetsView> {
                                     textDirection: TextDirection.rtl,
                                     child: TextField(
                                       controller: controllerBudgetDescription,
-                                      textAlign: TextAlign.center,
+                                      textAlign: TextAlign.right,
                                       textDirection: TextDirection.ltr,
                                       textAlignVertical: TextAlignVertical.bottom,
                                       maxLines: 1,
                                       cursorColor: ColorsResources.primaryColor,
                                       autocorrect: true,
                                       autofocus: false,
-                                      keyboardType: TextInputType.number,
+                                      keyboardType: TextInputType.text,
+                                      textInputAction: TextInputAction.next,
                                       decoration: const InputDecoration(
                                         alignLabelWithHint: true,
                                         border: OutlineInputBorder(
@@ -279,12 +295,12 @@ class _BudgetsViewState extends State<BudgetsView> {
                                         ),
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.transactionAmount,
+                                        labelText: StringsResources.budgetDescriptionText,
                                         labelStyle: TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.transactionAmountHint,
+                                        hintText: StringsResources.budgetDescriptionTextHint,
                                         hintStyle: TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
@@ -323,6 +339,7 @@ class _BudgetsViewState extends State<BudgetsView> {
                                       autocorrect: true,
                                       autofocus: false,
                                       keyboardType: TextInputType.number,
+                                      textInputAction: TextInputAction.done,
                                       decoration: const InputDecoration(
                                         alignLabelWithHint: true,
                                         border: OutlineInputBorder(
@@ -367,12 +384,12 @@ class _BudgetsViewState extends State<BudgetsView> {
                                         ),
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.transactionAmount,
+                                        labelText: StringsResources.budgetInitialText,
                                         labelStyle: TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.transactionAmountHint,
+                                        hintText: StringsResources.budgetInitialTextHint,
                                         hintStyle: TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0

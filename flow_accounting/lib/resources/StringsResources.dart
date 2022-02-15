@@ -68,6 +68,18 @@ class StringsResources {
   static const String transactionTypeReceive = "دریافت";
   static const String transactionTypeSend = "پرداخت";
 
+  static const String budgetNameText = "نام بودجه";
+  static const String budgetNameTextHint = "نام مورد نظر برای این بوجه را "
+      "بنویسید";
+
+  static const String budgetDescriptionText = "توضیحات بودجه";
+  static const String budgetDescriptionTextHint = "این بودجه برای چه منظوری "
+      "تایین شده است؟";
+
+  static const String budgetInitialText = "مبلغ بودچه";
+  static const String budgetInitialTextHint = "مبلغ اولیه که در نظر گرفته اید"
+      " را وارد کنید";
+
   static const String sortHint = "مرتب سازی";
   static const String sortTimeNew = "بر اساس: زمان جدید";
   static const String sortTimeOld = "بر اساس: زمان گذشته";
@@ -110,7 +122,7 @@ class StringsResources {
   static const String featureCreditorsDescription = "شما میتوانید تمام اطلاعات مرتبط با فاکتور خرید خود را اعم از مبلغ بستانکاری / اطلاعات کل حساب و ... را کادر زیر در ردیف/ستون خواسته شده وارد کنید.";
 
   static const String featureBudgetManagementsTitle = "مدیریت بودجه";
-  static const String featureBudgetManagementsDescription = "شما میتوانید تمام اطلاعات مرتبط با مدیریت بودجه بندی خود را اعم از ثبت تاریخ دقیق کارها/ بررسی دقیق هزینه ها و ... را کادر زیر در ردیف/ستون خواسته شده وارد کنید.";
+  static const String featureBudgetManagementsDescription = "شما میتوانید تمام اطلاعات مرتبط با مدیریت بودجه بندی خود را  در کادرهای زیر وارد کنید.";
 
   static const String featureLoansTitle = "وام";
   static const String featureLoansDescription = "شما میتوانید تمام اطلاعات مرتبط با وام گرفته شده خود را اعم از مبلغ وام/ تاریخ و ... را کادر زیر در ردیف/ستون خواسته شده وارد کنید.";
