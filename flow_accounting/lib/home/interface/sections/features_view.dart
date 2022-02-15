@@ -238,10 +238,10 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
               allFeaturesStructure[index + 1].featuresTitle,
               allFeaturesStructure[index].featuresDescription,
               allFeaturesStructure[index + 1].featuresDescription,
-              null,
-              null,
-              null,
-              null,
+              allFeaturesStructure[index].featureViewToSubmitData,
+              allFeaturesStructure[index + 1].featureViewToSubmitData,
+              allFeaturesStructure[index].featureToPresentData,
+              allFeaturesStructure[index + 1].featureToPresentData,
               context
           ));
 
