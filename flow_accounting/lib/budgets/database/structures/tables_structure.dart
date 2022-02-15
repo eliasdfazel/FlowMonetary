@@ -8,6 +8,8 @@
  * https://opensource.org/licenses/MIT
  */
 
+import 'package:flow_accounting/resources/ColorsResources.dart';
+
 class BudgetsData {
 
   final int id;
@@ -17,6 +19,8 @@ class BudgetsData {
 
   final String budgetBalance;
 
+  int colorTag = ColorsResources.dark.value;
+
   BudgetsData({
     required this.id,
 
@@ -24,6 +28,8 @@ class BudgetsData {
     required this.budgetDescription,
 
     required this.budgetBalance,
+
+    required this.colorTag,
   });
 
   Map<String, dynamic> toMap() {
@@ -34,6 +40,8 @@ class BudgetsData {
       'budgetDescription': budgetDescription,
 
       'budgetBalance': budgetBalance,
+
+      'colorTag': colorTag,
     };
   }
 
@@ -46,6 +54,8 @@ class BudgetsData {
       'budgetDescription: $budgetDescription,'
 
       'budgetBalance: $budgetBalance,'
+
+      'colorTag: $colorTag,'
     '}';
   }
 }

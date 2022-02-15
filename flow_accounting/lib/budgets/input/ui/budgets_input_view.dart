@@ -499,10 +499,12 @@ class _BudgetsViewState extends State<BudgetsView> {
                             BudgetsData transactionData = BudgetsData(
                               id: timeNow,
 
-                              budgetName: "",
-                              budgetDescription: "",
+                              budgetName: controllerBudgetName.text,
+                              budgetDescription: controllerBudgetDescription.text,
 
-                              budgetBalance: ""
+                              budgetBalance: controllerBudgetName.text,
+
+                              colorTag: colorSelectorView.selectedColor.value
                             );
 
                             databaseInputs.insertTransactionData(transactionData, BudgetsDatabaseInputs.databaseTableName);
