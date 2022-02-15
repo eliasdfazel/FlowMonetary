@@ -76,7 +76,7 @@ class StringsResources {
   static const String budgetDescriptionTextHint = "این بودجه برای چه منظوری "
       "تایین شده است؟";
 
-  static const String budgetInitialText = "مبلغ بودچه";
+  static const String budgetInitialText = "مبلغ بودجه";
   static const String budgetInitialTextHint = "مبلغ اولیه که در نظر گرفته اید"
       " را وارد کنید";
 
