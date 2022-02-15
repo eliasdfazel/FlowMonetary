@@ -491,7 +491,6 @@ class _BudgetOutputView extends State<BudgetsOutputView> {
     allBudgets = await databaseQueries.getAllBudgets(BudgetsDatabaseInputs.databaseTableName);
 
     for (var element in allBudgets) {
-      print(">>> >> > ${element.budgetBalance}");
 
       preparedAllTransactionsItem.add(outputItem(context, element));
 
