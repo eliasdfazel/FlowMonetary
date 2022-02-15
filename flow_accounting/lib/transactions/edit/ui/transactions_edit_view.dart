@@ -449,6 +449,8 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                           autofocus: false,
                                           maxLines: 1,
                                           cursorColor: ColorsResources.primaryColor,
+                                          keyboardType: TextInputType.name,
+                                          textInputAction: TextInputAction.next,
                                           decoration: const InputDecoration(
                                             alignLabelWithHint: true,
                                             border: OutlineInputBorder(
@@ -549,6 +551,8 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                           autofocus: false,
                                           maxLines: 1,
                                           cursorColor: ColorsResources.primaryColor,
+                                          keyboardType: TextInputType.name,
+                                          textInputAction: TextInputAction.next,
                                           decoration: const InputDecoration(
                                             alignLabelWithHint: true,
                                             border: OutlineInputBorder(
@@ -662,6 +666,8 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                           autofocus: false,
                                           maxLines: 1,
                                           cursorColor: ColorsResources.primaryColor,
+                                          keyboardType: TextInputType.name,
+                                          textInputAction: TextInputAction.next,
                                           decoration: const InputDecoration(
                                             alignLabelWithHint: true,
                                             border: OutlineInputBorder(
@@ -762,6 +768,8 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                           autofocus: false,
                                           maxLines: 1,
                                           cursorColor: ColorsResources.primaryColor,
+                                          keyboardType: TextInputType.name,
+                                          textInputAction: TextInputAction.next,
                                           decoration: const InputDecoration(
                                             alignLabelWithHint: true,
                                             border: OutlineInputBorder(
@@ -861,7 +869,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                         },
                                         onSuggestionSelected: (suggestion) {
 
-                                          controllerTransactionSourceCard.text = suggestion.toString();
+                                          controllerTransactionSourceCard.text = suggestion.cardNumber.toString();
 
                                         },
                                         suggestionsBoxDecoration: SuggestionsBoxDecoration(
@@ -875,6 +883,8 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                           autofocus: false,
                                           maxLines: 1,
                                           cursorColor: ColorsResources.primaryColor,
+                                          keyboardType: TextInputType.number,
+                                          textInputAction: TextInputAction.next,
                                           decoration: const InputDecoration(
                                             alignLabelWithHint: true,
                                             border: OutlineInputBorder(
@@ -974,7 +984,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                         },
                                         onSuggestionSelected: (suggestion) {
 
-                                          controllerTransactionTargetCard.text = suggestion.toString();
+                                          controllerTransactionTargetCard.text = suggestion.cardNumber.toString();
 
                                         },
                                         suggestionsBoxDecoration: SuggestionsBoxDecoration(
@@ -988,6 +998,8 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                           autofocus: false,
                                           maxLines: 1,
                                           cursorColor: ColorsResources.primaryColor,
+                                          keyboardType: TextInputType.number,
+                                          textInputAction: TextInputAction.next,
                                           decoration: const InputDecoration(
                                             alignLabelWithHint: true,
                                             border: OutlineInputBorder(
@@ -1102,6 +1114,8 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                           autofocus: false,
                                           maxLines: 1,
                                           cursorColor: ColorsResources.primaryColor,
+                                          keyboardType: TextInputType.text,
+                                          textInputAction: TextInputAction.done,
                                           decoration: const InputDecoration(
                                             alignLabelWithHint: true,
                                             border: OutlineInputBorder(
