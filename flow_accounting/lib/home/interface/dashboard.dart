@@ -38,7 +38,6 @@ class DashboardView extends StatefulWidget {
 }
 class _DashboardView extends State<DashboardView> {
 
-
   List<TransactionsData> someLatestTransactions = [];
 
   List<CreditCardsData> allCreditCards = [];
