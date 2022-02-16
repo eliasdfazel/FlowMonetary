@@ -13,13 +13,17 @@ import 'dart:math';
 import 'package:blur/blur.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flow_accounting/credit_cards/database/io/inputs.dart';
+import 'package:flow_accounting/credit_cards/database/io/queries.dart';
 import 'package:flow_accounting/credit_cards/database/structures/tables_structure.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
+import 'package:flow_accounting/transactions/output/ui/transactions_output_view.dart';
 import 'package:flow_accounting/utils/colors/color_extractor.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
 import 'package:flow_accounting/utils/extensions/BankLogos.dart';
+import 'package:flow_accounting/utils/navigations/navigations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -202,7 +206,48 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                           ),
                         ),
                       ),
-                      creditCardWidgetItem(),
+                      Slidable(
+                        closeOnScroll: true,
+                        endActionPane: ActionPane(
+                          motion: const DrawerMotion(),
+                          children: [
+                            SlidableAction(
+                              flex: 3,
+                              onPressed: (BuildContext context) {
+
+                                deleteCreditCards(context, widget.creditCardsData);
+
+                              },
+                              backgroundColor: Colors.transparent,
+                              foregroundColor: ColorsResources.gameGeeksEmpire,
+                              icon: Icons.delete_rounded,
+                              label: StringsResources.deleteText,
+                              autoClose: true,
+                            ),
+                            SlidableAction(
+                              flex: 7,
+                              onPressed: (BuildContext context) {
+
+                                Future.delayed(const Duration(milliseconds: 333), () {
+
+                                  NavigationProcess().goTo(context, TransactionsOutputView(initialSearchQuery: widget.creditCardsData.cardNumber));
+
+                                });
+
+                              },
+                              backgroundColor: Colors.transparent,
+                              foregroundColor: ColorsResources.applicationGeeksEmpire,
+                              icon: Icons.edit_rounded,
+                              label: StringsResources.transactionAll,
+                              autoClose: true,
+                            ),
+                          ],
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 13, 0, 33),
+                          child: creditCardWidgetItem(),
+                        ),
+                      ),
                       const Divider(
                         height: 19,
                         color: Colors.transparent,
@@ -1057,7 +1102,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
       padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
       child: SizedBox(
           height: 233,
-          width: 291,
+          width: 391,
           child: GestureDetector(
             onTap: () {
 
@@ -1119,6 +1164,20 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
       });
 
     }
+
+  }
+
+  void deleteCreditCards(BuildContext context, CreditCardsData creditCardsData) async {
+
+    CreditCardsDatabaseQueries creditCardsDatabaseQueries = CreditCardsDatabaseQueries();
+
+    creditCardsDatabaseQueries.queryDeleteCreditCard(creditCardsData.id, CreditCardsDatabaseInputs.databaseTableName);
+
+    Future.delayed(const Duration(milliseconds: 333), () {
+
+      Navigator.pop(context);
+
+    });
 
   }
 
