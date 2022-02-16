@@ -36,9 +36,8 @@ class DashboardView extends StatefulWidget {
   @override
   State<DashboardView> createState() => _DashboardView();
 }
-class _DashboardView extends State<DashboardView> with RouteAware {
+class _DashboardView extends State<DashboardView> {
 
-  final RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
 
   List<TransactionsData> someLatestTransactions = [];
 
@@ -62,36 +61,8 @@ class _DashboardView extends State<DashboardView> with RouteAware {
   }
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    routeObserver.subscribe(this, ModalRoute.of(context) as PageRoute);
-  }
-
-  @override
   void dispose() {
-    routeObserver.unsubscribe(this);
     super.dispose();
-  }
-  @override
-  // Called when the current route has been pushed.
-  void didPush() {
-    print('didPush1 ');
-  }
-
-  @override
-  // Called when the top route has been popped off, and the current route shows up.
-  void didPopNext() {
-    print('didPopNext1');
-  }
-
-  @override
-  void didPop() {
-    print('didPop1');
-  }
-
-  @override
-  void didPushNext() {
-    print('didPushNext1');
   }
 
   @override
@@ -99,7 +70,6 @@ class _DashboardView extends State<DashboardView> with RouteAware {
 
     return SafeArea (
         child: MaterialApp (
-          navigatorObservers: [routeObserver],
           debugShowCheckedModeBanner: false,
           title: StringsResources.applicationName,
           color: ColorsResources.black,

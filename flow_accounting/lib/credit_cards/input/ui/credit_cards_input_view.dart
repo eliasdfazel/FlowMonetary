@@ -15,6 +15,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flow_accounting/credit_cards/database/io/inputs.dart';
 import 'package:flow_accounting/credit_cards/database/io/queries.dart';
 import 'package:flow_accounting/credit_cards/database/structures/tables_structure.dart';
+import 'package:flow_accounting/home/interface/dashboard.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/output/ui/transactions_output_view.dart';
@@ -63,9 +64,7 @@ class CreditCardsInputView extends StatefulWidget {
   @override
   _CreditCardsInputViewState createState() => _CreditCardsInputViewState();
 }
-class _CreditCardsInputViewState extends State<CreditCardsInputView> with TickerProviderStateMixin, RouteAware {
-
-  final RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
+class _CreditCardsInputViewState extends State<CreditCardsInputView> with TickerProviderStateMixin {
 
   FocusNode focusNodeCvv = FocusNode();
 
@@ -122,36 +121,8 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
   }
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    routeObserver.subscribe(this, ModalRoute.of(context) as PageRoute);
-  }
-
-  @override
   void dispose() {
-    routeObserver.unsubscribe(this);
     super.dispose();
-  }
-  @override
-  // Called when the current route has been pushed.
-  void didPush() {
-    print('didPush2');
-  }
-
-  @override
-  // Called when the top route has been popped off, and the current route shows up.
-  void didPopNext() {
-    print('didPopNext2');
-  }
-
-  @override
-  void didPop() {
-    print('didPop2');
-  }
-
-  @override
-  void didPushNext() {
-    print('didPushNext2');
   }
 
   @override
@@ -161,7 +132,6 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
     colorSelectorView.inputColor = (widget.creditCardsData.colorTag == Colors.transparent.value) ? ColorsResources.primaryColor : Color(widget.creditCardsData.colorTag);
 
     return MaterialApp (
-      navigatorObservers: [routeObserver],
       debugShowCheckedModeBanner: false,
       color: ColorsResources.black,
       theme: ThemeData(
