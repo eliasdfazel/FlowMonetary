@@ -11,6 +11,7 @@
 import 'dart:math';
 
 import 'package:blur/blur.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flow_accounting/credit_cards/database/io/inputs.dart';
 import 'package:flow_accounting/credit_cards/database/structures/tables_structure.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
@@ -35,11 +36,21 @@ TextEditingController creditCardBalanceController = TextEditingController();
 
 TextEditingController creditCardCvvController = TextEditingController();
 
-Image? bankLogoImageView = Image.network(
-  generateBankLogoUrl(""),
+int creditCardColorTag = ColorsResources.white.value;
+
+ImageProvider? bankLogoImageProvider;
+
+CachedNetworkImage? bankLogoImageView = CachedNetworkImage(
+  imageUrl: generateBankLogoUrl(""),
   height: 51,
   width: 51,
   fit: BoxFit.contain,
+  imageBuilder: (context, imageProvider) {
+
+    bankLogoImageProvider = imageProvider;
+
+    return Spacer(flex: 0);
+  },
 );
 
 Color dominantColorForFrontLayout = ColorsResources.dark;
@@ -76,6 +87,12 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
     creditCardBalanceController.text = widget.creditCardsData.cardBalance.isEmpty ? "0" : widget.creditCardsData.cardBalance;
 
     creditCardCvvController.text = widget.creditCardsData.cvv.isEmpty ? "000" : widget.creditCardsData.cvv;
+
+    creditCardColorTag = widget.creditCardsData.colorTag;
+
+    bankLogoImageView = CachedNetworkImage(
+        imageUrl: generateBankLogoUrl(widget.creditCardsData.bankName)
+    );
 
     super.initState();
 
@@ -222,11 +239,13 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
 
                                           setState(() {
 
-                                            bankLogoImageView = Image.network(generateBankLogoUrl(suggestion.toString()));
+                                            bankLogoImageView = CachedNetworkImage(
+                                                imageUrl: generateBankLogoUrl(suggestion.toString())
+                                            );
 
                                           });
 
-                                          extractBankDominantColor(bankLogoImageView?.image);
+                                          extractBankDominantColor(bankLogoImageProvider);
 
                                           creditCardBankNameController.text = suggestion.toString();
 
@@ -1248,10 +1267,33 @@ class _CreditCardFrontLayout extends State<CreditCardFrontLayout> {
                               child: Padding(
                                 padding: const EdgeInsets.fromLTRB(0, 0, 7, 0),
                                 child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(10.0),
+                                  borderRadius: BorderRadius.circular(13.0),
                                   child: Container(
-                                    color: ColorsResources.white,
-                                    child: bankLogoImageView,
+                                    decoration: BoxDecoration(
+                                      color: ColorsResources.white,
+                                      border: Border(
+                                          top: BorderSide(
+                                            color: Color(creditCardColorTag),
+                                            width: 1.7,
+                                          ),
+                                          bottom: BorderSide(
+                                            color: Color(creditCardColorTag),
+                                            width: 1.7,
+                                          ),
+                                          left: BorderSide(
+                                            color: Color(creditCardColorTag),
+                                            width: 1.7,
+                                          ),
+                                          right: BorderSide(
+                                            color: Color(creditCardColorTag),
+                                            width: 1.7,
+                                          )
+                                      ),
+                                    ),
+                                    child: Align(
+                                      alignment: AlignmentDirectional.center,
+                                      child: bankLogoImageView,
+                                    ),
                                   ),
                                 ),
                               )
@@ -1531,9 +1573,11 @@ class _CreditCardBackLayout extends State<CreditCardBackLayout> {
                               flex: 17,
                               child: Container(
                                 color: ColorsResources.dark,
-                                child: Image.network(
-                                  "https://www.crushpixel.com/big-static15/preview4/natural-dark-gray-slate-stone-2112567.jpg",
+                                child: CachedNetworkImage(
+                                  imageUrl: "https://myhousestore.ir/wp-content/uploads/2022/02/GraphitTexture.jpg",
                                   fit: BoxFit.cover,
+                                  color: Color(creditCardColorTag),
+                                  colorBlendMode: BlendMode.overlay,
                                 ),
                               )
                           ),
