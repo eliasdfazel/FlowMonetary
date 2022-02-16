@@ -17,8 +17,8 @@ import 'package:sqflite/sqflite.dart';
 
 class BudgetsDatabaseQueries {
 
-  Future<List<BudgetsData>> getAllBudgets(String? tableName, {String
-  usernameId = "Unknown"}) async {
+  Future<List<BudgetsData>> getAllBudgets(String? tableName,
+      {String usernameId = "Unknown"}) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), BudgetsDatabaseInputs.budgetsDatabase),
@@ -46,6 +46,28 @@ class BudgetsDatabaseQueries {
 
   }
 
+  Future<Map<String, Object?>> querySpecificBudgetsByName(
+      String budgetName,
+      String? tableName, {String usernameId = "Unknown"}) async {
+
+    final database = openDatabase(
+      join(await getDatabasesPath(), BudgetsDatabaseInputs.budgetsDatabase),
+    );
+
+    final databaseInstance = await database;
+
+    var tableNameQuery = (tableName != null) ? tableName : BudgetsDatabaseInputs.databaseTableName;
+    tableNameQuery = "${usernameId}_${tableNameQuery}";
+
+    var databaseContents = await databaseInstance.query(
+      tableNameQuery,
+      where: 'budgetName = ?',
+      whereArgs: [budgetName],
+    );
+
+    return databaseContents[0];
+  }
+
   Future<int> queryDeleteBudget(int id,
       String? tableName, {String usernameId = "Unknown"}) async {
 
@@ -65,6 +87,18 @@ class BudgetsDatabaseQueries {
     );
 
     return queryResult;
+  }
+
+  Future<BudgetsData> extractBudgetsQuery(
+      Map<String, Object?> inputData) async {
+
+    return BudgetsData(
+      id: inputData["id"] as int,
+      budgetName: inputData['budgetName'].toString(),
+      budgetDescription: inputData['budgetDescription'].toString(),
+      budgetBalance: inputData['budgetBalance'].toString(),
+      colorTag: int.parse(inputData['colorTag'].toString()),
+    );
   }
 
 }

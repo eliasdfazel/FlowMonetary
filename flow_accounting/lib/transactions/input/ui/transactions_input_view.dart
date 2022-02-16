@@ -1483,8 +1483,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
       var creditCardsDatabaseQueries = CreditCardsDatabaseQueries();
 
       var sourceCreditCardData = await creditCardsDatabaseQueries.extractTransactionsQuery(
-          await creditCardsDatabaseQueries
-              .querySpecificCreditCardByCardNumber(controllerTransactionTargetCard.text, CreditCardsDatabaseInputs.databaseTableName)
+          await creditCardsDatabaseQueries.querySpecificCreditCardByCardNumber(controllerTransactionTargetCard.text, CreditCardsDatabaseInputs.databaseTableName)
       );
 
       var newCardBalance = (int.parse(sourceCreditCardData.cardBalance) + int.parse(transactionsData.amountMoney)).toString();
@@ -1511,7 +1510,53 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
   Future processBudgetBalance(TransactionsData transactionsData) async {
 
+    if (transactionsData.transactionType == TransactionsData.TransactionType_Send) {
 
+      var budgetsDatabaseQueries = BudgetsDatabaseQueries();
+
+      var budgetData = await budgetsDatabaseQueries.extractBudgetsQuery(
+          await budgetsDatabaseQueries.querySpecificBudgetsByName(controllerTransactionSourceCard.text, CreditCardsDatabaseInputs.databaseTableName)
+      );
+
+      var newBudgetBalance = (int.parse(budgetData.budgetBalance) - int.parse(transactionsData.amountMoney)).toString();
+
+      var budgetsDatabaseInputs = BudgetsDatabaseInputs();
+
+      budgetsDatabaseInputs.updateBudgetData(
+          BudgetsData(
+              id: budgetData.id,
+              budgetName: budgetData.budgetName,
+              budgetDescription: budgetData.budgetDescription,
+              budgetBalance: newBudgetBalance,
+              colorTag: budgetData.colorTag
+          ),
+          CreditCardsDatabaseInputs.databaseTableName
+      );
+
+    } else if (transactionType == TransactionsData.TransactionType_Receive) {
+
+      var budgetsDatabaseQueries = BudgetsDatabaseQueries();
+
+      var budgetData = await budgetsDatabaseQueries.extractBudgetsQuery(
+          await budgetsDatabaseQueries.querySpecificBudgetsByName(controllerTransactionSourceCard.text, CreditCardsDatabaseInputs.databaseTableName)
+      );
+
+      var newBudgetBalance = (int.parse(budgetData.budgetBalance) + int.parse(transactionsData.amountMoney)).toString();
+
+      var budgetsDatabaseInputs = BudgetsDatabaseInputs();
+
+      budgetsDatabaseInputs.updateBudgetData(
+          BudgetsData(
+              id: budgetData.id,
+              budgetName: budgetData.budgetName,
+              budgetDescription: budgetData.budgetDescription,
+              budgetBalance: newBudgetBalance,
+              colorTag: budgetData.colorTag
+          ),
+          CreditCardsDatabaseInputs.databaseTableName
+      );
+
+    }
 
   }
 
