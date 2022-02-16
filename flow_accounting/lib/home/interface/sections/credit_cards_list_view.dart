@@ -943,6 +943,7 @@ class _CreditCardBackLayout extends State<CreditCardBackLayout> {
           backLayoutDecorated = true;
 
           extractBankDominantColor();
+
         }
 
         return Image(
