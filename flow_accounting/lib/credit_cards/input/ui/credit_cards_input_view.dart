@@ -62,7 +62,6 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
 
   AnimationController? animationController = null;
 
-
   @override
   void initState() {
 
