@@ -232,11 +232,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                               flex: 7,
                               onPressed: (BuildContext context) {
 
-                                Future.delayed(const Duration(milliseconds: 333), () {
-
-                                  NavigationProcess().goTo(context, TransactionsOutputView(initialSearchQuery: widget.creditCardsData.cardNumber));
-
-                                });
+                                NavigationProcess().goTo(context, TransactionsOutputView(initialSearchQuery: widget.creditCardsData.cardNumber));
 
                               },
                               backgroundColor: Colors.transparent,
@@ -1185,11 +1181,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
 
     creditCardsDatabaseQueries.queryDeleteCreditCard(creditCardsData.id, CreditCardsDatabaseInputs.databaseTableName);
 
-    Future.delayed(const Duration(milliseconds: 333), () {
-
-      Navigator.pop(context);
-
-    });
+    Navigator.pop(context);
 
   }
 
@@ -1339,36 +1331,40 @@ class _CreditCardFrontLayout extends State<CreditCardFrontLayout> {
                               flex: 3,
                               child: Padding(
                                 padding: const EdgeInsets.fromLTRB(0, 0, 7, 0),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(13.0),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      color: ColorsResources.white,
-                                      border: Border(
-                                          top: BorderSide(
-                                            color: Color(creditCardColorTag),
-                                            width: 1.7,
-                                          ),
-                                          bottom: BorderSide(
-                                            color: Color(creditCardColorTag),
-                                            width: 1.7,
-                                          ),
-                                          left: BorderSide(
-                                            color: Color(creditCardColorTag),
-                                            width: 1.7,
-                                          ),
-                                          right: BorderSide(
-                                            color: Color(creditCardColorTag),
-                                            width: 1.7,
-                                          )
+                                child: SizedBox(
+                                  height: 51,
+                                  width: 51,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(13.0),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: ColorsResources.white,
+                                        border: Border(
+                                            top: BorderSide(
+                                              color: Color(creditCardColorTag),
+                                              width: 1.7,
+                                            ),
+                                            bottom: BorderSide(
+                                              color: Color(creditCardColorTag),
+                                              width: 1.7,
+                                            ),
+                                            left: BorderSide(
+                                              color: Color(creditCardColorTag),
+                                              width: 1.7,
+                                            ),
+                                            right: BorderSide(
+                                              color: Color(creditCardColorTag),
+                                              width: 1.7,
+                                            )
+                                        ),
+                                      ),
+                                      child: Align(
+                                        alignment: AlignmentDirectional.center,
+                                        child: bankLogoImageView,
                                       ),
                                     ),
-                                    child: Align(
-                                      alignment: AlignmentDirectional.center,
-                                      child: bankLogoImageView,
-                                    ),
                                   ),
-                                ),
+                                )
                               )
                           )
                         ],

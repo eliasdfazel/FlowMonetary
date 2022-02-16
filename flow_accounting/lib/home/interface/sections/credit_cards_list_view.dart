@@ -594,36 +594,40 @@ class _CreditCardFrontLayout extends State<CreditCardFrontLayout> {
                               flex: 3,
                               child: Padding(
                                 padding: const EdgeInsets.fromLTRB(0, 0, 7, 0),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(13.0),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      color: ColorsResources.white,
-                                      border: Border(
-                                          top: BorderSide(
-                                            color: Color(widget.colorTag),
-                                            width: 1.7,
-                                          ),
-                                          bottom: BorderSide(
-                                            color: Color(widget.colorTag),
-                                            width: 1.7,
-                                          ),
-                                          left: BorderSide(
-                                            color: Color(widget.colorTag),
-                                            width: 1.7,
-                                          ),
-                                          right: BorderSide(
-                                            color: Color(widget.colorTag),
-                                            width: 1.7,
-                                          )
+                                child: SizedBox(
+                                  height: 51,
+                                  width: 51,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(13.0),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: ColorsResources.white,
+                                        border: Border(
+                                            top: BorderSide(
+                                              color: Color(widget.colorTag),
+                                              width: 1.7,
+                                            ),
+                                            bottom: BorderSide(
+                                              color: Color(widget.colorTag),
+                                              width: 1.7,
+                                            ),
+                                            left: BorderSide(
+                                              color: Color(widget.colorTag),
+                                              width: 1.7,
+                                            ),
+                                            right: BorderSide(
+                                              color: Color(widget.colorTag),
+                                              width: 1.7,
+                                            )
+                                        ),
+                                      ),
+                                      child: Align(
+                                        alignment: AlignmentDirectional.center,
+                                        child: bankLogoImageView,
                                       ),
                                     ),
-                                    child: Align(
-                                      alignment: AlignmentDirectional.center,
-                                      child: bankLogoImageView,
-                                    ),
                                   ),
-                                ),
+                                )
                               )
                           )
                         ],
