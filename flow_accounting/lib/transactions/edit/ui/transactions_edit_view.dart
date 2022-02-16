@@ -9,6 +9,9 @@
  */
 
 import 'package:blur/blur.dart';
+import 'package:flow_accounting/budgets/database/io/inputs.dart';
+import 'package:flow_accounting/budgets/database/io/queries.dart';
+import 'package:flow_accounting/budgets/database/structures/tables_structure.dart';
 import 'package:flow_accounting/credit_cards/database/io/inputs.dart';
 import 'package:flow_accounting/credit_cards/database/io/queries.dart';
 import 'package:flow_accounting/credit_cards/database/structures/tables_structure.dart';
@@ -1079,7 +1082,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                   padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
-                                    child: TypeAheadField<String>(
+                                    child: TypeAheadField<BudgetsData>(
                                         suggestionsCallback: (pattern) async {
 
                                           return await getBudgetNames();
@@ -1087,20 +1090,55 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                         itemBuilder: (context, suggestion) {
 
                                           return ListTile(title: Directionality(
-                                            textDirection: TextDirection.rtl,
-                                            child: Text(
-                                              suggestion,
-                                              style: const TextStyle(
-                                                  color: ColorsResources.darkTransparent,
-                                                  fontSize: 15
-                                              ),
-                                            ),
+                                              textDirection: TextDirection.rtl,
+                                              child: SizedBox(
+                                                height: 51,
+                                                width: double.infinity,
+                                                child: Row(
+                                                  children: [
+                                                    Expanded(
+                                                        flex: 3,
+                                                        child: Padding(
+                                                          padding: const EdgeInsets.fromLTRB(7, 7, 7, 7),
+                                                          child: Container(
+                                                            decoration: BoxDecoration(
+                                                                shape: BoxShape.circle,
+                                                                color: Color(suggestion.colorTag)
+                                                            ),
+                                                            child: const Padding(
+                                                              padding: EdgeInsets.fromLTRB(1.7, 1.7, 1.7, 1.7),
+                                                              child: Image(
+                                                                image: AssetImage("coins_icon.png"),
+                                                                height: 51,
+                                                                width: 51,
+                                                                color: ColorsResources.white,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        )
+                                                    ),
+                                                    Expanded(
+                                                      flex: 11,
+                                                      child: Padding(
+                                                        padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
+                                                        child: Text(
+                                                          suggestion.budgetName,
+                                                          style: const TextStyle(
+                                                              color: ColorsResources.darkTransparent,
+                                                              fontSize: 15
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              )
                                           ));
                                         },
                                         onSuggestionSelected: (suggestion) {
 
-                                          controllerBudget.text = suggestion.toString();
-                                          budgetName = suggestion.toString();
+                                          controllerBudget.text = suggestion.budgetName.toString();
+                                          budgetName = suggestion.budgetName.toString();
 
                                         },
                                         suggestionsBoxDecoration: SuggestionsBoxDecoration(
@@ -1416,13 +1454,13 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
     return StringsResources.listOfBanksIran;
   }
 
-  Future<List<String>> getBudgetNames() async {
+  Future<List<BudgetsData>> getBudgetNames() async {
 
-    String noBudget = StringsResources.noBudgetText;
+    List<BudgetsData> listOfBudgets = [];
 
-    List<String> listOfBudgets = [];
-    listOfBudgets.add(noBudget);
-    listOfBudgets.addAll(["آکواریم", "شرکت", "خانه", "گربه"]);
+    BudgetsDatabaseQueries budgetsDatabaseQueries = BudgetsDatabaseQueries();
+
+    listOfBudgets.addAll(await budgetsDatabaseQueries.getAllBudgets(BudgetsDatabaseInputs.databaseTableName));
 
     return listOfBudgets;
   }

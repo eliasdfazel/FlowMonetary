@@ -87,6 +87,7 @@ flutter:
     - share_icon.png
     - instagram_icon.png
     - search_shape.png
+    - coins_icon.png
 
   fonts:
     - family: Sans
