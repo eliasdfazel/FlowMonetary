@@ -237,7 +237,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                               },
                               backgroundColor: Colors.transparent,
                               foregroundColor: ColorsResources.applicationGeeksEmpire,
-                              icon: Icons.edit_rounded,
+                              icon: Icons.money_rounded,
                               label: StringsResources.transactionAll,
                               autoClose: true,
                             ),
