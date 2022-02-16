@@ -38,6 +38,8 @@ class DashboardView extends StatefulWidget {
 }
 class _DashboardView extends State<DashboardView> {
 
+  final RouteObserver<ModalRoute<void>> routeObserver = RouteObserver<ModalRoute<void>>();
+
   List<TransactionsData> someLatestTransactions = [];
 
   List<CreditCardsData> allCreditCards = [];
@@ -48,6 +50,15 @@ class _DashboardView extends State<DashboardView> {
     retrieveLatestTransactions();
 
     super.initState();
+
+    WidgetsBinding.instance?.addObserver(
+        LifecycleEventHandler(resumeCallBack: () async => setState(() {
+
+
+
+        }))
+    );
+
   }
 
   @override
@@ -243,4 +254,26 @@ class _DashboardView extends State<DashboardView> {
 
   }
 
+}
+
+class LifecycleEventHandler extends WidgetsBindingObserver {
+  final AsyncCallback resumeCallBack;
+
+  LifecycleEventHandler({
+    required this.resumeCallBack,
+  });
+
+  @override
+  Future<void> didChangeAppLifecycleState(AppLifecycleState state) async {
+    switch (state) {
+      case AppLifecycleState.resumed:
+        await resumeCallBack();
+        break;
+      case AppLifecycleState.inactive:
+      case AppLifecycleState.paused:
+      case AppLifecycleState.detached:
+
+        break;
+    }
+  }
 }
