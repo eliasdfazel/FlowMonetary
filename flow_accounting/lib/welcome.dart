@@ -25,30 +25,33 @@ void main() async {
 }
 
 class WelcomePage extends StatelessWidget {
-
   const WelcomePage({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
 
-    return SafeArea(
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: StringsResources.applicationName,
-          color: ColorsResources.primaryColor,
-          theme: ThemeData(fontFamily: 'Sans',
-            colorScheme: ColorScheme.fromSwatch().copyWith(secondary: ColorsResources.primaryColor),
-            pageTransitionsTheme: const PageTransitionsTheme(builders: {
-              TargetPlatform.android: CupertinoPageTransitionsBuilder(),
-              TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
-            }),
-          ),
-          home: Scaffold(
-              backgroundColor: ColorsResources.black,
-              body: Padding (
-                padding: const EdgeInsets.fromLTRB(/*left*/1.1, /*top*/3, /*right*/1.1, /*bottom*/3),
-                child: Container (
+    Future.delayed(const Duration(milliseconds: 199), () {
+
+      NavigationProcess().goTo(context, const FlowDashboard());
+
+    });
+
+    return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: StringsResources.applicationName,
+        color: ColorsResources.primaryColor,
+        theme: ThemeData(fontFamily: 'Sans',
+          colorScheme: ColorScheme.fromSwatch().copyWith(secondary: ColorsResources.primaryColor),
+          pageTransitionsTheme: const PageTransitionsTheme(builders: {
+            TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+            TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+          }),
+        ),
+        home: Scaffold(
+          backgroundColor: ColorsResources.black,
+          body: Padding (
+              padding: const EdgeInsets.fromLTRB(/*left*/1.1, /*top*/3, /*right*/1.1, /*bottom*/3),
+              child: Container (
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.only(topLeft: Radius.circular(17), topRight: Radius.circular(17), bottomLeft: Radius.circular(17), bottomRight: Radius.circular(17)),
                     gradient: LinearGradient(
@@ -110,35 +113,35 @@ class WelcomePage extends StatelessWidget {
                                             tileMode: TileMode.clamp),
                                       ),
                                       child: Center(
-                                        child: MaterialButton(
-                                          onPressed: () {
+                                          child: MaterialButton(
+                                            onPressed: () {
 
-                                            Future.delayed(const Duration(milliseconds: 199), () {
+                                              Future.delayed(const Duration(milliseconds: 199), () {
 
-                                              NavigationProcess().goTo(context, const FlowDashboard());
+                                                NavigationProcess().goTo(context, const FlowDashboard());
 
-                                            });
+                                              });
 
-                                          },
-                                          child: const Text(
-                                            StringsResources.getStartedText,
-                                            style: TextStyle(fontSize: 29,shadows: [
-                                              Shadow(
-                                                color: ColorsResources.light,
-                                                offset: Offset(0, 0),
-                                                blurRadius: 7
-                                              )
-                                            ]),
-                                          ),
-                                          height: 79,
-                                          minWidth: double.infinity,
-                                          color: Colors.white.withOpacity(0.3),
-                                          splashColor: ColorsResources.primaryColor,
-                                          textColor: ColorsResources.light,
-                                          shape: const RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.all(Radius.circular(17),),
-                                          ),
-                                        )
+                                            },
+                                            child: const Text(
+                                              StringsResources.getStartedText,
+                                              style: TextStyle(fontSize: 29,shadows: [
+                                                Shadow(
+                                                    color: ColorsResources.light,
+                                                    offset: Offset(0, 0),
+                                                    blurRadius: 7
+                                                )
+                                              ]),
+                                            ),
+                                            height: 79,
+                                            minWidth: double.infinity,
+                                            color: Colors.white.withOpacity(0.3),
+                                            splashColor: ColorsResources.primaryColor,
+                                            textColor: ColorsResources.light,
+                                            shape: const RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.all(Radius.circular(17),),
+                                            ),
+                                          )
                                       ),
                                     ),
                                   ),
@@ -156,7 +159,6 @@ class WelcomePage extends StatelessWidget {
               )
           ),
         )
-    )
     );
   }
 

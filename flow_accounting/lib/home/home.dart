@@ -12,15 +12,7 @@ import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import 'interface/home_interface.dart';
-
-void main() async {
-
-  WidgetsFlutterBinding.ensureInitialized();
-
-  runApp(const MaterialApp( home: FlowDashboard()));
-
-}
+import 'interface/dashboard.dart';
 
 class FlowDashboard extends StatefulWidget {
   const FlowDashboard({Key? key}) : super(key: key);
@@ -35,7 +27,7 @@ class _FlowDashboard extends State<FlowDashboard> {
   @override
   Widget build(BuildContext context) {
 
-    return const HomePage(applicationName: StringsResources.applicationName);
+    return const DashboardView(applicationName: StringsResources.applicationName);
   }
 
 }

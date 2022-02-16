@@ -27,16 +27,16 @@ import 'sections/features_view.dart';
 import 'sections/general_data_view.dart';
 import 'sections/top_bar_view.dart';
 
-class HomePage extends StatefulWidget {
+class DashboardView extends StatefulWidget {
 
   final String applicationName;
 
-  const HomePage({Key? key, required this.applicationName}) : super(key: key);
+  const DashboardView({Key? key, required this.applicationName}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<DashboardView> createState() => _DashboardView();
 }
-class _HomePageState extends State<HomePage> {
+class _DashboardView extends State<DashboardView> {
 
   List<TransactionsData> someLatestTransactions = [];
 
