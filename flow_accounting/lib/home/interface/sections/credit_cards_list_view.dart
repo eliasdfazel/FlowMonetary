@@ -10,6 +10,7 @@
 
 import 'dart:math';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flow_accounting/credit_cards/database/io/inputs.dart';
 import 'package:flow_accounting/credit_cards/database/io/queries.dart';
 import 'package:flow_accounting/credit_cards/database/structures/tables_structure.dart';
@@ -450,8 +451,6 @@ class AwesomeCard extends StatelessWidget {
   }
 }
 
-ImageProvider? bankLogoImageProvider;
-
 class CreditCardFrontLayout extends StatefulWidget {
 
   String cardNumber;
@@ -469,6 +468,8 @@ class CreditCardFrontLayout extends StatefulWidget {
 
 }
 class _CreditCardFrontLayout extends State<CreditCardFrontLayout> {
+
+  ImageProvider? bankLogoImageProviderFront;
 
   Color dominantColorForFrontLayout = ColorsResources.dark;
 
@@ -492,20 +493,26 @@ class _CreditCardFrontLayout extends State<CreditCardFrontLayout> {
 
   Widget frontCardLayout(String cardNumber, String cardExpiry, String cardHolderName, String cvv, String bankName) {
 
-    Image bankLogoImageView = Image.network(
-      generateBankLogoUrl(bankName),
+    CachedNetworkImage bankLogoImageView = CachedNetworkImage(
+      imageUrl: generateBankLogoUrl(bankName),
       height: 51,
       width: 51,
       fit: BoxFit.contain,
+      imageBuilder: (context, imageProvider) {
+
+        bankLogoImageProviderFront = imageProvider;
+
+        if (!frontLayoutDecorated) {
+          frontLayoutDecorated = true;
+
+          extractBankDominantColor();
+        }
+
+        return Image(
+          image: imageProvider,
+        );
+      },
     );
-
-    bankLogoImageProvider = bankLogoImageView.image;
-
-    if (!frontLayoutDecorated) {
-      frontLayoutDecorated = true;
-
-      extractBankDominantColor();
-    }
 
     return Container(
       height: 279,
@@ -860,9 +867,9 @@ class _CreditCardFrontLayout extends State<CreditCardFrontLayout> {
 
   void extractBankDominantColor() async {
 
-    if (bankLogoImageProvider != null) {
+    if (bankLogoImageProviderFront != null) {
 
-      Future<Color?> bankDominantColor = imageDominantColor(bankLogoImageProvider!);
+      Future<Color?> bankDominantColor = imageDominantColor(bankLogoImageProviderFront!);
 
       bankDominantColor.then((extractedColor) {
 
@@ -899,13 +906,14 @@ class CreditCardBackLayout extends StatefulWidget {
 }
 class _CreditCardBackLayout extends State<CreditCardBackLayout> {
 
+  ImageProvider? bankLogoImageProviderBack;
+
   Color dominantColorForBackLayout = ColorsResources.white;
+
+  bool backLayoutDecorated = false;
 
   @override
   void initState() {
-
-    extractBankDominantColor();
-
     super.initState();
   }
 
@@ -921,6 +929,27 @@ class _CreditCardBackLayout extends State<CreditCardBackLayout> {
   }
 
   Widget backCardLayout(String cvv) {
+
+    CachedNetworkImage bankLogoImageView = CachedNetworkImage(
+      imageUrl: generateBankLogoUrl(widget.cardBankName),
+      height: 51,
+      width: 51,
+      fit: BoxFit.contain,
+      imageBuilder: (context, imageProvider) {
+
+        bankLogoImageProviderBack = imageProvider;
+
+        if (!backLayoutDecorated) {
+          backLayoutDecorated = true;
+
+          extractBankDominantColor();
+        }
+
+        return Image(
+          image: imageProvider,
+        );
+      },
+    );
 
     return Container(
       width: double.infinity,
@@ -939,6 +968,10 @@ class _CreditCardBackLayout extends State<CreditCardBackLayout> {
         borderRadius: BorderRadius.circular(13.0),
         child: Stack(
           children: <Widget> [
+            Opacity(
+              opacity: 0,
+              child: bankLogoImageView,
+            ),
             Container(
               width: double.maxFinite,
               height: double.maxFinite,
@@ -998,8 +1031,8 @@ class _CreditCardBackLayout extends State<CreditCardBackLayout> {
                               flex: 17,
                               child: Container(
                                 color: ColorsResources.dark,
-                                child: Image.network(
-                                  "https://myhousestore.ir/wp-content/uploads/2022/02/GraphitTexture.jpg",
+                                child: CachedNetworkImage(
+                                  imageUrl: "https://myhousestore.ir/wp-content/uploads/2022/02/GraphitTexture.jpg",
                                   fit: BoxFit.cover,
                                   color: Color(widget.colorTag),
                                   colorBlendMode: BlendMode.overlay,
@@ -1036,7 +1069,7 @@ class _CreditCardBackLayout extends State<CreditCardBackLayout> {
                   ),
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),
@@ -1045,17 +1078,21 @@ class _CreditCardBackLayout extends State<CreditCardBackLayout> {
 
   void extractBankDominantColor() async {
 
-    if (bankLogoImageProvider != null) {
+    if (bankLogoImageProviderBack != null) {
 
-      Future<Color?> bankDominantColor = imageDominantColor(bankLogoImageProvider!);
+      Future<Color?> bankDominantColor = imageDominantColor(bankLogoImageProviderBack!);
 
       bankDominantColor.then((extractedColor) {
 
         if (extractedColor != null) {
           dominantColorForBackLayout = extractedColor;
 
+          print(">>> >> > ${dominantColorForBackLayout}");
+
           setState(() {
+
             dominantColorForBackLayout;
+
           });
 
         }

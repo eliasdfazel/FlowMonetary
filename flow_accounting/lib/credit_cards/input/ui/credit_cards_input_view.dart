@@ -49,7 +49,9 @@ CachedNetworkImage? bankLogoImageView = CachedNetworkImage(
 
     bankLogoImageProvider = imageProvider;
 
-    return Spacer(flex: 0);
+    return Image(
+      image: imageProvider,
+    );
   },
 );
 
