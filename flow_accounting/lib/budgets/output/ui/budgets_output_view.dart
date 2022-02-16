@@ -280,6 +280,8 @@ class _BudgetOutputView extends State<BudgetsOutputView> {
 
                                     String searchQuery = textEditorControllerQuery.text;
 
+                                    searchBudgets(context, allBudgets, searchQuery);
+
                                   },
                                   child: const SizedBox(
                                     height: 71,
@@ -308,6 +310,13 @@ class _BudgetOutputView extends State<BudgetsOutputView> {
                                         cursorColor: ColorsResources.primaryColor,
                                         autocorrect: true,
                                         autofocus: false,
+                                        keyboardType: TextInputType.text,
+                                        textInputAction: TextInputAction.search,
+                                        onSubmitted: (searchQuery) {
+
+                                          searchBudgets(context, allBudgets, searchQuery);
+
+                                        },
                                         decoration: const InputDecoration(
                                           border: OutlineInputBorder(
                                               borderSide: BorderSide(color: Colors.transparent, width: 1.0),
@@ -682,12 +691,12 @@ class _BudgetOutputView extends State<BudgetsOutputView> {
 
   }
 
-  void searchTransactions(BuildContext context,
-      List<BudgetsData> inputTransactionsList, String searchQuery) {
+  void searchBudgets(BuildContext context,
+      List<BudgetsData> inputBudgetsList, String searchQuery) {
 
     List<BudgetsData> searchResult = [];
 
-    for (var element in inputTransactionsList) {
+    for (var element in inputBudgetsList) {
 
       if (element.budgetName.contains(searchQuery) ||
           element.budgetDescription.contains(searchQuery)

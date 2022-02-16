@@ -184,6 +184,33 @@ class _SearchBarView extends State<SearchBarView> {
                                 cursorColor: ColorsResources.primaryColor,
                                 autocorrect: true,
                                 autofocus: false,
+                                keyboardType: TextInputType.text,
+                                textInputAction: TextInputAction.search,
+                                onSubmitted: (searchQuery) {
+
+                                  List<FeaturesStructure> foundAllFeaturesStructure = [];
+                                  foundAllFeaturesStructure.clear();
+
+                                  for (var element in widget.initialFeaturesStructure) {
+
+                                    if (element.featuresTitle.contains(searchQuery) ||
+                                        element.featuresDescription.contains(searchQuery)) {
+
+                                      foundAllFeaturesStructure.add(element);
+
+                                    }
+
+                                  }
+
+                                  widget.searchableFeaturesList.value.clear();
+
+                                  Future.delayed(const Duration(milliseconds: 199), () {
+
+                                    widget.searchableFeaturesList.value = foundAllFeaturesStructure;
+
+                                  });
+
+                                },
                                 decoration: const InputDecoration(
                                   border: OutlineInputBorder(
                                       borderSide: BorderSide(color: ColorsResources.applicationGeeksEmpire, width: 1.0),

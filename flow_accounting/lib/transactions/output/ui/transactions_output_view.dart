@@ -335,6 +335,8 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
 
                                     String searchQuery = textEditorControllerQuery.text;
 
+                                    searchTransactions(context, allTransactions, searchQuery);
+
                                   },
                                   child: const SizedBox(
                                     height: 71,
@@ -363,6 +365,13 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
                                         cursorColor: ColorsResources.primaryColor,
                                         autocorrect: true,
                                         autofocus: false,
+                                        keyboardType: TextInputType.text,
+                                        textInputAction: TextInputAction.search,
+                                        onSubmitted: (searchQuery) {
+
+                                          searchTransactions(context, allTransactions, searchQuery);
+
+                                        },
                                         decoration: const InputDecoration(
                                           border: OutlineInputBorder(
                                               borderSide: BorderSide(color: Colors.transparent, width: 1.0),
