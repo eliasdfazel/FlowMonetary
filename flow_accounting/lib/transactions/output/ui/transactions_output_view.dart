@@ -13,7 +13,10 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:marquee/marquee.dart';
 
 class TransactionsOutputView extends StatefulWidget {
-  const TransactionsOutputView({Key? key}) : super(key: key);
+
+  String? initialSearchQuery;
+
+  TransactionsOutputView({Key? key, this.initialSearchQuery}) : super(key: key);
 
   @override
   _TransactionsOutputView createState() => _TransactionsOutputView();
@@ -37,7 +40,17 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
   @override
   void initState() {
 
-    retrieveAllTransactions(context);
+    if (widget.initialSearchQuery != null) {
+
+      textEditorControllerQuery.text = widget.initialSearchQuery!;
+
+      searchTransactionsInitially(context, widget.initialSearchQuery!);
+
+    } else {
+
+      retrieveAllTransactions(context);
+
+    }
 
     super.initState();
   }
@@ -904,6 +917,47 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
     List<TransactionsData> searchResult = [];
 
     for (var element in inputTransactionsList) {
+
+      if (element.transactionTime.contains(searchQuery) ||
+          element.sourceUsername.contains(searchQuery) ||
+          element.sourceBankName.contains(searchQuery) ||
+          element.sourceCardNumber.contains(searchQuery) ||
+          element.targetUsername.contains(searchQuery) ||
+          element.targetBankName.contains(searchQuery) ||
+          element.targetCardNumber.contains(searchQuery) ||
+          element.budgetName.contains(searchQuery)) {
+
+        searchResult.add(element);
+
+      }
+
+      List<Widget> preparedAllTransactionsItem = [];
+
+      for (var element in searchResult) {
+
+        preparedAllTransactionsItem.add(outputItem(context, element));
+
+      }
+
+      setState(() {
+
+        allTransactionsItems = preparedAllTransactionsItem;
+
+      });
+
+    }
+
+  }
+
+  void searchTransactionsInitially(BuildContext context, String searchQuery) async {
+
+    List<TransactionsData> searchResult = [];
+
+    var databaseQueries = TransactionsDatabaseQueries();
+
+    allTransactions = await databaseQueries.getAllTransactions(TransactionsDatabaseInputs.databaseTableName);
+
+    for (var element in allTransactions) {
 
       if (element.transactionTime.contains(searchQuery) ||
           element.sourceUsername.contains(searchQuery) ||
