@@ -129,7 +129,7 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
       featuresTitle: StringsResources.featureTransactionsTitle,
       featuresDescription: StringsResources.featureTransactionsDescription,
       featureViewToSubmitData: const TransactionsInputView(),
-      featureToPresentData: const TransactionsOutputView(),
+      featureToPresentData: TransactionsOutputView(),
     ));
     allFeaturesStructure.add(FeaturesStructure(
         importantFeature: false,
