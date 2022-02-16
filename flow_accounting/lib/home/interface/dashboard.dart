@@ -36,9 +36,9 @@ class DashboardView extends StatefulWidget {
   @override
   State<DashboardView> createState() => _DashboardView();
 }
-class _DashboardView extends State<DashboardView> {
+class _DashboardView extends State<DashboardView> with RouteAware {
 
-  final RouteObserver<ModalRoute<void>> routeObserver = RouteObserver<ModalRoute<void>>();
+  final RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
 
   List<TransactionsData> someLatestTransactions = [];
 
@@ -53,7 +53,7 @@ class _DashboardView extends State<DashboardView> {
 
     WidgetsBinding.instance?.addObserver(
         LifecycleEventHandler(resumeCallBack: () async => setState(() {
-
+          debugPrint("Dashboard Resumed");
 
 
         }))
@@ -62,8 +62,36 @@ class _DashboardView extends State<DashboardView> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    routeObserver.subscribe(this, ModalRoute.of(context) as PageRoute);
+  }
+
+  @override
   void dispose() {
+    routeObserver.unsubscribe(this);
     super.dispose();
+  }
+  @override
+  // Called when the current route has been pushed.
+  void didPush() {
+    print('didPush1 ');
+  }
+
+  @override
+  // Called when the top route has been popped off, and the current route shows up.
+  void didPopNext() {
+    print('didPopNext1');
+  }
+
+  @override
+  void didPop() {
+    print('didPop1');
+  }
+
+  @override
+  void didPushNext() {
+    print('didPushNext1');
   }
 
   @override
@@ -71,6 +99,7 @@ class _DashboardView extends State<DashboardView> {
 
     return SafeArea (
         child: MaterialApp (
+          navigatorObservers: [routeObserver],
           debugShowCheckedModeBanner: false,
           title: StringsResources.applicationName,
           color: ColorsResources.black,
@@ -215,7 +244,8 @@ class _DashboardView extends State<DashboardView> {
               ],
             ),
           ),
-        ));
+        ),
+    );
   }
 
   void retrieveLatestTransactions() async {
