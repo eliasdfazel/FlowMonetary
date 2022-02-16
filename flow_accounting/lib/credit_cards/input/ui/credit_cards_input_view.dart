@@ -49,14 +49,6 @@ CachedNetworkImage? bankLogoImageView = CachedNetworkImage(
   height: 51,
   width: 51,
   fit: BoxFit.contain,
-  imageBuilder: (context, imageProvider) {
-
-    bankLogoImageProvider = imageProvider;
-
-    return Image(
-      image: imageProvider,
-    );
-  },
 );
 
 Color dominantColorForFrontLayout = ColorsResources.dark;
@@ -97,7 +89,19 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
     creditCardColorTag = widget.creditCardsData.colorTag;
 
     bankLogoImageView = CachedNetworkImage(
-        imageUrl: generateBankLogoUrl(widget.creditCardsData.bankName)
+      imageUrl: generateBankLogoUrl(widget.creditCardsData.bankName),
+      height: 51,
+      width: 51,
+      imageBuilder: (context, imageProvider) {
+
+        bankLogoImageProvider = imageProvider;
+
+        extractBankDominantColor(bankLogoImageProvider);
+
+        return Image(
+          image: imageProvider,
+        );
+      },
     );
 
     super.initState();
@@ -287,12 +291,20 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                           setState(() {
 
                                             bankLogoImageView = CachedNetworkImage(
-                                                imageUrl: generateBankLogoUrl(suggestion.toString())
+                                              imageUrl: generateBankLogoUrl(suggestion.toString()),
+                                              imageBuilder: (context, imageProvider) {
+
+                                                bankLogoImageProvider = imageProvider;
+
+                                                extractBankDominantColor(bankLogoImageProvider);
+
+                                                return Image(
+                                                  image: imageProvider,
+                                                );
+                                              },
                                             );
 
                                           });
-
-                                          extractBankDominantColor(bankLogoImageProvider);
 
                                           creditCardBankNameController.text = suggestion.toString();
 

@@ -1088,8 +1088,6 @@ class _CreditCardBackLayout extends State<CreditCardBackLayout> {
         if (extractedColor != null) {
           dominantColorForBackLayout = extractedColor;
 
-          print(">>> >> > ${dominantColorForBackLayout}");
-
           setState(() {
 
             dominantColorForBackLayout;
