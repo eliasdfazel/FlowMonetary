@@ -153,6 +153,12 @@ class _BudgetOutputView extends State<BudgetsOutputView> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
+                            const Expanded(
+                              flex: 11,
+                              child: Padding(
+                                padding: EdgeInsets.fromLTRB(3, 0, 0, 0),
+                              ),
+                            ),
                             Expanded(
                               flex: 11,
                               child: Padding(
