@@ -36,7 +36,7 @@ class _BudgetOutputView extends State<BudgetsOutputView> {
   @override
   void initState() {
 
-    retrieveAllTransactions(context);
+    retrieveAllBudgets(context);
 
     super.initState();
   }
@@ -239,7 +239,7 @@ class _BudgetOutputView extends State<BudgetsOutputView> {
                                     child: InkWell(
                                       onTap: () {
 
-                                        retrieveAllTransactions(context);
+                                        retrieveAllBudgets(context);
 
                                       },
                                       child: const Icon(
@@ -394,7 +394,7 @@ class _BudgetOutputView extends State<BudgetsOutputView> {
             flex: 1,
             onPressed: (BuildContext context) {
 
-              deleteTransaction(context, budgetsData);
+              deleteBudget(context, budgetsData);
 
             },
             backgroundColor: Colors.transparent,
@@ -407,7 +407,7 @@ class _BudgetOutputView extends State<BudgetsOutputView> {
             flex: 1,
             onPressed: (BuildContext context) {
 
-              editTransaction(context, budgetsData);
+              editBudget(context, budgetsData);
 
             },
             backgroundColor: Colors.transparent,
@@ -429,7 +429,7 @@ class _BudgetOutputView extends State<BudgetsOutputView> {
           child: InkWell(
             onTap: () {
 
-              editTransaction(context, budgetsData);
+              editBudget(context, budgetsData);
 
             },
             child: Container(
@@ -586,26 +586,38 @@ class _BudgetOutputView extends State<BudgetsOutputView> {
 
   }
 
-  void deleteTransaction(BuildContext context, BudgetsData budgetsData) async {
+  void deleteBudget(BuildContext context, BudgetsData budgetsData) async {
 
     var databaseQueries = BudgetsDatabaseQueries();
 
     databaseQueries.queryDeleteBudget(budgetsData.id, BudgetsDatabaseInputs.databaseTableName);
 
-    retrieveAllTransactions(context);
+    retrieveAllBudgets(context);
 
   }
 
-  void editTransaction(BuildContext context, BudgetsData budgetsData) async {
+  void editBudget(BuildContext context, BudgetsData budgetsData) async {
 
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => BudgetsInputView(budgetsData: budgetsData)),
     );
 
+    bool budgetDataUpdated = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => BudgetsInputView(budgetsData: budgetsData)),
+    );
+
+    debugPrint("Budget Data Update => ${budgetDataUpdated}");
+    if (budgetDataUpdated) {
+
+      retrieveAllBudgets(context);
+
+    }
+
   }
 
-  void retrieveAllTransactions(BuildContext context) async {
+  void retrieveAllBudgets(BuildContext context) async {
 
     if (allBudgetsItems.isNotEmpty) {
 
@@ -613,7 +625,7 @@ class _BudgetOutputView extends State<BudgetsOutputView> {
 
     }
 
-    List<Widget> preparedAllTransactionsItem = [];
+    List<Widget> preparedAllBudgetsItem = [];
 
     var databaseQueries = BudgetsDatabaseQueries();
 
@@ -621,7 +633,7 @@ class _BudgetOutputView extends State<BudgetsOutputView> {
 
     for (var element in allBudgets) {
 
-      preparedAllTransactionsItem.add(outputItem(context, element));
+      preparedAllBudgetsItem.add(outputItem(context, element));
 
     }
 
@@ -629,7 +641,7 @@ class _BudgetOutputView extends State<BudgetsOutputView> {
 
     setState(() {
 
-      allBudgetsItems = preparedAllTransactionsItem;
+      allBudgetsItems = preparedAllBudgetsItem;
 
     });
 

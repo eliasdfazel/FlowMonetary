@@ -8,6 +8,7 @@
  * https://opensource.org/licenses/MIT
  */
 
+import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:blur/blur.dart';
 import 'package:flow_accounting/budgets/database/io/inputs.dart';
 import 'package:flow_accounting/budgets/database/structures/tables_structure.dart';
@@ -41,8 +42,13 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
 
   int timeNow = DateTime.now().millisecondsSinceEpoch;
 
+  bool budgetDataUpdated = false;
+
   @override
   void dispose() {
+
+    BackButtonInterceptor.remove(aInterceptor);
+
     super.dispose();
   }
 
@@ -55,6 +61,16 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
     controllerBudgetBalance.text = widget.budgetsData?.budgetBalance == null ? "0" : (widget.budgetsData?.budgetBalance)!;
 
     super.initState();
+
+    BackButtonInterceptor.add(aInterceptor);
+
+  }
+
+  bool aInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
+
+    Navigator.pop(context, budgetDataUpdated);
+
+    return true;
   }
 
   @override
@@ -457,7 +473,7 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
                     child:  InkWell(
                       onTap: () {
 
-                        Navigator.pop(context);
+                        Navigator.pop(context, budgetDataUpdated);
 
                       },
                       child: Container(
@@ -541,6 +557,8 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
                                 textColor: ColorsResources.dark,
                                 fontSize: 16.0
                             );
+
+                            budgetDataUpdated = true;
 
                           },
                           child: Container(
