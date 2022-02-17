@@ -20,6 +20,7 @@ import 'package:flow_accounting/transactions/database/io/queries.dart';
 import 'package:flow_accounting/transactions/database/structures/tables_structure.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:wave/config.dart';
 import 'package:wave/wave.dart';
 
@@ -72,7 +73,7 @@ class DashboardViewState extends State<DashboardView> {
 
   bool aInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
 
-    Navigator.pop(context);
+    SystemChannels.platform.invokeMethod<void>('SystemNavigator.pop');
 
     return true;
   }
