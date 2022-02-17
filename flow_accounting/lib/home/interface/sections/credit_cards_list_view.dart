@@ -331,22 +331,16 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
                 child: InkWell(
                     onTap: () {
 
-                      creditCardInputUpdateListener(context, id, cardNumber, cardExpiry, cardHolderName, cvv, bankName, cardBalance, colorTag);
-
-                      // NavigationProcess().goTo(context,
-                      //     CreditCardsInputView(
-                      //         creditCardsData: CreditCardsData(
-                      //             id: id,
-                      //             bankName: bankName,
-                      //             cardNumber: cardNumber,
-                      //             cardHolderName: cardHolderName,
-                      //             cvv: cvv,
-                      //             cardBalance: cardBalance,
-                      //             cardExpiry: cardExpiry,
-                      //             colorTag: colorTag
-                      //         )
-                      //     )
-                      // );
+                      creditCardInputUpdateListener(context,
+                          id,
+                          cardNumber,
+                          cardExpiry,
+                          cardHolderName,
+                          cvv,
+                          bankName,
+                          cardBalance,
+                          colorTag
+                      );
 
                     },
                     child: Stack(
@@ -414,6 +408,8 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
 
   void prepareCreditCardsData() async {
 
+    widget.allCreditCardsData.clear();
+
     CreditCardsDatabaseQueries databaseQueries = CreditCardsDatabaseQueries();
 
     List<CreditCardsData> listOfAllCreditCards = await databaseQueries.getAllCreditCards(CreditCardsDatabaseInputs.databaseTableName);
@@ -455,7 +451,7 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
     debugPrint("Credit Card Data Update => ${creditCardDataUpdated}");
     if (creditCardDataUpdated) {
 
-
+      prepareCreditCardsData();
 
     }
 
