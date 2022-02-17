@@ -598,11 +598,6 @@ class _BudgetOutputView extends State<BudgetsOutputView> {
 
   void editBudget(BuildContext context, BudgetsData budgetsData) async {
 
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => BudgetsInputView(budgetsData: budgetsData)),
-    );
-
     bool budgetDataUpdated = await Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => BudgetsInputView(budgetsData: budgetsData)),

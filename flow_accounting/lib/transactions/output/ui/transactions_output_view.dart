@@ -813,12 +813,19 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
 
   void editTransaction(BuildContext context, TransactionsData transactionsData) async {
 
-    Navigator.push(
+    bool transactionDataUpdated = await Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => TransactionsEditView(transactionsData: transactionsData)),
     );
 
-    transactionDataUpdated = true;
+    debugPrint("Transaction Data Update => ${transactionDataUpdated}");
+    if (transactionDataUpdated) {
+
+      transactionDataUpdated = true;
+
+      retrieveAllTransactions(context);
+
+    }
 
   }
 
