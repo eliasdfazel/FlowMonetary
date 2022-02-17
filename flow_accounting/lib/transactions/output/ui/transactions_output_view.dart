@@ -1,5 +1,7 @@
 
+import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:blur/blur.dart';
+import 'package:flow_accounting/home/interface/dashboard.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/database/io/inputs.dart';
@@ -32,10 +34,7 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
 
   bool colorSelectorInitialized = false;
 
-  @override
-  void dispose() {
-    super.dispose();
-  }
+  bool transactionDataUpdated = false;
 
   @override
   void initState() {
@@ -53,6 +52,26 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
     }
 
     super.initState();
+
+    BackButtonInterceptor.add(aInterceptor);
+
+  }
+
+  @override
+  void dispose() {
+
+    BackButtonInterceptor.remove(aInterceptor);
+
+    super.dispose();
+  }
+
+  bool aInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
+
+    UpdatedData.UpdatedDataType = UpdatedData.LatestTransactions;
+
+    Navigator.pop(context, transactionDataUpdated);
+
+    return true;
   }
 
   @override
@@ -134,7 +153,9 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
                       child: InkWell(
                         onTap: () {
 
-                          Navigator.pop(context);
+                          UpdatedData.UpdatedDataType = UpdatedData.LatestTransactions;
+
+                          Navigator.pop(context, transactionDataUpdated);
 
                         },
                         child: Container(
@@ -786,6 +807,8 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
 
     retrieveAllTransactions(context);
 
+    transactionDataUpdated = true;
+
   }
 
   void editTransaction(BuildContext context, TransactionsData transactionsData) async {
@@ -794,6 +817,8 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
       context,
       MaterialPageRoute(builder: (context) => TransactionsEditView(transactionsData: transactionsData)),
     );
+
+    transactionDataUpdated = true;
 
   }
 

@@ -8,6 +8,7 @@
  * https://opensource.org/licenses/MIT
  */
 
+import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:blur/blur.dart';
 import 'package:flow_accounting/budgets/database/io/inputs.dart';
 import 'package:flow_accounting/budgets/database/io/queries.dart';
@@ -15,6 +16,7 @@ import 'package:flow_accounting/budgets/database/structures/tables_structure.dar
 import 'package:flow_accounting/credit_cards/database/io/inputs.dart';
 import 'package:flow_accounting/credit_cards/database/io/queries.dart';
 import 'package:flow_accounting/credit_cards/database/structures/tables_structure.dart';
+import 'package:flow_accounting/home/interface/dashboard.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/database/io/inputs.dart';
@@ -51,14 +53,31 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
   int timeNow = DateTime.now().millisecondsSinceEpoch;
 
+  bool transactionDataUpdated = false;
+
   @override
   void initState() {
     super.initState();
+
+    BackButtonInterceptor.add(aInterceptor);
+
   }
 
   @override
   void dispose() {
+
+    BackButtonInterceptor.remove(aInterceptor);
+
     super.dispose();
+  }
+
+  bool aInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
+
+    UpdatedData.UpdatedDataType = UpdatedData.LatestTransactions;
+
+    Navigator.pop(context, transactionDataUpdated);
+
+    return true;
   }
 
   @override
@@ -1241,7 +1260,9 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                     child:  InkWell(
                       onTap: () {
 
-                        Navigator.pop(context);
+                        UpdatedData.UpdatedDataType = UpdatedData.LatestTransactions;
+
+                        Navigator.pop(context, transactionDataUpdated);
 
                       },
                       child: Container(
@@ -1314,6 +1335,8 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                           );
 
                           processCreditCardsBalance(transactionData);
+
+                          transactionDataUpdated = true;
 
                         },
                         child: Container(
@@ -1460,7 +1483,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
           await creditCardsDatabaseQueries.querySpecificCreditCardByCardNumber(controllerTransactionSourceCard.text, CreditCardsDatabaseInputs.databaseTableName)
       );
 
-      var newCardBalance = (int.parse(sourceCreditCardData.cardBalance) - int.parse(transactionsData.amountMoney)).toString();
+      var newCardBalance = (int.parse(sourceCreditCardData.cardBalance ?? "0") - int.parse(transactionsData.amountMoney ?? "0")).toString();
 
       var creditCardsDatabaseInputs = CreditCardsDatabaseInputs();
 
@@ -1518,7 +1541,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
           await budgetsDatabaseQueries.querySpecificBudgetsByName(controllerTransactionSourceCard.text, CreditCardsDatabaseInputs.databaseTableName)
       );
 
-      var newBudgetBalance = (int.parse(budgetData.budgetBalance) - int.parse(transactionsData.amountMoney)).toString();
+      var newBudgetBalance = (int.parse(budgetData.budgetBalance ?? "0") - int.parse(transactionsData.amountMoney ?? "0")).toString();
 
       var budgetsDatabaseInputs = BudgetsDatabaseInputs();
 
@@ -1541,7 +1564,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
           await budgetsDatabaseQueries.querySpecificBudgetsByName(controllerTransactionSourceCard.text, CreditCardsDatabaseInputs.databaseTableName)
       );
 
-      var newBudgetBalance = (int.parse(budgetData.budgetBalance) + int.parse(transactionsData.amountMoney)).toString();
+      var newBudgetBalance = (int.parse(budgetData.budgetBalance ?? "0") + int.parse(transactionsData.amountMoney ?? "0")).toString();
 
       var budgetsDatabaseInputs = BudgetsDatabaseInputs();
 

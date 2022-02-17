@@ -11,11 +11,11 @@
 import 'package:collection/collection.dart';
 import 'package:flow_accounting/budgets/input/ui/budgets_input_view.dart';
 import 'package:flow_accounting/budgets/output/ui/budgets_output_view.dart';
+import 'package:flow_accounting/home/interface/dashboard.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/input/ui/transactions_input_view.dart';
 import 'package:flow_accounting/transactions/output/ui/transactions_output_view.dart';
-import 'package:flow_accounting/utils/navigations/navigations.dart';
 import 'package:flutter/material.dart';
 
 import 'search_bar_view.dart';
@@ -38,7 +38,10 @@ class FeaturesOptionsData {
 }
 
 class FeaturesOptionsView extends StatefulWidget {
-  const FeaturesOptionsView({Key? key}) : super(key: key);
+
+  DashboardViewState dashboardView;
+
+  FeaturesOptionsView({Key? key, required this.dashboardView}) : super(key: key);
 
   @override
   State<FeaturesOptionsView> createState() => StateFeaturesOptionsView();
@@ -276,271 +279,336 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
 
   }
 
-}
+  Widget featuresOptionsRow(
+      String featureOneTitle,
+      String? featureTwoTitle,
+      String featureOneDescription,
+      String? featureTwoDescription,
+      StatefulWidget? featureOneTargetViewToSubmitData,
+      StatefulWidget? featureTwoTargetViewToSubmitData,
+      StatefulWidget? featureOneTargetViewToPresentData,
+      StatefulWidget? featureTwoTargetViewToPresentData,
+      BuildContext context) {
 
-Widget featuresOptionsRow(
-    String featureOneTitle,
-    String? featureTwoTitle,
-    String featureOneDescription,
-    String? featureTwoDescription,
-    StatefulWidget? featureOneTargetViewToSubmitData,
-    StatefulWidget? featureTwoTargetViewToSubmitData,
-    StatefulWidget? featureOneTargetViewToPresentData,
-    StatefulWidget? featureTwoTargetViewToPresentData,
-    BuildContext context) {
-
-  Widget firstWidget = featuresOptionsItem(
-      featureOneTitle,
-      featureOneDescription,
-      featureOneTargetViewToSubmitData,
-      featureOneTargetViewToPresentData,
-      context
-  );
-
-  Widget secondWidget = Container(
-    color: Colors.transparent,
-  );
-
-  if (featureTwoTitle != null && featureTwoDescription != null) {
-
-    secondWidget = featuresOptionsItem(
-        featureTwoTitle,
-        featureTwoDescription,
-        featureTwoTargetViewToSubmitData,
-        featureTwoTargetViewToPresentData,
+    Widget firstWidget = featuresOptionsItem(
+        featureOneTitle,
+        featureOneDescription,
+        featureOneTargetViewToSubmitData,
+        featureOneTargetViewToPresentData,
         context
     );
 
+    Widget secondWidget = Container(
+      color: Colors.transparent,
+    );
+
+    if (featureTwoTitle != null && featureTwoDescription != null) {
+
+      secondWidget = featuresOptionsItem(
+          featureTwoTitle,
+          featureTwoDescription,
+          featureTwoTargetViewToSubmitData,
+          featureTwoTargetViewToPresentData,
+          context
+      );
+
+    }
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        firstWidget,
+        secondWidget,
+      ],
+    );
   }
 
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    children: [
-      firstWidget,
-      secondWidget,
-    ],
-  );
-}
+  Widget featuresOptionsItem(String featureTitle,
+      String featureDescription,
+      StatefulWidget? targetViewToSubmitData,
+      StatefulWidget? targetViewToPresentData,
+      BuildContext context) {
 
-Widget featuresOptionsItem(String featureTitle,
-    String featureDescription,
-    StatefulWidget? targetViewToSubmitData,
-    StatefulWidget? targetViewToPresentData,
-    BuildContext context) {
-
-  return Expanded(
-    flex: 1,
-    child: Padding(
-      padding: const EdgeInsets.all(15),
-      child: Container (
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(13),
-              topRight: Radius.circular(13),
-              bottomLeft: Radius.circular(13),
-              bottomRight: Radius.circular(13)),
-          color: ColorsResources.primaryColorLightest,
-          boxShadow: [
-            BoxShadow(
-              color: ColorsResources.dark.withOpacity(0.3),
-              blurRadius: 13.0,
-              spreadRadius: 0.3,
-              offset: const Offset(7.0, 7.0),
-            ),
-            const BoxShadow(
-              color: ColorsResources.white,
-              blurRadius: 12.0,
-              spreadRadius: 0.5,
-              offset: Offset(-5.0, -5.0),
-            ),
-          ],
-        ),
-        child: Column(
-          children: [
-            SizedBox(
-                height: 50,
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.only(topLeft: Radius
-                        .circular(7), topRight: Radius.circular(7), bottomLeft: Radius.circular(0), bottomRight: Radius.circular(0)),
-                    gradient: LinearGradient(
-                        colors: [
-                          ColorsResources.white.withOpacity(0.3),
-                          ColorsResources.light,
-                        ],
-                        begin: const FractionalOffset(0.0, 0.0),
-                        end: const FractionalOffset(1.0, 0.0),
-                        stops: const [0.0, 1.0],
-                        transform: const GradientRotation(45),
-                        tileMode: TileMode.clamp),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 7, 0),
-                    child: Directionality(
-                      textDirection: TextDirection.rtl,
-                      child: Align(
-                        alignment: Alignment.centerRight,
-                        child: Text(
-                          featureTitle,
-                          style: const TextStyle(
-                              fontSize: 19,
-                              color: ColorsResources.dark,
-                              shadows: [
-                                Shadow(
-                                    color: ColorsResources.light,
-                                    offset: Offset(0, 0),
-                                    blurRadius: 7
-                                )
-                              ]
+    return Expanded(
+      flex: 1,
+      child: Padding(
+        padding: const EdgeInsets.all(15),
+        child: Container (
+          decoration: BoxDecoration(
+            borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(13),
+                topRight: Radius.circular(13),
+                bottomLeft: Radius.circular(13),
+                bottomRight: Radius.circular(13)),
+            color: ColorsResources.primaryColorLightest,
+            boxShadow: [
+              BoxShadow(
+                color: ColorsResources.dark.withOpacity(0.3),
+                blurRadius: 13.0,
+                spreadRadius: 0.3,
+                offset: const Offset(7.0, 7.0),
+              ),
+              const BoxShadow(
+                color: ColorsResources.white,
+                blurRadius: 12.0,
+                spreadRadius: 0.5,
+                offset: Offset(-5.0, -5.0),
+              ),
+            ],
+          ),
+          child: Column(
+            children: [
+              SizedBox(
+                  height: 50,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.only(topLeft: Radius
+                          .circular(7), topRight: Radius.circular(7), bottomLeft: Radius.circular(0), bottomRight: Radius.circular(0)),
+                      gradient: LinearGradient(
+                          colors: [
+                            ColorsResources.white.withOpacity(0.3),
+                            ColorsResources.light,
+                          ],
+                          begin: const FractionalOffset(0.0, 0.0),
+                          end: const FractionalOffset(1.0, 0.0),
+                          stops: const [0.0, 1.0],
+                          transform: const GradientRotation(45),
+                          tileMode: TileMode.clamp),
+                    ),
+                    child: Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 0, 7, 0),
+                        child: Directionality(
+                          textDirection: TextDirection.rtl,
+                          child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Text(
+                              featureTitle,
+                              style: const TextStyle(
+                                  fontSize: 19,
+                                  color: ColorsResources.dark,
+                                  shadows: [
+                                    Shadow(
+                                        color: ColorsResources.light,
+                                        offset: Offset(0, 0),
+                                        blurRadius: 7
+                                    )
+                                  ]
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                    )
-                  ),
-                )
-            ),
-            SizedBox(
-                height: 119,
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: const  BorderRadius.only(topLeft: Radius.circular(0), topRight: Radius.circular(0), bottomLeft: Radius.circular(0), bottomRight: Radius.circular(0)),
-                    gradient: LinearGradient(
-                        colors: [
-                          ColorsResources.white.withOpacity(0.3),
-                          ColorsResources.light.withOpacity(0.3),
-                        ],
-                        begin: const FractionalOffset(0.0, 0.0),
-                        end: const FractionalOffset(1.0, 0.0),
-                        stops: const [0.0, 1.0],
-                        transform: const GradientRotation(45),
-                        tileMode: TileMode.clamp),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 7, 7, 0),
-                    child: Directionality(
-                      textDirection: TextDirection.rtl,
-                      child: Align(
-                        alignment: Alignment.topRight,
-                        child: Text(
-                          featureDescription,
-                          style: const TextStyle(
-                              fontSize: 12,
-                              color: ColorsResources.blueGreen,
-                              shadows: [
-                                Shadow(
-                                    color: ColorsResources.light,
-                                    offset: Offset(0, 0),
-                                    blurRadius: 7
-                                )
-                              ]
+                        )
+                    ),
+                  )
+              ),
+              SizedBox(
+                  height: 119,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: const  BorderRadius.only(topLeft: Radius.circular(0), topRight: Radius.circular(0), bottomLeft: Radius.circular(0), bottomRight: Radius.circular(0)),
+                      gradient: LinearGradient(
+                          colors: [
+                            ColorsResources.white.withOpacity(0.3),
+                            ColorsResources.light.withOpacity(0.3),
+                          ],
+                          begin: const FractionalOffset(0.0, 0.0),
+                          end: const FractionalOffset(1.0, 0.0),
+                          stops: const [0.0, 1.0],
+                          transform: const GradientRotation(45),
+                          tileMode: TileMode.clamp),
+                    ),
+                    child: Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 7, 7, 0),
+                        child: Directionality(
+                          textDirection: TextDirection.rtl,
+                          child: Align(
+                            alignment: Alignment.topRight,
+                            child: Text(
+                              featureDescription,
+                              style: const TextStyle(
+                                  fontSize: 12,
+                                  color: ColorsResources.blueGreen,
+                                  shadows: [
+                                    Shadow(
+                                        color: ColorsResources.light,
+                                        offset: Offset(0, 0),
+                                        blurRadius: 7
+                                    )
+                                  ]
+                              ),
+                            ),
                           ),
+                        )
+                    ),
+                  )
+              ),
+              SizedBox(
+                  height: 53,
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(3, 1, 3, 3),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Expanded(
+                            flex: 31,
+                            child: MaterialButton(
+                              onPressed: () {
+
+                                Future.delayed(const Duration(milliseconds: 199), () async {
+
+                                  if (targetViewToPresentData != null) {
+
+                                    bool dataUpdated = await Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => targetViewToPresentData),
+                                    );
+
+                                    debugPrint("Data Update => ${dataUpdated}");
+                                    if (dataUpdated) {
+
+                                      switch (UpdatedData.UpdatedDataType) {
+                                        case UpdatedData.GeneralBalance: {
+
+                                          break;
+                                        }
+                                        case UpdatedData.GeneralEarning: {
+
+                                          break;
+                                        }
+                                        case UpdatedData.GeneralSpending: {
+
+                                          break;
+                                        }
+                                        case UpdatedData.LatestTransactions: {
+
+                                          widget.dashboardView.retrieveLatestTransactions();
+
+                                          break;
+                                        }
+                                        case UpdatedData.CreditCards: {
+
+                                          break;
+                                        }
+                                      }
+
+                                    }
+
+                                  }
+                                });
+
+                              },
+                              child: const Text(
+                                StringsResources.presentText,
+                                style: TextStyle(fontSize: 13,shadows: [
+                                  Shadow(
+                                      color: ColorsResources.light,
+                                      offset: Offset(0, 0),
+                                      blurRadius: 7
+                                  )
+                                ]),
+                              ),
+                              height: 79,
+                              minWidth: double.infinity,
+                              color: ColorsResources.light,
+                              splashColor: ColorsResources.primaryColor,
+                              textColor: ColorsResources.applicationDarkGeeksEmpire,
+                              shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(13),
+                                      topRight: Radius.circular(13),
+                                      bottomLeft: Radius.circular(13),
+                                      bottomRight: Radius.circular(0)
+                                  )
+                              ),
+                            )
                         ),
-                      ),
-                    )
-                  ),
-                )
-            ),
-            SizedBox(
-                height: 53,
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(3, 1, 3, 3),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Expanded(
-                          flex: 31,
-                          child: MaterialButton(
-                            onPressed: () {
+                        const Expanded(
+                          flex: 1,
+                          child: ColoredBox(color: Colors.transparent,),
+                        ),
+                        Expanded(
+                            flex: 31,
+                            child: MaterialButton(
+                              onPressed: () {
 
-                              Future.delayed(const Duration(milliseconds: 199), () {
+                                Future.delayed(const Duration(milliseconds: 199), () async {
 
-                                if (targetViewToPresentData != null) {
+                                  if (targetViewToSubmitData != null) {
 
-                                  NavigationProcess().goTo(context, targetViewToPresentData);
+                                    bool dataUpdated = await Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => targetViewToSubmitData),
+                                    );
 
-                                }
+                                    debugPrint("Data Update => ${dataUpdated}");
+                                    if (dataUpdated) {
 
-                              });
+                                      switch (UpdatedData.UpdatedDataType) {
+                                        case UpdatedData.GeneralBalance: {
 
-                            },
-                            child: const Text(
-                              StringsResources.presentText,
-                              style: TextStyle(fontSize: 13,shadows: [
-                                Shadow(
-                                    color: ColorsResources.light,
-                                    offset: Offset(0, 0),
-                                    blurRadius: 7
-                                )
-                              ]),
-                            ),
-                            height: 79,
-                            minWidth: double.infinity,
-                            color: ColorsResources.light,
-                            splashColor: ColorsResources.primaryColor,
-                            textColor: ColorsResources.applicationDarkGeeksEmpire,
-                            shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(13),
-                                    topRight: Radius.circular(13),
-                                    bottomLeft: Radius.circular(13),
-                                    bottomRight: Radius.circular(0)
-                                )
-                            ),
-                          )
-                      ),
-                      const Expanded(
-                        flex: 1,
-                        child: ColoredBox(color: Colors.transparent,),
-                      ),
-                      Expanded(
-                          flex: 31,
-                          child: MaterialButton(
-                            onPressed: () {
+                                          break;
+                                        }
+                                        case UpdatedData.GeneralEarning: {
 
-                              Future.delayed(const Duration(milliseconds: 199), () {
+                                          break;
+                                        }
+                                        case UpdatedData.GeneralSpending: {
 
-                                if (targetViewToSubmitData != null) {
+                                          break;
+                                        }
+                                        case UpdatedData.LatestTransactions: {
 
-                                  NavigationProcess().goTo(context, targetViewToSubmitData);
+                                          widget.dashboardView.retrieveLatestTransactions();
 
-                                }
-                              });
+                                          break;
+                                        }
+                                        case UpdatedData.CreditCards: {
 
-                            },
-                            child: const Text(
-                              StringsResources.submitText,
-                              style: TextStyle(fontSize: 13,shadows: [
-                                Shadow(
-                                    color: ColorsResources.light,
-                                    offset: Offset(0, 0),
-                                    blurRadius: 7
-                                )
-                              ]),
-                            ),
-                            height: 79,
-                            minWidth: double.infinity,
-                            color: ColorsResources.light,
-                            splashColor: ColorsResources.primaryColor,
-                            textColor: ColorsResources.applicationDarkGeeksEmpire,
-                            shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(13),
-                                    topRight: Radius.circular(13),
-                                    bottomLeft: Radius.circular(0),
-                                    bottomRight: Radius.circular(13)
-                                )
-                            ),
-                          )
-                      )
-                    ],
-                  ),
-                )
-            ),
-          ],
+                                          break;
+                                        }
+                                      }
+
+                                    }
+
+                                  }
+                                });
+
+                              },
+                              child: const Text(
+                                StringsResources.submitText,
+                                style: TextStyle(fontSize: 13,shadows: [
+                                  Shadow(
+                                      color: ColorsResources.light,
+                                      offset: Offset(0, 0),
+                                      blurRadius: 7
+                                  )
+                                ]),
+                              ),
+                              height: 79,
+                              minWidth: double.infinity,
+                              color: ColorsResources.light,
+                              splashColor: ColorsResources.primaryColor,
+                              textColor: ColorsResources.applicationDarkGeeksEmpire,
+                              shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(13),
+                                      topRight: Radius.circular(13),
+                                      bottomLeft: Radius.circular(0),
+                                      bottomRight: Radius.circular(13)
+                                  )
+                              ),
+                            )
+                        )
+                      ],
+                    ),
+                  )
+              ),
+            ],
+          ),
         ),
       ),
-    ),
-  );
+    );
+  }
+
 }
 
 class FeaturesStructure {

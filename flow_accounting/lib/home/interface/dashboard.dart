@@ -34,9 +34,9 @@ class DashboardView extends StatefulWidget {
   const DashboardView({Key? key, required this.applicationName}) : super(key: key);
 
   @override
-  State<DashboardView> createState() => _DashboardView();
+  State<DashboardView> createState() => DashboardViewState();
 }
-class _DashboardView extends State<DashboardView> {
+class DashboardViewState extends State<DashboardView> {
 
   List<TransactionsData> someLatestTransactions = [];
 
@@ -204,7 +204,7 @@ class _DashboardView extends State<DashboardView> {
                             CreditCardsListView(
                               allCreditCardsData: allCreditCards,
                             ),
-                            const FeaturesOptionsView(),
+                            FeaturesOptionsView(dashboardView: this),
                           ]
                       ),
                     ),
@@ -228,6 +228,8 @@ class _DashboardView extends State<DashboardView> {
       latestTransactions = latestTransactions.sublist(0, 10);
 
     }
+
+    latestTransactions.sort(((a, b) => (a.transactionTime).compareTo(b.transactionTime)));
 
     setState(() {
 
@@ -275,4 +277,16 @@ class LifecycleEventHandler extends WidgetsBindingObserver {
         break;
     }
   }
+}
+
+class UpdatedData {
+  static String UpdatedDataType = LatestTransactions;
+
+  static const String GeneralBalance = "GeneralBalance";
+  static const String GeneralEarning = "GeneralEarning";
+  static const String GeneralSpending = "GeneralSpending";
+
+  static const String LatestTransactions = "LatestTransactions";
+  static const String CreditCards = "CreditCards";
+
 }
