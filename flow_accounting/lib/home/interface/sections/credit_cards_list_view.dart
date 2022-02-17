@@ -436,7 +436,7 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
       String cardBalance,
       int colorTag) async {
 
-    int creditCardDataUpdated = await Navigator.push(
+    bool creditCardDataUpdated = await Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => CreditCardsInputView(
           creditCardsData: CreditCardsData(
@@ -452,7 +452,12 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
       )),
     );
 
+    debugPrint("Credit Card Data Update => ${creditCardDataUpdated}");
+    if (creditCardDataUpdated) {
 
+
+
+    }
 
   }
 

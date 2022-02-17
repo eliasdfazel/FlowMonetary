@@ -16,7 +16,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flow_accounting/credit_cards/database/io/inputs.dart';
 import 'package:flow_accounting/credit_cards/database/io/queries.dart';
 import 'package:flow_accounting/credit_cards/database/structures/tables_structure.dart';
-import 'package:flow_accounting/home/interface/dashboard.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/output/ui/transactions_output_view.dart';
@@ -72,6 +71,8 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
   bool showCardsBack = false;
 
   AnimationController? animationController = null;
+
+  bool creditCardDataUpdated = false;
 
   @override
   void initState() {
@@ -133,7 +134,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
 
   bool aInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
 
-
+    Navigator.pop(context, creditCardDataUpdated);
 
     return true;
   }
@@ -935,7 +936,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                     child:  InkWell(
                       onTap: () {
 
-                        Navigator.pop(context);
+                        Navigator.pop(context, creditCardDataUpdated);
 
                       },
                       child: Container(
@@ -1010,6 +1011,8 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                               textColor: ColorsResources.dark,
                               fontSize: 16.0
                           );
+
+                          creditCardDataUpdated = true;
 
                         },
                         child: Container(
