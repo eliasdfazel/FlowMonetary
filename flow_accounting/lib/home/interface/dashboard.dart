@@ -8,6 +8,7 @@
  * https://opensource.org/licenses/MIT
  */
 
+import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flow_accounting/credit_cards/database/io/inputs.dart';
 import 'package:flow_accounting/credit_cards/database/io/queries.dart';
 import 'package:flow_accounting/credit_cards/database/structures/tables_structure.dart';
@@ -57,11 +58,23 @@ class DashboardViewState extends State<DashboardView> {
         }))
     );
 
+    BackButtonInterceptor.add(aInterceptor);
+
   }
 
   @override
   void dispose() {
+
+    BackButtonInterceptor.remove(aInterceptor);
+
     super.dispose();
+  }
+
+  bool aInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
+
+    Navigator.pop(context);
+
+    return true;
   }
 
   @override
