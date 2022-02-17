@@ -10,6 +10,7 @@
 
 import 'dart:math';
 
+import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:blur/blur.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flow_accounting/credit_cards/database/io/inputs.dart';
@@ -107,6 +108,8 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
 
     super.initState();
 
+    BackButtonInterceptor.add(aInterceptor);
+
     animationController = AnimationController(
         duration: const Duration(milliseconds: 1000), vsync: this
     );
@@ -122,7 +125,17 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
 
   @override
   void dispose() {
+
+    BackButtonInterceptor.remove(aInterceptor);
+
     super.dispose();
+  }
+
+  bool aInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
+
+
+
+    return true;
   }
 
   @override

@@ -16,6 +16,13 @@
             </list>
           </value>
         </entry>
+        <entry key="back_button_interceptor">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../Xemonstration/Flutter/Setup/FlutterSdk/.pub-cache/hosted/pub.dartlang.org/back_button_interceptor-5.0.2/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="blur">
           <value>
             <list>
@@ -658,6 +665,7 @@
     <CLASSES>
       <root url="file://$PROJECT_DIR$/../../Xemonstration/Flutter/Setup/FlutterSdk/.pub-cache/hosted/pub.dartlang.org/archive-3.1.11/lib" />
       <root url="file://$PROJECT_DIR$/../../Xemonstration/Flutter/Setup/FlutterSdk/.pub-cache/hosted/pub.dartlang.org/async-2.8.2/lib" />
+      <root url="file://$PROJECT_DIR$/../../Xemonstration/Flutter/Setup/FlutterSdk/.pub-cache/hosted/pub.dartlang.org/back_button_interceptor-5.0.2/lib" />
       <root url="file://$PROJECT_DIR$/../../Xemonstration/Flutter/Setup/FlutterSdk/.pub-cache/hosted/pub.dartlang.org/blur-3.0.0/lib" />
       <root url="file://$PROJECT_DIR$/../../Xemonstration/Flutter/Setup/FlutterSdk/.pub-cache/hosted/pub.dartlang.org/boolean_selector-2.1.0/lib" />
       <root url="file://$PROJECT_DIR$/../../Xemonstration/Flutter/Setup/FlutterSdk/.pub-cache/hosted/pub.dartlang.org/cached_network_image-3.2.0/lib" />

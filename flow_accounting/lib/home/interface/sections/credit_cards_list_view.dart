@@ -331,20 +331,22 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
                 child: InkWell(
                     onTap: () {
 
-                      NavigationProcess().goTo(context,
-                          CreditCardsInputView(
-                              creditCardsData: CreditCardsData(
-                                  id: id,
-                                  bankName: bankName,
-                                  cardNumber: cardNumber,
-                                  cardHolderName: cardHolderName,
-                                  cvv: cvv,
-                                  cardBalance: cardBalance,
-                                  cardExpiry: cardExpiry,
-                                  colorTag: colorTag
-                              )
-                          )
-                      );
+                      creditCardInputUpdateListener(context, id, cardNumber, cardExpiry, cardHolderName, cvv, bankName, cardBalance, colorTag);
+
+                      // NavigationProcess().goTo(context,
+                      //     CreditCardsInputView(
+                      //         creditCardsData: CreditCardsData(
+                      //             id: id,
+                      //             bankName: bankName,
+                      //             cardNumber: cardNumber,
+                      //             cardHolderName: cardHolderName,
+                      //             cvv: cvv,
+                      //             cardBalance: cardBalance,
+                      //             cardExpiry: cardExpiry,
+                      //             colorTag: colorTag
+                      //         )
+                      //     )
+                      // );
 
                     },
                     child: Stack(
@@ -421,6 +423,36 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
       widget.allCreditCardsData = listOfAllCreditCards;
 
     });
+
+  }
+
+  void creditCardInputUpdateListener(BuildContext context,
+      int id,
+      String cardNumber,
+      String cardExpiry,
+      String cardHolderName,
+      String cvv,
+      String bankName,
+      String cardBalance,
+      int colorTag) async {
+
+    int creditCardDataUpdated = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => CreditCardsInputView(
+          creditCardsData: CreditCardsData(
+              id: id,
+              bankName: bankName,
+              cardNumber: cardNumber,
+              cardHolderName: cardHolderName,
+              cvv: cvv,
+              cardBalance: cardBalance,
+              cardExpiry: cardExpiry,
+              colorTag: colorTag
+          )
+      )),
+    );
+
+
 
   }
 
