@@ -38,9 +38,61 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
   @override
   Widget build(BuildContext context) {
 
-    LineChartView generalEarningChart = LineChartView();
-    LineChartView generalSpendingChart = LineChartView();
-    LineChartView generalBalanceChart = LineChartView();
+    // Convert Monthly Money Amount to be Between
+
+    List<double> listOfEarningPoint = [
+      70,
+      30,
+      20,
+      50,
+      35.1,
+      40,
+      30,
+      19,
+      29,
+      41,
+      80,
+      18,
+    ];
+    double minimumEarning = listOfEarningPoint.reduce((current, next) => (current > next) ? current : next);
+    double maximumEarning = listOfEarningPoint.reduce((current, next) => (current < next) ? current : next);
+    LineChartView generalEarningChart = LineChartView(listOfSpotY: listOfEarningPoint, minimumY: minimumEarning, maximumY: maximumEarning);
+
+    List<double> listOfSpendingPoint = [
+      30,
+      30,
+      20,
+      50,
+      35.1,
+      40,
+      30,
+      49,
+      49,
+      41,
+      40,
+      18,
+    ];
+    double minimumSpending = listOfEarningPoint.reduce((current, next) => (current > next) ? current : next);
+    double maximumSpending = listOfEarningPoint.reduce((current, next) => (current < next) ? current : next);
+    LineChartView generalSpendingChart = LineChartView(listOfSpotY: listOfSpendingPoint, minimumY: minimumSpending, maximumY: maximumSpending);
+
+    List<double> listOfBalancePoint = [
+      10,
+      30,
+      20,
+      50,
+      65.1,
+      40,
+      20,
+      49,
+      90,
+      41,
+      10,
+      58,
+    ];
+    double minimumBalance = listOfEarningPoint.reduce((current, next) => (current > next) ? current : next);
+    double maximumBalance = listOfEarningPoint.reduce((current, next) => (current < next) ? current : next);
+    LineChartView generalBalanceChart = LineChartView(listOfSpotY: listOfBalancePoint, minimumY: minimumBalance, maximumY: maximumBalance);
 
     return SafeArea(
       child: MaterialApp(
