@@ -29,7 +29,7 @@ class TransactionsDatabaseQueries {
     var tableNameQuery = (tableName != null) ? tableName : TransactionsDatabaseInputs.databaseTableName;
     tableNameQuery = "${usernameId}_${tableNameQuery}";
 
-    final List<Map<String, dynamic>> maps = await databaseInstance.query(tableNameQuery, orderBy: "userId DESC",);
+    final List<Map<String, dynamic>> maps = await databaseInstance.query(tableNameQuery, orderBy: "transactionTimeMillisecond DESC",);
 
     return List.generate(maps.length, (i) {
       return TransactionsData(
@@ -42,6 +42,7 @@ class TransactionsDatabaseQueries {
         targetUsername: maps[i]['targetUsername'],
         amountMoney: maps[i]['amountMoney'],
         transactionType: maps[i]['transactionType'],
+        transactionTimeMillisecond: maps[i]['transactionTimeMillisecond'],
         transactionTime: maps[i]['transactionTime'],
         transactionTimeYear: maps[i]['transactionTimeYear'],
         transactionTimeMonth: maps[i]['transactionTimeMonth'],
@@ -105,6 +106,7 @@ class TransactionsDatabaseQueries {
       targetUsername: inputData['targetUsername'].toString(),
       amountMoney: inputData['amountMoney'].toString(),
       transactionType: inputData['transactionType'].toString(),
+      transactionTimeMillisecond: int.parse(inputData['transactionTimeMillisecond'].toString()),
       transactionTime: inputData['transactionTime'].toString(),
       transactionTimeYear: inputData['transactionTimeYear'].toString(),
       transactionTimeMonth: inputData['transactionTimeMonth'].toString(),
