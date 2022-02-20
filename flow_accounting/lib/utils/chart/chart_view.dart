@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 2/20/22, 3:39 AM
+ * Last modified 1/13/22, 6:44 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -12,25 +12,41 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flutter/material.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+class LineChartView extends StatefulWidget {
 
-  runApp(const MaterialApp(home: LineChartSample2()));
-}
+  List<double?> listOfSpotY = [
+    3,
+    3,
+    2,
+    5,
+    3.1,
+    4,
+    3,
+    4,
+    4,
+    4,
+    4,
+    5,
+  ];
 
-class LineChartSample2 extends StatefulWidget {
-  const LineChartSample2({Key? key}) : super(key: key);
+  double minimumX = 0;
+  double maximumX = 11;
+
+  double minimumY = 0;
+  double maximumY = 6;
+
+  LineChartView({Key? key}) : super(key: key);
 
   @override
-  _LineChartSample2State createState() => _LineChartSample2State();
+  LineChartViewState createState() => LineChartViewState();
 }
 
-class _LineChartSample2State extends State<LineChartSample2> {
+class LineChartViewState extends State<LineChartView> {
+
   @override
   Widget build(BuildContext context) {
 
-    return SafeArea(
-        child: Stack(
+    return Stack(
       children: <Widget>[
         AspectRatio(
           aspectRatio: 1.37,
@@ -39,7 +55,8 @@ class _LineChartSample2State extends State<LineChartSample2> {
                 borderRadius: BorderRadius.all(
                   Radius.circular(18),
                 ),
-                color: Color(0xff232d37)),
+                color: Color(0xff232d37)
+            ),
             child: Padding(
               padding: const EdgeInsets.only(right: 13.0, left: 13.0, top: 31, bottom: 11),
               child: LineChart(chartData()),
@@ -47,7 +64,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
           ),
         ),
       ],
-    ));
+    );
   }
 
   LineChartData chartData() {
@@ -58,12 +75,14 @@ class _LineChartSample2State extends State<LineChartSample2> {
         drawVerticalLine: true,
         drawHorizontalLine: true,
         getDrawingHorizontalLine: (value) {
+
           return FlLine(
             color: ColorsResources.light.withOpacity(0.13),
             strokeWidth: 1,
           );
         },
         getDrawingVerticalLine: (value) {
+
           return FlLine(
             color: ColorsResources.lightTransparent.withOpacity(0.13),
             strokeWidth: 1,
@@ -109,21 +128,8 @@ class _LineChartSample2State extends State<LineChartSample2> {
             decoration: TextDecoration.none,
           ),
           getTitles: (value) {
-            switch (value.toInt()) {
-              case 1:
-                return '10k';
-              case 2:
-                return '20k';
-              case 3:
-                return '30k';
-              case 4:
-                return '40k';
-              case 5:
-                return '60k';
-              case 6:
-                return '70k';
-            }
-            return '';
+
+            return prepareTitleY(widget.minimumY, widget.maximumY);
           },
           reservedSize: 32,
           margin: 12,
@@ -146,11 +152,11 @@ class _LineChartSample2State extends State<LineChartSample2> {
                 show: true,
                 getDotPainter: (spot, percent, barData, index) =>
                     FlDotCirclePainter(
-                  radius: 7,
-                  color: ColorsResources.light.withOpacity(0.3),
-                  strokeWidth: 2,
-                  strokeColor: ColorsResources.light,
-                ),
+                      radius: 7,
+                      color: ColorsResources.light.withOpacity(0.3),
+                      strokeWidth: 2,
+                      strokeColor: ColorsResources.light,
+                    ),
               ),
             );
 
@@ -179,27 +185,13 @@ class _LineChartSample2State extends State<LineChartSample2> {
         ),
       ),
       backgroundColor: Colors.transparent,
-      minX: 0,
-      maxX: 11,
-      minY: 0,
-      maxY: 6,
+      minX: widget.minimumX,
+      maxX: widget.maximumX,
+      minY: widget.minimumY,
+      maxY: widget.maximumY,
       lineBarsData: [
         LineChartBarData(
-          spots: const [
-            //12 Months
-            FlSpot(0, 3),
-            FlSpot(1, 3),
-            FlSpot(2, 2),
-            FlSpot(3, 5),
-            FlSpot(4, 3.1),
-            FlSpot(5, 4),
-            FlSpot(6, 3),
-            FlSpot(7, 4),
-            FlSpot(8, 4),
-            FlSpot(9, 4),
-            FlSpot(10, 4),
-            FlSpot(11, 5),
-          ],
+          spots: prepareSpots(widget.listOfSpotY),
           curveSmoothness: 0.39,
           isCurved: true,
           shadow: Shadow(
@@ -207,10 +199,10 @@ class _LineChartSample2State extends State<LineChartSample2> {
               offset: const Offset(0.0, 0.0),
               blurRadius: 13),
           colors: [
-            const Color(0xffe623b8).withOpacity(0.9),
-            const Color(0xff23e62d).withOpacity(0.9),
-            const Color(0xffbce623).withOpacity(0.9),
-            const Color(0xff23b6e6).withOpacity(0.9),
+            ColorsResources.springColor.withOpacity(0.97),
+            ColorsResources.summerColor.withOpacity(0.97),
+            ColorsResources.autumnColor.withOpacity(0.97),
+            ColorsResources.winterColor.withOpacity(0.97),
           ],
           barWidth: 3,
           isStrokeCapRound: true,
@@ -220,14 +212,41 @@ class _LineChartSample2State extends State<LineChartSample2> {
           belowBarData: BarAreaData(
             show: true,
             colors: [
-              const Color(0xffe623b8).withOpacity(0.17),
-              const Color(0xff23e62d).withOpacity(0.17),
-              const Color(0xffbce623).withOpacity(0.17),
-              const Color(0xff23b6e6).withOpacity(0.17),
+              ColorsResources.springColor.withOpacity(0.17),
+              ColorsResources.summerColor.withOpacity(0.17),
+              ColorsResources.autumnColor.withOpacity(0.17),
+              ColorsResources.winterColor.withOpacity(0.17),
             ],
           ),
         ),
       ],
     );
   }
+
+  List<FlSpot> prepareSpots(List<double?>  listOfSpotY) {
+
+    return [
+      FlSpot(0, listOfSpotY[0] ?? 0.0),
+      FlSpot(1, listOfSpotY[1] ?? 0.0),
+      FlSpot(2, listOfSpotY[2] ?? 0.0),
+      FlSpot(3, listOfSpotY[3] ?? 0.0),
+      FlSpot(4, listOfSpotY[4] ?? 0.0),
+      FlSpot(5, listOfSpotY[5] ?? 0.0),
+      FlSpot(6, listOfSpotY[6] ?? 0.0),
+      FlSpot(7, listOfSpotY[7] ?? 0.0),
+      FlSpot(8, listOfSpotY[8] ?? 0.0),
+      FlSpot(9, listOfSpotY[9] ?? 0.0),
+      FlSpot(10, listOfSpotY[10] ?? 0.0),
+      FlSpot(11, listOfSpotY[11] ?? 0.0),
+    ];
+  }
+
+  String prepareTitleY(double minimumY, double maximumY) {
+
+    String titleY = '';
+
+
+    return titleY;
+  }
+
 }

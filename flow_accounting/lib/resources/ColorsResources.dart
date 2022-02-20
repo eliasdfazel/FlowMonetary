@@ -30,6 +30,10 @@ class ColorsResources {
   static const Color greenGrayLight = Color.fromARGB(255, 220, 238, 217);
   static const Color grayLight = Color.fromARGB(255, 203, 203, 203);
 
+  static const Color springColor = Color.fromARGB(255, 238,111,104);
+  static const Color summerColor = Color.fromARGB(255, 117, 238, 104);
+  static const Color autumnColor = Color.fromARGB(255, 238, 200, 104);
+  static const Color winterColor = Color.fromARGB(255, 104, 238, 234);
 
   static const Color light = Color.fromARGB(255, 242, 247, 255);
   static const Color lightTransparent = Color.fromARGB(130, 242, 247, 255);

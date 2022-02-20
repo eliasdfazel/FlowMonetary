@@ -8,8 +8,10 @@
  * https://opensource.org/licenses/MIT
  */
 
+import 'package:blur/blur.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
+import 'package:flow_accounting/utils/chart/chart_view.dart';
 import 'package:flutter/material.dart';
 import 'package:wave/config.dart';
 import 'package:wave/wave.dart';
@@ -22,6 +24,7 @@ class GeneralFinancialCharts extends StatefulWidget {
 }
 
 class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
+
   @override
   void initState() {
     super.initState();
@@ -34,6 +37,11 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
 
   @override
   Widget build(BuildContext context) {
+
+    LineChartView generalEarningChart = LineChartView();
+    LineChartView generalSpendingChart = LineChartView();
+    LineChartView generalBalanceChart = LineChartView();
+
     return SafeArea(
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -174,17 +182,218 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
                   ),
                 ),
               ),
+              ListView(
+                padding: const EdgeInsets.fromLTRB(0, 73, 0, 79),
+                physics: const BouncingScrollPhysics(),
+                children: [
+                  generalEarningChart,
+                  generalSpendingChart,
+                  generalBalanceChart
+                ],
+              ),
+              Positioned(
+                  top: 19,
+                  left: 13,
+                  child: InkWell(
+                    onTap: () {
 
-              //Add Drop Down Menu for Years Selections
+                      Navigator.pop(context);
 
-              //Add Reset Button
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                            BoxShadow(
+                                color: ColorsResources.blueGrayLight.withOpacity(0.7),
+                                blurRadius: 7,
+                                spreadRadius: 0.1,
+                                offset: const Offset(0.0, 3.7)
+                            )
+                          ]
+                      ),
+                      child: const Image(
+                        image: AssetImage("go_previous_icon.png"),
+                        fit: BoxFit.scaleDown,
+                        width: 41,
+                        height: 41,
+                      ),
+                    ),
+                  )
+              ),
+              Positioned(
+                  top: 19,
+                  right: 13,
+                  child: SizedBox(
+                    height: 43,
+                    width: 321,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Expanded(
+                          flex: 11,
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(3, 0, 0, 0),
+                            child: Stack(
+                              children: [
+                                SizedBox(
+                                  height: 43,
+                                  width: double.infinity,
+                                  child: Blur(
+                                    blur: 5,
+                                    borderRadius: BorderRadius.circular(51),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          gradient: LinearGradient(
+                                              colors: [
+                                                ColorsResources.white.withOpacity(0.3),
+                                                ColorsResources.primaryColorLighter.withOpacity(0.3),
+                                              ],
+                                              begin: const FractionalOffset(0.0, 0.0),
+                                              end: const FractionalOffset(1.0, 0.0),
+                                              stops: const [0.0, 1.0],
+                                              transform: const GradientRotation(45),
+                                              tileMode: TileMode.clamp
+                                          )
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                InkWell(
+                                  onTap: () {
 
-              //Add Back Button
 
+
+                                  },
+                                  child: const SizedBox(
+                                    height: 43,
+                                    width: double.infinity,
+                                    child: Align(
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        StringsResources.sortTransactionAmountHigh,
+                                        style: TextStyle(
+                                          fontSize: 13,
+                                          color: ColorsResources.applicationGeeksEmpire,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 11,
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 0, 3, 0),
+                            child: Stack(
+                              children: [
+                                SizedBox(
+                                  height: 43,
+                                  width: double.infinity,
+                                  child: Blur(
+                                    blur: 5,
+                                    borderRadius: BorderRadius.circular(51),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          gradient: LinearGradient(
+                                              colors: [
+                                                ColorsResources.white.withOpacity(0.3),
+                                                ColorsResources.primaryColorLighter.withOpacity(0.3),
+                                              ],
+                                              begin: const FractionalOffset(0.0, 0.0),
+                                              end: const FractionalOffset(1.0, 0.0),
+                                              stops: const [0.0, 1.0],
+                                              transform: const GradientRotation(45),
+                                              tileMode: TileMode.clamp
+                                          )
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                InkWell(
+                                  onTap: () {
+
+
+
+                                  },
+                                  child: const SizedBox(
+                                    height: 43,
+                                    width: double.infinity,
+                                    child: Align(
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        StringsResources.sortTimeNew,
+                                        style: TextStyle(
+                                          fontSize: 13,
+                                          color: ColorsResources.applicationGeeksEmpire,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 3,
+                          child: Stack(
+                            children: [
+                              SizedBox(
+                                height: 43,
+                                width: 43,
+                                child: Blur(
+                                  blur: 3,
+                                  borderRadius: BorderRadius.circular(51),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        gradient: LinearGradient(
+                                            colors: [
+                                              ColorsResources.white.withOpacity(0.3),
+                                              ColorsResources.primaryColorLighter.withOpacity(0.3),
+                                            ],
+                                            begin: const FractionalOffset(0.0, 0.0),
+                                            end: const FractionalOffset(1.0, 0.0),
+                                            stops: const [0.0, 1.0],
+                                            transform: const GradientRotation(45),
+                                            tileMode: TileMode.clamp
+                                        )
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Align(
+                                alignment: Alignment.center,
+                                child: InkWell(
+                                  onTap: () {
+
+
+
+                                  },
+                                  child: const Icon(
+                                      Icons.refresh_rounded,
+                                      size: 31.0,
+                                      color: ColorsResources.primaryColorDark
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+              ),
             ],
           ),
         ),
       ),
     );
   }
+
+
+
 }
