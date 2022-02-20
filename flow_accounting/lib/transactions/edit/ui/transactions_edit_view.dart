@@ -1336,6 +1336,8 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                             amountMoney: controllerMoneyAmount.text,
                             transactionType: transactionType,
                             transactionTime: calendarView.pickedDataTimeText,
+                            transactionTimeYear: calendarView.pickedDataTimeYear,
+                            transactionTimeMonth: calendarView.pickedDataTimeMonth,
 
                             sourceUsername: controllerTransactionSourceName.text,
                             sourceBankName: controllerTransactionSourceBank.text,

@@ -43,6 +43,8 @@ class TransactionsDatabaseQueries {
         amountMoney: maps[i]['amountMoney'],
         transactionType: maps[i]['transactionType'],
         transactionTime: maps[i]['transactionTime'],
+        transactionTimeYear: maps[i]['transactionTimeYear'],
+        transactionTimeMonth: maps[i]['transactionTimeMonth'],
         colorTag: int.parse(maps[i]['colorTag'].toString()),
         budgetName: maps[i]['budgetName'],
       );
@@ -104,6 +106,8 @@ class TransactionsDatabaseQueries {
       amountMoney: inputData['amountMoney'].toString(),
       transactionType: inputData['transactionType'].toString(),
       transactionTime: inputData['transactionTime'].toString(),
+      transactionTimeYear: inputData['transactionTimeYear'].toString(),
+      transactionTimeMonth: inputData['transactionTimeMonth'].toString(),
       colorTag: int.parse(inputData['colorTag'].toString()),
       budgetName: inputData['budgetName'].toString(),
     );

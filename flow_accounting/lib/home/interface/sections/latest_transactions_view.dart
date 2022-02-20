@@ -88,7 +88,7 @@ class _LatestTransactionsView extends State<LatestTransactionsView> {
       child: Container(
           padding: const EdgeInsets.fromLTRB(11, 0, 11, 0),
           decoration: BoxDecoration(
-            color: ColorsResources.lightTransparent,
+            color: transactionColor.withOpacity(0.113),
             borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(13),
                 topRight: Radius.circular(13),

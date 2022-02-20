@@ -32,6 +32,8 @@ class TransactionsData {
   final String transactionType;
   /// Transaction Time In Millisecond
   final String transactionTime;
+  final String transactionTimeYear;
+  final String transactionTimeMonth;
 
   int colorTag = ColorsResources.dark.value;
 
@@ -51,7 +53,10 @@ class TransactionsData {
 
     required this.amountMoney,
     required this.transactionType,
+
     required this.transactionTime,
+    required this.transactionTimeYear,
+    required this.transactionTimeMonth,
 
     required this.colorTag,
 
@@ -75,7 +80,10 @@ class TransactionsData {
 
       'amountMoney': amountMoney,
       'transactionType': transactionType,
+
       'transactionTime': transactionTime,
+      'transactionTimeYear': transactionTimeYear,
+      'transactionTimeMonth': transactionTimeMonth,
 
       'colorTag': colorTag,
 
@@ -97,7 +105,10 @@ class TransactionsData {
 
         'amountMoney: $amountMoney,'
         'transactionType: $transactionType,'
+
         'transactionTime: $transactionTime,'
+        'transactionTimeYear: $transactionTimeYear,'
+        'transactionTimeMonth: $transactionTimeMonth,'
 
         'colorTag: $colorTag,'
 

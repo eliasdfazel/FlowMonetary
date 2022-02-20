@@ -22,7 +22,11 @@ class CalendarView extends StatefulWidget {
   CalendarView({Key? key}) : super(key: key);
 
   DateTime pickedDateTime = DateTime.now();
+
   String pickedDataTimeText = StringsResources.transactionTime;
+
+  String pickedDataTimeYear = "0";
+  String pickedDataTimeMonth = "0";
 
   @override
   _CalendarView createState() => _CalendarView();
@@ -88,6 +92,8 @@ class _CalendarView extends State<CalendarView> {
                   },
                   onConfirm: (date) {
 
+                    widget.pickedDateTime = date;
+
                     Gregorian gregorianCalendar = Gregorian(date.year, date.month, date.day, date.hour, date.minute, 0, 0);
                     var iranianCalendar = gregorianCalendar.toJalali();
 
@@ -96,6 +102,9 @@ class _CalendarView extends State<CalendarView> {
 
                     String weekdayName = iranianCalendar.formatter.wN.toString();
                     String monthName = iranianCalendar.formatter.mN.toString();
+
+                    widget.pickedDataTimeYear = yearNumber;
+                    widget.pickedDataTimeMonth = iranianCalendar.formatter.mm;
 
                     setState(() {
 
@@ -107,8 +116,6 @@ class _CalendarView extends State<CalendarView> {
                           "\n"
                           "ساعت" + " " +
                           "${iranianCalendar.hour}:${iranianCalendar.minute}";
-
-
 
                     });
 

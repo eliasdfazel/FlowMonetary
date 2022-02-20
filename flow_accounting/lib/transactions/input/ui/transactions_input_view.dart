@@ -1307,7 +1307,10 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
                             amountMoney: controllerMoneyAmount.text,
                             transactionType: transactionType,
+
                             transactionTime: calendarView.pickedDataTimeText,
+                            transactionTimeYear: calendarView.pickedDataTimeYear,
+                            transactionTimeMonth: calendarView.pickedDataTimeMonth,
 
                             sourceUsername: controllerTransactionSourceName.text,
                             sourceBankName: controllerTransactionSourceBank.text,
