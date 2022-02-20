@@ -40,7 +40,10 @@ class TransactionsDatabaseInputs {
               'targetUsername TEXT, '
               'amountMoney TEXT, '
               'transactionType TEXT, '
+              'transactionTimeMillisecond TEXT, '
               'transactionTime TEXT, '
+              'transactionTimeYear TEXT, '
+              'transactionTimeMonth TEXT, '
               'colorTag TEXT, '
               'budgetName TEXT'
               ')',

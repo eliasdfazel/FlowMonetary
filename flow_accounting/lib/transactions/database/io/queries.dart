@@ -53,6 +53,27 @@ class TransactionsDatabaseQueries {
 
   }
 
+  Future<Map<String, Object?>> queryTransactionByMonths(int transactionMonth,
+      String? tableName, {String usernameId = "Unknown"}) async {
+
+    final database = openDatabase(
+      join(await getDatabasesPath(), TransactionsDatabaseInputs.transactionDatabase),
+    );
+
+    final databaseInstance = await database;
+
+    var tableNameQuery = (tableName != null) ? tableName : TransactionsDatabaseInputs.databaseTableName;
+    tableNameQuery = "${usernameId}_${tableNameQuery}";
+
+    var databaseContents = await databaseInstance.query(
+      tableNameQuery,
+      where: 'id = ?',
+      whereArgs: [transactionMonth],
+    );
+
+    return databaseContents[0];
+  }
+
   Future<Map<String, Object?>> querySpecificTransaction(int id,
       String? tableName, {String usernameId = "Unknown"}) async {
 
