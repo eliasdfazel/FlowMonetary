@@ -53,7 +53,7 @@ class TransactionsDatabaseQueries {
 
   }
 
-  Future<Map<String, Object?>> queryTransactionByMonths(int transactionMonth,
+  Future<List<Map<String, Object?>>> queryTransactionByMonths(int transactionMonth,
       String? tableName, {String usernameId = "Unknown"}) async {
 
     final database = openDatabase(
@@ -67,11 +67,11 @@ class TransactionsDatabaseQueries {
 
     var databaseContents = await databaseInstance.query(
       tableNameQuery,
-      where: 'id = ?',
+      where: 'transactionTimeMonth = ?',
       whereArgs: [transactionMonth],
     );
 
-    return databaseContents[0];
+    return databaseContents;
   }
 
   Future<Map<String, Object?>> querySpecificTransaction(int id,
