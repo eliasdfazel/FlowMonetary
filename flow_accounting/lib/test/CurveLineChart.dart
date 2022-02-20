@@ -9,6 +9,7 @@
  */
 
 import 'package:fl_chart/fl_chart.dart';
+import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
@@ -25,10 +26,6 @@ class LineChartSample2 extends StatefulWidget {
 }
 
 class _LineChartSample2State extends State<LineChartSample2> {
-  List<Color> gradientColors = [
-    const Color(0xff23b6e6),
-    const Color(0xff02d39a),
-  ];
 
   bool showAvg = false;
 
@@ -38,7 +35,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
         child: Stack(
       children: <Widget>[
         AspectRatio(
-          aspectRatio: 1.70,
+          aspectRatio: 1.57,
           child: Container(
             decoration: const BoxDecoration(
                 borderRadius: BorderRadius.all(
@@ -49,7 +46,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
               padding: const EdgeInsets.only(
                   right: 18.0, left: 12.0, top: 24, bottom: 12),
               child: LineChart(
-                mainData(),
+                  mainData()
               ),
             ),
           ),
@@ -59,19 +56,21 @@ class _LineChartSample2State extends State<LineChartSample2> {
   }
 
   LineChartData mainData() {
+
     return LineChartData(
       gridData: FlGridData(
         show: true,
         drawVerticalLine: true,
+        drawHorizontalLine: true,
         getDrawingHorizontalLine: (value) {
           return FlLine(
-            color: const Color(0xff37434d),
+            color: ColorsResources.light.withOpacity(0.13),
             strokeWidth: 1,
           );
         },
         getDrawingVerticalLine: (value) {
           return FlLine(
-            color: const Color(0xff37434d),
+            color: ColorsResources.lightTransparent.withOpacity(0.13),
             strokeWidth: 1,
           );
         },
@@ -87,19 +86,23 @@ class _LineChartSample2State extends State<LineChartSample2> {
           getTextStyles: (context, value) => const TextStyle(
               color: Color(0xff68737d),
               fontWeight: FontWeight.bold,
-              fontSize: 16),
+              fontSize: 12,
+              decoration: TextDecoration.none
+          ),
           getTitles: (value) {
             switch (value.toInt()) {
-              case 2:
-                return 'MAR';
-              case 5:
-                return 'JUN';
-              case 8:
-                return 'SEP';
+              case 1:
+                return 'بهار';
+              case 4:
+                return 'تابستان';
+              case 7:
+                return 'پاییز';
+              case 10:
+                return 'زمستان';
             }
             return '';
           },
-          margin: 8,
+          margin: 7,
         ),
         leftTitles: SideTitles(
           showTitles: true,
@@ -108,6 +111,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
             color: Color(0xff67727d),
             fontWeight: FontWeight.bold,
             fontSize: 15,
+            decoration: TextDecoration.none
           ),
           getTitles: (value) {
             switch (value.toInt()) {
@@ -126,33 +130,91 @@ class _LineChartSample2State extends State<LineChartSample2> {
       ),
       borderData: FlBorderData(
           show: true,
-          border: Border.all(color: const Color(0xff37434d), width: 1)),
+          border: Border.all(color: const Color(0xff0000), width: 1)
+      ),
+      lineTouchData: LineTouchData(
+        getTouchedSpotIndicator: (LineChartBarData barData, List<int> spotIndexes) {
+
+          return spotIndexes.map((index) {
+            return TouchedSpotIndicatorData(
+              FlLine(
+                color: Colors.pink,
+              ),
+              FlDotData(
+                show: true,
+                getDotPainter: (spot, percent, barData, index) =>
+                    FlDotCirclePainter(
+                      radius: 7,
+                      color: ColorsResources.light.withOpacity(0.3),
+                      strokeWidth: 2,
+                      strokeColor: ColorsResources.light,
+                    ),
+              ),
+            );
+          }).toList();
+        },
+        touchTooltipData: LineTouchTooltipData(
+          tooltipBgColor: Colors.black,
+          getTooltipItems: (List<LineBarSpot> lineBarsSpot) {
+            return lineBarsSpot.map((lineBarSpot) {
+              return LineTooltipItem(
+                lineBarSpot.y.toString(),
+                const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold
+                ),
+              );
+            }).toList();
+          },
+        ),
+      ),
+      backgroundColor: Colors.transparent,
       minX: 0,
       maxX: 11,
       minY: 0,
       maxY: 6,
       lineBarsData: [
         LineChartBarData(
-          spots: const [
+          spots: const [//12 Months
             FlSpot(0, 3),
-            FlSpot(2.6, 2),
-            FlSpot(4.9, 5),
-            FlSpot(6.8, 3.1),
+            FlSpot(1, 3),
+            FlSpot(2, 2),
+            FlSpot(3, 5),
+            FlSpot(4, 3.1),
+            FlSpot(5, 4),
+            FlSpot(6, 3),
+            FlSpot(7, 4),
             FlSpot(8, 4),
-            FlSpot(9.5, 3),
-            FlSpot(11, 4),
+            FlSpot(9, 4),
+            FlSpot(10, 4),
+            FlSpot(11, 5),
           ],
+          curveSmoothness: 0.39,
           isCurved: true,
-          colors: gradientColors,
-          barWidth: 5,
+          shadow: Shadow(
+            color: ColorsResources.light.withOpacity(0.39),
+            offset: const Offset(0.0, 0.0),
+            blurRadius: 13
+          ),
+          colors: [
+            const Color(0xffe623b8).withOpacity(0.9),
+            const Color(0xff23e62d).withOpacity(0.9),
+            const Color(0xffbce623).withOpacity(0.9),
+            const Color(0xff23b6e6).withOpacity(0.9),
+          ],
+          barWidth: 3,
           isStrokeCapRound: true,
           dotData: FlDotData(
-            show: false,
+            show: true,
           ),
           belowBarData: BarAreaData(
             show: true,
-            colors:
-                gradientColors.map((color) => color.withOpacity(0.3)).toList(),
+            colors: [
+              const Color(0xffe623b8).withOpacity(0.17),
+              const Color(0xff23e62d).withOpacity(0.17),
+              const Color(0xffbce623).withOpacity(0.17),
+              const Color(0xff23b6e6).withOpacity(0.17),
+            ],
           ),
         ),
       ],
