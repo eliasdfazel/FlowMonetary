@@ -8,11 +8,13 @@
  * https://opensource.org/licenses/MIT
  */
 
+import 'package:flow_accounting/general_data/general_information_charts.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/database/io/inputs.dart';
 import 'package:flow_accounting/transactions/database/io/queries.dart';
 import 'package:flow_accounting/transactions/database/structures/tables_structure.dart';
+import 'package:flow_accounting/utils/navigations/navigations.dart';
 import 'package:flutter/material.dart';
 
 class GeneralDataView extends StatefulWidget {
@@ -100,6 +102,8 @@ class _GeneralDataView extends State<GeneralDataView> {
                                   splashColor: ColorsResources.primaryColorDark.withOpacity(0.3),
                                   splashFactory: InkRipple.splashFactory,
                                   onTap: () {
+
+                                    NavigationProcess().goTo(context, const GeneralFinancialCharts());
 
                                   },
                                   child: Container(
@@ -199,6 +203,8 @@ class _GeneralDataView extends State<GeneralDataView> {
                                   splashFactory: InkRipple.splashFactory,
                                   onTap: () {
 
+                                    NavigationProcess().goTo(context, const GeneralFinancialCharts());
+
                                   },
                                   child: Container(
                                     alignment: AlignmentDirectional.center,
@@ -296,6 +302,8 @@ class _GeneralDataView extends State<GeneralDataView> {
                                   splashColor: ColorsResources.primaryColorDark.withOpacity(0.3),
                                   splashFactory: InkRipple.splashFactory,
                                   onTap: () {
+
+                                    NavigationProcess().goTo(context, const GeneralFinancialCharts());
 
                                   },
                                   child: Container(
