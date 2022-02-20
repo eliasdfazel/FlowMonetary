@@ -26,16 +26,14 @@ class LineChartSample2 extends StatefulWidget {
 }
 
 class _LineChartSample2State extends State<LineChartSample2> {
-
-  bool showAvg = false;
-
   @override
   Widget build(BuildContext context) {
+
     return SafeArea(
         child: Stack(
       children: <Widget>[
         AspectRatio(
-          aspectRatio: 1.57,
+          aspectRatio: 1.37,
           child: Container(
             decoration: const BoxDecoration(
                 borderRadius: BorderRadius.all(
@@ -43,11 +41,8 @@ class _LineChartSample2State extends State<LineChartSample2> {
                 ),
                 color: Color(0xff232d37)),
             child: Padding(
-              padding: const EdgeInsets.only(
-                  right: 18.0, left: 12.0, top: 24, bottom: 12),
-              child: LineChart(
-                  mainData()
-              ),
+              padding: const EdgeInsets.only(right: 13.0, left: 13.0, top: 31, bottom: 11),
+              child: LineChart(chartData()),
             ),
           ),
         ),
@@ -55,7 +50,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
     ));
   }
 
-  LineChartData mainData() {
+  LineChartData chartData() {
 
     return LineChartData(
       gridData: FlGridData(
@@ -84,10 +79,10 @@ class _LineChartSample2State extends State<LineChartSample2> {
           reservedSize: 22,
           interval: 1,
           getTextStyles: (context, value) => const TextStyle(
-              color: Color(0xff68737d),
-              fontWeight: FontWeight.bold,
-              fontSize: 12,
-              decoration: TextDecoration.none
+            color: ColorsResources.light,
+            fontWeight: FontWeight.bold,
+            fontSize: 12,
+            decoration: TextDecoration.none,
           ),
           getTitles: (value) {
             switch (value.toInt()) {
@@ -108,19 +103,25 @@ class _LineChartSample2State extends State<LineChartSample2> {
           showTitles: true,
           interval: 1,
           getTextStyles: (context, value) => const TextStyle(
-            color: Color(0xff67727d),
+            color: ColorsResources.light,
             fontWeight: FontWeight.bold,
             fontSize: 15,
-            decoration: TextDecoration.none
+            decoration: TextDecoration.none,
           ),
           getTitles: (value) {
             switch (value.toInt()) {
               case 1:
                 return '10k';
+              case 2:
+                return '20k';
               case 3:
                 return '30k';
+              case 4:
+                return '40k';
               case 5:
-                return '50k';
+                return '60k';
+              case 6:
+                return '70k';
             }
             return '';
           },
@@ -129,41 +130,50 @@ class _LineChartSample2State extends State<LineChartSample2> {
         ),
       ),
       borderData: FlBorderData(
-          show: true,
-          border: Border.all(color: const Color(0xff0000), width: 1)
+        show: true,
+        border: Border.all(color: ColorsResources.lightTransparent.withOpacity(0.13), width: 1),
       ),
       lineTouchData: LineTouchData(
         getTouchedSpotIndicator: (LineChartBarData barData, List<int> spotIndexes) {
 
           return spotIndexes.map((index) {
+
             return TouchedSpotIndicatorData(
               FlLine(
-                color: Colors.pink,
+                color: ColorsResources.lightTransparent,
               ),
               FlDotData(
                 show: true,
                 getDotPainter: (spot, percent, barData, index) =>
                     FlDotCirclePainter(
-                      radius: 7,
-                      color: ColorsResources.light.withOpacity(0.3),
-                      strokeWidth: 2,
-                      strokeColor: ColorsResources.light,
-                    ),
+                  radius: 7,
+                  color: ColorsResources.light.withOpacity(0.3),
+                  strokeWidth: 2,
+                  strokeColor: ColorsResources.light,
+                ),
               ),
             );
+
           }).toList();
         },
         touchTooltipData: LineTouchTooltipData(
-          tooltipBgColor: Colors.black,
+          tooltipBgColor:
+          ColorsResources.applicationGeeksEmpire.withOpacity(0.7),
+          tooltipRoundedRadius: 51,
+          tooltipPadding: const EdgeInsets.fromLTRB(7, 7, 7, 7),
+          tooltipMargin: 19,
           getTooltipItems: (List<LineBarSpot> lineBarsSpot) {
+
             return lineBarsSpot.map((lineBarSpot) {
+
               return LineTooltipItem(
                 lineBarSpot.y.toString(),
                 const TextStyle(
                     color: Colors.white,
-                    fontWeight: FontWeight.bold
-                ),
+                    fontSize: 13,
+                    decoration: TextDecoration.none),
               );
+
             }).toList();
           },
         ),
@@ -175,7 +185,8 @@ class _LineChartSample2State extends State<LineChartSample2> {
       maxY: 6,
       lineBarsData: [
         LineChartBarData(
-          spots: const [//12 Months
+          spots: const [
+            //12 Months
             FlSpot(0, 3),
             FlSpot(1, 3),
             FlSpot(2, 2),
@@ -192,10 +203,9 @@ class _LineChartSample2State extends State<LineChartSample2> {
           curveSmoothness: 0.39,
           isCurved: true,
           shadow: Shadow(
-            color: ColorsResources.light.withOpacity(0.39),
-            offset: const Offset(0.0, 0.0),
-            blurRadius: 13
-          ),
+              color: ColorsResources.light.withOpacity(0.39),
+              offset: const Offset(0.0, 0.0),
+              blurRadius: 13),
           colors: [
             const Color(0xffe623b8).withOpacity(0.9),
             const Color(0xff23e62d).withOpacity(0.9),
