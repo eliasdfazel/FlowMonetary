@@ -100,6 +100,13 @@
             </list>
           </value>
         </entry>
+        <entry key="equatable">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../Xemonstration/Flutter/Setup/FlutterSdk/.pub-cache/hosted/pub.dartlang.org/equatable-2.0.3/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="fading_edge_scrollview">
           <value>
             <list>
@@ -125,6 +132,13 @@
           <value>
             <list>
               <option value="$PROJECT_DIR$/../../Xemonstration/Flutter/Setup/FlutterSdk/.pub-cache/hosted/pub.dartlang.org/file-6.1.2/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="fl_chart">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../Xemonstration/Flutter/Setup/FlutterSdk/.pub-cache/hosted/pub.dartlang.org/fl_chart-0.45.0/lib" />
             </list>
           </value>
         </entry>
@@ -677,10 +691,12 @@
       <root url="file://$PROJECT_DIR$/../../Xemonstration/Flutter/Setup/FlutterSdk/.pub-cache/hosted/pub.dartlang.org/collection-1.15.0/lib" />
       <root url="file://$PROJECT_DIR$/../../Xemonstration/Flutter/Setup/FlutterSdk/.pub-cache/hosted/pub.dartlang.org/crypto-3.0.1/lib" />
       <root url="file://$PROJECT_DIR$/../../Xemonstration/Flutter/Setup/FlutterSdk/.pub-cache/hosted/pub.dartlang.org/cupertino_icons-1.0.4/lib" />
+      <root url="file://$PROJECT_DIR$/../../Xemonstration/Flutter/Setup/FlutterSdk/.pub-cache/hosted/pub.dartlang.org/equatable-2.0.3/lib" />
       <root url="file://$PROJECT_DIR$/../../Xemonstration/Flutter/Setup/FlutterSdk/.pub-cache/hosted/pub.dartlang.org/fading_edge_scrollview-2.0.1/lib" />
       <root url="file://$PROJECT_DIR$/../../Xemonstration/Flutter/Setup/FlutterSdk/.pub-cache/hosted/pub.dartlang.org/fake_async-1.2.0/lib" />
       <root url="file://$PROJECT_DIR$/../../Xemonstration/Flutter/Setup/FlutterSdk/.pub-cache/hosted/pub.dartlang.org/ffi-1.1.2/lib" />
       <root url="file://$PROJECT_DIR$/../../Xemonstration/Flutter/Setup/FlutterSdk/.pub-cache/hosted/pub.dartlang.org/file-6.1.2/lib" />
+      <root url="file://$PROJECT_DIR$/../../Xemonstration/Flutter/Setup/FlutterSdk/.pub-cache/hosted/pub.dartlang.org/fl_chart-0.45.0/lib" />
       <root url="file://$PROJECT_DIR$/../../Xemonstration/Flutter/Setup/FlutterSdk/.pub-cache/hosted/pub.dartlang.org/flutter_blurhash-0.6.4/lib" />
       <root url="file://$PROJECT_DIR$/../../Xemonstration/Flutter/Setup/FlutterSdk/.pub-cache/hosted/pub.dartlang.org/flutter_cache_manager-3.3.0/lib" />
       <root url="file://$PROJECT_DIR$/../../Xemonstration/Flutter/Setup/FlutterSdk/.pub-cache/hosted/pub.dartlang.org/flutter_datetime_picker-1.5.1/lib" />
