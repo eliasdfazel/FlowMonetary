@@ -113,7 +113,7 @@ class _GeneralDataView extends State<GeneralDataView> {
                                         width: 1,
                                       )
                                   ),
-                                  color: ColorsResources.light.withOpacity(0.3)
+                                  color: ColorsResources.primaryColorDark.withOpacity(0.13)
                               ),
                               child: Align(
                                 alignment: Alignment.center,
@@ -192,7 +192,7 @@ class _GeneralDataView extends State<GeneralDataView> {
                                         width: 1,
                                       )
                                   ),
-                                  color: ColorsResources.light.withOpacity(0.3)
+                                  color: ColorsResources.applicationGeeksEmpire.withOpacity(0.13)
                               ),
                               child: Align(
                                 alignment: Alignment.center,
@@ -217,7 +217,7 @@ class _GeneralDataView extends State<GeneralDataView> {
                       )
                   ),
                   Expanded(
-                      flex: 5,
+                      flex: 3,
                       child: Column(
                         children: [
                           const SizedBox(
@@ -270,7 +270,7 @@ class _GeneralDataView extends State<GeneralDataView> {
                                         width: 1,
                                       )
                                   ),
-                                  color: ColorsResources.light.withOpacity(0.3)
+                                  color: ColorsResources.gameGeeksEmpire.withOpacity(0.13)
                               ),
                               child: Align(
                                 alignment: Alignment.center,
