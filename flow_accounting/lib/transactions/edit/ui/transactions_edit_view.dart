@@ -86,6 +86,9 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
 
     CalendarView calendarView = CalendarView();
     calendarView.inputDateTime = widget.transactionsData.transactionTime;
+    calendarView.pickedDateTime = DateTime.fromMillisecondsSinceEpoch(widget.transactionsData.transactionTimeMillisecond);
+    calendarView.pickedDataTimeYear = widget.transactionsData.transactionTimeYear;
+    calendarView.pickedDataTimeMonth = widget.transactionsData.transactionTimeMonth;
 
     ColorSelectorView colorSelectorView = ColorSelectorView();
     colorSelectorView.inputColor = Color(widget.transactionsData.colorTag);
@@ -1335,6 +1338,8 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
 
                             amountMoney: controllerMoneyAmount.text,
                             transactionType: transactionType,
+
+                            transactionTimeMillisecond: calendarView.pickedDateTime.millisecond,
                             transactionTime: calendarView.pickedDataTimeText,
                             transactionTimeYear: calendarView.pickedDataTimeYear,
                             transactionTimeMonth: calendarView.pickedDataTimeMonth,

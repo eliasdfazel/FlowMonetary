@@ -30,7 +30,9 @@ class TransactionsData {
 
   final String amountMoney;
   final String transactionType;
+
   /// Transaction Time In Millisecond
+  final int transactionTimeMillisecond;
   final String transactionTime;
   final String transactionTimeYear;
   final String transactionTimeMonth;
@@ -54,6 +56,7 @@ class TransactionsData {
     required this.amountMoney,
     required this.transactionType,
 
+    required this.transactionTimeMillisecond,
     required this.transactionTime,
     required this.transactionTimeYear,
     required this.transactionTimeMonth,
@@ -81,6 +84,7 @@ class TransactionsData {
       'amountMoney': amountMoney,
       'transactionType': transactionType,
 
+      'transactionTimeMillisecond': transactionTimeMillisecond,
       'transactionTime': transactionTime,
       'transactionTimeYear': transactionTimeYear,
       'transactionTimeMonth': transactionTimeMonth,
@@ -106,6 +110,7 @@ class TransactionsData {
         'amountMoney: $amountMoney,'
         'transactionType: $transactionType,'
 
+        'transactionTimeMillisecond: $transactionTimeMillisecond,'
         'transactionTime: $transactionTime,'
         'transactionTimeYear: $transactionTimeYear,'
         'transactionTimeMonth: $transactionTimeMonth,'

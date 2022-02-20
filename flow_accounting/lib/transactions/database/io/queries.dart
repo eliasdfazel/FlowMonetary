@@ -29,7 +29,7 @@ class TransactionsDatabaseQueries {
     var tableNameQuery = (tableName != null) ? tableName : TransactionsDatabaseInputs.databaseTableName;
     tableNameQuery = "${usernameId}_${tableNameQuery}";
 
-    final List<Map<String, dynamic>> maps = await databaseInstance.query(tableNameQuery);
+    final List<Map<String, dynamic>> maps = await databaseInstance.query(tableNameQuery, orderBy: "userId DESC",);
 
     return List.generate(maps.length, (i) {
       return TransactionsData(
