@@ -17,6 +17,7 @@ import 'package:flow_accounting/credit_cards/database/io/inputs.dart';
 import 'package:flow_accounting/credit_cards/database/io/queries.dart';
 import 'package:flow_accounting/credit_cards/database/structures/tables_structure.dart';
 import 'package:flow_accounting/home/interface/dashboard.dart';
+import 'package:flow_accounting/prototype/prototype_data.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/database/io/inputs.dart';
@@ -1474,7 +1475,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
 
     List<String> listOfNames = [];
     listOfNames.add(mySelf);
-    listOfNames.addAll(["Test", "Aban", "Elias", "One", "Mr. Fazel", "Geeks Empire"]);
+    listOfNames.addAll(PrototypeData().customersList);
 
     return listOfNames;
   }
