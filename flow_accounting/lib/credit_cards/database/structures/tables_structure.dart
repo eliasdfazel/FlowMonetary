@@ -15,6 +15,7 @@ class CreditCardsData {
   final int id;
 
   final String cardNumber;
+  ///YY/MM
   final String cardExpiry;
   final String cardHolderName;
   final String cvv;
