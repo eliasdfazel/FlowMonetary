@@ -39,7 +39,16 @@ class PrototypeData {
     Colors.greenAccent
   ];
 
-  List<String> customersList = ["دانیال", "آبان", "الیاس", "پویا", "فاضل", "شرکت آبان", "عطیه", "امی"];
+  List<String> customersList = [
+    "دانیال",
+    "آبان",
+    "الیاس",
+    "پویا",
+    "فاضل",
+    "شرکت آبان",
+    "عطیه",
+    "امی"
+  ];
 
   void generate() {
 
@@ -212,6 +221,168 @@ class PrototypeData {
         transactionTimeMonth: DateTime.now().month.toString(),
         colorTag: listOfColors.randomItem().value,
         budgetName: "گربه"
+    ));
+
+    transactionsData.add(TransactionsData(
+        id: DateTime.now().millisecondsSinceEpoch,
+        sourceCardNumber: "5274331211991147",
+        targetCardNumber: "6666121200641696",
+        sourceBankName: StringsResources.listOfBanksIran.randomItem(),
+        targetBankName: StringsResources.listOfBanksIran.randomItem(),
+        sourceUsername: customersList.randomItem(),
+        targetUsername: customersList.randomItem(),
+        amountMoney: "1735900",
+        transactionType: TransactionsData.TransactionType_Receive,
+        transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
+        transactionTime: generateDateText(),
+        transactionTimeYear: DateTime.now().year.toString(),
+        transactionTimeMonth: DateTime.now().month.toString(),
+        colorTag: listOfColors.randomItem().value,
+        budgetName: "شرکت نرم افزاری آبان"
+    ));
+
+    transactionsData.add(TransactionsData(
+        id: DateTime.now().millisecondsSinceEpoch,
+        sourceCardNumber: "5274331211991147",
+        targetCardNumber: "6274121200641696",
+        sourceBankName: StringsResources.listOfBanksIran.randomItem(),
+        targetBankName: StringsResources.listOfBanksIran.randomItem(),
+        sourceUsername: customersList.randomItem(),
+        targetUsername: customersList.randomItem(),
+        amountMoney: "4590",
+        transactionType: TransactionsData.TransactionType_Send,
+        transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
+        transactionTime: generateDateText(),
+        transactionTimeYear: DateTime.now().year.toString(),
+        transactionTimeMonth: DateTime.now().month.toString(),
+        colorTag: listOfColors.randomItem().value,
+        budgetName: "گربه"
+    ));
+
+    transactionsData.add(TransactionsData(
+        id: DateTime.now().millisecondsSinceEpoch,
+        sourceCardNumber: "5274331211991147",
+        targetCardNumber: "6666121200641696",
+        sourceBankName: StringsResources.listOfBanksIran.randomItem(),
+        targetBankName: StringsResources.listOfBanksIran.randomItem(),
+        sourceUsername: customersList.randomItem(),
+        targetUsername: customersList.randomItem(),
+        amountMoney: "735900",
+        transactionType: TransactionsData.TransactionType_Receive,
+        transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
+        transactionTime: generateDateText(),
+        transactionTimeYear: DateTime.now().year.toString(),
+        transactionTimeMonth: DateTime.now().month.toString(),
+        colorTag: listOfColors.randomItem().value,
+        budgetName: "شرکت نرم افزاری آبان"
+    ));
+
+    transactionsData.add(TransactionsData(
+        id: DateTime.now().millisecondsSinceEpoch,
+        sourceCardNumber: "5274331211991147",
+        targetCardNumber: "6666121200641696",
+        sourceBankName: StringsResources.listOfBanksIran.randomItem(),
+        targetBankName: StringsResources.listOfBanksIran.randomItem(),
+        sourceUsername: customersList.randomItem(),
+        targetUsername: customersList.randomItem(),
+        amountMoney: "9735900",
+        transactionType: TransactionsData.TransactionType_Receive,
+        transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
+        transactionTime: generateDateText(),
+        transactionTimeYear: DateTime.now().year.toString(),
+        transactionTimeMonth: DateTime.now().month.toString(),
+        colorTag: listOfColors.randomItem().value,
+        budgetName: "شرکت نرم افزاری آبان"
+    ));
+
+    transactionsData.add(TransactionsData(
+        id: DateTime.now().millisecondsSinceEpoch,
+        sourceCardNumber: "5274331211991147",
+        targetCardNumber: "6666121200641696",
+        sourceBankName: StringsResources.listOfBanksIran.randomItem(),
+        targetBankName: StringsResources.listOfBanksIran.randomItem(),
+        sourceUsername: customersList.randomItem(),
+        targetUsername: customersList.randomItem(),
+        amountMoney: "9735900",
+        transactionType: TransactionsData.TransactionType_Receive,
+        transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
+        transactionTime: generateDateText(),
+        transactionTimeYear: DateTime.now().year.toString(),
+        transactionTimeMonth: DateTime.now().month.toString(),
+        colorTag: listOfColors.randomItem().value,
+        budgetName: "شرکت نرم افزاری آبان"
+    ));
+
+    transactionsData.add(TransactionsData(
+        id: DateTime.now().millisecondsSinceEpoch,
+        sourceCardNumber: "5274331211991147",
+        targetCardNumber: "6666121200641696",
+        sourceBankName: StringsResources.listOfBanksIran.randomItem(),
+        targetBankName: StringsResources.listOfBanksIran.randomItem(),
+        sourceUsername: customersList.randomItem(),
+        targetUsername: customersList.randomItem(),
+        amountMoney: "1115900",
+        transactionType: TransactionsData.TransactionType_Receive,
+        transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
+        transactionTime: generateDateText(),
+        transactionTimeYear: DateTime.now().year.toString(),
+        transactionTimeMonth: DateTime.now().month.toString(),
+        colorTag: listOfColors.randomItem().value,
+        budgetName: "شرکت نرم افزاری آبان"
+    ));
+
+    transactionsData.add(TransactionsData(
+        id: DateTime.now().millisecondsSinceEpoch,
+        sourceCardNumber: "5274331211991147",
+        targetCardNumber: "6666121200641696",
+        sourceBankName: StringsResources.listOfBanksIran.randomItem(),
+        targetBankName: StringsResources.listOfBanksIran.randomItem(),
+        sourceUsername: customersList.randomItem(),
+        targetUsername: customersList.randomItem(),
+        amountMoney: "9735900",
+        transactionType: TransactionsData.TransactionType_Receive,
+        transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
+        transactionTime: generateDateText(),
+        transactionTimeYear: DateTime.now().year.toString(),
+        transactionTimeMonth: DateTime.now().month.toString(),
+        colorTag: listOfColors.randomItem().value,
+        budgetName: "شرکت نرم افزاری آبان"
+    ));
+
+    transactionsData.add(TransactionsData(
+        id: DateTime.now().millisecondsSinceEpoch,
+        sourceCardNumber: "5274331211991147",
+        targetCardNumber: "6666121200641696",
+        sourceBankName: StringsResources.listOfBanksIran.randomItem(),
+        targetBankName: StringsResources.listOfBanksIran.randomItem(),
+        sourceUsername: customersList.randomItem(),
+        targetUsername: customersList.randomItem(),
+        amountMoney: "35900",
+        transactionType: TransactionsData.TransactionType_Receive,
+        transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
+        transactionTime: generateDateText(),
+        transactionTimeYear: DateTime.now().year.toString(),
+        transactionTimeMonth: DateTime.now().month.toString(),
+        colorTag: listOfColors.randomItem().value,
+        budgetName: "شرکت نرم افزاری آبان"
+    ));
+
+    transactionsData.add(TransactionsData(
+        id: DateTime.now().millisecondsSinceEpoch,
+        sourceCardNumber: "5274331211991147",
+        targetCardNumber: "6666121200641696",
+        sourceBankName: StringsResources.listOfBanksIran.randomItem(),
+        targetBankName: StringsResources.listOfBanksIran.randomItem(),
+        sourceUsername: customersList.randomItem(),
+        targetUsername: customersList.randomItem(),
+        amountMoney: "5535900",
+        transactionType: TransactionsData.TransactionType_Receive,
+        transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
+        transactionTime: generateDateText(),
+        transactionTimeYear: DateTime.now().year.toString(),
+        transactionTimeMonth: DateTime.now().month.toString(),
+        colorTag: listOfColors.randomItem().value,
+        budgetName: "شرکت نرم افزاری آبان"
     ));
 
     for (var element in transactionsData) {
