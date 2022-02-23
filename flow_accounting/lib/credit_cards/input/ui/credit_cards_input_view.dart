@@ -1367,23 +1367,23 @@ class _CreditCardFrontLayout extends State<CreditCardFrontLayout> {
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(13.0),
                                     child: Container(
-                                      decoration: BoxDecoration(
+                                      decoration: const BoxDecoration(
                                         color: ColorsResources.white,
                                         border: Border(
                                             top: BorderSide(
-                                              color: Color(creditCardColorTag),
+                                              color: Colors.transparent,
                                               width: 1.7,
                                             ),
                                             bottom: BorderSide(
-                                              color: Color(creditCardColorTag),
+                                              color: Colors.transparent,
                                               width: 1.7,
                                             ),
                                             left: BorderSide(
-                                              color: Color(creditCardColorTag),
+                                              color: Colors.transparent,
                                               width: 1.7,
                                             ),
                                             right: BorderSide(
-                                              color: Color(creditCardColorTag),
+                                              color: Colors.transparent,
                                               width: 1.7,
                                             )
                                         ),
