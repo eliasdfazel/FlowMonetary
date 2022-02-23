@@ -600,6 +600,29 @@ class _CreditCardFrontLayout extends State<CreditCardFrontLayout> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Expanded(
+                              flex: 1,
+                              child: Align(
+                                alignment: Alignment.center,
+                                child: Padding(
+                                    padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
+                                    child: SizedBox(
+                                      height: 51,
+                                      width: 51,
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          color: Color(widget.colorTag),
+                                          shape: BoxShape.circle
+                                        ),
+                                        child: Align(
+                                          alignment: AlignmentDirectional.center,
+                                          child: bankLogoImageView,
+                                        ),
+                                      ),
+                                    )
+                                ),
+                              )
+                          ),
+                          Expanded(
                               flex: 13,
                               child: Padding(
                                   padding: const EdgeInsets.fromLTRB(0, 0, 17, 0),
