@@ -44,7 +44,7 @@ class TransactionsDatabaseQueries {
         targetUsername: maps[i]['targetUsername'],
         amountMoney: maps[i]['amountMoney'],
         transactionType: maps[i]['transactionType'],
-        transactionTimeMillisecond: maps[i]['transactionTimeMillisecond'],
+        transactionTimeMillisecond: int.parse(maps[i]['transactionTimeMillisecond'].toString()),
         transactionTime: maps[i]['transactionTime'],
         transactionTimeYear: maps[i]['transactionTimeYear'],
         transactionTimeMonth: maps[i]['transactionTimeMonth'],

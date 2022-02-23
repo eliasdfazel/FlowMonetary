@@ -251,6 +251,8 @@ class DashboardViewState extends State<DashboardView> {
 
     });
 
+    print(">>> >> > ${latestTransactions}");
+
     prepareCreditCardsData();
 
   }
@@ -266,6 +268,8 @@ class DashboardViewState extends State<DashboardView> {
       allCreditCards = listOfAllCreditCards;
 
     });
+
+    print(">>> >> > ${listOfAllCreditCards}");
 
   }
 
