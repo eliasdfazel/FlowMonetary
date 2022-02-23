@@ -30,6 +30,8 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
   List<TransactionsData> allTransactions = [];
   List<Widget> allTransactionsItems = [];
 
+  TextEditingController controllerTransactionTitle = TextEditingController();
+
   TextEditingController textEditorControllerQuery = TextEditingController();
 
   bool colorSelectorInitialized = false;
@@ -498,6 +500,8 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
       }
     }
 
+    controllerTransactionTitle.text = transactionsData.transactionDescription;
+
     return Slidable(
       closeOnScroll: true,
       endActionPane: ActionPane(
@@ -736,6 +740,86 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
                             )
                         ),
                       ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(7, 9, 7, 9),
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: Directionality(
+                        textDirection: TextDirection.rtl,
+                        child: TextField(
+                          controller: controllerTransactionTitle,
+                          textAlign: TextAlign.right,
+                          textDirection: TextDirection.ltr,
+                          textAlignVertical: TextAlignVertical.center,
+                          maxLines: 1,
+                          cursorColor: ColorsResources.primaryColor,
+                          style: const TextStyle(
+                            fontSize: 13,
+                            color: ColorsResources.applicationDarkGeeksEmpire
+                          ),
+                          decoration: const InputDecoration(
+                            alignLabelWithHint: true,
+                            enabled: false,
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(13),
+                                    topRight: Radius.circular(13),
+                                    bottomLeft: Radius.circular(13),
+                                    bottomRight: Radius.circular(13)
+                                ),
+                                gapPadding: 5
+                            ),
+                            disabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: ColorsResources.white, width: 1.0),
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(13),
+                                    topRight: Radius.circular(13),
+                                    bottomLeft: Radius.circular(13),
+                                    bottomRight: Radius.circular(13)
+                                ),
+                                gapPadding: 5
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: ColorsResources.white, width: 1.0),
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(13),
+                                    topRight: Radius.circular(13),
+                                    bottomLeft: Radius.circular(13),
+                                    bottomRight: Radius.circular(13)
+                                ),
+                                gapPadding: 5
+                            ),
+                            errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: ColorsResources.white, width: 1.0),
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(13),
+                                    topRight: Radius.circular(13),
+                                    bottomLeft: Radius.circular(13),
+                                    bottomRight: Radius.circular(13)
+                                ),
+                                gapPadding: 5
+                            ),
+                            filled: true,
+                            fillColor: ColorsResources.lightTransparent,
+
+                            labelText: StringsResources.descriptionText,
+                            labelStyle: TextStyle(
+                              color: ColorsResources.dark,
+                              fontSize: 13.0,
+                              fontWeight: FontWeight.bold
+                            ),
+                            hintText: StringsResources.descriptionText,
+                            hintStyle: TextStyle(
+                              color: ColorsResources.dark,
+                              fontSize: 13.0,
+                              fontWeight: FontWeight.bold
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                   SizedBox(

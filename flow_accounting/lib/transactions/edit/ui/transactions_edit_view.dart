@@ -313,13 +313,17 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                       controller: controllerTransactionDescription,
                                       textAlign: TextAlign.right,
                                       textDirection: TextDirection.ltr,
-                                      textAlignVertical: TextAlignVertical.bottom,
+                                      textAlignVertical: TextAlignVertical.top,
                                       maxLines: 1,
                                       cursorColor: ColorsResources.primaryColor,
                                       autocorrect: true,
                                       autofocus: false,
                                       keyboardType: TextInputType.text,
                                       textInputAction: TextInputAction.next,
+                                      style: const TextStyle(
+                                          fontSize: 12,
+                                          color: ColorsResources.applicationDarkGeeksEmpire
+                                      ),
                                       decoration: const InputDecoration(
                                         alignLabelWithHint: true,
                                         border: OutlineInputBorder(

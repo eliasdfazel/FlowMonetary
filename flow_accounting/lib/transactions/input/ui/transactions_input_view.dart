@@ -280,13 +280,17 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                       controller: controllerTransactionDescription,
                                       textAlign: TextAlign.right,
                                       textDirection: TextDirection.ltr,
-                                      textAlignVertical: TextAlignVertical.bottom,
+                                      textAlignVertical: TextAlignVertical.top,
                                       maxLines: 5,
                                       cursorColor: ColorsResources.primaryColor,
                                       autocorrect: true,
                                       autofocus: false,
                                       keyboardType: TextInputType.text,
                                       textInputAction: TextInputAction.next,
+                                      style: const TextStyle(
+                                          fontSize: 12,
+                                          color: ColorsResources.applicationDarkGeeksEmpire
+                                      ),
                                       decoration: InputDecoration(
                                         alignLabelWithHint: true,
                                         border: const OutlineInputBorder(
