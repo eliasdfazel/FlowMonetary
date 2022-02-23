@@ -77,6 +77,8 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
 
   bool creditCardDataUpdated = false;
 
+  String? warningNotice;
+
   @override
   void initState() {
 
@@ -333,9 +335,9 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                           autofocus: false,
                                           maxLines: 1,
                                           cursorColor: ColorsResources.primaryColor,
-                                          decoration: const InputDecoration(
+                                          decoration: InputDecoration(
                                             alignLabelWithHint: true,
-                                            border: OutlineInputBorder(
+                                            border: const OutlineInputBorder(
                                                 borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
                                                 borderRadius: BorderRadius.only(
                                                     topLeft: Radius.circular(13),
@@ -345,7 +347,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                                 ),
                                                 gapPadding: 5
                                             ),
-                                            enabledBorder: OutlineInputBorder(
+                                            enabledBorder: const OutlineInputBorder(
                                                 borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
                                                 borderRadius: BorderRadius.only(
                                                     topLeft: Radius.circular(13),
@@ -355,7 +357,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                                 ),
                                                 gapPadding: 5
                                             ),
-                                            focusedBorder: OutlineInputBorder(
+                                            focusedBorder: const OutlineInputBorder(
                                                 borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
                                                 borderRadius: BorderRadius.only(
                                                     topLeft: Radius.circular(13),
@@ -365,7 +367,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                                 ),
                                                 gapPadding: 5
                                             ),
-                                            errorBorder: OutlineInputBorder(
+                                            errorBorder: const OutlineInputBorder(
                                                 borderSide: BorderSide(color: Colors.red, width: 1.0),
                                                 borderRadius: BorderRadius.only(
                                                     topLeft: Radius.circular(13),
@@ -375,15 +377,16 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                                 ),
                                                 gapPadding: 5
                                             ),
+                                            errorText: warningNotice,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
                                             labelText: StringsResources.creditCardsBankName,
-                                            labelStyle: TextStyle(
+                                            labelStyle: const TextStyle(
                                                 color: ColorsResources.dark,
                                                 fontSize: 17.0
                                             ),
                                             hintText: StringsResources.creditCardsBankNameHint,
-                                            hintStyle: TextStyle(
+                                            hintStyle: const TextStyle(
                                                 color: ColorsResources.darkTransparent,
                                                 fontSize: 17.0
                                             ),
@@ -409,9 +412,9 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                       autocorrect: true,
                                       autofocus: false,
                                       keyboardType: TextInputType.name,
-                                      decoration: const InputDecoration(
+                                      decoration: InputDecoration(
                                         alignLabelWithHint: true,
-                                        border: OutlineInputBorder(
+                                        border: const OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(13),
@@ -421,7 +424,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                             ),
                                             gapPadding: 5
                                         ),
-                                        enabledBorder: OutlineInputBorder(
+                                        enabledBorder: const OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(13),
@@ -431,7 +434,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                             ),
                                             gapPadding: 5
                                         ),
-                                        focusedBorder: OutlineInputBorder(
+                                        focusedBorder: const OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(13),
@@ -441,7 +444,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorBorder: OutlineInputBorder(
+                                        errorBorder: const OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.red, width: 1.0),
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(13),
@@ -451,15 +454,16 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                             ),
                                             gapPadding: 5
                                         ),
+                                        errorText: warningNotice,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.creditCardsNameHolder,
-                                        labelStyle: TextStyle(
+                                        labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
                                         hintText: StringsResources.creditCardsNameHolderHint,
-                                        hintStyle: TextStyle(
+                                        hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
                                         ),
@@ -500,9 +504,9 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                       inputFormatters: [
                                         LengthLimitingTextInputFormatter(16)
                                       ],
-                                      decoration: const InputDecoration(
+                                      decoration: InputDecoration(
                                         alignLabelWithHint: true,
-                                        border: OutlineInputBorder(
+                                        border: const OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(13),
@@ -512,7 +516,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                             ),
                                             gapPadding: 5
                                         ),
-                                        enabledBorder: OutlineInputBorder(
+                                        enabledBorder: const OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(13),
@@ -522,7 +526,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                             ),
                                             gapPadding: 5
                                         ),
-                                        focusedBorder: OutlineInputBorder(
+                                        focusedBorder: const OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(13),
@@ -532,7 +536,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorBorder: OutlineInputBorder(
+                                        errorBorder: const OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.red, width: 1.0),
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(13),
@@ -542,15 +546,16 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                             ),
                                             gapPadding: 5
                                         ),
+                                        errorText: warningNotice,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.transactionTargetCard,
-                                        labelStyle: TextStyle(
+                                        labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
                                         hintText: StringsResources.transactionTargetCardHint,
-                                        hintStyle: TextStyle(
+                                        hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
                                         ),
@@ -592,9 +597,9 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                       inputFormatters: [
                                         LengthLimitingTextInputFormatter(4)
                                       ],
-                                      decoration: const InputDecoration(
+                                      decoration: InputDecoration(
                                         alignLabelWithHint: true,
-                                        border: OutlineInputBorder(
+                                        border: const OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(13),
@@ -604,7 +609,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                             ),
                                             gapPadding: 5
                                         ),
-                                        enabledBorder: OutlineInputBorder(
+                                        enabledBorder: const OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(13),
@@ -614,7 +619,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                             ),
                                             gapPadding: 5
                                         ),
-                                        focusedBorder: OutlineInputBorder(
+                                        focusedBorder: const OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(13),
@@ -624,7 +629,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorBorder: OutlineInputBorder(
+                                        errorBorder: const OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.red, width: 1.0),
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(13),
@@ -634,15 +639,16 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                             ),
                                             gapPadding: 5
                                         ),
+                                        errorText: warningNotice,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.creditCardCvv,
-                                        labelStyle: TextStyle(
+                                        labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
                                         hintText: StringsResources.creditCardCvvHint,
-                                        hintStyle: TextStyle(
+                                        hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
                                         ),
@@ -670,9 +676,9 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                       inputFormatters: [
                                         LengthLimitingTextInputFormatter(2)
                                       ],
-                                      decoration: const InputDecoration(
+                                      decoration: InputDecoration(
                                         alignLabelWithHint: true,
-                                        border: OutlineInputBorder(
+                                        border: const OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(13),
@@ -682,7 +688,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                             ),
                                             gapPadding: 5
                                         ),
-                                        enabledBorder: OutlineInputBorder(
+                                        enabledBorder: const OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(13),
@@ -692,7 +698,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                             ),
                                             gapPadding: 5
                                         ),
-                                        focusedBorder: OutlineInputBorder(
+                                        focusedBorder: const OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(13),
@@ -702,7 +708,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorBorder: OutlineInputBorder(
+                                        errorBorder: const OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.red, width: 1.0),
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(13),
@@ -712,15 +718,16 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                             ),
                                             gapPadding: 5
                                         ),
+                                        errorText: warningNotice,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.creditCardExpiryYear,
-                                        labelStyle: TextStyle(
+                                        labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
                                         hintText: StringsResources.creditCardExpiryYearHint,
-                                        hintStyle: TextStyle(
+                                        hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
                                         ),
@@ -748,9 +755,9 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                       inputFormatters: [
                                         LengthLimitingTextInputFormatter(2)
                                       ],
-                                      decoration: const InputDecoration(
+                                      decoration: InputDecoration(
                                         alignLabelWithHint: true,
-                                        border: OutlineInputBorder(
+                                        border: const OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(13),
@@ -760,7 +767,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                             ),
                                             gapPadding: 5
                                         ),
-                                        enabledBorder: OutlineInputBorder(
+                                        enabledBorder: const OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(13),
@@ -770,7 +777,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                             ),
                                             gapPadding: 5
                                         ),
-                                        focusedBorder: OutlineInputBorder(
+                                        focusedBorder: const OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(13),
@@ -780,7 +787,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorBorder: OutlineInputBorder(
+                                        errorBorder: const OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.red, width: 1.0),
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(13),
@@ -790,15 +797,16 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                             ),
                                             gapPadding: 5
                                         ),
+                                        errorText: warningNotice,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.creditCardExpiryMonth,
-                                        labelStyle: TextStyle(
+                                        labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
                                         hintText: StringsResources.creditCardExpiryMonthHint,
-                                        hintStyle: TextStyle(
+                                        hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
                                         ),
@@ -836,9 +844,9 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                       autocorrect: true,
                                       autofocus: false,
                                       keyboardType: TextInputType.number,
-                                      decoration: const InputDecoration(
+                                      decoration: InputDecoration(
                                         alignLabelWithHint: true,
-                                        border: OutlineInputBorder(
+                                        border: const OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(13),
@@ -848,7 +856,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                             ),
                                             gapPadding: 5
                                         ),
-                                        enabledBorder: OutlineInputBorder(
+                                        enabledBorder: const OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(13),
@@ -858,7 +866,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                             ),
                                             gapPadding: 5
                                         ),
-                                        focusedBorder: OutlineInputBorder(
+                                        focusedBorder: const OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(13),
@@ -868,7 +876,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorBorder: OutlineInputBorder(
+                                        errorBorder: const OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.red, width: 1.0),
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(13),
@@ -878,15 +886,16 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                             ),
                                             gapPadding: 5
                                         ),
+                                        errorText: warningNotice,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.creditCardBalance,
-                                        labelStyle: TextStyle(
+                                        labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
                                         hintText: StringsResources.creditCardBalanceHint,
-                                        hintStyle: TextStyle(
+                                        hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
                                         ),
@@ -991,19 +1000,89 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
 
                           bool noError = true;
 
-                          // TextEditingController creditCardBankNameController = TextEditingController();
-                          if (creditCardBankNameController)
+                          if (creditCardBankNameController.text.isEmpty) {
 
-                          // TextEditingController creditCardNameHolderController = TextEditingController();
-                          //
-                          // TextEditingController creditCardNumberController = TextEditingController();
-                          //
-                          // TextEditingController creditCardYearController = TextEditingController();
-                          // TextEditingController creditCardMonthController = TextEditingController();
-                          //
-                          // TextEditingController creditCardBalanceController = TextEditingController();
-                          //
-                          // TextEditingController creditCardCvvController = TextEditingController();
+                            setState(() {
+
+                              warningNotice = StringsResources.errorText;
+
+                            });
+
+                            noError = false;
+
+                          }
+
+                          if (creditCardNameHolderController.text.isEmpty) {
+
+                            setState(() {
+
+                              warningNotice = StringsResources.errorText;
+
+                            });
+
+                            noError = false;
+
+                          }
+
+                          if (creditCardNumberController.text.length < 16) {
+
+                            setState(() {
+
+                              warningNotice = StringsResources.errorText;
+
+                            });
+
+                            noError = false;
+
+                          }
+
+                          if (creditCardYearController.text.length < 2) {
+
+                            setState(() {
+
+                              warningNotice = StringsResources.errorText;
+
+                            });
+
+                            noError = false;
+
+                          }
+
+                          if (creditCardMonthController.text.length < 2) {
+
+                            setState(() {
+
+                              warningNotice = StringsResources.errorText;
+
+                            });
+
+                            noError = false;
+
+                          }
+
+                          if (creditCardBalanceController.text.isEmpty) {
+
+                            setState(() {
+
+                              warningNotice = StringsResources.errorText;
+
+                            });
+
+                            noError = false;
+
+                          }
+
+                          if (creditCardCvvController.text.isEmpty) {
+
+                            setState(() {
+
+                              warningNotice = StringsResources.errorText;
+
+                            });
+
+                            noError = false;
+
+                          }
 
                           if (noError) {
 
