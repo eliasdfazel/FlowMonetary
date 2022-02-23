@@ -1575,7 +1575,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                         splashFactory: InkRipple.splashFactory,
                         onTap: () {
 
-                          bool noError = false;
+                          bool noError = true;
 
                           if (controllerTransactionSourceCard.text.length < 16) {
 

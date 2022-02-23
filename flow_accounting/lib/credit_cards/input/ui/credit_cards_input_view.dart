@@ -67,6 +67,8 @@ class CreditCardsInputView extends StatefulWidget {
 }
 class _CreditCardsInputViewState extends State<CreditCardsInputView> with TickerProviderStateMixin {
 
+  ColorSelectorView colorSelectorView = ColorSelectorView();
+
   FocusNode focusNodeCvv = FocusNode();
 
   bool showCardsBack = false;
@@ -143,7 +145,6 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
   @override
   Widget build(BuildContext context) {
 
-    ColorSelectorView colorSelectorView = ColorSelectorView();
     colorSelectorView.inputColor = (widget.creditCardsData.colorTag == Colors.transparent.value) ? ColorsResources.primaryColor : Color(widget.creditCardsData.colorTag);
 
     return MaterialApp (
@@ -988,44 +989,64 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                         splashFactory: InkRipple.splashFactory,
                         onTap: () {
 
-                          int timeNow = DateTime.now().millisecondsSinceEpoch;
+                          bool noError = true;
 
-                          int id = widget.creditCardsData.id == 0 ? timeNow : widget.creditCardsData.id;
+                          // TextEditingController creditCardBankNameController = TextEditingController();
+                          if (creditCardBankNameController)
 
-                          CreditCardsData creditCardsData = CreditCardsData(
-                              id: id,
-                              cardNumber: creditCardNumberController.text,
-                              cardExpiry: "${creditCardYearController.text}/${creditCardMonthController.text}",
-                              cardHolderName: creditCardNameHolderController.text,
-                              cvv: creditCardCvvController.text,
-                              bankName: creditCardBankNameController.text,
-                              cardBalance: creditCardBalanceController.text,
-                              colorTag: colorSelectorView.selectedColor.value
-                          );
+                          // TextEditingController creditCardNameHolderController = TextEditingController();
+                          //
+                          // TextEditingController creditCardNumberController = TextEditingController();
+                          //
+                          // TextEditingController creditCardYearController = TextEditingController();
+                          // TextEditingController creditCardMonthController = TextEditingController();
+                          //
+                          // TextEditingController creditCardBalanceController = TextEditingController();
+                          //
+                          // TextEditingController creditCardCvvController = TextEditingController();
 
-                          CreditCardsDatabaseInputs databaseInputs = CreditCardsDatabaseInputs();
+                          if (noError) {
 
-                          if (widget.creditCardsData.id == 0) {
+                            int timeNow = DateTime.now().millisecondsSinceEpoch;
 
-                            databaseInputs.insertCreditCardsData(creditCardsData, CreditCardsDatabaseInputs.databaseTableName);
+                            int id = widget.creditCardsData.id == 0 ? timeNow : widget.creditCardsData.id;
 
-                          } else {
+                            CreditCardsData creditCardsData = CreditCardsData(
+                                id: id,
+                                cardNumber: creditCardNumberController.text,
+                                cardExpiry: "${creditCardYearController.text}/${creditCardMonthController.text}",
+                                cardHolderName: creditCardNameHolderController.text,
+                                cvv: creditCardCvvController.text,
+                                bankName: creditCardBankNameController.text,
+                                cardBalance: creditCardBalanceController.text,
+                                colorTag: colorSelectorView.selectedColor.value
+                            );
 
-                            databaseInputs.updateCreditCardsData(creditCardsData, CreditCardsDatabaseInputs.databaseTableName);
+                            CreditCardsDatabaseInputs databaseInputs = CreditCardsDatabaseInputs();
+
+                            if (widget.creditCardsData.id == 0) {
+
+                              databaseInputs.insertCreditCardsData(creditCardsData, CreditCardsDatabaseInputs.databaseTableName);
+
+                            } else {
+
+                              databaseInputs.updateCreditCardsData(creditCardsData, CreditCardsDatabaseInputs.databaseTableName);
+
+                            }
+
+                            Fluttertoast.showToast(
+                                msg: StringsResources.updatedText,
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.CENTER,
+                                timeInSecForIosWeb: 1,
+                                backgroundColor: ColorsResources.lightTransparent,
+                                textColor: ColorsResources.dark,
+                                fontSize: 16.0
+                            );
+
+                            creditCardDataUpdated = true;
 
                           }
-
-                          Fluttertoast.showToast(
-                              msg: StringsResources.updatedText,
-                              toastLength: Toast.LENGTH_SHORT,
-                              gravity: ToastGravity.CENTER,
-                              timeInSecForIosWeb: 1,
-                              backgroundColor: ColorsResources.lightTransparent,
-                              textColor: ColorsResources.dark,
-                              fontSize: 16.0
-                          );
-
-                          creditCardDataUpdated = true;
 
                         },
                         child: Container(
