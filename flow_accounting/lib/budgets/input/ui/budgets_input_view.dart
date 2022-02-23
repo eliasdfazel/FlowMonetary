@@ -35,6 +35,8 @@ class BudgetsInputView extends StatefulWidget {
 }
 class _BudgetsInputViewState extends State<BudgetsInputView> {
 
+  ColorSelectorView colorSelectorView = ColorSelectorView();
+
   TextEditingController controllerBudgetName = TextEditingController();
   TextEditingController controllerBudgetDescription = TextEditingController();
 
@@ -43,6 +45,8 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
   int timeNow = DateTime.now().millisecondsSinceEpoch;
 
   bool budgetDataUpdated = false;
+
+  String? warningNotice;
 
   @override
   void dispose() {
@@ -76,7 +80,6 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
   @override
   Widget build(BuildContext context) {
 
-    ColorSelectorView colorSelectorView = ColorSelectorView();
 
     return MaterialApp (
       debugShowCheckedModeBanner: false,
@@ -181,9 +184,9 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
                                       autofocus: false,
                                       keyboardType: TextInputType.text,
                                       textInputAction: TextInputAction.next,
-                                      decoration: const InputDecoration(
+                                      decoration: InputDecoration(
                                         alignLabelWithHint: true,
-                                        border: OutlineInputBorder(
+                                        border: const OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(13),
@@ -193,7 +196,7 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        enabledBorder: OutlineInputBorder(
+                                        enabledBorder: const OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(13),
@@ -203,7 +206,7 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        focusedBorder: OutlineInputBorder(
+                                        focusedBorder: const OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(13),
@@ -213,7 +216,7 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorBorder: OutlineInputBorder(
+                                        errorBorder: const OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.red, width: 1.0),
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(13),
@@ -223,15 +226,16 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
+                                        errorText: warningNotice,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.budgetNameText,
-                                        labelStyle: TextStyle(
+                                        labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
                                         hintText: StringsResources.budgetNameTextHint,
-                                        hintStyle: TextStyle(
+                                        hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
                                         ),
@@ -270,9 +274,9 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
                                       autofocus: false,
                                       keyboardType: TextInputType.text,
                                       textInputAction: TextInputAction.next,
-                                      decoration: const InputDecoration(
+                                      decoration: InputDecoration(
                                         alignLabelWithHint: true,
-                                        border: OutlineInputBorder(
+                                        border: const OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(13),
@@ -282,7 +286,7 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        enabledBorder: OutlineInputBorder(
+                                        enabledBorder: const OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(13),
@@ -292,7 +296,7 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        focusedBorder: OutlineInputBorder(
+                                        focusedBorder: const OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(13),
@@ -302,7 +306,7 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorBorder: OutlineInputBorder(
+                                        errorBorder: const OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.red, width: 1.0),
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(13),
@@ -312,15 +316,16 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
+                                        errorText: warningNotice,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.budgetDescriptionText,
-                                        labelStyle: TextStyle(
+                                        labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
                                         hintText: StringsResources.budgetDescriptionTextHint,
-                                        hintStyle: TextStyle(
+                                        hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
                                         ),
@@ -359,9 +364,9 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
                                       autofocus: false,
                                       keyboardType: TextInputType.number,
                                       textInputAction: TextInputAction.done,
-                                      decoration: const InputDecoration(
+                                      decoration: InputDecoration(
                                         alignLabelWithHint: true,
-                                        border: OutlineInputBorder(
+                                        border: const OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(13),
@@ -371,7 +376,7 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        enabledBorder: OutlineInputBorder(
+                                        enabledBorder: const OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(13),
@@ -381,7 +386,7 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        focusedBorder: OutlineInputBorder(
+                                        focusedBorder: const OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(13),
@@ -391,7 +396,7 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorBorder: OutlineInputBorder(
+                                        errorBorder: const OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.red, width: 1.0),
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(13),
@@ -401,15 +406,16 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
+                                        errorText: warningNotice,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.budgetInitialTextHint,
-                                        labelStyle: TextStyle(
+                                        labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
                                         hintText: StringsResources.budgetInitialTextHint,
-                                        hintStyle: TextStyle(
+                                        hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
                                         ),
@@ -511,54 +517,96 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
                           splashFactory: InkRipple.splashFactory,
                           onTap: () {
 
-                            if (widget.budgetsData != null) {
+                            bool noError = true;
 
-                              if ((widget.budgetsData?.id)! != 0) {
+                            if (controllerBudgetName.text.isEmpty) {
 
-                                timeNow = (widget.budgetsData?.id)!;
+                              setState(() {
 
-                              }
+                                warningNotice = StringsResources.errorText;
 
-                            }
+                              });
 
-                            var databaseInputs = BudgetsDatabaseInputs();
-
-                            BudgetsData transactionData = BudgetsData(
-                              id: timeNow,
-
-                              budgetName: controllerBudgetName.text,
-                              budgetDescription: controllerBudgetDescription.text,
-
-                              budgetBalance: controllerBudgetBalance.text,
-
-                              colorTag: colorSelectorView.selectedColor.value
-                            );
-
-                            if (widget.budgetsData != null) {
-
-                              if ((widget.budgetsData?.id)! != 0) {
-
-                                databaseInputs.updateBudgetData(transactionData, BudgetsDatabaseInputs.databaseTableName);
-
-                              }
-
-                            } else {
-
-                              databaseInputs.insertBudgetData(transactionData, BudgetsDatabaseInputs.databaseTableName);
+                              noError = false;
 
                             }
 
-                            Fluttertoast.showToast(
-                                msg: StringsResources.updatedText,
-                                toastLength: Toast.LENGTH_SHORT,
-                                gravity: ToastGravity.CENTER,
-                                timeInSecForIosWeb: 1,
-                                backgroundColor: ColorsResources.lightTransparent,
-                                textColor: ColorsResources.dark,
-                                fontSize: 16.0
-                            );
+                            if (controllerBudgetDescription.text.isEmpty) {
 
-                            budgetDataUpdated = true;
+                              setState(() {
+
+                                warningNotice = StringsResources.errorText;
+
+                              });
+
+                              noError = false;
+
+                            }
+
+                            if (controllerBudgetBalance.text.isEmpty) {
+
+                              setState(() {
+
+                                warningNotice = StringsResources.errorText;
+
+                              });
+
+                              noError = false;
+
+                            }
+
+                            if (noError) {
+
+                              if (widget.budgetsData != null) {
+
+                                if ((widget.budgetsData?.id)! != 0) {
+
+                                  timeNow = (widget.budgetsData?.id)!;
+
+                                }
+
+                              }
+
+                              var databaseInputs = BudgetsDatabaseInputs();
+
+                              BudgetsData transactionData = BudgetsData(
+                                  id: timeNow,
+
+                                  budgetName: controllerBudgetName.text,
+                                  budgetDescription: controllerBudgetDescription.text,
+
+                                  budgetBalance: controllerBudgetBalance.text,
+
+                                  colorTag: colorSelectorView.selectedColor.value
+                              );
+
+                              if (widget.budgetsData != null) {
+
+                                if ((widget.budgetsData?.id)! != 0) {
+
+                                  databaseInputs.updateBudgetData(transactionData, BudgetsDatabaseInputs.databaseTableName);
+
+                                }
+
+                              } else {
+
+                                databaseInputs.insertBudgetData(transactionData, BudgetsDatabaseInputs.databaseTableName);
+
+                              }
+
+                              Fluttertoast.showToast(
+                                  msg: StringsResources.updatedText,
+                                  toastLength: Toast.LENGTH_SHORT,
+                                  gravity: ToastGravity.CENTER,
+                                  timeInSecForIosWeb: 1,
+                                  backgroundColor: ColorsResources.lightTransparent,
+                                  textColor: ColorsResources.dark,
+                                  fontSize: 16.0
+                              );
+
+                              budgetDataUpdated = true;
+
+                            }
 
                           },
                           child: Container(
