@@ -1687,7 +1687,13 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
 
     BudgetsDatabaseQueries budgetsDatabaseQueries = BudgetsDatabaseQueries();
 
-    listOfBudgets.addAll(await budgetsDatabaseQueries.getAllBudgets(BudgetsDatabaseInputs.databaseTableName));
+    var retrievedBudgets = await budgetsDatabaseQueries.getAllBudgets(BudgetsDatabaseInputs.databaseTableName);
+
+    if (retrievedBudgets.isNotEmpty) {
+
+      listOfBudgets.addAll(retrievedBudgets);
+
+    }
 
     return listOfBudgets;
   }
@@ -1698,7 +1704,13 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
 
     CreditCardsDatabaseQueries creditCardsDatabaseQueries = CreditCardsDatabaseQueries();
 
-    listOfCreditCards.addAll(await creditCardsDatabaseQueries.getAllCreditCards(CreditCardsDatabaseInputs.databaseTableName));
+    var retrievedCreditCards = await creditCardsDatabaseQueries.getAllCreditCards(CreditCardsDatabaseInputs.databaseTableName);
+
+    if (retrievedCreditCards.isNotEmpty) {
+
+      listOfCreditCards.addAll(retrievedCreditCards);
+
+    }
 
     return listOfCreditCards;
   }

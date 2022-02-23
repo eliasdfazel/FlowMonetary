@@ -153,6 +153,8 @@ class PrototypeData {
 
     transactionsData.add(TransactionsData(
         id: DateTime.now().millisecondsSinceEpoch,
+        transactionTitle: "عنوانی برای تراکنش",
+        transactionDescription: "توضیحات تراکنش",
         sourceCardNumber: "5274331211991147",
         targetCardNumber: "6666121200641696",
         sourceBankName: StringsResources.listOfBanksIran.randomItem(),
@@ -171,6 +173,8 @@ class PrototypeData {
 
     transactionsData.add(TransactionsData(
         id: DateTime.now().millisecondsSinceEpoch,
+        transactionTitle: "عنوانی برای تراکنش",
+        transactionDescription: "توضیحات تراکنش",
         sourceCardNumber: "5274331211991147",
         targetCardNumber: "6274121200641696",
         sourceBankName: StringsResources.listOfBanksIran.randomItem(),
@@ -189,6 +193,8 @@ class PrototypeData {
 
     transactionsData.add(TransactionsData(
         id: DateTime.now().millisecondsSinceEpoch,
+        transactionTitle: "عنوانی برای تراکنش",
+        transactionDescription: "توضیحات تراکنش",
         sourceCardNumber: "5274331211991147",
         targetCardNumber: "6274121200641696",
         sourceBankName: StringsResources.listOfBanksIran.randomItem(),
@@ -207,6 +213,8 @@ class PrototypeData {
 
     transactionsData.add(TransactionsData(
         id: DateTime.now().millisecondsSinceEpoch,
+        transactionTitle: "عنوانی برای تراکنش",
+        transactionDescription: "توضیحات تراکنش",
         sourceCardNumber: "5274331211991147",
         targetCardNumber: "6274121200641696",
         sourceBankName: StringsResources.listOfBanksIran.randomItem(),
@@ -225,6 +233,8 @@ class PrototypeData {
 
     transactionsData.add(TransactionsData(
         id: DateTime.now().millisecondsSinceEpoch,
+        transactionTitle: "عنوانی برای تراکنش",
+        transactionDescription: "توضیحات تراکنش",
         sourceCardNumber: "5274331211991147",
         targetCardNumber: "6666121200641696",
         sourceBankName: StringsResources.listOfBanksIran.randomItem(),
@@ -243,6 +253,8 @@ class PrototypeData {
 
     transactionsData.add(TransactionsData(
         id: DateTime.now().millisecondsSinceEpoch,
+        transactionTitle: "عنوانی برای تراکنش",
+        transactionDescription: "توضیحات تراکنش",
         sourceCardNumber: "5274331211991147",
         targetCardNumber: "6274121200641696",
         sourceBankName: StringsResources.listOfBanksIran.randomItem(),
@@ -261,6 +273,8 @@ class PrototypeData {
 
     transactionsData.add(TransactionsData(
         id: DateTime.now().millisecondsSinceEpoch,
+        transactionTitle: "عنوانی برای تراکنش",
+        transactionDescription: "توضیحات تراکنش",
         sourceCardNumber: "5274331211991147",
         targetCardNumber: "6666121200641696",
         sourceBankName: StringsResources.listOfBanksIran.randomItem(),
@@ -279,6 +293,8 @@ class PrototypeData {
 
     transactionsData.add(TransactionsData(
         id: DateTime.now().millisecondsSinceEpoch,
+        transactionTitle: "عنوانی برای تراکنش",
+        transactionDescription: "توضیحات تراکنش",
         sourceCardNumber: "5274331211991147",
         targetCardNumber: "6666121200641696",
         sourceBankName: StringsResources.listOfBanksIran.randomItem(),
@@ -297,6 +313,8 @@ class PrototypeData {
 
     transactionsData.add(TransactionsData(
         id: DateTime.now().millisecondsSinceEpoch,
+        transactionTitle: "عنوانی برای تراکنش",
+        transactionDescription: "توضیحات تراکنش",
         sourceCardNumber: "5274331211991147",
         targetCardNumber: "6666121200641696",
         sourceBankName: StringsResources.listOfBanksIran.randomItem(),
@@ -315,6 +333,8 @@ class PrototypeData {
 
     transactionsData.add(TransactionsData(
         id: DateTime.now().millisecondsSinceEpoch,
+        transactionTitle: "عنوانی برای تراکنش",
+        transactionDescription: "توضیحات تراکنش",
         sourceCardNumber: "5274331211991147",
         targetCardNumber: "6666121200641696",
         sourceBankName: StringsResources.listOfBanksIran.randomItem(),
@@ -333,6 +353,8 @@ class PrototypeData {
 
     transactionsData.add(TransactionsData(
         id: DateTime.now().millisecondsSinceEpoch,
+        transactionTitle: "عنوانی برای تراکنش",
+        transactionDescription: "توضیحات تراکنش",
         sourceCardNumber: "5274331211991147",
         targetCardNumber: "6666121200641696",
         sourceBankName: StringsResources.listOfBanksIran.randomItem(),
@@ -351,6 +373,8 @@ class PrototypeData {
 
     transactionsData.add(TransactionsData(
         id: DateTime.now().millisecondsSinceEpoch,
+        transactionTitle: "عنوانی برای تراکنش",
+        transactionDescription: "توضیحات تراکنش",
         sourceCardNumber: "5274331211991147",
         targetCardNumber: "6666121200641696",
         sourceBankName: StringsResources.listOfBanksIran.randomItem(),
@@ -369,6 +393,8 @@ class PrototypeData {
 
     transactionsData.add(TransactionsData(
         id: DateTime.now().millisecondsSinceEpoch,
+        transactionTitle: "عنوانی برای تراکنش",
+        transactionDescription: "توضیحات تراکنش",
         sourceCardNumber: "5274331211991147",
         targetCardNumber: "6666121200641696",
         sourceBankName: StringsResources.listOfBanksIran.randomItem(),

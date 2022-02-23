@@ -64,6 +64,8 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
   bool transactionDataUpdated = false;
 
+  String? errorText = null;
+
   @override
   void initState() {
     super.initState();
@@ -1269,7 +1271,6 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                           controllerTransactionSourceCard.text = suggestion.cardNumber.toString();
 
                                         },
-                                        hideKeyboard: true,
                                         suggestionsBoxDecoration: SuggestionsBoxDecoration(
                                             elevation: 7,
                                             color: ColorsResources.light,
@@ -1879,7 +1880,13 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
     BudgetsDatabaseQueries budgetsDatabaseQueries = BudgetsDatabaseQueries();
 
-    listOfBudgets.addAll(await budgetsDatabaseQueries.getAllBudgets(BudgetsDatabaseInputs.databaseTableName));
+    var retrievedBudgets = await budgetsDatabaseQueries.getAllBudgets(BudgetsDatabaseInputs.databaseTableName);
+
+    if (retrievedBudgets.isNotEmpty) {
+
+      listOfBudgets.addAll(retrievedBudgets);
+
+    }
 
     return listOfBudgets;
   }
@@ -1890,7 +1897,13 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
     CreditCardsDatabaseQueries creditCardsDatabaseQueries = CreditCardsDatabaseQueries();
 
-    listOfCreditCards.addAll(await creditCardsDatabaseQueries.getAllCreditCards(CreditCardsDatabaseInputs.databaseTableName));
+    var retrievedCreditCards = await creditCardsDatabaseQueries.getAllCreditCards(CreditCardsDatabaseInputs.databaseTableName);
+
+    if (retrievedCreditCards.isNotEmpty) {
+
+      listOfCreditCards.addAll(retrievedCreditCards);
+
+    }
 
     return listOfCreditCards;
   }
