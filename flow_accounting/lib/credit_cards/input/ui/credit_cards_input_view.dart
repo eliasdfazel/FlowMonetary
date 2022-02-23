@@ -1725,7 +1725,7 @@ class _CreditCardBackLayout extends State<CreditCardBackLayout> {
 String generateBackgroundPattern() {
 
   List listOfPattern = [];
-  listOfPattern.add("pattern_card_background_one.png");
+  listOfPattern.add("pattern_card_background_one.png"); 
   listOfPattern.add("pattern_card_background_two.png");
   listOfPattern.add("pattern_card_background_three.png");
   listOfPattern.add("pattern_card_background_four.png");
