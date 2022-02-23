@@ -39,6 +39,10 @@ class TransactionsEditView extends StatefulWidget {
 }
 class _TransactionsEditViewState extends State<TransactionsEditView> {
 
+  CalendarView calendarView = CalendarView();
+
+  ColorSelectorView colorSelectorView = ColorSelectorView();
+
   TextEditingController controllerMoneyAmount = TextEditingController();
 
   TextEditingController controllerTransactionTitle = TextEditingController();
@@ -88,13 +92,11 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
   @override
   Widget build(BuildContext context) {
 
-    CalendarView calendarView = CalendarView();
     calendarView.inputDateTime = widget.transactionsData.transactionTime;
     calendarView.pickedDateTime = DateTime.fromMillisecondsSinceEpoch(widget.transactionsData.transactionTimeMillisecond);
     calendarView.pickedDataTimeYear = widget.transactionsData.transactionTimeYear;
     calendarView.pickedDataTimeMonth = widget.transactionsData.transactionTimeMonth;
 
-    ColorSelectorView colorSelectorView = ColorSelectorView();
     colorSelectorView.inputColor = Color(widget.transactionsData.colorTag);
 
     controllerMoneyAmount.text = widget.transactionsData.amountMoney;

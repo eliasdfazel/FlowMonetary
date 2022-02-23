@@ -25,6 +25,7 @@ import 'package:flow_accounting/transactions/database/structures/tables_structur
 import 'package:flow_accounting/utils/calendar/ui/calendar_view.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -35,6 +36,10 @@ class TransactionsInputView extends StatefulWidget {
   _TransactionsInputViewState createState() => _TransactionsInputViewState();
 }
 class _TransactionsInputViewState extends State<TransactionsInputView> {
+
+  CalendarView calendarView = CalendarView();
+
+  ColorSelectorView colorSelectorView = ColorSelectorView();
 
   TextEditingController controllerMoneyAmount = TextEditingController();
 
@@ -86,10 +91,6 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
   @override
   Widget build(BuildContext context) {
-
-    CalendarView calendarView = CalendarView();
-
-    ColorSelectorView colorSelectorView = ColorSelectorView();
 
     return MaterialApp (
       debugShowCheckedModeBanner: false,
@@ -1268,6 +1269,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                           controllerTransactionSourceCard.text = suggestion.cardNumber.toString();
 
                                         },
+                                        hideKeyboard: true,
                                         suggestionsBoxDecoration: SuggestionsBoxDecoration(
                                             elevation: 7,
                                             color: ColorsResources.light,
@@ -1276,11 +1278,19 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                         ),
                                         textFieldConfiguration: TextFieldConfiguration(
                                           controller: controllerTransactionSourceCard,
+                                          onChanged: (enteredText) {
+
+
+
+                                          },
                                           autofocus: false,
                                           maxLines: 1,
                                           cursorColor: ColorsResources.primaryColor,
                                           keyboardType: TextInputType.number,
                                           textInputAction: TextInputAction.next,
+                                          inputFormatters: [
+                                            LengthLimitingTextInputFormatter(16)
+                                          ],
                                           decoration: const InputDecoration(
                                             alignLabelWithHint: true,
                                             border: OutlineInputBorder(
@@ -1396,6 +1406,9 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                           cursorColor: ColorsResources.primaryColor,
                                           keyboardType: TextInputType.number,
                                           textInputAction: TextInputAction.next,
+                                          inputFormatters: [
+                                            LengthLimitingTextInputFormatter(16)
+                                          ],
                                           decoration: const InputDecoration(
                                             alignLabelWithHint: true,
                                             border: OutlineInputBorder(
