@@ -133,8 +133,7 @@ class StringsResources {
   static const String featureLoansDescription = "شما میتوانید تمام اطلاعات مرتبط با وام گرفته شده خود را اعم از مبلغ وام/ تاریخ و ... را کادر زیر در ردیف/ستون خواسته شده وارد کنید.";
 
   static const String mySelfText = "خودم";
-  static const String noBudgetText = "هیچ";
-  static const String noCreditCard = "هیچ";
+  static const String nothingText = "هیچ";
 
   static const String creditCardsBankName = "بانک صادر کننده";
   static const String creditCardsBankNameHint = "نام بانک";
