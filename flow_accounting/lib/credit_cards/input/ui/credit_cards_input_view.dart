@@ -1330,25 +1330,21 @@ class _CreditCardFrontLayout extends State<CreditCardFrontLayout> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Expanded(
-                              flex: 1,
+                              flex: 3,
                               child: Align(
                                 alignment: Alignment.center,
                                 child: Padding(
-                                    padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
-                                    child: SizedBox(
-                                      height: 51,
-                                      width: 51,
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                            color: Color(creditCardColorTag),
-                                            shape: BoxShape.circle
-                                        ),
-                                        child: Align(
-                                          alignment: AlignmentDirectional.center,
-                                          child: bankLogoImageView,
-                                        ),
-                                      ),
-                                    )
+                                  padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        color: Color(creditCardColorTag),
+                                        shape: BoxShape.circle
+                                    ),
+                                    child: const SizedBox(
+                                      height: 37,
+                                      width: 37,
+                                    ),
+                                  ),
                                 ),
                               )
                           ),
@@ -1381,43 +1377,23 @@ class _CreditCardFrontLayout extends State<CreditCardFrontLayout> {
                               )
                           ),
                           Expanded(
-                              flex: 3,
-                              child: Padding(
-                                padding: const EdgeInsets.fromLTRB(0, 0, 7, 0),
-                                child: SizedBox(
-                                  height: 51,
-                                  width: 51,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(13.0),
-                                    child: Container(
-                                      decoration: const BoxDecoration(
-                                        color: ColorsResources.white,
-                                        border: Border(
-                                            top: BorderSide(
-                                              color: Colors.transparent,
-                                              width: 1.7,
-                                            ),
-                                            bottom: BorderSide(
-                                              color: Colors.transparent,
-                                              width: 1.7,
-                                            ),
-                                            left: BorderSide(
-                                              color: Colors.transparent,
-                                              width: 1.7,
-                                            ),
-                                            right: BorderSide(
-                                              color: Colors.transparent,
-                                              width: 1.7,
-                                            )
-                                        ),
-                                      ),
-                                      child: Align(
-                                        alignment: AlignmentDirectional.center,
-                                        child: bankLogoImageView,
-                                      ),
+                              flex: 4,
+                              child: SizedBox(
+                                height: 51,
+                                width: 51,
+                                child: Container(
+                                  decoration: const BoxDecoration(
+                                      color: ColorsResources.white,
+                                      shape: BoxShape.circle
+                                  ),
+                                  child: Align(
+                                    alignment: AlignmentDirectional.center,
+                                    child: Padding(
+                                      padding: const EdgeInsets.fromLTRB(7, 7, 7, 7),
+                                      child: bankLogoImageView,
                                     ),
                                   ),
-                                )
+                                ),
                               )
                           )
                         ],
