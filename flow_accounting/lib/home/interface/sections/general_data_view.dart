@@ -380,7 +380,7 @@ class _GeneralDataView extends State<GeneralDataView> {
 
       if (element.transactionType == TransactionsData.TransactionType_Receive) {
 
-        calculatedEarning += int.parse(element.amountMoney ?? "0");
+        calculatedEarning += int.parse(element.amountMoney);
 
       }
 
@@ -408,7 +408,7 @@ class _GeneralDataView extends State<GeneralDataView> {
 
       if (element.transactionType == TransactionsData.TransactionType_Send) {
 
-        calculatedSpending += int.parse(element.amountMoney ?? "0");
+        calculatedSpending += int.parse(element.amountMoney);
 
       }
 

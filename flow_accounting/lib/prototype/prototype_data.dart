@@ -101,7 +101,7 @@ class PrototypeData {
     List<BudgetsData> budgetsData = [];
 
     budgetsData.add(BudgetsData(
-        id: DateTime.now().millisecondsSinceEpoch,
+        id: DateTime.now().millisecondsSinceEpoch + 1,
         budgetName: "شرکت نرم افزاری آبان",
         budgetDescription: "بودجه مخارج کلی شرکت نرم افزاری آبان",
         budgetBalance: "50000000",
@@ -109,7 +109,7 @@ class PrototypeData {
     ));
 
     budgetsData.add(BudgetsData(
-        id: DateTime.now().millisecondsSinceEpoch,
+        id: DateTime.now().millisecondsSinceEpoch + 2,
         budgetName: "گربه",
         budgetDescription: "مخارج شدو",
         budgetBalance: "1000000",
@@ -117,7 +117,7 @@ class PrototypeData {
     ));
 
     budgetsData.add(BudgetsData(
-        id: DateTime.now().millisecondsSinceEpoch,
+        id: DateTime.now().millisecondsSinceEpoch + 3,
         budgetName: "آکواریوم",
         budgetDescription: "بودجه آکواریوم نیون",
         budgetBalance: "370000",
@@ -164,7 +164,7 @@ class PrototypeData {
         amountMoney: "9735900",
         transactionType: TransactionsData.TransactionType_Receive,
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
-        transactionTime: generateDateText(),
+        transactionTime: _generateDateText(),
         transactionTimeYear: DateTime.now().year.toString(),
         transactionTimeMonth: DateTime.now().month.toString(),
         colorTag: listOfColors.randomItem().value,
@@ -184,7 +184,7 @@ class PrototypeData {
         amountMoney: "3590",
         transactionType: TransactionsData.TransactionType_Send,
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
-        transactionTime: generateDateText(),
+        transactionTime: _generateDateText(),
         transactionTimeYear: DateTime.now().year.toString(),
         transactionTimeMonth: DateTime.now().month.toString(),
         colorTag: listOfColors.randomItem().value,
@@ -204,7 +204,7 @@ class PrototypeData {
         amountMoney: "71590",
         transactionType: TransactionsData.TransactionType_Send,
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
-        transactionTime: generateDateText(),
+        transactionTime: _generateDateText(),
         transactionTimeYear: DateTime.now().year.toString(),
         transactionTimeMonth: DateTime.now().month.toString(),
         colorTag: listOfColors.randomItem().value,
@@ -224,7 +224,7 @@ class PrototypeData {
         amountMoney: "1590",
         transactionType: TransactionsData.TransactionType_Send,
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
-        transactionTime: generateDateText(),
+        transactionTime: _generateDateText(),
         transactionTimeYear: DateTime.now().year.toString(),
         transactionTimeMonth: DateTime.now().month.toString(),
         colorTag: listOfColors.randomItem().value,
@@ -244,7 +244,7 @@ class PrototypeData {
         amountMoney: "1735900",
         transactionType: TransactionsData.TransactionType_Receive,
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
-        transactionTime: generateDateText(),
+        transactionTime: _generateDateText(),
         transactionTimeYear: DateTime.now().year.toString(),
         transactionTimeMonth: DateTime.now().month.toString(),
         colorTag: listOfColors.randomItem().value,
@@ -264,7 +264,7 @@ class PrototypeData {
         amountMoney: "4590",
         transactionType: TransactionsData.TransactionType_Send,
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
-        transactionTime: generateDateText(),
+        transactionTime: _generateDateText(),
         transactionTimeYear: DateTime.now().year.toString(),
         transactionTimeMonth: DateTime.now().month.toString(),
         colorTag: listOfColors.randomItem().value,
@@ -284,7 +284,7 @@ class PrototypeData {
         amountMoney: "735900",
         transactionType: TransactionsData.TransactionType_Receive,
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
-        transactionTime: generateDateText(),
+        transactionTime: _generateDateText(),
         transactionTimeYear: DateTime.now().year.toString(),
         transactionTimeMonth: DateTime.now().month.toString(),
         colorTag: listOfColors.randomItem().value,
@@ -304,7 +304,7 @@ class PrototypeData {
         amountMoney: "9735900",
         transactionType: TransactionsData.TransactionType_Receive,
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
-        transactionTime: generateDateText(),
+        transactionTime: _generateDateText(),
         transactionTimeYear: DateTime.now().year.toString(),
         transactionTimeMonth: DateTime.now().month.toString(),
         colorTag: listOfColors.randomItem().value,
@@ -324,7 +324,7 @@ class PrototypeData {
         amountMoney: "9735900",
         transactionType: TransactionsData.TransactionType_Receive,
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
-        transactionTime: generateDateText(),
+        transactionTime: _generateDateText(),
         transactionTimeYear: DateTime.now().year.toString(),
         transactionTimeMonth: DateTime.now().month.toString(),
         colorTag: listOfColors.randomItem().value,
@@ -344,7 +344,7 @@ class PrototypeData {
         amountMoney: "1115900",
         transactionType: TransactionsData.TransactionType_Receive,
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
-        transactionTime: generateDateText(),
+        transactionTime: _generateDateText(),
         transactionTimeYear: DateTime.now().year.toString(),
         transactionTimeMonth: DateTime.now().month.toString(),
         colorTag: listOfColors.randomItem().value,
@@ -364,7 +364,7 @@ class PrototypeData {
         amountMoney: "9735900",
         transactionType: TransactionsData.TransactionType_Receive,
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
-        transactionTime: generateDateText(),
+        transactionTime: _generateDateText(),
         transactionTimeYear: DateTime.now().year.toString(),
         transactionTimeMonth: DateTime.now().month.toString(),
         colorTag: listOfColors.randomItem().value,
@@ -384,7 +384,7 @@ class PrototypeData {
         amountMoney: "35900",
         transactionType: TransactionsData.TransactionType_Receive,
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
-        transactionTime: generateDateText(),
+        transactionTime: _generateDateText(),
         transactionTimeYear: DateTime.now().year.toString(),
         transactionTimeMonth: DateTime.now().month.toString(),
         colorTag: listOfColors.randomItem().value,
@@ -404,7 +404,7 @@ class PrototypeData {
         amountMoney: "5535900",
         transactionType: TransactionsData.TransactionType_Receive,
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
-        transactionTime: generateDateText(),
+        transactionTime: _generateDateText(),
         transactionTimeYear: DateTime.now().year.toString(),
         transactionTimeMonth: DateTime.now().month.toString(),
         colorTag: listOfColors.randomItem().value,
@@ -419,7 +419,7 @@ class PrototypeData {
 
   }
 
-  String generateDateText() {
+  String _generateDateText() {
 
     Gregorian gregorianCalendarOne = Gregorian(DateTime.now().year, DateTime.now().month, DateTime.now().day, DateTime.now().hour, DateTime.now().minute, 0, 0);
     var iranianCalendarOne = gregorianCalendarOne.toJalali();
