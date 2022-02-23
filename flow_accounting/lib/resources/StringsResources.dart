@@ -30,6 +30,8 @@ class StringsResources {
   static const String returnText = "بازگشت";
   static const String updatedText = "بروز رسانی انجام شد";
 
+  static const String errorText = "خطا ⚠";
+
   static const String searchText = "جستجو";
   static const String searchFeaturesText = "امکان مورد نظر خود را جستجو کنید";
   static const String searchTransactionsText = "جستجو در تراکنش ها";

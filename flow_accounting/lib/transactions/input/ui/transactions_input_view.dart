@@ -64,7 +64,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
   bool transactionDataUpdated = false;
 
-  String? errorText = null;
+  String? warningNotice;
 
   @override
   void initState() {
@@ -197,57 +197,58 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                       autofocus: false,
                                       keyboardType: TextInputType.text,
                                       textInputAction: TextInputAction.next,
-                                      decoration: const InputDecoration(
+                                      decoration: InputDecoration(
                                         alignLabelWithHint: true,
-                                        border: OutlineInputBorder(
+                                        border: const OutlineInputBorder(
+                                            borderSide: const BorderSide(color: Colors.blueGrey, width: 1.0),
+                                            borderRadius: const BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: const Radius.circular(13),
+                                                bottomLeft: const Radius.circular(13),
+                                                bottomRight: const Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        enabledBorder: const OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
                                             borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
+                                                topLeft: const Radius.circular(13),
                                                 topRight: Radius.circular(13),
                                                 bottomLeft: Radius.circular(13),
                                                 bottomRight: Radius.circular(13)
                                             ),
                                             gapPadding: 5
                                         ),
-                                        enabledBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        focusedBorder: OutlineInputBorder(
+                                        focusedBorder: const OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
-                                            borderRadius: BorderRadius.only(
+                                            borderRadius: const BorderRadius.only(
                                                 topLeft: Radius.circular(13),
                                                 topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
+                                                bottomLeft: const Radius.circular(13),
                                                 bottomRight: Radius.circular(13)
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.red, width: 1.0),
-                                            borderRadius: BorderRadius.only(
+                                        errorBorder: const OutlineInputBorder(
+                                            borderSide: const BorderSide(color: Colors.red, width: 1.0),
+                                            borderRadius: const BorderRadius.only(
                                                 topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
+                                                topRight: const Radius.circular(13),
+                                                bottomLeft: const Radius.circular(13),
+                                                bottomRight: const Radius.circular(13)
                                             ),
                                             gapPadding: 5
                                         ),
+                                        errorText: warningNotice,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.titleText,
-                                        labelStyle: TextStyle(
+                                        labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
                                         hintText: StringsResources.titleText,
-                                        hintStyle: TextStyle(
+                                        hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
                                         ),
@@ -286,11 +287,31 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                       autofocus: false,
                                       keyboardType: TextInputType.text,
                                       textInputAction: TextInputAction.next,
-                                      decoration: const InputDecoration(
+                                      decoration: InputDecoration(
                                         alignLabelWithHint: true,
-                                        border: OutlineInputBorder(
+                                        border: const OutlineInputBorder(
+                                            borderSide: const BorderSide(color: Colors.blueGrey, width: 1.0),
+                                            borderRadius: const BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: const Radius.circular(13),
+                                                bottomLeft: const Radius.circular(13),
+                                                bottomRight: const Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        enabledBorder: const OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
                                             borderRadius: BorderRadius.only(
+                                                topLeft: const Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: const Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        focusedBorder: const OutlineInputBorder(
+                                            borderSide: const BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                                            borderRadius: const BorderRadius.only(
                                                 topLeft: Radius.circular(13),
                                                 topRight: Radius.circular(13),
                                                 bottomLeft: Radius.circular(13),
@@ -298,45 +319,26 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        enabledBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                            borderRadius: BorderRadius.only(
+                                        errorBorder: const OutlineInputBorder(
+                                            borderSide: const BorderSide(color: Colors.red, width: 1.0),
+                                            borderRadius: const BorderRadius.only(
                                                 topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
+                                                topRight: const Radius.circular(13),
+                                                bottomLeft: const Radius.circular(13),
+                                                bottomRight: const Radius.circular(13)
                                             ),
                                             gapPadding: 5
                                         ),
-                                        focusedBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        errorBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.red, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
+                                        errorText: warningNotice,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.descriptionText,
-                                        labelStyle: TextStyle(
+                                        labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
                                         hintText: StringsResources.descriptionText,
-                                        hintStyle: TextStyle(
+                                        hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
                                         ),
@@ -375,9 +377,9 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                       autofocus: false,
                                       keyboardType: TextInputType.number,
                                       textInputAction: TextInputAction.next,
-                                      decoration: const InputDecoration(
+                                      decoration: InputDecoration(
                                         alignLabelWithHint: true,
-                                        border: OutlineInputBorder(
+                                        border: const OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(13),
@@ -387,9 +389,9 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        enabledBorder: OutlineInputBorder(
+                                        enabledBorder: const OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                            borderRadius: BorderRadius.only(
+                                            borderRadius: const BorderRadius.only(
                                                 topLeft: Radius.circular(13),
                                                 topRight: Radius.circular(13),
                                                 bottomLeft: Radius.circular(13),
@@ -397,35 +399,36 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        focusedBorder: OutlineInputBorder(
+                                        focusedBorder: const OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
+                                                topRight: const Radius.circular(13),
+                                                bottomLeft: const Radius.circular(13),
                                                 bottomRight: Radius.circular(13)
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.red, width: 1.0),
+                                        errorBorder: const OutlineInputBorder(
+                                            borderSide: const BorderSide(color: Colors.red, width: 1.0),
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
+                                                topRight: const Radius.circular(13),
                                                 bottomLeft: Radius.circular(13),
                                                 bottomRight: Radius.circular(13)
                                             ),
                                             gapPadding: 5
                                         ),
+                                        errorText: warningNotice,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.transactionAmount,
-                                        labelStyle: TextStyle(
+                                        labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
                                         hintText: StringsResources.transactionAmountHint,
-                                        hintStyle: TextStyle(
+                                        hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
                                         ),
@@ -753,57 +756,58 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                           cursorColor: ColorsResources.primaryColor,
                                           keyboardType: TextInputType.name,
                                           textInputAction: TextInputAction.next,
-                                          decoration: const InputDecoration(
+                                          decoration: InputDecoration(
                                             alignLabelWithHint: true,
-                                            border: OutlineInputBorder(
+                                            border: const OutlineInputBorder(
                                                 borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
                                                 borderRadius: BorderRadius.only(
                                                     topLeft: Radius.circular(13),
                                                     topRight: Radius.circular(13),
-                                                    bottomLeft: Radius.circular(13),
+                                                    bottomLeft: const Radius.circular(13),
                                                     bottomRight: Radius.circular(13)
                                                 ),
                                                 gapPadding: 5
                                             ),
-                                            enabledBorder: OutlineInputBorder(
+                                            enabledBorder: const OutlineInputBorder(
                                                 borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
                                                 borderRadius: BorderRadius.only(
                                                     topLeft: Radius.circular(13),
                                                     topRight: Radius.circular(13),
-                                                    bottomLeft: Radius.circular(13),
-                                                    bottomRight: Radius.circular(13)
+                                                    bottomLeft: const Radius.circular(13),
+                                                    bottomRight: const Radius.circular(13)
                                                 ),
                                                 gapPadding: 5
                                             ),
-                                            focusedBorder: OutlineInputBorder(
+                                            focusedBorder: const OutlineInputBorder(
                                                 borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
                                                 borderRadius: BorderRadius.only(
-                                                    topLeft: Radius.circular(13),
-                                                    topRight: Radius.circular(13),
-                                                    bottomLeft: Radius.circular(13),
-                                                    bottomRight: Radius.circular(13)
+                                                    topLeft: const Radius.circular(13),
+                                                    topRight: const Radius.circular(13),
+                                                    bottomLeft: const Radius.circular(13),
+                                                    bottomRight: const Radius.circular(13)
                                                 ),
                                                 gapPadding: 5
                                             ),
-                                            errorBorder: OutlineInputBorder(
+                                            errorBorder: const OutlineInputBorder(
                                                 borderSide: BorderSide(color: Colors.red, width: 1.0),
-                                                borderRadius: BorderRadius.only(
+                                                borderRadius: const BorderRadius.only(
                                                     topLeft: Radius.circular(13),
                                                     topRight: Radius.circular(13),
-                                                    bottomLeft: Radius.circular(13),
+                                                    bottomLeft: const Radius.circular(13),
                                                     bottomRight: Radius.circular(13)
                                                 ),
                                                 gapPadding: 5
                                             ),
+                                            errorText: warningNotice,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
                                             labelText: StringsResources.transactionSourceName,
-                                            labelStyle: TextStyle(
+                                            labelStyle: const TextStyle(
                                                 color: ColorsResources.dark,
                                                 fontSize: 17.0
                                             ),
                                             hintText: StringsResources.transactionSourceNameHint,
-                                            hintStyle: TextStyle(
+                                            hintStyle: const TextStyle(
                                                 color: ColorsResources.darkTransparent,
                                                 fontSize: 17.0
                                             ),
@@ -984,57 +988,58 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                           cursorColor: ColorsResources.primaryColor,
                                           keyboardType: TextInputType.name,
                                           textInputAction: TextInputAction.next,
-                                          decoration: const InputDecoration(
+                                          decoration: InputDecoration(
                                             alignLabelWithHint: true,
-                                            border: OutlineInputBorder(
+                                            border: const OutlineInputBorder(
                                                 borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
                                                 borderRadius: BorderRadius.only(
-                                                    topLeft: Radius.circular(13),
+                                                    topLeft: const Radius.circular(13),
                                                     topRight: Radius.circular(13),
                                                     bottomLeft: Radius.circular(13),
-                                                    bottomRight: Radius.circular(13)
+                                                    bottomRight: const Radius.circular(13)
                                                 ),
                                                 gapPadding: 5
                                             ),
-                                            enabledBorder: OutlineInputBorder(
+                                            enabledBorder: const OutlineInputBorder(
                                                 borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
                                                 borderRadius: BorderRadius.only(
-                                                    topLeft: Radius.circular(13),
+                                                    topLeft: const Radius.circular(13),
                                                     topRight: Radius.circular(13),
                                                     bottomLeft: Radius.circular(13),
-                                                    bottomRight: Radius.circular(13)
+                                                    bottomRight: const Radius.circular(13)
                                                 ),
                                                 gapPadding: 5
                                             ),
-                                            focusedBorder: OutlineInputBorder(
+                                            focusedBorder: const OutlineInputBorder(
                                                 borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
                                                 borderRadius: BorderRadius.only(
-                                                    topLeft: Radius.circular(13),
+                                                    topLeft: const Radius.circular(13),
                                                     topRight: Radius.circular(13),
                                                     bottomLeft: Radius.circular(13),
-                                                    bottomRight: Radius.circular(13)
+                                                    bottomRight: const Radius.circular(13)
                                                 ),
                                                 gapPadding: 5
                                             ),
-                                            errorBorder: OutlineInputBorder(
+                                            errorBorder: const OutlineInputBorder(
                                                 borderSide: BorderSide(color: Colors.red, width: 1.0),
                                                 borderRadius: BorderRadius.only(
-                                                    topLeft: Radius.circular(13),
+                                                    topLeft: const Radius.circular(13),
                                                     topRight: Radius.circular(13),
                                                     bottomLeft: Radius.circular(13),
-                                                    bottomRight: Radius.circular(13)
+                                                    bottomRight: const Radius.circular(13)
                                                 ),
                                                 gapPadding: 5
                                             ),
+                                            errorText: warningNotice,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
                                             labelText: StringsResources.transactionSourceBank,
-                                            labelStyle: TextStyle(
+                                            labelStyle: const TextStyle(
                                                 color: ColorsResources.dark,
                                                 fontSize: 17.0
                                             ),
                                             hintText: StringsResources.transactionSourceBankHint,
-                                            hintStyle: TextStyle(
+                                            hintStyle: const TextStyle(
                                                 color: ColorsResources.darkTransparent,
                                                 fontSize: 17.0
                                             ),
@@ -1151,7 +1156,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                                 ),
                                                 gapPadding: 5
                                             ),
-                                            errorText: errorText,
+                                            errorText: warningNotice,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
                                             labelText: StringsResources.transactionSourceCard,
@@ -1277,7 +1282,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                                 ),
                                                 gapPadding: 5
                                             ),
-                                            errorText: errorText,
+                                            errorText: warningNotice,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
                                             labelText: StringsResources.transactionTargetCard,
@@ -1549,16 +1554,99 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                         splashFactory: InkRipple.splashFactory,
                         onTap: () {
 
-                          if (controllerTransactionSourceCard.text.length < 16
-                              || controllerTransactionTargetCard.text.length < 16) {
+                          bool noError = false;
+
+                          if (controllerTransactionSourceCard.text.length < 16) {
 
                             setState(() {
 
-                              errorText = "fuck off";
+                              warningNotice = StringsResources.errorText;
 
                             });
 
-                          } else {
+                            noError = false;
+
+                          }
+
+                          if (controllerTransactionTargetCard.text.length < 16) {
+
+                            setState(() {
+
+                              warningNotice = StringsResources.errorText;
+
+                            });
+
+                            noError = false;
+
+                          }
+
+                          if (controllerMoneyAmount.text.isEmpty) {
+
+                            setState(() {
+
+                              warningNotice = StringsResources.errorText;
+
+                            });
+
+                            noError = false;
+
+                          }
+
+                          if (controllerTransactionTitle.text.isEmpty) {
+
+                            setState(() {
+
+                              warningNotice = StringsResources.errorText;
+
+                            });
+
+                            noError = false;
+
+                          }
+
+                          if (controllerTransactionDescription.text.isEmpty) {
+
+                            setState(() {
+
+                              warningNotice = StringsResources.errorText;
+
+                            });
+
+                            noError = false;
+
+                          }
+
+                          if (controllerTransactionSourceName.text.isEmpty) {
+
+                            setState(() {
+
+                              warningNotice = StringsResources.errorText;
+
+                            });
+
+                            noError = false;
+
+                          }
+
+                          if (controllerTransactionSourceBank.text.isEmpty) {
+
+                            setState(() {
+
+                              warningNotice = StringsResources.errorText;
+
+                            });
+
+                            noError = false;
+
+                          }
+
+
+                          // TextEditingController controllerTransactionTargetName = TextEditingController();
+                          // TextEditingController controllerTransactionTargetBank = TextEditingController();
+                          //
+                          // TextEditingController controllerBudget = TextEditingController();
+
+                          if (noError) {
 
                             var databaseInputs = TransactionsDatabaseInputs();
 
@@ -1764,7 +1852,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
           await creditCardsDatabaseQueries.querySpecificCreditCardByCardNumber(controllerTransactionSourceCard.text, CreditCardsDatabaseInputs.databaseTableName)
       );
 
-      var newCardBalance = (int.parse(sourceCreditCardData.cardBalance ?? "0") - int.parse(transactionsData.amountMoney ?? "0")).toString();
+      var newCardBalance = (int.parse(sourceCreditCardData.cardBalance) - int.parse(transactionsData.amountMoney)).toString();
 
       var creditCardsDatabaseInputs = CreditCardsDatabaseInputs();
 
@@ -1822,7 +1910,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
           await budgetsDatabaseQueries.querySpecificBudgetsByName(controllerTransactionSourceCard.text, CreditCardsDatabaseInputs.databaseTableName)
       );
 
-      var newBudgetBalance = (int.parse(budgetData.budgetBalance ?? "0") - int.parse(transactionsData.amountMoney ?? "0")).toString();
+      var newBudgetBalance = (int.parse(budgetData.budgetBalance) - int.parse(transactionsData.amountMoney)).toString();
 
       var budgetsDatabaseInputs = BudgetsDatabaseInputs();
 

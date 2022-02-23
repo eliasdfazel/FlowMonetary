@@ -20,7 +20,7 @@ class CreditCardsData {
   final String cardHolderName;
   final String cvv;
   final String bankName;
-  final String cardBalance;
+  String cardBalance = "0";
 
   int colorTag = ColorsResources.dark.value;
 
