@@ -32,6 +32,8 @@ class TransactionsDatabaseInputs {
 
         return databaseInstance.execute(
           'CREATE TABLE IF NOT EXISTS $tableNameQuery(id INTEGER PRIMARY KEY, '
+              'transactionTitle TEXT, '
+              'transactionDescription TEXT, '
               'sourceCardNumber TEXT, '
               'targetCardNumber TEXT, '
               'sourceBankName TEXT, '

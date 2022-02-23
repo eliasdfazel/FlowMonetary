@@ -19,6 +19,9 @@ class TransactionsData {
 
   final int id;
 
+  final String transactionTitle;
+  final String transactionDescription;
+
   final String sourceCardNumber;
   final String targetCardNumber;
 
@@ -43,6 +46,9 @@ class TransactionsData {
 
   TransactionsData({
     required this.id,
+
+    required this.transactionTitle,
+    required this.transactionDescription,
 
     required this.sourceCardNumber,
     required this.targetCardNumber,
@@ -72,6 +78,9 @@ class TransactionsData {
     return {
       'id': id,
 
+      'transactionTitle': transactionTitle,
+      'transactionDescription': transactionDescription,
+
       'sourceCardNumber': sourceCardNumber,
       'targetCardNumber': targetCardNumber,
 
@@ -98,6 +107,10 @@ class TransactionsData {
   @override
   String toString() {
     return 'TransactionsData{id: $id, '
+
+        'transactionTitle: $transactionTitle, '
+        'transactionDescription: $transactionDescription, '
+
         'sourceCardNumber: $sourceCardNumber, '
         'targetCardNumber: $targetCardNumber'
 

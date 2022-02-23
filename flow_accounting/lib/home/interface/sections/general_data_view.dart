@@ -8,7 +8,7 @@
  * https://opensource.org/licenses/MIT
  */
 
-import 'package:flow_accounting/general_data/general_information_charts.dart';
+import 'package:flow_accounting/general_data/ui/general_information_charts.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/database/io/inputs.dart';

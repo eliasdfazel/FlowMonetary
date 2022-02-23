@@ -37,6 +37,9 @@ class StringsResources {
   static const String editText = "ویرایش";
   static const String deleteText = "حذف";
 
+  static const String titleText = "عنوان";
+  static const String descriptionText = "توضیحات";
+
   static const String grantText = "تایید";
 
   static const String totalBalanceText = "موجودی کلی";

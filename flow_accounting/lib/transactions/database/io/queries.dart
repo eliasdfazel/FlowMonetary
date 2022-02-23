@@ -34,6 +34,8 @@ class TransactionsDatabaseQueries {
     return List.generate(maps.length, (i) {
       return TransactionsData(
         id: maps[i]['id'],
+        transactionTitle: maps[i]['transactionTitle'],
+        transactionDescription: maps[i]['transactionDescription'],
         sourceCardNumber: maps[i]['sourceCardNumber'],
         targetCardNumber: maps[i]['targetCardNumber'],
         sourceBankName: maps[i]['sourceBankName'],
@@ -119,6 +121,8 @@ class TransactionsDatabaseQueries {
   Future<TransactionsData> extractTransactionsQuery(Map<String, Object?>inputData) async {
 
     return TransactionsData(id: inputData["id"] as int,
+      transactionTitle: inputData['transactionTitle'].toString(),
+      transactionDescription: inputData['transactionDescription'].toString(),
       sourceCardNumber: inputData['sourceCardNumber'].toString(),
       targetCardNumber: inputData['targetCardNumber'].toString(),
       sourceBankName: inputData['sourceBankName'].toString(),
