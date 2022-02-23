@@ -31,7 +31,7 @@ class TransactionsData {
   final String sourceUsername;
   final String targetUsername;
 
-  final String amountMoney;
+  String amountMoney = "0";
   final String transactionType;
 
   /// Transaction Time In Millisecond
