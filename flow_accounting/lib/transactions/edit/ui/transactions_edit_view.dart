@@ -657,6 +657,13 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                           controllerTransactionTargetName.text = suggestion.toString();
 
                                         },
+                                        errorBuilder: (context, suggestion) {
+
+                                          return const Padding(
+                                              padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
+                                              child: Text(StringsResources.nothingText)
+                                          );
+                                        },
                                         suggestionsBoxDecoration: SuggestionsBoxDecoration(
                                             elevation: 7,
                                             color: ColorsResources.light,
@@ -758,6 +765,13 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
 
                                           controllerTransactionSourceName.text = suggestion.toString();
 
+                                        },
+                                        errorBuilder: (context, suggestion) {
+
+                                          return const Padding(
+                                              padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
+                                              child: Text(StringsResources.nothingText)
+                                          );
                                         },
                                         suggestionsBoxDecoration: SuggestionsBoxDecoration(
                                             elevation: 7,
@@ -874,6 +888,13 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                           controllerTransactionTargetBank.text = suggestion.toString();
 
                                         },
+                                        errorBuilder: (context, suggestion) {
+
+                                          return const Padding(
+                                              padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
+                                              child: Text(StringsResources.nothingText)
+                                          );
+                                        },
                                         suggestionsBoxDecoration: SuggestionsBoxDecoration(
                                             elevation: 7,
                                             color: ColorsResources.light,
@@ -975,6 +996,13 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
 
                                           controllerTransactionSourceBank.text = suggestion.toString();
 
+                                        },
+                                        errorBuilder: (context, suggestion) {
+
+                                          return const Padding(
+                                              padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
+                                              child: Text(StringsResources.nothingText)
+                                          );
                                         },
                                         suggestionsBoxDecoration: SuggestionsBoxDecoration(
                                             elevation: 7,
@@ -1091,6 +1119,13 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                           controllerTransactionSourceCard.text = suggestion.cardNumber.toString();
 
                                         },
+                                        errorBuilder: (context, suggestion) {
+
+                                          return const Padding(
+                                              padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
+                                              child: Text(StringsResources.nothingText)
+                                          );
+                                        },
                                         suggestionsBoxDecoration: SuggestionsBoxDecoration(
                                             elevation: 7,
                                             color: ColorsResources.light,
@@ -1205,6 +1240,13 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
 
                                           controllerTransactionTargetCard.text = suggestion.cardNumber.toString();
 
+                                        },
+                                        errorBuilder: (context, suggestion) {
+
+                                          return const Padding(
+                                              padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
+                                              child: Text(StringsResources.nothingText)
+                                          );
                                         },
                                         suggestionsBoxDecoration: SuggestionsBoxDecoration(
                                             elevation: 7,
@@ -1356,6 +1398,13 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                           controllerBudget.text = suggestion.budgetName.toString();
                                           budgetName = suggestion.budgetName.toString();
 
+                                        },
+                                        errorBuilder: (context, suggestion) {
+
+                                          return const Padding(
+                                              padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
+                                              child: Text(StringsResources.nothingText)
+                                          );
                                         },
                                         suggestionsBoxDecoration: SuggestionsBoxDecoration(
                                             elevation: 7,
