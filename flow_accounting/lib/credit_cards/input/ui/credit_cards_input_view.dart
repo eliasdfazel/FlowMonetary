@@ -588,6 +588,9 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                       autocorrect: true,
                                       autofocus: false,
                                       keyboardType: TextInputType.number,
+                                      inputFormatters: [
+                                        LengthLimitingTextInputFormatter(4)
+                                      ],
                                       decoration: const InputDecoration(
                                         alignLabelWithHint: true,
                                         border: OutlineInputBorder(
