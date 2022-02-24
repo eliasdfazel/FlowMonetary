@@ -14,20 +14,7 @@ import 'package:flutter/material.dart';
 
 class LineChartView extends StatefulWidget {
 
-  List<double> listOfSpotY = [
-    3,
-    3,
-    2,
-    5,
-    3.1,
-    4,
-    3,
-    4,
-    4,
-    4,
-    4,
-    5,
-  ];
+  List<double> listOfSpotY = [];
 
   double minimumY = 0;
   double maximumY = 100;
@@ -52,15 +39,30 @@ class LineChartViewState extends State<LineChartView> {
           aspectRatio: 1.37,
           child: Container(
             decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(18),
-                ),
-                color: Color(0xff232d37)
+              borderRadius: BorderRadius.all(
+                Radius.circular(13),
+              ),
+              gradient: LinearGradient(
+                  colors: [
+                    ColorsResources.dark,
+                    ColorsResources.blueGray,
+                  ],
+                  begin: FractionalOffset(0.0, 0.0),
+                  end: FractionalOffset(1.0, 0.0),
+                  stops: [0.0, 1.0],
+                  transform: GradientRotation(45),
+                  tileMode: TileMode.clamp
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: ColorsResources.lightTransparent,
+                  spreadRadius: 1,
+                  blurRadius: 7,
+                  offset: Offset(0, 0)
+                )
+              ]
             ),
-            child: Padding(
-              padding: const EdgeInsets.only(right: 13.0, left: 13.0, top: 31, bottom: 11),
-              child: LineChart(chartData()),
-            ),
+            child: LineChart(chartData()),
           ),
         ),
       ],
@@ -246,24 +248,24 @@ class LineChartViewState extends State<LineChartView> {
     String titleY = '';
 
     switch (indexValue) {
-      case 1: {
-
-        titleY = listOfSpotY.reduce((current, next) => (current > next) ? current : next).toString();
-
-        break;
-      }
-      case 5: {
+      case 10: {
 
         titleY = listOfSpotY.reduce((current, next) => (current < next) ? current : next).toString();
 
         break;
       }
-      case 9: {
+      case 50: {
 
-        int minimumValue = listOfSpotY.reduce((current, next) => (current > next) ? current : next).toInt();
-        int maximumValue = listOfSpotY.reduce((current, next) => (current < next) ? current : next).toInt();
+        int minimumValue = listOfSpotY.reduce((current, next) => (current < next) ? current : next).toInt();
+        int maximumValue = listOfSpotY.reduce((current, next) => (current > next) ? current : next).toInt();
 
         titleY = ((minimumValue + maximumValue) / 2).toString();
+
+        break;
+      }
+      case 90: {
+
+        titleY = listOfSpotY.reduce((current, next) => (current > next) ? current : next).toString();
 
         break;
       }
