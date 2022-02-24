@@ -21,8 +21,11 @@ class LineChartView extends StatefulWidget {
 
   LineChartView({Key? key, required this.listOfSpotY, required this.minimumY, required this.maximumY}) : super(key: key);
 
-  double minimumX = 0;
-  double maximumX = 11;
+  double chartMinimumX = 0;
+  double chartMaximumX = 11;
+
+  double chartMinimumY = 0;
+  double chartMaximumY = 100;
 
   @override
   LineChartViewState createState() => LineChartViewState();
@@ -72,10 +75,10 @@ class LineChartViewState extends State<LineChartView> {
   LineChartData chartData() {
 
     return LineChartData(
-      minX: widget.minimumX,
-      maxX: widget.maximumX,
-      minY: widget.minimumY,
-      maxY: widget.maximumY,
+      minX: widget.chartMinimumX,
+      maxX: widget.chartMaximumX,
+      minY: widget.chartMinimumY,
+      maxY: widget.chartMaximumY,
       gridData: FlGridData(
         show: true,
         drawVerticalLine: true,
@@ -130,7 +133,7 @@ class LineChartViewState extends State<LineChartView> {
           getTextStyles: (context, value) => const TextStyle(
             color: ColorsResources.light,
             fontWeight: FontWeight.bold,
-            fontSize: 15,
+            fontSize: 13,
             decoration: TextDecoration.none,
           ),
           getTitles: (value) {
