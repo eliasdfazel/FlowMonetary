@@ -25,13 +25,15 @@ class LineChartView extends StatefulWidget {
   double chartMaximumX = 11;
 
   double chartMinimumY = 0;
-  double chartMaximumY = 11;
+  double chartMaximumY = 100;
 
   @override
   LineChartViewState createState() => LineChartViewState();
 }
 
 class LineChartViewState extends State<LineChartView> {
+
+  final List<int> showIndexes = const [1, 4, 7, 10];
 
   @override
   Widget build(BuildContext context) {
@@ -73,6 +75,44 @@ class LineChartViewState extends State<LineChartView> {
   }
 
   LineChartData chartData() {
+
+    var allSpots = prepareSpots(widget.listOfSpotY);
+
+    var lineChartBarData = LineChartBarData(
+      showingIndicators: showIndexes,
+      show: true,
+      spots: allSpots,
+      curveSmoothness: 0.39,
+      isCurved: true,
+      shadow: Shadow(
+          color: ColorsResources.light.withOpacity(0.39),
+          offset: const Offset(0.0, 0.0),
+          blurRadius: 13),
+      colors: [
+        ColorsResources.springColor.withOpacity(0.97),
+        ColorsResources.summerColor.withOpacity(0.97),
+        ColorsResources.autumnColor.withOpacity(0.97),
+        ColorsResources.winterColor.withOpacity(0.97),
+      ],
+      barWidth: 3,
+      isStrokeCapRound: true,
+      dotData: FlDotData(
+        show: true,
+      ),
+      belowBarData: BarAreaData(
+        show: true,
+        colors: [
+          ColorsResources.springColor.withOpacity(0.17),
+          ColorsResources.summerColor.withOpacity(0.17),
+          ColorsResources.autumnColor.withOpacity(0.17),
+          ColorsResources.winterColor.withOpacity(0.17),
+        ],
+      ),
+    );
+
+    var linesBarsData = [
+      lineChartBarData,
+    ];
 
     return LineChartData(
       minX: widget.chartMinimumX,
@@ -133,6 +173,14 @@ class LineChartViewState extends State<LineChartView> {
         show: true,
         border: Border.all(color: ColorsResources.lightTransparent.withOpacity(0.13), width: 1),
       ),
+      showingTooltipIndicators: [
+        ShowingTooltipIndicators([
+          LineBarSpot(lineChartBarData, 0, allSpots[1]),
+          LineBarSpot(lineChartBarData, 0, allSpots[4]),
+          LineBarSpot(lineChartBarData, 0, allSpots[7]),
+          LineBarSpot(lineChartBarData, 0, allSpots[10]),
+        ])
+      ],
       lineTouchData: LineTouchData(
         getTouchedSpotIndicator: (LineChartBarData barData, List<int> spotIndexes) {
 
@@ -158,7 +206,7 @@ class LineChartViewState extends State<LineChartView> {
         },
         touchTooltipData: LineTouchTooltipData(
           tooltipBgColor:
-          ColorsResources.applicationGeeksEmpire.withOpacity(0.7),
+          ColorsResources.applicationGeeksEmpire.withOpacity(0.79),
           tooltipRoundedRadius: 51,
           tooltipPadding: const EdgeInsets.fromLTRB(7, 7, 7, 7),
           tooltipMargin: 19,
@@ -179,37 +227,7 @@ class LineChartViewState extends State<LineChartView> {
         ),
       ),
       backgroundColor: Colors.transparent,
-      lineBarsData: [
-        LineChartBarData(
-          spots: prepareSpots(widget.listOfSpotY),
-          curveSmoothness: 0.39,
-          isCurved: true,
-          shadow: Shadow(
-              color: ColorsResources.light.withOpacity(0.39),
-              offset: const Offset(0.0, 0.0),
-              blurRadius: 13),
-          colors: [
-            ColorsResources.springColor.withOpacity(0.97),
-            ColorsResources.summerColor.withOpacity(0.97),
-            ColorsResources.autumnColor.withOpacity(0.97),
-            ColorsResources.winterColor.withOpacity(0.97),
-          ],
-          barWidth: 3,
-          isStrokeCapRound: true,
-          dotData: FlDotData(
-            show: true,
-          ),
-          belowBarData: BarAreaData(
-            show: true,
-            colors: [
-              ColorsResources.springColor.withOpacity(0.17),
-              ColorsResources.summerColor.withOpacity(0.17),
-              ColorsResources.autumnColor.withOpacity(0.17),
-              ColorsResources.winterColor.withOpacity(0.17),
-            ],
-          ),
-        ),
-      ],
+      lineBarsData: linesBarsData,
     );
   }
 
