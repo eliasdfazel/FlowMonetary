@@ -25,7 +25,7 @@ class LineChartView extends StatefulWidget {
   double chartMaximumX = 11;
 
   double chartMinimumY = 0;
-  double chartMaximumY = 100;
+  double chartMaximumY = 11;
 
   @override
   LineChartViewState createState() => LineChartViewState();
@@ -102,6 +102,7 @@ class LineChartViewState extends State<LineChartView> {
         show: true,
         rightTitles: SideTitles(showTitles: false),
         topTitles: SideTitles(showTitles: false),
+        leftTitles: SideTitles(showTitles: false),
         bottomTitles: SideTitles(
           showTitles: true,
           reservedSize: 22,
@@ -126,22 +127,6 @@ class LineChartViewState extends State<LineChartView> {
             return '';
           },
           margin: 7,
-        ),
-        leftTitles: SideTitles(
-          showTitles: true,
-          interval: 1,
-          getTextStyles: (context, value) => const TextStyle(
-            color: ColorsResources.light,
-            fontWeight: FontWeight.bold,
-            fontSize: 13,
-            decoration: TextDecoration.none,
-          ),
-          getTitles: (value) {
-
-            return prepareTitleY(widget.listOfSpotY, value.toInt());
-          },
-          reservedSize: 32,
-          margin: 12,
         ),
       ),
       borderData: FlBorderData(
@@ -251,13 +236,13 @@ class LineChartViewState extends State<LineChartView> {
     String titleY = '';
 
     switch (indexValue) {
-      case 10: {
+      case 0: {
 
         titleY = listOfSpotY.reduce((current, next) => (current < next) ? current : next).toString();
 
         break;
       }
-      case 50: {
+      case 5: {
 
         int minimumValue = listOfSpotY.reduce((current, next) => (current < next) ? current : next).toInt();
         int maximumValue = listOfSpotY.reduce((current, next) => (current > next) ? current : next).toInt();
@@ -266,7 +251,7 @@ class LineChartViewState extends State<LineChartView> {
 
         break;
       }
-      case 90: {
+      case 11: {
 
         titleY = listOfSpotY.reduce((current, next) => (current > next) ? current : next).toString();
 
