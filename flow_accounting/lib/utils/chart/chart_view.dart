@@ -118,7 +118,7 @@ class LineChartViewState extends State<LineChartView> {
       minX: widget.chartMinimumX,
       maxX: widget.chartMaximumX,
       minY: 0,
-      maxY: widget.maximumY,
+      maxY: widget.chartMaximumY,
       gridData: FlGridData(
         show: true,
         drawVerticalLine: true,
