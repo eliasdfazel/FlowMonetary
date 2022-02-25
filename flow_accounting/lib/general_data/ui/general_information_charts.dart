@@ -38,13 +38,13 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
     // Convert Monthly Money Amount to be Between
 
     List<double> listOfEarningPoint = [
-      70000000000,
-      30000,
+      700000000,
+      3000000,
       200,
       500000,
       3500.1,
       40000,
-      3000000000000000,
+      3000,
       1900,
       29000,
       400,
@@ -59,7 +59,7 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
       3000,
       300,
       200000,
-      5000000000000000000000,
+      50000,
       350.1,
       400,
       3000,
@@ -108,7 +108,6 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
         backgroundColor: ColorsResources.black,
         body: Stack(
           children: [
-            // Gradient Background
             Container(
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
@@ -128,58 +127,12 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
                     tileMode: TileMode.clamp),
               ),
             ),
-            // Rounded Borders
-            Container(
-              decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(17),
-                      topRight: Radius.circular(17),
-                      bottomLeft: Radius.circular(17),
-                      bottomRight: Radius.circular(17)),
-                  border: Border(
-                      top: BorderSide(
-                        color: Colors.black,
-                        width: 7,
-                      ),
-                      bottom: BorderSide(
-                        color: Colors.black,
-                        width: 7,
-                      ),
-                      left: BorderSide(
-                        color: Colors.black,
-                        width: 7,
-                      ),
-                      right: BorderSide(
-                        color: Colors.black,
-                        width: 7,
-                      )),
-                  color: Colors.transparent),
-            ),
-            // All Contents
-            Padding(
-              padding: const EdgeInsets.fromLTRB(
-                /*left*/
-                  1.1,
-                  /*top*/ 3,
-                  /*right*/ 1.1,
-                  /*bottom*/ 7.3),
-              child: Container(
-                padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(17),
-                      topRight: Radius.circular(17),
-                      bottomLeft: Radius.circular(17),
-                      bottomRight: Radius.circular(17)),
-                ),
-              ),
-            ),
             ListView(
-              padding: const EdgeInsets.fromLTRB(0, 73, 0, 79),
+              padding: const EdgeInsets.fromLTRB(0, 53, 0, 79),
               physics: const BouncingScrollPhysics(),
               children: [
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(27, 3, 27, 3),
+                  padding: const EdgeInsets.fromLTRB(27, 3, 27, 7),
                   child: Column(
                     children: [
                       const Padding(
@@ -189,7 +142,20 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
                           child: Text(
                             StringsResources.totalEarningText,
                             style: TextStyle(
-                                color: ColorsResources.light
+                              color: ColorsResources.light,
+                              fontSize: 17,
+                              shadows: [
+                                Shadow(
+                                  color: ColorsResources.primaryColorDark,
+                                  blurRadius: 7,
+                                  offset: Offset(1.0, 1.0)
+                                ),
+                                Shadow(
+                                    color: ColorsResources.lightTransparent,
+                                    blurRadius: 7,
+                                    offset: Offset(-1.0, -1.0)
+                                )
+                              ]
                             ),
                           ),
                         ),
@@ -202,7 +168,7 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
                   height: 19,
                 ),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(27, 3, 27, 3),
+                  padding: const EdgeInsets.fromLTRB(27, 13, 27, 7),
                   child: Column(
                     children: [
                       const Padding(
@@ -212,7 +178,20 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
                           child: Text(
                             StringsResources.totalSpendingText,
                             style: TextStyle(
-                                color: ColorsResources.light
+                                color: ColorsResources.light,
+                                fontSize: 17,
+                                shadows: [
+                                  Shadow(
+                                      color: ColorsResources.primaryColorDark,
+                                      blurRadius: 7,
+                                      offset: Offset(1.0, 1.0)
+                                  ),
+                                  Shadow(
+                                      color: ColorsResources.lightTransparent,
+                                      blurRadius: 7,
+                                      offset: Offset(-1.0, -1.0)
+                                  )
+                                ]
                             ),
                           ),
                         ),
@@ -225,7 +204,7 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
                   height: 19,
                 ),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(27, 3, 27, 3),
+                  padding: const EdgeInsets.fromLTRB(27, 13, 27, 7),
                   child: Column(
                     children: [
                       const Padding(
@@ -235,7 +214,20 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
                           child: Text(
                             StringsResources.totalBalanceText,
                             style: TextStyle(
-                                color: ColorsResources.light
+                                color: ColorsResources.light,
+                                fontSize: 17,
+                                shadows: [
+                                  Shadow(
+                                      color: ColorsResources.primaryColorDark,
+                                      blurRadius: 7,
+                                      offset: Offset(1.0, 1.0)
+                                  ),
+                                  Shadow(
+                                      color: ColorsResources.lightTransparent,
+                                      blurRadius: 7,
+                                      offset: Offset(-1.0, -1.0)
+                                  )
+                                ]
                             ),
                           ),
                         ),

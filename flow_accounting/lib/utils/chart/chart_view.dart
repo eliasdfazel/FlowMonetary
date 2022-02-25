@@ -117,8 +117,8 @@ class LineChartViewState extends State<LineChartView> {
     return LineChartData(
       minX: widget.chartMinimumX,
       maxX: widget.chartMaximumX,
-      minY: widget.chartMinimumY,
-      maxY: widget.chartMaximumY,
+      minY: 0,
+      maxY: widget.maximumY,
       gridData: FlGridData(
         show: true,
         drawVerticalLine: true,
@@ -171,7 +171,7 @@ class LineChartViewState extends State<LineChartView> {
       ),
       borderData: FlBorderData(
         show: true,
-        border: Border.all(color: ColorsResources.lightTransparent.withOpacity(0.13), width: 1),
+        border: Border.all(color: ColorsResources.lightTransparent.withOpacity(0.07), width: 1),
       ),
       showingTooltipIndicators: [
         ShowingTooltipIndicators([
@@ -205,9 +205,10 @@ class LineChartViewState extends State<LineChartView> {
           }).toList();
         },
         touchTooltipData: LineTouchTooltipData(
-          tooltipBgColor:
-          ColorsResources.applicationGeeksEmpire.withOpacity(0.79),
+          tooltipBgColor: ColorsResources.applicationGeeksEmpire.withOpacity(0.79),
           tooltipRoundedRadius: 51,
+          fitInsideHorizontally: true,
+          fitInsideVertically: true,
           tooltipPadding: const EdgeInsets.fromLTRB(7, 7, 7, 7),
           tooltipMargin: 19,
           getTooltipItems: (List<LineBarSpot> lineBarsSpot) {
