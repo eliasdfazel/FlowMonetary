@@ -282,6 +282,4 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
     );
   }
 
-
-
 }
