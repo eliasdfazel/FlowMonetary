@@ -70,28 +70,6 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
 
     BackButtonInterceptor.add(aInterceptor);
 
-  }
-
-  @override
-  void dispose() {
-
-    BackButtonInterceptor.remove(aInterceptor);
-
-    super.dispose();
-  }
-
-  bool aInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
-
-    UpdatedData.UpdatedDataType = UpdatedData.LatestTransactions;
-
-    Navigator.pop(context, transactionDataUpdated);
-
-    return true;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-
     calendarView.inputDateTime = widget.transactionsData.transactionTime;
     calendarView.pickedDateTime = DateTime.fromMillisecondsSinceEpoch(widget.transactionsData.transactionTimeMillisecond);
     calendarView.pickedDataTimeYear = widget.transactionsData.transactionTimeYear;
@@ -127,6 +105,28 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
       transactionType = StringsResources.transactionTypeSend;
 
     }
+
+  }
+
+  @override
+  void dispose() {
+
+    BackButtonInterceptor.remove(aInterceptor);
+
+    super.dispose();
+  }
+
+  bool aInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
+
+    UpdatedData.UpdatedDataType = UpdatedData.LatestTransactions;
+
+    Navigator.pop(context, transactionDataUpdated);
+
+    return true;
+  }
+
+  @override
+  Widget build(BuildContext context) {
 
     return MaterialApp (
       debugShowCheckedModeBanner: false,

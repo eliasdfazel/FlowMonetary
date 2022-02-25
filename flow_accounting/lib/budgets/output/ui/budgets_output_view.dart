@@ -21,7 +21,7 @@ class BudgetsOutputView extends StatefulWidget {
 }
 class _BudgetOutputView extends State<BudgetsOutputView> {
 
-  late ColorSelectorView colorSelectorView;
+  ColorSelectorView colorSelectorView = ColorSelectorView();
 
   List<BudgetsData> allBudgets = [];
   List<Widget> allBudgetsItems = [];
@@ -45,14 +45,6 @@ class _BudgetOutputView extends State<BudgetsOutputView> {
 
   @override
   Widget build(BuildContext context) {
-
-    if (!colorSelectorInitialized) {
-
-      colorSelectorView = ColorSelectorView();
-
-      colorSelectorInitialized = true;
-
-    }
 
     colorSelectorView.selectedColorNotifier.addListener(() {
 

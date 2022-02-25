@@ -25,7 +25,7 @@ class TransactionsOutputView extends StatefulWidget {
 }
 class _TransactionsOutputView extends State<TransactionsOutputView> {
 
-  late ColorSelectorView colorSelectorView;
+  ColorSelectorView colorSelectorView = ColorSelectorView();
 
   List<TransactionsData> allTransactions = [];
   List<Widget> allTransactionsItems = [];
@@ -33,8 +33,6 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
   TextEditingController controllerTransactionTitle = TextEditingController();
 
   TextEditingController textEditorControllerQuery = TextEditingController();
-
-  bool colorSelectorInitialized = false;
 
   bool transactionDataUpdated = false;
 
@@ -78,14 +76,6 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
 
   @override
   Widget build(BuildContext context) {
-
-    if (!colorSelectorInitialized) {
-
-      colorSelectorView = ColorSelectorView();
-
-      colorSelectorInitialized = true;
-
-    }
 
     colorSelectorView.selectedColorNotifier.addListener(() {
 
@@ -500,7 +490,15 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
       }
     }
 
-    controllerTransactionTitle.text = transactionsData.transactionDescription;
+    if (transactionsData.transactionDescription.isNotEmpty) {
+
+      controllerTransactionTitle.text = transactionsData.transactionDescription;
+
+    } else {
+
+      controllerTransactionTitle.text = transactionsData.transactionTitle;
+
+    }
 
     return Slidable(
       closeOnScroll: true,
@@ -933,8 +931,6 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
 
     }
 
-    colorSelectorInitialized = false;
-
     setState(() {
 
       allTransactionsItems = preparedAllTransactionsItem;
@@ -1034,7 +1030,9 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
 
     for (var element in inputTransactionsList) {
 
-      if (element.transactionTime.contains(searchQuery) ||
+      if (element.transactionTitle.contains(searchQuery) ||
+          element.transactionDescription.contains(searchQuery) ||
+          element.transactionTime.contains(searchQuery) ||
           element.sourceUsername.contains(searchQuery) ||
           element.sourceBankName.contains(searchQuery) ||
           element.sourceCardNumber.contains(searchQuery) ||

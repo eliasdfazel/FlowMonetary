@@ -127,6 +127,8 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
 
     });
 
+    colorSelectorView.inputColor = (widget.creditCardsData.colorTag == Colors.transparent.value) ? ColorsResources.primaryColor : Color(widget.creditCardsData.colorTag);
+
   }
 
   @override
@@ -146,8 +148,6 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
 
   @override
   Widget build(BuildContext context) {
-
-    colorSelectorView.inputColor = (widget.creditCardsData.colorTag == Colors.transparent.value) ? ColorsResources.primaryColor : Color(widget.creditCardsData.colorTag);
 
     return MaterialApp (
       debugShowCheckedModeBanner: false,
@@ -1327,6 +1327,7 @@ class AwesomeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return AnimatedBuilder(
       animation: animation!,
       builder: (BuildContext context, Widget? child) {

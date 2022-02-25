@@ -80,7 +80,6 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
   @override
   Widget build(BuildContext context) {
 
-
     return MaterialApp (
       debugShowCheckedModeBanner: false,
       color: ColorsResources.black,

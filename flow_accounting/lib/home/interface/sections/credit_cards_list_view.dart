@@ -469,6 +469,7 @@ class AwesomeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return AnimatedBuilder(
       animation: animation!,
       builder: (BuildContext context, Widget? child) {

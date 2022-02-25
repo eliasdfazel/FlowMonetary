@@ -39,6 +39,13 @@ class _CalendarView extends State<CalendarView> {
     initializeDateFormatting();
 
     super.initState();
+
+    if (widget.inputDateTime != null) {
+
+      widget.pickedDataTimeText = widget.inputDateTime!;
+
+    }
+
   }
 
   @override
@@ -48,12 +55,6 @@ class _CalendarView extends State<CalendarView> {
 
   @override
   Widget build(BuildContext context) {
-
-    if (widget.inputDateTime != null) {
-
-      widget.pickedDataTimeText = widget.inputDateTime!;
-
-    }
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(/*left*/1.1, /*top*/3, /*right*/1.1, /*bottom*/3),
