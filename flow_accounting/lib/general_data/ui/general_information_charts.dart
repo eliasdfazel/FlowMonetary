@@ -37,7 +37,7 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
 
     List<double> listOfEarningPoint = [
       7000,
-      3000000,
+      300000000,
       2000000000,
       50000,
       350000.1,
@@ -54,36 +54,36 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
     LineChartView generalEarningChart = LineChartView(listOfSpotY: listOfEarningPoint, minimumY: minimumEarning, maximumY: maximumEarning);
 
     List<double> listOfSpendingPoint = [
+      3000,
       30,
-      3,
-      20,
-      50,
-      35.1,
-      40,
-      30,
-      49,
-      49,
-      41,
-      40,
-      18,
+      2000000,
+      500,
+      3500.1,
+      40000,
+      3000,
+      4900,
+      49000,
+      4100,
+      4000000,
+      180000,
     ];
     double minimumSpending = listOfSpendingPoint.reduce((current, next) => (current < next) ? current : next);
     double maximumSpending = listOfSpendingPoint.reduce((current, next) => (current > next) ? current : next);
     LineChartView generalSpendingChart = LineChartView(listOfSpotY: listOfSpendingPoint, minimumY: minimumSpending, maximumY: maximumSpending);
 
     List<double> listOfBalancePoint = [
-      10,
-      30,
-      20,
-      50,
-      65.1,
-      40,
-      20,
-      49,
-      90,
-      41,
-      10,
-      88,
+      1000,
+      3000,
+      2000,
+      500000,
+      650000.1,
+      40000,
+      2000000,
+      40009,
+      900,
+      4100000,
+      1000,
+      880000000,
     ];
     double minimumBalance = listOfBalancePoint.reduce((current, next) => (current < next) ? current : next);
     double maximumBalance = listOfBalancePoint.reduce((current, next) => (current > next) ? current : next);

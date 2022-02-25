@@ -49,6 +49,7 @@ class StringsResources {
   static const String totalSpendingText = "مخارج کلی";
 
   static const String transactionAll = "تمام تراکنش ها";
+  static const String transactionLatest = "آخرین تراکنش ها";
   static const String transactionTime = "زمان تراکنش";
   static const String transactionAmount = "مبلغ  دریافتی یا پرداختی را وارد"
       " کنید";

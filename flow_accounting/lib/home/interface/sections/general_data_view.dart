@@ -77,9 +77,14 @@ class _GeneralDataView extends State<GeneralDataView> {
                                     fontSize: 13,
                                     shadows: [
                                       Shadow(
-                                          color: ColorsResources.white,
-                                          offset: Offset(0, 0),
-                                          blurRadius: 11
+                                          color: ColorsResources.darkTransparent,
+                                          blurRadius: 11,
+                                          offset: Offset(1.0, 1.0)
+                                      ),
+                                      Shadow(
+                                          color: ColorsResources.light,
+                                          blurRadius: 11,
+                                          offset: Offset(-1.0, -1.0)
                                       )
                                     ]),
                               ),
@@ -177,9 +182,14 @@ class _GeneralDataView extends State<GeneralDataView> {
                                     fontSize: 13,
                                     shadows: [
                                       Shadow(
-                                          color: ColorsResources.white,
-                                          offset: Offset(0, 0),
-                                          blurRadius: 11
+                                          color: ColorsResources.darkTransparent,
+                                          blurRadius: 11,
+                                          offset: Offset(1.0, 1.0)
+                                      ),
+                                      Shadow(
+                                          color: ColorsResources.light,
+                                          blurRadius: 11,
+                                          offset: Offset(-1.0, -1.0)
                                       )
                                     ]),
                               ),
@@ -277,9 +287,14 @@ class _GeneralDataView extends State<GeneralDataView> {
                                     fontSize: 13,
                                     shadows: [
                                       Shadow(
-                                          color: ColorsResources.white,
-                                          offset: Offset(0, 0),
-                                          blurRadius: 11
+                                          color: ColorsResources.darkTransparent,
+                                          blurRadius: 11,
+                                          offset: Offset(1.0, 1.0)
+                                      ),
+                                      Shadow(
+                                          color: ColorsResources.light,
+                                          blurRadius: 11,
+                                          offset: Offset(-1.0, -1.0)
                                       )
                                     ]),
                               ),

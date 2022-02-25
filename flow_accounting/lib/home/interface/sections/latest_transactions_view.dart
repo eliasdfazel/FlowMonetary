@@ -9,6 +9,7 @@
  */
 
 import 'package:flow_accounting/resources/ColorsResources.dart';
+import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/database/structures/tables_structure.dart';
 import 'package:flutter/material.dart';
 
@@ -51,6 +52,31 @@ class _LatestTransactionsView extends State<LatestTransactionsView> {
       padding: const EdgeInsets.fromLTRB(13, 13, 13, 3),
       child: Column(
         children: [
+          const Padding(
+            padding: EdgeInsets.fromLTRB(13, 3, 13, 0),
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: Text(
+                StringsResources.transactionLatest,
+                style: TextStyle(
+                  color: ColorsResources.applicationGeeksEmpire,
+                  fontSize: 13,
+                  shadows: [
+                    Shadow(
+                      color: ColorsResources.darkTransparent,
+                      blurRadius: 11,
+                      offset: Offset(1.0, 1.0)
+                    ),
+                    Shadow(
+                        color: ColorsResources.light,
+                        blurRadius: 11,
+                        offset: Offset(-1.0, -1.0)
+                    )
+                  ]
+                ),
+              ),
+            ),
+          ),
           SizedBox(
             width: double.infinity,
             height: 57,

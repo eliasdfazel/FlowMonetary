@@ -211,12 +211,12 @@ class DashboardViewState extends State<DashboardView> {
                           scrollDirection: Axis.vertical,
                           children: [ // List Of All Contents
                             const TopBarView(),
-                            LatestTransactionsView(
-                                latestTransactionsData: someLatestTransactions
-                            ),
                             const GeneralDataView(),
                             CreditCardsListView(
                               allCreditCardsData: allCreditCards,
+                            ),
+                            LatestTransactionsView(
+                                latestTransactionsData: someLatestTransactions
                             ),
                             FeaturesOptionsView(dashboardView: this),
                           ]
