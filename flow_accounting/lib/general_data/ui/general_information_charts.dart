@@ -35,8 +35,6 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
   @override
   Widget build(BuildContext context) {
 
-    // Convert Monthly Money Amount to be Between
-
     List<double> listOfEarningPoint = [
       70,
       30,
