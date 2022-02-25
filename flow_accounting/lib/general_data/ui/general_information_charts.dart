@@ -8,6 +8,7 @@
  * https://opensource.org/licenses/MIT
  */
 
+import 'package:blur/blur.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/utils/chart/chart_view.dart';
@@ -33,6 +34,10 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
 
   @override
   Widget build(BuildContext context) {
+
+    // Get All Transactions by Month & by Transaction Type
+    // Sum Up Transaction Type Receive
+    // Create 12 ASYNC Functions for Each Month
 
     List<double> listOfEarningPoint = [
       7000,
@@ -237,6 +242,129 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
             ),
             Positioned(
                 top: 19,
+                right: 13,
+                child: SizedBox(
+                  height: 43,
+                  width: 321,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Expanded(
+                        flex: 11,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(3, 0, 0, 0),
+                          child: Stack(
+                            children: [
+                              SizedBox(
+                                height: 43,
+                                width: double.infinity,
+                                child: Blur(
+                                  blur: 5,
+                                  borderRadius: BorderRadius.circular(51),
+                                  blurColor: Colors.black.withOpacity(0.3),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        gradient: LinearGradient(
+                                            colors: [
+                                              ColorsResources.black.withOpacity(0.3),
+                                              ColorsResources.primaryColorDark.withOpacity(0.3),
+                                            ],
+                                            begin: const FractionalOffset(0.0, 0.0),
+                                            end: const FractionalOffset(1.0, 0.0),
+                                            stops: const [0.0, 1.0],
+                                            transform: const GradientRotation(45),
+                                            tileMode: TileMode.clamp
+                                        )
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () {
+
+
+
+                                },
+                                child: const SizedBox(
+                                  height: 43,
+                                  width: double.infinity,
+                                  child: Align(
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      StringsResources.sortTransactionAmountHigh,
+                                      style: TextStyle(
+                                        fontSize: 13,
+                                        color: ColorsResources.applicationGeeksEmpire,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 11,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 0, 3, 0),
+                          child: Stack(
+                            children: [
+                              SizedBox(
+                                height: 43,
+                                width: double.infinity,
+                                child: Blur(
+                                  blur: 5,
+                                  borderRadius: BorderRadius.circular(51),
+                                  blurColor: Colors.black.withOpacity(0.3),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        gradient: LinearGradient(
+                                            colors: [
+                                              ColorsResources.black.withOpacity(0.3),
+                                              ColorsResources.primaryColorDark.withOpacity(0.3),
+                                            ],
+                                            begin: const FractionalOffset(0.0, 0.0),
+                                            end: const FractionalOffset(1.0, 0.0),
+                                            stops: const [0.0, 1.0],
+                                            transform: const GradientRotation(45),
+                                            tileMode: TileMode.clamp
+                                        )
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () {
+
+
+
+                                },
+                                child: const SizedBox(
+                                  height: 43,
+                                  width: double.infinity,
+                                  child: Align(
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      StringsResources.sortTimeNew,
+                                      style: TextStyle(
+                                        fontSize: 13,
+                                        color: ColorsResources.applicationGeeksEmpire,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+            ),
+            Positioned(
+                top: 19,
                 left: 13,
                 child: InkWell(
                   onTap: () {
@@ -269,6 +397,12 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
         ),
       ),
     );
+  }
+
+  void getTransactionOne() async {
+
+
+
   }
 
 }

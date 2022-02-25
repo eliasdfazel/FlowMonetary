@@ -192,6 +192,7 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
                                       child: Blur(
                                         blur: 5,
                                         borderRadius: BorderRadius.circular(51),
+                                        blurColor: Colors.white.withOpacity(0.3),
                                         child: Container(
                                           decoration: BoxDecoration(
                                               gradient: LinearGradient(
@@ -246,6 +247,7 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
                                       child: Blur(
                                         blur: 5,
                                         borderRadius: BorderRadius.circular(51),
+                                        blurColor: Colors.white.withOpacity(0.3),
                                         child: Container(
                                           decoration: BoxDecoration(
                                               gradient: LinearGradient(
@@ -298,6 +300,7 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
                                     child: Blur(
                                       blur: 3,
                                       borderRadius: BorderRadius.circular(51),
+                                      blurColor: Colors.white.withOpacity(0.3),
                                       child: Container(
                                         decoration: BoxDecoration(
                                             gradient: LinearGradient(
