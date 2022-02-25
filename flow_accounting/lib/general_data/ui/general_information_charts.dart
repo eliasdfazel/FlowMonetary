@@ -13,6 +13,7 @@ import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/utils/chart/chart_view.dart';
 import 'package:flutter/material.dart';
+import 'package:shamsi_date/shamsi_date.dart';
 
 class GeneralFinancialCharts extends StatefulWidget {
   const GeneralFinancialCharts({Key? key}) : super(key: key);
@@ -93,6 +94,14 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
     double maximumBalance = listOfBalancePoint.reduce((current, next) => (current > next) ? current : next);
     LineChartView generalBalanceChart = LineChartView(listOfSpotY: listOfBalancePoint, minimumY: minimumBalance, maximumY: maximumBalance);
 
+    DateTime nowTime = DateTime.now();
+    Gregorian gregorianCalendar = Gregorian(nowTime.year, nowTime.month, nowTime.day, nowTime.hour, nowTime.minute, 0, 0);
+    var iranianCalendar = gregorianCalendar.toJalali();
+
+    int yearNumber = int.parse(iranianCalendar.formatter.yyyy);
+
+    List<int> inputIntList = List.generate(11, (i) => 1390 + i);
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: StringsResources.applicationName,
@@ -130,7 +139,7 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
               ),
             ),
             ListView(
-              padding: const EdgeInsets.fromLTRB(0, 53, 0, 79),
+              padding: const EdgeInsets.fromLTRB(0, 71, 0, 79),
               physics: const BouncingScrollPhysics(),
               children: [
                 Padding(
@@ -245,121 +254,37 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
                 right: 13,
                 child: SizedBox(
                   height: 43,
-                  width: 321,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Expanded(
-                        flex: 11,
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(3, 0, 0, 0),
-                          child: Stack(
-                            children: [
-                              SizedBox(
-                                height: 43,
-                                width: double.infinity,
-                                child: Blur(
-                                  blur: 5,
-                                  borderRadius: BorderRadius.circular(51),
-                                  blurColor: Colors.black.withOpacity(0.3),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                        gradient: LinearGradient(
-                                            colors: [
-                                              ColorsResources.black.withOpacity(0.3),
-                                              ColorsResources.primaryColorDark.withOpacity(0.3),
-                                            ],
-                                            begin: const FractionalOffset(0.0, 0.0),
-                                            end: const FractionalOffset(1.0, 0.0),
-                                            stops: const [0.0, 1.0],
-                                            transform: const GradientRotation(45),
-                                            tileMode: TileMode.clamp
-                                        )
-                                    ),
-                                  ),
+                  width: 179,
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                    child: Stack(
+                      children: [
+                        Align(
+                          alignment: Alignment.centerRight,
+                            child: Blur(
+                              blur: 5,
+                              borderRadius: BorderRadius.circular(51),
+                              blurColor: Colors.black.withOpacity(0.3),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                        colors: [
+                                          ColorsResources.black.withOpacity(0.3),
+                                          ColorsResources.primaryColorDark.withOpacity(0.3),
+                                        ],
+                                        begin: const FractionalOffset(0.0, 0.0),
+                                        end: const FractionalOffset(1.0, 0.0),
+                                        stops: const [0.0, 1.0],
+                                        transform: const GradientRotation(45),
+                                        tileMode: TileMode.clamp
+                                    )
                                 ),
                               ),
-                              InkWell(
-                                onTap: () {
-
-
-
-                                },
-                                child: const SizedBox(
-                                  height: 43,
-                                  width: double.infinity,
-                                  child: Align(
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      StringsResources.sortTransactionAmountHigh,
-                                      style: TextStyle(
-                                        fontSize: 13,
-                                        color: ColorsResources.applicationGeeksEmpire,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
+                            ),
                         ),
-                      ),
-                      Expanded(
-                        flex: 11,
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 0, 3, 0),
-                          child: Stack(
-                            children: [
-                              SizedBox(
-                                height: 43,
-                                width: double.infinity,
-                                child: Blur(
-                                  blur: 5,
-                                  borderRadius: BorderRadius.circular(51),
-                                  blurColor: Colors.black.withOpacity(0.3),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                        gradient: LinearGradient(
-                                            colors: [
-                                              ColorsResources.black.withOpacity(0.3),
-                                              ColorsResources.primaryColorDark.withOpacity(0.3),
-                                            ],
-                                            begin: const FractionalOffset(0.0, 0.0),
-                                            end: const FractionalOffset(1.0, 0.0),
-                                            stops: const [0.0, 1.0],
-                                            transform: const GradientRotation(45),
-                                            tileMode: TileMode.clamp
-                                        )
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              InkWell(
-                                onTap: () {
-
-
-
-                                },
-                                child: const SizedBox(
-                                  height: 43,
-                                  width: double.infinity,
-                                  child: Align(
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      StringsResources.sortTimeNew,
-                                      style: TextStyle(
-                                        fontSize: 13,
-                                        color: ColorsResources.applicationGeeksEmpire,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
+                        ,
+                      ],
+                    ),
                   ),
                 )
             ),
