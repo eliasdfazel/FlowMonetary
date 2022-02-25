@@ -9,6 +9,7 @@
  */
 
 import 'package:flow_accounting/home/home.dart';
+import 'package:flow_accounting/utils/extensions/NumbersOperations.dart';
 import 'package:flow_accounting/utils/navigations/navigations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -30,11 +31,13 @@ class WelcomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    Future.delayed(const Duration(milliseconds: 199), () {
+    betweenZeroHundred(300000000000000000, 5115365841000);
 
-      NavigationProcess().goTo(context, const FlowDashboard());
-
-    });
+    // Future.delayed(const Duration(milliseconds: 199), () {
+    //
+    //   NavigationProcess().goTo(context, const FlowDashboard());
+    //
+    // });
 
     return SafeArea(
       child: MaterialApp(
