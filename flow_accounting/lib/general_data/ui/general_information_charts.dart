@@ -36,18 +36,18 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
   Widget build(BuildContext context) {
 
     List<double> listOfEarningPoint = [
-      70,
-      30,
-      20,
-      50,
-      35.1,
-      40,
-      30,
-      19,
-      29,
-      40,
-      80,
-      18,
+      7000,
+      3000000,
+      2000000000,
+      50000,
+      350000.1,
+      40000,
+      3000,
+      1900000,
+      2900,
+      400000,
+      8000000,
+      180000,
     ];
     double minimumEarning = listOfEarningPoint.reduce((current, next) => (current < next) ? current : next);
     double maximumEarning = listOfEarningPoint.reduce((current, next) => (current > next) ? current : next);
@@ -67,8 +67,8 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
       40,
       18,
     ];
-    double minimumSpending = listOfEarningPoint.reduce((current, next) => (current < next) ? current : next);
-    double maximumSpending = listOfEarningPoint.reduce((current, next) => (current > next) ? current : next);
+    double minimumSpending = listOfSpendingPoint.reduce((current, next) => (current < next) ? current : next);
+    double maximumSpending = listOfSpendingPoint.reduce((current, next) => (current > next) ? current : next);
     LineChartView generalSpendingChart = LineChartView(listOfSpotY: listOfSpendingPoint, minimumY: minimumSpending, maximumY: maximumSpending);
 
     List<double> listOfBalancePoint = [
@@ -85,8 +85,8 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
       10,
       88,
     ];
-    double minimumBalance = listOfEarningPoint.reduce((current, next) => (current < next) ? current : next);
-    double maximumBalance = listOfEarningPoint.reduce((current, next) => (current > next) ? current : next);
+    double minimumBalance = listOfBalancePoint.reduce((current, next) => (current < next) ? current : next);
+    double maximumBalance = listOfBalancePoint.reduce((current, next) => (current > next) ? current : next);
     LineChartView generalBalanceChart = LineChartView(listOfSpotY: listOfBalancePoint, minimumY: minimumBalance, maximumY: maximumBalance);
 
     return MaterialApp(
