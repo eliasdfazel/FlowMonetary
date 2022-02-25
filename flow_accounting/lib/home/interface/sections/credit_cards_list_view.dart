@@ -140,7 +140,7 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
     }
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 23, 0, 0),
+      padding: const EdgeInsets.fromLTRB(0, 17, 0, 0),
       child: Column(
         children: [
           creditCardsPlaceholder

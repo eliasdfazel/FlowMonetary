@@ -318,7 +318,11 @@ class _GeneralDataView extends State<GeneralDataView> {
                                   splashFactory: InkRipple.splashFactory,
                                   onTap: () {
 
-                                    NavigationProcess().goTo(context, const GeneralFinancialCharts());
+                                    Future.delayed(const Duration(milliseconds: 777), (){
+
+                                      NavigationProcess().goTo(context, const GeneralFinancialCharts());
+
+                                    });
 
                                   },
                                   child: Container(

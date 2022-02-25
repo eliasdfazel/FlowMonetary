@@ -82,7 +82,7 @@ class LineChartViewState extends State<LineChartView> {
       showingIndicators: showIndexes,
       show: true,
       spots: allSpots,
-      curveSmoothness: 0.39,
+      curveSmoothness: 0.37,
       isCurved: true,
       shadow: Shadow(
           color: ColorsResources.light.withOpacity(0.39),
@@ -98,6 +98,7 @@ class LineChartViewState extends State<LineChartView> {
       isStrokeCapRound: true,
       dotData: FlDotData(
         show: true,
+
       ),
       belowBarData: BarAreaData(
         show: true,
@@ -175,13 +176,20 @@ class LineChartViewState extends State<LineChartView> {
       ),
       showingTooltipIndicators: [
         ShowingTooltipIndicators([
-          LineBarSpot(lineChartBarData, 0, allSpots[1]),
-          LineBarSpot(lineChartBarData, 0, allSpots[4]),
-          LineBarSpot(lineChartBarData, 0, allSpots[7]),
-          LineBarSpot(lineChartBarData, 0, allSpots[10]),
+          LineBarSpot(lineChartBarData, 1, allSpots[1]),
+        ]),
+        ShowingTooltipIndicators([
+          LineBarSpot(lineChartBarData, 4, allSpots[4]),
+        ]),
+        ShowingTooltipIndicators([
+          LineBarSpot(lineChartBarData, 7, allSpots[7]),
+        ]),
+        ShowingTooltipIndicators([
+          LineBarSpot(lineChartBarData, 10, allSpots[10]),
         ])
       ],
       lineTouchData: LineTouchData(
+        enabled: true,
         getTouchedSpotIndicator: (LineChartBarData barData, List<int> spotIndexes) {
 
           return spotIndexes.map((index) {
@@ -217,6 +225,7 @@ class LineChartViewState extends State<LineChartView> {
 
               return LineTooltipItem(
                 lineBarSpot.y.toString(),
+
                 const TextStyle(
                     color: Colors.white,
                     fontSize: 13,

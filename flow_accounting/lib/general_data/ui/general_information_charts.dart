@@ -19,7 +19,6 @@ class GeneralFinancialCharts extends StatefulWidget {
   @override
   _GeneralFinancialChartsState createState() => _GeneralFinancialChartsState();
 }
-
 class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
 
   @override
@@ -39,8 +38,8 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
       7000,
       300000000,
       2000000000,
-      50000,
-      350000.1,
+      1000000,
+      99500000.1,
       40000,
       3000,
       1900000,
@@ -72,18 +71,18 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
     LineChartView generalSpendingChart = LineChartView(listOfSpotY: listOfSpendingPoint, minimumY: minimumSpending, maximumY: maximumSpending);
 
     List<double> listOfBalancePoint = [
-      1000,
-      3000,
-      2000,
+      100770,
+      311000,
+      200000,
       500000,
       650000.1,
-      40000,
-      4050009,
-      4000509,
+      400007,
+      405009,
+      400509,
       90000,
-      4100000,
-      1000,
-      880000000,
+      410000,
+      100077,
+      880000,
     ];
     double minimumBalance = listOfBalancePoint.reduce((current, next) => (current < next) ? current : next);
     double maximumBalance = listOfBalancePoint.reduce((current, next) => (current > next) ? current : next);
