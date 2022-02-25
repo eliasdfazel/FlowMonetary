@@ -209,7 +209,7 @@ class _GeneralDataView extends State<GeneralDataView> {
                                 shadowColor: Colors.transparent,
                                 color: Colors.transparent,
                                 child: InkWell(
-                                  splashColor: ColorsResources.primaryColorDark.withOpacity(0.3),
+                                  splashColor: ColorsResources.applicationGeeksEmpire.withOpacity(0.3),
                                   splashFactory: InkRipple.splashFactory,
                                   onTap: () {
 
@@ -314,7 +314,7 @@ class _GeneralDataView extends State<GeneralDataView> {
                                 shadowColor: Colors.transparent,
                                 color: Colors.transparent,
                                 child: InkWell(
-                                  splashColor: ColorsResources.primaryColorDark.withOpacity(0.3),
+                                  splashColor: ColorsResources.gameGeeksEmpire.withOpacity(0.3),
                                   splashFactory: InkRipple.splashFactory,
                                   onTap: () {
 
