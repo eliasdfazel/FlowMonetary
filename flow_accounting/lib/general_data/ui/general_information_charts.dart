@@ -38,36 +38,36 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
     // Convert Monthly Money Amount to be Between
 
     List<double> listOfEarningPoint = [
-      70,
-      30,
-      20,
-      50,
-      35.1,
-      40,
-      30,
-      19,
-      29,
-      40,
+      70000000000,
+      30000,
+      200,
+      500000,
+      3500.1,
+      40000,
+      3000000000000000,
+      1900,
+      29000,
+      400,
       80,
-      18,
+      180,
     ];
     double minimumEarning = listOfEarningPoint.reduce((current, next) => (current < next) ? current : next);
     double maximumEarning = listOfEarningPoint.reduce((current, next) => (current > next) ? current : next);
     LineChartView generalEarningChart = LineChartView(listOfSpotY: listOfEarningPoint, minimumY: minimumEarning, maximumY: maximumEarning);
 
     List<double> listOfSpendingPoint = [
-      30,
-      30,
-      20,
-      50,
-      35.1,
-      40,
-      30,
-      49,
-      49,
-      41,
-      40,
-      18,
+      3000,
+      300,
+      200000,
+      5000000000000000000000,
+      350.1,
+      400,
+      3000,
+      490,
+      4900,
+      4100000,
+      4000,
+      180,
     ];
     double minimumSpending = listOfEarningPoint.reduce((current, next) => (current < next) ? current : next);
     double maximumSpending = listOfEarningPoint.reduce((current, next) => (current > next) ? current : next);
@@ -75,16 +75,16 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
 
     List<double> listOfBalancePoint = [
       10,
-      30,
-      20,
-      50,
-      65.1,
-      40,
-      20,
-      49,
-      90,
+      3000,
+      200,
+      500,
+      650.1,
+      40000,
+      200,
+      490,
+      900,
       41,
-      10,
+      10000,
       88,
     ];
     double minimumBalance = listOfEarningPoint.reduce((current, next) => (current < next) ? current : next);
