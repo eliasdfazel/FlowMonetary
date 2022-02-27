@@ -384,51 +384,6 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
           );
         });
 
-    // for (int element in inputIntList) {
-    //
-    //   allYearsItems.add(
-    //     ClipRRect(
-    //       borderRadius: BorderRadius.circular(51),
-    //       child: Material(
-    //         shadowColor: Colors.transparent,
-    //         color: Colors.transparent,
-    //         child: InkWell(
-    //             splashColor: ColorsResources.applicationGeeksEmpire.withOpacity(0.3),
-    //             splashFactory: InkRipple.splashFactory,
-    //             onTap: () {
-    //               debugPrint("Selected Year: ${element}");
-    //
-    //             },
-    //             child: SizedBox(
-    //                 height: 43,
-    //                 width: 179,
-    //                 child: Align(
-    //                   alignment: Alignment.center,
-    //                   child: Text(
-    //                     '$element',
-    //                     textAlign: TextAlign.center,
-    //                     style: const TextStyle(
-    //                         color: ColorsResources.light,
-    //                         fontSize: 13,
-    //                         letterSpacing: 1.7,
-    //                         shadows: [
-    //                           Shadow(
-    //                               color: ColorsResources.white,
-    //                               blurRadius: 13,
-    //                               offset: Offset(0, 0)
-    //                           )
-    //                         ]
-    //                     ),
-    //                   ),
-    //                 )
-    //             )
-    //         ),
-    //       ),
-    //     ),
-    //   );
-    //
-    // }
-
     setState(() {
 
       yearsListView;
