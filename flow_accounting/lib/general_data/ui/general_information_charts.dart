@@ -23,6 +23,8 @@ class GeneralFinancialCharts extends StatefulWidget {
 }
 class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
 
+  ListView yearsListView = ListView();
+
   List<Widget> allYearsItems = [];
 
   @override
@@ -279,12 +281,7 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
                               ),
                             ),
                         ),
-                        ListView(
-                          padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                          physics: const BouncingScrollPhysics(),
-                          scrollDirection: Axis.vertical,
-                          children: allYearsItems,
-                        )
+                        yearsListView,
                       ],
                     ),
                   ),
@@ -339,54 +336,102 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
     inputIntList.addAll(List.generate(13, (i) => yearNumber + i));
     inputIntList.sort();
 
-    for (int element in inputIntList) {
+    ScrollController scrollController = ScrollController(initialScrollOffset: (43 * 13));
 
-      allYearsItems.add(
-        ClipRRect(
-          borderRadius: BorderRadius.circular(51),
-          child: Material(
-            shadowColor: Colors.transparent,
-            color: Colors.transparent,
-            child: InkWell(
-                splashColor: ColorsResources.applicationGeeksEmpire.withOpacity(0.3),
-                splashFactory: InkRipple.splashFactory,
-                onTap: () {
-                  debugPrint("Selected Year: ${element}");
+    yearsListView = ListView.builder(
+        padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+        physics: const BouncingScrollPhysics(),
+        itemCount: inputIntList.length,
+        controller: scrollController,
+        itemBuilder: (context, index) {
 
-                },
-                child: SizedBox(
-                    height: 43,
-                    width: 179,
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        '$element',
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                            color: ColorsResources.light,
-                            fontSize: 13,
-                            letterSpacing: 1.7,
-                            shadows: [
-                              Shadow(
-                                  color: ColorsResources.white,
-                                  blurRadius: 13,
-                                  offset: Offset(0, 0)
-                              )
-                            ]
+          String itemData = inputIntList[index].toString();
+
+          return ClipRRect(
+            borderRadius: BorderRadius.circular(51),
+            child: Material(
+              shadowColor: Colors.transparent,
+              color: Colors.transparent,
+              child: InkWell(
+                  splashColor:
+                      ColorsResources.applicationGeeksEmpire.withOpacity(0.3),
+                  splashFactory: InkRipple.splashFactory,
+                  onTap: () {
+                    debugPrint("Selected Year: ${index}. $itemData");
+
+                  },
+                  child: SizedBox(
+                      height: 43,
+                      width: 179,
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          itemData,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                              color: ColorsResources.light,
+                              fontSize: 13,
+                              letterSpacing: 1.7,
+                              shadows: [
+                                Shadow(
+                                    color: ColorsResources.white,
+                                    blurRadius: 13,
+                                    offset: Offset(0, 0))
+                              ]),
                         ),
-                      ),
-                    )
-                )
+                      ))),
             ),
-          ),
-        ),
-      );
+          );
+        });
 
-    }
+    // for (int element in inputIntList) {
+    //
+    //   allYearsItems.add(
+    //     ClipRRect(
+    //       borderRadius: BorderRadius.circular(51),
+    //       child: Material(
+    //         shadowColor: Colors.transparent,
+    //         color: Colors.transparent,
+    //         child: InkWell(
+    //             splashColor: ColorsResources.applicationGeeksEmpire.withOpacity(0.3),
+    //             splashFactory: InkRipple.splashFactory,
+    //             onTap: () {
+    //               debugPrint("Selected Year: ${element}");
+    //
+    //             },
+    //             child: SizedBox(
+    //                 height: 43,
+    //                 width: 179,
+    //                 child: Align(
+    //                   alignment: Alignment.center,
+    //                   child: Text(
+    //                     '$element',
+    //                     textAlign: TextAlign.center,
+    //                     style: const TextStyle(
+    //                         color: ColorsResources.light,
+    //                         fontSize: 13,
+    //                         letterSpacing: 1.7,
+    //                         shadows: [
+    //                           Shadow(
+    //                               color: ColorsResources.white,
+    //                               blurRadius: 13,
+    //                               offset: Offset(0, 0)
+    //                           )
+    //                         ]
+    //                     ),
+    //                   ),
+    //                 )
+    //             )
+    //         ),
+    //       ),
+    //     ),
+    //   );
+    //
+    // }
 
     setState(() {
 
-      allYearsItems;
+      yearsListView;
 
     });
 
