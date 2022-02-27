@@ -100,7 +100,10 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
 
     int yearNumber = int.parse(iranianCalendar.formatter.yyyy);
 
-    List<int> inputIntList = List.generate(11, (i) => 1390 + i);
+    List<int> inputIntList = [];
+    inputIntList.addAll(List.generate(13, (i) => (yearNumber - 1) - i));
+    inputIntList.addAll(List.generate(13, (i) => yearNumber + i));
+    inputIntList.sort();
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -282,7 +285,7 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
                               ),
                             ),
                         ),
-                        ,
+
                       ],
                     ),
                   ),
