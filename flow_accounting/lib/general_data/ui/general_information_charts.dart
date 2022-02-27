@@ -33,6 +33,12 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
   Widget totalEarningPlaceholder = const Divider(height: 1);
   List<double> listOfEarningPoint = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
+  Widget totalSpendingPlaceholder = const Divider(height: 1);
+  List<double> listOfSpendingPoint = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+  Widget totalBalancePlaceholder = const Divider(height: 1);
+  List<double> listOfBalancePoint = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
   @override
   void initState() {
 
@@ -48,38 +54,6 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
 
   @override
   Widget build(BuildContext context) {
-
-    List<double> listOfSpendingPoint = [
-      3000,
-      30,
-      2000000,
-      500,
-      3500.1,
-      40000,
-      3000,
-      4900,
-      49000,
-      4100,
-      4000000,
-      180000,
-    ];
-    LineChartView generalSpendingChart = LineChartView(listOfSpotY: listOfSpendingPoint);
-
-    List<double> listOfBalancePoint = [
-      100770,
-      311000,
-      200000,
-      500000,
-      650000.1,
-      400007,
-      405009,
-      400509,
-      90000,
-      410000,
-      100077,
-      880000,
-    ];
-    LineChartView generalBalanceChart = LineChartView(listOfSpotY: listOfBalancePoint);
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -186,7 +160,7 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
                           ),
                         ),
                       ),
-                      generalSpendingChart
+                      totalSpendingPlaceholder
                     ],
                   ),
                 ),
@@ -222,7 +196,7 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
                           ),
                         ),
                       ),
-                      generalBalanceChart
+                      totalBalancePlaceholder
                     ],
                   ),
                 )
@@ -374,6 +348,8 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
 
     getTransactionsReceiveSum(yearNumber);
 
+    getTransactionsSendSum(yearNumber);
+
   }
 
   void getTransactionsReceiveSum(int selectedYear) async {
@@ -507,6 +483,170 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
     setState(() {
 
       totalEarningPlaceholder = LineChartView(listOfSpotY: listOfEarningPoint);
+
+    });
+
+  }
+
+  void getTransactionsSendSum(int selectedYear) async {
+
+    TransactionsDatabaseQueries transactionsDatabaseQueries = TransactionsDatabaseQueries();
+
+    double monthSumOne = 0;
+    var monthOne = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 1, TransactionsData.TransactionType_Send, TransactionsDatabaseInputs.databaseTableName);
+    for (var element in monthOne) {
+
+      monthSumOne += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+    }
+    debugPrint("1: $monthSumOne");
+
+    double monthSumTwo = 0;
+    var monthTwo = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 2, TransactionsData.TransactionType_Send, TransactionsDatabaseInputs.databaseTableName);
+    for (var element in monthTwo) {
+
+      monthSumTwo += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+    }
+    debugPrint("2: $monthSumTwo");
+
+    double monthSumThree = 0;
+    var monthThree = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 3, TransactionsData.TransactionType_Send, TransactionsDatabaseInputs.databaseTableName);
+    for (var element in monthThree) {
+
+      monthSumThree += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+    }
+    debugPrint("3: $monthSumThree");
+
+    double monthSumFour = 0;
+    var monthFour = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 4, TransactionsData.TransactionType_Send, TransactionsDatabaseInputs.databaseTableName);
+    for (var element in monthFour) {
+
+      monthSumFour += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+    }
+    debugPrint("4: $monthSumFour");
+
+    double monthSumFive = 0;
+    var monthFive = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 5, TransactionsData.TransactionType_Send, TransactionsDatabaseInputs.databaseTableName);
+    for (var element in monthFive) {
+
+      monthSumFive += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+    }
+    debugPrint("5: $monthSumFive");
+
+    double monthSumSix = 0;
+    var monthSix = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 6, TransactionsData.TransactionType_Send, TransactionsDatabaseInputs.databaseTableName);
+    for (var element in monthSix) {
+
+      monthSumSix += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+    }
+    debugPrint("6: $monthSumSix");
+
+    double monthSumSeven = 0;
+    var monthSeven = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 7, TransactionsData.TransactionType_Send, TransactionsDatabaseInputs.databaseTableName);
+    for (var element in monthSeven) {
+
+      monthSumSeven += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+    }
+    debugPrint("7: $monthSumSeven");
+
+    double monthSumEight = 0;
+    var monthEight = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 8, TransactionsData.TransactionType_Send, TransactionsDatabaseInputs.databaseTableName);
+    for (var element in monthEight) {
+
+      monthSumEight += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+    }
+    debugPrint("8: $monthSumEight");
+
+    double monthSumNine = 0;
+    var monthNine = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 9, TransactionsData.TransactionType_Send, TransactionsDatabaseInputs.databaseTableName);
+    for (var element in monthNine) {
+
+      monthSumNine += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+    }
+    debugPrint("9: $monthSumNine");
+
+    double monthSumTen = 0;
+    var monthTen = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 10, TransactionsData.TransactionType_Send, TransactionsDatabaseInputs.databaseTableName);
+    for (var element in monthTen) {
+
+      monthSumTen += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+    }
+    debugPrint("10: $monthSumTen");
+
+    double monthSumEleven = 0;
+    var monthEleven = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 11, TransactionsData.TransactionType_Send, TransactionsDatabaseInputs.databaseTableName);
+    for (var element in monthEleven) {
+
+      monthSumEleven += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+    }
+    debugPrint("11: $monthSumEleven");
+
+    double monthSumTwelve = 0;
+    var monthTwelve = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 12, TransactionsData.TransactionType_Send, TransactionsDatabaseInputs.databaseTableName);
+    for (var element in monthTwelve) {
+
+      monthSumTwelve += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+    }
+    debugPrint("12: $monthSumTwelve");
+
+    listOfSpendingPoint.clear();
+    listOfSpendingPoint.addAll([
+      monthSumOne,
+      monthSumTwo,
+      monthSumThree,
+      monthSumFour,
+      monthSumFive,
+      monthSumSix,
+      monthSumSeven,
+      monthSumEight,
+      monthSumNine,
+      monthSumTen,
+      monthSumEleven,
+      monthSumTwelve
+    ]);
+
+    setState(() {
+
+      totalSpendingPlaceholder = LineChartView(listOfSpotY: listOfSpendingPoint);
+
+    });
+
+    prepareTotalBalance();
+
+  }
+
+  void prepareTotalBalance() async {
+
+    listOfBalancePoint.addAll([
+      listOfEarningPoint[0] - listOfSpendingPoint[0],
+      listOfEarningPoint[1] - listOfSpendingPoint[1],
+      listOfEarningPoint[2] - listOfSpendingPoint[2],
+      listOfEarningPoint[3] - listOfSpendingPoint[3],
+      listOfEarningPoint[4] - listOfSpendingPoint[4],
+      listOfEarningPoint[5] - listOfSpendingPoint[5],
+      listOfEarningPoint[6] - listOfSpendingPoint[6],
+      listOfEarningPoint[7] - listOfSpendingPoint[7],
+      listOfEarningPoint[8] - listOfSpendingPoint[8],
+      listOfEarningPoint[9] - listOfSpendingPoint[9],
+      listOfEarningPoint[10] - listOfSpendingPoint[10],
+      listOfEarningPoint[11] - listOfSpendingPoint[11],
+      listOfEarningPoint[12] - listOfSpendingPoint[12],
+    ]);
+
+    setState(() {
+
+      totalBalancePlaceholder = LineChartView(listOfSpotY: listOfBalancePoint);
 
     });
 
