@@ -20,6 +20,14 @@ import 'package:flow_accounting/utils/extensions/Random.dart';
 import 'package:flutter/material.dart';
 import 'package:shamsi_date/shamsi_date.dart';
 
+void main() async {
+
+  WidgetsFlutterBinding.ensureInitialized();
+
+  PrototypeData().generate();
+
+}
+
 class PrototypeData {
 
   List<Color> listOfColors = [
@@ -165,7 +173,7 @@ class PrototypeData {
         transactionType: TransactionsData.TransactionType_Receive,
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
         transactionTime: _generateDateText(),
-        transactionTimeYear: DateTime.now().year.toString(),
+        transactionTimeYear: "1400",
         transactionTimeMonth: DateTime.now().month.toString(),
         colorTag: listOfColors.randomItem().value,
         budgetName: "شرکت نرم افزاری آبان"
@@ -185,7 +193,7 @@ class PrototypeData {
         transactionType: TransactionsData.TransactionType_Send,
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
         transactionTime: _generateDateText(),
-        transactionTimeYear: DateTime.now().year.toString(),
+        transactionTimeYear: "1400",
         transactionTimeMonth: DateTime.now().month.toString(),
         colorTag: listOfColors.randomItem().value,
         budgetName: "آکواریوم"
@@ -205,7 +213,7 @@ class PrototypeData {
         transactionType: TransactionsData.TransactionType_Send,
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
         transactionTime: _generateDateText(),
-        transactionTimeYear: DateTime.now().year.toString(),
+        transactionTimeYear: "1400",
         transactionTimeMonth: DateTime.now().month.toString(),
         colorTag: listOfColors.randomItem().value,
         budgetName: "گربه"
@@ -225,7 +233,7 @@ class PrototypeData {
         transactionType: TransactionsData.TransactionType_Send,
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
         transactionTime: _generateDateText(),
-        transactionTimeYear: DateTime.now().year.toString(),
+        transactionTimeYear: "1400",
         transactionTimeMonth: DateTime.now().month.toString(),
         colorTag: listOfColors.randomItem().value,
         budgetName: "گربه"
@@ -245,7 +253,7 @@ class PrototypeData {
         transactionType: TransactionsData.TransactionType_Receive,
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
         transactionTime: _generateDateText(),
-        transactionTimeYear: DateTime.now().year.toString(),
+        transactionTimeYear: "1400",
         transactionTimeMonth: DateTime.now().month.toString(),
         colorTag: listOfColors.randomItem().value,
         budgetName: "شرکت نرم افزاری آبان"
@@ -265,7 +273,7 @@ class PrototypeData {
         transactionType: TransactionsData.TransactionType_Send,
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
         transactionTime: _generateDateText(),
-        transactionTimeYear: DateTime.now().year.toString(),
+        transactionTimeYear: "1400",
         transactionTimeMonth: DateTime.now().month.toString(),
         colorTag: listOfColors.randomItem().value,
         budgetName: "گربه"
@@ -285,7 +293,7 @@ class PrototypeData {
         transactionType: TransactionsData.TransactionType_Receive,
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
         transactionTime: _generateDateText(),
-        transactionTimeYear: DateTime.now().year.toString(),
+        transactionTimeYear: "1400",
         transactionTimeMonth: DateTime.now().month.toString(),
         colorTag: listOfColors.randomItem().value,
         budgetName: "شرکت نرم افزاری آبان"
@@ -305,7 +313,7 @@ class PrototypeData {
         transactionType: TransactionsData.TransactionType_Receive,
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
         transactionTime: _generateDateText(),
-        transactionTimeYear: DateTime.now().year.toString(),
+        transactionTimeYear: "1400",
         transactionTimeMonth: DateTime.now().month.toString(),
         colorTag: listOfColors.randomItem().value,
         budgetName: "شرکت نرم افزاری آبان"
@@ -325,7 +333,7 @@ class PrototypeData {
         transactionType: TransactionsData.TransactionType_Receive,
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
         transactionTime: _generateDateText(),
-        transactionTimeYear: DateTime.now().year.toString(),
+        transactionTimeYear: "1400",
         transactionTimeMonth: DateTime.now().month.toString(),
         colorTag: listOfColors.randomItem().value,
         budgetName: "شرکت نرم افزاری آبان"
@@ -345,7 +353,7 @@ class PrototypeData {
         transactionType: TransactionsData.TransactionType_Receive,
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
         transactionTime: _generateDateText(),
-        transactionTimeYear: DateTime.now().year.toString(),
+        transactionTimeYear: "1400",
         transactionTimeMonth: DateTime.now().month.toString(),
         colorTag: listOfColors.randomItem().value,
         budgetName: "شرکت نرم افزاری آبان"
@@ -365,7 +373,7 @@ class PrototypeData {
         transactionType: TransactionsData.TransactionType_Receive,
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
         transactionTime: _generateDateText(),
-        transactionTimeYear: DateTime.now().year.toString(),
+        transactionTimeYear: "1400",
         transactionTimeMonth: DateTime.now().month.toString(),
         colorTag: listOfColors.randomItem().value,
         budgetName: "شرکت نرم افزاری آبان"
@@ -385,7 +393,7 @@ class PrototypeData {
         transactionType: TransactionsData.TransactionType_Receive,
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
         transactionTime: _generateDateText(),
-        transactionTimeYear: DateTime.now().year.toString(),
+        transactionTimeYear: "1400",
         transactionTimeMonth: DateTime.now().month.toString(),
         colorTag: listOfColors.randomItem().value,
         budgetName: "شرکت نرم افزاری آبان"
@@ -405,7 +413,7 @@ class PrototypeData {
         transactionType: TransactionsData.TransactionType_Receive,
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
         transactionTime: _generateDateText(),
-        transactionTimeYear: DateTime.now().year.toString(),
+        transactionTimeYear: "1400",
         transactionTimeMonth: DateTime.now().month.toString(),
         colorTag: listOfColors.randomItem().value,
         budgetName: "شرکت نرم افزاری آبان"

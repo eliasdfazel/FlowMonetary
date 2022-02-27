@@ -69,7 +69,7 @@ class TransactionsDatabaseQueries {
 
     var databaseContents = await databaseInstance.query(
       tableNameQuery,
-      where: 'transactionTimeMonthYear = ? AND transactionTimeMonth = ? AND transactionType = ?',
+      where: 'transactionTimeYear = ? AND transactionTimeMonth = ? AND transactionType = ?',
       whereArgs: [transactionYear, transactionMonth, transactionType],
     );
 
