@@ -348,8 +348,6 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
 
     getTransactionsReceiveSum(yearNumber);
 
-    getTransactionsSendSum(yearNumber);
-
   }
 
   void getTransactionsReceiveSum(int selectedYear) async {
@@ -485,6 +483,8 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
       totalEarningPlaceholder = LineChartView(listOfSpotY: listOfEarningPoint);
 
     });
+
+    getTransactionsSendSum(selectedYear);
 
   }
 
@@ -628,6 +628,7 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
 
   void prepareTotalBalance() async {
 
+    listOfBalancePoint.clear();
     listOfBalancePoint.addAll([
       listOfEarningPoint[0] - listOfSpendingPoint[0],
       listOfEarningPoint[1] - listOfSpendingPoint[1],
@@ -641,7 +642,6 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
       listOfEarningPoint[9] - listOfSpendingPoint[9],
       listOfEarningPoint[10] - listOfSpendingPoint[10],
       listOfEarningPoint[11] - listOfSpendingPoint[11],
-      listOfEarningPoint[12] - listOfSpendingPoint[12],
     ]);
 
     setState(() {
