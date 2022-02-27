@@ -23,8 +23,13 @@ class GeneralFinancialCharts extends StatefulWidget {
 }
 class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
 
+  List<Widget> allYearsItems = [];
+
   @override
   void initState() {
+
+    yearListItem();
+
     super.initState();
   }
 
@@ -93,17 +98,6 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
     double minimumBalance = listOfBalancePoint.reduce((current, next) => (current < next) ? current : next);
     double maximumBalance = listOfBalancePoint.reduce((current, next) => (current > next) ? current : next);
     LineChartView generalBalanceChart = LineChartView(listOfSpotY: listOfBalancePoint, minimumY: minimumBalance, maximumY: maximumBalance);
-
-    DateTime nowTime = DateTime.now();
-    Gregorian gregorianCalendar = Gregorian(nowTime.year, nowTime.month, nowTime.day, nowTime.hour, nowTime.minute, 0, 0);
-    var iranianCalendar = gregorianCalendar.toJalali();
-
-    int yearNumber = int.parse(iranianCalendar.formatter.yyyy);
-
-    List<int> inputIntList = [];
-    inputIntList.addAll(List.generate(13, (i) => (yearNumber - 1) - i));
-    inputIntList.addAll(List.generate(13, (i) => yearNumber + i));
-    inputIntList.sort();
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -285,7 +279,12 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
                               ),
                             ),
                         ),
-
+                        ListView(
+                          padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                          physics: const BouncingScrollPhysics(),
+                          scrollDirection: Axis.vertical,
+                          children: allYearsItems,
+                        )
                       ],
                     ),
                   ),
@@ -325,6 +324,72 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
         ),
       ),
     );
+  }
+
+  void yearListItem() async {
+
+    DateTime nowTime = DateTime.now();
+    Gregorian gregorianCalendar = Gregorian(nowTime.year, nowTime.month, nowTime.day, nowTime.hour, nowTime.minute, 0, 0);
+    var iranianCalendar = gregorianCalendar.toJalali();
+
+    int yearNumber = int.parse(iranianCalendar.formatter.yyyy);
+
+    List<int> inputIntList = [];
+    inputIntList.addAll(List.generate(13, (i) => (yearNumber - 1) - i));
+    inputIntList.addAll(List.generate(13, (i) => yearNumber + i));
+    inputIntList.sort();
+
+    for (int element in inputIntList) {
+
+      allYearsItems.add(
+        ClipRRect(
+          borderRadius: BorderRadius.circular(51),
+          child: Material(
+            shadowColor: Colors.transparent,
+            color: Colors.transparent,
+            child: InkWell(
+                splashColor: ColorsResources.applicationGeeksEmpire.withOpacity(0.3),
+                splashFactory: InkRipple.splashFactory,
+                onTap: () {
+                  debugPrint("Selected Year: ${element}");
+
+                },
+                child: SizedBox(
+                    height: 43,
+                    width: 179,
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        '$element',
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                            color: ColorsResources.light,
+                            fontSize: 13,
+                            letterSpacing: 1.7,
+                            shadows: [
+                              Shadow(
+                                  color: ColorsResources.white,
+                                  blurRadius: 13,
+                                  offset: Offset(0, 0)
+                              )
+                            ]
+                        ),
+                      ),
+                    )
+                )
+            ),
+          ),
+        ),
+      );
+
+    }
+
+    setState(() {
+
+      allYearsItems;
+
+    });
+
   }
 
   void getTransactionOne() async {
