@@ -11,6 +11,9 @@
 import 'package:blur/blur.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
+import 'package:flow_accounting/transactions/database/io/inputs.dart';
+import 'package:flow_accounting/transactions/database/io/queries.dart';
+import 'package:flow_accounting/transactions/database/structures/tables_structure.dart';
 import 'package:flow_accounting/utils/chart/chart_view.dart';
 import 'package:flutter/material.dart';
 import 'package:shamsi_date/shamsi_date.dart';
@@ -26,6 +29,8 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
   ListView yearsListView = ListView();
 
   List<Widget> allYearsItems = [];
+
+  List<double> listOfEarningPoint = [];
 
   @override
   void initState() {
@@ -47,24 +52,6 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
     // Sum Up Transaction Type Receive
     // Create 12 ASYNC Functions for Each Month
 
-    List<double> listOfEarningPoint = [
-      7000,
-      300000000,
-      2000000000,
-      1000000,
-      99500000.1,
-      40000,
-      3000,
-      1900000,
-      2900,
-      400000,
-      8000000,
-      180000,
-    ];
-    double minimumEarning = listOfEarningPoint.reduce((current, next) => (current < next) ? current : next);
-    double maximumEarning = listOfEarningPoint.reduce((current, next) => (current > next) ? current : next);
-    LineChartView generalEarningChart = LineChartView(listOfSpotY: listOfEarningPoint, minimumY: minimumEarning, maximumY: maximumEarning);
-
     List<double> listOfSpendingPoint = [
       3000,
       30,
@@ -79,9 +66,7 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
       4000000,
       180000,
     ];
-    double minimumSpending = listOfSpendingPoint.reduce((current, next) => (current < next) ? current : next);
-    double maximumSpending = listOfSpendingPoint.reduce((current, next) => (current > next) ? current : next);
-    LineChartView generalSpendingChart = LineChartView(listOfSpotY: listOfSpendingPoint, minimumY: minimumSpending, maximumY: maximumSpending);
+    LineChartView generalSpendingChart = LineChartView(listOfSpotY: listOfSpendingPoint);
 
     List<double> listOfBalancePoint = [
       100770,
@@ -97,9 +82,7 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
       100077,
       880000,
     ];
-    double minimumBalance = listOfBalancePoint.reduce((current, next) => (current < next) ? current : next);
-    double maximumBalance = listOfBalancePoint.reduce((current, next) => (current > next) ? current : next);
-    LineChartView generalBalanceChart = LineChartView(listOfSpotY: listOfBalancePoint, minimumY: minimumBalance, maximumY: maximumBalance);
+    LineChartView generalBalanceChart = LineChartView(listOfSpotY: listOfBalancePoint);
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -170,7 +153,7 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
                           ),
                         ),
                       ),
-                      generalEarningChart
+                      LineChartView(listOfSpotY: listOfEarningPoint)
                     ],
                   ),
                 ),
@@ -392,9 +375,128 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
 
   }
 
-  void getTransactionOne() async {
+  void getTransactionsReceiveSum(int selectedYear) async {
+
+    TransactionsDatabaseQueries transactionsDatabaseQueries = TransactionsDatabaseQueries();
+
+    double monthSumOne = 0;
+    var monthOne = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 1, TransactionsData.TransactionType_Receive, TransactionsDatabaseInputs.databaseTableName);
+    for (var element in monthOne) {
+
+      monthSumOne += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+    }
 
 
+    double monthSumTwo = 0;
+    var monthTwo = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 2, TransactionsData.TransactionType_Receive, TransactionsDatabaseInputs.databaseTableName);
+    for (var element in monthTwo) {
+
+      monthSumTwo += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+    }
+
+
+    double monthSumThree = 0;
+    var monthThree = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 3, TransactionsData.TransactionType_Receive, TransactionsDatabaseInputs.databaseTableName);
+    for (var element in monthThree) {
+
+      monthSumThree += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+    }
+
+    double monthSumFour = 0;
+    var monthFour = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 4, TransactionsData.TransactionType_Receive, TransactionsDatabaseInputs.databaseTableName);
+    for (var element in monthFour) {
+
+      monthSumFour += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+    }
+
+    double monthSumFive = 0;
+    var monthFive = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 5, TransactionsData.TransactionType_Receive, TransactionsDatabaseInputs.databaseTableName);
+    for (var element in monthFive) {
+
+      monthSumFive += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+    }
+
+    double monthSumSix = 0;
+    var monthSix = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 6, TransactionsData.TransactionType_Receive, TransactionsDatabaseInputs.databaseTableName);
+    for (var element in monthSix) {
+
+      monthSumSix += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+    }
+
+    double monthSumSeven = 0;
+    var monthSeven = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 7, TransactionsData.TransactionType_Receive, TransactionsDatabaseInputs.databaseTableName);
+    for (var element in monthSeven) {
+
+      monthSumSeven += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+    }
+
+    double monthSumEight = 0;
+    var monthEight = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 8, TransactionsData.TransactionType_Receive, TransactionsDatabaseInputs.databaseTableName);
+    for (var element in monthEight) {
+
+      monthSumEight += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+    }
+
+    double monthSumNine = 0;
+    var monthNine = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 9, TransactionsData.TransactionType_Receive, TransactionsDatabaseInputs.databaseTableName);
+    for (var element in monthNine) {
+
+      monthSumNine += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+    }
+
+    double monthSumTen = 0;
+    var monthTen = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 10, TransactionsData.TransactionType_Receive, TransactionsDatabaseInputs.databaseTableName);
+    for (var element in monthTen) {
+
+      monthSumTen += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+    }
+
+    double monthSumEleven = 0;
+    var monthEleven = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 11, TransactionsData.TransactionType_Receive, TransactionsDatabaseInputs.databaseTableName);
+    for (var element in monthEleven) {
+
+      monthSumEleven += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+    }
+
+    double monthSumTwelve = 0;
+    var monthTwelve = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 12, TransactionsData.TransactionType_Receive, TransactionsDatabaseInputs.databaseTableName);
+    for (var element in monthTwelve) {
+
+      monthSumTwelve += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+    }
+
+    listOfEarningPoint.addAll([
+      monthSumOne,
+      monthSumTwo,
+      monthSumThree,
+      monthSumFour,
+      monthSumFive,
+      monthSumSix,
+      monthSumSeven,
+      monthSumEight,
+      monthSumNine,
+      monthSumTen,
+      monthSumEleven,
+      monthSumTwelve
+    ]);
+
+    setState(() {
+
+      listOfEarningPoint;
+
+    });
 
   }
 
