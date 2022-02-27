@@ -16,9 +16,6 @@ class LineChartView extends StatefulWidget {
 
   List<double> listOfSpotY = [];
 
-  double minimumY = 0;
-  double maximumY = 100;
-
   LineChartView({Key? key, required this.listOfSpotY}) : super(key: key);
 
   double chartMinimumX = 0;
@@ -35,12 +32,18 @@ class LineChartViewState extends State<LineChartView> {
 
   final List<int> showIndexes = const [1, 4, 7, 10];
 
+  double minimumY = 0;
+  double maximumY = 1000000000000;
+
   @override
   void initState(){
     super.initState();
 
-    widget.minimumY = widget.listOfSpotY.reduce((current, next) => (current < next) ? current : next);
-    widget.maximumY = widget.listOfSpotY.reduce((current, next) => (current > next) ? current : next);
+    minimumY = widget.listOfSpotY.reduce((current, next) => (current < next) ? current : next);
+    maximumY = widget.listOfSpotY.reduce((current, next) => (current > next) ? current : next);
+
+    debugPrint("Spots: ${widget.listOfSpotY}");
+    debugPrint("Chart Minimum: ${minimumY} | Chart Maximum: ${maximumY}");
 
   }
 
@@ -128,7 +131,7 @@ class LineChartViewState extends State<LineChartView> {
       minX: widget.chartMinimumX,
       maxX: widget.chartMaximumX,
       minY: widget.chartMinimumY,
-      maxY: widget.maximumY,
+      maxY: widget.listOfSpotY.reduce((current, next) => (current > next) ? current : next),
       gridData: FlGridData(
         show: true,
         drawVerticalLine: true,

@@ -30,6 +30,7 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
 
   List<Widget> allYearsItems = [];
 
+  Widget totalEarningPlaceholder = const Divider(height: 1);
   List<double> listOfEarningPoint = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
   @override
@@ -47,10 +48,6 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
 
   @override
   Widget build(BuildContext context) {
-
-    // Get All Transactions by Month & by Transaction Type
-    // Sum Up Transaction Type Receive
-    // Create 12 ASYNC Functions for Each Month
 
     List<double> listOfSpendingPoint = [
       3000,
@@ -153,7 +150,7 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
                           ),
                         ),
                       ),
-                     LineChartView(listOfSpotY: listOfEarningPoint)
+                      totalEarningPlaceholder,
                     ],
                   ),
                 ),
@@ -491,6 +488,7 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
     }
     debugPrint("12: $monthSumTwelve");
 
+    listOfEarningPoint.clear();
     listOfEarningPoint.addAll([
       monthSumOne,
       monthSumTwo,
@@ -508,7 +506,7 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
 
     setState(() {
 
-      listOfEarningPoint;
+      totalEarningPlaceholder = LineChartView(listOfSpotY: listOfEarningPoint);
 
     });
 
