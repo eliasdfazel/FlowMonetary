@@ -1355,13 +1355,13 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
               child: LineChartView(listOfSpotY: listOfBalancePoint),
             ),
           ),
-          const Positioned(
+          Positioned(
             top: 3,
             right: 23,
             child: Text(
               StringsResources.creditCardBalanceChart,
               style: TextStyle(
-                  color: ColorsResources.lightTransparent,
+                  color: ColorsResources.light.withOpacity(0.3),
                   fontSize: 15,
               ),
             ),
