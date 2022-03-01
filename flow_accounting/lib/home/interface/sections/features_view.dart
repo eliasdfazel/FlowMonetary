@@ -112,7 +112,7 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
     allFeaturesStructure.clear();
 
     allFeaturesStructure.add(FeaturesStructure(
-      featureColor: ColorsResources.lightestBlue,
+      featureColor: ColorsResources.lightestPurple,
       importantFeature: true,
       featuresTitle: StringsResources.featureTransactionsTitle,
       featuresDescription: StringsResources.featureTransactionsDescription,
@@ -120,14 +120,14 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
       featureToPresentData: TransactionsOutputView(),
     ));
     allFeaturesStructure.add(FeaturesStructure(
-        featureColor: ColorsResources.lightestPurple,
+        featureColor: ColorsResources.lightestBlue,
         importantFeature: false,
         featuresTitle: StringsResources.featureSellInvoicesTitle,
         featuresDescription: StringsResources.featureSellInvoicesDescription,
         featureViewToSubmitData: null,
         featureToPresentData: null));
     allFeaturesStructure.add(FeaturesStructure(
-        featureColor: ColorsResources.lightestPurple,
+        featureColor: ColorsResources.lightestBlue,
         importantFeature: false,
         featuresTitle: StringsResources.featureBuyInvoicesTitle,
         featuresDescription: StringsResources.featureBuyInvoicesDescription,
