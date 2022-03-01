@@ -146,7 +146,7 @@ class _GeneralDataView extends State<GeneralDataView> {
                                         "${totalEarning}",
                                         textAlign: TextAlign.center,
                                         style: const TextStyle(
-                                            color: ColorsResources.dark,
+                                            color: ColorsResources.applicationDarkGeeksEmpire,
                                             fontSize: 17,
                                             shadows: [
                                               Shadow(
@@ -251,7 +251,7 @@ class _GeneralDataView extends State<GeneralDataView> {
                                         "${totalBalance}",
                                         textAlign: TextAlign.center,
                                         style: const TextStyle(
-                                            color: ColorsResources.dark,
+                                            color: ColorsResources.applicationDarkGeeksEmpire,
                                             fontSize: 19,
                                             shadows: [
                                               Shadow(
@@ -359,7 +359,7 @@ class _GeneralDataView extends State<GeneralDataView> {
                                         "${totalSpending}",
                                         textAlign: TextAlign.center,
                                         style: const TextStyle(
-                                            color: ColorsResources.dark,
+                                            color: ColorsResources.applicationDarkGeeksEmpire,
                                             fontSize: 17,
                                             shadows: [
                                               Shadow(
