@@ -327,7 +327,7 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
       String featureDescription,
       StatefulWidget? targetViewToSubmitData,
       StatefulWidget? targetViewToPresentData,
-      BuildContext context) {
+      BuildContext context, {Color backgroundColor = Colors.white}) {
 
     return Expanded(
       flex: 1,
