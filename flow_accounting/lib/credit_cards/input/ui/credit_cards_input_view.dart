@@ -20,6 +20,7 @@ import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/database/io/inputs.dart';
 import 'package:flow_accounting/transactions/database/io/queries.dart';
+import 'package:flow_accounting/transactions/database/structures/tables_structure.dart';
 import 'package:flow_accounting/transactions/output/ui/transactions_output_view.dart';
 import 'package:flow_accounting/utils/chart/chart_view.dart';
 import 'package:flow_accounting/utils/colors/color_extractor.dart';
@@ -1460,13 +1461,13 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
     for (var element in monthOne) {
 
       switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {
-        case StringsResources.transactionTypeReceive: {
+        case TransactionsData.TransactionType_Receive: {
 
           monthSumOne += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
 
           break;
         }
-        case StringsResources.transactionTypeSend: {
+        case TransactionsData.TransactionType_Send: {
 
           monthSumOne -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
 
@@ -1484,13 +1485,13 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
     for (var element in monthTwo) {
 
       switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {
-        case StringsResources.transactionTypeReceive: {
+        case TransactionsData.TransactionType_Receive: {
 
           monthSumTwo += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
 
           break;
         }
-        case StringsResources.transactionTypeSend: {
+        case TransactionsData.TransactionType_Send: {
 
           monthSumTwo -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
 
@@ -1508,13 +1509,13 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
     for (var element in monthThree) {
 
       switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {
-        case StringsResources.transactionTypeReceive: {
+        case TransactionsData.TransactionType_Receive: {
 
           monthSumThree += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
 
           break;
         }
-        case StringsResources.transactionTypeSend: {
+        case TransactionsData.TransactionType_Send: {
 
           monthSumThree -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
 
@@ -1532,13 +1533,13 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
     for (var element in monthFour) {
 
       switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {
-        case StringsResources.transactionTypeReceive: {
+        case TransactionsData.TransactionType_Receive: {
 
           monthSumFour += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
 
           break;
         }
-        case StringsResources.transactionTypeSend: {
+        case TransactionsData.TransactionType_Send: {
 
           monthSumFour -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
 
@@ -1556,13 +1557,13 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
     for (var element in monthFive) {
 
       switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {
-        case StringsResources.transactionTypeReceive: {
+        case TransactionsData.TransactionType_Receive: {
 
           monthSumFive += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
 
           break;
         }
-        case StringsResources.transactionTypeSend: {
+        case TransactionsData.TransactionType_Send: {
 
           monthSumFive -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
 
@@ -1580,13 +1581,13 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
     for (var element in monthSix) {
 
       switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {
-        case StringsResources.transactionTypeReceive: {
+        case TransactionsData.TransactionType_Receive: {
 
           monthSumSix += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
 
           break;
         }
-        case StringsResources.transactionTypeSend: {
+        case TransactionsData.TransactionType_Send: {
 
           monthSumSix -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
 
@@ -1604,13 +1605,13 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
     for (var element in monthSeven) {
 
       switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {
-        case StringsResources.transactionTypeReceive: {
+        case TransactionsData.TransactionType_Receive: {
 
           monthSumSeven += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
 
           break;
         }
-        case StringsResources.transactionTypeSend: {
+        case TransactionsData.TransactionType_Send: {
 
           monthSumSeven -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
 
@@ -1628,13 +1629,13 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
     for (var element in monthEight) {
 
       switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {
-        case StringsResources.transactionTypeReceive: {
+        case TransactionsData.TransactionType_Receive: {
 
           monthSumEight += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
 
           break;
         }
-        case StringsResources.transactionTypeSend: {
+        case TransactionsData.TransactionType_Send: {
 
           monthSumEight -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
 
@@ -1652,13 +1653,13 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
     for (var element in monthNine) {
 
       switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {
-        case StringsResources.transactionTypeReceive: {
+        case TransactionsData.TransactionType_Receive: {
 
           monthSumNine += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
 
           break;
         }
-        case StringsResources.transactionTypeSend: {
+        case TransactionsData.TransactionType_Send: {
 
           monthSumNine -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
 
@@ -1676,13 +1677,13 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
     for (var element in monthTen) {
 
       switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {
-        case StringsResources.transactionTypeReceive: {
+        case TransactionsData.TransactionType_Receive: {
 
           monthSumTen += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
 
           break;
         }
-        case StringsResources.transactionTypeSend: {
+        case TransactionsData.TransactionType_Send: {
 
           monthSumTen -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
 
@@ -1700,13 +1701,13 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
     for (var element in monthEleven) {
 
       switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {
-        case StringsResources.transactionTypeReceive: {
+        case TransactionsData.TransactionType_Receive: {
 
           monthSumEleven += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
 
           break;
         }
-        case StringsResources.transactionTypeSend: {
+        case TransactionsData.TransactionType_Send: {
 
           monthSumEleven -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
 
@@ -1724,13 +1725,13 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
     for (var element in monthTwelve) {
 
       switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {
-        case StringsResources.transactionTypeReceive: {
+        case TransactionsData.TransactionType_Receive: {
 
           monthSumTwelve += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
 
           break;
         }
-        case StringsResources.transactionTypeSend: {
+        case TransactionsData.TransactionType_Send: {
 
           monthSumTwelve -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
 
