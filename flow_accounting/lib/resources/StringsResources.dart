@@ -150,6 +150,7 @@ class StringsResources {
 
   static const String creditCardBalance = "موجودی";
   static const String creditCardBalanceHint = "مبلغ موجودی را وارد کنید";
+  static const String creditCardBalanceChart = "نمودار موجودی";
 
   static const String creditCardCvv = "CVV";
   static const String creditCardCvvHint = "CVV";

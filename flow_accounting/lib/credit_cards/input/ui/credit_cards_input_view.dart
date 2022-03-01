@@ -274,12 +274,12 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                         ),
                       ),
                       const Divider(
-                        height: 19,
+                        height: 3,
                         color: Colors.transparent,
                       ),
                       chartBalanceView,
                       const Divider(
-                        height: 19,
+                        height: 27,
                         color: Colors.transparent,
                       ),
                       SizedBox(
@@ -1340,13 +1340,34 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
       31,
       11,
       88,
-      66,
-      197,
+      289,
+      299,
     ]);
 
     setState(() {
 
-      chartBalanceView = LineChartView(listOfSpotY: listOfBalancePoint);
+      chartBalanceView = Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
+            child: Align(
+              alignment: Alignment.center,
+              child: LineChartView(listOfSpotY: listOfBalancePoint),
+            ),
+          ),
+          const Positioned(
+            top: 3,
+            right: 23,
+            child: Text(
+              StringsResources.creditCardBalanceChart,
+              style: TextStyle(
+                  color: ColorsResources.lightTransparent,
+                  fontSize: 15,
+              ),
+            ),
+          )
+        ],
+      );
 
     });
 

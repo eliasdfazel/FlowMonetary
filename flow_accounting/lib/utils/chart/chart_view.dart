@@ -225,7 +225,7 @@ class LineChartViewState extends State<LineChartView> {
           }).toList();
         },
         touchTooltipData: LineTouchTooltipData(
-          tooltipBgColor: ColorsResources.applicationGeeksEmpire.withOpacity(0.79),
+          tooltipBgColor: ColorsResources.applicationGeeksEmpire,
           tooltipRoundedRadius: 51,
           fitInsideHorizontally: true,
           fitInsideVertically: true,
