@@ -21,34 +21,30 @@ import 'package:flutter/material.dart';
 import 'search_bar_view.dart';
 
 class FeaturesOptionsData {
-
   String featuresTitle;
   String featuresDescription;
 
   StatefulWidget targetViewToSubmitData;
   StatefulWidget targetViewToPresentData;
 
-  FeaturesOptionsData({
-    required this.featuresTitle,
-    required this.featuresDescription,
-    required this.targetViewToSubmitData,
-    required this.targetViewToPresentData
-  });
-
+  FeaturesOptionsData(
+      {required this.featuresTitle,
+      required this.featuresDescription,
+      required this.targetViewToSubmitData,
+      required this.targetViewToPresentData});
 }
 
 class FeaturesOptionsView extends StatefulWidget {
-
   DashboardViewState dashboardView;
 
-  FeaturesOptionsView({Key? key, required this.dashboardView}) : super(key: key);
+  FeaturesOptionsView({Key? key, required this.dashboardView})
+      : super(key: key);
 
   @override
   State<FeaturesOptionsView> createState() => StateFeaturesOptionsView();
-
 }
-class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
 
+class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
   List<FeaturesStructure> allFeaturesStructureUntouch = [];
 
   List<Widget> allFeaturesOptionsWidgetsUntouch = [];
@@ -59,7 +55,6 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
 
   @override
   void initState() {
-
     initializeFeatures();
     allFeaturesStructureUntouch = allFeaturesStructure;
 
@@ -76,25 +71,20 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
 
   @override
   Widget build(BuildContext context) {
-
-    SearchBarView searchBarView = SearchBarView(initialFeaturesStructure: initializeFeatures());
+    SearchBarView searchBarView =
+        SearchBarView(initialFeaturesStructure: initializeFeatures());
 
     searchBarView.resetFeaturesList.addListener(() {
-
       initializeFeatures();
 
       initializeFeaturesCheckpoint();
-      
+
       setState(() {
-
         allFeaturesOptionsWidgets;
-
       });
-
     });
 
     searchBarView.searchableFeaturesList.addListener(() {
-
       allFeaturesStructure.clear();
       allFeaturesOptionsWidgets.clear();
 
@@ -103,31 +93,26 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
       searchFeaturesCheckpoint();
 
       setState(() {
-
         allFeaturesOptionsWidgets;
-
       });
-
     });
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 3, 0, 0),
-      child: Column(
-        children: [
-          searchBarView,
-          Column(
-            children: allFeaturesOptionsWidgets,
-          )
-        ]
-      ),
+      child: Column(children: [
+        searchBarView,
+        Column(
+          children: allFeaturesOptionsWidgets,
+        )
+      ]),
     );
   }
 
   List<FeaturesStructure> initializeFeatures() {
-
     allFeaturesStructure.clear();
 
     allFeaturesStructure.add(FeaturesStructure(
+      featureColor: ColorsResources.lightestBlue,
       importantFeature: true,
       featuresTitle: StringsResources.featureTransactionsTitle,
       featuresDescription: StringsResources.featureTransactionsDescription,
@@ -135,109 +120,113 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
       featureToPresentData: TransactionsOutputView(),
     ));
     allFeaturesStructure.add(FeaturesStructure(
+        featureColor: ColorsResources.lightestPurple,
         importantFeature: false,
         featuresTitle: StringsResources.featureSellInvoicesTitle,
         featuresDescription: StringsResources.featureSellInvoicesDescription,
         featureViewToSubmitData: null,
-        featureToPresentData: null
-    ));
+        featureToPresentData: null));
     allFeaturesStructure.add(FeaturesStructure(
+        featureColor: ColorsResources.lightestPurple,
         importantFeature: false,
         featuresTitle: StringsResources.featureBuyInvoicesTitle,
         featuresDescription: StringsResources.featureBuyInvoicesDescription,
         featureViewToSubmitData: null,
-        featureToPresentData: null
-    ));
+        featureToPresentData: null));
     allFeaturesStructure.add(FeaturesStructure(
+        featureColor: ColorsResources.lightestOrange,
         importantFeature: true,
         featuresTitle: StringsResources.featureProductsTitle,
         featuresDescription: StringsResources.featureProductsDescription,
         featureViewToSubmitData: null,
-        featureToPresentData: null
-    ));
+        featureToPresentData: null));
     allFeaturesStructure.add(FeaturesStructure(
+        featureColor: ColorsResources.lightestCyan,
         importantFeature: true,
         featuresTitle: StringsResources.featureChequesTitle,
         featuresDescription: StringsResources.featureChequesDescription,
         featureViewToSubmitData: null,
-        featureToPresentData: null
-    ));
+        featureToPresentData: null));
     allFeaturesStructure.add(FeaturesStructure(
+        featureColor: ColorsResources.lightestRed,
         importantFeature: false,
         featuresTitle: StringsResources.featureDebtorsTitle,
         featuresDescription: StringsResources.featureDebtorsDescription,
         featureViewToSubmitData: null,
-        featureToPresentData: null
-    ));
+        featureToPresentData: null));
     allFeaturesStructure.add(FeaturesStructure(
+        featureColor: ColorsResources.lightestRed,
         importantFeature: false,
         featuresTitle: StringsResources.featureCreditorsTitle,
         featuresDescription: StringsResources.featureCreditorsDescription,
         featureViewToSubmitData: null,
-        featureToPresentData: null
-    ));
+        featureToPresentData: null));
     allFeaturesStructure.add(FeaturesStructure(
+        featureColor: ColorsResources.lightestGreen,
         importantFeature: true,
         featuresTitle: StringsResources.featureCustomersTitle,
         featuresDescription: StringsResources.featureCustomersDescription,
         featureViewToSubmitData: null,
-        featureToPresentData: null
-    ));
+        featureToPresentData: null));
     allFeaturesStructure.add(FeaturesStructure(
+        featureColor: ColorsResources.lightestYellow,
         importantFeature: false,
         featuresTitle: StringsResources.featureBudgetManagementsTitle,
-        featuresDescription: StringsResources.featureBudgetManagementsDescription,
+        featuresDescription:
+            StringsResources.featureBudgetManagementsDescription,
         featureViewToSubmitData: BudgetsInputView(),
-        featureToPresentData: const BudgetsOutputView()
-    ));
+        featureToPresentData: const BudgetsOutputView()));
     allFeaturesStructure.add(FeaturesStructure(
+        featureColor: ColorsResources.lightestYellow,
         importantFeature: false,
         featuresTitle: StringsResources.featureLoansTitle,
         featuresDescription: StringsResources.featureLoansDescription,
         featureViewToSubmitData: null,
-        featureToPresentData: null
-    ));
+        featureToPresentData: null));
 
     return allFeaturesStructure;
   }
 
   void initializeFeaturesCheckpoint() {
-
     allFeaturesOptionsWidgets.clear();
 
     bool alreadyTwo = false;
 
     allFeaturesStructure.forEachIndexed((index, element) {
-
       if (element.importantFeature) {
-
         allFeaturesOptionsWidgets.add(featuresOptionsRow(
-          /* featureOneTitle */ allFeaturesStructure[index].featuresTitle,
-          /* featureTwoTitle */ null,
-          /* featureOneDescription */ allFeaturesStructure[index].featuresDescription,
-          /* featureTwoDescription */ null,
-          /* featureOneTargetViewToSubmitData */ allFeaturesStructure[index].featureViewToSubmitData,
-          /* featureTwoTargetViewToSubmitData */ null,
-          /* featureOneTargetViewToPresentData */ allFeaturesStructure[index].featureToPresentData,
-          /* featureTwoTargetViewToPresentData */ null,
-          /* Context */ context
-        ));
+            /* featureBackgroundColor */
+            allFeaturesStructure[index].featureColor,
+            /* featureOneTitle */
+            allFeaturesStructure[index].featuresTitle,
+            /* featureTwoTitle */
+            null,
+            /* featureOneDescription */
+            allFeaturesStructure[index].featuresDescription,
+            /* featureTwoDescription */
+            null,
+            /* featureOneTargetViewToSubmitData */
+            allFeaturesStructure[index].featureViewToSubmitData,
+            /* featureTwoTargetViewToSubmitData */
+            null,
+            /* featureOneTargetViewToPresentData */
+            allFeaturesStructure[index].featureToPresentData,
+            /* featureTwoTargetViewToPresentData */
+            null,
+            /* Context */
+            context));
 
         alreadyTwo = false;
-
       } else {
-
         if (!alreadyTwo) {
-
           alreadyTwo = false;
 
           if ((index + 1) == (allFeaturesStructure.length - 1)) {
-
             alreadyTwo = true;
-
           } else {}
 
           allFeaturesOptionsWidgets.add(featuresOptionsRow(
+              allFeaturesStructure[index].featureColor,
               allFeaturesStructure[index].featuresTitle,
               allFeaturesStructure[index + 1].featuresTitle,
               allFeaturesStructure[index].featuresDescription,
@@ -246,40 +235,42 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
               allFeaturesStructure[index + 1].featureViewToSubmitData,
               allFeaturesStructure[index].featureToPresentData,
               allFeaturesStructure[index + 1].featureToPresentData,
-              context
-          ));
+              context));
 
           alreadyTwo = true;
-
         }
-
       }
-
     });
-
   }
 
   void searchFeaturesCheckpoint() {
-
     allFeaturesStructure.forEachIndexed((index, element) {
-
       allFeaturesOptionsWidgets.add(featuresOptionsRow(
-        /* featureOneTitle */ allFeaturesStructure[index].featuresTitle,
-          /* featureTwoTitle */ null,
-          /* featureOneDescription */ allFeaturesStructure[index].featuresDescription,
-          /* featureTwoDescription */ null,
-          /* featureOneTargetViewToSubmitData */ allFeaturesStructure[index].featureViewToSubmitData,
-          /* featureTwoTargetViewToSubmitData */ null,
-          /* featureOneTargetViewToPresentData */ allFeaturesStructure[index].featureToPresentData,
-          /* featureTwoTargetViewToPresentData */ null,
-          /* Context */ context
-      ));
-
+          /* featureBackgroundColor */
+          allFeaturesStructure[index].featureColor,
+          /* featureOneTitle */
+          allFeaturesStructure[index].featuresTitle,
+          /* featureTwoTitle */
+          null,
+          /* featureOneDescription */
+          allFeaturesStructure[index].featuresDescription,
+          /* featureTwoDescription */
+          null,
+          /* featureOneTargetViewToSubmitData */
+          allFeaturesStructure[index].featureViewToSubmitData,
+          /* featureTwoTargetViewToSubmitData */
+          null,
+          /* featureOneTargetViewToPresentData */
+          allFeaturesStructure[index].featureToPresentData,
+          /* featureTwoTargetViewToPresentData */
+          null,
+          /* Context */
+          context));
     });
-
   }
 
   Widget featuresOptionsRow(
+      Color backgroundColor,
       String featureOneTitle,
       String? featureTwoTitle,
       String featureOneDescription,
@@ -289,29 +280,26 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
       StatefulWidget? featureOneTargetViewToPresentData,
       StatefulWidget? featureTwoTargetViewToPresentData,
       BuildContext context) {
-
     Widget firstWidget = featuresOptionsItem(
+        backgroundColor,
         featureOneTitle,
         featureOneDescription,
         featureOneTargetViewToSubmitData,
         featureOneTargetViewToPresentData,
-        context
-    );
+        context);
 
     Widget secondWidget = Container(
       color: Colors.transparent,
     );
 
     if (featureTwoTitle != null && featureTwoDescription != null) {
-
       secondWidget = featuresOptionsItem(
+          backgroundColor,
           featureTwoTitle,
           featureTwoDescription,
           featureTwoTargetViewToSubmitData,
           featureTwoTargetViewToPresentData,
-          context
-      );
-
+          context);
     }
 
     return Row(
@@ -323,24 +311,25 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
     );
   }
 
-  Widget featuresOptionsItem(String featureTitle,
+  Widget featuresOptionsItem(
+      Color backgroundColor,
+      String featureTitle,
       String featureDescription,
       StatefulWidget? targetViewToSubmitData,
       StatefulWidget? targetViewToPresentData,
-      BuildContext context, {Color backgroundColor = Colors.white}) {
-
+      BuildContext context) {
     return Expanded(
       flex: 1,
       child: Padding(
         padding: const EdgeInsets.all(15),
-        child: Container (
+        child: Container(
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(13),
                 topRight: Radius.circular(13),
                 bottomLeft: Radius.circular(13),
                 bottomRight: Radius.circular(13)),
-            color: ColorsResources.lightBlue,
+            color: backgroundColor,
             boxShadow: [
               BoxShadow(
                 color: ColorsResources.dark.withOpacity(0.3),
@@ -362,8 +351,11 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
                   height: 50,
                   child: Container(
                     decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.only(topLeft: Radius
-                          .circular(7), topRight: Radius.circular(7), bottomLeft: Radius.circular(0), bottomRight: Radius.circular(0)),
+                      borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(7),
+                          topRight: Radius.circular(7),
+                          bottomLeft: Radius.circular(0),
+                          bottomRight: Radius.circular(0)),
                       gradient: LinearGradient(
                           colors: [
                             ColorsResources.white.withOpacity(0.3),
@@ -390,21 +382,21 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
                                     Shadow(
                                         color: ColorsResources.light,
                                         offset: Offset(0, 0),
-                                        blurRadius: 7
-                                    )
-                                  ]
-                              ),
+                                        blurRadius: 7)
+                                  ]),
                             ),
                           ),
-                        )
-                    ),
-                  )
-              ),
+                        )),
+                  )),
               SizedBox(
                   height: 119,
                   child: Container(
                     decoration: BoxDecoration(
-                      borderRadius: const  BorderRadius.only(topLeft: Radius.circular(0), topRight: Radius.circular(0), bottomLeft: Radius.circular(0), bottomRight: Radius.circular(0)),
+                      borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(0),
+                          topRight: Radius.circular(0),
+                          bottomLeft: Radius.circular(0),
+                          bottomRight: Radius.circular(0)),
                       gradient: LinearGradient(
                           colors: [
                             ColorsResources.white.withOpacity(0.3),
@@ -431,16 +423,12 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
                                     Shadow(
                                         color: ColorsResources.light,
                                         offset: Offset(0, 0),
-                                        blurRadius: 7
-                                    )
-                                  ]
-                              ),
+                                        blurRadius: 7)
+                                  ]),
                             ),
                           ),
-                        )
-                    ),
-                  )
-              ),
+                        )),
+                  )),
               SizedBox(
                   height: 53,
                   child: Padding(
@@ -452,166 +440,157 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
                             flex: 31,
                             child: MaterialButton(
                               onPressed: () {
-
-                                Future.delayed(const Duration(milliseconds: 199), () async {
-
+                                Future.delayed(
+                                    const Duration(milliseconds: 199),
+                                    () async {
                                   if (targetViewToPresentData != null) {
-
                                     bool dataUpdated = await Navigator.push(
                                       context,
-                                      MaterialPageRoute(builder: (context) => targetViewToPresentData),
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              targetViewToPresentData),
                                     );
 
                                     debugPrint("Data Update => ${dataUpdated}");
                                     if (dataUpdated) {
-
                                       switch (UpdatedData.UpdatedDataType) {
-                                        case UpdatedData.GeneralBalance: {
+                                        case UpdatedData.GeneralBalance:
+                                          {
+                                            break;
+                                          }
+                                        case UpdatedData.GeneralEarning:
+                                          {
+                                            break;
+                                          }
+                                        case UpdatedData.GeneralSpending:
+                                          {
+                                            break;
+                                          }
+                                        case UpdatedData.LatestTransactions:
+                                          {
+                                            widget.dashboardView
+                                                .retrieveLatestTransactions();
 
-                                          break;
-                                        }
-                                        case UpdatedData.GeneralEarning: {
-
-                                          break;
-                                        }
-                                        case UpdatedData.GeneralSpending: {
-
-                                          break;
-                                        }
-                                        case UpdatedData.LatestTransactions: {
-
-                                          widget.dashboardView.retrieveLatestTransactions();
-
-                                          break;
-                                        }
-                                        case UpdatedData.CreditCards: {
-
-                                          break;
-                                        }
+                                            break;
+                                          }
+                                        case UpdatedData.CreditCards:
+                                          {
+                                            break;
+                                          }
                                       }
-
                                     }
-
                                   }
                                 });
-
                               },
                               child: const Text(
                                 StringsResources.presentText,
-                                style: TextStyle(fontSize: 13,shadows: [
+                                style: TextStyle(fontSize: 13, shadows: [
                                   Shadow(
                                       color: ColorsResources.light,
                                       offset: Offset(0, 0),
-                                      blurRadius: 7
-                                  )
+                                      blurRadius: 7)
                                 ]),
                               ),
                               height: 79,
                               minWidth: double.infinity,
                               color: ColorsResources.light,
                               splashColor: ColorsResources.primaryColor,
-                              textColor: ColorsResources.applicationDarkGeeksEmpire,
+                              textColor:
+                                  ColorsResources.applicationDarkGeeksEmpire,
                               shape: const RoundedRectangleBorder(
                                   borderRadius: BorderRadius.only(
                                       topLeft: Radius.circular(13),
                                       topRight: Radius.circular(13),
                                       bottomLeft: Radius.circular(13),
-                                      bottomRight: Radius.circular(0)
-                                  )
-                              ),
-                            )
-                        ),
+                                      bottomRight: Radius.circular(0))),
+                            )),
                         const Expanded(
                           flex: 1,
-                          child: ColoredBox(color: Colors.transparent,),
+                          child: ColoredBox(
+                            color: Colors.transparent,
+                          ),
                         ),
                         Expanded(
                             flex: 31,
                             child: MaterialButton(
                               onPressed: () {
-
-                                Future.delayed(const Duration(milliseconds: 199), () async {
-
+                                Future.delayed(
+                                    const Duration(milliseconds: 199),
+                                    () async {
                                   if (targetViewToSubmitData != null) {
-
                                     bool dataUpdated = await Navigator.push(
                                       context,
-                                      MaterialPageRoute(builder: (context) => targetViewToSubmitData),
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              targetViewToSubmitData),
                                     );
 
                                     debugPrint("Data Update => ${dataUpdated}");
                                     if (dataUpdated) {
-
                                       switch (UpdatedData.UpdatedDataType) {
-                                        case UpdatedData.GeneralBalance: {
+                                        case UpdatedData.GeneralBalance:
+                                          {
+                                            break;
+                                          }
+                                        case UpdatedData.GeneralEarning:
+                                          {
+                                            break;
+                                          }
+                                        case UpdatedData.GeneralSpending:
+                                          {
+                                            break;
+                                          }
+                                        case UpdatedData.LatestTransactions:
+                                          {
+                                            widget.dashboardView
+                                                .retrieveLatestTransactions();
 
-                                          break;
-                                        }
-                                        case UpdatedData.GeneralEarning: {
-
-                                          break;
-                                        }
-                                        case UpdatedData.GeneralSpending: {
-
-                                          break;
-                                        }
-                                        case UpdatedData.LatestTransactions: {
-
-                                          widget.dashboardView.retrieveLatestTransactions();
-
-                                          break;
-                                        }
-                                        case UpdatedData.CreditCards: {
-
-                                          break;
-                                        }
+                                            break;
+                                          }
+                                        case UpdatedData.CreditCards:
+                                          {
+                                            break;
+                                          }
                                       }
-
                                     }
-
                                   }
                                 });
-
                               },
                               child: const Text(
                                 StringsResources.submitText,
-                                style: TextStyle(fontSize: 13,shadows: [
+                                style: TextStyle(fontSize: 13, shadows: [
                                   Shadow(
                                       color: ColorsResources.light,
                                       offset: Offset(0, 0),
-                                      blurRadius: 7
-                                  )
+                                      blurRadius: 7)
                                 ]),
                               ),
                               height: 79,
                               minWidth: double.infinity,
                               color: ColorsResources.light,
                               splashColor: ColorsResources.primaryColor,
-                              textColor: ColorsResources.applicationDarkGeeksEmpire,
+                              textColor:
+                                  ColorsResources.applicationDarkGeeksEmpire,
                               shape: const RoundedRectangleBorder(
                                   borderRadius: BorderRadius.only(
                                       topLeft: Radius.circular(13),
                                       topRight: Radius.circular(13),
                                       bottomLeft: Radius.circular(0),
-                                      bottomRight: Radius.circular(13)
-                                  )
-                              ),
-                            )
-                        )
+                                      bottomRight: Radius.circular(13))),
+                            ))
                       ],
                     ),
-                  )
-              ),
+                  )),
             ],
           ),
         ),
       ),
     );
   }
-
 }
 
 class FeaturesStructure {
+  final Color featureColor;
 
   final bool importantFeature;
 
@@ -622,11 +601,11 @@ class FeaturesStructure {
   final StatefulWidget? featureToPresentData;
 
   FeaturesStructure({
+    required this.featureColor,
     required this.importantFeature,
     required this.featuresTitle,
     required this.featuresDescription,
     required this.featureViewToSubmitData,
     required this.featureToPresentData,
   });
-
 }

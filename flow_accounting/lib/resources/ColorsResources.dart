@@ -41,8 +41,9 @@ class ColorsResources {
   static const Color orange = Color.fromARGB(255, 255, 115, 0);
   static const Color lightOrange = Color.fromARGB(255, 255, 166, 128);
   static const Color lightestOrange = Color.fromARGB(255, 255, 222, 209);
-  static const Color pink = Color.fromARGB(255, 255, 192, 203);
+  static const Color pink = Color.fromARGB(255, 255, 192, 224);
   static const Color cyan = Color.fromARGB(255, 2, 248, 192);
+  static const Color lightestCyan = Color.fromARGB(255, 201, 255, 242);
 
   static const Color blueGreen = Color.fromARGB(255, 48, 105, 116);
   static const Color blueGray = Color.fromARGB(255, 55, 71, 79);
