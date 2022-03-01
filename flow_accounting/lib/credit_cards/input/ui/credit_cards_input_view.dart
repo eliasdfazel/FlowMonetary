@@ -1445,12 +1445,6 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
           );
         });
 
-    setState(() {
-
-      yearsListView;
-
-    });
-
     prepareChartsData(yearNumber);
 
   }
@@ -1787,6 +1781,8 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
           )
         ],
       );
+
+      yearsListView;
 
     });
 

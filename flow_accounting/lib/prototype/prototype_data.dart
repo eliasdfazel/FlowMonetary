@@ -173,7 +173,7 @@ class PrototypeData {
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
         transactionTime: _generateDateText(),
         transactionTimeYear: "1400",
-        transactionTimeMonth: DateTime.now().month.toString(),
+        transactionTimeMonth: 12.toString(),
         colorTag: listOfColors.randomItem().value,
         budgetName: "شرکت نرم افزاری آبان"
     ));
@@ -193,7 +193,7 @@ class PrototypeData {
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
         transactionTime: _generateDateText(),
         transactionTimeYear: "1400",
-        transactionTimeMonth: DateTime.now().month.toString(),
+        transactionTimeMonth: 12.toString(),
         colorTag: listOfColors.randomItem().value,
         budgetName: "آکواریوم"
     ));
@@ -213,7 +213,7 @@ class PrototypeData {
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
         transactionTime: _generateDateText(),
         transactionTimeYear: "1400",
-        transactionTimeMonth: DateTime.now().month.toString(),
+        transactionTimeMonth: 7.toString(),
         colorTag: listOfColors.randomItem().value,
         budgetName: "گربه"
     ));
@@ -233,7 +233,7 @@ class PrototypeData {
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
         transactionTime: _generateDateText(),
         transactionTimeYear: "1400",
-        transactionTimeMonth: DateTime.now().month.toString(),
+        transactionTimeMonth: 7.toString(),
         colorTag: listOfColors.randomItem().value,
         budgetName: "گربه"
     ));
@@ -253,7 +253,7 @@ class PrototypeData {
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
         transactionTime: _generateDateText(),
         transactionTimeYear: "1400",
-        transactionTimeMonth: DateTime.now().month.toString(),
+        transactionTimeMonth: 1.toString(),
         colorTag: listOfColors.randomItem().value,
         budgetName: "شرکت نرم افزاری آبان"
     ));
@@ -273,7 +273,7 @@ class PrototypeData {
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
         transactionTime: _generateDateText(),
         transactionTimeYear: "1400",
-        transactionTimeMonth: DateTime.now().month.toString(),
+        transactionTimeMonth: 1.toString(),
         colorTag: listOfColors.randomItem().value,
         budgetName: "گربه"
     ));
@@ -293,7 +293,7 @@ class PrototypeData {
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
         transactionTime: _generateDateText(),
         transactionTimeYear: "1400",
-        transactionTimeMonth: DateTime.now().month.toString(),
+        transactionTimeMonth: 5.toString(),
         colorTag: listOfColors.randomItem().value,
         budgetName: "شرکت نرم افزاری آبان"
     ));
@@ -313,7 +313,7 @@ class PrototypeData {
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
         transactionTime: _generateDateText(),
         transactionTimeYear: "1400",
-        transactionTimeMonth: DateTime.now().month.toString(),
+        transactionTimeMonth: 8.toString(),
         colorTag: listOfColors.randomItem().value,
         budgetName: "شرکت نرم افزاری آبان"
     ));
@@ -333,7 +333,7 @@ class PrototypeData {
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
         transactionTime: _generateDateText(),
         transactionTimeYear: "1400",
-        transactionTimeMonth: DateTime.now().month.toString(),
+        transactionTimeMonth: 8.toString(),
         colorTag: listOfColors.randomItem().value,
         budgetName: "شرکت نرم افزاری آبان"
     ));
@@ -353,7 +353,7 @@ class PrototypeData {
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
         transactionTime: _generateDateText(),
         transactionTimeYear: "1400",
-        transactionTimeMonth: DateTime.now().month.toString(),
+        transactionTimeMonth: 7.toString(),
         colorTag: listOfColors.randomItem().value,
         budgetName: "شرکت نرم افزاری آبان"
     ));
@@ -373,7 +373,7 @@ class PrototypeData {
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
         transactionTime: _generateDateText(),
         transactionTimeYear: "1400",
-        transactionTimeMonth: DateTime.now().month.toString(),
+        transactionTimeMonth: 7.toString(),
         colorTag: listOfColors.randomItem().value,
         budgetName: "شرکت نرم افزاری آبان"
     ));
@@ -393,7 +393,7 @@ class PrototypeData {
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
         transactionTime: _generateDateText(),
         transactionTimeYear: "1400",
-        transactionTimeMonth: DateTime.now().month.toString(),
+        transactionTimeMonth: 7.toString(),
         colorTag: listOfColors.randomItem().value,
         budgetName: "شرکت نرم افزاری آبان"
     ));
@@ -413,7 +413,7 @@ class PrototypeData {
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
         transactionTime: _generateDateText(),
         transactionTimeYear: "1400",
-        transactionTimeMonth: DateTime.now().month.toString(),
+        transactionTimeMonth: 7.toString(),
         colorTag: listOfColors.randomItem().value,
         budgetName: "شرکت نرم افزاری آبان"
     ));
