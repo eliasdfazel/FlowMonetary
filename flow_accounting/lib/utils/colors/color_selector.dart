@@ -52,7 +52,7 @@ class _ColorSelectorView extends State<ColorSelectorView> {
     List<Widget> colorItem = [];
 
     List<Color> listOfColors = [
-      ColorsResources.primaryColor,
+      Colors.greenAccent,
       Colors.pinkAccent,
       Colors.blueGrey,
       Colors.deepOrange,

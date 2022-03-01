@@ -12,7 +12,6 @@ import 'package:flow_accounting/budgets/database/io/inputs.dart';
 import 'package:flow_accounting/budgets/database/structures/tables_structure.dart';
 import 'package:flow_accounting/credit_cards/database/io/inputs.dart';
 import 'package:flow_accounting/credit_cards/database/structures/tables_structure.dart';
-import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/database/io/inputs.dart';
 import 'package:flow_accounting/transactions/database/structures/tables_structure.dart';
@@ -31,7 +30,7 @@ void main() async {
 class PrototypeData {
 
   List<Color> listOfColors = [
-    ColorsResources.primaryColor,
+    Colors.greenAccent,
     Colors.pinkAccent,
     Colors.blueGrey,
     Colors.deepOrange,

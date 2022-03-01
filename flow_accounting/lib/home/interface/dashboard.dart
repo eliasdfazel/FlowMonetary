@@ -105,7 +105,7 @@ class DashboardViewState extends State<DashboardView> {
                     gradient: LinearGradient(
                         colors: [
                           ColorsResources.grayLight,
-                          ColorsResources.greenGrayLight,
+                          ColorsResources.blueGrayLight,
                         ],
                         begin: FractionalOffset(0.0, 0.0),
                         end: FractionalOffset(1.0, 0.0),
@@ -126,8 +126,8 @@ class DashboardViewState extends State<DashboardView> {
                       child: WaveWidget(
                         config: CustomConfig(
                           colors: [
-                            ColorsResources.greenGrayLight,
-                            ColorsResources.blueGreen,
+                            ColorsResources.blueGrayLight,
+                            ColorsResources.applicationDarkGeeksEmpire,
                             ColorsResources.black,
                           ],
                           heightPercentages: [0.13, 0.57, 0.79],
@@ -154,13 +154,13 @@ class DashboardViewState extends State<DashboardView> {
                       child: WaveWidget(
                         config: CustomConfig(
                           colors: [
-                            ColorsResources.primaryColorLighter,
-                            ColorsResources.primaryColorLight,
-                            ColorsResources.primaryColorLight,
+                            ColorsResources.yellow.withOpacity(0.3),
+                            ColorsResources.yellow.withOpacity(0.5),
+                            ColorsResources.yellow.withOpacity(0.7),
                           ],
                           heightPercentages: [0.13, 0.57, 0.79],
                           durations: [13000, 21000, 19000],
-                          blur: const MaskFilter.blur(BlurStyle.outer, 3.7),
+                          blur: const MaskFilter.blur(BlurStyle.outer, 5.3),
                         ),
                         backgroundColor: Colors.transparent,
                         size: const Size(double.infinity, 300),

@@ -104,7 +104,7 @@ class _GeneralDataView extends State<GeneralDataView> {
                                 shadowColor: Colors.transparent,
                                 color: Colors.transparent,
                                 child: InkWell(
-                                  splashColor: ColorsResources.primaryColorDark.withOpacity(0.3),
+                                  splashColor: ColorsResources.green.withOpacity(0.3),
                                   splashFactory: InkRipple.splashFactory,
                                   onTap: () {
 
@@ -122,23 +122,23 @@ class _GeneralDataView extends State<GeneralDataView> {
                                         ),
                                         border: const Border(
                                             top: BorderSide(
-                                              color: ColorsResources.primaryColorDark,
+                                              color: ColorsResources.green,
                                               width: 1,
                                             ),
                                             bottom: BorderSide(
-                                              color: ColorsResources.primaryColorDark,
+                                              color: ColorsResources.green,
                                               width: 1,
                                             ),
                                             left: BorderSide(
-                                              color: ColorsResources.primaryColorDark,
+                                              color: ColorsResources.green,
                                               width: 1,
                                             ),
                                             right: BorderSide(
-                                              color: ColorsResources.primaryColorDark,
+                                              color: ColorsResources.green,
                                               width: 1,
                                             )
                                         ),
-                                        color: ColorsResources.primaryColorDark.withOpacity(0.13)
+                                        color: ColorsResources.green.withOpacity(0.13)
                                     ),
                                     child: Align(
                                       alignment: Alignment.center,
@@ -314,7 +314,7 @@ class _GeneralDataView extends State<GeneralDataView> {
                                 shadowColor: Colors.transparent,
                                 color: Colors.transparent,
                                 child: InkWell(
-                                  splashColor: ColorsResources.gameGeeksEmpire.withOpacity(0.3),
+                                  splashColor: ColorsResources.red.withOpacity(0.3),
                                   splashFactory: InkRipple.splashFactory,
                                   onTap: () {
 
@@ -335,23 +335,23 @@ class _GeneralDataView extends State<GeneralDataView> {
                                             bottomRight: Radius.circular(23)),
                                         border: const Border(
                                             top: BorderSide(
-                                              color: ColorsResources.gameGeeksEmpire,
+                                              color: ColorsResources.red,
                                               width: 1,
                                             ),
                                             bottom: BorderSide(
-                                              color: ColorsResources.gameGeeksEmpire,
+                                              color: ColorsResources.red,
                                               width: 1,
                                             ),
                                             left: BorderSide(
-                                              color: ColorsResources.gameGeeksEmpire,
+                                              color: ColorsResources.red,
                                               width: 1,
                                             ),
                                             right: BorderSide(
-                                              color: ColorsResources.gameGeeksEmpire,
+                                              color: ColorsResources.red,
                                               width: 1,
                                             )
                                         ),
-                                        color: ColorsResources.gameGeeksEmpire.withOpacity(0.13)
+                                        color: ColorsResources.red.withOpacity(0.13)
                                     ),
                                     child: Align(
                                       alignment: Alignment.center,

@@ -101,11 +101,11 @@ class _LatestTransactionsView extends State<LatestTransactionsView> {
 
     if (transactionsData.transactionType == TransactionsData.TransactionType_Receive) {
 
-      transactionColor = ColorsResources.primaryColorDark;
+      transactionColor = ColorsResources.green;
 
     } else if (transactionsData.transactionType == TransactionsData.TransactionType_Send) {
 
-      transactionColor = ColorsResources.gameGeeksEmpire;
+      transactionColor = ColorsResources.red;
 
     }
 

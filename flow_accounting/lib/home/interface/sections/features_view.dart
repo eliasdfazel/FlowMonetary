@@ -340,7 +340,7 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
                 topRight: Radius.circular(13),
                 bottomLeft: Radius.circular(13),
                 bottomRight: Radius.circular(13)),
-            color: ColorsResources.primaryColorLightest,
+            color: ColorsResources.lightBlue,
             boxShadow: [
               BoxShadow(
                 color: ColorsResources.dark.withOpacity(0.3),
