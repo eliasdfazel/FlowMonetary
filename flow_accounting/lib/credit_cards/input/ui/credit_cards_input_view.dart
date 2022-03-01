@@ -75,7 +75,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
 
   ListView yearsListView = ListView();
 
-  Widget chartBalanceView = const Divider(height: 1);
+  Widget chartBalanceView = const Divider(height: 1, color: Colors.transparent);
   List<double> listOfBalancePoint = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
   FocusNode focusNodeCvv = FocusNode();
@@ -284,7 +284,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                       ),
                       SizedBox(
                         height: 43,
-                        width: 79,
+                        width: 97,
                         child: Padding(
                           padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
                           child: Stack(
@@ -296,6 +296,8 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                   borderRadius: BorderRadius.circular(51),
                                   blurColor: Colors.black.withOpacity(0.3),
                                   child: Container(
+                                    height: 43,
+                                    width: 97,
                                     decoration: BoxDecoration(
                                         gradient: LinearGradient(
                                             colors: [
@@ -312,7 +314,14 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                   ),
                                 ),
                               ),
-                              yearsListView,
+                              Align(
+                                  alignment: Alignment.centerRight,
+                                  child: SizedBox(
+                                    height: 43,
+                                    width: 97,
+                                    child: yearsListView,
+                                  )
+                              ),
                             ],
                           ),
                         ),
@@ -1472,6 +1481,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
       }
 
     }
+    debugPrint("1: $monthSumOne");
 
     double monthSumTwo = 0;
     var monthTwo = await transactionsDatabaseQueries.queryTransactionByCreditCard(widget.creditCardsData.cardNumber, widget.creditCardsData.cardNumber,
@@ -1495,6 +1505,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
       }
 
     }
+    debugPrint("2: $monthSumTwo");
 
     double monthSumThree = 0;
     var monthThree = await transactionsDatabaseQueries.queryTransactionByCreditCard(widget.creditCardsData.cardNumber, widget.creditCardsData.cardNumber,
@@ -1518,6 +1529,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
       }
 
     }
+    debugPrint("3: $monthSumThree");
 
     double monthSumFour = 0;
     var monthFour = await transactionsDatabaseQueries.queryTransactionByCreditCard(widget.creditCardsData.cardNumber, widget.creditCardsData.cardNumber,
@@ -1541,6 +1553,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
       }
 
     }
+    debugPrint("4: $monthSumFour");
 
     double monthSumFive = 0;
     var monthFive = await transactionsDatabaseQueries.queryTransactionByCreditCard(widget.creditCardsData.cardNumber, widget.creditCardsData.cardNumber,
@@ -1564,6 +1577,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
       }
 
     }
+    debugPrint("5: $monthSumFive");
 
     double monthSumSix = 0;
     var monthSix = await transactionsDatabaseQueries.queryTransactionByCreditCard(widget.creditCardsData.cardNumber, widget.creditCardsData.cardNumber,
@@ -1587,6 +1601,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
       }
 
     }
+    debugPrint("6: $monthSumSix");
 
     double monthSumSeven = 0;
     var monthSeven = await transactionsDatabaseQueries.queryTransactionByCreditCard(widget.creditCardsData.cardNumber, widget.creditCardsData.cardNumber,
@@ -1610,6 +1625,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
       }
 
     }
+    debugPrint("7: $monthSumSeven");
 
     double monthSumEight = 0;
     var monthEight = await transactionsDatabaseQueries.queryTransactionByCreditCard(widget.creditCardsData.cardNumber, widget.creditCardsData.cardNumber,
@@ -1633,6 +1649,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
       }
 
     }
+    debugPrint("8: $monthSumEight");
 
     double monthSumNine = 0;
     var monthNine = await transactionsDatabaseQueries.queryTransactionByCreditCard(widget.creditCardsData.cardNumber, widget.creditCardsData.cardNumber,
@@ -1656,6 +1673,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
       }
 
     }
+    debugPrint("9: $monthSumNine");
 
     double monthSumTen = 0;
     var monthTen = await transactionsDatabaseQueries.queryTransactionByCreditCard(widget.creditCardsData.cardNumber, widget.creditCardsData.cardNumber,
@@ -1679,6 +1697,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
       }
 
     }
+    debugPrint("10: $monthSumTen");
 
     double monthSumEleven = 0;
     var monthEleven = await transactionsDatabaseQueries.queryTransactionByCreditCard(widget.creditCardsData.cardNumber, widget.creditCardsData.cardNumber,
@@ -1702,6 +1721,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
       }
 
     }
+    debugPrint("11: $monthSumEleven");
 
     double monthSumTwelve = 0;
     var monthTwelve = await transactionsDatabaseQueries.queryTransactionByCreditCard(widget.creditCardsData.cardNumber, widget.creditCardsData.cardNumber,
@@ -1725,6 +1745,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
       }
 
     }
+    debugPrint("12: $monthSumTwelve");
 
     listOfBalancePoint.clear();
     listOfBalancePoint.addAll([
