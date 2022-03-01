@@ -19,6 +19,7 @@ import 'package:flow_accounting/credit_cards/database/structures/tables_structur
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/output/ui/transactions_output_view.dart';
+import 'package:flow_accounting/utils/chart/chart_view.dart';
 import 'package:flow_accounting/utils/colors/color_extractor.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
 import 'package:flow_accounting/utils/extensions/BankLogos.dart';
@@ -68,6 +69,9 @@ class CreditCardsInputView extends StatefulWidget {
 class _CreditCardsInputViewState extends State<CreditCardsInputView> with TickerProviderStateMixin {
 
   ColorSelectorView colorSelectorView = ColorSelectorView();
+
+  Widget chartBalanceView = const Divider(height: 1);
+  List<double> listOfBalancePoint = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
   FocusNode focusNodeCvv = FocusNode();
 
@@ -128,6 +132,8 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
     });
 
     colorSelectorView.inputColor = (widget.creditCardsData.colorTag == Colors.transparent.value) ? ColorsResources.primaryColor : Color(widget.creditCardsData.colorTag);
+
+    prepareChartsData();
 
   }
 
@@ -267,6 +273,11 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                           child: creditCardWidgetItem(),
                         ),
                       ),
+                      const Divider(
+                        height: 19,
+                        color: Colors.transparent,
+                      ),
+                      chartBalanceView,
                       const Divider(
                         height: 19,
                         color: Colors.transparent,
@@ -1312,6 +1323,32 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
     creditCardsDatabaseQueries.queryDeleteCreditCard(creditCardsData.id, CreditCardsDatabaseInputs.databaseTableName);
 
     Navigator.pop(context);
+
+  }
+
+  void prepareChartsData() async {
+
+    listOfBalancePoint.clear();
+    listOfBalancePoint.addAll([
+      50,
+      100,
+      300,
+      10,
+      18,
+      91,
+      51,
+      31,
+      11,
+      88,
+      66,
+      197,
+    ]);
+
+    setState(() {
+
+      chartBalanceView = LineChartView(listOfSpotY: listOfBalancePoint);
+
+    });
 
   }
 
