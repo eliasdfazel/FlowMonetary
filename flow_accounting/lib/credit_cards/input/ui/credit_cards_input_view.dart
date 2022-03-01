@@ -1475,7 +1475,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
       }
 
     }
-    debugPrint("1: $monthSumOne");
+    debugPrint("1: $monthSumOne ${monthOne}");
 
     double monthSumTwo = 0;
     var monthTwo = await transactionsDatabaseQueries.queryTransactionByCreditCard(widget.creditCardsData.cardNumber, widget.creditCardsData.cardNumber,
