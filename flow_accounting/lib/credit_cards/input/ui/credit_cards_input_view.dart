@@ -54,7 +54,7 @@ CachedNetworkImage? bankLogoImageView = CachedNetworkImage(
   imageUrl: generateBankLogoUrl(""),
   height: 51,
   width: 51,
-  fit: BoxFit.contain,
+  fit: BoxFit.cover,
 );
 
 Color dominantColorForFrontLayout = ColorsResources.dark;
@@ -279,12 +279,46 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                         ),
                       ),
                       const Divider(
-                        height: 3,
+                        height: 1,
                         color: Colors.transparent,
                       ),
-                      yearsListView,
+                      SizedBox(
+                        height: 43,
+                        width: 79,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
+                          child: Stack(
+                            children: [
+                              Align(
+                                alignment: Alignment.centerRight,
+                                child: Blur(
+                                  blur: 5,
+                                  borderRadius: BorderRadius.circular(51),
+                                  blurColor: Colors.black.withOpacity(0.3),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        gradient: LinearGradient(
+                                            colors: [
+                                              ColorsResources.black.withOpacity(0.3),
+                                              ColorsResources.primaryColorDark.withOpacity(0.3),
+                                            ],
+                                            begin: const FractionalOffset(0.0, 0.0),
+                                            end: const FractionalOffset(1.0, 0.0),
+                                            stops: const [0.0, 1.0],
+                                            transform: const GradientRotation(45),
+                                            tileMode: TileMode.clamp
+                                        )
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              yearsListView,
+                            ],
+                          ),
+                        ),
+                      ),
                       const Divider(
-                        height: 3,
+                        height: 7,
                         color: Colors.transparent,
                       ),
                       chartBalanceView,
@@ -328,6 +362,9 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
 
                                             bankLogoImageView = CachedNetworkImage(
                                               imageUrl: generateBankLogoUrl(suggestion.toString()),
+                                              height: 51,
+                                              width: 51,
+                                              fit: BoxFit.cover,
                                               imageBuilder: (context, imageProvider) {
 
                                                 bankLogoImageProvider = imageProvider;
@@ -1910,7 +1947,10 @@ class _CreditCardFrontLayout extends State<CreditCardFrontLayout> {
                                     alignment: AlignmentDirectional.center,
                                     child: Padding(
                                       padding: const EdgeInsets.fromLTRB(7, 7, 7, 7),
-                                      child: bankLogoImageView,
+                                      child: Padding(
+                                          padding: const EdgeInsets.fromLTRB(7, 7, 7, 7),
+                                          child: bankLogoImageView
+                                      ),
                                     ),
                                   ),
                                 ),
