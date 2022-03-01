@@ -76,6 +76,27 @@ class TransactionsDatabaseQueries {
     return databaseContents;
   }
 
+  Future<List<Map<String, Object?>>> queryTransactionByCreditCard(String sourceCardNumber, String targetCardNumber,
+      String? tableName, {String usernameId = "Unknown"}) async {
+
+    final database = openDatabase(
+      join(await getDatabasesPath(), TransactionsDatabaseInputs.transactionDatabase),
+    );
+
+    final databaseInstance = await database;
+
+    var tableNameQuery = (tableName != null) ? tableName : TransactionsDatabaseInputs.databaseTableName;
+    tableNameQuery = "${usernameId}_${tableNameQuery}";
+
+    var databaseContents = await databaseInstance.query(
+      tableNameQuery,
+      where: 'sourceCardNumber = ? OR targetCardNumber = ?',
+      whereArgs: [sourceCardNumber, targetCardNumber],
+    );
+
+    return databaseContents;
+  }
+
   Future<Map<String, Object?>> querySpecificTransaction(int id,
       String? tableName, {String usernameId = "Unknown"}) async {
 
