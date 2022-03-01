@@ -18,6 +18,8 @@ import 'package:flow_accounting/credit_cards/database/io/queries.dart';
 import 'package:flow_accounting/credit_cards/database/structures/tables_structure.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
+import 'package:flow_accounting/transactions/database/io/inputs.dart';
+import 'package:flow_accounting/transactions/database/io/queries.dart';
 import 'package:flow_accounting/transactions/output/ui/transactions_output_view.dart';
 import 'package:flow_accounting/utils/chart/chart_view.dart';
 import 'package:flow_accounting/utils/colors/color_extractor.dart';
@@ -29,6 +31,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shamsi_date/shamsi_date.dart';
 
 TextEditingController creditCardBankNameController = TextEditingController();
 
@@ -69,6 +72,8 @@ class CreditCardsInputView extends StatefulWidget {
 class _CreditCardsInputViewState extends State<CreditCardsInputView> with TickerProviderStateMixin {
 
   ColorSelectorView colorSelectorView = ColorSelectorView();
+
+  ListView yearsListView = ListView();
 
   Widget chartBalanceView = const Divider(height: 1);
   List<double> listOfBalancePoint = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -133,7 +138,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
 
     colorSelectorView.inputColor = (widget.creditCardsData.colorTag == Colors.transparent.value) ? ColorsResources.primaryColor : Color(widget.creditCardsData.colorTag);
 
-    prepareChartsData();
+    yearListItem();
 
   }
 
@@ -273,6 +278,11 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                           child: creditCardWidgetItem(),
                         ),
                       ),
+                      const Divider(
+                        height: 3,
+                        color: Colors.transparent,
+                      ),
+                      yearsListView,
                       const Divider(
                         height: 3,
                         color: Colors.transparent,
@@ -1326,22 +1336,373 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
 
   }
 
-  void prepareChartsData() async {
+  void yearListItem() async {
+
+    DateTime nowTime = DateTime.now();
+    Gregorian gregorianCalendar = Gregorian(nowTime.year, nowTime.month, nowTime.day, nowTime.hour, nowTime.minute, 0, 0);
+    var iranianCalendar = gregorianCalendar.toJalali();
+
+    int yearNumber = int.parse(iranianCalendar.formatter.yyyy);
+
+    List<int> inputIntList = [];
+    inputIntList.addAll(List.generate(4, (i) => (yearNumber - 1) - i));
+    inputIntList.addAll(List.generate(4, (i) => yearNumber + i));
+    inputIntList.sort();
+
+    ScrollController scrollController = ScrollController(initialScrollOffset: (43 * 4));
+
+    yearsListView = ListView.builder(
+        padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+        physics: const BouncingScrollPhysics(),
+        itemCount: inputIntList.length,
+        controller: scrollController,
+        itemBuilder: (context, index) {
+
+          String itemData = inputIntList[index].toString();
+
+          return ClipRRect(
+            borderRadius: BorderRadius.circular(51),
+            child: Material(
+              shadowColor: Colors.transparent,
+              color: Colors.transparent,
+              child: InkWell(
+                  splashColor:
+                  ColorsResources.applicationGeeksEmpire.withOpacity(0.3),
+                  splashFactory: InkRipple.splashFactory,
+                  onTap: () {
+                    debugPrint("Selected Year: ${index}. $itemData");
+
+                    prepareChartsData(int.parse(itemData));
+
+                  },
+                  child: SizedBox(
+                      height: 43,
+                      width: 179,
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          itemData,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                              color: ColorsResources.light,
+                              fontSize: 13,
+                              letterSpacing: 1.7,
+                              shadows: [
+                                Shadow(
+                                    color: ColorsResources.white,
+                                    blurRadius: 13,
+                                    offset: Offset(0, 0))
+                              ]),
+                        ),
+                      ))),
+            ),
+          );
+        });
+
+    setState(() {
+
+      yearsListView;
+
+    });
+
+    prepareChartsData(yearNumber);
+
+  }
+
+  void prepareChartsData(int selectedYear) async {
+
+    TransactionsDatabaseQueries transactionsDatabaseQueries = TransactionsDatabaseQueries();
+
+    double monthSumOne = 0;
+    var monthOne = await transactionsDatabaseQueries.queryTransactionByCreditCard(widget.creditCardsData.cardNumber, widget.creditCardsData.cardNumber,
+        selectedYear, 1,
+        TransactionsDatabaseInputs.databaseTableName);
+    for (var element in monthOne) {
+
+      switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {
+        case StringsResources.transactionTypeReceive: {
+
+          monthSumOne += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+          break;
+        }
+        case StringsResources.transactionTypeSend: {
+
+          monthSumOne -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+          break;
+        }
+      }
+
+    }
+
+    double monthSumTwo = 0;
+    var monthTwo = await transactionsDatabaseQueries.queryTransactionByCreditCard(widget.creditCardsData.cardNumber, widget.creditCardsData.cardNumber,
+        selectedYear, 2,
+        TransactionsDatabaseInputs.databaseTableName);
+    for (var element in monthTwo) {
+
+      switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {
+        case StringsResources.transactionTypeReceive: {
+
+          monthSumTwo += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+          break;
+        }
+        case StringsResources.transactionTypeSend: {
+
+          monthSumTwo -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+          break;
+        }
+      }
+
+    }
+
+    double monthSumThree = 0;
+    var monthThree = await transactionsDatabaseQueries.queryTransactionByCreditCard(widget.creditCardsData.cardNumber, widget.creditCardsData.cardNumber,
+        selectedYear, 3,
+        TransactionsDatabaseInputs.databaseTableName);
+    for (var element in monthThree) {
+
+      switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {
+        case StringsResources.transactionTypeReceive: {
+
+          monthSumThree += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+          break;
+        }
+        case StringsResources.transactionTypeSend: {
+
+          monthSumThree -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+          break;
+        }
+      }
+
+    }
+
+    double monthSumFour = 0;
+    var monthFour = await transactionsDatabaseQueries.queryTransactionByCreditCard(widget.creditCardsData.cardNumber, widget.creditCardsData.cardNumber,
+        selectedYear, 4,
+        TransactionsDatabaseInputs.databaseTableName);
+    for (var element in monthFour) {
+
+      switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {
+        case StringsResources.transactionTypeReceive: {
+
+          monthSumFour += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+          break;
+        }
+        case StringsResources.transactionTypeSend: {
+
+          monthSumFour -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+          break;
+        }
+      }
+
+    }
+
+    double monthSumFive = 0;
+    var monthFive = await transactionsDatabaseQueries.queryTransactionByCreditCard(widget.creditCardsData.cardNumber, widget.creditCardsData.cardNumber,
+        selectedYear, 5,
+        TransactionsDatabaseInputs.databaseTableName);
+    for (var element in monthFive) {
+
+      switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {
+        case StringsResources.transactionTypeReceive: {
+
+          monthSumFive += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+          break;
+        }
+        case StringsResources.transactionTypeSend: {
+
+          monthSumFive -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+          break;
+        }
+      }
+
+    }
+
+    double monthSumSix = 0;
+    var monthSix = await transactionsDatabaseQueries.queryTransactionByCreditCard(widget.creditCardsData.cardNumber, widget.creditCardsData.cardNumber,
+        selectedYear, 6,
+        TransactionsDatabaseInputs.databaseTableName);
+    for (var element in monthSix) {
+
+      switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {
+        case StringsResources.transactionTypeReceive: {
+
+          monthSumSix += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+          break;
+        }
+        case StringsResources.transactionTypeSend: {
+
+          monthSumSix -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+          break;
+        }
+      }
+
+    }
+
+    double monthSumSeven = 0;
+    var monthSeven = await transactionsDatabaseQueries.queryTransactionByCreditCard(widget.creditCardsData.cardNumber, widget.creditCardsData.cardNumber,
+        selectedYear, 7,
+        TransactionsDatabaseInputs.databaseTableName);
+    for (var element in monthSeven) {
+
+      switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {
+        case StringsResources.transactionTypeReceive: {
+
+          monthSumSeven += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+          break;
+        }
+        case StringsResources.transactionTypeSend: {
+
+          monthSumSeven -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+          break;
+        }
+      }
+
+    }
+
+    double monthSumEight = 0;
+    var monthEight = await transactionsDatabaseQueries.queryTransactionByCreditCard(widget.creditCardsData.cardNumber, widget.creditCardsData.cardNumber,
+        selectedYear, 8,
+        TransactionsDatabaseInputs.databaseTableName);
+    for (var element in monthEight) {
+
+      switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {
+        case StringsResources.transactionTypeReceive: {
+
+          monthSumEight += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+          break;
+        }
+        case StringsResources.transactionTypeSend: {
+
+          monthSumEight -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+          break;
+        }
+      }
+
+    }
+
+    double monthSumNine = 0;
+    var monthNine = await transactionsDatabaseQueries.queryTransactionByCreditCard(widget.creditCardsData.cardNumber, widget.creditCardsData.cardNumber,
+        selectedYear, 9,
+        TransactionsDatabaseInputs.databaseTableName);
+    for (var element in monthNine) {
+
+      switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {
+        case StringsResources.transactionTypeReceive: {
+
+          monthSumNine += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+          break;
+        }
+        case StringsResources.transactionTypeSend: {
+
+          monthSumNine -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+          break;
+        }
+      }
+
+    }
+
+    double monthSumTen = 0;
+    var monthTen = await transactionsDatabaseQueries.queryTransactionByCreditCard(widget.creditCardsData.cardNumber, widget.creditCardsData.cardNumber,
+        selectedYear, 10,
+        TransactionsDatabaseInputs.databaseTableName);
+    for (var element in monthTen) {
+
+      switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {
+        case StringsResources.transactionTypeReceive: {
+
+          monthSumTen += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+          break;
+        }
+        case StringsResources.transactionTypeSend: {
+
+          monthSumTen -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+          break;
+        }
+      }
+
+    }
+
+    double monthSumEleven = 0;
+    var monthEleven = await transactionsDatabaseQueries.queryTransactionByCreditCard(widget.creditCardsData.cardNumber, widget.creditCardsData.cardNumber,
+        selectedYear, 11,
+        TransactionsDatabaseInputs.databaseTableName);
+    for (var element in monthEleven) {
+
+      switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {
+        case StringsResources.transactionTypeReceive: {
+
+          monthSumEleven += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+          break;
+        }
+        case StringsResources.transactionTypeSend: {
+
+          monthSumEleven -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+          break;
+        }
+      }
+
+    }
+
+    double monthSumTwelve = 0;
+    var monthTwelve = await transactionsDatabaseQueries.queryTransactionByCreditCard(widget.creditCardsData.cardNumber, widget.creditCardsData.cardNumber,
+        selectedYear, 12,
+        TransactionsDatabaseInputs.databaseTableName);
+    for (var element in monthTwelve) {
+
+      switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {
+        case StringsResources.transactionTypeReceive: {
+
+          monthSumTwelve += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+          break;
+        }
+        case StringsResources.transactionTypeSend: {
+
+          monthSumTwelve -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+          break;
+        }
+      }
+
+    }
 
     listOfBalancePoint.clear();
     listOfBalancePoint.addAll([
-      50,
-      100,
-      300,
-      10,
-      18,
-      91,
-      51,
-      31,
-      11,
-      88,
-      289,
-      299,
+      monthSumOne,
+      monthSumTwo,
+      monthSumThree,
+      monthSumFour,
+      monthSumFive,
+      monthSumSix,
+      monthSumSeven,
+      monthSumEight,
+      monthSumNine,
+      monthSumTen,
+      monthSumEleven,
+      monthSumTwelve,
     ]);
 
     setState(() {

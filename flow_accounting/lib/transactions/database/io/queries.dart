@@ -76,7 +76,9 @@ class TransactionsDatabaseQueries {
     return databaseContents;
   }
 
-  Future<List<Map<String, Object?>>> queryTransactionByCreditCard(String sourceCardNumber, String targetCardNumber,
+  Future<List<Map<String, Object?>>> queryTransactionByCreditCard(
+      String sourceCardNumber, String targetCardNumber,
+      int transactionYear, int transactionMonth,
       String? tableName, {String usernameId = "Unknown"}) async {
 
     final database = openDatabase(
@@ -90,8 +92,8 @@ class TransactionsDatabaseQueries {
 
     var databaseContents = await databaseInstance.query(
       tableNameQuery,
-      where: 'sourceCardNumber = ? OR targetCardNumber = ?',
-      whereArgs: [sourceCardNumber, targetCardNumber],
+      where: 'sourceCardNumber = ? OR targetCardNumber = ? AND transactionTimeYear = ? AND transactionTimeMonth = ?',
+      whereArgs: [sourceCardNumber, targetCardNumber, transactionYear, transactionMonth],
     );
 
     return databaseContents;
