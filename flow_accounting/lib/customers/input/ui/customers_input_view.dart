@@ -271,7 +271,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                         errorText: warningNotice,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.budgetNameText,
+                                        labelText: StringsResources.customerNameText,
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
@@ -295,7 +295,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                       ),
                       SizedBox(
                         width: double.infinity,
-                        height: 73,
+                        height: 133,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
@@ -309,13 +309,17 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                       controller: controllerCustomerDescription,
                                       textAlign: TextAlign.right,
                                       textDirection: TextDirection.ltr,
-                                      textAlignVertical: TextAlignVertical.bottom,
-                                      maxLines: 1,
+                                      textAlignVertical: TextAlignVertical.top,
+                                      maxLines: 5,
                                       cursorColor: ColorsResources.primaryColor,
                                       autocorrect: true,
                                       autofocus: false,
                                       keyboardType: TextInputType.text,
                                       textInputAction: TextInputAction.next,
+                                      style: const TextStyle(
+                                          fontSize: 12,
+                                          color: ColorsResources.applicationDarkGeeksEmpire
+                                      ),
                                       decoration: InputDecoration(
                                         alignLabelWithHint: true,
                                         border: const OutlineInputBorder(
@@ -361,15 +365,15 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                         errorText: warningNotice,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.budgetDescriptionText,
+                                        labelText: StringsResources.descriptionText,
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
-                                            fontSize: 17.0
+                                            fontSize: 13.0
                                         ),
-                                        hintText: StringsResources.budgetDescriptionTextHint,
+                                        hintText: StringsResources.descriptionText,
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
-                                            fontSize: 17.0
+                                            fontSize: 13.0
                                         ),
                                       ),
                                     ),
