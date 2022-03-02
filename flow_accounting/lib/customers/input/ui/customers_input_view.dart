@@ -22,10 +22,27 @@ import 'package:fluttertoast/fluttertoast.dart';
 class CustomersInputView extends StatefulWidget {
 
   CustomersData? customersData = CustomersData(
-      id: 0,
-      customerName: "",
-      customerDescription: "",
-      colorTag: ColorsResources.white.value
+    id: 0,
+
+    customerName: "",
+    customerDescription: "",
+
+    customerCountry: '',
+    customerState: '',
+    customerCity: '',
+    customerStreetAddress: '',
+
+    customerPhoneNumber: '',
+    customerEmailAddress: '',
+
+    customerAge: '',
+    customerBirthday: '',
+
+    customerJob: '',
+
+    customerMaritalStatus: '',
+
+    colorTag: ColorsResources.white.value,
   );
 
   CustomersInputView({Key? key, this.customersData}) : super(key: key);
@@ -37,10 +54,8 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
   ColorSelectorView colorSelectorView = ColorSelectorView();
 
-  TextEditingController controllerBudgetName = TextEditingController();
-  TextEditingController controllerBudgetDescription = TextEditingController();
-
-  TextEditingController controllerBudgetBalance = TextEditingController();
+  TextEditingController controllerCustomerName = TextEditingController();
+  TextEditingController controllerCustomerDescription = TextEditingController();
 
   int timeNow = DateTime.now().millisecondsSinceEpoch;
 
@@ -59,8 +74,8 @@ class _CustomersInputViewState extends State<CustomersInputView> {
   @override
   void initState(){
 
-    controllerBudgetName.text = widget.customersData?.customerName == null ? "" : (widget.customersData?.customerName)!;
-    controllerBudgetDescription.text = widget.customersData?.customerDescription == null ? "" : (widget.customersData?.customerDescription)!;
+    controllerCustomerName.text = widget.customersData?.customerName == null ? "" : (widget.customersData?.customerName)!;
+    controllerCustomerDescription.text = widget.customersData?.customerDescription == null ? "" : (widget.customersData?.customerDescription)!;
 
     super.initState();
 
@@ -171,7 +186,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: TextField(
-                                      controller: controllerBudgetName,
+                                      controller: controllerCustomerName,
                                       textAlign: TextAlign.right,
                                       textDirection: TextDirection.ltr,
                                       textAlignVertical: TextAlignVertical.bottom,
@@ -261,7 +276,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: TextField(
-                                      controller: controllerBudgetDescription,
+                                      controller: controllerCustomerDescription,
                                       textAlign: TextAlign.right,
                                       textDirection: TextDirection.ltr,
                                       textAlignVertical: TextAlignVertical.bottom,
@@ -322,96 +337,6 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                             fontSize: 17.0
                                         ),
                                         hintText: StringsResources.budgetDescriptionTextHint,
-                                        hintStyle: const TextStyle(
-                                            color: ColorsResources.darkTransparent,
-                                            fontSize: 17.0
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const Divider(
-                        height: 13,
-                        color: Colors.transparent,
-                      ),
-                      SizedBox(
-                        width: double.infinity,
-                        height: 73,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Expanded(
-                              flex: 1,
-                              child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
-                                  child: Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: TextField(
-                                      controller: controllerBudgetBalance,
-                                      textAlign: TextAlign.center,
-                                      textDirection: TextDirection.ltr,
-                                      textAlignVertical: TextAlignVertical.bottom,
-                                      maxLines: 1,
-                                      cursorColor: ColorsResources.primaryColor,
-                                      autocorrect: true,
-                                      autofocus: false,
-                                      keyboardType: TextInputType.number,
-                                      textInputAction: TextInputAction.done,
-                                      decoration: InputDecoration(
-                                        alignLabelWithHint: true,
-                                        border: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        enabledBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        focusedBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        errorBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.red, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        errorText: warningNotice,
-                                        filled: true,
-                                        fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.budgetInitialTextHint,
-                                        labelStyle: const TextStyle(
-                                            color: ColorsResources.dark,
-                                            fontSize: 17.0
-                                        ),
-                                        hintText: StringsResources.budgetInitialTextHint,
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
@@ -516,7 +441,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
                             bool noError = true;
 
-                            if (controllerBudgetName.text.isEmpty) {
+                            if (controllerCustomerName.text.isEmpty) {
 
                               setState(() {
 
@@ -528,19 +453,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
                             }
 
-                            if (controllerBudgetDescription.text.isEmpty) {
-
-                              setState(() {
-
-                                warningNotice = StringsResources.errorText;
-
-                              });
-
-                              noError = false;
-
-                            }
-
-                            if (controllerBudgetBalance.text.isEmpty) {
+                            if (controllerCustomerDescription.text.isEmpty) {
 
                               setState(() {
 
@@ -569,10 +482,8 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                               BudgetsData transactionData = BudgetsData(
                                   id: timeNow,
 
-                                  budgetName: controllerBudgetName.text,
-                                  budgetDescription: controllerBudgetDescription.text,
-
-                                  budgetBalance: controllerBudgetBalance.text,
+                                  budgetName: controllerCustomerName.text,
+                                  budgetDescription: controllerCustomerDescription.text,
 
                                   colorTag: colorSelectorView.selectedColor.value
                               );
