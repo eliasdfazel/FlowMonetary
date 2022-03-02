@@ -64,6 +64,8 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
 
     controllerBudgetBalance.text = widget.budgetsData?.budgetBalance == null ? "0" : (widget.budgetsData?.budgetBalance)!;
 
+    colorSelectorView.inputColor = Color(widget.budgetsData?.colorTag ?? Colors.white.value);
+
     super.initState();
 
     BackButtonInterceptor.add(aInterceptor);

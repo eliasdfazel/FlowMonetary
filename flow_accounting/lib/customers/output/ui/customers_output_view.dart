@@ -1,3 +1,12 @@
+/*
+ * Copyright © 2022 By Geeks Empire.
+ *
+ * Created by Elias Fazel
+ * Last modified 3/2/22, 10:04 AM
+ *
+ * Licensed Under MIT License.
+ * https://opensource.org/licenses/MIT
+ */
 
 import 'package:blur/blur.dart';
 import 'package:flow_accounting/budgets/database/io/inputs.dart';
@@ -13,13 +22,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:marquee/marquee.dart';
 
-class BudgetsOutputView extends StatefulWidget {
-  const BudgetsOutputView({Key? key}) : super(key: key);
+class CustomersOutputView extends StatefulWidget {
+  const CustomersOutputView({Key? key}) : super(key: key);
 
   @override
-  _BudgetOutputViewState createState() => _BudgetOutputViewState();
+  _CustomersOutputViewState createState() => _CustomersOutputViewState();
 }
-class _BudgetOutputViewState extends State<BudgetsOutputView> {
+class _CustomersOutputViewState extends State<CustomersOutputView> {
 
   ColorSelectorView colorSelectorView = ColorSelectorView();
 
@@ -38,7 +47,7 @@ class _BudgetOutputViewState extends State<BudgetsOutputView> {
   @override
   void initState() {
 
-    retrieveAllBudgets(context);
+    retrieveAllCustomers(context);
 
     super.initState();
   }
@@ -185,7 +194,7 @@ class _BudgetOutputViewState extends State<BudgetsOutputView> {
                                     InkWell(
                                       onTap: () {
 
-                                        sortBudgetsByBalance(context, allBudgets);
+                                        sortCustomersByAge(context, allBudgets);
 
                                       },
                                       child: const SizedBox(
@@ -239,7 +248,7 @@ class _BudgetOutputViewState extends State<BudgetsOutputView> {
                                     child: InkWell(
                                       onTap: () {
 
-                                        retrieveAllBudgets(context);
+                                        retrieveAllCustomers(context);
 
                                       },
                                       child: const Icon(
@@ -280,7 +289,7 @@ class _BudgetOutputViewState extends State<BudgetsOutputView> {
 
                                     String searchQuery = textEditorControllerQuery.text;
 
-                                    searchBudgets(context, allBudgets, searchQuery);
+                                    searchCustomers(context, allBudgets, searchQuery);
 
                                   },
                                   child: const SizedBox(
@@ -314,7 +323,7 @@ class _BudgetOutputViewState extends State<BudgetsOutputView> {
                                         textInputAction: TextInputAction.search,
                                         onSubmitted: (searchQuery) {
 
-                                          searchBudgets(context, allBudgets, searchQuery);
+                                          searchCustomers(context, allBudgets, searchQuery);
 
                                         },
                                         decoration: const InputDecoration(
@@ -386,235 +395,235 @@ class _BudgetOutputViewState extends State<BudgetsOutputView> {
     Color budgetColorTag = Color(budgetsData.colorTag);
 
     return Slidable(
-      closeOnScroll: true,
-      endActionPane: ActionPane(
-        motion: const DrawerMotion(),
-        children: [
-          SlidableAction(
-            flex: 1,
-            onPressed: (BuildContext context) {
+        closeOnScroll: true,
+        endActionPane: ActionPane(
+          motion: const DrawerMotion(),
+          children: [
+            SlidableAction(
+              flex: 1,
+              onPressed: (BuildContext context) {
 
-              deleteBudget(context, budgetsData);
+                deleteCustomer(context, budgetsData);
 
-            },
-            backgroundColor: Colors.transparent,
-            foregroundColor: ColorsResources.gameGeeksEmpire,
-            icon: Icons.delete_rounded,
-            label: StringsResources.deleteText,
-            autoClose: true,
-          ),
-          SlidableAction(
-            flex: 1,
-            onPressed: (BuildContext context) {
+              },
+              backgroundColor: Colors.transparent,
+              foregroundColor: ColorsResources.gameGeeksEmpire,
+              icon: Icons.delete_rounded,
+              label: StringsResources.deleteText,
+              autoClose: true,
+            ),
+            SlidableAction(
+              flex: 1,
+              onPressed: (BuildContext context) {
 
-              editBudget(context, budgetsData);
+                editCustomer(context, budgetsData);
 
-            },
-            backgroundColor: Colors.transparent,
-            foregroundColor: ColorsResources.applicationGeeksEmpire,
-            icon: Icons.edit_rounded,
-            label: StringsResources.editText,
-            autoClose: true,
-          ),
-        ],
-      ),
-      startActionPane: ActionPane(
-        motion: const DrawerMotion(),
-        children: [
-          SlidableAction(
-            flex: 1,
-            onPressed: (BuildContext context) {
+              },
+              backgroundColor: Colors.transparent,
+              foregroundColor: ColorsResources.applicationGeeksEmpire,
+              icon: Icons.edit_rounded,
+              label: StringsResources.editText,
+              autoClose: true,
+            ),
+          ],
+        ),
+        startActionPane: ActionPane(
+          motion: const DrawerMotion(),
+          children: [
+            SlidableAction(
+              flex: 1,
+              onPressed: (BuildContext context) {
 
-              NavigationProcess().goTo(context, TransactionsOutputView(initialSearchQuery: budgetName));
+                NavigationProcess().goTo(context, TransactionsOutputView(initialSearchQuery: budgetName));
 
-            },
-            backgroundColor: Colors.transparent,
-            foregroundColor: ColorsResources.greenGray,
-            icon: Icons.money_rounded,
-            label: StringsResources.transactionAll,
-            autoClose: true,
-          ),
-        ],
-      ),
-      child: Padding(
-        padding: const  EdgeInsets.fromLTRB(13, 7, 13, 13),
-        child: PhysicalModel(
-          color: ColorsResources.light,
-          elevation: 7,
-          shadowColor: budgetColorTag.withOpacity(0.79),
-          shape: BoxShape.rectangle,
-          borderRadius: const BorderRadius.all(Radius.circular(17)),
-          child: InkWell(
-            onTap: () {
+              },
+              backgroundColor: Colors.transparent,
+              foregroundColor: ColorsResources.greenGray,
+              icon: Icons.money_rounded,
+              label: StringsResources.transactionAll,
+              autoClose: true,
+            ),
+          ],
+        ),
+        child: Padding(
+          padding: const  EdgeInsets.fromLTRB(13, 7, 13, 13),
+          child: PhysicalModel(
+            color: ColorsResources.light,
+            elevation: 7,
+            shadowColor: budgetColorTag.withOpacity(0.79),
+            shape: BoxShape.rectangle,
+            borderRadius: const BorderRadius.all(Radius.circular(17)),
+            child: InkWell(
+              onTap: () {
 
-              editBudget(context, budgetsData);
+                editCustomer(context, budgetsData);
 
-            },
-            child: Container(
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(17),
-                    topRight: Radius.circular(17),
-                    bottomLeft: Radius.circular(17),
-                    bottomRight: Radius.circular(17)
+              },
+              child: Container(
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(17),
+                      topRight: Radius.circular(17),
+                      bottomLeft: Radius.circular(17),
+                      bottomRight: Radius.circular(17)
+                  ),
+                  gradient: LinearGradient(
+                      colors: [
+                        ColorsResources.white,
+                        ColorsResources.light,
+                      ],
+                      begin: FractionalOffset(0.0, 0.0),
+                      end: FractionalOffset(1.0, 0.0),
+                      stops: [0.0, 1.0],
+                      transform: GradientRotation(45),
+                      tileMode: TileMode.clamp
+                  ),
                 ),
-                gradient: LinearGradient(
-                    colors: [
-                      ColorsResources.white,
-                      ColorsResources.light,
-                    ],
-                    begin: FractionalOffset(0.0, 0.0),
-                    end: FractionalOffset(1.0, 0.0),
-                    stops: [0.0, 1.0],
-                    transform: GradientRotation(45),
-                    tileMode: TileMode.clamp
-                ),
-              ),
-              child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                  child: Stack(
-                    children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          SizedBox(
-                            height: 59,
-                            width: double.infinity,
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(27, 11, 13, 0),
-                              child: Align(
-                                  alignment: Alignment.center,
-                                  child: Marquee(
-                                    text: budgetBalance,
-                                    style: const TextStyle(
-                                      color: ColorsResources.dark,
-                                      fontSize: 31,
-                                      fontFamily: "Numbers",
-                                    ),
-                                    scrollAxis: Axis.horizontal,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    blankSpace: 199.0,
-                                    velocity: 37.0,
-                                    fadingEdgeStartFraction: 0.13,
-                                    fadingEdgeEndFraction: 0.13,
-                                    startAfter: const Duration(milliseconds: 777),
-                                    numberOfRounds: 3,
-                                    pauseAfterRound: const Duration(milliseconds: 500),
-                                    showFadingOnlyWhenScrolling: true,
-                                    startPadding: 13.0,
-                                    accelerationDuration: const Duration(milliseconds: 500),
-                                    accelerationCurve: Curves.linear,
-                                    decelerationDuration: const Duration(milliseconds: 500),
-                                    decelerationCurve: Curves.easeOut,
-                                  )
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                              height: 39,
+                child: Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                    child: Stack(
+                      children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            SizedBox(
+                              height: 59,
                               width: double.infinity,
                               child: Padding(
-                                padding: const EdgeInsets.fromLTRB(19, 11, 19, 0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Expanded(
-                                      flex: 1,
-                                      child: Directionality(
-                                        textDirection: TextDirection.rtl,
-                                        child: Align(
-                                          alignment: Alignment.centerRight,
-                                          child: Text(
-                                            budgetName,
-                                            style: const TextStyle(
-                                              color: ColorsResources.dark,
-                                              fontSize: 19,
+                                padding: const EdgeInsets.fromLTRB(27, 11, 13, 0),
+                                child: Align(
+                                    alignment: Alignment.center,
+                                    child: Marquee(
+                                      text: budgetBalance,
+                                      style: const TextStyle(
+                                        color: ColorsResources.dark,
+                                        fontSize: 31,
+                                        fontFamily: "Numbers",
+                                      ),
+                                      scrollAxis: Axis.horizontal,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      blankSpace: 199.0,
+                                      velocity: 37.0,
+                                      fadingEdgeStartFraction: 0.13,
+                                      fadingEdgeEndFraction: 0.13,
+                                      startAfter: const Duration(milliseconds: 777),
+                                      numberOfRounds: 3,
+                                      pauseAfterRound: const Duration(milliseconds: 500),
+                                      showFadingOnlyWhenScrolling: true,
+                                      startPadding: 13.0,
+                                      accelerationDuration: const Duration(milliseconds: 500),
+                                      accelerationCurve: Curves.linear,
+                                      decelerationDuration: const Duration(milliseconds: 500),
+                                      decelerationCurve: Curves.easeOut,
+                                    )
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                                height: 39,
+                                width: double.infinity,
+                                child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(19, 11, 19, 0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Expanded(
+                                        flex: 1,
+                                        child: Directionality(
+                                          textDirection: TextDirection.rtl,
+                                          child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: Text(
+                                              budgetName,
+                                              style: const TextStyle(
+                                                color: ColorsResources.dark,
+                                                fontSize: 19,
+                                              ),
                                             ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              )
-                          ),
-                          SizedBox(
-                            height: 51,
-                            width: double.infinity,
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
-                              child: Container(
-                                color: Colors.transparent,
-                                child: Align(
-                                  alignment: Alignment.centerRight,
-                                  child: Text(
-                                    budgetDescription,
-                                    textAlign: TextAlign.right,
-                                    style: TextStyle(
-                                        color: ColorsResources.dark.withOpacity(0.537),
-                                        fontSize: 15
+                                    ],
+                                  ),
+                                )
+                            ),
+                            SizedBox(
+                              height: 51,
+                              width: double.infinity,
+                              child: Padding(
+                                padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
+                                child: Container(
+                                  color: Colors.transparent,
+                                  child: Align(
+                                    alignment: Alignment.centerRight,
+                                    child: Text(
+                                      budgetDescription,
+                                      textAlign: TextAlign.right,
+                                      style: TextStyle(
+                                          color: ColorsResources.dark.withOpacity(0.537),
+                                          fontSize: 15
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
-                            ),
-                          )
-                        ],
-                      ),
-                      Positioned(
-                        left: 0,
-                        bottom: 0,
-                        child: RotatedBox(
-                          quarterTurns: 3,
-                          child: SizedBox(
-                            height: 27,
-                            width: 79,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(17),
-                                    topRight: Radius.circular(0),
-                                    bottomLeft: Radius.circular(0),
-                                    bottomRight: Radius.circular(17)
-                                ),
-                                gradient: LinearGradient(
-                                    colors: [
-                                      budgetColorTag.withOpacity(0.7),
-                                      ColorsResources.light,
-                                    ],
-                                    begin: const FractionalOffset(0.0, 0.0),
-                                    end: const FractionalOffset(1.0, 0.0),
-                                    stops: const [0.0, 1.0],
-                                    transform: const GradientRotation(45),
-                                    tileMode: TileMode.clamp
+                            )
+                          ],
+                        ),
+                        Positioned(
+                          left: 0,
+                          bottom: 0,
+                          child: RotatedBox(
+                            quarterTurns: 3,
+                            child: SizedBox(
+                              height: 27,
+                              width: 79,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(17),
+                                      topRight: Radius.circular(0),
+                                      bottomLeft: Radius.circular(0),
+                                      bottomRight: Radius.circular(17)
+                                  ),
+                                  gradient: LinearGradient(
+                                      colors: [
+                                        budgetColorTag.withOpacity(0.7),
+                                        ColorsResources.light,
+                                      ],
+                                      begin: const FractionalOffset(0.0, 0.0),
+                                      end: const FractionalOffset(1.0, 0.0),
+                                      stops: const [0.0, 1.0],
+                                      transform: const GradientRotation(45),
+                                      tileMode: TileMode.clamp
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                      )
-                    ],
-                  )
+                        )
+                      ],
+                    )
+                ),
               ),
             ),
           ),
-        ),
-      )
+        )
     );
 
   }
 
-  void deleteBudget(BuildContext context, BudgetsData budgetsData) async {
+  void deleteCustomer(BuildContext context, BudgetsData budgetsData) async {
 
     var databaseQueries = BudgetsDatabaseQueries();
 
     databaseQueries.queryDeleteBudget(budgetsData.id, BudgetsDatabaseInputs.databaseTableName);
 
-    retrieveAllBudgets(context);
+    retrieveAllCustomers(context);
 
   }
 
-  void editBudget(BuildContext context, BudgetsData budgetsData) async {
+  void editCustomer(BuildContext context, BudgetsData budgetsData) async {
 
     bool budgetDataUpdated = await Navigator.push(
       context,
@@ -624,13 +633,13 @@ class _BudgetOutputViewState extends State<BudgetsOutputView> {
     debugPrint("Budget Data Update => ${budgetDataUpdated}");
     if (budgetDataUpdated) {
 
-      retrieveAllBudgets(context);
+      retrieveAllCustomers(context);
 
     }
 
   }
 
-  void retrieveAllBudgets(BuildContext context) async {
+  void retrieveAllCustomers(BuildContext context) async {
 
     if (allBudgetsItems.isNotEmpty) {
 
@@ -660,7 +669,7 @@ class _BudgetOutputViewState extends State<BudgetsOutputView> {
 
   }
 
-  void sortBudgetsByBalance(BuildContext context, List<BudgetsData> inputBudgetsList) {
+  void sortCustomersByAge(BuildContext context, List<BudgetsData> inputBudgetsList) {
 
     if (allBudgetsItems.isNotEmpty) {
 
@@ -716,7 +725,7 @@ class _BudgetOutputViewState extends State<BudgetsOutputView> {
 
   }
 
-  void searchBudgets(BuildContext context,
+  void searchCustomers(BuildContext context,
       List<BudgetsData> inputBudgetsList, String searchQuery) {
 
     List<BudgetsData> searchResult = [];

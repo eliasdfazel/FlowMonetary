@@ -12,6 +12,7 @@ import 'package:collection/collection.dart';
 import 'package:flow_accounting/budgets/input/ui/budgets_input_view.dart';
 import 'package:flow_accounting/budgets/output/ui/budgets_output_view.dart';
 import 'package:flow_accounting/customers/input/ui/customers_input_view.dart';
+import 'package:flow_accounting/customers/output/ui/customers_output_view.dart';
 import 'package:flow_accounting/home/interface/dashboard.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
@@ -44,7 +45,6 @@ class FeaturesOptionsView extends StatefulWidget {
   @override
   State<FeaturesOptionsView> createState() => StateFeaturesOptionsView();
 }
-
 class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
   List<FeaturesStructure> allFeaturesStructureUntouch = [];
 
@@ -168,7 +168,7 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
         featuresTitle: StringsResources.featureCustomersTitle,
         featuresDescription: StringsResources.featureCustomersDescription,
         featureViewToSubmitData: CustomersInputView(),
-        featureToPresentData: null));
+        featureToPresentData: const CustomersOutputView()));
     allFeaturesStructure.add(FeaturesStructure(
         featureColor: ColorsResources.lightestYellow,
         importantFeature: false,
@@ -331,7 +331,7 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
                 topRight: Radius.circular(13),
                 bottomLeft: Radius.circular(13),
                 bottomRight: Radius.circular(13)),
-            color: backgroundColor.withOpacity(0.53),
+            color: backgroundColor.withOpacity(0.51),
             boxShadow: [
               BoxShadow(
                 color: ColorsResources.dark.withOpacity(0.3),

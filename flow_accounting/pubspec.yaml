@@ -54,6 +54,7 @@ dependencies:
   cached_network_image: ^3.2.0
   back_button_interceptor: ^5.0.2
   fl_chart: ^0.45.0
+  image_picker: ^0.8.4+10
 
 dev_dependencies:
   flutter_test:
@@ -91,6 +92,7 @@ flutter:
     - instagram_icon.png
     - search_shape.png
     - coins_icon.png
+    - unknown_user.png
 
   fonts:
     - family: Sans

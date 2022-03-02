@@ -19,6 +19,7 @@ import 'package:flow_accounting/utils/calendar/ui/calendar_view.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:image_picker/image_picker.dart';
 
 class CustomersInputView extends StatefulWidget {
 
@@ -67,7 +68,6 @@ class _CustomersInputViewState extends State<CustomersInputView> {
   TextEditingController controllerCustomerEmailAddress = TextEditingController();
 
   TextEditingController controllerCustomerAge = TextEditingController();
-  TextEditingController controllerCustomerBirthday = TextEditingController();
 
   TextEditingController controllerCustomerJob = TextEditingController();
 
@@ -101,11 +101,14 @@ class _CustomersInputViewState extends State<CustomersInputView> {
     controllerCustomerEmailAddress.text = widget.customersData?.customerEmailAddress == null ? "" : (widget.customersData?.customerEmailAddress)!;
 
     controllerCustomerAge.text = widget.customersData?.customerAge == null ? "" : (widget.customersData?.customerAge)!;
-    controllerCustomerBirthday.text = widget.customersData?.customerBirthday == null ? "" : (widget.customersData?.customerBirthday)!;
-
+    
     controllerCustomerJob.text = widget.customersData?.customerJob == null ? "" : (widget.customersData?.customerJob)!;
 
     controllerCustomerMaritalStatus.text = widget.customersData?.customerMaritalStatus == null ? "" : (widget.customersData?.customerMaritalStatus)!;
+
+    colorSelectorView.inputColor = Color(widget.customersData?.colorTag ?? Colors.white.value);
+
+    calendarView.inputDateTime = widget.customersData?.customerBirthday ?? "";
 
     super.initState();
 
@@ -205,81 +208,116 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                       ),
                       SizedBox(
                         width: double.infinity,
-                        height: 73,
+                        height: 113,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Expanded(
-                              flex: 1,
+                              flex: 7,
+                              child: Padding(
+                                padding: const EdgeInsets.fromLTRB(13, 0, 0, 0),
+                                child: AspectRatio(
+                                  aspectRatio: 1,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(51),
+                                    child: ColoredBox(
+                                      color: colorSelectorView.selectedColor,
+                                      child: Padding(
+                                        padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
+                                        child: InkWell(
+                                          onTap: () {
+
+                                            invokeImagePicker();
+
+                                          },
+                                          child: const Image(
+                                            image: AssetImage("unknown_user.png"),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              flex: 17,
                               child: Padding(
                                   padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
-                                  child: Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: TextField(
-                                      controller: controllerCustomerName,
-                                      textAlign: TextAlign.right,
-                                      textDirection: TextDirection.ltr,
-                                      textAlignVertical: TextAlignVertical.bottom,
-                                      maxLines: 1,
-                                      cursorColor: ColorsResources.primaryColor,
-                                      autocorrect: true,
-                                      autofocus: false,
-                                      keyboardType: TextInputType.text,
-                                      textInputAction: TextInputAction.next,
-                                      decoration: InputDecoration(
-                                        alignLabelWithHint: true,
-                                        border: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
+                                  child: Align(
+                                    alignment: Alignment.center,
+                                    child: SizedBox(
+                                      width: double.infinity,
+                                      height: 73,
+                                      child: Directionality(
+                                        textDirection: TextDirection.rtl,
+                                        child: TextField(
+                                          controller: controllerCustomerName,
+                                          textAlign: TextAlign.right,
+                                          textDirection: TextDirection.ltr,
+                                          textAlignVertical: TextAlignVertical.bottom,
+                                          maxLines: 1,
+                                          cursorColor: ColorsResources.primaryColor,
+                                          autocorrect: true,
+                                          autofocus: false,
+                                          keyboardType: TextInputType.text,
+                                          textInputAction: TextInputAction.next,
+                                          decoration: InputDecoration(
+                                            alignLabelWithHint: true,
+                                            border: const OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
+                                                    bottomRight: Radius.circular(13)
+                                                ),
+                                                gapPadding: 5
                                             ),
-                                            gapPadding: 5
-                                        ),
-                                        enabledBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
+                                            enabledBorder: const OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
+                                                    bottomRight: Radius.circular(13)
+                                                ),
+                                                gapPadding: 5
                                             ),
-                                            gapPadding: 5
-                                        ),
-                                        focusedBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
+                                            focusedBorder: const OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
+                                                    bottomRight: Radius.circular(13)
+                                                ),
+                                                gapPadding: 5
                                             ),
-                                            gapPadding: 5
-                                        ),
-                                        errorBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.red, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
+                                            errorBorder: const OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.red, width: 1.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
+                                                    bottomRight: Radius.circular(13)
+                                                ),
+                                                gapPadding: 5
                                             ),
-                                            gapPadding: 5
-                                        ),
-                                        errorText: warningNotice,
-                                        filled: true,
-                                        fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.customerNameText,
-                                        labelStyle: const TextStyle(
-                                            color: ColorsResources.dark,
-                                            fontSize: 17.0
-                                        ),
-                                        hintText: StringsResources.customerNameTextHint,
-                                        hintStyle: const TextStyle(
-                                            color: ColorsResources.darkTransparent,
-                                            fontSize: 17.0
+                                            errorText: warningNotice,
+                                            filled: true,
+                                            fillColor: ColorsResources.lightTransparent,
+                                            labelText: StringsResources.customerNameText,
+                                            labelStyle: const TextStyle(
+                                                color: ColorsResources.dark,
+                                                fontSize: 17.0
+                                            ),
+                                            hintText: StringsResources.customerNameTextHint,
+                                            hintStyle: const TextStyle(
+                                                color: ColorsResources.darkTransparent,
+                                                fontSize: 17.0
+                                            ),
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -1318,19 +1356,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                               noError = false;
 
                             }
-
-                            if (controllerCustomerBirthday.text.isEmpty) {
-
-                              setState(() {
-
-                                warningNotice = StringsResources.errorText;
-
-                              });
-
-                              noError = false;
-
-                            }
-
+                            
                             if (controllerCustomerJob.text.isEmpty) {
 
                               setState(() {
@@ -1515,6 +1541,14 @@ class _CustomersInputViewState extends State<CustomersInputView> {
         ),
       ),
     );
+  }
+
+  void invokeImagePicker() async {
+
+    final ImagePicker imagePicker = ImagePicker();
+
+    final XFile? selectedImage = await imagePicker.pickImage(source: ImageSource.gallery);
+
   }
 
 }
