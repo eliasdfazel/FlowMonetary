@@ -74,7 +74,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
   int timeNow = DateTime.now().millisecondsSinceEpoch;
 
-  bool budgetDataUpdated = false;
+  bool customerDataUpdated = false;
 
   String? warningNotice;
 
@@ -115,7 +115,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
   bool aInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
 
-    Navigator.pop(context, budgetDataUpdated);
+    Navigator.pop(context, customerDataUpdated);
 
     return true;
   }
@@ -431,7 +431,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                     child:  InkWell(
                       onTap: () {
 
-                        Navigator.pop(context, budgetDataUpdated);
+                        Navigator.pop(context, customerDataUpdated);
 
                       },
                       child: Container(
@@ -557,7 +557,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                   fontSize: 16.0
                               );
 
-                              budgetDataUpdated = true;
+                              customerDataUpdated = true;
 
                             }
 
