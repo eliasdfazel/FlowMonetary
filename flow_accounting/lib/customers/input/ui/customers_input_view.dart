@@ -1247,6 +1247,114 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
                             }
 
+                            if (controllerCustomerCountry.text.isEmpty) {
+
+                              setState(() {
+
+                                warningNotice = StringsResources.errorText;
+
+                              });
+
+                              noError = false;
+
+                            }
+
+                            if (controllerCustomerCity.text.isEmpty) {
+
+                              setState(() {
+
+                                warningNotice = StringsResources.errorText;
+
+                              });
+
+                              noError = false;
+
+                            }
+
+                            if (controllerCustomerStreetAddress.text.isEmpty) {
+
+                              setState(() {
+
+                                warningNotice = StringsResources.errorText;
+
+                              });
+
+                              noError = false;
+
+                            }
+
+                            if (controllerCustomerPhoneNumber.text.isEmpty) {
+
+                              setState(() {
+
+                                warningNotice = StringsResources.errorText;
+
+                              });
+
+                              noError = false;
+
+                            }
+
+                            if (controllerCustomerEmailAddress.text.isEmpty) {
+
+                              setState(() {
+
+                                warningNotice = StringsResources.errorText;
+
+                              });
+
+                              noError = false;
+
+                            }
+
+                            if (controllerCustomerAge.text.isEmpty) {
+
+                              setState(() {
+
+                                warningNotice = StringsResources.errorText;
+
+                              });
+
+                              noError = false;
+
+                            }
+
+                            if (controllerCustomerBirthday.text.isEmpty) {
+
+                              setState(() {
+
+                                warningNotice = StringsResources.errorText;
+
+                              });
+
+                              noError = false;
+
+                            }
+
+                            if (controllerCustomerJob.text.isEmpty) {
+
+                              setState(() {
+
+                                warningNotice = StringsResources.errorText;
+
+                              });
+
+                              noError = false;
+
+                            }
+
+                            if (controllerCustomerMaritalStatus.text.isEmpty) {
+
+                              setState(() {
+
+                                warningNotice = StringsResources.errorText;
+
+                              });
+
+                              noError = false;
+
+                            }
+
                             if (noError) {
 
                               if (widget.customersData != null) {
