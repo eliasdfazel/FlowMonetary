@@ -1549,6 +1549,8 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
     final XFile? selectedImage = await imagePicker.pickImage(source: ImageSource.gallery);
 
+    // selectedImage.path
+
   }
 
 }
