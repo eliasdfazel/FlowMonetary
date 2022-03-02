@@ -57,6 +57,21 @@ class _CustomersInputViewState extends State<CustomersInputView> {
   TextEditingController controllerCustomerName = TextEditingController();
   TextEditingController controllerCustomerDescription = TextEditingController();
 
+  TextEditingController controllerCustomerCountry = TextEditingController();
+  TextEditingController controllerCustomerState = TextEditingController();
+  TextEditingController controllerCustomerCity = TextEditingController();
+  TextEditingController controllerCustomerStreetAddress = TextEditingController();
+
+  TextEditingController controllerCustomerPhoneNumber = TextEditingController();
+  TextEditingController controllerCustomerEmailAddress = TextEditingController();
+
+  TextEditingController controllerCustomerAge = TextEditingController();
+  TextEditingController controllerCustomerBirthday = TextEditingController();
+
+  TextEditingController controllerCustomerJob = TextEditingController();
+
+  TextEditingController controllerCustomerMaritalStatus = TextEditingController();
+
   int timeNow = DateTime.now().millisecondsSinceEpoch;
 
   bool budgetDataUpdated = false;
@@ -76,6 +91,21 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
     controllerCustomerName.text = widget.customersData?.customerName == null ? "" : (widget.customersData?.customerName)!;
     controllerCustomerDescription.text = widget.customersData?.customerDescription == null ? "" : (widget.customersData?.customerDescription)!;
+
+    controllerCustomerCountry.text = widget.customersData?.customerCountry == null ? "" : (widget.customersData?.customerCountry)!;
+    controllerCustomerState.text = widget.customersData?.customerState == null ? "" : (widget.customersData?.customerState)!;
+    controllerCustomerCity.text = widget.customersData?.customerCity == null ? "" : (widget.customersData?.customerCity)!;
+    controllerCustomerStreetAddress.text = widget.customersData?.customerStreetAddress == null ? "" : (widget.customersData?.customerStreetAddress)!;
+
+    controllerCustomerPhoneNumber.text = widget.customersData?.customerPhoneNumber == null ? "" : (widget.customersData?.customerPhoneNumber)!;
+    controllerCustomerEmailAddress.text = widget.customersData?.customerEmailAddress == null ? "" : (widget.customersData?.customerEmailAddress)!;
+
+    controllerCustomerAge.text = widget.customersData?.customerAge == null ? "" : (widget.customersData?.customerAge)!;
+    controllerCustomerBirthday.text = widget.customersData?.customerBirthday == null ? "" : (widget.customersData?.customerBirthday)!;
+
+    controllerCustomerJob.text = widget.customersData?.customerJob == null ? "" : (widget.customersData?.customerJob)!;
+
+    controllerCustomerMaritalStatus.text = widget.customersData?.customerMaritalStatus == null ? "" : (widget.customersData?.customerMaritalStatus)!;
 
     super.initState();
 
@@ -482,23 +512,23 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                               CustomersData transactionData = CustomersData(
                                   id: timeNow,
 
-                                  customerName: "",
-                                  customerDescription: "",
+                                  customerName: controllerCustomerName.text,
+                                  customerDescription: controllerCustomerDescription.text,
 
-                                  customerCountry: "",
-                                  customerState: "",
-                                  customerCity: "",
-                                  customerStreetAddress: "",
+                                  customerCountry: controllerCustomerCountry.text,
+                                  customerState: controllerCustomerState.text,
+                                  customerCity: controllerCustomerCity.text,
+                                  customerStreetAddress: controllerCustomerStreetAddress.text,
 
-                                  customerPhoneNumber: "",
-                                  customerEmailAddress: "",
+                                  customerPhoneNumber: controllerCustomerPhoneNumber.text,
+                                  customerEmailAddress: controllerCustomerEmailAddress.text,
 
-                                  customerAge: "",
-                                  customerBirthday: "",
+                                  customerAge: controllerCustomerAge.text,
+                                  customerBirthday: controllerCustomerBirthday.text,
 
-                                  customerJob: "",
+                                  customerJob: controllerCustomerJob.text,
 
-                                  customerMaritalStatus: '',
+                                  customerMaritalStatus: controllerCustomerMaritalStatus.text,
 
                                   colorTag: colorSelectorView.selectedColor.value
                               );
