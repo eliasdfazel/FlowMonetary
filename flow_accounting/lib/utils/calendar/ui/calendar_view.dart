@@ -17,13 +17,13 @@ import 'package:shamsi_date/shamsi_date.dart';
 
 class CalendarView extends StatefulWidget {
 
+  String? pickedDataTimeText;
+
+  CalendarView({Key? key, this.pickedDataTimeText = StringsResources.transactionTime}) : super(key: key);
+
   String? inputDateTime;
 
-  CalendarView({Key? key}) : super(key: key);
-
   DateTime pickedDateTime = DateTime.now();
-
-  String pickedDataTimeText = StringsResources.transactionTime;
 
   String pickedDataTimeYear = "0";
   String pickedDataTimeMonth = "0";
@@ -128,7 +128,7 @@ class _CalendarView extends State<CalendarView> {
               child: Directionality(
                 textDirection: TextDirection.rtl,
                 child: Text(
-                  widget.pickedDataTimeText,
+                  "${widget.pickedDataTimeText}",
                   style: const TextStyle(
                     color: ColorsResources.dark,
                   ),
