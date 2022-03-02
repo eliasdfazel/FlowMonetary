@@ -91,7 +91,7 @@ class StringsResources {
 
   static const String customerCountryText = "کشور";
   static const String customerCityText = "شهر";
-  static const String customerStreetAddressText = "ادرس پستی";
+  static const String customerStreetAddressText = "ادرس";
   static const String customerStreetAddressTextHint = "ادرس دقیق پستی را وارد کنید";
 
   static const String sortHint = "مرتب سازی";
