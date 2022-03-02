@@ -97,6 +97,12 @@ class StringsResources {
   static const String customerAgeText = "سن";
   static const String customerBirthdayText = "تاریخ تولد";
 
+  static const String customerPhoneNumberText = "شماره تلفن";
+  static const String customerPhoneNumberTextHint = "شماره تلفن همراه یا ثابت";
+
+  static const String customerEmailAddressText = "آدرس اینترنتی";
+  static const String customerEmailAddressTextHint = "آدرس ایمیل یا اینستاگرام مشتری";
+
   static const String sortHint = "مرتب سازی";
   static const String sortTimeNew = "بر اساس: زمان جدید";
   static const String sortTimeOld = "بر اساس: زمان گذشته";
