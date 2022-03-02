@@ -8,3 +8,8 @@
  * https://opensource.org/licenses/MIT
  */
 
+class CustomersDatabaseQueries {
+
+
+
+}
