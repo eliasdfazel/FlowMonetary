@@ -17,6 +17,21 @@ class CustomersData {
   final String customerName;
   final String customerDescription;
 
+  final String customerCountry;
+  final String customerState;
+  final String customerCity;
+  final String customerStreetAddress;
+
+  final String customerPhoneNumber;
+  final String customerEmailAddress;
+
+  final String customerAge;
+  final String customerBirthday;
+
+  final String customerJob;
+
+  final String customerMaritalStatus;
+
   int colorTag = ColorsResources.dark.value;
 
   CustomersData({
@@ -24,6 +39,21 @@ class CustomersData {
 
     required this.customerName,
     required this.customerDescription,
+
+    required this.customerCountry,
+    required this.customerState,
+    required this.customerCity,
+    required this.customerStreetAddress,
+
+    required this.customerPhoneNumber,
+    required this.customerEmailAddress,
+
+    required this.customerAge,
+    required this.customerBirthday,
+
+    required this.customerJob,
+
+    required this.customerMaritalStatus,
 
     required this.colorTag,
   });
@@ -34,6 +64,21 @@ class CustomersData {
 
       'budgetName': customerName,
       'budgetDescription': customerDescription,
+
+      'customerCountry': customerCountry,
+      'customerState': customerState,
+      'customerCity': customerCity,
+      'customerStreetAddress': customerStreetAddress,
+
+      'customerPhoneNumber': customerPhoneNumber,
+      'customerEmailAddress': customerEmailAddress,
+
+      'customerAge': customerAge,
+      'customerBirthday': customerBirthday,
+
+      'customerJob': customerJob,
+
+      'customerMaritalStatus': customerMaritalStatus,
 
       'colorTag': colorTag,
     };
@@ -46,6 +91,21 @@ class CustomersData {
 
         'budgetName: $customerName,'
         'budgetDescription: $customerDescription,'
+
+        'customerCountry: $customerCountry,'
+        'customerState: $customerState,'
+        'customerCity: $customerCity,'
+        'customerStreetAddress: $customerStreetAddress,'
+
+        'customerPhoneNumber: $customerPhoneNumber,'
+        'customerEmailAddress: $customerEmailAddress,'
+
+        'customerAge: $customerAge,'
+        'customerBirthday: $customerBirthday,'
+
+        'customerJob: $customerJob,'
+
+        'customerMaritalStatus: $customerMaritalStatus,'
 
         'colorTag: $colorTag,'
         '}';
