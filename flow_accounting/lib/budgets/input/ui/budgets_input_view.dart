@@ -325,12 +325,12 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
                                         labelText: StringsResources.budgetDescriptionText,
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
-                                            fontSize: 12.0
+                                            fontSize: 13.0
                                         ),
                                         hintText: StringsResources.budgetDescriptionTextHint,
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
-                                            fontSize: 12.0
+                                            fontSize: 13.0
                                         ),
                                       ),
                                     ),
