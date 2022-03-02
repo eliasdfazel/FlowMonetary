@@ -11,7 +11,7 @@
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:blur/blur.dart';
 import 'package:flow_accounting/budgets/database/io/inputs.dart';
-import 'package:flow_accounting/budgets/database/structures/tables_structure.dart';
+import 'package:flow_accounting/customers/database/io/inputs.dart';
 import 'package:flow_accounting/customers/database/structures/table_structure.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
@@ -477,13 +477,28 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
                               }
 
-                              var databaseInputs = BudgetsDatabaseInputs();
+                              var databaseInputs = CustomersDatabaseInputs();
 
-                              BudgetsData transactionData = BudgetsData(
+                              CustomersData transactionData = CustomersData(
                                   id: timeNow,
 
-                                  budgetName: controllerCustomerName.text,
-                                  budgetDescription: controllerCustomerDescription.text,
+                                  customerName: "",
+                                  customerDescription: "",
+
+                                  customerCountry: "",
+                                  customerState: "",
+                                  customerCity: "",
+                                  customerStreetAddress: "",
+
+                                  customerPhoneNumber: "",
+                                  customerEmailAddress: "",
+
+                                  customerAge: "",
+                                  customerBirthday: "",
+
+                                  customerJob: "",
+
+                                  customerMaritalStatus: '',
 
                                   colorTag: colorSelectorView.selectedColor.value
                               );
@@ -492,13 +507,13 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
                                 if ((widget.customersData?.id)! != 0) {
 
-                                  databaseInputs.updateBudgetData(transactionData, BudgetsDatabaseInputs.databaseTableName);
+                                  databaseInputs.updateCustomerData(transactionData, BudgetsDatabaseInputs.databaseTableName);
 
                                 }
 
                               } else {
 
-                                databaseInputs.insertBudgetData(transactionData, BudgetsDatabaseInputs.databaseTableName);
+                                databaseInputs.insertCustomerData(transactionData, BudgetsDatabaseInputs.databaseTableName);
 
                               }
 
