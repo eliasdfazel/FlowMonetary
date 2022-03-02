@@ -276,7 +276,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.budgetNameTextHint,
+                                        hintText: StringsResources.customerNameTextHint,
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
