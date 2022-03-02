@@ -170,7 +170,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(13, 13, 13, 0),
                         child:  Text(
-                          StringsResources.featureBudgetManagementsTitle,
+                          StringsResources.featureCustomersTitle,
                           textDirection: TextDirection.rtl,
                           style: TextStyle(
                             fontSize: 23,
@@ -188,7 +188,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(13, 13, 13, 19),
                         child: Text(
-                          StringsResources.featureBudgetManagementsDescription,
+                          StringsResources.featureCustomersDescription,
                           textDirection: TextDirection.rtl,
                           style: TextStyle(
                             fontSize: 15,
