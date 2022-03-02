@@ -1036,12 +1036,12 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                         errorText: warningNotice,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.customerNameText,
+                                        labelText: StringsResources.customerJobText,
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.customerNameTextHint,
+                                        hintText: StringsResources.customerJobText,
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
@@ -1113,12 +1113,12 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                         errorText: warningNotice,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.customerNameText,
+                                        labelText: StringsResources.customerMaritalStatusText,
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.customerNameTextHint,
+                                        hintText: StringsResources.customerMaritalStatusText,
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0

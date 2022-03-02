@@ -103,7 +103,8 @@ class StringsResources {
   static const String customerEmailAddressText = "آدرس اینترنتی";
   static const String customerEmailAddressTextHint = "آدرس ایمیل یا اینستاگرام مشتری";
 
-
+  static const String customerJobText = "شغل";
+  static const String customerMaritalStatusText = "تاهل";
 
   static const String sortHint = "مرتب سازی";
   static const String sortTimeNew = "بر اساس: زمان جدید";
