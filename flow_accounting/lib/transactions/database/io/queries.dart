@@ -92,7 +92,7 @@ class TransactionsDatabaseQueries {
 
     var databaseContents = await databaseInstance.query(
       tableNameQuery,
-      where: 'sourceCardNumber = ? OR targetCardNumber = ? AND transactionTimeYear = ? AND transactionTimeMonth = ?',
+      where: '(sourceCardNumber = ? OR targetCardNumber = ?) AND (transactionTimeYear = ? AND transactionTimeMonth = ?)',
       whereArgs: [sourceCardNumber, targetCardNumber, transactionYear, transactionMonth],
     );
 

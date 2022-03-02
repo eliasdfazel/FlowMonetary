@@ -280,6 +280,7 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
       StatefulWidget? featureOneTargetViewToPresentData,
       StatefulWidget? featureTwoTargetViewToPresentData,
       BuildContext context) {
+    
     Widget firstWidget = featuresOptionsItem(
         backgroundColor,
         featureOneTitle,
@@ -329,7 +330,7 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
                 topRight: Radius.circular(13),
                 bottomLeft: Radius.circular(13),
                 bottomRight: Radius.circular(13)),
-            color: backgroundColor,
+            color: backgroundColor.withOpacity(0.53),
             boxShadow: [
               BoxShadow(
                 color: ColorsResources.dark.withOpacity(0.3),
