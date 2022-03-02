@@ -94,6 +94,9 @@ class StringsResources {
   static const String customerStreetAddressText = "ادرس";
   static const String customerStreetAddressTextHint = "ادرس دقیق پستی را وارد کنید";
 
+  static const String customerAgeText = "سن";
+  static const String customerBirthdayText = "تاریخ تولد";
+
   static const String sortHint = "مرتب سازی";
   static const String sortTimeNew = "بر اساس: زمان جدید";
   static const String sortTimeOld = "بر اساس: زمان گذشته";
