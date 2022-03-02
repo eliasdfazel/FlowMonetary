@@ -496,7 +496,7 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
                               height: 79,
                               minWidth: double.infinity,
                               color: ColorsResources.light,
-                              splashColor: ColorsResources.primaryColor,
+                              splashColor: ColorsResources.primaryColorLight,
                               textColor:
                                   ColorsResources.applicationDarkGeeksEmpire,
                               shape: const RoundedRectangleBorder(
@@ -570,7 +570,7 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
                               height: 79,
                               minWidth: double.infinity,
                               color: ColorsResources.light,
-                              splashColor: ColorsResources.primaryColor,
+                              splashColor: ColorsResources.primaryColorLight,
                               textColor:
                                   ColorsResources.applicationDarkGeeksEmpire,
                               shape: const RoundedRectangleBorder(
