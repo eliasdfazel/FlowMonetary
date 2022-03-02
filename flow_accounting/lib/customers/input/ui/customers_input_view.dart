@@ -24,8 +24,8 @@ class CustomersInputView extends StatefulWidget {
   CustomersData? customersData = CustomersData(
     id: 0,
 
-    customerName: "",
-    customerDescription: "",
+    customerName: '',
+    customerDescription: '',
 
     customerCountry: '',
     customerState: '',
