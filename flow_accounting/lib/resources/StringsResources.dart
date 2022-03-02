@@ -89,6 +89,9 @@ class StringsResources {
   static const String customerNameText = "نام مشتری";
   static const String customerNameTextHint = "نام کامل مشتری را وارد کنید";
 
+  static const String customerCountryText = "کشور";
+  static const String customerCityText = "شهر";
+
   static const String sortHint = "مرتب سازی";
   static const String sortTimeNew = "بر اساس: زمان جدید";
   static const String sortTimeOld = "بر اساس: زمان گذشته";

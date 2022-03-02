@@ -18,7 +18,6 @@ class CustomersData {
   final String customerDescription;
 
   final String customerCountry;
-  final String customerState;
   final String customerCity;
   final String customerStreetAddress;
 
@@ -41,7 +40,6 @@ class CustomersData {
     required this.customerDescription,
 
     required this.customerCountry,
-    required this.customerState,
     required this.customerCity,
     required this.customerStreetAddress,
 
@@ -66,7 +64,6 @@ class CustomersData {
       'budgetDescription': customerDescription,
 
       'customerCountry': customerCountry,
-      'customerState': customerState,
       'customerCity': customerCity,
       'customerStreetAddress': customerStreetAddress,
 
@@ -93,7 +90,6 @@ class CustomersData {
         'budgetDescription: $customerDescription,'
 
         'customerCountry: $customerCountry,'
-        'customerState: $customerState,'
         'customerCity: $customerCity,'
         'customerStreetAddress: $customerStreetAddress,'
 

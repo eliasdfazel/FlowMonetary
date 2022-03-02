@@ -35,7 +35,6 @@ class CustomersDatabaseInputs {
               'customerName TEXT, '
               'customerDescription TEXT, '
               'customerCountry TEXT,'
-              'customerState TEXT,'
               'customerCity TEXT,'
               'customerStreetAddress TEXT,'
               'customerPhoneNumber TEXT,'
