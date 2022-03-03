@@ -28,6 +28,7 @@ import 'package:flow_accounting/transactions/database/io/inputs.dart';
 import 'package:flow_accounting/transactions/database/structures/tables_structure.dart';
 import 'package:flow_accounting/utils/calendar/ui/calendar_view.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
+import 'package:flow_accounting/utils/extensions/BankLogos.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -967,16 +968,51 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                         },
                                         itemBuilder: (context, suggestion) {
 
-                                          return ListTile(title: Directionality(
-                                            textDirection: TextDirection.rtl,
-                                            child: Text(
-                                              suggestion,
-                                              style: const TextStyle(
-                                                  color: ColorsResources.darkTransparent,
-                                                  fontSize: 15
-                                              ),
-                                            ),
-                                          ));
+                                          return ListTile(
+                                              title: Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                children: [
+                                                  Expanded(
+                                                    flex: 11,
+                                                    child: Padding(
+                                                      padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
+                                                      child: Directionality(
+                                                        textDirection: TextDirection.rtl,
+                                                        child: Text(
+                                                          suggestion,
+                                                          style: const TextStyle(
+                                                              color: ColorsResources.darkTransparent,
+                                                              fontSize: 15
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                      flex: 5,
+                                                      child:  AspectRatio(
+                                                        aspectRatio: 1,
+                                                        child: Container(
+                                                          decoration: const BoxDecoration(
+                                                              shape: BoxShape.circle,
+                                                              color: ColorsResources.light
+                                                          ),
+                                                          child: Padding(
+                                                            padding: const EdgeInsets.fromLTRB(3, 3, 3, 3),
+                                                            child: ClipRRect(
+                                                              borderRadius: BorderRadius.circular(51),
+                                                              child: Image.network(
+                                                                generateBankLogoUrl(suggestion),
+                                                                fit: BoxFit.cover,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      )
+                                                  ),
+                                                ],
+                                              )
+                                          );
                                         },
                                         onSuggestionSelected: (suggestion) {
 
@@ -1076,16 +1112,51 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                         },
                                         itemBuilder: (context, suggestion) {
 
-                                          return ListTile(title: Directionality(
-                                            textDirection: TextDirection.rtl,
-                                            child: Text(
-                                              suggestion,
-                                              style: const TextStyle(
-                                                  color: ColorsResources.darkTransparent,
-                                                  fontSize: 15
-                                              ),
-                                            ),
-                                          ));
+                                          return ListTile(
+                                              title: Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                children: [
+                                                  Expanded(
+                                                    flex: 11,
+                                                    child: Padding(
+                                                      padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
+                                                      child: Directionality(
+                                                        textDirection: TextDirection.rtl,
+                                                        child: Text(
+                                                          suggestion,
+                                                          style: const TextStyle(
+                                                              color: ColorsResources.darkTransparent,
+                                                              fontSize: 15
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                      flex: 5,
+                                                      child:  AspectRatio(
+                                                        aspectRatio: 1,
+                                                        child: Container(
+                                                          decoration: const BoxDecoration(
+                                                              shape: BoxShape.circle,
+                                                              color: ColorsResources.light
+                                                          ),
+                                                          child: Padding(
+                                                            padding: const EdgeInsets.fromLTRB(3, 3, 3, 3),
+                                                            child: ClipRRect(
+                                                              borderRadius: BorderRadius.circular(51),
+                                                              child: Image.network(
+                                                                generateBankLogoUrl(suggestion),
+                                                                fit: BoxFit.cover,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      )
+                                                  ),
+                                                ],
+                                              )
+                                          );
                                         },
                                         onSuggestionSelected: (suggestion) {
 
