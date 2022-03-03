@@ -13,6 +13,7 @@ import 'package:flow_accounting/budgets/database/io/inputs.dart';
 import 'package:flow_accounting/budgets/database/io/queries.dart';
 import 'package:flow_accounting/budgets/database/structures/tables_structure.dart';
 import 'package:flow_accounting/budgets/input/ui/budgets_input_view.dart';
+import 'package:flow_accounting/customers/database/structures/table_structure.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/output/ui/transactions_output_view.dart';
@@ -32,8 +33,8 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
 
   ColorSelectorView colorSelectorView = ColorSelectorView();
 
-  List<BudgetsData> allBudgets = [];
-  List<Widget> allBudgetsItems = [];
+  List<CustomersData> allCustomers = [];
+  List<Widget> allCustomersItems = [];
 
   TextEditingController textEditorControllerQuery = TextEditingController();
 
@@ -57,7 +58,7 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
 
     colorSelectorView.selectedColorNotifier.addListener(() {
 
-      filterByColorTag(context, allBudgets, colorSelectorView.selectedColorNotifier.value);
+      filterByColorTag(context, allCustomers, colorSelectorView.selectedColorNotifier.value);
 
     });
 
@@ -66,7 +67,7 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
       padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
       child: colorSelectorView,
     ));
-    allListContentWidgets.addAll(allBudgetsItems);
+    allListContentWidgets.addAll(allCustomersItems);
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -194,7 +195,7 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
                                     InkWell(
                                       onTap: () {
 
-                                        sortCustomersByAge(context, allBudgets);
+                                        sortCustomersByAge(context, allCustomers);
 
                                       },
                                       child: const SizedBox(
@@ -289,7 +290,7 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
 
                                     String searchQuery = textEditorControllerQuery.text;
 
-                                    searchCustomers(context, allBudgets, searchQuery);
+                                    searchCustomers(context, allCustomers, searchQuery);
 
                                   },
                                   child: const SizedBox(
@@ -323,7 +324,7 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
                                         textInputAction: TextInputAction.search,
                                         onSubmitted: (searchQuery) {
 
-                                          searchCustomers(context, allBudgets, searchQuery);
+                                          searchCustomers(context, allCustomers, searchQuery);
 
                                         },
                                         decoration: const InputDecoration(
@@ -385,7 +386,7 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
     );
   }
 
-  Widget outputItem(BuildContext context, BudgetsData budgetsData) {
+  Widget outputItem(BuildContext context, CustomersData budgetsData) {
 
     String budgetName = budgetsData.budgetName;
     String budgetDescription = budgetsData.budgetDescription;
@@ -641,9 +642,9 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
 
   void retrieveAllCustomers(BuildContext context) async {
 
-    if (allBudgetsItems.isNotEmpty) {
+    if (allCustomersItems.isNotEmpty) {
 
-      allBudgetsItems.clear();
+      allCustomersItems.clear();
 
     }
 
@@ -651,9 +652,9 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
 
     var databaseQueries = BudgetsDatabaseQueries();
 
-    allBudgets = await databaseQueries.getAllBudgets(BudgetsDatabaseInputs.databaseTableName);
+    allCustomers = await databaseQueries.getAllBudgets(BudgetsDatabaseInputs.databaseTableName);
 
-    for (var element in allBudgets) {
+    for (var element in allCustomers) {
 
       preparedAllBudgetsItem.add(outputItem(context, element));
 
@@ -663,41 +664,41 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
 
     setState(() {
 
-      allBudgetsItems = preparedAllBudgetsItem;
+      allCustomersItems = preparedAllBudgetsItem;
 
     });
 
   }
 
-  void sortCustomersByAge(BuildContext context, List<BudgetsData> inputBudgetsList) {
+  void sortCustomersByAge(BuildContext context, List<CustomersData> inputCustomersList) {
 
-    if (allBudgetsItems.isNotEmpty) {
+    if (allCustomersItems.isNotEmpty) {
 
-      allBudgetsItems.clear();
+      allCustomersItems.clear();
 
     }
-    inputBudgetsList.sort((a, b) => (a.budgetBalance).compareTo(b.budgetBalance));
+    inputCustomersList.sort((a, b) => (a.customerAge).compareTo(b.customerAge));
 
-    List<Widget> preparedAllTransactionsItem = [];
+    List<Widget> preparedAllCustomersItem = [];
 
-    for (var element in inputBudgetsList) {
+    for (var element in inputCustomersList) {
 
-      preparedAllTransactionsItem.add(outputItem(context, element));
+      preparedAllCustomersItem.add(outputItem(context, element));
 
     }
 
     setState(() {
 
-      allBudgetsItems = preparedAllTransactionsItem;
+      allCustomersItems = preparedAllCustomersItem;
 
     });
 
   }
 
   void filterByColorTag(BuildContext context,
-      List<BudgetsData> inputTransactionsList, Color colorQuery) {
+      List<CustomersData> inputTransactionsList, Color colorQuery) {
 
-    List<BudgetsData> searchResult = [];
+    List<CustomersData> searchResult = [];
 
     for (var element in inputTransactionsList) {
 
@@ -707,17 +708,17 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
 
       }
 
-      List<Widget> preparedAllTransactionsItem = [];
+      List<Widget> preparedAllCustomersItem = [];
 
       for (var element in searchResult) {
 
-        preparedAllTransactionsItem.add(outputItem(context, element));
+        preparedAllCustomersItem.add(outputItem(context, element));
 
       }
 
       setState(() {
 
-        allBudgetsItems = preparedAllTransactionsItem;
+        allCustomersItems = preparedAllCustomersItem;
 
       });
 
@@ -726,15 +727,23 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
   }
 
   void searchCustomers(BuildContext context,
-      List<BudgetsData> inputBudgetsList, String searchQuery) {
+      List<CustomersData> inputBudgetsList, String searchQuery) {
 
-    List<BudgetsData> searchResult = [];
+    List<CustomersData> searchResult = [];
 
     for (var element in inputBudgetsList) {
 
-      if (element.budgetName.contains(searchQuery) ||
-          element.budgetDescription.contains(searchQuery)
-      ) {
+      if (element.customerName.contains(searchQuery) ||
+          element.customerDescription.contains(searchQuery) ||
+          element.customerBirthday.contains(searchQuery) ||
+          element.customerAge.contains(searchQuery) ||
+          element.customerCountry.contains(searchQuery) ||
+          element.customerCity.contains(searchQuery) ||
+          element.customerStreetAddress.contains(searchQuery) ||
+          element.customerEmailAddress.contains(searchQuery) ||
+          element.customerPhoneNumber.contains(searchQuery) ||
+          element.customerJob.contains(searchQuery) ||
+          element.customerMaritalStatus.contains(searchQuery)) {
 
         searchResult.add(element);
 
@@ -750,7 +759,7 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
 
       setState(() {
 
-        allBudgetsItems = preparedAllTransactionsItem;
+        allCustomersItems = preparedAllTransactionsItem;
 
       });
 

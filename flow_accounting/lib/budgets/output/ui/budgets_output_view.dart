@@ -731,17 +731,17 @@ class _BudgetOutputViewState extends State<BudgetsOutputView> {
 
       }
 
-      List<Widget> preparedAllTransactionsItem = [];
+      List<Widget> preparedAllBudgetsItem = [];
 
       for (var element in searchResult) {
 
-        preparedAllTransactionsItem.add(outputItem(context, element));
+        preparedAllBudgetsItem.add(outputItem(context, element));
 
       }
 
       setState(() {
 
-        allBudgetsItems = preparedAllTransactionsItem;
+        allBudgetsItems = preparedAllBudgetsItem;
 
       });
 
