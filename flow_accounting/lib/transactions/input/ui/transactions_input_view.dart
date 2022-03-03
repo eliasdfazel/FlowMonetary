@@ -628,7 +628,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                   padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
-                                    child: TypeAheadField<String>(
+                                    child: TypeAheadField<CustomersData>(
                                         suggestionsCallback: (pattern) async {
 
                                           return await getCustomersNames();
@@ -638,7 +638,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                           return ListTile(title: Directionality(
                                             textDirection: TextDirection.rtl,
                                             child: Text(
-                                              suggestion,
+                                              suggestion.customerName,
                                               style: const TextStyle(
                                                   color: ColorsResources.darkTransparent,
                                                   fontSize: 15
@@ -648,7 +648,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                         },
                                         onSuggestionSelected: (suggestion) {
 
-                                          controllerTransactionTargetName.text = suggestion.toString();
+                                          controllerTransactionTargetName.text = suggestion.customerName.toString();
 
                                         },
                                         errorBuilder: (context, suggestion) {
@@ -738,7 +738,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                   padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
-                                    child: TypeAheadField<String>(
+                                    child: TypeAheadField<CustomersData>(
                                         suggestionsCallback: (pattern) async {
 
                                           return await getCustomersNames();
@@ -748,7 +748,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                           return ListTile(title: Directionality(
                                             textDirection: TextDirection.rtl,
                                             child: Text(
-                                              suggestion,
+                                              suggestion.customerName,
                                               style: const TextStyle(
                                                   color: ColorsResources.darkTransparent,
                                                   fontSize: 15
@@ -758,7 +758,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                         },
                                         onSuggestionSelected: (suggestion) {
 
-                                          controllerTransactionSourceName.text = suggestion.toString();
+                                          controllerTransactionSourceName.text = suggestion.customerName.toString();
 
                                         },
                                         errorBuilder: (context, suggestion) {
