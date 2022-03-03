@@ -9,11 +9,10 @@
  */
 
 import 'package:blur/blur.dart';
-import 'package:flow_accounting/budgets/database/io/inputs.dart';
-import 'package:flow_accounting/budgets/database/io/queries.dart';
-import 'package:flow_accounting/budgets/database/structures/tables_structure.dart';
-import 'package:flow_accounting/budgets/input/ui/budgets_input_view.dart';
+import 'package:flow_accounting/customers/database/io/inputs.dart';
+import 'package:flow_accounting/customers/database/io/queries.dart';
 import 'package:flow_accounting/customers/database/structures/table_structure.dart';
+import 'package:flow_accounting/customers/input/ui/customers_input_view.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/output/ui/transactions_output_view.dart';
@@ -386,14 +385,14 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
     );
   }
 
-  Widget outputItem(BuildContext context, CustomersData budgetsData) {
+  Widget outputItem(BuildContext context, CustomersData customersData) {
 
-    String budgetName = budgetsData.budgetName;
-    String budgetDescription = budgetsData.budgetDescription;
+    String budgetName = customersData.budgetName;
+    String budgetDescription = customersData.budgetDescription;
 
-    String budgetBalance = budgetsData.budgetBalance;
+    String budgetBalance = customersData.budgetBalance;
 
-    Color budgetColorTag = Color(budgetsData.colorTag);
+    Color budgetColorTag = Color(customersData.colorTag);
 
     return Slidable(
         closeOnScroll: true,
@@ -404,7 +403,7 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
               flex: 1,
               onPressed: (BuildContext context) {
 
-                deleteCustomer(context, budgetsData);
+                deleteCustomer(context, customersData);
 
               },
               backgroundColor: Colors.transparent,
@@ -417,7 +416,7 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
               flex: 1,
               onPressed: (BuildContext context) {
 
-                editCustomer(context, budgetsData);
+                editCustomer(context, customersData);
 
               },
               backgroundColor: Colors.transparent,
@@ -457,7 +456,7 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
             child: InkWell(
               onTap: () {
 
-                editCustomer(context, budgetsData);
+                editCustomer(context, customersData);
 
               },
               child: Container(
@@ -614,21 +613,21 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
 
   }
 
-  void deleteCustomer(BuildContext context, BudgetsData budgetsData) async {
+  void deleteCustomer(BuildContext context, CustomersData customersData) async {
 
-    var databaseQueries = BudgetsDatabaseQueries();
+    var databaseQueries = CustomersDatabaseQueries();
 
-    databaseQueries.queryDeleteBudget(budgetsData.id, BudgetsDatabaseInputs.databaseTableName);
+    databaseQueries.queryDeleteBudget(customersData.id, CustomersDatabaseInputs.databaseTableName);
 
     retrieveAllCustomers(context);
 
   }
 
-  void editCustomer(BuildContext context, BudgetsData budgetsData) async {
+  void editCustomer(BuildContext context, CustomersData customersData) async {
 
     bool budgetDataUpdated = await Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => BudgetsInputView(budgetsData: budgetsData)),
+      MaterialPageRoute(builder: (context) => CustomersInputView(customersData: customersData)),
     );
 
     debugPrint("Budget Data Update => ${budgetDataUpdated}");
@@ -650,7 +649,7 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
 
     List<Widget> preparedAllBudgetsItem = [];
 
-    var databaseQueries = BudgetsDatabaseQueries();
+    var databaseQueries = CustomersDatabaseQueries();
 
     allCustomers = await databaseQueries.getAllBudgets(BudgetsDatabaseInputs.databaseTableName);
 
