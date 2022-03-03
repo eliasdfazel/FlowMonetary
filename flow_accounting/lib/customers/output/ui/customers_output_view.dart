@@ -8,6 +8,8 @@
  * https://opensource.org/licenses/MIT
  */
 
+import 'dart:io';
+
 import 'package:blur/blur.dart';
 import 'package:flow_accounting/customers/database/io/inputs.dart';
 import 'package:flow_accounting/customers/database/io/queries.dart';
@@ -464,7 +466,7 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             SizedBox(
-                                height: 39,
+                                height: 139,
                                 width: double.infinity,
                                 child: Padding(
                                   padding: const EdgeInsets.fromLTRB(19, 11, 19, 0),
@@ -472,16 +474,70 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
                                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                     children: [
                                       Expanded(
-                                        flex: 1,
+                                        flex: 15,
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            SizedBox(
+                                              height: 37,
+                                              width: double.infinity,
+                                              child: Directionality(
+                                                textDirection: TextDirection.rtl,
+                                                child: Align(
+                                                  alignment: Alignment.centerRight,
+                                                  child: Text(
+                                                    customerName,
+                                                    style: const TextStyle(
+                                                      color: ColorsResources.dark,
+                                                      fontSize: 19,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 91,
+                                              width: double.infinity,
+                                              child: Directionality(
+                                                textDirection: TextDirection.rtl,
+                                                child: Align(
+                                                  alignment: Alignment.centerRight,
+                                                  child: Text(
+                                                    customerName,
+                                                    style: const TextStyle(
+                                                      color: ColorsResources.dark,
+                                                      fontSize: 19,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Expanded(
+                                        flex: 5,
                                         child: Directionality(
                                           textDirection: TextDirection.rtl,
                                           child: Align(
-                                            alignment: Alignment.centerRight,
-                                            child: Text(
-                                              customerName,
-                                              style: const TextStyle(
-                                                color: ColorsResources.dark,
-                                                fontSize: 19,
+                                            alignment: Alignment.center,
+                                            child: AspectRatio(
+                                              aspectRatio: 1,
+                                              child: ClipRRect(
+                                                borderRadius: BorderRadius.circular(51),
+                                                child: ColoredBox(
+                                                  color: customerColorTag,
+                                                  child: Padding(
+                                                    padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
+                                                    child: ClipRRect(
+                                                      borderRadius: BorderRadius.circular(51),
+                                                      child: Image.file(
+                                                        File(customersData.customerImagePath),
+                                                        fit: BoxFit.cover,
+                                                      )
+                                                    ),
+                                                  ),
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -492,7 +548,7 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
                                 )
                             ),
                             SizedBox(
-                              height: 51,
+                              height: 39,
                               width: double.infinity,
                               child: Padding(
                                 padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
@@ -511,7 +567,53 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
                                   ),
                                 ),
                               ),
-                            )
+                            ),
+                            SizedBox(
+                              height: 39,
+                              width: double.infinity,
+                              child: Padding(
+                                padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Expanded(
+                                      flex: 1,
+                                      child: Container(
+                                        color: Colors.transparent,
+                                        child: Align(
+                                          alignment: Alignment.centerRight,
+                                          child: Text(
+                                            customerDescription,
+                                            textAlign: TextAlign.right,
+                                            style: TextStyle(
+                                                color: ColorsResources.dark.withOpacity(0.537),
+                                                fontSize: 15
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      flex: 1,
+                                      child: Container(
+                                        color: Colors.transparent,
+                                        child: Align(
+                                          alignment: Alignment.centerRight,
+                                          child: Text(
+                                            customerDescription,
+                                            textAlign: TextAlign.right,
+                                            style: TextStyle(
+                                                color: ColorsResources.dark.withOpacity(0.537),
+                                                fontSize: 15
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                         Positioned(
