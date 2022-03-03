@@ -16,8 +16,10 @@ import 'package:flow_accounting/budgets/database/structures/tables_structure.dar
 import 'package:flow_accounting/credit_cards/database/io/inputs.dart';
 import 'package:flow_accounting/credit_cards/database/io/queries.dart';
 import 'package:flow_accounting/credit_cards/database/structures/tables_structure.dart';
+import 'package:flow_accounting/customers/database/io/inputs.dart';
+import 'package:flow_accounting/customers/database/io/queries.dart';
+import 'package:flow_accounting/customers/database/structures/table_structure.dart';
 import 'package:flow_accounting/home/interface/dashboard.dart';
-import 'package:flow_accounting/prototype/prototype_data.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/database/io/inputs.dart';
@@ -1847,15 +1849,21 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
     );
   }
 
-  Future<List<String>> getCustomersNames() async {
+  Future<List<CustomersData>> getCustomersNames() async {
 
-    String mySelf = StringsResources.mySelfText;
+    List<CustomersData> listOfCustomers = [];
 
-    List<String> listOfNames = [];
-    listOfNames.add(mySelf);
-    listOfNames.addAll(PrototypeData().customersList);
+    CustomersDatabaseQueries customersDatabaseQueries = CustomersDatabaseQueries();
 
-    return listOfNames;
+    var retrievedCustomers = await customersDatabaseQueries.getAllCustomers(CustomersDatabaseInputs.databaseTableName);
+
+    if (retrievedCustomers.isNotEmpty) {
+
+      listOfCustomers.addAll(retrievedCustomers);
+
+    }
+
+    return listOfCustomers;
   }
 
   Future<List<String>> getBanksNames() async {
