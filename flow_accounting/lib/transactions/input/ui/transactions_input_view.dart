@@ -8,6 +8,8 @@
  * https://opensource.org/licenses/MIT
  */
 
+import 'dart:io';
+
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:blur/blur.dart';
 import 'package:flow_accounting/budgets/database/io/inputs.dart';
@@ -635,16 +637,45 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                         },
                                         itemBuilder: (context, suggestion) {
 
-                                          return ListTile(title: Directionality(
-                                            textDirection: TextDirection.rtl,
-                                            child: Text(
-                                              suggestion.customerName,
-                                              style: const TextStyle(
-                                                  color: ColorsResources.darkTransparent,
-                                                  fontSize: 15
-                                              ),
-                                            ),
-                                          ));
+                                          return ListTile(
+                                              title: Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                children: [
+                                                  Expanded(
+                                                    flex: 9,
+                                                    child:  Directionality(
+                                                      textDirection: TextDirection.rtl,
+                                                      child: Text(
+                                                        suggestion.customerName,
+                                                        style: const TextStyle(
+                                                            color: ColorsResources.darkTransparent,
+                                                            fontSize: 15
+                                                        ),
+                                                      ),
+                                                    )
+                                                  ),
+                                                  Expanded(
+                                                      flex: 3,
+                                                      child:  Container(
+                                                        decoration: BoxDecoration(
+                                                            shape: BoxShape.circle,
+                                                            color: Color(suggestion.colorTag)
+                                                        ),
+                                                        child: Padding(
+                                                          padding: const EdgeInsets.fromLTRB(3, 3, 3, 3),
+                                                          child: ClipRRect(
+                                                            borderRadius: BorderRadius.circular(51),
+                                                            child: Image.file(
+                                                              File(suggestion.customerImagePath),
+                                                              fit: BoxFit.cover,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      )
+                                                  ),
+                                                ],
+                                              )
+                                          );
                                         },
                                         onSuggestionSelected: (suggestion) {
 
@@ -745,16 +776,45 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                         },
                                         itemBuilder: (context, suggestion) {
 
-                                          return ListTile(title: Directionality(
-                                            textDirection: TextDirection.rtl,
-                                            child: Text(
-                                              suggestion.customerName,
-                                              style: const TextStyle(
-                                                  color: ColorsResources.darkTransparent,
-                                                  fontSize: 15
-                                              ),
-                                            ),
-                                          ));
+                                          return ListTile(
+                                              title: Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                children: [
+                                                  Expanded(
+                                                      flex: 9,
+                                                      child:  Directionality(
+                                                        textDirection: TextDirection.rtl,
+                                                        child: Text(
+                                                          suggestion.customerName,
+                                                          style: const TextStyle(
+                                                              color: ColorsResources.darkTransparent,
+                                                              fontSize: 15
+                                                          ),
+                                                        ),
+                                                      )
+                                                  ),
+                                                  Expanded(
+                                                      flex: 3,
+                                                      child:  Container(
+                                                        decoration: BoxDecoration(
+                                                            shape: BoxShape.circle,
+                                                            color: Color(suggestion.colorTag)
+                                                        ),
+                                                        child: Padding(
+                                                          padding: const EdgeInsets.fromLTRB(3, 3, 3, 3),
+                                                          child: ClipRRect(
+                                                            borderRadius: BorderRadius.circular(51),
+                                                            child: Image.file(
+                                                              File(suggestion.customerImagePath),
+                                                              fit: BoxFit.cover,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      )
+                                                  ),
+                                                ],
+                                              )
+                                          );
                                         },
                                         onSuggestionSelected: (suggestion) {
 
