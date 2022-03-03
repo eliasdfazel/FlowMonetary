@@ -89,7 +89,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
   Color customerColorTag = Colors.blueGrey;
 
-  String? customerImage;
+  String customerImage = "";
 
   String? warningNotice;
 
@@ -124,7 +124,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
     colorSelectorView.inputColor = Color(widget.customersData?.colorTag ?? Colors.blueGrey.value);
 
-    customerImage = widget.customersData?.customerImagePath;
+    customerImage = widget.customersData?.customerImagePath ?? "";
 
     customerColorTag = Color(widget.customersData?.colorTag ?? Colors.blueGrey.value);
 
@@ -156,10 +156,10 @@ class _CustomersInputViewState extends State<CustomersInputView> {
   @override
   Widget build(BuildContext context) {
 
-    if (customerImage != null) {
+    if (customerImage.isNotEmpty) {
 
       imagePickerWidget = Image.file(
-        File(customerImage!),
+        File(customerImage),
         fit: BoxFit.cover,
       );
 
@@ -1455,7 +1455,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
                                   customerMaritalStatus: controllerCustomerMaritalStatus.text,
 
-                                  customerImagePath: customerImage ?? "",
+                                  customerImagePath: customerImage,
 
                                   colorTag: colorSelectorView.selectedColor.value
                               );
