@@ -45,6 +45,8 @@ class CustomersInputView extends StatefulWidget {
 
     customerMaritalStatus: '',
 
+    customerImagePath: '',
+
     colorTag: ColorsResources.white.value,
   );
 
@@ -119,9 +121,11 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
     colorSelectorView.inputColor = Color(widget.customersData?.colorTag ?? Colors.blueGrey.value);
 
+    customerImage = widget.customersData?.customerImagePath;
+
     customerColorTag = Color(widget.customersData?.colorTag ?? Colors.blueGrey.value);
 
-    calendarView.inputDateTime = widget.customersData?.customerBirthday ?? "";
+    calendarView.inputDateTime = widget.customersData?.customerBirthday ?? StringsResources.customerBirthdayText;
 
     super.initState();
 
@@ -148,6 +152,15 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
   @override
   Widget build(BuildContext context) {
+
+    if (customerImage != null) {
+
+      imagePickerWidget = Image.file(
+        File(customerImage!),
+        fit: BoxFit.cover,
+      );
+
+    }
 
     return MaterialApp (
       debugShowCheckedModeBanner: false,
@@ -1438,6 +1451,8 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                   customerJob: controllerCustomerJob.text,
 
                                   customerMaritalStatus: controllerCustomerMaritalStatus.text,
+
+                                  customerImagePath: customerImage ?? "",
 
                                   colorTag: colorSelectorView.selectedColor.value
                               );
