@@ -389,6 +389,28 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
     String customerName = customersData.customerName;
     String customerDescription = customersData.customerDescription;
 
+    String customerBirthday = customersData.customerBirthday;
+
+    String customerEmail = customersData.customerEmailAddress;
+    String customerPhoneNumber = customersData.customerPhoneNumber;
+
+    Widget customerImageWidget = const Opacity(
+      opacity: 0.7,
+      child: Image(
+        image: AssetImage("unknown_user.png"),
+        fit: BoxFit.cover,
+      ),
+    );
+
+    if (customersData.customerImagePath.isNotEmpty) {
+
+      customerImageWidget = Image.file(
+        File(customersData.customerImagePath),
+        fit: BoxFit.cover,
+      );
+
+    }
+
     Color customerColorTag = Color(customersData.colorTag);
 
     return Slidable(
@@ -466,7 +488,7 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             SizedBox(
-                                height: 139,
+                                height: 133,
                                 width: double.infinity,
                                 child: Padding(
                                   padding: const EdgeInsets.fromLTRB(19, 11, 19, 0),
@@ -479,17 +501,20 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
                                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                           children: [
                                             SizedBox(
-                                              height: 37,
+                                              height: 31,
                                               width: double.infinity,
-                                              child: Directionality(
-                                                textDirection: TextDirection.rtl,
-                                                child: Align(
-                                                  alignment: Alignment.centerRight,
-                                                  child: Text(
-                                                    customerName,
-                                                    style: const TextStyle(
-                                                      color: ColorsResources.dark,
-                                                      fontSize: 19,
+                                              child: Padding(
+                                                padding: const EdgeInsets.fromLTRB(11, 0, 13, 0),
+                                                child: Directionality(
+                                                  textDirection: TextDirection.rtl,
+                                                  child: Align(
+                                                    alignment: Alignment.centerRight,
+                                                    child: Text(
+                                                      customerName,
+                                                      style: const TextStyle(
+                                                        color: ColorsResources.dark,
+                                                        fontSize: 19,
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
@@ -498,15 +523,19 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
                                             SizedBox(
                                               height: 91,
                                               width: double.infinity,
-                                              child: Directionality(
-                                                textDirection: TextDirection.rtl,
-                                                child: Align(
-                                                  alignment: Alignment.centerRight,
-                                                  child: Text(
-                                                    customerName,
-                                                    style: const TextStyle(
-                                                      color: ColorsResources.dark,
-                                                      fontSize: 19,
+                                              child: Padding(
+                                                padding: const EdgeInsets.fromLTRB(11, 3, 13, 0),
+                                                child: Directionality(
+                                                  textDirection: TextDirection.rtl,
+                                                  child: Align(
+                                                    alignment: Alignment.topRight,
+                                                    child: Text(
+                                                      customerDescription,
+                                                      maxLines: 4,
+                                                      style: const TextStyle(
+                                                        color: ColorsResources.darkTransparent,
+                                                        fontSize: 13,
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
@@ -531,10 +560,7 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
                                                     padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
                                                     child: ClipRRect(
                                                       borderRadius: BorderRadius.circular(51),
-                                                      child: Image.file(
-                                                        File(customersData.customerImagePath),
-                                                        fit: BoxFit.cover,
-                                                      )
+                                                      child: customerImageWidget,
                                                     ),
                                                   ),
                                                 ),
@@ -548,23 +574,45 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
                                 )
                             ),
                             SizedBox(
-                              height: 39,
+                              height: 35,
                               width: double.infinity,
                               child: Padding(
-                                padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
-                                child: Container(
-                                  color: Colors.transparent,
-                                  child: Align(
-                                    alignment: Alignment.centerRight,
-                                    child: Text(
-                                      customerDescription,
-                                      textAlign: TextAlign.right,
-                                      style: TextStyle(
-                                          color: ColorsResources.dark.withOpacity(0.537),
-                                          fontSize: 15
+                                padding: const EdgeInsets.fromLTRB(35, 0, 19, 0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Expanded(
+                                      flex: 23,
+                                      child: Align(
+                                        alignment: Alignment.centerRight,
+                                        child: Text(
+                                          customerBirthday,
+                                          textAlign: TextAlign.right,
+                                          maxLines: 1,
+                                          style: TextStyle(
+                                              color: ColorsResources.dark.withOpacity(0.597),
+                                              fontSize: 13
+                                          ),
+                                        ),
                                       ),
                                     ),
-                                  ),
+                                    Expanded(
+                                      flex: 7,
+                                      child: Align(
+                                        alignment: Alignment.centerRight,
+                                        child: Text(
+                                          " :${StringsResources.customerBirthdayText}",
+                                          textAlign: TextAlign.right,
+                                          maxLines: 1,
+                                          style: TextStyle(
+                                              color: ColorsResources.dark.withOpacity(0.597),
+                                              fontSize: 13,
+                                              fontWeight: FontWeight.bold
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
                                 ),
                               ),
                             ),
@@ -572,38 +620,43 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
                               height: 39,
                               width: double.infinity,
                               child: Padding(
-                                padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
+                                padding: const EdgeInsets.fromLTRB(35, 0, 19, 0),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   children: [
                                     Expanded(
-                                      flex: 1,
+                                      flex: 5,
                                       child: Container(
                                         color: Colors.transparent,
                                         child: Align(
-                                          alignment: Alignment.centerRight,
-                                          child: Text(
-                                            customerDescription,
-                                            textAlign: TextAlign.right,
-                                            style: TextStyle(
-                                                color: ColorsResources.dark.withOpacity(0.537),
-                                                fontSize: 15
+                                          alignment: Alignment.center,
+                                          child: Padding(
+                                            padding: const EdgeInsets.fromLTRB(0, 0, 5, 0),
+                                            child: Text(
+                                              customerEmail,
+                                              maxLines: 1,
+                                              textAlign: TextAlign.center,
+                                              style: const TextStyle(
+                                                  color: ColorsResources.blueGreen,
+                                                  fontSize: 15
+                                              ),
                                             ),
                                           ),
                                         ),
                                       ),
                                     ),
                                     Expanded(
-                                      flex: 1,
+                                      flex: 3,
                                       child: Container(
                                         color: Colors.transparent,
                                         child: Align(
-                                          alignment: Alignment.centerRight,
+                                          alignment: Alignment.center,
                                           child: Text(
-                                            customerDescription,
-                                            textAlign: TextAlign.right,
-                                            style: TextStyle(
-                                                color: ColorsResources.dark.withOpacity(0.537),
+                                            customerPhoneNumber,
+                                            textAlign: TextAlign.center,
+                                            maxLines: 1,
+                                            style: const TextStyle(
+                                                color: ColorsResources.blueGreen,
                                                 fontSize: 15
                                             ),
                                           ),
