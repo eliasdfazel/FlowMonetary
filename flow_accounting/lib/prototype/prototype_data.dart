@@ -12,6 +12,8 @@ import 'package:flow_accounting/budgets/database/io/inputs.dart';
 import 'package:flow_accounting/budgets/database/structures/tables_structure.dart';
 import 'package:flow_accounting/credit_cards/database/io/inputs.dart';
 import 'package:flow_accounting/credit_cards/database/structures/tables_structure.dart';
+import 'package:flow_accounting/customers/database/io/inputs.dart';
+import 'package:flow_accounting/customers/database/structures/table_structure.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/database/io/inputs.dart';
 import 'package:flow_accounting/transactions/database/structures/tables_structure.dart';
@@ -143,6 +145,83 @@ class PrototypeData {
 
   void prepareCustomersData() async {
 
+    CustomersDatabaseInputs customersDatabaseInputs = CustomersDatabaseInputs();
+
+    List<CustomersData> customersData = [];
+
+    customersData.add(CustomersData(
+      id: DateTime.now().millisecondsSinceEpoch,
+      customerName: "دانیال راد",
+      customerDescription: "خریدار",
+      customerCountry: "",
+      customerCity: "",
+      customerStreetAddress: "",
+      customerPhoneNumber: "",
+      customerEmailAddress: "",
+      customerAge: "",
+      customerBirthday: "",
+      customerJob: "",
+      customerMaritalStatus: "",
+      customerImagePath: "",
+      colorTag: listOfColors.randomItem().value,
+    ));
+
+    customersData.add(CustomersData(
+      id: DateTime.now().millisecondsSinceEpoch,
+      customerName: "",
+      customerDescription: "",
+      customerCountry: "",
+      customerCity: "",
+      customerStreetAddress: "",
+      customerPhoneNumber: "",
+      customerEmailAddress: "",
+      customerAge: "",
+      customerBirthday: "",
+      customerJob: "",
+      customerMaritalStatus: "",
+      customerImagePath: "",
+      colorTag: listOfColors.randomItem().value,
+    ));
+
+    customersData.add(CustomersData(
+      id: DateTime.now().millisecondsSinceEpoch,
+      customerName: "",
+      customerDescription: "",
+      customerCountry: "",
+      customerCity: "",
+      customerStreetAddress: "",
+      customerPhoneNumber: "",
+      customerEmailAddress: "",
+      customerAge: "",
+      customerBirthday: "",
+      customerJob: "",
+      customerMaritalStatus: "",
+      customerImagePath: "",
+      colorTag: listOfColors.randomItem().value,
+    ));
+
+    customersData.add(CustomersData(
+      id: DateTime.now().millisecondsSinceEpoch,
+      customerName: "",
+      customerDescription: "",
+      customerCountry: "",
+      customerCity: "",
+      customerStreetAddress: "",
+      customerPhoneNumber: "",
+      customerEmailAddress: "",
+      customerAge: "",
+      customerBirthday: "",
+      customerJob: "",
+      customerMaritalStatus: "",
+      customerImagePath: "",
+      colorTag: listOfColors.randomItem().value,
+    ));
+
+    for (var element in customersData) {
+
+      customersDatabaseInputs.insertCustomerData(element, CustomersDatabaseInputs.databaseTableName);
+
+    }
 
     Future.delayed(const Duration(milliseconds: 799), () {
 

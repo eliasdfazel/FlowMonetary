@@ -87,7 +87,7 @@ class StringsResources {
       " را وارد کنید";
 
   static const String customerNameText = "نام مشتری";
-  static const String customerNameTextHint = "نام کامل مشتری را وارد کنید";
+  static const String customerNameTextHint = "نام کامل مشتری یا شرکت را وارد کنید";
 
   static const String customerCountryText = "کشور";
   static const String customerCityText = "شهر";
