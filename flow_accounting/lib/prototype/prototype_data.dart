@@ -62,6 +62,9 @@ class PrototypeData {
   void generate() {
 
     prepareCreditCardsData();
+    //prepareBudgetsData();
+    // prepareCustomersData();
+    //prepareTransactionsData();
 
   }
 
@@ -191,7 +194,7 @@ class PrototypeData {
 
     Future.delayed(const Duration(milliseconds: 799), () {
 
-      prepareTransactionsData();
+     prepareTransactionsData();
 
     });
 
