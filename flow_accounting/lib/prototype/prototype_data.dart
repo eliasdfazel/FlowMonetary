@@ -61,7 +61,7 @@ class PrototypeData {
 
   void generate() {
 
-    prepareCreditCardsData();
+    // prepareCreditCardsData();
     // prepareBudgetsData();
     // prepareCustomersData();
     // prepareTransactionsData();
@@ -165,7 +165,7 @@ class PrototypeData {
       customerBirthday: "شنبه ۱۲ فروردین ۱۳۶۸",
       customerJob: "برنامه نویس",
       customerMaritalStatus: "مجرد",
-      customerImagePath: "/data/user/0/co.geeksempire.flow.accounting.flow_accounting/cache/image_picker3506225856361276546.jpg",
+      customerImagePath: "/data/user/0/co.geeksempire.flow.accounting.flow_accounting/files/image_picker1337937822812840444.jpg",
       colorTag: listOfColors.randomItem().value,
     ));
 
@@ -182,7 +182,7 @@ class PrototypeData {
       customerBirthday: "شنبه ۱۲ فروردین ۱۳۶۸",
       customerJob: "فیزیک دان",
       customerMaritalStatus: "متاهل",
-      customerImagePath: "/data/user/0/co.geeksempire.flow.accounting.flow_accounting/cache/image_picker3506225856361276546.jpg",
+      customerImagePath: "/data/user/0/co.geeksempire.flow.accounting.flow_accounting/files/image_picker1337937822812840444.jpg",
       colorTag: listOfColors.randomItem().value,
     ));
 
