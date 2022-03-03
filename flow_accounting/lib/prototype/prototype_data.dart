@@ -62,9 +62,9 @@ class PrototypeData {
   void generate() {
 
     prepareCreditCardsData();
-    //prepareBudgetsData();
+    // prepareBudgetsData();
     // prepareCustomersData();
-    //prepareTransactionsData();
+    // prepareTransactionsData();
 
   }
 
@@ -165,12 +165,12 @@ class PrototypeData {
       customerBirthday: "شنبه ۱۲ فروردین ۱۳۶۸",
       customerJob: "برنامه نویس",
       customerMaritalStatus: "مجرد",
-      customerImagePath: "",
+      customerImagePath: "/data/user/0/co.geeksempire.flow.accounting.flow_accounting/cache/image_picker3506225856361276546.jpg",
       colorTag: listOfColors.randomItem().value,
     ));
 
     customersData.add(CustomersData(
-      id: DateTime.now().millisecondsSinceEpoch,
+      id: DateTime.now().millisecondsSinceEpoch + 1,
       customerName: "شلدون",
       customerDescription: "نرد اسکول",
       customerCountry: "خارج",
