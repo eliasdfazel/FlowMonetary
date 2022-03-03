@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   sqflite: ^2.0.2
   path:
+  path_provider:
   wave: ^0.2.0
   blur: ^3.0.0
   flutter_svg: ^1.0.0
