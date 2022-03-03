@@ -64,8 +64,8 @@ class CustomersData {
     return {
       'id': id,
 
-      'budgetName': customerName,
-      'budgetDescription': customerDescription,
+      'customerName': customerName,
+      'customerDescription': customerDescription,
 
       'customerCountry': customerCountry,
       'customerCity': customerCity,
@@ -92,8 +92,8 @@ class CustomersData {
     return 'BudgetsData{'
         'id: $id,'
 
-        'budgetName: $customerName,'
-        'budgetDescription: $customerDescription,'
+        'customerName: $customerName,'
+        'customerDescription: $customerDescription,'
 
         'customerCountry: $customerCountry,'
         'customerCity: $customerCity,'

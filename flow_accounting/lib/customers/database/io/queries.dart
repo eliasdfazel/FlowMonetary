@@ -19,7 +19,7 @@ class CustomersDatabaseQueries {
       {String usernameId = "Unknown"}) async {
 
     final database = openDatabase(
-      join(await getDatabasesPath(), CustomersDatabaseInputs.budgetsDatabase),
+      join(await getDatabasesPath(), CustomersDatabaseInputs.customersDatabase),
     );
 
     final databaseInstance = await database;

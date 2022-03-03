@@ -18,7 +18,7 @@ class CustomersDatabaseInputs {
 
   static const String databaseTableName = "all_customers";
 
-  static const budgetsDatabase = "customers_database.db";
+  static const customersDatabase = "customers_database.db";
 
   Future<void> insertCustomerData(CustomersData customersData, String? tableName,
       {String usernameId = "Unknown"}) async {
@@ -27,7 +27,7 @@ class CustomersDatabaseInputs {
     tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     final database = openDatabase(
-      join(await getDatabasesPath(), budgetsDatabase),
+      join(await getDatabasesPath(), customersDatabase),
       onCreate: (databaseInstance, version) {
 
         return databaseInstance.execute(
@@ -65,7 +65,7 @@ class CustomersDatabaseInputs {
   Future<void> updateCustomerData(CustomersData customersData, String? tableName, {String usernameId = "Unknown"}) async {
 
     final database = openDatabase(
-      join(await getDatabasesPath(), budgetsDatabase),
+      join(await getDatabasesPath(), customersDatabase),
     );
 
     final databaseInstance = await database;
