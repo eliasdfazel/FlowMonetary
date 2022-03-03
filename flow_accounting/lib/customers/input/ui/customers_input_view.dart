@@ -8,6 +8,8 @@
  * https://opensource.org/licenses/MIT
  */
 
+import 'dart:io';
+
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:blur/blur.dart';
 import 'package:flow_accounting/budgets/database/io/inputs.dart';
@@ -73,11 +75,20 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
   TextEditingController controllerCustomerMaritalStatus = TextEditingController();
 
+  Widget imagePickerWidget = const Image(
+    image: AssetImage("unknown_user.png"),
+    fit: BoxFit.cover,
+  );
+
   int timeNow = DateTime.now().millisecondsSinceEpoch;
 
-  bool customerDataUpdated = false;
+  Color customerColorTag = Colors.blueGrey;
+
+  String? customerImage;
 
   String? warningNotice;
+
+  bool customerDataUpdated = false;
 
   @override
   void dispose() {
@@ -106,13 +117,25 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
     controllerCustomerMaritalStatus.text = widget.customersData?.customerMaritalStatus == null ? "" : (widget.customersData?.customerMaritalStatus)!;
 
-    colorSelectorView.inputColor = Color(widget.customersData?.colorTag ?? Colors.white.value);
+    colorSelectorView.inputColor = Color(widget.customersData?.colorTag ?? Colors.blueGrey.value);
+
+    customerColorTag = Color(widget.customersData?.colorTag ?? Colors.blueGrey.value);
 
     calendarView.inputDateTime = widget.customersData?.customerBirthday ?? "";
 
     super.initState();
 
     BackButtonInterceptor.add(aInterceptor);
+
+    colorSelectorView.selectedColorNotifier.addListener(() {
+
+      setState(() {
+
+        customerColorTag = colorSelectorView.selectedColorNotifier.value;
+
+      });
+
+    });
 
   }
 
@@ -221,7 +244,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(51),
                                     child: ColoredBox(
-                                      color: colorSelectorView.selectedColor,
+                                      color: customerColorTag,
                                       child: Padding(
                                         padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
                                         child: InkWell(
@@ -230,8 +253,9 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                             invokeImagePicker();
 
                                           },
-                                          child: const Image(
-                                            image: AssetImage("unknown_user.png"),
+                                          child: ClipRRect(
+                                            borderRadius: BorderRadius.circular(51),
+                                            child: imagePickerWidget,
                                           ),
                                         ),
                                       ),
@@ -1549,7 +1573,18 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
     final XFile? selectedImage = await imagePicker.pickImage(source: ImageSource.gallery);
 
-    // selectedImage.path
+    if (selectedImage != null) {
+
+      setState(() {
+
+        imagePickerWidget = Image.file(
+          File(selectedImage.path),
+          fit: BoxFit.cover,
+        );
+
+      });
+
+    }
 
   }
 

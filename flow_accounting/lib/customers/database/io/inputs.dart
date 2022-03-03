@@ -43,6 +43,7 @@ class CustomersDatabaseInputs {
               'customerBirthday TEXT,'
               'customerJob TEXT,'
               'customerMaritalStatus TEXT,'
+              'customerImagePath TEXT,'
               'colorTag TEXT'
               ')',
         );
