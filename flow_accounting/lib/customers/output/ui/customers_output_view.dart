@@ -15,12 +15,9 @@ import 'package:flow_accounting/customers/database/structures/table_structure.da
 import 'package:flow_accounting/customers/input/ui/customers_input_view.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
-import 'package:flow_accounting/transactions/output/ui/transactions_output_view.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
-import 'package:flow_accounting/utils/navigations/navigations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:marquee/marquee.dart';
 
 class CustomersOutputView extends StatefulWidget {
   const CustomersOutputView({Key? key}) : super(key: key);
@@ -203,7 +200,7 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
                                         child: Align(
                                           alignment: Alignment.center,
                                           child: Text(
-                                            StringsResources.sortBudgetAmountHigh,
+                                            StringsResources.sortCustomerAge,
                                             style: TextStyle(
                                               fontSize: 13,
                                               color: ColorsResources.applicationGeeksEmpire,
@@ -387,12 +384,10 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
 
   Widget outputItem(BuildContext context, CustomersData customersData) {
 
-    String budgetName = customersData.budgetName;
-    String budgetDescription = customersData.budgetDescription;
+    String customerName = customersData.customerName;
+    String customerDescription = customersData.customerDescription;
 
-    String budgetBalance = customersData.budgetBalance;
-
-    Color budgetColorTag = Color(customersData.colorTag);
+    Color customerColorTag = Color(customersData.colorTag);
 
     return Slidable(
         closeOnScroll: true,
@@ -427,30 +422,12 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
             ),
           ],
         ),
-        startActionPane: ActionPane(
-          motion: const DrawerMotion(),
-          children: [
-            SlidableAction(
-              flex: 1,
-              onPressed: (BuildContext context) {
-
-                NavigationProcess().goTo(context, TransactionsOutputView(initialSearchQuery: budgetName));
-
-              },
-              backgroundColor: Colors.transparent,
-              foregroundColor: ColorsResources.greenGray,
-              icon: Icons.money_rounded,
-              label: StringsResources.transactionAll,
-              autoClose: true,
-            ),
-          ],
-        ),
         child: Padding(
           padding: const  EdgeInsets.fromLTRB(13, 7, 13, 13),
           child: PhysicalModel(
             color: ColorsResources.light,
             elevation: 7,
-            shadowColor: budgetColorTag.withOpacity(0.79),
+            shadowColor: customerColorTag.withOpacity(0.79),
             shape: BoxShape.rectangle,
             borderRadius: const BorderRadius.all(Radius.circular(17)),
             child: InkWell(
@@ -487,39 +464,6 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             SizedBox(
-                              height: 59,
-                              width: double.infinity,
-                              child: Padding(
-                                padding: const EdgeInsets.fromLTRB(27, 11, 13, 0),
-                                child: Align(
-                                    alignment: Alignment.center,
-                                    child: Marquee(
-                                      text: budgetBalance,
-                                      style: const TextStyle(
-                                        color: ColorsResources.dark,
-                                        fontSize: 31,
-                                        fontFamily: "Numbers",
-                                      ),
-                                      scrollAxis: Axis.horizontal,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      blankSpace: 199.0,
-                                      velocity: 37.0,
-                                      fadingEdgeStartFraction: 0.13,
-                                      fadingEdgeEndFraction: 0.13,
-                                      startAfter: const Duration(milliseconds: 777),
-                                      numberOfRounds: 3,
-                                      pauseAfterRound: const Duration(milliseconds: 500),
-                                      showFadingOnlyWhenScrolling: true,
-                                      startPadding: 13.0,
-                                      accelerationDuration: const Duration(milliseconds: 500),
-                                      accelerationCurve: Curves.linear,
-                                      decelerationDuration: const Duration(milliseconds: 500),
-                                      decelerationCurve: Curves.easeOut,
-                                    )
-                                ),
-                              ),
-                            ),
-                            SizedBox(
                                 height: 39,
                                 width: double.infinity,
                                 child: Padding(
@@ -534,7 +478,7 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
                                           child: Align(
                                             alignment: Alignment.centerRight,
                                             child: Text(
-                                              budgetName,
+                                              customerName,
                                               style: const TextStyle(
                                                 color: ColorsResources.dark,
                                                 fontSize: 19,
@@ -557,7 +501,7 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
                                   child: Align(
                                     alignment: Alignment.centerRight,
                                     child: Text(
-                                      budgetDescription,
+                                      customerDescription,
                                       textAlign: TextAlign.right,
                                       style: TextStyle(
                                           color: ColorsResources.dark.withOpacity(0.537),
@@ -588,7 +532,7 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
                                   ),
                                   gradient: LinearGradient(
                                       colors: [
-                                        budgetColorTag.withOpacity(0.7),
+                                        customerColorTag.withOpacity(0.7),
                                         ColorsResources.light,
                                       ],
                                       begin: const FractionalOffset(0.0, 0.0),
@@ -617,7 +561,7 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
 
     var databaseQueries = CustomersDatabaseQueries();
 
-    databaseQueries.queryDeleteBudget(customersData.id, CustomersDatabaseInputs.databaseTableName);
+    databaseQueries.queryDeleteCustomer(customersData.id, CustomersDatabaseInputs.databaseTableName);
 
     retrieveAllCustomers(context);
 
@@ -651,7 +595,7 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
 
     var databaseQueries = CustomersDatabaseQueries();
 
-    allCustomers = await databaseQueries.getAllBudgets(BudgetsDatabaseInputs.databaseTableName);
+    allCustomers = await databaseQueries.getAllCustomers(CustomersDatabaseInputs.databaseTableName);
 
     for (var element in allCustomers) {
 

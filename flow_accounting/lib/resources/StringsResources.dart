@@ -109,8 +109,11 @@ class StringsResources {
   static const String sortHint = "مرتب سازی";
   static const String sortTimeNew = "بر اساس: زمان جدید";
   static const String sortTimeOld = "بر اساس: زمان گذشته";
+
   static const String sortMoneyAmountLow = "مرتب سازی: تراکنش کمک";
   static const String sortTransactionAmountHigh = "مرتب سازی: تراکنش زیاد";
+
+  static const String sortCustomerAge = "مرتب سازی: سن مشتری";
 
   static const String sortBudgetAmountHigh = "مرتب سازی: مبلغ بوجه";
 

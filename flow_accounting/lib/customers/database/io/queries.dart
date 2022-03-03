@@ -58,4 +58,25 @@ class CustomersDatabaseQueries {
 
   }
 
+  Future<int> queryDeleteCustomer(int id,
+      String? tableName, {String usernameId = "Unknown"}) async {
+
+    final database = openDatabase(
+      join(await getDatabasesPath(), CustomersDatabaseInputs.customersDatabase),
+    );
+
+    final databaseInstance = await database;
+
+    var tableNameQuery = (tableName != null) ? tableName : CustomersDatabaseInputs.databaseTableName;
+    tableNameQuery = "${usernameId}_${tableNameQuery}";
+
+    var queryResult = await databaseInstance.delete(
+      tableNameQuery,
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+
+    return queryResult;
+  }
+
 }
