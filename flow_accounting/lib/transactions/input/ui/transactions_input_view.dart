@@ -642,32 +642,38 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                 children: [
                                                   Expanded(
-                                                    flex: 9,
-                                                    child:  Directionality(
-                                                      textDirection: TextDirection.rtl,
-                                                      child: Text(
-                                                        suggestion.customerName,
-                                                        style: const TextStyle(
-                                                            color: ColorsResources.darkTransparent,
-                                                            fontSize: 15
+                                                      flex: 11,
+                                                      child:  Padding(
+                                                        padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
+                                                        child: Directionality(
+                                                          textDirection: TextDirection.rtl,
+                                                          child: Text(
+                                                            suggestion.customerName,
+                                                            style: const TextStyle(
+                                                                color: ColorsResources.darkTransparent,
+                                                                fontSize: 15
+                                                            ),
+                                                          ),
                                                         ),
-                                                      ),
-                                                    )
+                                                      )
                                                   ),
                                                   Expanded(
-                                                      flex: 3,
-                                                      child:  Container(
-                                                        decoration: BoxDecoration(
-                                                            shape: BoxShape.circle,
-                                                            color: Color(suggestion.colorTag)
-                                                        ),
-                                                        child: Padding(
-                                                          padding: const EdgeInsets.fromLTRB(3, 3, 3, 3),
-                                                          child: ClipRRect(
-                                                            borderRadius: BorderRadius.circular(51),
-                                                            child: Image.file(
-                                                              File(suggestion.customerImagePath),
-                                                              fit: BoxFit.cover,
+                                                      flex: 5,
+                                                      child:  AspectRatio(
+                                                        aspectRatio: 1,
+                                                        child: Container(
+                                                          decoration: BoxDecoration(
+                                                              shape: BoxShape.circle,
+                                                              color: Color(suggestion.colorTag)
+                                                          ),
+                                                          child: Padding(
+                                                            padding: const EdgeInsets.fromLTRB(3, 3, 3, 3),
+                                                            child: ClipRRect(
+                                                              borderRadius: BorderRadius.circular(51),
+                                                              child: Image.file(
+                                                                File(suggestion.customerImagePath),
+                                                                fit: BoxFit.cover,
+                                                              ),
                                                             ),
                                                           ),
                                                         ),
@@ -776,37 +782,45 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                         },
                                         itemBuilder: (context, suggestion) {
 
+                                          print(">>> ${suggestion.customerImagePath}");
+
                                           return ListTile(
                                               title: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                 children: [
                                                   Expanded(
-                                                      flex: 9,
-                                                      child:  Directionality(
-                                                        textDirection: TextDirection.rtl,
-                                                        child: Text(
-                                                          suggestion.customerName,
-                                                          style: const TextStyle(
-                                                              color: ColorsResources.darkTransparent,
-                                                              fontSize: 15
+                                                      flex: 11,
+                                                      child:  Padding(
+                                                        padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
+                                                        child: Directionality(
+                                                          textDirection: TextDirection.rtl,
+                                                          child: Text(
+                                                            suggestion.customerName,
+                                                            style: const TextStyle(
+                                                                color: ColorsResources.darkTransparent,
+                                                                fontSize: 15
+                                                            ),
                                                           ),
                                                         ),
                                                       )
                                                   ),
                                                   Expanded(
-                                                      flex: 3,
-                                                      child:  Container(
-                                                        decoration: BoxDecoration(
-                                                            shape: BoxShape.circle,
-                                                            color: Color(suggestion.colorTag)
-                                                        ),
-                                                        child: Padding(
-                                                          padding: const EdgeInsets.fromLTRB(3, 3, 3, 3),
-                                                          child: ClipRRect(
-                                                            borderRadius: BorderRadius.circular(51),
-                                                            child: Image.file(
-                                                              File(suggestion.customerImagePath),
-                                                              fit: BoxFit.cover,
+                                                      flex: 5,
+                                                      child: AspectRatio(
+                                                        aspectRatio: 1,
+                                                        child: Container(
+                                                          decoration: BoxDecoration(
+                                                              shape: BoxShape.circle,
+                                                              color: Color(suggestion.colorTag)
+                                                          ),
+                                                          child: Padding(
+                                                            padding: const EdgeInsets.fromLTRB(3, 3, 3, 3),
+                                                            child: ClipRRect(
+                                                              borderRadius: BorderRadius.circular(51),
+                                                              child: Image.file(
+                                                                File(suggestion.customerImagePath),
+                                                                fit: BoxFit.cover,
+                                                              ),
                                                             ),
                                                           ),
                                                         ),
