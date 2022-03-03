@@ -320,6 +320,7 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
       StatefulWidget? targetViewToSubmitData,
       StatefulWidget? targetViewToPresentData,
       BuildContext context) {
+
     return Expanded(
       flex: 1,
       child: Padding(
@@ -331,7 +332,7 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
                 topRight: Radius.circular(13),
                 bottomLeft: Radius.circular(13),
                 bottomRight: Radius.circular(13)),
-            color: backgroundColor.withOpacity(0.51),
+            color: ColorsResources.light,
             boxShadow: [
               BoxShadow(
                 color: ColorsResources.dark.withOpacity(0.3),
@@ -347,243 +348,254 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
               ),
             ],
           ),
-          child: Column(
-            children: [
-              SizedBox(
-                  height: 50,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(7),
-                          topRight: Radius.circular(7),
-                          bottomLeft: Radius.circular(0),
-                          bottomRight: Radius.circular(0)),
-                      gradient: LinearGradient(
-                          colors: [
-                            ColorsResources.white.withOpacity(0.3),
-                            ColorsResources.light,
-                          ],
-                          begin: const FractionalOffset(0.0, 0.0),
-                          end: const FractionalOffset(1.0, 0.0),
-                          stops: const [0.0, 1.0],
-                          transform: const GradientRotation(45),
-                          tileMode: TileMode.clamp),
-                    ),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(13),
+                  topRight: Radius.circular(13),
+                  bottomLeft: Radius.circular(13),
+                  bottomRight: Radius.circular(13)),
+              color: backgroundColor.withOpacity(0.3),
+            ),
+            child: Column(
+              children: [
+                SizedBox(
+                    height: 50,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(7),
+                            topRight: Radius.circular(7),
+                            bottomLeft: Radius.circular(0),
+                            bottomRight: Radius.circular(0)),
+                        gradient: LinearGradient(
+                            colors: [
+                              ColorsResources.white.withOpacity(0.3),
+                              ColorsResources.light,
+                            ],
+                            begin: const FractionalOffset(0.0, 0.0),
+                            end: const FractionalOffset(1.0, 0.0),
+                            stops: const [0.0, 1.0],
+                            transform: const GradientRotation(45),
+                            tileMode: TileMode.clamp),
+                      ),
+                      child: Padding(
+                          padding: const EdgeInsets.fromLTRB(11, 0, 11, 0),
+                          child: Directionality(
+                            textDirection: TextDirection.rtl,
+                            child: Align(
+                              alignment: Alignment.centerRight,
+                              child: Text(
+                                featureTitle,
+                                style: const TextStyle(
+                                    fontSize: 19,
+                                    color: ColorsResources.dark,
+                                    shadows: [
+                                      Shadow(
+                                          color: ColorsResources.light,
+                                          offset: Offset(0, 0),
+                                          blurRadius: 7)
+                                    ]),
+                              ),
+                            ),
+                          )),
+                    )),
+                SizedBox(
+                    height: 119,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(0),
+                            topRight: Radius.circular(0),
+                            bottomLeft: Radius.circular(0),
+                            bottomRight: Radius.circular(0)),
+                        gradient: LinearGradient(
+                            colors: [
+                              ColorsResources.white.withOpacity(0.3),
+                              ColorsResources.light.withOpacity(0.3),
+                            ],
+                            begin: const FractionalOffset(0.0, 0.0),
+                            end: const FractionalOffset(1.0, 0.0),
+                            stops: const [0.0, 1.0],
+                            transform: const GradientRotation(45),
+                            tileMode: TileMode.clamp),
+                      ),
+                      child: Padding(
+                          padding: const EdgeInsets.fromLTRB(11, 7, 11, 0),
+                          child: Directionality(
+                            textDirection: TextDirection.rtl,
+                            child: Align(
+                              alignment: Alignment.topRight,
+                              child: Text(
+                                featureDescription,
+                                maxLines: 5,
+                                style: const TextStyle(
+                                    fontSize: 12,
+                                    color: ColorsResources.blueGreen,
+                                    shadows: [
+                                      Shadow(
+                                          color: ColorsResources.light,
+                                          offset: Offset(0, 0),
+                                          blurRadius: 7
+                                      )
+                                    ]),
+                              ),
+                            ),
+                          )),
+                    )),
+                SizedBox(
+                    height: 53,
                     child: Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 0, 7, 0),
-                        child: Directionality(
-                          textDirection: TextDirection.rtl,
-                          child: Align(
-                            alignment: Alignment.centerRight,
-                            child: Text(
-                              featureTitle,
-                              style: const TextStyle(
-                                  fontSize: 19,
-                                  color: ColorsResources.dark,
-                                  shadows: [
+                      padding: const EdgeInsets.fromLTRB(3, 1, 3, 3),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Expanded(
+                              flex: 31,
+                              child: MaterialButton(
+                                onPressed: () {
+                                  Future.delayed(
+                                      const Duration(milliseconds: 199),
+                                          () async {
+                                        if (targetViewToPresentData != null) {
+                                          bool dataUpdated = await Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                targetViewToPresentData),
+                                          );
+
+                                          debugPrint("Data Update => ${dataUpdated}");
+                                          if (dataUpdated) {
+                                            switch (UpdatedData.UpdatedDataType) {
+                                              case UpdatedData.GeneralBalance:
+                                                {
+                                                  break;
+                                                }
+                                              case UpdatedData.GeneralEarning:
+                                                {
+                                                  break;
+                                                }
+                                              case UpdatedData.GeneralSpending:
+                                                {
+                                                  break;
+                                                }
+                                              case UpdatedData.LatestTransactions:
+                                                {
+                                                  widget.dashboardView.retrieveLatestTransactions();
+
+                                                  break;
+                                                }
+                                              case UpdatedData.CreditCards:
+                                                {
+                                                  break;
+                                                }
+                                            }
+                                          }
+                                        }
+                                      });
+                                },
+                                child: const Text(
+                                  StringsResources.presentText,
+                                  style: TextStyle(fontSize: 13, shadows: [
                                     Shadow(
                                         color: ColorsResources.light,
                                         offset: Offset(0, 0),
                                         blurRadius: 7)
                                   ]),
+                                ),
+                                height: 79,
+                                minWidth: double.infinity,
+                                color: ColorsResources.light,
+                                splashColor: ColorsResources.primaryColorLight,
+                                textColor:
+                                ColorsResources.applicationDarkGeeksEmpire,
+                                shape: const RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(13),
+                                        topRight: Radius.circular(13),
+                                        bottomLeft: Radius.circular(13),
+                                        bottomRight: Radius.circular(0))),
+                              )),
+                          const Expanded(
+                            flex: 1,
+                            child: ColoredBox(
+                              color: Colors.transparent,
                             ),
                           ),
-                        )),
-                  )),
-              SizedBox(
-                  height: 119,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(0),
-                          topRight: Radius.circular(0),
-                          bottomLeft: Radius.circular(0),
-                          bottomRight: Radius.circular(0)),
-                      gradient: LinearGradient(
-                          colors: [
-                            ColorsResources.white.withOpacity(0.3),
-                            ColorsResources.light.withOpacity(0.3),
-                          ],
-                          begin: const FractionalOffset(0.0, 0.0),
-                          end: const FractionalOffset(1.0, 0.0),
-                          stops: const [0.0, 1.0],
-                          transform: const GradientRotation(45),
-                          tileMode: TileMode.clamp),
-                    ),
-                    child: Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 7, 7, 0),
-                        child: Directionality(
-                          textDirection: TextDirection.rtl,
-                          child: Align(
-                            alignment: Alignment.topRight,
-                            child: Text(
-                              featureDescription,
-                              style: const TextStyle(
-                                  fontSize: 12,
-                                  color: ColorsResources.blueGreen,
-                                  shadows: [
+                          Expanded(
+                              flex: 31,
+                              child: MaterialButton(
+                                onPressed: () {
+                                  Future.delayed(
+                                      const Duration(milliseconds: 199),
+                                          () async {
+                                        if (targetViewToSubmitData != null) {
+                                          bool dataUpdated = await Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                targetViewToSubmitData),
+                                          );
+
+                                          debugPrint("Data Update => ${dataUpdated}");
+                                          if (dataUpdated) {
+                                            switch (UpdatedData.UpdatedDataType) {
+                                              case UpdatedData.GeneralBalance:
+                                                {
+                                                  break;
+                                                }
+                                              case UpdatedData.GeneralEarning:
+                                                {
+                                                  break;
+                                                }
+                                              case UpdatedData.GeneralSpending:
+                                                {
+                                                  break;
+                                                }
+                                              case UpdatedData.LatestTransactions:
+                                                {
+                                                  widget.dashboardView
+                                                      .retrieveLatestTransactions();
+
+                                                  break;
+                                                }
+                                              case UpdatedData.CreditCards:
+                                                {
+                                                  break;
+                                                }
+                                            }
+                                          }
+                                        }
+                                      });
+                                },
+                                child: const Text(
+                                  StringsResources.submitText,
+                                  style: TextStyle(fontSize: 13, shadows: [
                                     Shadow(
                                         color: ColorsResources.light,
                                         offset: Offset(0, 0),
                                         blurRadius: 7)
                                   ]),
-                            ),
-                          ),
-                        )),
-                  )),
-              SizedBox(
-                  height: 53,
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(3, 1, 3, 3),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Expanded(
-                            flex: 31,
-                            child: MaterialButton(
-                              onPressed: () {
-                                Future.delayed(
-                                    const Duration(milliseconds: 199),
-                                    () async {
-                                  if (targetViewToPresentData != null) {
-                                    bool dataUpdated = await Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              targetViewToPresentData),
-                                    );
-
-                                    debugPrint("Data Update => ${dataUpdated}");
-                                    if (dataUpdated) {
-                                      switch (UpdatedData.UpdatedDataType) {
-                                        case UpdatedData.GeneralBalance:
-                                          {
-                                            break;
-                                          }
-                                        case UpdatedData.GeneralEarning:
-                                          {
-                                            break;
-                                          }
-                                        case UpdatedData.GeneralSpending:
-                                          {
-                                            break;
-                                          }
-                                        case UpdatedData.LatestTransactions:
-                                          {
-                                            widget.dashboardView
-                                                .retrieveLatestTransactions();
-
-                                            break;
-                                          }
-                                        case UpdatedData.CreditCards:
-                                          {
-                                            break;
-                                          }
-                                      }
-                                    }
-                                  }
-                                });
-                              },
-                              child: const Text(
-                                StringsResources.presentText,
-                                style: TextStyle(fontSize: 13, shadows: [
-                                  Shadow(
-                                      color: ColorsResources.light,
-                                      offset: Offset(0, 0),
-                                      blurRadius: 7)
-                                ]),
-                              ),
-                              height: 79,
-                              minWidth: double.infinity,
-                              color: ColorsResources.light,
-                              splashColor: ColorsResources.primaryColorLight,
-                              textColor:
-                                  ColorsResources.applicationDarkGeeksEmpire,
-                              shape: const RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(13),
-                                      topRight: Radius.circular(13),
-                                      bottomLeft: Radius.circular(13),
-                                      bottomRight: Radius.circular(0))),
-                            )),
-                        const Expanded(
-                          flex: 1,
-                          child: ColoredBox(
-                            color: Colors.transparent,
-                          ),
-                        ),
-                        Expanded(
-                            flex: 31,
-                            child: MaterialButton(
-                              onPressed: () {
-                                Future.delayed(
-                                    const Duration(milliseconds: 199),
-                                    () async {
-                                  if (targetViewToSubmitData != null) {
-                                    bool dataUpdated = await Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              targetViewToSubmitData),
-                                    );
-
-                                    debugPrint("Data Update => ${dataUpdated}");
-                                    if (dataUpdated) {
-                                      switch (UpdatedData.UpdatedDataType) {
-                                        case UpdatedData.GeneralBalance:
-                                          {
-                                            break;
-                                          }
-                                        case UpdatedData.GeneralEarning:
-                                          {
-                                            break;
-                                          }
-                                        case UpdatedData.GeneralSpending:
-                                          {
-                                            break;
-                                          }
-                                        case UpdatedData.LatestTransactions:
-                                          {
-                                            widget.dashboardView
-                                                .retrieveLatestTransactions();
-
-                                            break;
-                                          }
-                                        case UpdatedData.CreditCards:
-                                          {
-                                            break;
-                                          }
-                                      }
-                                    }
-                                  }
-                                });
-                              },
-                              child: const Text(
-                                StringsResources.submitText,
-                                style: TextStyle(fontSize: 13, shadows: [
-                                  Shadow(
-                                      color: ColorsResources.light,
-                                      offset: Offset(0, 0),
-                                      blurRadius: 7)
-                                ]),
-                              ),
-                              height: 79,
-                              minWidth: double.infinity,
-                              color: ColorsResources.light,
-                              splashColor: ColorsResources.primaryColorLight,
-                              textColor:
-                                  ColorsResources.applicationDarkGeeksEmpire,
-                              shape: const RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(13),
-                                      topRight: Radius.circular(13),
-                                      bottomLeft: Radius.circular(0),
-                                      bottomRight: Radius.circular(13))),
-                            ))
-                      ],
-                    ),
-                  )),
-            ],
+                                ),
+                                height: 79,
+                                minWidth: double.infinity,
+                                color: ColorsResources.light,
+                                splashColor: ColorsResources.primaryColorLight,
+                                textColor:
+                                ColorsResources.applicationDarkGeeksEmpire,
+                                shape: const RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(13),
+                                        topRight: Radius.circular(13),
+                                        bottomLeft: Radius.circular(0),
+                                        bottomRight: Radius.circular(13))),
+                              ))
+                        ],
+                      ),
+                    )),
+              ],
+            ),
           ),
         ),
       ),
