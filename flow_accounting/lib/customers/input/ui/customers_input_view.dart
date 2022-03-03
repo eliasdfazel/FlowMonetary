@@ -77,9 +77,12 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
   TextEditingController controllerCustomerMaritalStatus = TextEditingController();
 
-  Widget imagePickerWidget = const Image(
-    image: AssetImage("unknown_user.png"),
-    fit: BoxFit.cover,
+  Widget imagePickerWidget = const Opacity(
+    opacity: 0.7,
+    child: Image(
+      image: AssetImage("unknown_user.png"),
+      fit: BoxFit.cover,
+    ),
   );
 
   int timeNow = DateTime.now().millisecondsSinceEpoch;
@@ -1588,6 +1591,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
     final XFile? selectedImage = await imagePicker.pickImage(source: ImageSource.gallery);
 
+    debugPrint("Picked Image Path: ${selectedImage?.path}");
     if (selectedImage != null) {
 
       setState(() {
