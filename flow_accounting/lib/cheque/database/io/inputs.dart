@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/13/22, 6:44 AM
+ * Last modified 3/6/22, 2:43 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,31 +10,30 @@
 
 import 'dart:core';
 
-import 'package:flow_accounting/budgets/database/structures/tables_structure.dart';
+import 'package:flow_accounting/cheque/database/structures/table_structure.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-class BudgetsDatabaseInputs {
+class ChequesDatabaseInputs {
 
-  static const String databaseTableName = "all_budgets";
+  static const String databaseTableName = "all_cheques";
 
-  static const budgetsDatabase = "budgets_database.db";
+  static const chequesDatabase = "cheques_database.db";
 
-  Future<void> insertBudgetData(BudgetsData budgetsData, String? tableName,
+  Future<void> insertChequeData(ChequesData chequesData, String? tableName,
       {String usernameId = "Unknown"}) async {
 
-    var tableNameQuery = (tableName != null) ? tableName : BudgetsDatabaseInputs.databaseTableName;
+    var tableNameQuery = (tableName != null) ? tableName : ChequesDatabaseInputs.databaseTableName;
     tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     final database = openDatabase(
-      join(await getDatabasesPath(), BudgetsDatabaseInputs.budgetsDatabase),
+      join(await getDatabasesPath(), ChequesDatabaseInputs.chequesDatabase),
       onCreate: (databaseInstance, version) {
 
         return databaseInstance.execute(
           'CREATE TABLE IF NOT EXISTS $tableNameQuery(id INTEGER PRIMARY KEY, '
               'budgetName TEXT, '
-              'budgetDescription TEXT, '
-              'budgetBalance TEXT,'
+
               'colorTag TEXT'
               ')',
         );
@@ -47,28 +46,28 @@ class BudgetsDatabaseInputs {
 
     await databaseInstance.insert(
       tableNameQuery,
-      budgetsData.toMap(),
+      chequesData.toMap(),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
 
   }
 
-  Future<void> updateBudgetData(BudgetsData budgetsData, String? tableName, {String usernameId = "Unknown"}) async {
+  Future<void> updateChequeData(ChequesData chequesData, String? tableName, {String usernameId = "Unknown"}) async {
 
     final database = openDatabase(
-      join(await getDatabasesPath(), BudgetsDatabaseInputs.budgetsDatabase),
+      join(await getDatabasesPath(), ChequesDatabaseInputs.chequesDatabase),
     );
 
     final databaseInstance = await database;
 
-    var tableNameQuery = (tableName != null) ? tableName : BudgetsDatabaseInputs.databaseTableName;
+    var tableNameQuery = (tableName != null) ? tableName : ChequesDatabaseInputs.databaseTableName;
     tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     await databaseInstance.update(
       tableNameQuery,
-      budgetsData.toMap(),
+      chequesData.toMap(),
       where: 'id = ?',
-      whereArgs: [budgetsData.id],
+      whereArgs: [chequesData.id],
     );
 
     if (databaseInstance.isOpen) {

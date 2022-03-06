@@ -27,7 +27,7 @@ class CustomersDatabaseInputs {
     tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     final database = openDatabase(
-      join(await getDatabasesPath(), customersDatabase),
+      join(await getDatabasesPath(), CustomersDatabaseInputs.customersDatabase),
       onCreate: (databaseInstance, version) {
 
         return databaseInstance.execute(
@@ -65,7 +65,7 @@ class CustomersDatabaseInputs {
   Future<void> updateCustomerData(CustomersData customersData, String? tableName, {String usernameId = "Unknown"}) async {
 
     final database = openDatabase(
-      join(await getDatabasesPath(), customersDatabase),
+      join(await getDatabasesPath(), CustomersDatabaseInputs.customersDatabase),
     );
 
     final databaseInstance = await database;

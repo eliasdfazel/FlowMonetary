@@ -14,48 +14,42 @@ class ChequesData {
 
   final int id;
 
-  final String customerName;
-  final String customerDescription;
+  final String chequeMoneyAmount;
 
-  final String customerCountry;
-  final String customerCity;
-  final String customerStreetAddress;
+  final String chequeBankName;
+  final String chequeBankBranch;
 
-  final String customerPhoneNumber;
-  final String customerEmailAddress;
+  final String chequeIssueDate;
+  final String chequeDueDate;
 
-  final String customerAge;
-  final String customerBirthday;
+  final String chequeSourceId;
+  final String chequeSourceName;
+  final String chequeSourceAccountNumber;
 
-  final String customerJob;
-
-  final String customerMaritalStatus;
-
-  final String customerImagePath;
+  final String chequeTargetId;
+  final String chequeTargetName;
+  final String chequeTargetAccountNumber;
 
   int colorTag = ColorsResources.dark.value;
 
   ChequesData({
     required this.id,
 
-    required this.customerName,
-    required this.customerDescription,
+    required this.chequeMoneyAmount,
 
-    required this.customerCountry,
-    required this.customerCity,
-    required this.customerStreetAddress,
+    required this.chequeBankName,
+    required this.chequeBankBranch,
 
-    required this.customerPhoneNumber,
-    required this.customerEmailAddress,
+    required this.chequeIssueDate,
+    required this.chequeDueDate,
 
-    required this.customerAge,
-    required this.customerBirthday,
+    required this.chequeSourceId,
+    required this.chequeSourceName,
+    required this.chequeSourceAccountNumber,
 
-    required this.customerJob,
-
-    required this.customerMaritalStatus,
-
-    required this.customerImagePath,
+    required this.chequeTargetId,
+    required this.chequeTargetName,
+    required this.chequeTargetAccountNumber,
 
     required this.colorTag,
   });
@@ -64,24 +58,21 @@ class ChequesData {
     return {
       'id': id,
 
-      'customerName': customerName,
-      'customerDescription': customerDescription,
+      'chequeMoneyAmount': chequeMoneyAmount,
 
-      'customerCountry': customerCountry,
-      'customerCity': customerCity,
-      'customerStreetAddress': customerStreetAddress,
+      'chequeBankName': chequeBankName,
+      'chequeBankBranch': chequeBankBranch,
 
-      'customerPhoneNumber': customerPhoneNumber,
-      'customerEmailAddress': customerEmailAddress,
+      'chequeIssueDate': chequeIssueDate,
+      'chequeDueDate': chequeDueDate,
 
-      'customerAge': customerAge,
-      'customerBirthday': customerBirthday,
+      'chequeSourceId': chequeSourceId,
+      'chequeSourceName': chequeSourceName,
+      'chequeSourceAccountNumber': chequeSourceAccountNumber,
 
-      'customerJob': customerJob,
-
-      'customerMaritalStatus': customerMaritalStatus,
-
-      'customerImagePath': customerImagePath,
+      'chequeTargetId': chequeTargetId,
+      'chequeTargetName': chequeTargetName,
+      'chequeTargetAccountNumber': chequeTargetAccountNumber,
 
       'colorTag': colorTag,
     };
@@ -92,24 +83,21 @@ class ChequesData {
     return 'ChequesData{'
         'id: $id,'
 
-        'customerName: $customerName,'
-        'customerDescription: $customerDescription,'
+        'chequeMoneyAmount: $chequeMoneyAmount,'
 
-        'customerCountry: $customerCountry,'
-        'customerCity: $customerCity,'
-        'customerStreetAddress: $customerStreetAddress,'
+        'chequeBankName: $chequeBankName,'
+        'chequeBankBranch: $chequeBankBranch,'
 
-        'customerPhoneNumber: $customerPhoneNumber,'
-        'customerEmailAddress: $customerEmailAddress,'
+        'chequeIssueDate: $chequeIssueDate,'
+        'chequeDueDate: $chequeDueDate,'
 
-        'customerAge: $customerAge,'
-        'customerBirthday: $customerBirthday,'
+        'chequeSourceId: $chequeSourceId,'
+        'chequeSourceName: $chequeSourceName,'
+        'chequeSourceAccountNumber: $chequeSourceAccountNumber,'
 
-        'customerJob: $customerJob,'
-
-        'customerImagePath: $customerImagePath,'
-
-        'customerMaritalStatus: $customerMaritalStatus,'
+        'chequeTargetId: $chequeTargetId,'
+        'chequeTargetName: $chequeTargetName,'
+        'chequeTargetAccountNumber: $chequeTargetAccountNumber,'
 
         'colorTag: $colorTag,'
         '}';

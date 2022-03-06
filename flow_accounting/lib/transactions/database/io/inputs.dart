@@ -27,7 +27,7 @@ class TransactionsDatabaseInputs {
     tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     final database = openDatabase(
-      join(await getDatabasesPath(), transactionDatabase),
+      join(await getDatabasesPath(), TransactionsDatabaseInputs.transactionDatabase),
       onCreate: (databaseInstance, version) {
 
         return databaseInstance.execute(
@@ -68,7 +68,7 @@ class TransactionsDatabaseInputs {
   Future<void> updateTransactionData(TransactionsData transactionsData, String? tableName, {String usernameId = "Unknown"}) async {
 
     final database = openDatabase(
-      join(await getDatabasesPath(), transactionDatabase),
+      join(await getDatabasesPath(), TransactionsDatabaseInputs.transactionDatabase),
     );
 
     final databaseInstance = await database;
@@ -89,24 +89,6 @@ class TransactionsDatabaseInputs {
 
     }
 
-  }
-
-  Future<void> deleteTransactionsData(int id, String? tableName, {String usernameId = "Unknown"}) async {
-
-    final database = openDatabase(
-      join(await getDatabasesPath(), transactionDatabase),
-    );
-
-    final databaseInstance = await database;
-
-    var tableNameQuery = (tableName != null) ? tableName : TransactionsDatabaseInputs.databaseTableName;
-    tableNameQuery = "${usernameId}_${tableNameQuery}";
-
-    await databaseInstance.delete(
-      tableNameQuery,
-      where: 'id = ?',
-      whereArgs: [id],
-    );
   }
 
 }

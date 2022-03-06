@@ -22,7 +22,7 @@ class CreditCardsDatabaseQueries {
       {String usernameId = "Unknown"}) async {
 
     final database = openDatabase(
-      join(await getDatabasesPath(), CreditCardsDatabaseInputs.transactionDatabase),
+      join(await getDatabasesPath(), CreditCardsDatabaseInputs.creditCardDatabase),
     );
 
     final databaseInstance = await database;
@@ -51,7 +51,7 @@ class CreditCardsDatabaseQueries {
       String? tableName, {String usernameId = "Unknown"}) async {
 
     final database = openDatabase(
-      join(await getDatabasesPath(), CreditCardsDatabaseInputs.transactionDatabase),
+      join(await getDatabasesPath(), CreditCardsDatabaseInputs.creditCardDatabase),
     );
 
     final databaseInstance = await database;
@@ -73,7 +73,7 @@ class CreditCardsDatabaseQueries {
       String? tableName, {String usernameId = "Unknown"}) async {
 
     final database = openDatabase(
-      join(await getDatabasesPath(), CreditCardsDatabaseInputs.transactionDatabase),
+      join(await getDatabasesPath(), CreditCardsDatabaseInputs.creditCardDatabase),
     );
 
     final databaseInstance = await database;
@@ -94,7 +94,7 @@ class CreditCardsDatabaseQueries {
       String? tableName, {String usernameId = "Unknown"}) async {
 
     final database = openDatabase(
-      join(await getDatabasesPath(), CreditCardsDatabaseInputs.transactionDatabase),
+      join(await getDatabasesPath(), CreditCardsDatabaseInputs.creditCardDatabase),
     );
 
     final databaseInstance = await database;
