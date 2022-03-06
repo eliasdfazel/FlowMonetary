@@ -56,7 +56,7 @@ class CreditCardsData {
 
   @override
   String toString() {
-    return 'TransactionsData{id: $id, '
+    return 'CreditCardsData{id: $id, '
 
         'cardNumber: $cardNumber, '
         'cardExpiry: $cardExpiry'
