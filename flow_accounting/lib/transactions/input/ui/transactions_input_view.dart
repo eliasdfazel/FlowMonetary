@@ -1891,6 +1891,8 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
                             processCreditCardsBalance(transactionData);
 
+                            processBudgetBalance(transactionData);
+
                             transactionDataUpdated = true;
 
                           }
