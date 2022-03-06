@@ -173,6 +173,22 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                     physics: const BouncingScrollPhysics(),
                     children: [
                       Padding(
+                        padding: EdgeInsets.fromLTRB(13, 0, 13, 0),
+                        child: Align(
+                          alignment: AlignmentDirectional.centerEnd,
+                          child: SizedBox(
+                            height: 73,
+                            width: double.infinity,
+                            child: Checkbox(
+                              value: false,
+                              onChanged: (bool? value) {
+
+                              },
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
                         padding: const EdgeInsets.fromLTRB(13, 13, 13, 0),
                         child:  Text(
                           StringsResources.featureTransactionsTitle,
