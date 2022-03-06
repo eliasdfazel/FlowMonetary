@@ -173,3 +173,4 @@ key.properties
 /app/build/outputs/apk/debug/app-debug.apk
 /app/build/outputs/apk/debug/output-metadata.json
 /app/build/outputs/logs/manifest-merger-debug-report.txt
+/app/build/intermediates/flutter/debug/flutter_assets/android/app/build/intermediates/

@@ -1103,8 +1103,8 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                                 borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
                                                 borderRadius: BorderRadius.only(
                                                     topLeft: Radius.circular(13),
-                                                    topRight: const Radius.circular(13),
-                                                    bottomLeft: const Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
                                                     bottomRight: Radius.circular(13)
                                                 ),
                                                 gapPadding: 5
@@ -1113,9 +1113,9 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                                 borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
                                                 borderRadius: BorderRadius.only(
                                                     topLeft: Radius.circular(13),
-                                                    topRight: const Radius.circular(13),
-                                                    bottomLeft: const Radius.circular(13),
-                                                    bottomRight: const Radius.circular(13)
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
+                                                    bottomRight: Radius.circular(13)
                                                 ),
                                                 gapPadding: 5
                                             ),
@@ -1123,8 +1123,8 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                                 borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
                                                 borderRadius: BorderRadius.only(
                                                     topLeft: Radius.circular(13),
-                                                    topRight: const Radius.circular(13),
-                                                    bottomLeft: const Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
                                                     bottomRight: Radius.circular(13)
                                                 ),
                                                 gapPadding: 5
@@ -1134,7 +1134,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                                 borderRadius: BorderRadius.only(
                                                     topLeft: Radius.circular(13),
                                                     topRight: Radius.circular(13),
-                                                    bottomLeft: const Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
                                                     bottomRight: Radius.circular(13)
                                                 ),
                                                 gapPadding: 5
@@ -1404,32 +1404,32 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                           decoration: InputDecoration(
                                             alignLabelWithHint: true,
                                             border: const OutlineInputBorder(
-                                                borderSide: const BorderSide(color: Colors.blueGrey, width: 1.0),
+                                                borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
                                                 borderRadius: BorderRadius.only(
-                                                    topLeft: const Radius.circular(13),
-                                                    topRight: const Radius.circular(13),
-                                                    bottomLeft: const Radius.circular(13),
-                                                    bottomRight: const Radius.circular(13)
+                                                    topLeft: Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
+                                                    bottomRight: Radius.circular(13)
                                                 ),
                                                 gapPadding: 5
                                             ),
                                             enabledBorder: const OutlineInputBorder(
-                                                borderSide: const BorderSide(color: Colors.blueGrey, width: 1.0),
+                                                borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
                                                 borderRadius: BorderRadius.only(
-                                                    topLeft: const Radius.circular(13),
-                                                    topRight: const Radius.circular(13),
-                                                    bottomLeft: const Radius.circular(13),
-                                                    bottomRight: const Radius.circular(13)
+                                                    topLeft: Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
+                                                    bottomRight: Radius.circular(13)
                                                 ),
                                                 gapPadding: 5
                                             ),
                                             focusedBorder: const OutlineInputBorder(
                                                 borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
                                                 borderRadius: BorderRadius.only(
-                                                    topLeft: const Radius.circular(13),
-                                                    topRight: const Radius.circular(13),
-                                                    bottomLeft: const Radius.circular(13),
-                                                    bottomRight: const Radius.circular(13)
+                                                    topLeft: Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
+                                                    bottomRight: Radius.circular(13)
                                                 ),
                                                 gapPadding: 5
                                             ),
@@ -1437,8 +1437,8 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                                 borderSide: BorderSide(color: Colors.red, width: 1.0),
                                                 borderRadius: BorderRadius.only(
                                                     topLeft: Radius.circular(13),
-                                                    topRight: const Radius.circular(13),
-                                                    bottomLeft: const Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
                                                     bottomRight: Radius.circular(13)
                                                 ),
                                                 gapPadding: 5
