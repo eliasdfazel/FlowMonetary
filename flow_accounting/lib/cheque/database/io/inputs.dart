@@ -32,7 +32,12 @@ class ChequesDatabaseInputs {
 
         return databaseInstance.execute(
           'CREATE TABLE IF NOT EXISTS $tableNameQuery(id INTEGER PRIMARY KEY, '
+              'chequeTitle TEXT, '
+              'chequeDescription TEXT, '
+
               'chequeMoneyAmount TEXT, '
+
+              'chequeTransactionType TEXT, '
 
               'chequeBankName TEXT, '
               'chequeBankBranch TEXT, '
@@ -47,6 +52,11 @@ class ChequesDatabaseInputs {
               'chequeTargetId TEXT, '
               'chequeTargetName TEXT, '
               'chequeTargetAccountNumber TEXT, '
+
+              'chequeDoneConfirmation TEXT, '
+
+              'chequeRelevantCreditCard TEXT, '
+              'chequeRelevantBudget TEXT, '
 
               'colorTag TEXT'
               ')',

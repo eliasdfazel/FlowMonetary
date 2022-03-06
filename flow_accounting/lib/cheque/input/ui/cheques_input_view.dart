@@ -15,6 +15,7 @@ import 'package:blur/blur.dart';
 import 'package:flow_accounting/budgets/database/io/inputs.dart';
 import 'package:flow_accounting/budgets/database/io/queries.dart';
 import 'package:flow_accounting/budgets/database/structures/tables_structure.dart';
+import 'package:flow_accounting/cheque/database/io/inputs.dart';
 import 'package:flow_accounting/cheque/database/structures/table_structure.dart';
 import 'package:flow_accounting/credit_cards/database/io/inputs.dart';
 import 'package:flow_accounting/credit_cards/database/io/queries.dart';
@@ -26,7 +27,6 @@ import 'package:flow_accounting/home/interface/dashboard.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/database/io/inputs.dart';
-import 'package:flow_accounting/transactions/database/structures/tables_structure.dart';
 import 'package:flow_accounting/utils/calendar/ui/calendar_view.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
 import 'package:flow_accounting/utils/extensions/BankLogos.dart';
@@ -36,8 +36,11 @@ import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class ChequesInputView extends StatefulWidget {
+
   ChequesData? chequesData = ChequesData(
       id: 0,
+      chequeTitle: "",
+      chequeDescription: "",
       chequeMoneyAmount: "0",
       chequeBankName: "",
       chequeBankBranch: "",
@@ -49,6 +52,9 @@ class ChequesInputView extends StatefulWidget {
       chequeTargetId: "",
       chequeTargetName: "",
       chequeTargetAccountNumber: "",
+      chequeDoneConfirmation: "",
+      chequeRelevantCreditCard: "",
+      chequeRelevantBudget: "",
       colorTag: ColorsResources.white.value
   );
 
@@ -66,26 +72,26 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
   TextEditingController controllerMoneyAmount = TextEditingController();
 
-  TextEditingController controllerTransactionTitle = TextEditingController();
-  TextEditingController controllerTransactionDescription = TextEditingController();
+  TextEditingController controllerChequeTitle = TextEditingController();
+  TextEditingController controllerChequeDescription = TextEditingController();
 
-  TextEditingController controllerTransactionSourceName = TextEditingController();
-  TextEditingController controllerTransactionSourceBank = TextEditingController();
-  TextEditingController controllerTransactionSourceCard = TextEditingController();
+  TextEditingController controllerChequeSourceName = TextEditingController();
+  TextEditingController controllerChequeSourceBank = TextEditingController();
+  TextEditingController controllerChequeSourceAccount = TextEditingController();
 
-  TextEditingController controllerTransactionTargetName = TextEditingController();
-  TextEditingController controllerTransactionTargetBank = TextEditingController();
-  TextEditingController controllerTransactionTargetCard = TextEditingController();
+  TextEditingController controllerChequeTargetName = TextEditingController();
+  TextEditingController controllerChequeTargetBank = TextEditingController();
+  TextEditingController controllerChequeTargetAccount = TextEditingController();
 
   TextEditingController controllerBudget = TextEditingController();
 
-  String transactionType = TransactionsData.TransactionType_Send;
+  String transactionType = ChequesData.TransactionType_Send;
 
-  String budgetName = TransactionsData.TransactionBudgetName;
+  String budgetName = ChequesData.TransactionBudgetName;
 
   int timeNow = DateTime.now().millisecondsSinceEpoch;
 
-  bool transactionDataUpdated = false;
+  bool chequeDataUpdated = false;
 
   String? warningNotice;
 
@@ -109,7 +115,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
     UpdatedData.UpdatedDataType = UpdatedData.LatestTransactions;
 
-    Navigator.pop(context, transactionDataUpdated);
+    Navigator.pop(context, chequeDataUpdated);
 
     return true;
   }
@@ -210,7 +216,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: TextField(
-                                      controller: controllerTransactionTitle,
+                                      controller: controllerChequeTitle,
                                       textAlign: TextAlign.right,
                                       textDirection: TextDirection.ltr,
                                       textAlignVertical: TextAlignVertical.bottom,
@@ -300,7 +306,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: TextField(
-                                      controller: controllerTransactionDescription,
+                                      controller: controllerChequeDescription,
                                       textAlign: TextAlign.right,
                                       textDirection: TextDirection.ltr,
                                       textAlignVertical: TextAlignVertical.top,
@@ -600,11 +606,11 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                                                 if (value.toString() == StringsResources.transactionTypeReceive) {
 
-                                                  transactionType = TransactionsData.TransactionType_Receive;
+                                                  transactionType = ChequesData.TransactionType_Receive;
 
                                                 } else if (value.toString() == StringsResources.transactionTypeSend) {
 
-                                                  transactionType = TransactionsData.TransactionType_Send;
+                                                  transactionType = ChequesData.TransactionType_Send;
 
                                                 }
 
@@ -704,7 +710,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                         },
                                         onSuggestionSelected: (suggestion) {
 
-                                          controllerTransactionTargetName.text = suggestion.customerName.toString();
+                                          controllerChequeTargetName.text = suggestion.customerName.toString();
 
                                         },
                                         errorBuilder: (context, suggestion) {
@@ -721,7 +727,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                             borderRadius: BorderRadius.circular(17)
                                         ),
                                         textFieldConfiguration: TextFieldConfiguration(
-                                          controller: controllerTransactionTargetName,
+                                          controller: controllerChequeTargetName,
                                           autofocus: false,
                                           maxLines: 1,
                                           cursorColor: ColorsResources.primaryColor,
@@ -849,7 +855,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                         },
                                         onSuggestionSelected: (suggestion) {
 
-                                          controllerTransactionSourceName.text = suggestion.customerName.toString();
+                                          controllerChequeSourceName.text = suggestion.customerName.toString();
 
                                         },
                                         errorBuilder: (context, suggestion) {
@@ -866,7 +872,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                             borderRadius: BorderRadius.circular(17)
                                         ),
                                         textFieldConfiguration: TextFieldConfiguration(
-                                          controller: controllerTransactionSourceName,
+                                          controller: controllerChequeSourceName,
                                           autofocus: false,
                                           maxLines: 1,
                                           cursorColor: ColorsResources.primaryColor,
@@ -1007,7 +1013,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                         },
                                         onSuggestionSelected: (suggestion) {
 
-                                          controllerTransactionTargetBank.text = suggestion.toString();
+                                          controllerChequeTargetBank.text = suggestion.toString();
 
                                         },
                                         errorBuilder: (context, suggestion) {
@@ -1024,7 +1030,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                             borderRadius: BorderRadius.circular(17)
                                         ),
                                         textFieldConfiguration: TextFieldConfiguration(
-                                          controller: controllerTransactionTargetBank,
+                                          controller: controllerChequeTargetBank,
                                           autofocus: false,
                                           maxLines: 1,
                                           cursorColor: ColorsResources.primaryColor,
@@ -1152,7 +1158,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                         },
                                         onSuggestionSelected: (suggestion) {
 
-                                          controllerTransactionSourceBank.text = suggestion.toString();
+                                          controllerChequeSourceBank.text = suggestion.toString();
 
                                         },
                                         errorBuilder: (context, suggestion) {
@@ -1169,7 +1175,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                             borderRadius: BorderRadius.circular(17)
                                         ),
                                         textFieldConfiguration: TextFieldConfiguration(
-                                          controller: controllerTransactionSourceBank,
+                                          controller: controllerChequeSourceBank,
                                           autofocus: false,
                                           maxLines: 1,
                                           cursorColor: ColorsResources.primaryColor,
@@ -1275,7 +1281,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                         },
                                         onSuggestionSelected: (suggestion) {
 
-                                          controllerTransactionSourceCard.text = suggestion.cardNumber.toString();
+                                          controllerChequeSourceAccount.text = suggestion.cardNumber.toString();
 
                                         },
                                         errorBuilder: (context, suggestion) {
@@ -1292,7 +1298,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                             borderRadius: BorderRadius.circular(17)
                                         ),
                                         textFieldConfiguration: TextFieldConfiguration(
-                                          controller: controllerTransactionSourceCard,
+                                          controller: controllerChequeSourceAccount,
                                           autofocus: false,
                                           maxLines: 1,
                                           cursorColor: ColorsResources.primaryColor,
@@ -1401,7 +1407,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                         },
                                         onSuggestionSelected: (suggestion) {
 
-                                          controllerTransactionTargetCard.text = suggestion.cardNumber.toString();
+                                          controllerChequeTargetAccount.text = suggestion.cardNumber.toString();
 
                                         },
                                         errorBuilder: (context, suggestion) {
@@ -1418,7 +1424,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                             borderRadius: BorderRadius.circular(17)
                                         ),
                                         textFieldConfiguration: TextFieldConfiguration(
-                                          controller: controllerTransactionTargetCard,
+                                          controller: controllerChequeTargetAccount,
                                           autofocus: false,
                                           maxLines: 1,
                                           cursorColor: ColorsResources.primaryColor,
@@ -1704,7 +1710,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                         UpdatedData.UpdatedDataType = UpdatedData.LatestTransactions;
 
-                        Navigator.pop(context, transactionDataUpdated);
+                        Navigator.pop(context, chequeDataUpdated);
 
                       },
                       child: Container(
@@ -1744,7 +1750,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                           bool noError = true;
 
-                          if (controllerTransactionSourceCard.text.length < 16) {
+                          if (controllerChequeSourceAccount.text.length < 16) {
 
                             setState(() {
 
@@ -1756,7 +1762,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                           }
 
-                          if (controllerTransactionTargetCard.text.length < 16) {
+                          if (controllerChequeTargetAccount.text.length < 16) {
 
                             setState(() {
 
@@ -1780,7 +1786,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                           }
 
-                          if (controllerTransactionTitle.text.isEmpty) {
+                          if (controllerChequeTitle.text.isEmpty) {
 
                             setState(() {
 
@@ -1792,7 +1798,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                           }
 
-                          if (controllerTransactionDescription.text.isEmpty) {
+                          if (controllerChequeDescription.text.isEmpty) {
 
                             setState(() {
 
@@ -1804,7 +1810,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                           }
 
-                          if (controllerTransactionSourceName.text.isEmpty) {
+                          if (controllerChequeSourceName.text.isEmpty) {
 
                             setState(() {
 
@@ -1816,7 +1822,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                           }
 
-                          if (controllerTransactionSourceBank.text.isEmpty) {
+                          if (controllerChequeSourceBank.text.isEmpty) {
 
                             setState(() {
 
@@ -1828,7 +1834,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                           }
 
-                          if (controllerTransactionTargetName.text.isEmpty) {
+                          if (controllerChequeTargetName.text.isEmpty) {
 
                             setState(() {
 
@@ -1840,7 +1846,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                           }
 
-                          if (controllerTransactionTargetBank.text.isEmpty) {
+                          if (controllerChequeTargetBank.text.isEmpty) {
 
                             setState(() {
 
@@ -1866,36 +1872,41 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                           if (noError) {
 
-                            var databaseInputs = TransactionsDatabaseInputs();
+                            var databaseInputs = ChequesDatabaseInputs();
 
-                            TransactionsData transactionData = TransactionsData(
+                            ChequesData chequeData = ChequesData(
                               id: timeNow,
 
-                              transactionTitle: controllerTransactionTitle.text,
-                              transactionDescription: controllerTransactionDescription.text,
+                              chequeTitle: "",
+                              chequeDescription: "",
 
-                              amountMoney: controllerMoneyAmount.text,
-                              transactionType: transactionType,
+                              chequeMoneyAmount: "0",
 
-                              transactionTimeMillisecond: calendarIssueDateView.pickedDateTime.millisecond,
-                              transactionTime: calendarIssueDateView.pickedDataTimeText ?? "",
-                              transactionTimeYear: calendarIssueDateView.pickedDataTimeYear,
-                              transactionTimeMonth: calendarIssueDateView.pickedDataTimeMonth,
+                              chequeTransactionType: "",
 
-                              sourceUsername: controllerTransactionSourceName.text,
-                              sourceBankName: controllerTransactionSourceBank.text,
-                              sourceCardNumber: controllerTransactionSourceCard.text,
+                              chequeBankName: "",
+                              chequeBankBranch: "",
 
-                              targetUsername: controllerTransactionTargetName.text,
-                              targetBankName: controllerTransactionTargetBank.text,
-                              targetCardNumber: controllerTransactionTargetCard.text,
+                              chequeIssueDate: "",
+                              chequeDueDate: "",
+
+                              chequeSourceId: "",
+                              chequeSourceName: "",
+                              chequeSourceAccountNumber: "",
+
+                              chequeTargetId: "",
+                              chequeTargetName: "",
+                              chequeTargetAccountNumber: "",
+
+                              chequeDoneConfirmation: "",
+
+                              chequeRelevantCreditCard: "",
+                              chequeRelevantBudget: "",
 
                               colorTag: colorSelectorView.selectedColor.value,
-
-                              budgetName: budgetName,
                             );
 
-                            databaseInputs.insertTransactionData(transactionData, TransactionsDatabaseInputs.databaseTableName);
+                            databaseInputs.insertChequeData(chequeData, TransactionsDatabaseInputs.databaseTableName);
 
                             Fluttertoast.showToast(
                                 msg: StringsResources.updatedText,
@@ -1907,9 +1918,9 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                 fontSize: 16.0
                             );
 
-                            processCreditCardsBalance(transactionData);
+                            processCreditCardsBalance(chequeData);
 
-                            transactionDataUpdated = true;
+                            chequeDataUpdated = true;
 
                           }
 
@@ -2066,17 +2077,17 @@ class _ChequeInputViewState extends State<ChequesInputView> {
     return listOfCreditCards;
   }
 
-  Future processCreditCardsBalance(TransactionsData transactionsData) async {
+  Future processCreditCardsBalance(ChequesData chequesData) async {
 
-    if (transactionsData.transactionType == TransactionsData.TransactionType_Send) {
+    if (chequesData.chequeTransactionType == ChequesData.TransactionType_Send) {
 
       var creditCardsDatabaseQueries = CreditCardsDatabaseQueries();
 
       var sourceCreditCardData = await creditCardsDatabaseQueries.extractTransactionsQuery(
-          await creditCardsDatabaseQueries.querySpecificCreditCardByCardNumber(controllerTransactionSourceCard.text, CreditCardsDatabaseInputs.databaseTableName)
+          await creditCardsDatabaseQueries.querySpecificCreditCardByCardNumber(controllerChequeSourceAccount.text, CreditCardsDatabaseInputs.databaseTableName)
       );
 
-      var newCardBalance = (int.parse(sourceCreditCardData.cardBalance) - int.parse(transactionsData.amountMoney)).toString();
+      var newCardBalance = (int.parse(sourceCreditCardData.cardBalance) - int.parse(chequesData.chequeMoneyAmount)).toString();
 
       var creditCardsDatabaseInputs = CreditCardsDatabaseInputs();
 
@@ -2094,15 +2105,15 @@ class _ChequeInputViewState extends State<ChequesInputView> {
         CreditCardsDatabaseInputs.databaseTableName
       );
 
-    } else if (transactionType == TransactionsData.TransactionType_Receive) {
+    } else if (transactionType == ChequesData.TransactionType_Receive) {
 
       var creditCardsDatabaseQueries = CreditCardsDatabaseQueries();
 
       var sourceCreditCardData = await creditCardsDatabaseQueries.extractTransactionsQuery(
-          await creditCardsDatabaseQueries.querySpecificCreditCardByCardNumber(controllerTransactionTargetCard.text, CreditCardsDatabaseInputs.databaseTableName)
+          await creditCardsDatabaseQueries.querySpecificCreditCardByCardNumber(controllerChequeTargetAccount.text, CreditCardsDatabaseInputs.databaseTableName)
       );
 
-      var newCardBalance = (int.parse(sourceCreditCardData.cardBalance) + int.parse(transactionsData.amountMoney)).toString();
+      var newCardBalance = (int.parse(sourceCreditCardData.cardBalance) + int.parse(chequesData.chequeMoneyAmount)).toString();
 
       var creditCardsDatabaseInputs = CreditCardsDatabaseInputs();
 
@@ -2124,17 +2135,17 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
   }
 
-  Future processBudgetBalance(TransactionsData transactionsData) async {
+  Future processBudgetBalance(ChequesData chequesData) async {
 
-    if (transactionsData.transactionType == TransactionsData.TransactionType_Send) {
+    if (chequesData.chequeTransactionType == ChequesData.TransactionType_Send) {
 
       var budgetsDatabaseQueries = BudgetsDatabaseQueries();
 
       var budgetData = await budgetsDatabaseQueries.extractBudgetsQuery(
-          await budgetsDatabaseQueries.querySpecificBudgetsByName(controllerTransactionSourceCard.text, CreditCardsDatabaseInputs.databaseTableName)
+          await budgetsDatabaseQueries.querySpecificBudgetsByName(controllerChequeSourceAccount.text, CreditCardsDatabaseInputs.databaseTableName)
       );
 
-      var newBudgetBalance = (int.parse(budgetData.budgetBalance) - int.parse(transactionsData.amountMoney)).toString();
+      var newBudgetBalance = (int.parse(budgetData.budgetBalance) - int.parse(chequesData.chequeMoneyAmount)).toString();
 
       var budgetsDatabaseInputs = BudgetsDatabaseInputs();
 
@@ -2149,15 +2160,15 @@ class _ChequeInputViewState extends State<ChequesInputView> {
           CreditCardsDatabaseInputs.databaseTableName
       );
 
-    } else if (transactionType == TransactionsData.TransactionType_Receive) {
+    } else if (transactionType == ChequesData.TransactionType_Receive) {
 
       var budgetsDatabaseQueries = BudgetsDatabaseQueries();
 
       var budgetData = await budgetsDatabaseQueries.extractBudgetsQuery(
-          await budgetsDatabaseQueries.querySpecificBudgetsByName(controllerTransactionSourceCard.text, CreditCardsDatabaseInputs.databaseTableName)
+          await budgetsDatabaseQueries.querySpecificBudgetsByName(controllerChequeSourceAccount.text, CreditCardsDatabaseInputs.databaseTableName)
       );
 
-      var newBudgetBalance = (int.parse(budgetData.budgetBalance) + int.parse(transactionsData.amountMoney)).toString();
+      var newBudgetBalance = (int.parse(budgetData.budgetBalance) + int.parse(chequesData.chequeMoneyAmount)).toString();
 
       var budgetsDatabaseInputs = BudgetsDatabaseInputs();
 

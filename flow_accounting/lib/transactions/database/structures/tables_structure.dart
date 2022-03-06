@@ -15,7 +15,7 @@ class TransactionsData {
   static const TransactionType_Send = "-";
   static const TransactionType_Receive = "+";
 
-  static const String TransactionBudgetName = "";
+  static const String TransactionBudgetName = "Unknown";
 
   final int id;
 

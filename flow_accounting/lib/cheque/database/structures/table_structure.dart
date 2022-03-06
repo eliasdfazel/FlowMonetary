@@ -12,9 +12,19 @@ import 'package:flow_accounting/resources/ColorsResources.dart';
 
 class ChequesData {
 
+  static const TransactionType_Send = "-";
+  static const TransactionType_Receive = "+";
+
+  static const String TransactionBudgetName = "Unknown";
+
   final int id;
 
+  final String chequeTitle;
+  final String chequeDescription;
+
   final String chequeMoneyAmount;
+
+  final String chequeTransactionType;
 
   final String chequeBankName;
   final String chequeBankBranch;
@@ -30,12 +40,22 @@ class ChequesData {
   final String chequeTargetName;
   final String chequeTargetAccountNumber;
 
+  final String chequeDoneConfirmation;
+
+  final String chequeRelevantCreditCard;
+  final String chequeRelevantBudget;
+
   int colorTag = ColorsResources.dark.value;
 
   ChequesData({
     required this.id,
 
+    required this.chequeTitle,
+    required this.chequeDescription,
+
     required this.chequeMoneyAmount,
+
+    required this.chequeTransactionType,
 
     required this.chequeBankName,
     required this.chequeBankBranch,
@@ -51,6 +71,11 @@ class ChequesData {
     required this.chequeTargetName,
     required this.chequeTargetAccountNumber,
 
+    required this.chequeDoneConfirmation,
+
+    required this.chequeRelevantCreditCard,
+    required this.chequeRelevantBudget,
+
     required this.colorTag,
   });
 
@@ -58,7 +83,12 @@ class ChequesData {
     return {
       'id': id,
 
+      'chequeTitle': chequeTitle,
+      'chequeDescription': chequeDescription,
+
       'chequeMoneyAmount': chequeMoneyAmount,
+
+      'chequeTransactionType': chequeTransactionType,
 
       'chequeBankName': chequeBankName,
       'chequeBankBranch': chequeBankBranch,
@@ -74,6 +104,11 @@ class ChequesData {
       'chequeTargetName': chequeTargetName,
       'chequeTargetAccountNumber': chequeTargetAccountNumber,
 
+      'chequeDoneConfirmation': chequeDoneConfirmation,
+
+      'chequeRelevantCreditCard': chequeRelevantCreditCard,
+      'chequeRelevantBudget': chequeRelevantBudget,
+
       'colorTag': colorTag,
     };
   }
@@ -83,7 +118,12 @@ class ChequesData {
     return 'ChequesData{'
         'id: $id,'
 
+        'chequeTitle: $chequeTitle,'
+        'chequeDescription: $chequeDescription,'
+
         'chequeMoneyAmount: $chequeMoneyAmount,'
+
+        'chequeTransactionType: $chequeTransactionType,'
 
         'chequeBankName: $chequeBankName,'
         'chequeBankBranch: $chequeBankBranch,'
@@ -98,6 +138,11 @@ class ChequesData {
         'chequeTargetId: $chequeTargetId,'
         'chequeTargetName: $chequeTargetName,'
         'chequeTargetAccountNumber: $chequeTargetAccountNumber,'
+
+        'chequeDoneConfirmation: $chequeDoneConfirmation,'
+
+        'chequeRelevantCreditCard: $chequeRelevantCreditCard,'
+        'chequeRelevantBudget: $chequeRelevantBudget,'
 
         'colorTag: $colorTag,'
         '}';
