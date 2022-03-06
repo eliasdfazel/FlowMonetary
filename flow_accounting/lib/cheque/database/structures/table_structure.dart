@@ -10,7 +10,7 @@
 
 import 'package:flow_accounting/resources/ColorsResources.dart';
 
-class CustomersData {
+class ChequesData {
 
   final int id;
 
@@ -35,7 +35,7 @@ class CustomersData {
 
   int colorTag = ColorsResources.dark.value;
 
-  CustomersData({
+  ChequesData({
     required this.id,
 
     required this.customerName,
@@ -89,7 +89,7 @@ class CustomersData {
 
   @override
   String toString() {
-    return 'CustomersData{'
+    return 'ChequesData{'
         'id: $id,'
 
         'customerName: $customerName,'
