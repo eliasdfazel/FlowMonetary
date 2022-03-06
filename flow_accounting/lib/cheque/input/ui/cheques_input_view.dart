@@ -1919,8 +1919,6 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                 fontSize: 16.0
                             );
 
-                            processCreditCardsBalance(chequeData);
-
                             chequeDataUpdated = true;
 
                           }
