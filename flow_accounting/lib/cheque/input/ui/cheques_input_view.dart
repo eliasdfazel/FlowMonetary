@@ -465,7 +465,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.transactionAmountHint,
+                                        hintText: StringsResources.chequeAmountHint,
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0

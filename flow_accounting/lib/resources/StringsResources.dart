@@ -53,7 +53,7 @@ class StringsResources {
   static const String transactionTime = "زمان تراکنش";
   static const String transactionAmount = "مبلغ  دریافتی یا پرداختی را وارد"
       " کنید";
-  static const String transactionAmountHint = "مبلغ پول";
+  static const String transactionAmountHint = "مبلغ تراکنش";
 
   static const String transactionSourceName = "نام صاحب حساب مبدا";
   static const String transactionSourceNameHint = "نام مبدا";
@@ -108,6 +108,8 @@ class StringsResources {
 
   static const String chequeIssueDate = "تاریخ صدور";
   static const String chequeDueDate = "تاریخ سررسید";
+
+  static const String chequeAmountHint = "مبلغ چک";
 
   static const String chequeCard = "شماره کارت مرتبط را وارد کنید";
   static const String chequeCardHint = "کارت مرتبط";
