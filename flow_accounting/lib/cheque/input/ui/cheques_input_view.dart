@@ -1815,6 +1815,18 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                           }
 
+                          if (controllerChequeSourceId.text.isEmpty) {
+
+                            setState(() {
+
+                              warningNotice = StringsResources.errorText;
+
+                            });
+
+                            noError = false;
+
+                          }
+
                           if (controllerChequeSourceName.text.isEmpty) {
 
                             setState(() {
@@ -1839,6 +1851,42 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                           }
 
+                          if (controllerChequeSourceBankBrand.text.isEmpty) {
+
+                            setState(() {
+
+                              warningNotice = StringsResources.errorText;
+
+                            });
+
+                            noError = false;
+
+                          }
+
+                          if (controllerChequeSourceAccount.text.isEmpty) {
+
+                            setState(() {
+
+                              warningNotice = StringsResources.errorText;
+
+                            });
+
+                            noError = false;
+
+                          }
+
+                          if (controllerChequeTargetId.text.isEmpty) {
+
+                            setState(() {
+
+                              warningNotice = StringsResources.errorText;
+
+                            });
+
+                            noError = false;
+
+                          }
+
                           if (controllerChequeTargetName.text.isEmpty) {
 
                             setState(() {
@@ -1852,6 +1900,18 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                           }
 
                           if (controllerChequeTargetBank.text.isEmpty) {
+
+                            setState(() {
+
+                              warningNotice = StringsResources.errorText;
+
+                            });
+
+                            noError = false;
+
+                          }
+
+                          if (controllerChequeTargetAccount.text.isEmpty) {
 
                             setState(() {
 
