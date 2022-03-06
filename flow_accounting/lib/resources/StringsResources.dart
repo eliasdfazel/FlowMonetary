@@ -106,6 +106,9 @@ class StringsResources {
   static const String customerJobText = "شغل";
   static const String customerMaritalStatusText = "تاهل";
 
+  static const String chequeIssueDate = "تاریخ صدور";
+  static const String chequeDueDate = "تاریخ سررسید";
+
   static const String sortHint = "مرتب سازی";
   static const String sortTimeNew = "بر اساس: زمان جدید";
   static const String sortTimeOld = "بر اساس: زمان گذشته";

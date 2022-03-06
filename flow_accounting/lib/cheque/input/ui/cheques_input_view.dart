@@ -66,8 +66,8 @@ class ChequesInputView extends StatefulWidget {
 }
 class _ChequeInputViewState extends State<ChequesInputView> {
 
-  CalendarView calendarIssueDateView = CalendarView();
-  CalendarView calendarDueDateView = CalendarView();
+  CalendarView calendarIssueDateView = CalendarView(pickedDataTimeText: StringsResources.chequeIssueDate);
+  CalendarView calendarDueDateView = CalendarView(pickedDataTimeText: StringsResources.chequeDueDate);
 
   ColorSelectorView colorSelectorView = ColorSelectorView();
 
@@ -491,49 +491,6 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                             Expanded(
                               flex: 1,
                               child: Padding(
-                                padding: const EdgeInsets.fromLTRB(13, 0, 0, 0),
-                                child: Align(
-                                  alignment: AlignmentDirectional.topCenter,
-                                  child: Container(
-                                    decoration: const BoxDecoration(
-                                      borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(13),
-                                          topRight: Radius.circular(13),
-                                          bottomLeft: Radius.circular(13),
-                                          bottomRight: Radius.circular(13)
-                                      ),
-                                      border: Border(
-                                          top: BorderSide(
-                                            color: ColorsResources.darkTransparent,
-                                            width: 1,
-                                          ),
-                                          bottom: BorderSide(
-                                            color: ColorsResources.darkTransparent,
-                                            width: 1,
-                                          ),
-                                          left: BorderSide(
-                                            color: ColorsResources.darkTransparent,
-                                            width: 1,
-                                          ),
-                                          right: BorderSide(
-                                            color: ColorsResources.darkTransparent,
-                                            width: 1,
-                                          )
-                                      ),
-                                      color: ColorsResources.lightTransparent,
-                                    ),
-                                    child: SizedBox(
-                                      height: 62,
-                                      width: double.infinity,
-                                      child: calendarIssueDateView,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Padding(
                                   padding: const EdgeInsets.fromLTRB(7, 0, 13, 0),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -639,6 +596,105 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                       ),
                                     ],
                                   )
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Divider(
+                        height: 13,
+                        color: Colors.transparent,
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 91,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: Padding(
+                                padding: const EdgeInsets.fromLTRB(13, 0, 0, 0),
+                                child: Align(
+                                  alignment: AlignmentDirectional.topCenter,
+                                  child: Container(
+                                    decoration: const BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(13),
+                                          topRight: Radius.circular(13),
+                                          bottomLeft: Radius.circular(13),
+                                          bottomRight: Radius.circular(13)
+                                      ),
+                                      border: Border(
+                                          top: BorderSide(
+                                            color: ColorsResources.darkTransparent,
+                                            width: 1,
+                                          ),
+                                          bottom: BorderSide(
+                                            color: ColorsResources.darkTransparent,
+                                            width: 1,
+                                          ),
+                                          left: BorderSide(
+                                            color: ColorsResources.darkTransparent,
+                                            width: 1,
+                                          ),
+                                          right: BorderSide(
+                                            color: ColorsResources.darkTransparent,
+                                            width: 1,
+                                          )
+                                      ),
+                                      color: ColorsResources.lightTransparent,
+                                    ),
+                                    child: SizedBox(
+                                      height: 62,
+                                      width: double.infinity,
+                                      child: calendarDueDateView,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Padding(
+                                padding: const EdgeInsets.fromLTRB(13, 0, 0, 0),
+                                child: Align(
+                                  alignment: AlignmentDirectional.topCenter,
+                                  child: Container(
+                                    decoration: const BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(13),
+                                          topRight: Radius.circular(13),
+                                          bottomLeft: Radius.circular(13),
+                                          bottomRight: Radius.circular(13)
+                                      ),
+                                      border: Border(
+                                          top: BorderSide(
+                                            color: ColorsResources.darkTransparent,
+                                            width: 1,
+                                          ),
+                                          bottom: BorderSide(
+                                            color: ColorsResources.darkTransparent,
+                                            width: 1,
+                                          ),
+                                          left: BorderSide(
+                                            color: ColorsResources.darkTransparent,
+                                            width: 1,
+                                          ),
+                                          right: BorderSide(
+                                            color: ColorsResources.darkTransparent,
+                                            width: 1,
+                                          )
+                                      ),
+                                      color: ColorsResources.lightTransparent,
+                                    ),
+                                    child: SizedBox(
+                                      height: 62,
+                                      width: double.infinity,
+                                      child: calendarIssueDateView,
+                                    ),
+                                  ),
+                                ),
                               ),
                             ),
                           ],
@@ -1237,258 +1293,6 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                                 fontSize: 17.0
                                             ),
                                             hintText: StringsResources.transactionSourceBankHint,
-                                            hintStyle: const TextStyle(
-                                                color: ColorsResources.darkTransparent,
-                                                fontSize: 17.0
-                                            ),
-                                          ),
-                                        )
-                                    ),
-                                  )
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const Divider(
-                        height: 13,
-                        color: Colors.transparent,
-                      ),
-                      SizedBox(
-                        width: double.infinity,
-                        height: 73,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Expanded(
-                              flex: 1,
-                              child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
-                                  child: Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: TypeAheadField<CreditCardsData>(
-                                        suggestionsCallback: (pattern) async {
-
-                                          return await getCreditCards();
-                                        },
-                                        itemBuilder: (context, suggestion) {
-
-                                          return ListTile(title: Directionality(
-                                            textDirection: TextDirection.rtl,
-                                            child: Text(
-                                              suggestion.cardNumber,
-                                              style: const TextStyle(
-                                                  color: ColorsResources.darkTransparent,
-                                                  fontSize: 15
-                                              ),
-                                            ),
-                                          ));
-                                        },
-                                        onSuggestionSelected: (suggestion) {
-
-                                          controllerChequeSourceAccount.text = suggestion.cardNumber.toString();
-
-                                        },
-                                        errorBuilder: (context, suggestion) {
-
-                                          return const Padding(
-                                            padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
-                                            child: Text(StringsResources.nothingText)
-                                          );
-                                        },
-                                        suggestionsBoxDecoration: SuggestionsBoxDecoration(
-                                            elevation: 7,
-                                            color: ColorsResources.light,
-                                            shadowColor: ColorsResources.darkTransparent,
-                                            borderRadius: BorderRadius.circular(17)
-                                        ),
-                                        textFieldConfiguration: TextFieldConfiguration(
-                                          controller: controllerChequeSourceAccount,
-                                          autofocus: false,
-                                          maxLines: 1,
-                                          cursorColor: ColorsResources.primaryColor,
-                                          keyboardType: TextInputType.number,
-                                          textInputAction: TextInputAction.next,
-                                          inputFormatters: [
-                                            LengthLimitingTextInputFormatter(16)
-                                          ],
-                                          decoration: InputDecoration(
-                                            alignLabelWithHint: true,
-                                            border: const OutlineInputBorder(
-                                                borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                                borderRadius: BorderRadius.only(
-                                                    topLeft: Radius.circular(13),
-                                                    topRight: Radius.circular(13),
-                                                    bottomLeft: Radius.circular(13),
-                                                    bottomRight: Radius.circular(13)
-                                                ),
-                                                gapPadding: 5
-                                            ),
-                                            enabledBorder: const OutlineInputBorder(
-                                                borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                                borderRadius: BorderRadius.only(
-                                                    topLeft: Radius.circular(13),
-                                                    topRight: Radius.circular(13),
-                                                    bottomLeft: Radius.circular(13),
-                                                    bottomRight: Radius.circular(13)
-                                                ),
-                                                gapPadding: 5
-                                            ),
-                                            focusedBorder: const OutlineInputBorder(
-                                                borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
-                                                borderRadius: BorderRadius.only(
-                                                    topLeft: Radius.circular(13),
-                                                    topRight: Radius.circular(13),
-                                                    bottomLeft: Radius.circular(13),
-                                                    bottomRight: Radius.circular(13)
-                                                ),
-                                                gapPadding: 5
-                                            ),
-                                            errorBorder: const OutlineInputBorder(
-                                                borderSide: BorderSide(color: Colors.red, width: 1.0),
-                                                borderRadius: BorderRadius.only(
-                                                    topLeft: Radius.circular(13),
-                                                    topRight: Radius.circular(13),
-                                                    bottomLeft: Radius.circular(13),
-                                                    bottomRight: Radius.circular(13)
-                                                ),
-                                                gapPadding: 5
-                                            ),
-                                            errorText: warningNotice,
-                                            filled: true,
-                                            fillColor: ColorsResources.lightTransparent,
-                                            labelText: StringsResources.transactionSourceCard,
-                                            labelStyle: const TextStyle(
-                                                color: ColorsResources.dark,
-                                                fontSize: 17.0
-                                            ),
-                                            hintText: StringsResources.transactionSourceCardHint,
-                                            hintStyle: const TextStyle(
-                                                color: ColorsResources.darkTransparent,
-                                                fontSize: 17.0
-                                            ),
-                                          ),
-                                        )
-                                    ),
-                                  )
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const Divider(
-                        height: 7,
-                        color: Colors.transparent,
-                      ),
-                      SizedBox(
-                        width: double.infinity,
-                        height: 73,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Expanded(
-                              flex: 1,
-                              child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
-                                  child: Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: TypeAheadField<CreditCardsData>(
-                                        suggestionsCallback: (pattern) async {
-
-                                          return await getCreditCards();
-                                        },
-                                        itemBuilder: (context, suggestion) {
-
-                                          return ListTile(title: Directionality(
-                                            textDirection: TextDirection.rtl,
-                                            child: Text(
-                                              suggestion.cardNumber,
-                                              style: const TextStyle(
-                                                  color: ColorsResources.darkTransparent,
-                                                  fontSize: 15
-                                              ),
-                                            ),
-                                          ));
-                                        },
-                                        onSuggestionSelected: (suggestion) {
-
-                                          controllerChequeTargetAccount.text = suggestion.cardNumber.toString();
-
-                                        },
-                                        errorBuilder: (context, suggestion) {
-
-                                          return const Padding(
-                                              padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
-                                              child: Text(StringsResources.nothingText)
-                                          );
-                                        },
-                                        suggestionsBoxDecoration: SuggestionsBoxDecoration(
-                                            elevation: 7,
-                                            color: ColorsResources.light,
-                                            shadowColor: ColorsResources.darkTransparent,
-                                            borderRadius: BorderRadius.circular(17)
-                                        ),
-                                        textFieldConfiguration: TextFieldConfiguration(
-                                          controller: controllerChequeTargetAccount,
-                                          autofocus: false,
-                                          maxLines: 1,
-                                          cursorColor: ColorsResources.primaryColor,
-                                          keyboardType: TextInputType.number,
-                                          textInputAction: TextInputAction.next,
-                                          inputFormatters: [
-                                            LengthLimitingTextInputFormatter(16)
-                                          ],
-                                          decoration: InputDecoration(
-                                            alignLabelWithHint: true,
-                                            border: const OutlineInputBorder(
-                                                borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                                borderRadius: BorderRadius.only(
-                                                    topLeft: Radius.circular(13),
-                                                    topRight: Radius.circular(13),
-                                                    bottomLeft: Radius.circular(13),
-                                                    bottomRight: Radius.circular(13)
-                                                ),
-                                                gapPadding: 5
-                                            ),
-                                            enabledBorder: const OutlineInputBorder(
-                                                borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                                borderRadius: BorderRadius.only(
-                                                    topLeft: Radius.circular(13),
-                                                    topRight: Radius.circular(13),
-                                                    bottomLeft: Radius.circular(13),
-                                                    bottomRight: Radius.circular(13)
-                                                ),
-                                                gapPadding: 5
-                                            ),
-                                            focusedBorder: const OutlineInputBorder(
-                                                borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
-                                                borderRadius: BorderRadius.only(
-                                                    topLeft: Radius.circular(13),
-                                                    topRight: Radius.circular(13),
-                                                    bottomLeft: Radius.circular(13),
-                                                    bottomRight: Radius.circular(13)
-                                                ),
-                                                gapPadding: 5
-                                            ),
-                                            errorBorder: const OutlineInputBorder(
-                                                borderSide: BorderSide(color: Colors.red, width: 1.0),
-                                                borderRadius: BorderRadius.only(
-                                                    topLeft: Radius.circular(13),
-                                                    topRight: Radius.circular(13),
-                                                    bottomLeft: Radius.circular(13),
-                                                    bottomRight: Radius.circular(13)
-                                                ),
-                                                gapPadding: 5
-                                            ),
-                                            errorText: warningNotice,
-                                            filled: true,
-                                            fillColor: ColorsResources.lightTransparent,
-                                            labelText: StringsResources.transactionTargetCard,
-                                            labelStyle: const TextStyle(
-                                                color: ColorsResources.dark,
-                                                fontSize: 17.0
-                                            ),
-                                            hintText: StringsResources.transactionTargetCardHint,
                                             hintStyle: const TextStyle(
                                                 color: ColorsResources.darkTransparent,
                                                 fontSize: 17.0
