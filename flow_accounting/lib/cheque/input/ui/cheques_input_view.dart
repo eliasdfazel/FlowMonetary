@@ -53,7 +53,7 @@ class ChequesInputView extends StatefulWidget {
       chequeTargetId: "",
       chequeTargetName: "",
       chequeTargetAccountNumber: "",
-      chequeDoneConfirmation: "",
+      chequeDoneConfirmation: ChequesData.ChequesConfirmation_NOT,
       chequeRelevantCreditCard: "",
       chequeRelevantBudget: "",
       colorTag: ColorsResources.white.value
@@ -76,14 +76,18 @@ class _ChequeInputViewState extends State<ChequesInputView> {
   TextEditingController controllerChequeTitle = TextEditingController();
   TextEditingController controllerChequeDescription = TextEditingController();
 
+  TextEditingController controllerChequeSourceId = TextEditingController();
   TextEditingController controllerChequeSourceName = TextEditingController();
   TextEditingController controllerChequeSourceBank = TextEditingController();
+  TextEditingController controllerChequeSourceBankBrand = TextEditingController();
   TextEditingController controllerChequeSourceAccount = TextEditingController();
 
+  TextEditingController controllerChequeTargetId = TextEditingController();
   TextEditingController controllerChequeTargetName = TextEditingController();
   TextEditingController controllerChequeTargetBank = TextEditingController();
   TextEditingController controllerChequeTargetAccount = TextEditingController();
 
+  TextEditingController controllerCreditCard = TextEditingController();
   TextEditingController controllerBudget = TextEditingController();
 
   String transactionType = ChequesData.TransactionType_Send;
@@ -1751,7 +1755,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                           bool noError = true;
 
-                          if (controllerChequeSourceAccount.text.length < 16) {
+                          if (controllerChequeSourceAccount.text.isEmpty) {
 
                             setState(() {
 
@@ -1763,7 +1767,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                           }
 
-                          if (controllerChequeTargetAccount.text.length < 16) {
+                          if (controllerChequeTargetAccount.text.isEmpty) {
 
                             setState(() {
 
@@ -1871,6 +1875,18 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                           }
 
+                          if (controllerCreditCard.text.length < 16) {
+
+                            setState(() {
+
+                              warningNotice = StringsResources.errorText;
+
+                            });
+
+                            noError = false;
+
+                          }
+
                           if (noError) {
 
                             var databaseInputs = ChequesDatabaseInputs();
@@ -1878,31 +1894,31 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                             ChequesData chequeData = ChequesData(
                               id: timeNow,
 
-                              chequeTitle: "",
-                              chequeDescription: "",
+                              chequeTitle: controllerChequeTitle.text,
+                              chequeDescription: controllerChequeDescription.text,
 
-                              chequeMoneyAmount: "0",
+                              chequeMoneyAmount: controllerMoneyAmount.text,
 
-                              chequeTransactionType: "",
+                              chequeTransactionType: transactionType,
 
-                              chequeBankName: "",
-                              chequeBankBranch: "",
+                              chequeBankName: controllerChequeSourceBank.text,
+                              chequeBankBranch: controllerChequeSourceBankBrand.text,
 
-                              chequeIssueDate: "",
-                              chequeDueDate: "",
+                              chequeIssueDate: calendarIssueDateView.pickedDataTimeText ?? "",
+                              chequeDueDate: calendarDueDateView.pickedDataTimeText ?? "",
 
-                              chequeSourceId: "",
-                              chequeSourceName: "",
-                              chequeSourceAccountNumber: "",
+                              chequeSourceId: controllerChequeSourceId.text,
+                              chequeSourceName: controllerChequeSourceName.text,
+                              chequeSourceAccountNumber: controllerChequeSourceAccount.text,
 
-                              chequeTargetId: "",
-                              chequeTargetName: "",
-                              chequeTargetAccountNumber: "",
+                              chequeTargetId: controllerChequeTargetId.text,
+                              chequeTargetName: controllerChequeTargetName.text,
+                              chequeTargetAccountNumber: controllerChequeTargetAccount.text,
 
-                              chequeDoneConfirmation: "",
+                              chequeDoneConfirmation: widget.chequesData?.chequeDoneConfirmation ?? ChequesData.ChequesConfirmation_NOT,
 
-                              chequeRelevantCreditCard: "",
-                              chequeRelevantBudget: "",
+                              chequeRelevantCreditCard: controllerCreditCard.text,
+                              chequeRelevantBudget: controllerBudget.text,
 
                               colorTag: colorSelectorView.selectedColor.value,
                             );

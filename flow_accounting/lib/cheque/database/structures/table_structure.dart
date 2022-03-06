@@ -15,6 +15,9 @@ class ChequesData {
   static const TransactionType_Send = "-";
   static const TransactionType_Receive = "+";
 
+  static const ChequesConfirmation_Done = "DONE";
+  static const ChequesConfirmation_NOT = "NOT";
+
   static const String TransactionBudgetName = "Unknown";
 
   final int id;
