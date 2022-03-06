@@ -109,6 +109,12 @@ class StringsResources {
   static const String chequeIssueDate = "تاریخ صدور";
   static const String chequeDueDate = "تاریخ سررسید";
 
+  static const String chequeCard = "شماره کارت مرتبط را وارد کنید";
+  static const String chequeCardHint = "کارت مرتبط";
+
+  static const String chequeBudget = "بودجه مرتبط";
+  static const String chequeBudgetHint = "بودجه مرتبط";
+
   static const String sortHint = "مرتب سازی";
   static const String sortTimeNew = "بر اساس: زمان جدید";
   static const String sortTimeOld = "بر اساس: زمان گذشته";

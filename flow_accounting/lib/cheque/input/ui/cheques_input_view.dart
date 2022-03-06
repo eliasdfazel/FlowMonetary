@@ -484,137 +484,14 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                       ),
                       SizedBox(
                         width: double.infinity,
-                        height: 91,
+                        height: 73,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Expanded(
                               flex: 1,
                               child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(7, 0, 13, 0),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Align(
-                                          alignment: AlignmentDirectional.topCenter,
-                                          child: Directionality(
-                                            textDirection: TextDirection.rtl,
-                                            child: DropdownButtonFormField(
-                                              isDense: true,
-                                              elevation: 7,
-                                              focusColor: ColorsResources.applicationDarkGeeksEmpire,
-                                              dropdownColor: ColorsResources.light,
-                                              decoration: InputDecoration(
-                                                  border: OutlineInputBorder(
-                                                    borderSide: const BorderSide(
-                                                        color: ColorsResources.applicationDarkGeeksEmpire,
-                                                        width: 1
-                                                    ),
-                                                    borderRadius: BorderRadius.circular(13),
-                                                  ),
-                                                  enabledBorder: OutlineInputBorder(
-                                                    borderSide: const BorderSide(
-                                                        color: ColorsResources.applicationDarkGeeksEmpire,
-                                                        width: 1
-                                                    ),
-                                                    borderRadius: BorderRadius.circular(13),
-                                                  ),
-                                                  focusedBorder: OutlineInputBorder(
-                                                    borderSide: const BorderSide(
-                                                        color: ColorsResources.applicationDarkGeeksEmpire,
-                                                        width: 1
-                                                    ),
-                                                    borderRadius: BorderRadius.circular(13),
-                                                  ),
-                                                  errorBorder: OutlineInputBorder(
-                                                    borderSide: const BorderSide(
-                                                        color: ColorsResources.applicationDarkGeeksEmpire,
-                                                        width: 1
-                                                    ),
-                                                    borderRadius: BorderRadius.circular(13),
-                                                  ),
-                                                  filled: true,
-                                                  fillColor: ColorsResources.lightTransparent,
-                                                  focusColor: ColorsResources.dark
-                                              ),
-                                              value: StringsResources.transactionTypeSend,
-                                              items: <String> [
-                                                StringsResources.transactionTypeSend,
-                                                StringsResources.transactionTypeReceive
-                                              ].map<DropdownMenuItem<String>>((String value) {
-
-                                                return DropdownMenuItem<String>(
-                                                  value: value,
-                                                  child: SizedBox(
-                                                    height: 27,
-                                                    child: Padding(
-                                                      padding: const EdgeInsets.fromLTRB(0, 0, 11, 0),
-                                                      child: Align(
-                                                        alignment:
-                                                        AlignmentDirectional.center,
-                                                        child: Text(
-                                                          value,
-                                                          style: const TextStyle(
-                                                            color: ColorsResources.darkTransparent,
-                                                            fontSize: 15,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                );
-                                              }).toList(),
-                                              onChanged: (value) {
-
-                                                if (value.toString() == StringsResources.transactionTypeReceive) {
-
-                                                  transactionType = ChequesData.TransactionType_Receive;
-
-                                                } else if (value.toString() == StringsResources.transactionTypeSend) {
-
-                                                  transactionType = ChequesData.TransactionType_Send;
-
-                                                }
-
-                                              },
-                                            ),
-                                          )
-                                      ),
-                                      const Padding(
-                                          padding: EdgeInsets.fromLTRB(0, 5, 7, 0),
-                                          child: Align(
-                                            alignment: Alignment.centerRight,
-                                            child: Text(
-                                              StringsResources.transactionTypeHint,
-                                              textAlign: TextAlign.right,
-                                              style: TextStyle(
-                                                  color: ColorsResources.applicationGeeksEmpire,
-                                                  fontSize: 12
-                                              ),
-                                            ),
-                                          )
-                                      ),
-                                    ],
-                                  )
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const Divider(
-                        height: 13,
-                        color: Colors.transparent,
-                      ),
-                      SizedBox(
-                        width: double.infinity,
-                        height: 91,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Expanded(
-                              flex: 1,
-                              child: Padding(
-                                padding: const EdgeInsets.fromLTRB(13, 0, 0, 0),
+                                padding: const EdgeInsets.fromLTRB(13, 0, 7, 0),
                                 child: Align(
                                   alignment: AlignmentDirectional.topCenter,
                                   child: Container(
@@ -657,7 +534,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                             Expanded(
                               flex: 1,
                               child: Padding(
-                                padding: const EdgeInsets.fromLTRB(13, 0, 0, 0),
+                                padding: const EdgeInsets.fromLTRB(7, 0, 13, 0),
                                 child: Align(
                                   alignment: AlignmentDirectional.topCenter,
                                   child: Container(
@@ -1322,63 +1199,27 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                   padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
-                                    child: TypeAheadField<BudgetsData>(
+                                    child: TypeAheadField<CreditCardsData>(
                                         suggestionsCallback: (pattern) async {
 
-                                          return await getBudgetNames();
+                                          return await getCreditCards();
                                         },
                                         itemBuilder: (context, suggestion) {
 
                                           return ListTile(title: Directionality(
                                             textDirection: TextDirection.rtl,
-                                            child: SizedBox(
-                                              height: 51,
-                                              width: double.infinity,
-                                              child: Row(
-                                                children: [
-                                                  Expanded(
-                                                      flex: 3,
-                                                      child: Padding(
-                                                        padding: const EdgeInsets.fromLTRB(7, 7, 7, 7),
-                                                        child: Container(
-                                                          decoration: BoxDecoration(
-                                                              shape: BoxShape.circle,
-                                                              color: Color(suggestion.colorTag)
-                                                          ),
-                                                          child: const Padding(
-                                                            padding: EdgeInsets.fromLTRB(1.7, 1.7, 1.7, 1.7),
-                                                            child: Image(
-                                                              image: AssetImage("coins_icon.png"),
-                                                              height: 51,
-                                                              width: 51,
-                                                              color: ColorsResources.white,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      )
-                                                  ),
-                                                  Expanded(
-                                                    flex: 11,
-                                                    child: Padding(
-                                                      padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
-                                                      child: Text(
-                                                        suggestion.budgetName,
-                                                        style: const TextStyle(
-                                                            color: ColorsResources.darkTransparent,
-                                                            fontSize: 15
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
+                                            child: Text(
+                                              suggestion.cardNumber,
+                                              style: const TextStyle(
+                                                  color: ColorsResources.darkTransparent,
+                                                  fontSize: 15
                                               ),
-                                            )
+                                            ),
                                           ));
                                         },
                                         onSuggestionSelected: (suggestion) {
 
-                                          controllerBudget.text = suggestion.budgetName.toString();
-                                          budgetName = suggestion.budgetName.toString();
+                                          controllerCreditCard.text = suggestion.cardNumber.toString();
 
                                         },
                                         errorBuilder: (context, suggestion) {
@@ -1395,12 +1236,15 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                             borderRadius: BorderRadius.circular(17)
                                         ),
                                         textFieldConfiguration: TextFieldConfiguration(
-                                          controller: controllerBudget,
+                                          controller: controllerCreditCard,
                                           autofocus: false,
                                           maxLines: 1,
                                           cursorColor: ColorsResources.primaryColor,
-                                          keyboardType: TextInputType.text,
-                                          textInputAction: TextInputAction.done,
+                                          keyboardType: TextInputType.number,
+                                          textInputAction: TextInputAction.next,
+                                          inputFormatters: [
+                                            LengthLimitingTextInputFormatter(16)
+                                          ],
                                           decoration: InputDecoration(
                                             alignLabelWithHint: true,
                                             border: const OutlineInputBorder(
@@ -1446,12 +1290,12 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                             errorText: warningNotice,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
-                                            labelText: StringsResources.transactionBudgetName,
+                                            labelText: StringsResources.transactionSourceCard,
                                             labelStyle: const TextStyle(
                                                 color: ColorsResources.dark,
                                                 fontSize: 17.0
                                             ),
-                                            hintText: StringsResources.transactionBudgetNameHint,
+                                            hintText: StringsResources.transactionSourceCardHint,
                                             hintStyle: const TextStyle(
                                                 color: ColorsResources.darkTransparent,
                                                 fontSize: 17.0
@@ -1459,6 +1303,278 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                           ),
                                         )
                                     ),
+                                  )
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Divider(
+                        height: 13,
+                        color: Colors.transparent,
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 91,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 25),
+                                  child: Align(
+                                    alignment: AlignmentDirectional.topCenter,
+                                    child: Directionality(
+                                      textDirection: TextDirection.rtl,
+                                      child: TypeAheadField<BudgetsData>(
+                                          suggestionsCallback: (pattern) async {
+
+                                            return await getBudgetNames();
+                                          },
+                                          itemBuilder: (context, suggestion) {
+
+                                            return ListTile(title: Directionality(
+                                                textDirection: TextDirection.rtl,
+                                                child: SizedBox(
+                                                  height: 51,
+                                                  width: double.infinity,
+                                                  child: Row(
+                                                    children: [
+                                                      Expanded(
+                                                          flex: 3,
+                                                          child: Padding(
+                                                            padding: const EdgeInsets.fromLTRB(7, 7, 7, 7),
+                                                            child: Container(
+                                                              decoration: BoxDecoration(
+                                                                  shape: BoxShape.circle,
+                                                                  color: Color(suggestion.colorTag)
+                                                              ),
+                                                              child: const Padding(
+                                                                padding: EdgeInsets.fromLTRB(1.7, 1.7, 1.7, 1.7),
+                                                                child: Image(
+                                                                  image: AssetImage("coins_icon.png"),
+                                                                  height: 51,
+                                                                  width: 51,
+                                                                  color: ColorsResources.white,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          )
+                                                      ),
+                                                      Expanded(
+                                                        flex: 11,
+                                                        child: Padding(
+                                                          padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
+                                                          child: Text(
+                                                            suggestion.budgetName,
+                                                            style: const TextStyle(
+                                                                color: ColorsResources.darkTransparent,
+                                                                fontSize: 15
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                )
+                                            ));
+                                          },
+                                          onSuggestionSelected: (suggestion) {
+
+                                            controllerBudget.text = suggestion.budgetName.toString();
+                                            budgetName = suggestion.budgetName.toString();
+
+                                          },
+                                          errorBuilder: (context, suggestion) {
+
+                                            return const Padding(
+                                                padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
+                                                child: Text(StringsResources.nothingText)
+                                            );
+                                          },
+                                          suggestionsBoxDecoration: SuggestionsBoxDecoration(
+                                              elevation: 7,
+                                              color: ColorsResources.light,
+                                              shadowColor: ColorsResources.darkTransparent,
+                                              borderRadius: BorderRadius.circular(17)
+                                          ),
+                                          textFieldConfiguration: TextFieldConfiguration(
+                                            controller: controllerBudget,
+                                            autofocus: false,
+                                            maxLines: 1,
+                                            cursorColor: ColorsResources.primaryColor,
+                                            keyboardType: TextInputType.text,
+                                            textInputAction: TextInputAction.done,
+                                            decoration: InputDecoration(
+                                              alignLabelWithHint: true,
+                                              border: const OutlineInputBorder(
+                                                  borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                                  borderRadius: BorderRadius.only(
+                                                      topLeft: Radius.circular(13),
+                                                      topRight: Radius.circular(13),
+                                                      bottomLeft: Radius.circular(13),
+                                                      bottomRight: Radius.circular(13)
+                                                  ),
+                                                  gapPadding: 5
+                                              ),
+                                              enabledBorder: const OutlineInputBorder(
+                                                  borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                                  borderRadius: BorderRadius.only(
+                                                      topLeft: Radius.circular(13),
+                                                      topRight: Radius.circular(13),
+                                                      bottomLeft: Radius.circular(13),
+                                                      bottomRight: Radius.circular(13)
+                                                  ),
+                                                  gapPadding: 5
+                                              ),
+                                              focusedBorder: const OutlineInputBorder(
+                                                  borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                                                  borderRadius: BorderRadius.only(
+                                                      topLeft: Radius.circular(13),
+                                                      topRight: Radius.circular(13),
+                                                      bottomLeft: Radius.circular(13),
+                                                      bottomRight: Radius.circular(13)
+                                                  ),
+                                                  gapPadding: 5
+                                              ),
+                                              errorBorder: const OutlineInputBorder(
+                                                  borderSide: BorderSide(color: Colors.red, width: 1.0),
+                                                  borderRadius: BorderRadius.only(
+                                                      topLeft: Radius.circular(13),
+                                                      topRight: Radius.circular(13),
+                                                      bottomLeft: Radius.circular(13),
+                                                      bottomRight: Radius.circular(13)
+                                                  ),
+                                                  gapPadding: 5
+                                              ),
+                                              errorText: warningNotice,
+                                              filled: true,
+                                              fillColor: ColorsResources.lightTransparent,
+                                              labelText: StringsResources.transactionBudgetName,
+                                              labelStyle: const TextStyle(
+                                                  color: ColorsResources.dark,
+                                                  fontSize: 17.0
+                                              ),
+                                              hintText: StringsResources.transactionBudgetNameHint,
+                                              hintStyle: const TextStyle(
+                                                  color: ColorsResources.darkTransparent,
+                                                  fontSize: 17.0
+                                              ),
+                                            ),
+                                          )
+                                      ),
+                                    ),
+                                  )
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(7, 0, 13, 0),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Align(
+                                          alignment: AlignmentDirectional.topCenter,
+                                          child: Directionality(
+                                            textDirection: TextDirection.rtl,
+                                            child: DropdownButtonFormField(
+                                              isDense: true,
+                                              elevation: 7,
+                                              focusColor: ColorsResources.applicationDarkGeeksEmpire,
+                                              dropdownColor: ColorsResources.light,
+                                              decoration: InputDecoration(
+                                                  border: OutlineInputBorder(
+                                                    borderSide: const BorderSide(
+                                                        color: ColorsResources.applicationDarkGeeksEmpire,
+                                                        width: 1
+                                                    ),
+                                                    borderRadius: BorderRadius.circular(13),
+                                                  ),
+                                                  enabledBorder: OutlineInputBorder(
+                                                    borderSide: const BorderSide(
+                                                        color: ColorsResources.applicationDarkGeeksEmpire,
+                                                        width: 1
+                                                    ),
+                                                    borderRadius: BorderRadius.circular(13),
+                                                  ),
+                                                  focusedBorder: OutlineInputBorder(
+                                                    borderSide: const BorderSide(
+                                                        color: ColorsResources.applicationDarkGeeksEmpire,
+                                                        width: 1
+                                                    ),
+                                                    borderRadius: BorderRadius.circular(13),
+                                                  ),
+                                                  errorBorder: OutlineInputBorder(
+                                                    borderSide: const BorderSide(
+                                                        color: ColorsResources.applicationDarkGeeksEmpire,
+                                                        width: 1
+                                                    ),
+                                                    borderRadius: BorderRadius.circular(13),
+                                                  ),
+                                                  filled: true,
+                                                  fillColor: ColorsResources.lightTransparent,
+                                                  focusColor: ColorsResources.dark
+                                              ),
+                                              value: StringsResources.transactionTypeSend,
+                                              items: <String> [
+                                                StringsResources.transactionTypeSend,
+                                                StringsResources.transactionTypeReceive
+                                              ].map<DropdownMenuItem<String>>((String value) {
+
+                                                return DropdownMenuItem<String>(
+                                                  value: value,
+                                                  child: SizedBox(
+                                                    height: 27,
+                                                    child: Padding(
+                                                      padding: const EdgeInsets.fromLTRB(0, 0, 11, 0),
+                                                      child: Align(
+                                                        alignment:
+                                                        AlignmentDirectional.center,
+                                                        child: Text(
+                                                          value,
+                                                          style: const TextStyle(
+                                                            color: ColorsResources.darkTransparent,
+                                                            fontSize: 15,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                );
+                                              }).toList(),
+                                              onChanged: (value) {
+
+                                                if (value.toString() == StringsResources.transactionTypeReceive) {
+
+                                                  transactionType = ChequesData.TransactionType_Receive;
+
+                                                } else if (value.toString() == StringsResources.transactionTypeSend) {
+
+                                                  transactionType = ChequesData.TransactionType_Send;
+
+                                                }
+
+                                              },
+                                            ),
+                                          )
+                                      ),
+                                      const Padding(
+                                          padding: EdgeInsets.fromLTRB(0, 5, 7, 0),
+                                          child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: Text(
+                                              StringsResources.transactionTypeHint,
+                                              textAlign: TextAlign.right,
+                                              style: TextStyle(
+                                                  color: ColorsResources.applicationGeeksEmpire,
+                                                  fontSize: 12
+                                              ),
+                                            ),
+                                          )
+                                      ),
+                                    ],
                                   )
                               ),
                             ),
