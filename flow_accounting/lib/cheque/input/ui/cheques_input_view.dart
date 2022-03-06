@@ -42,6 +42,7 @@ class ChequesInputView extends StatefulWidget {
       chequeTitle: "",
       chequeDescription: "",
       chequeMoneyAmount: "0",
+      chequeTransactionType: "",
       chequeBankName: "",
       chequeBankBranch: "",
       chequeIssueDate: "",
