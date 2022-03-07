@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/flow_accounting/flow_accounting.iml" filepath="$PROJECT_DIR$/flow_accounting/flow_accounting.iml" />
-      <module fileurl="file://$PROJECT_DIR$/flow_accounting/android/flow_accounting_android.iml" filepath="$PROJECT_DIR$/flow_accounting/android/flow_accounting_android.iml" />
     </modules>
   </component>
 </project>

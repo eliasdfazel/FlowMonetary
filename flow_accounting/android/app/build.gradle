@@ -52,6 +52,8 @@ android {
         targetSdkVersion 31
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+
+        ndkVersion "23.0.7599858"
     }
 
     buildTypes {
@@ -61,8 +63,6 @@ android {
             signingConfig signingConfigs.debug
         }
     }
-
-    ndkVersion "23.0.7599858"
 
 }
 
