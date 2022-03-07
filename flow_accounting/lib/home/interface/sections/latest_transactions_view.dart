@@ -48,7 +48,10 @@ class _LatestTransactionsView extends State<LatestTransactionsView> {
 
     }
 
-    Widget latestTransactionsContent = const Divider(height: 1);
+    Widget latestTransactionsContent = const Divider(
+      height: 1,
+      color: Colors.transparent,
+    );
 
     if (transactionItem.isNotEmpty) {
 
