@@ -1,6 +1,6 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=X:\Xemonstration\Flutter\Setup\FlutterSdk"
+export "FLUTTER_ROOT=C:\Users\Xtation\flutter"
 export "FLUTTER_APPLICATION_PATH=X:\Xlutter\FlowAccounting\flow_accounting"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_TARGET=lib\main.dart"
