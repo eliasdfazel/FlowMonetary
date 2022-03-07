@@ -117,7 +117,7 @@ class StringsResources {
   static const String chequeBudget = "بودجه مرتبط";
   static const String chequeBudgetHint = "بودجه مرتبط";
 
-  static const String chequeBankBrand = "شعبه بانک";
+  static const String chequeBankBranch = "شعبه بانک";
 
   static const String chequeConfirmation = "تایید وصول چک";
 
