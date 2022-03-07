@@ -42,57 +42,65 @@ class _LatestTransactionsView extends State<LatestTransactionsView> {
 
     List<Widget> transactionItem = [];
 
-    widget.latestTransactionsData.forEach((transactionData) {
+    for (var transactionData in widget.latestTransactionsData) {
 
       transactionItem.add(transactionSummaryItem(transactionData));
 
-    });
+    }
 
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(13, 13, 13, 3),
-      child: Column(
-        children: [
-          const Padding(
-            padding: EdgeInsets.fromLTRB(13, 3, 13, 0),
-            child: Align(
-              alignment: Alignment.centerRight,
-              child: Text(
-                StringsResources.transactionLatest,
-                style: TextStyle(
-                  color: ColorsResources.applicationGeeksEmpire,
-                  fontSize: 13,
-                  shadows: [
-                    Shadow(
-                      color: ColorsResources.darkTransparent,
-                      blurRadius: 11,
-                      offset: Offset(1.0, 1.0)
-                    ),
-                    Shadow(
-                        color: ColorsResources.light,
-                        blurRadius: 11,
-                        offset: Offset(-1.0, -1.0)
-                    )
-                  ]
+    Widget latestTransactionsContent = const Divider(height: 1);
+
+    if (transactionItem.isNotEmpty) {
+
+      latestTransactionsContent = Padding(
+        padding: const EdgeInsets.fromLTRB(13, 13, 13, 3),
+        child: Column(
+          children: [
+            const Padding(
+              padding: EdgeInsets.fromLTRB(13, 3, 13, 0),
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: Text(
+                  StringsResources.transactionLatest,
+                  style: TextStyle(
+                      color: ColorsResources.applicationGeeksEmpire,
+                      fontSize: 13,
+                      shadows: [
+                        Shadow(
+                            color: ColorsResources.darkTransparent,
+                            blurRadius: 11,
+                            offset: Offset(1.0, 1.0)
+                        ),
+                        Shadow(
+                            color: ColorsResources.light,
+                            blurRadius: 11,
+                            offset: Offset(-1.0, -1.0)
+                        )
+                      ]
+                  ),
                 ),
               ),
             ),
-          ),
-          SizedBox(
-            width: double.infinity,
-            height: 57,
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
-              child: ListView(
-                physics: const BouncingScrollPhysics(),
-                padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                scrollDirection: Axis.horizontal,
-                children: transactionItem,
+            SizedBox(
+              width: double.infinity,
+              height: 57,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                child: ListView(
+                  physics: const BouncingScrollPhysics(),
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                  scrollDirection: Axis.horizontal,
+                  children: transactionItem,
+                ),
               ),
-            ),
-          )
-        ],
-      ),
-    );
+            )
+          ],
+        ),
+      );
+
+    }
+
+    return latestTransactionsContent;
   }
 
   Widget transactionSummaryItem(TransactionsData transactionsData) {
