@@ -117,6 +117,10 @@ class StringsResources {
   static const String chequeBudget = "بودجه مرتبط";
   static const String chequeBudgetHint = "بودجه مرتبط";
 
+  static const String chequeBankBrand = "شعبه بانک";
+
+  static const String chequeConfirmation = "تایید وصول چک";
+
   static const String sortHint = "مرتب سازی";
   static const String sortTimeNew = "بر اساس: زمان جدید";
   static const String sortTimeOld = "بر اساس: زمان گذشته";
