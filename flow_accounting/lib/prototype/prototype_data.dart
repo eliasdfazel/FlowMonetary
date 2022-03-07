@@ -61,9 +61,12 @@ class PrototypeData {
 
   void generate() {
 
-    // prepareCreditCardsData();
+    prepareCreditCardsData();
+
     // prepareBudgetsData();
+
     // prepareCustomersData();
+
     // prepareTransactionsData();
 
   }
@@ -101,6 +104,8 @@ class PrototypeData {
       creditCardsDatabaseInputs.insertCreditCardsData(element, CreditCardsDatabaseInputs.databaseTableName);
 
     }
+
+    debugPrint("Credit Cards Created");
 
     prepareBudgetsData();
 
@@ -141,6 +146,8 @@ class PrototypeData {
       budgetsDatabaseInputs.insertBudgetData(element, BudgetsDatabaseInputs.databaseTableName);
 
     }
+
+    debugPrint("Budgets Created");
 
     prepareCustomersData();
 
@@ -191,6 +198,8 @@ class PrototypeData {
       customersDatabaseInputs.insertCustomerData(element, CustomersDatabaseInputs.databaseTableName);
 
     }
+
+    debugPrint("Customers Created");
 
     Future.delayed(const Duration(milliseconds: 799), () {
 
@@ -471,6 +480,8 @@ class PrototypeData {
       transactionsDatabaseInputs.insertTransactionData(element, TransactionsDatabaseInputs.databaseTableName);
 
     }
+
+    debugPrint("Transactions Created");
 
   }
 
