@@ -48,343 +48,354 @@ class _GeneralDataView extends State<GeneralDataView> {
   @override
   Widget build(BuildContext context) {
 
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(13, 7, 13, 0),
-      child: Column(
-        children: [
-          SizedBox(
-            width: double.infinity,
-            height: 73,
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(0, 1, 0, 0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Expanded(
-                      flex: 3,
-                      child: Column(
-                        children: [
-                          const SizedBox(
-                            width: double.infinity,
-                            height: 21,
-                            child: Align(
-                              alignment: Alignment.centerRight,
-                              child: Text(
-                                StringsResources.totalEarningText,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: ColorsResources.dark,
-                                    fontSize: 13,
-                                    shadows: [
-                                      Shadow(
-                                          color: ColorsResources.darkTransparent,
-                                          blurRadius: 11,
-                                          offset: Offset(1.0, 1.0)
-                                      ),
-                                      Shadow(
-                                          color: ColorsResources.light,
-                                          blurRadius: 11,
-                                          offset: Offset(-1.0, -1.0)
-                                      )
-                                    ]),
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: double.infinity,
-                            height: 51,
-                            child: ClipRRect(
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(23),
-                                bottomLeft: Radius.circular(23),
-                                topRight: Radius.circular(7),
-                                bottomRight: Radius.circular(23)
-                              ),
-                              child: Material(
-                                shadowColor: Colors.transparent,
-                                color: Colors.transparent,
-                                child: InkWell(
-                                  splashColor: ColorsResources.green.withOpacity(0.3),
-                                  splashFactory: InkRipple.splashFactory,
-                                  onTap: () {
+    Widget generalDataContent = const Divider(
+      height: 1,
+      color: Colors.transparent,
+    );
 
-                                    NavigationProcess().goTo(context, const GeneralFinancialCharts());
+    if (totalEarning > 0) {
 
-                                  },
-                                  child: Container(
-                                    alignment: AlignmentDirectional.center,
-                                    decoration: BoxDecoration(
-                                        borderRadius: const BorderRadius.only(
-                                            topLeft: Radius.circular(23),
-                                            topRight: Radius.circular(7),
-                                            bottomLeft: Radius.circular(23),
-                                            bottomRight: Radius.circular(23)
+      generalDataContent = Padding(
+        padding: const EdgeInsets.fromLTRB(13, 7, 13, 0),
+        child: Column(
+          children: [
+            SizedBox(
+              width: double.infinity,
+              height: 73,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(0, 1, 0, 0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Expanded(
+                        flex: 3,
+                        child: Column(
+                          children: [
+                            const SizedBox(
+                              width: double.infinity,
+                              height: 21,
+                              child: Align(
+                                alignment: Alignment.centerRight,
+                                child: Text(
+                                  StringsResources.totalEarningText,
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: ColorsResources.dark,
+                                      fontSize: 13,
+                                      shadows: [
+                                        Shadow(
+                                            color: ColorsResources.darkTransparent,
+                                            blurRadius: 11,
+                                            offset: Offset(1.0, 1.0)
                                         ),
-                                        border: const Border(
-                                            top: BorderSide(
-                                              color: ColorsResources.green,
-                                              width: 1,
-                                            ),
-                                            bottom: BorderSide(
-                                              color: ColorsResources.green,
-                                              width: 1,
-                                            ),
-                                            left: BorderSide(
-                                              color: ColorsResources.green,
-                                              width: 1,
-                                            ),
-                                            right: BorderSide(
-                                              color: ColorsResources.green,
-                                              width: 1,
-                                            )
-                                        ),
-                                        color: ColorsResources.green.withOpacity(0.13)
-                                    ),
-                                    child: Align(
-                                      alignment: Alignment.center,
-                                      child: Text(
-                                        "${totalEarning}",
-                                        textAlign: TextAlign.center,
-                                        style: const TextStyle(
-                                            color: ColorsResources.applicationDarkGeeksEmpire,
-                                            fontSize: 17,
-                                            shadows: [
-                                              Shadow(
-                                                  color: ColorsResources.white,
-                                                  offset: Offset(0, 0),
-                                                  blurRadius: 11
-                                              )
-                                            ]),
-                                      ),
-                                    ),
-                                  ),
+                                        Shadow(
+                                            color: ColorsResources.light,
+                                            blurRadius: 11,
+                                            offset: Offset(-1.0, -1.0)
+                                        )
+                                      ]),
                                 ),
                               ),
                             ),
-                          )
-                        ],
-                      )
-                  ),
-                  Expanded(
-                      flex: 5,
-                      child: Column(
-                        children: [
-                          const SizedBox(
-                            width: double.infinity,
-                            height: 21,
-                            child: Align(
-                              alignment: Alignment.centerRight,
-                              child: Text(
-                                StringsResources.totalBalanceText,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: ColorsResources.dark,
-                                    fontSize: 13,
-                                    shadows: [
-                                      Shadow(
-                                          color: ColorsResources.darkTransparent,
-                                          blurRadius: 11,
-                                          offset: Offset(1.0, 1.0)
-                                      ),
-                                      Shadow(
-                                          color: ColorsResources.light,
-                                          blurRadius: 11,
-                                          offset: Offset(-1.0, -1.0)
-                                      )
-                                    ]),
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: double.infinity,
-                            height: 51,
-                            child: ClipRRect(
-                              borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(23),
-                                  bottomLeft: Radius.circular(23),
-                                  topRight: Radius.circular(7),
-                                  bottomRight: Radius.circular(23)
-                              ),
-                              child: Material(
-                                shadowColor: Colors.transparent,
-                                color: Colors.transparent,
-                                child: InkWell(
-                                  splashColor: ColorsResources.applicationGeeksEmpire.withOpacity(0.3),
-                                  splashFactory: InkRipple.splashFactory,
-                                  onTap: () {
-
-                                    NavigationProcess().goTo(context, const GeneralFinancialCharts());
-
-                                  },
-                                  child: Container(
-                                    alignment: AlignmentDirectional.center,
-                                    decoration: BoxDecoration(
-                                        borderRadius: const BorderRadius.only(
-                                            topLeft: Radius.circular(23),
-                                            topRight: Radius.circular(7),
-                                            bottomLeft: Radius.circular(23),
-                                            bottomRight: Radius.circular(23)
-                                        ),
-                                        border: const Border(
-                                            top: BorderSide(
-                                              color: ColorsResources.applicationGeeksEmpire,
-                                              width: 1,
-                                            ),
-                                            bottom: BorderSide(
-                                              color: ColorsResources.applicationGeeksEmpire,
-                                              width: 1,
-                                            ),
-                                            left: BorderSide(
-                                              color: ColorsResources.applicationGeeksEmpire,
-                                              width: 1,
-                                            ),
-                                            right: BorderSide(
-                                              color: ColorsResources.applicationGeeksEmpire,
-                                              width: 1,
-                                            )
-                                        ),
-                                        color: ColorsResources.applicationGeeksEmpire.withOpacity(0.13)
-                                    ),
-                                    child: Align(
-                                      alignment: Alignment.center,
-                                      child: Text(
-                                        "${totalBalance}",
-                                        textAlign: TextAlign.center,
-                                        style: const TextStyle(
-                                            color: ColorsResources.applicationDarkGeeksEmpire,
-                                            fontSize: 19,
-                                            shadows: [
-                                              Shadow(
-                                                  color: ColorsResources.white,
-                                                  offset: Offset(0, 0),
-                                                  blurRadius: 11
-                                              )
-                                            ]),
-                                      ),
-                                    ),
-                                  ),
+                            SizedBox(
+                              width: double.infinity,
+                              height: 51,
+                              child: ClipRRect(
+                                borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(23),
+                                    bottomLeft: Radius.circular(23),
+                                    topRight: Radius.circular(7),
+                                    bottomRight: Radius.circular(23)
                                 ),
-                              ),
-                            ),
-                          )
-                        ],
-                      )
-                  ),
-                  Expanded(
-                      flex: 3,
-                      child: Column(
-                        children: [
-                          const SizedBox(
-                            width: double.infinity,
-                            height: 21,
-                            child: Align(
-                              alignment: Alignment.centerRight,
-                              child: Text(
-                                StringsResources.totalSpendingText,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: ColorsResources.dark,
-                                    fontSize: 13,
-                                    shadows: [
-                                      Shadow(
-                                          color: ColorsResources.darkTransparent,
-                                          blurRadius: 11,
-                                          offset: Offset(1.0, 1.0)
-                                      ),
-                                      Shadow(
-                                          color: ColorsResources.light,
-                                          blurRadius: 11,
-                                          offset: Offset(-1.0, -1.0)
-                                      )
-                                    ]),
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: double.infinity,
-                            height: 51,
-                            child: ClipRRect(
-                              borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(23),
-                                  bottomLeft: Radius.circular(23),
-                                  topRight: Radius.circular(7),
-                                  bottomRight: Radius.circular(23)
-                              ),
-                              child: Material(
-                                shadowColor: Colors.transparent,
-                                color: Colors.transparent,
-                                child: InkWell(
-                                  splashColor: ColorsResources.red.withOpacity(0.3),
-                                  splashFactory: InkRipple.splashFactory,
-                                  onTap: () {
-
-                                    Future.delayed(const Duration(milliseconds: 777), (){
+                                child: Material(
+                                  shadowColor: Colors.transparent,
+                                  color: Colors.transparent,
+                                  child: InkWell(
+                                    splashColor: ColorsResources.green.withOpacity(0.3),
+                                    splashFactory: InkRipple.splashFactory,
+                                    onTap: () {
 
                                       NavigationProcess().goTo(context, const GeneralFinancialCharts());
 
-                                    });
-
-                                  },
-                                  child: Container(
-                                    alignment: AlignmentDirectional.center,
-                                    decoration: BoxDecoration(
-                                        borderRadius: const BorderRadius.only(
-                                            topLeft: Radius.circular(23),
-                                            topRight: Radius.circular(7),
-                                            bottomLeft: Radius.circular(23),
-                                            bottomRight: Radius.circular(23)),
-                                        border: const Border(
-                                            top: BorderSide(
-                                              color: ColorsResources.red,
-                                              width: 1,
-                                            ),
-                                            bottom: BorderSide(
-                                              color: ColorsResources.red,
-                                              width: 1,
-                                            ),
-                                            left: BorderSide(
-                                              color: ColorsResources.red,
-                                              width: 1,
-                                            ),
-                                            right: BorderSide(
-                                              color: ColorsResources.red,
-                                              width: 1,
-                                            )
-                                        ),
-                                        color: ColorsResources.red.withOpacity(0.13)
-                                    ),
-                                    child: Align(
-                                      alignment: Alignment.center,
-                                      child: Text(
-                                        "${totalSpending}",
-                                        textAlign: TextAlign.center,
-                                        style: const TextStyle(
-                                            color: ColorsResources.applicationDarkGeeksEmpire,
-                                            fontSize: 17,
-                                            shadows: [
-                                              Shadow(
-                                                  color: ColorsResources.white,
-                                                  offset: Offset(0, 0),
-                                                  blurRadius: 11
+                                    },
+                                    child: Container(
+                                      alignment: AlignmentDirectional.center,
+                                      decoration: BoxDecoration(
+                                          borderRadius: const BorderRadius.only(
+                                              topLeft: Radius.circular(23),
+                                              topRight: Radius.circular(7),
+                                              bottomLeft: Radius.circular(23),
+                                              bottomRight: Radius.circular(23)
+                                          ),
+                                          border: const Border(
+                                              top: BorderSide(
+                                                color: ColorsResources.green,
+                                                width: 1,
+                                              ),
+                                              bottom: BorderSide(
+                                                color: ColorsResources.green,
+                                                width: 1,
+                                              ),
+                                              left: BorderSide(
+                                                color: ColorsResources.green,
+                                                width: 1,
+                                              ),
+                                              right: BorderSide(
+                                                color: ColorsResources.green,
+                                                width: 1,
                                               )
-                                            ]),
+                                          ),
+                                          color: ColorsResources.green.withOpacity(0.13)
+                                      ),
+                                      child: Align(
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          "${totalEarning}",
+                                          textAlign: TextAlign.center,
+                                          style: const TextStyle(
+                                              color: ColorsResources.applicationDarkGeeksEmpire,
+                                              fontSize: 17,
+                                              shadows: [
+                                                Shadow(
+                                                    color: ColorsResources.white,
+                                                    offset: Offset(0, 0),
+                                                    blurRadius: 11
+                                                )
+                                              ]),
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
                               ),
+                            )
+                          ],
+                        )
+                    ),
+                    Expanded(
+                        flex: 5,
+                        child: Column(
+                          children: [
+                            const SizedBox(
+                              width: double.infinity,
+                              height: 21,
+                              child: Align(
+                                alignment: Alignment.centerRight,
+                                child: Text(
+                                  StringsResources.totalBalanceText,
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: ColorsResources.dark,
+                                      fontSize: 13,
+                                      shadows: [
+                                        Shadow(
+                                            color: ColorsResources.darkTransparent,
+                                            blurRadius: 11,
+                                            offset: Offset(1.0, 1.0)
+                                        ),
+                                        Shadow(
+                                            color: ColorsResources.light,
+                                            blurRadius: 11,
+                                            offset: Offset(-1.0, -1.0)
+                                        )
+                                      ]),
+                                ),
+                              ),
                             ),
-                          )
-                        ],
-                      )
-                  ),
-                ],
+                            SizedBox(
+                              width: double.infinity,
+                              height: 51,
+                              child: ClipRRect(
+                                borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(23),
+                                    bottomLeft: Radius.circular(23),
+                                    topRight: Radius.circular(7),
+                                    bottomRight: Radius.circular(23)
+                                ),
+                                child: Material(
+                                  shadowColor: Colors.transparent,
+                                  color: Colors.transparent,
+                                  child: InkWell(
+                                    splashColor: ColorsResources.applicationGeeksEmpire.withOpacity(0.3),
+                                    splashFactory: InkRipple.splashFactory,
+                                    onTap: () {
+
+                                      NavigationProcess().goTo(context, const GeneralFinancialCharts());
+
+                                    },
+                                    child: Container(
+                                      alignment: AlignmentDirectional.center,
+                                      decoration: BoxDecoration(
+                                          borderRadius: const BorderRadius.only(
+                                              topLeft: Radius.circular(23),
+                                              topRight: Radius.circular(7),
+                                              bottomLeft: Radius.circular(23),
+                                              bottomRight: Radius.circular(23)
+                                          ),
+                                          border: const Border(
+                                              top: BorderSide(
+                                                color: ColorsResources.applicationGeeksEmpire,
+                                                width: 1,
+                                              ),
+                                              bottom: BorderSide(
+                                                color: ColorsResources.applicationGeeksEmpire,
+                                                width: 1,
+                                              ),
+                                              left: BorderSide(
+                                                color: ColorsResources.applicationGeeksEmpire,
+                                                width: 1,
+                                              ),
+                                              right: BorderSide(
+                                                color: ColorsResources.applicationGeeksEmpire,
+                                                width: 1,
+                                              )
+                                          ),
+                                          color: ColorsResources.applicationGeeksEmpire.withOpacity(0.13)
+                                      ),
+                                      child: Align(
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          "${totalBalance}",
+                                          textAlign: TextAlign.center,
+                                          style: const TextStyle(
+                                              color: ColorsResources.applicationDarkGeeksEmpire,
+                                              fontSize: 19,
+                                              shadows: [
+                                                Shadow(
+                                                    color: ColorsResources.white,
+                                                    offset: Offset(0, 0),
+                                                    blurRadius: 11
+                                                )
+                                              ]),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        )
+                    ),
+                    Expanded(
+                        flex: 3,
+                        child: Column(
+                          children: [
+                            const SizedBox(
+                              width: double.infinity,
+                              height: 21,
+                              child: Align(
+                                alignment: Alignment.centerRight,
+                                child: Text(
+                                  StringsResources.totalSpendingText,
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: ColorsResources.dark,
+                                      fontSize: 13,
+                                      shadows: [
+                                        Shadow(
+                                            color: ColorsResources.darkTransparent,
+                                            blurRadius: 11,
+                                            offset: Offset(1.0, 1.0)
+                                        ),
+                                        Shadow(
+                                            color: ColorsResources.light,
+                                            blurRadius: 11,
+                                            offset: Offset(-1.0, -1.0)
+                                        )
+                                      ]),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: double.infinity,
+                              height: 51,
+                              child: ClipRRect(
+                                borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(23),
+                                    bottomLeft: Radius.circular(23),
+                                    topRight: Radius.circular(7),
+                                    bottomRight: Radius.circular(23)
+                                ),
+                                child: Material(
+                                  shadowColor: Colors.transparent,
+                                  color: Colors.transparent,
+                                  child: InkWell(
+                                    splashColor: ColorsResources.red.withOpacity(0.3),
+                                    splashFactory: InkRipple.splashFactory,
+                                    onTap: () {
+
+                                      Future.delayed(const Duration(milliseconds: 777), (){
+
+                                        NavigationProcess().goTo(context, const GeneralFinancialCharts());
+
+                                      });
+
+                                    },
+                                    child: Container(
+                                      alignment: AlignmentDirectional.center,
+                                      decoration: BoxDecoration(
+                                          borderRadius: const BorderRadius.only(
+                                              topLeft: Radius.circular(23),
+                                              topRight: Radius.circular(7),
+                                              bottomLeft: Radius.circular(23),
+                                              bottomRight: Radius.circular(23)),
+                                          border: const Border(
+                                              top: BorderSide(
+                                                color: ColorsResources.red,
+                                                width: 1,
+                                              ),
+                                              bottom: BorderSide(
+                                                color: ColorsResources.red,
+                                                width: 1,
+                                              ),
+                                              left: BorderSide(
+                                                color: ColorsResources.red,
+                                                width: 1,
+                                              ),
+                                              right: BorderSide(
+                                                color: ColorsResources.red,
+                                                width: 1,
+                                              )
+                                          ),
+                                          color: ColorsResources.red.withOpacity(0.13)
+                                      ),
+                                      child: Align(
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          "${totalSpending}",
+                                          textAlign: TextAlign.center,
+                                          style: const TextStyle(
+                                              color: ColorsResources.applicationDarkGeeksEmpire,
+                                              fontSize: 17,
+                                              shadows: [
+                                                Shadow(
+                                                    color: ColorsResources.white,
+                                                    offset: Offset(0, 0),
+                                                    blurRadius: 11
+                                                )
+                                              ]),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        )
+                    ),
+                  ],
+                ),
               ),
-            ),
-          )
-        ],
-      ),
-    );
+            )
+          ],
+        ),
+      );
+
+    }
+
+    return generalDataContent;
   }
 
   void retrieveTotalEarning() async {
