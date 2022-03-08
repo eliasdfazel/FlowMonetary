@@ -543,7 +543,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: TextField(
-                                      controller: controllerChequeTitle,
+                                      controller: controllerChequeNumber,
                                       textAlign: TextAlign.center,
                                       textDirection: TextDirection.ltr,
                                       textAlignVertical: TextAlignVertical.bottom,
