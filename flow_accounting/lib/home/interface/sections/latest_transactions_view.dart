@@ -160,7 +160,7 @@ class _LatestTransactionsView extends State<LatestTransactionsView> {
                 color: Colors.black87,
                 shadows: [
                   Shadow(
-                    color: Colors.black.withOpacity(0.5),
+                    color: Colors.black.withOpacity(0.31),
                     offset: const Offset(3, 3),
                     blurRadius: 7,
                   )
