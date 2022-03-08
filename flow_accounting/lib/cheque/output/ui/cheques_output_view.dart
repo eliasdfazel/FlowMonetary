@@ -617,13 +617,13 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
 
   void editCheque(BuildContext context, ChequesData chequesData) async {
 
-    bool budgetDataUpdated = await Navigator.push(
+    bool chequeDataUpdated = await Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => ChequesInputView(chequesData: chequesData)),
     );
 
-    debugPrint("Budget Data Update => ${budgetDataUpdated}");
-    if (budgetDataUpdated) {
+    debugPrint("Cheque Data Update => ${chequeDataUpdated}");
+    if (chequeDataUpdated) {
 
       retrieveAllCheque(context);
 
