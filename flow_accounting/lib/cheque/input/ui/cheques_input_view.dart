@@ -112,6 +112,23 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
   @override
   void initState() {
+
+    if (widget.chequesData != null) {
+
+      calendarIssueDateView.inputDateTime = widget.chequesData!.chequeIssueDate;
+      calendarIssueDateView.pickedDateTime = DateTime.fromMillisecondsSinceEpoch(int.parse(widget.chequesData!.chequeIssueMillisecond));
+      calendarIssueDateView.pickedDataTimeYear = calendarIssueDateView.pickedDateTime.year.toString();
+      calendarIssueDateView.pickedDataTimeMonth = calendarIssueDateView.pickedDateTime.month.toString();
+
+      calendarDueDateView.inputDateTime = widget.chequesData!.chequeDueDate;
+      calendarDueDateView.pickedDateTime = DateTime.fromMillisecondsSinceEpoch(int.parse(widget.chequesData!.chequeDueMillisecond));
+      calendarDueDateView.pickedDataTimeYear = calendarDueDateView.pickedDateTime.year.toString();
+      calendarDueDateView.pickedDataTimeMonth = calendarDueDateView.pickedDateTime.month.toString();
+
+      colorSelectorView.inputColor = Color(widget.chequesData?.colorTag ?? Colors.white.value);
+
+    }
+
     super.initState();
 
     BackButtonInterceptor.add(aInterceptor);
