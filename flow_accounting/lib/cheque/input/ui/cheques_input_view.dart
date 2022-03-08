@@ -903,7 +903,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                       cursorColor: ColorsResources.primaryColor,
                                       autocorrect: true,
                                       autofocus: false,
-                                      keyboardType: TextInputType.number,
+                                      keyboardType: TextInputType.text,
                                       textInputAction: TextInputAction.next,
                                       decoration: InputDecoration(
                                         alignLabelWithHint: true,
@@ -993,7 +993,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                       cursorColor: ColorsResources.primaryColor,
                                       autocorrect: true,
                                       autofocus: false,
-                                      keyboardType: TextInputType.number,
+                                      keyboardType: TextInputType.text,
                                       textInputAction: TextInputAction.next,
                                       decoration: InputDecoration(
                                         alignLabelWithHint: true,
