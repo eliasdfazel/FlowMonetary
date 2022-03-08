@@ -382,7 +382,7 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
 
     String chequeMoneyAmount = chequesData.chequeMoneyAmount;
 
-    Color budgetColorTag = Color(chequesData.colorTag);
+    Color chequeColorTag = Color(chequesData.colorTag);
 
     return Slidable(
       closeOnScroll: true,
@@ -422,7 +422,7 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
         child: PhysicalModel(
           color: ColorsResources.light,
           elevation: 7,
-          shadowColor: budgetColorTag.withOpacity(0.79),
+          shadowColor: chequeColorTag.withOpacity(0.79),
           shape: BoxShape.rectangle,
           borderRadius: const BorderRadius.all(Radius.circular(17)),
           child: InkWell(
@@ -560,7 +560,7 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
                                 ),
                                 gradient: LinearGradient(
                                     colors: [
-                                      budgetColorTag.withOpacity(0.7),
+                                      chequeColorTag.withOpacity(0.7),
                                       ColorsResources.light,
                                     ],
                                     begin: const FractionalOffset(0.0, 0.0),
@@ -619,7 +619,7 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
 
     }
 
-    List<Widget> preparedAllBudgetsItem = [];
+    List<Widget> preparedAllChequesItem = [];
 
     var databaseQueries = ChequesDatabaseQueries();
 
@@ -627,7 +627,7 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
 
     for (var element in allCheques) {
 
-      preparedAllBudgetsItem.add(outputItem(context, element));
+      preparedAllChequesItem.add(outputItem(context, element));
 
     }
 
@@ -635,7 +635,7 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
 
     setState(() {
 
-      allChequesItems = preparedAllBudgetsItem;
+      allChequesItems = preparedAllChequesItem;
 
     });
 
