@@ -6,9 +6,7 @@ import 'package:flow_accounting/cheque/database/structures/table_structure.dart'
 import 'package:flow_accounting/cheque/input/ui/cheques_input_view.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
-import 'package:flow_accounting/transactions/output/ui/transactions_output_view.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
-import 'package:flow_accounting/utils/navigations/navigations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:marquee/marquee.dart';
@@ -415,24 +413,6 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
             foregroundColor: ColorsResources.applicationGeeksEmpire,
             icon: Icons.edit_rounded,
             label: StringsResources.editText,
-            autoClose: true,
-          ),
-        ],
-      ),
-      startActionPane: ActionPane(
-        motion: const DrawerMotion(),
-        children: [
-          SlidableAction(
-            flex: 1,
-            onPressed: (BuildContext context) {
-
-              NavigationProcess().goTo(context, TransactionsOutputView(initialSearchQuery: chequeName));
-
-            },
-            backgroundColor: Colors.transparent,
-            foregroundColor: ColorsResources.greenGray,
-            icon: Icons.money_rounded,
-            label: StringsResources.transactionAll,
             autoClose: true,
           ),
         ],
