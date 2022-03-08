@@ -154,7 +154,7 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
                               ),
                             ),
                             Expanded(
-                              flex: 11,
+                              flex: 15,
                               child: Padding(
                                 padding: const EdgeInsets.fromLTRB(3, 0, 0, 0),
                                 child: Stack(
@@ -194,7 +194,8 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
                                         child: Align(
                                           alignment: Alignment.center,
                                           child: Text(
-                                            StringsResources.sortBudgetAmountHigh,
+                                            StringsResources.sortChequeDueDate,
+                                            maxLines: 1,
                                             style: TextStyle(
                                               fontSize: 13,
                                               color: ColorsResources.applicationGeeksEmpire,

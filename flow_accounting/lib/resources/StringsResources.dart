@@ -91,6 +91,8 @@ class StringsResources {
 
   static const String transactionBudgetName = "بودجه مورد نظر را انتخاب کنید";
   static const String transactionBudgetNameHint = "نام بودجه";
+
+  static const String sortBudgetAmountHigh = "مرتب سازی: مبلغ بوجه";
   /* End - Budget String Resources */
 
   /* Start - Customer String Resources */
@@ -142,6 +144,8 @@ class StringsResources {
   static const String chequeBankBranch = "شعبه بانک صادر کننده";
 
   static const String chequeConfirmation = "تایید وصول چک";
+
+  static const String sortChequeDueDate = "مرتب سازی: تاریخ سررسید";
   /* End - Cheque String Resources */
 
   static const String sortHint = "مرتب سازی";
@@ -152,8 +156,6 @@ class StringsResources {
   static const String sortTransactionAmountHigh = "مرتب سازی: تراکنش زیاد";
 
   static const String sortCustomerAge = "مرتب سازی: سن مشتری";
-
-  static const String sortBudgetAmountHigh = "مرتب سازی: مبلغ بوجه";
 
   static const String colorSelectorHint = "برای تمایز و دسته بندی رنگ مورد "
       "نظر خود را انتخاب کنید";
