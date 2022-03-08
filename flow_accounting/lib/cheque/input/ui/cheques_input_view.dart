@@ -2710,7 +2710,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
         ),
         recurrence: Recurrence(
-          frequency: Frequency.daily,
+          frequency: Frequency.monthly,
           interval: 1,
           ocurrences: 3,
           endDate: reminderTime,
