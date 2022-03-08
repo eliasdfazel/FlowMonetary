@@ -39,7 +39,7 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
   @override
   void initState() {
 
-    retrieveAllBudgets(context);
+    retrieveAllCheque(context);
 
     super.initState();
   }
@@ -240,7 +240,7 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
                                     child: InkWell(
                                       onTap: () {
 
-                                        retrieveAllBudgets(context);
+                                        retrieveAllCheque(context);
 
                                       },
                                       child: const Icon(
@@ -281,7 +281,7 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
 
                                     String searchQuery = textEditorControllerQuery.text;
 
-                                    searchBudgets(context, allCheques, searchQuery);
+                                    searchCheques(context, allCheques, searchQuery);
 
                                   },
                                   child: const SizedBox(
@@ -315,7 +315,7 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
                                         textInputAction: TextInputAction.search,
                                         onSubmitted: (searchQuery) {
 
-                                          searchBudgets(context, allCheques, searchQuery);
+                                          searchCheques(context, allCheques, searchQuery);
 
                                         },
                                         decoration: const InputDecoration(
@@ -377,14 +377,14 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
     );
   }
 
-  Widget outputItem(BuildContext context, BudgetsData budgetsData) {
+  Widget outputItem(BuildContext context, ChequesData chequesData) {
 
-    String budgetName = budgetsData.budgetName;
-    String budgetDescription = budgetsData.budgetDescription;
+    String chequeName = chequesData.chequeTitle;
+    String chequeDescription = chequesData.chequeDescription;
 
-    String budgetBalance = budgetsData.budgetBalance;
+    String chequeMoneyAmount = chequesData.chequeMoneyAmount;
 
-    Color budgetColorTag = Color(budgetsData.colorTag);
+    Color budgetColorTag = Color(chequesData.colorTag);
 
     return Slidable(
       closeOnScroll: true,
@@ -395,7 +395,7 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
             flex: 1,
             onPressed: (BuildContext context) {
 
-              deleteBudget(context, budgetsData);
+              deleteCheque(context, chequesData);
 
             },
             backgroundColor: Colors.transparent,
@@ -408,7 +408,7 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
             flex: 1,
             onPressed: (BuildContext context) {
 
-              editBudget(context, budgetsData);
+              editCheque(context, chequesData);
 
             },
             backgroundColor: Colors.transparent,
@@ -426,7 +426,7 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
             flex: 1,
             onPressed: (BuildContext context) {
 
-              NavigationProcess().goTo(context, TransactionsOutputView(initialSearchQuery: budgetName));
+              NavigationProcess().goTo(context, TransactionsOutputView(initialSearchQuery: chequeName));
 
             },
             backgroundColor: Colors.transparent,
@@ -448,7 +448,7 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
           child: InkWell(
             onTap: () {
 
-              editBudget(context, budgetsData);
+              editCheque(context, chequesData);
 
             },
             child: Container(
@@ -486,7 +486,7 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
                               child: Align(
                                   alignment: Alignment.center,
                                   child: Marquee(
-                                    text: budgetBalance,
+                                    text: chequeMoneyAmount,
                                     style: const TextStyle(
                                       color: ColorsResources.dark,
                                       fontSize: 31,
@@ -526,7 +526,7 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
                                         child: Align(
                                           alignment: Alignment.centerRight,
                                           child: Text(
-                                            budgetName,
+                                            chequeName,
                                             style: const TextStyle(
                                               color: ColorsResources.dark,
                                               fontSize: 19,
@@ -549,7 +549,7 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
                                 child: Align(
                                   alignment: Alignment.centerRight,
                                   child: Text(
-                                    budgetDescription,
+                                    chequeDescription,
                                     textAlign: TextAlign.right,
                                     style: TextStyle(
                                         color: ColorsResources.dark.withOpacity(0.537),
@@ -605,17 +605,17 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
 
   }
 
-  void deleteBudget(BuildContext context, BudgetsData budgetsData) async {
+  void deleteCheque(BuildContext context, BudgetsData budgetsData) async {
 
     var databaseQueries = BudgetsDatabaseQueries();
 
     databaseQueries.queryDeleteBudget(budgetsData.id, BudgetsDatabaseInputs.databaseTableName);
 
-    retrieveAllBudgets(context);
+    retrieveAllCheque(context);
 
   }
 
-  void editBudget(BuildContext context, BudgetsData budgetsData) async {
+  void editCheque(BuildContext context, BudgetsData budgetsData) async {
 
     bool budgetDataUpdated = await Navigator.push(
       context,
@@ -625,13 +625,13 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
     debugPrint("Budget Data Update => ${budgetDataUpdated}");
     if (budgetDataUpdated) {
 
-      retrieveAllBudgets(context);
+      retrieveAllCheque(context);
 
     }
 
   }
 
-  void retrieveAllBudgets(BuildContext context) async {
+  void retrieveAllCheque(BuildContext context) async {
 
     if (allChequesItems.isNotEmpty) {
 
@@ -717,7 +717,7 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
 
   }
 
-  void searchBudgets(BuildContext context,
+  void searchCheques(BuildContext context,
       List<BudgetsData> inputBudgetsList, String searchQuery) {
 
     List<BudgetsData> searchResult = [];
