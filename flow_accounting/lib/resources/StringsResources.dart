@@ -122,8 +122,12 @@ class StringsResources {
   static const String chequeIssueDate = "تاریخ صدور";
   static const String chequeDueDate = "تاریخ سررسید";
 
+  static const String chequeSourceId = "کد شناسایی صادر کننده";
+  static const String chequeSourceIdHint = "صادر کننده";
   static const String chequeSourceAccount = "شماره حساب مبدا";
-  static const String chequeSourceAccountHint = "شماره حساب مبدا را وارد کنید";
+  static const String chequeSourceAccountHint = "شماره حساب یا کارت مبدا را وارد کنید";
+  static const String chequeTargetId = "کد شناسایی دریافت کننده";
+  static const String chequeTargetIdHint = "دریافت کننده";
   static const String chequeTargetAccount = "شماره حساب مقصد";
   static const String chequeTargetAccountHint = "شماره حساب یا کارت مقصد را وارد کنید";
 

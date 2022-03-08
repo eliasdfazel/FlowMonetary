@@ -104,8 +104,8 @@ class DashboardViewState extends State<DashboardView> {
                     borderRadius: BorderRadius.only(topLeft: Radius.circular(17), topRight: Radius.circular(17), bottomLeft: Radius.circular(17), bottomRight: Radius.circular(17)),
                     gradient: LinearGradient(
                         colors: [
-                          ColorsResources.grayLight,
-                          ColorsResources.blueGrayLight,
+                          ColorsResources.light,
+                          ColorsResources.lightestBlue,
                         ],
                         begin: FractionalOffset(0.0, 0.0),
                         end: FractionalOffset(1.0, 0.0),
