@@ -47,6 +47,9 @@ class ChequesDatabaseInputs {
               'chequeIssueDate TEXT, '
               'chequeDueDate TEXT, '
 
+              'chequeIssueMillisecond TEXT, '
+              'chequeDueMillisecond TEXT, '
+
               'chequeSourceId TEXT, '
               'chequeSourceName TEXT, '
               'chequeSourceAccountNumber TEXT, '

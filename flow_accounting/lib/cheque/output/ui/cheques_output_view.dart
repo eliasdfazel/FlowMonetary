@@ -4,6 +4,7 @@ import 'package:flow_accounting/budgets/database/io/inputs.dart';
 import 'package:flow_accounting/budgets/database/io/queries.dart';
 import 'package:flow_accounting/budgets/database/structures/tables_structure.dart';
 import 'package:flow_accounting/budgets/input/ui/budgets_input_view.dart';
+import 'package:flow_accounting/cheque/database/structures/table_structure.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/output/ui/transactions_output_view.dart';
@@ -13,18 +14,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:marquee/marquee.dart';
 
-class BudgetsOutputView extends StatefulWidget {
-  const BudgetsOutputView({Key? key}) : super(key: key);
+class ChequesOutputView extends StatefulWidget {
+  const ChequesOutputView({Key? key}) : super(key: key);
 
   @override
-  _BudgetOutputViewState createState() => _BudgetOutputViewState();
+  _ChequesOutputViewState createState() => _ChequesOutputViewState();
 }
-class _BudgetOutputViewState extends State<BudgetsOutputView> {
+class _ChequesOutputViewState extends State<ChequesOutputView> {
 
   ColorSelectorView colorSelectorView = ColorSelectorView();
 
-  List<BudgetsData> allBudgets = [];
-  List<Widget> allBudgetsItems = [];
+  List<ChequesData> allCheques = [];
+  List<Widget> allChequesItems = [];
 
   TextEditingController textEditorControllerQuery = TextEditingController();
 
@@ -48,7 +49,7 @@ class _BudgetOutputViewState extends State<BudgetsOutputView> {
 
     colorSelectorView.selectedColorNotifier.addListener(() {
 
-      filterByColorTag(context, allBudgets, colorSelectorView.selectedColorNotifier.value);
+      filterByColorTag(context, allCheques, colorSelectorView.selectedColorNotifier.value);
 
     });
 
@@ -57,7 +58,7 @@ class _BudgetOutputViewState extends State<BudgetsOutputView> {
       padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
       child: colorSelectorView,
     ));
-    allListContentWidgets.addAll(allBudgetsItems);
+    allListContentWidgets.addAll(allChequesItems);
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -185,7 +186,7 @@ class _BudgetOutputViewState extends State<BudgetsOutputView> {
                                     InkWell(
                                       onTap: () {
 
-                                        sortBudgetsByBalance(context, allBudgets);
+                                        sortChequesByDueDate(context, allCheques);
 
                                       },
                                       child: const SizedBox(
@@ -280,7 +281,7 @@ class _BudgetOutputViewState extends State<BudgetsOutputView> {
 
                                     String searchQuery = textEditorControllerQuery.text;
 
-                                    searchBudgets(context, allBudgets, searchQuery);
+                                    searchBudgets(context, allCheques, searchQuery);
 
                                   },
                                   child: const SizedBox(
@@ -314,7 +315,7 @@ class _BudgetOutputViewState extends State<BudgetsOutputView> {
                                         textInputAction: TextInputAction.search,
                                         onSubmitted: (searchQuery) {
 
-                                          searchBudgets(context, allBudgets, searchQuery);
+                                          searchBudgets(context, allCheques, searchQuery);
 
                                         },
                                         decoration: const InputDecoration(
@@ -632,9 +633,9 @@ class _BudgetOutputViewState extends State<BudgetsOutputView> {
 
   void retrieveAllBudgets(BuildContext context) async {
 
-    if (allBudgetsItems.isNotEmpty) {
+    if (allChequesItems.isNotEmpty) {
 
-      allBudgetsItems.clear();
+      allChequesItems.clear();
 
     }
 
@@ -642,9 +643,9 @@ class _BudgetOutputViewState extends State<BudgetsOutputView> {
 
     var databaseQueries = BudgetsDatabaseQueries();
 
-    allBudgets = await databaseQueries.getAllBudgets(BudgetsDatabaseInputs.databaseTableName);
+    allCheques = await databaseQueries.getAllBudgets(BudgetsDatabaseInputs.databaseTableName);
 
-    for (var element in allBudgets) {
+    for (var element in allCheques) {
 
       preparedAllBudgetsItem.add(outputItem(context, element));
 
@@ -654,43 +655,43 @@ class _BudgetOutputViewState extends State<BudgetsOutputView> {
 
     setState(() {
 
-      allBudgetsItems = preparedAllBudgetsItem;
+      allChequesItems = preparedAllBudgetsItem;
 
     });
 
   }
 
-  void sortBudgetsByBalance(BuildContext context, List<BudgetsData> inputBudgetsList) {
+  void sortChequesByDueDate(BuildContext context, List<ChequesData> inputChequesList) {
 
-    if (allBudgetsItems.isNotEmpty) {
+    if (allChequesItems.isNotEmpty) {
 
-      allBudgetsItems.clear();
+      allChequesItems.clear();
 
     }
-    inputBudgetsList.sort((a, b) => (a.budgetBalance).compareTo(b.budgetBalance));
+    inputChequesList.sort((a, b) => (a.chequeDueMillisecond).compareTo(b.chequeDueMillisecond));
 
-    List<Widget> preparedAllBudgetsItem = [];
+    List<Widget> preparedAllTransactionsItem = [];
 
-    for (var element in inputBudgetsList) {
+    for (var element in inputChequesList) {
 
-      preparedAllBudgetsItem.add(outputItem(context, element));
+      preparedAllTransactionsItem.add(outputItem(context, element));
 
     }
 
     setState(() {
 
-      allBudgetsItems = preparedAllBudgetsItem;
+      allChequesItems = preparedAllTransactionsItem;
 
     });
 
   }
 
   void filterByColorTag(BuildContext context,
-      List<BudgetsData> inputBudgetsList, Color colorQuery) {
+      List<ChequesData> inputChequesList, Color colorQuery) {
 
-    List<BudgetsData> searchResult = [];
+    List<ChequesData> searchResult = [];
 
-    for (var element in inputBudgetsList) {
+    for (var element in inputChequesList) {
 
       if (element.colorTag == colorQuery.value) {
 
@@ -698,17 +699,17 @@ class _BudgetOutputViewState extends State<BudgetsOutputView> {
 
       }
 
-      List<Widget> preparedAllBudgetsItem = [];
+      List<Widget> preparedAllChequesItem = [];
 
       for (var element in searchResult) {
 
-        preparedAllBudgetsItem.add(outputItem(context, element));
+        preparedAllChequesItem.add(outputItem(context, element));
 
       }
 
       setState(() {
 
-        allBudgetsItems = preparedAllBudgetsItem;
+        allChequesItems = preparedAllChequesItem;
 
       });
 
@@ -741,7 +742,7 @@ class _BudgetOutputViewState extends State<BudgetsOutputView> {
 
       setState(() {
 
-        allBudgetsItems = preparedAllBudgetsItem;
+        allChequesItems = preparedAllBudgetsItem;
 
       });
 

@@ -37,6 +37,9 @@ class ChequesData {
   final String chequeIssueDate;
   final String chequeDueDate;
 
+  final String chequeIssueMillisecond;
+  final String chequeDueMillisecond;
+
   final String chequeSourceId;
   final String chequeSourceName;
   final String chequeSourceAccountNumber;
@@ -69,6 +72,9 @@ class ChequesData {
 
     required this.chequeIssueDate,
     required this.chequeDueDate,
+
+    required this.chequeIssueMillisecond,
+    required this.chequeDueMillisecond,
 
     required this.chequeSourceId,
     required this.chequeSourceName,
@@ -104,6 +110,9 @@ class ChequesData {
 
       'chequeIssueDate': chequeIssueDate,
       'chequeDueDate': chequeDueDate,
+
+      'chequeIssueMillisecond': chequeIssueMillisecond,
+      'chequeDueMillisecond': chequeDueMillisecond,
 
       'chequeSourceId': chequeSourceId,
       'chequeSourceName': chequeSourceName,
@@ -141,6 +150,9 @@ class ChequesData {
 
         'chequeIssueDate: $chequeIssueDate,'
         'chequeDueDate: $chequeDueDate,'
+
+        'chequeIssueMillisecond: $chequeIssueMillisecond,'
+        'chequeDueMillisecond: $chequeDueMillisecond,'
 
         'chequeSourceId: $chequeSourceId,'
         'chequeSourceName: $chequeSourceName,'

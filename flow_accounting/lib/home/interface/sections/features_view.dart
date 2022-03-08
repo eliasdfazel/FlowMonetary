@@ -12,6 +12,7 @@ import 'package:collection/collection.dart';
 import 'package:flow_accounting/budgets/input/ui/budgets_input_view.dart';
 import 'package:flow_accounting/budgets/output/ui/budgets_output_view.dart';
 import 'package:flow_accounting/cheque/input/ui/cheques_input_view.dart';
+import 'package:flow_accounting/cheque/output/ui/cheques_output_view.dart';
 import 'package:flow_accounting/customers/input/ui/customers_input_view.dart';
 import 'package:flow_accounting/customers/output/ui/customers_output_view.dart';
 import 'package:flow_accounting/home/interface/dashboard.dart';
@@ -148,7 +149,7 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
         featuresTitle: StringsResources.featureChequesTitle,
         featuresDescription: StringsResources.featureChequesDescription,
         featureViewToSubmitData: ChequesInputView(),
-        featureToPresentData: null));
+        featureToPresentData: ChequesOutputView()));
     allFeaturesStructure.add(FeaturesStructure(
         featureColor: ColorsResources.lightestRed,
         importantFeature: false,
