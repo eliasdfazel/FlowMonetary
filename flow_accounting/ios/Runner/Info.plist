@@ -41,5 +41,7 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSCalendarsUsageDescription</key>
+        <string>Create Reminders and Events for Cheque Due Dates</string>
 </dict>
 </plist>
