@@ -43,5 +43,10 @@
 	<false/>
 	<key>NSCalendarsUsageDescription</key>
         <string>Create Reminders and Events for Cheque Due Dates</string>
+        <key>CFBundleLocalizations</key>
+        	<array>
+          		<string>en</string>
+          		<string>fa</string>
+          	</array>
 </dict>
 </plist>
