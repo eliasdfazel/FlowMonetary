@@ -116,6 +116,9 @@ class StringsResources {
   /* End - Customer String Resources */
 
   /* Start - Cheque String Resources */
+  static const String chequeNumber = "شماره چک";
+  static const String chequeNumberHint = "شماره چک را با دقت وارد کنید";
+
   static const String chequeIssueDate = "تاریخ صدور";
   static const String chequeDueDate = "تاریخ سررسید";
 
