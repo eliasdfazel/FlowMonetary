@@ -137,127 +137,131 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
     Widget chequeConfirmationView = const Divider(height: 0, color: Colors.transparent);
 
-    if (widget.chequesData?.id != 0) {
+    if (widget.chequesData != null) {
 
-      chequeConfirmationView = Padding(
-        padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Expanded(flex: 9, child: Divider(height: 1, color: Colors.transparent)),
-            Expanded(
-              flex: 13,
-              child: SizedBox(
-                height: 73,
-                width: double.infinity,
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(7, 13, 7, 13),
-                  child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(51),
-                            topRight: Radius.circular(51),
-                            bottomLeft: Radius.circular(51),
-                            bottomRight: Radius.circular(51)
-                        ),
-                        border: Border.all(
-                          color: ColorsResources.dark.withOpacity(0.1),
-                          width: 3,
-                        ),
-                        gradient: LinearGradient(
-                            colors: [
-                              ColorsResources.white.withOpacity(0.91),
-                              ColorsResources.lightestBlue.withOpacity(0.91),
-                            ],
-                            begin: FractionalOffset(0.0, 0.0),
-                            end: FractionalOffset(1.0, 0.0),
-                            stops: [0.0, 1.0],
-                            transform: GradientRotation(45),
-                            tileMode: TileMode.clamp
-                        ),
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(51.0),
-                        child: Material(
-                          shadowColor: Colors.transparent,
-                          color: Colors.transparent,
-                          child: InkWell(
-                            splashColor: ColorsResources.applicationGeeksEmpire.withOpacity(0.5),
-                            splashFactory: InkRipple.splashFactory,
-                            onTap: () {
+      if (widget.chequesData!.id > 0) {
 
-                              setState(() {
-
-                                chequeConfirmed = !chequeConfirmed;
-
-                              });
-
-                            },
-                            child: Align(
-                                alignment: Alignment.centerRight,
-                                child: Padding(
-                                  padding: EdgeInsets.fromLTRB(13, 0, 17, 0),
-                                  child: Text(
-                                    StringsResources.chequeConfirmation,
-                                    textAlign: TextAlign.right,
-                                    style: TextStyle(
-                                        fontSize: 15,
-                                        color: ColorsResources.applicationDarkGeeksEmpire
-                                    ),
-                                  ),
-                                )
-                            ),
+        chequeConfirmationView = Padding(
+          padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Expanded(flex: 9, child: Divider(height: 1, color: Colors.transparent)),
+              Expanded(
+                flex: 13,
+                child: SizedBox(
+                  height: 73,
+                  width: double.infinity,
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(7, 13, 7, 13),
+                    child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(51),
+                              topRight: Radius.circular(51),
+                              bottomLeft: Radius.circular(51),
+                              bottomRight: Radius.circular(51)
+                          ),
+                          border: Border.all(
+                            color: ColorsResources.dark.withOpacity(0.1),
+                            width: 3,
+                          ),
+                          gradient: LinearGradient(
+                              colors: [
+                                ColorsResources.white.withOpacity(0.91),
+                                ColorsResources.lightestBlue.withOpacity(0.91),
+                              ],
+                              begin: FractionalOffset(0.0, 0.0),
+                              end: FractionalOffset(1.0, 0.0),
+                              stops: [0.0, 1.0],
+                              transform: GradientRotation(45),
+                              tileMode: TileMode.clamp
                           ),
                         ),
-                      )
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(51.0),
+                          child: Material(
+                            shadowColor: Colors.transparent,
+                            color: Colors.transparent,
+                            child: InkWell(
+                              splashColor: ColorsResources.applicationGeeksEmpire.withOpacity(0.5),
+                              splashFactory: InkRipple.splashFactory,
+                              onTap: () {
+
+                                setState(() {
+
+                                  chequeConfirmed = !chequeConfirmed;
+
+                                });
+
+                              },
+                              child: Align(
+                                  alignment: Alignment.centerRight,
+                                  child: Padding(
+                                    padding: EdgeInsets.fromLTRB(13, 0, 17, 0),
+                                    child: Text(
+                                      StringsResources.chequeConfirmation,
+                                      textAlign: TextAlign.right,
+                                      style: TextStyle(
+                                          fontSize: 15,
+                                          color: ColorsResources.applicationDarkGeeksEmpire
+                                      ),
+                                    ),
+                                  )
+                              ),
+                            ),
+                          ),
+                        )
+                    ),
                   ),
                 ),
               ),
-            ),
-            Expanded(
-              flex: 3,
-              child: SizedBox(
-                height: 73,
-                width: 73,
-                child: Align(
-                  alignment: AlignmentDirectional.centerEnd,
-                  child: Container(
-                    child: Transform.scale(
-                      scale: 1.93,
-                      child: Checkbox(
-                        tristate: true,
-                        checkColor: ColorsResources.applicationLightGeeksEmpire,
-                        fillColor: MaterialStateProperty.all(ColorsResources.dark.withOpacity(0.1)),
-                        visualDensity: VisualDensity.comfortable,
-                        shape: CircleBorder(),
-                        splashRadius: 37,
-                        value: chequeConfirmed,
-                        onChanged: (bool? value) {
+              Expanded(
+                flex: 3,
+                child: SizedBox(
+                  height: 73,
+                  width: 73,
+                  child: Align(
+                    alignment: AlignmentDirectional.centerEnd,
+                    child: Container(
+                      child: Transform.scale(
+                        scale: 1.93,
+                        child: Checkbox(
+                          tristate: true,
+                          checkColor: ColorsResources.applicationLightGeeksEmpire,
+                          fillColor: MaterialStateProperty.all(ColorsResources.dark.withOpacity(0.1)),
+                          visualDensity: VisualDensity.comfortable,
+                          shape: CircleBorder(),
+                          splashRadius: 37,
+                          value: chequeConfirmed,
+                          onChanged: (bool? value) {
 
-                          setState(() {
+                            setState(() {
 
-                            chequeConfirmed = value ?? false;
+                              chequeConfirmed = value ?? false;
 
-                          });
+                            });
 
-                          if (chequeData != null) {
+                            if (chequeData != null) {
 
-                            processBudgetBalance(chequeData!);
+                              processBudgetBalance(chequeData!);
 
-                            processCreditCardsBalance(chequeData!);
+                              processCreditCardsBalance(chequeData!);
 
-                          }
+                            }
 
-                        },
+                          },
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
-            ),
-          ],
-        ),
-      );
+            ],
+          ),
+        );
+
+      }
 
     }
 
