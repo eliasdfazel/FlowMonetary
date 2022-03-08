@@ -10,6 +10,7 @@
 
 import 'dart:io';
 
+import 'package:add_2_calendar/add_2_calendar.dart';
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:blur/blur.dart';
 import 'package:flow_accounting/budgets/database/io/inputs.dart';
@@ -2409,6 +2410,13 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                             databaseInputs.insertChequeData(chequeData!, TransactionsDatabaseInputs.databaseTableName);
 
+                            addChequeReminder(
+                                calendarDueDateView.pickedDateTime,
+                                controllerChequeTitle.text,
+                                controllerChequeDescription.text,
+                                "${controllerChequeSourceBank.text} - ${controllerChequeSourceBankBranch.text}"
+                            );
+
                             Fluttertoast.showToast(
                                 msg: StringsResources.updatedText,
                                 toastLength: Toast.LENGTH_SHORT,
@@ -2683,6 +2691,31 @@ class _ChequeInputViewState extends State<ChequesInputView> {
       );
 
     }
+
+  }
+
+  Future addChequeReminder(DateTime reminderTime, String chequeTitle, String chequeDescription, String bankNameBranch) async {
+
+    Add2Calendar.addEvent2Cal(Event(
+        title: chequeTitle,
+        description: chequeDescription,
+        location: bankNameBranch,
+        startDate: reminderTime,
+        endDate: reminderTime,
+        allDay: true,
+        iosParams: IOSParams(
+            reminder: Duration(days: 1)
+        ),
+        androidParams: AndroidParams(
+
+        ),
+        recurrence: Recurrence(
+          frequency: Frequency.daily,
+          interval: 1,
+          ocurrences: 3,
+          endDate: reminderTime,
+        )
+    ));
 
   }
 
