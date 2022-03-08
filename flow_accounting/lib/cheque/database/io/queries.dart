@@ -44,8 +44,10 @@ class ChequesDatabaseQueries {
 
         chequeTransactionType: maps[i]['chequeTransactionType'],
 
-        chequeBankName: maps[i]['chequeBankName'],
-        chequeBankBranch: maps[i]['chequeBankBranch'],
+        chequeSourceBankName: maps[i]['chequeSourceBankName'],
+        chequeSourceBankBranch: maps[i]['chequeSourceBankBranch'],
+
+        chequeTargetBankName: maps[i]['chequeTargetBankName'],
 
         chequeIssueDate: maps[i]['chequeIssueDate'],
         chequeDueDate: maps[i]['chequeDueDate'],
@@ -130,8 +132,10 @@ class ChequesDatabaseQueries {
 
       chequeTransactionType: inputData['chequeTransactionType'].toString(),
 
-      chequeBankName: inputData['chequeBankName'].toString(),
-      chequeBankBranch: inputData['chequeBankBranch'].toString(),
+      chequeSourceBankName: inputData['chequeSourceBankName'].toString(),
+      chequeSourceBankBranch: inputData['chequeSourceBankBranch'].toString(),
+
+      chequeTargetBankName: inputData['chequeTargetBankName'].toString(),
 
       chequeIssueDate: inputData['chequeIssueDate'].toString(),
       chequeDueDate: inputData['chequeDueDate'].toString(),

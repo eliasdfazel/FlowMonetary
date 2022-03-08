@@ -45,8 +45,9 @@ class ChequesInputView extends StatefulWidget {
       chequeNumber: "",
       chequeMoneyAmount: "0",
       chequeTransactionType: "",
-      chequeBankName: "",
-      chequeBankBranch: "",
+      chequeSourceBankName: "",
+      chequeSourceBankBranch: "",
+      chequeTargetBankName: "",
       chequeIssueDate: "",
       chequeDueDate: "",
       chequeIssueMillisecond: "0",
@@ -86,8 +87,8 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
   TextEditingController controllerChequeSourceId = TextEditingController();
   TextEditingController controllerChequeSourceName = TextEditingController();
-  TextEditingController controllerChequeSourceBank = TextEditingController();
-  TextEditingController controllerChequeSourceBankBranch = TextEditingController();
+  TextEditingController controllerChequeBank = TextEditingController();
+  TextEditingController controllerChequeBankBranch = TextEditingController();
   TextEditingController controllerChequeSourceAccount = TextEditingController();
 
   TextEditingController controllerChequeTargetId = TextEditingController();
@@ -106,6 +107,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
   bool chequeDataUpdated = false;
 
+  String chequeConfirmation = ChequesData.ChequesConfirmation_NOT;
   bool chequeConfirmed = false;
 
   String? warningNotice;
@@ -114,6 +116,28 @@ class _ChequeInputViewState extends State<ChequesInputView> {
   void initState() {
 
     if (widget.chequesData != null) {
+
+      controllerChequeNumber.text = widget.chequesData!.chequeNumber;
+
+      controllerMoneyAmount.text = widget.chequesData!.chequeMoneyAmount;
+
+      controllerChequeTitle.text = widget.chequesData!.chequeTitle;
+      controllerChequeDescription.text = widget.chequesData!.chequeDescription;
+
+      controllerChequeSourceId.text = widget.chequesData!.chequeSourceId;
+      controllerChequeSourceName.text = widget.chequesData!.chequeSourceName;
+      controllerChequeBank.text = widget.chequesData!.chequeSourceBankName;
+      controllerChequeBankBranch.text = widget.chequesData!.chequeSourceBankBranch;
+      controllerChequeSourceAccount.text = widget.chequesData!.chequeSourceAccountNumber;
+
+
+      controllerChequeTargetId.text = widget.chequesData!.chequeTargetId;
+      controllerChequeTargetName.text = widget.chequesData!.chequeTargetName;
+      controllerChequeTargetBank.text = widget.chequesData!.chequeTargetBankName;
+      controllerChequeTargetAccount.text = widget.chequesData!.chequeTargetAccountNumber;
+
+      controllerCreditCard.text = widget.chequesData!.chequeRelevantCreditCard;
+      controllerBudget.text = widget.chequesData!.chequeRelevantBudget;
 
       calendarIssueDateView.inputDateTime = widget.chequesData!.chequeIssueDate;
       calendarIssueDateView.pickedDateTime = DateTime.fromMillisecondsSinceEpoch(int.parse(widget.chequesData!.chequeIssueMillisecond));
@@ -126,6 +150,22 @@ class _ChequeInputViewState extends State<ChequesInputView> {
       calendarDueDateView.pickedDataTimeMonth = calendarDueDateView.pickedDateTime.month.toString();
 
       colorSelectorView.inputColor = Color(widget.chequesData?.colorTag ?? Colors.white.value);
+
+      transactionType = widget.chequesData!.chequeTransactionType;
+
+      budgetName = widget.chequesData!.chequeRelevantBudget;
+
+      chequeConfirmation = widget.chequesData!.chequeDoneConfirmation;
+
+      if (chequeConfirmation == ChequesData.ChequesConfirmation_NOT) {
+
+        chequeConfirmed = false;
+
+      } else if (chequeConfirmation == ChequesData.ChequesConfirmation_Done) {
+
+        chequeConfirmed = true;
+
+      }
 
     }
 
@@ -1524,7 +1564,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                         },
                                         onSuggestionSelected: (suggestion) {
 
-                                          controllerChequeSourceBank.text = suggestion.toString();
+                                          controllerChequeBank.text = suggestion.toString();
 
                                         },
                                         errorBuilder: (context, suggestion) {
@@ -1541,7 +1581,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                             borderRadius: BorderRadius.circular(17)
                                         ),
                                         textFieldConfiguration: TextFieldConfiguration(
-                                          controller: controllerChequeSourceBank,
+                                          controller: controllerChequeBank,
                                           autofocus: false,
                                           maxLines: 1,
                                           cursorColor: ColorsResources.primaryColor,
@@ -1630,7 +1670,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                     child: Directionality(
                                       textDirection: TextDirection.rtl,
                                       child: TextField(
-                                        controller: controllerChequeSourceBankBranch,
+                                        controller: controllerChequeBankBranch,
                                         textAlign: TextAlign.right,
                                         textDirection: TextDirection.ltr,
                                         textAlignVertical: TextAlignVertical.bottom,
@@ -2281,7 +2321,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                           }
 
-                          if (controllerChequeSourceBank.text.isEmpty) {
+                          if (controllerChequeBank.text.isEmpty) {
 
                             setState(() {
 
@@ -2293,7 +2333,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                           }
 
-                          if (controllerChequeSourceBankBranch.text.isEmpty) {
+                          if (controllerChequeBankBranch.text.isEmpty) {
 
                             setState(() {
 
@@ -2393,6 +2433,16 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                             var databaseInputs = ChequesDatabaseInputs();
 
+                            if (widget.chequesData != null) {
+
+                              if ((widget.chequesData?.id)! != 0) {
+
+                                timeNow = (widget.chequesData?.id)!;
+
+                              }
+
+                            }
+
                             chequeData = ChequesData(
                               id: timeNow,
 
@@ -2405,8 +2455,10 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                               chequeTransactionType: transactionType,
 
-                              chequeBankName: controllerChequeSourceBank.text,
-                              chequeBankBranch: controllerChequeSourceBankBranch.text,
+                              chequeSourceBankName: controllerChequeBank.text,
+                              chequeSourceBankBranch: controllerChequeBankBranch.text,
+
+                              chequeTargetBankName: controllerChequeTargetBank.text,
 
                               chequeIssueDate: calendarIssueDateView.pickedDataTimeText ?? "",
                               chequeDueDate: calendarDueDateView.pickedDataTimeText ?? "",
@@ -2436,7 +2488,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                 calendarDueDateView.pickedDateTime,
                                 controllerChequeTitle.text,
                                 controllerChequeDescription.text,
-                                "${controllerChequeSourceBank.text} - ${controllerChequeSourceBankBranch.text}"
+                                "${controllerChequeBank.text} - ${controllerChequeBankBranch.text}"
                             );
 
                             Fluttertoast.showToast(

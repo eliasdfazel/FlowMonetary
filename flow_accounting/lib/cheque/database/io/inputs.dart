@@ -41,8 +41,10 @@ class ChequesDatabaseInputs {
 
               'chequeTransactionType TEXT, '
 
-              'chequeBankName TEXT, '
-              'chequeBankBranch TEXT, '
+              'chequeSourceBankName TEXT, '
+              'chequeSourceBankBranch TEXT, '
+
+              'chequeTargetBankName TEXT, '
 
               'chequeIssueDate TEXT, '
               'chequeDueDate TEXT, '

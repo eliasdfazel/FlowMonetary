@@ -31,8 +31,10 @@ class ChequesData {
 
   final String chequeTransactionType;
 
-  final String chequeBankName;
-  final String chequeBankBranch;
+  final String chequeSourceBankName;
+  final String chequeSourceBankBranch;
+
+  final String chequeTargetBankName;
 
   final String chequeIssueDate;
   final String chequeDueDate;
@@ -67,8 +69,10 @@ class ChequesData {
 
     required this.chequeTransactionType,
 
-    required this.chequeBankName,
-    required this.chequeBankBranch,
+    required this.chequeSourceBankName,
+    required this.chequeSourceBankBranch,
+
+    required this.chequeTargetBankName,
 
     required this.chequeIssueDate,
     required this.chequeDueDate,
@@ -105,8 +109,10 @@ class ChequesData {
 
       'chequeTransactionType': chequeTransactionType,
 
-      'chequeBankName': chequeBankName,
-      'chequeBankBranch': chequeBankBranch,
+      'chequeSourceBankName': chequeSourceBankName,
+      'chequeSourceBankBranch': chequeSourceBankBranch,
+
+      'chequeTargetBankName': chequeTargetBankName,
 
       'chequeIssueDate': chequeIssueDate,
       'chequeDueDate': chequeDueDate,
@@ -145,8 +151,10 @@ class ChequesData {
 
         'chequeTransactionType: $chequeTransactionType,'
 
-        'chequeBankName: $chequeBankName,'
-        'chequeBankBranch: $chequeBankBranch,'
+        'chequeSourceBankName: $chequeSourceBankName,'
+        'chequeSourceBankBranch: $chequeSourceBankBranch,'
+
+        'chequeTargetBankName: $chequeTargetBankName,'
 
         'chequeIssueDate: $chequeIssueDate,'
         'chequeDueDate: $chequeDueDate,'
