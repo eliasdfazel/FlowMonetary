@@ -718,14 +718,14 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
   }
 
   void searchCheques(BuildContext context,
-      List<BudgetsData> inputBudgetsList, String searchQuery) {
+      List<ChequesData> inputChequesList, String searchQuery) {
 
-    List<BudgetsData> searchResult = [];
+    List<ChequesData> searchResult = [];
 
-    for (var element in inputBudgetsList) {
+    for (var element in inputChequesList) {
 
-      if (element.budgetName.contains(searchQuery) ||
-          element.budgetDescription.contains(searchQuery)
+      if (element.chequeTitle.contains(searchQuery) ||
+          element.chequeDescription.contains(searchQuery)
       ) {
 
         searchResult.add(element);
