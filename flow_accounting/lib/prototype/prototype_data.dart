@@ -466,7 +466,7 @@ class PrototypeData {
         sourceUsername: customersList.randomItem(),
         targetUsername: customersList.randomItem(),
         amountMoney: "5535900",
-        transactionType: TransactionsData.TransactionType_Receive,
+        transactionType: TransactionsData.TransactionType_Send,
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
         transactionTime: _generateDateText(),
         transactionTimeYear: "1400",
