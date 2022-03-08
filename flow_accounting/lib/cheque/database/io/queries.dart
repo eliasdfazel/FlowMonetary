@@ -72,6 +72,28 @@ class ChequesDatabaseQueries {
 
   }
 
+  Future<Map<String, Object?>> querySpecificChequesByNumber(
+      String chequeNumber,
+      String? tableName, {String usernameId = "Unknown"}) async {
+
+    final database = openDatabase(
+      join(await getDatabasesPath(), ChequesDatabaseInputs.chequesDatabase),
+    );
+
+    final databaseInstance = await database;
+
+    var tableNameQuery = (tableName != null) ? tableName : ChequesDatabaseInputs.databaseTableName;
+    tableNameQuery = "${usernameId}_${tableNameQuery}";
+
+    var databaseContents = await databaseInstance.query(
+      tableNameQuery,
+      where: 'chequeNumber = ?',
+      whereArgs: [chequeNumber],
+    );
+
+    return databaseContents[0];
+  }
+
   Future<int> queryDeleteCheque(int id,
       String? tableName, {String usernameId = "Unknown"}) async {
 
