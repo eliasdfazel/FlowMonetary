@@ -71,7 +71,7 @@ class ChequesInputView extends StatefulWidget {
 }
 class _ChequeInputViewState extends State<ChequesInputView> {
 
-  ChequesData? chequeData;
+  ChequesData? chequesData;
 
   CalendarView calendarIssueDateView = CalendarView(pickedDataTimeText: StringsResources.chequeIssueDate);
   CalendarView calendarDueDateView = CalendarView(pickedDataTimeText: StringsResources.chequeDueDate);
@@ -294,19 +294,31 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                           shape: CircleBorder(),
                           splashRadius: 37,
                           value: chequeConfirmed,
-                          onChanged: (bool? value) {
+                          onChanged: (bool? confirmed) {
 
                             setState(() {
 
-                              chequeConfirmed = value ?? false;
+                              chequeConfirmed = confirmed ?? false;
 
                             });
 
-                            if (chequeData != null) {
+                            if (chequeConfirmed) {
 
-                              processBudgetBalance(chequeData!);
+                              chequeConfirmation = ChequesData.ChequesConfirmation_Done;
 
-                              processCreditCardsBalance(chequeData!);
+                            } else if (!chequeConfirmed) {
+
+                              chequeConfirmation = ChequesData.ChequesConfirmation_NOT;
+
+                            }
+
+                            if (chequesData != null) {
+
+                              processBudgetBalance(chequesData!);
+
+                              processCreditCardsBalance(chequesData!);
+
+                              processAddTransaction(chequesData!);
 
                             }
 
@@ -2610,7 +2622,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                             }
 
-                            chequeData = ChequesData(
+                            chequesData = ChequesData(
                               id: timeNow,
 
                               chequeTitle: controllerChequeTitle.text,
@@ -2641,7 +2653,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                               chequeTargetName: controllerChequeTargetName.text,
                               chequeTargetAccountNumber: controllerChequeTargetAccount.text,
 
-                              chequeDoneConfirmation: widget.chequesData?.chequeDoneConfirmation ?? ChequesData.ChequesConfirmation_NOT,
+                              chequeDoneConfirmation: chequeConfirmation,
 
                               chequeRelevantCreditCard: controllerCreditCard.text,
                               chequeRelevantBudget: controllerBudget.text,
@@ -2649,7 +2661,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                               colorTag: colorSelectorView.selectedColor.value,
                             );
 
-                            databaseInputs.insertChequeData(chequeData!, TransactionsDatabaseInputs.databaseTableName);
+                            databaseInputs.insertChequeData(chequesData!, TransactionsDatabaseInputs.databaseTableName);
 
                             addChequeReminder(
                                 calendarDueDateView.pickedDateTime,
@@ -2930,6 +2942,20 @@ class _ChequeInputViewState extends State<ChequesInputView> {
           ),
           CreditCardsDatabaseInputs.databaseTableName
       );
+
+    }
+
+  }
+
+  Future processAddTransaction(ChequesData chequesData) async {
+
+    if (chequesData.chequeTransactionType == ChequesData.TransactionType_Send) {
+
+
+
+    } else if (transactionType == ChequesData.TransactionType_Receive) {
+
+
 
     }
 
