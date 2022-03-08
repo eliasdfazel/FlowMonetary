@@ -2392,6 +2392,9 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                               chequeIssueDate: calendarIssueDateView.pickedDataTimeText ?? "",
                               chequeDueDate: calendarDueDateView.pickedDataTimeText ?? "",
 
+                              chequeIssueMillisecond: calendarIssueDateView.pickedDateTime.millisecondsSinceEpoch.toString(),
+                              chequeDueMillisecond: calendarDueDateView.pickedDateTime.millisecondsSinceEpoch.toString(),
+
                               chequeSourceId: controllerChequeSourceId.text,
                               chequeSourceName: controllerChequeSourceName.text,
                               chequeSourceAccountNumber: controllerChequeSourceAccount.text,
