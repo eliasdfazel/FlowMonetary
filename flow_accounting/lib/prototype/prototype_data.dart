@@ -78,7 +78,7 @@ class PrototypeData {
     List<CreditCardsData> creditCardsData = [];
 
     creditCardsData.add(CreditCardsData(
-        id: DateTime.now().millisecondsSinceEpoch,
+        id: DateTime.now().millisecondsSinceEpoch + 1,
         cardNumber: "6274121200641696",
         cardExpiry: "11/22",
         cardHolderName: "دانیال راد",
@@ -89,7 +89,7 @@ class PrototypeData {
     ));
 
     creditCardsData.add(CreditCardsData(
-        id: DateTime.now().millisecondsSinceEpoch,
+        id: DateTime.now().millisecondsSinceEpoch + 2,
         cardNumber: "5274331211991147",
         cardExpiry: "31/12",
         cardHolderName: "دانیال راد",
@@ -160,7 +160,7 @@ class PrototypeData {
     List<CustomersData> customersData = [];
 
     customersData.add(CustomersData(
-      id: DateTime.now().millisecondsSinceEpoch,
+      id: DateTime.now().millisecondsSinceEpoch + 1,
       customerName: "دانیال راد",
       customerDescription: "خریدار موبایل",
       customerCountry: "ایران",
@@ -177,7 +177,7 @@ class PrototypeData {
     ));
 
     customersData.add(CustomersData(
-      id: DateTime.now().millisecondsSinceEpoch + 1,
+      id: DateTime.now().millisecondsSinceEpoch + 2,
       customerName: "شلدون",
       customerDescription: "نرد اسکول",
       customerCountry: "خارج",
@@ -216,7 +216,7 @@ class PrototypeData {
     List<TransactionsData> transactionsData = [];
 
     transactionsData.add(TransactionsData(
-        id: DateTime.now().millisecondsSinceEpoch,
+        id: DateTime.now().millisecondsSinceEpoch + 1,
         transactionTitle: "عنوانی برای تراکنش",
         transactionDescription: "توضیحات تراکنش",
         sourceCardNumber: "6274121200641696",
@@ -236,7 +236,7 @@ class PrototypeData {
     ));
 
     transactionsData.add(TransactionsData(
-        id: DateTime.now().millisecondsSinceEpoch,
+        id: DateTime.now().millisecondsSinceEpoch + 2,
         transactionTitle: "عنوانی برای تراکنش",
         transactionDescription: "توضیحات تراکنش",
         sourceCardNumber: "6274121200641696",
@@ -256,7 +256,7 @@ class PrototypeData {
     ));
 
     transactionsData.add(TransactionsData(
-        id: DateTime.now().millisecondsSinceEpoch,
+        id: DateTime.now().millisecondsSinceEpoch + 3,
         transactionTitle: "عنوانی برای تراکنش",
         transactionDescription: "توضیحات تراکنش",
         sourceCardNumber: "5274331211991147",
@@ -276,7 +276,7 @@ class PrototypeData {
     ));
 
     transactionsData.add(TransactionsData(
-        id: DateTime.now().millisecondsSinceEpoch,
+        id: DateTime.now().millisecondsSinceEpoch + 4,
         transactionTitle: "عنوانی برای تراکنش",
         transactionDescription: "توضیحات تراکنش",
         sourceCardNumber: "5274331211991147",
@@ -296,7 +296,7 @@ class PrototypeData {
     ));
 
     transactionsData.add(TransactionsData(
-        id: DateTime.now().millisecondsSinceEpoch,
+        id: DateTime.now().millisecondsSinceEpoch + 5,
         transactionTitle: "عنوانی برای تراکنش",
         transactionDescription: "توضیحات تراکنش",
         sourceCardNumber: "6274121200641696",
@@ -316,7 +316,7 @@ class PrototypeData {
     ));
 
     transactionsData.add(TransactionsData(
-        id: DateTime.now().millisecondsSinceEpoch,
+        id: DateTime.now().millisecondsSinceEpoch + 6,
         transactionTitle: "عنوانی برای تراکنش",
         transactionDescription: "توضیحات تراکنش",
         sourceCardNumber: "6274121200641696",
@@ -336,7 +336,7 @@ class PrototypeData {
     ));
 
     transactionsData.add(TransactionsData(
-        id: DateTime.now().millisecondsSinceEpoch,
+        id: DateTime.now().millisecondsSinceEpoch + 7,
         transactionTitle: "عنوانی برای تراکنش",
         transactionDescription: "توضیحات تراکنش",
         sourceCardNumber: "5274331211991147",
@@ -356,7 +356,7 @@ class PrototypeData {
     ));
 
     transactionsData.add(TransactionsData(
-        id: DateTime.now().millisecondsSinceEpoch,
+        id: DateTime.now().millisecondsSinceEpoch + 8,
         transactionTitle: "عنوانی برای تراکنش",
         transactionDescription: "توضیحات تراکنش",
         sourceCardNumber: "6274121200641696",
@@ -376,7 +376,7 @@ class PrototypeData {
     ));
 
     transactionsData.add(TransactionsData(
-        id: DateTime.now().millisecondsSinceEpoch,
+        id: DateTime.now().millisecondsSinceEpoch + 9,
         transactionTitle: "عنوانی برای تراکنش",
         transactionDescription: "توضیحات تراکنش",
         sourceCardNumber: "5274331211991147",
@@ -396,7 +396,7 @@ class PrototypeData {
     ));
 
     transactionsData.add(TransactionsData(
-        id: DateTime.now().millisecondsSinceEpoch,
+        id: DateTime.now().millisecondsSinceEpoch + 10,
         transactionTitle: "عنوانی برای تراکنش",
         transactionDescription: "توضیحات تراکنش",
         sourceCardNumber: "6274121200641696",
@@ -416,7 +416,7 @@ class PrototypeData {
     ));
 
     transactionsData.add(TransactionsData(
-        id: DateTime.now().millisecondsSinceEpoch,
+        id: DateTime.now().millisecondsSinceEpoch + 11,
         transactionTitle: "عنوانی برای تراکنش",
         transactionDescription: "توضیحات تراکنش",
         sourceCardNumber: "6274121200641696",
@@ -436,7 +436,7 @@ class PrototypeData {
     ));
 
     transactionsData.add(TransactionsData(
-        id: DateTime.now().millisecondsSinceEpoch,
+        id: DateTime.now().millisecondsSinceEpoch + 12,
         transactionTitle: "عنوانی برای تراکنش",
         transactionDescription: "توضیحات تراکنش",
         sourceCardNumber: "6274121200641696",
@@ -456,7 +456,7 @@ class PrototypeData {
     ));
 
     transactionsData.add(TransactionsData(
-        id: DateTime.now().millisecondsSinceEpoch,
+        id: DateTime.now().millisecondsSinceEpoch + 13,
         transactionTitle: "عنوانی برای تراکنش",
         transactionDescription: "توضیحات تراکنش",
         sourceCardNumber: "5274331211991147",
