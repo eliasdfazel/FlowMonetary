@@ -17,7 +17,7 @@ import 'package:sqflite/sqflite.dart';
 
 class ChequesDatabaseQueries {
 
-  Future<List<ChequesData>> getAllBudgets(String? tableName,
+  Future<List<ChequesData>> getAllCheques(String? tableName,
       {String usernameId = "Unknown"}) async {
 
     final database = openDatabase(
@@ -72,8 +72,28 @@ class ChequesDatabaseQueries {
 
   }
 
+  Future<int> queryDeleteCheque(int id,
+      String? tableName, {String usernameId = "Unknown"}) async {
 
-  Future<ChequesData> extractBudgetsQuery(
+    final database = openDatabase(
+      join(await getDatabasesPath(), ChequesDatabaseInputs.chequesDatabase),
+    );
+
+    final databaseInstance = await database;
+
+    var tableNameQuery = (tableName != null) ? tableName : ChequesDatabaseInputs.databaseTableName;
+    tableNameQuery = "${usernameId}_${tableNameQuery}";
+
+    var queryResult = await databaseInstance.delete(
+      tableNameQuery,
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+
+    return queryResult;
+  }
+
+  Future<ChequesData> extractChequesQuery(
       Map<String, Object?> inputData) async {
 
     return ChequesData(

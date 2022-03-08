@@ -1,10 +1,9 @@
 
 import 'package:blur/blur.dart';
-import 'package:flow_accounting/budgets/database/io/inputs.dart';
-import 'package:flow_accounting/budgets/database/io/queries.dart';
-import 'package:flow_accounting/budgets/database/structures/tables_structure.dart';
-import 'package:flow_accounting/budgets/input/ui/budgets_input_view.dart';
+import 'package:flow_accounting/cheque/database/io/inputs.dart';
+import 'package:flow_accounting/cheque/database/io/queries.dart';
 import 'package:flow_accounting/cheque/database/structures/table_structure.dart';
+import 'package:flow_accounting/cheque/input/ui/cheques_input_view.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/output/ui/transactions_output_view.dart';
@@ -605,21 +604,21 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
 
   }
 
-  void deleteCheque(BuildContext context, BudgetsData budgetsData) async {
+  void deleteCheque(BuildContext context, ChequesData chequesData) async {
 
-    var databaseQueries = BudgetsDatabaseQueries();
+    var databaseQueries = ChequesDatabaseQueries();
 
-    databaseQueries.queryDeleteBudget(budgetsData.id, BudgetsDatabaseInputs.databaseTableName);
+    databaseQueries.queryDeleteCheque(chequesData.id, ChequesDatabaseInputs.databaseTableName);
 
     retrieveAllCheque(context);
 
   }
 
-  void editCheque(BuildContext context, BudgetsData budgetsData) async {
+  void editCheque(BuildContext context, ChequesData chequesData) async {
 
     bool budgetDataUpdated = await Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => BudgetsInputView(budgetsData: budgetsData)),
+      MaterialPageRoute(builder: (context) => ChequesInputView(chequesData: chequesData)),
     );
 
     debugPrint("Budget Data Update => ${budgetDataUpdated}");
@@ -641,9 +640,9 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
 
     List<Widget> preparedAllBudgetsItem = [];
 
-    var databaseQueries = BudgetsDatabaseQueries();
+    var databaseQueries = ChequesDatabaseQueries();
 
-    allCheques = await databaseQueries.getAllBudgets(BudgetsDatabaseInputs.databaseTableName);
+    allCheques = await databaseQueries.getAllCheques(ChequesDatabaseInputs.databaseTableName);
 
     for (var element in allCheques) {
 
