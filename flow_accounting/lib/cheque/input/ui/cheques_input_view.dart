@@ -28,6 +28,7 @@ import 'package:flow_accounting/home/interface/dashboard.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/database/io/inputs.dart';
+import 'package:flow_accounting/transactions/database/structures/tables_structure.dart';
 import 'package:flow_accounting/utils/calendar/ui/calendar_view.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
 import 'package:flow_accounting/utils/extensions/BankLogos.dart';
@@ -2949,15 +2950,41 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
   Future processAddTransaction(ChequesData chequesData) async {
 
+    String transactionType = TransactionsData.TransactionType_Send;
+
     if (chequesData.chequeTransactionType == ChequesData.TransactionType_Send) {
 
-
+      transactionType = TransactionsData.TransactionType_Send;
 
     } else if (transactionType == ChequesData.TransactionType_Receive) {
 
-
+      transactionType = TransactionsData.TransactionType_Receive;
 
     }
+
+    TransactionsData transactionsData = TransactionsData(
+        id: chequesData.id,
+        transactionTitle: chequesData.chequeTitle,
+        transactionDescription: chequesData.chequeDescription,
+        sourceCardNumber: chequesData.chequeSourceAccountNumber,
+        targetCardNumber: chequesData.chequeTargetAccountNumber,
+        sourceBankName: chequesData.chequeSourceBankName,
+        targetBankName: chequesData.chequeTargetBankName,
+        sourceUsername: chequesData.chequeSourceName,
+        targetUsername: chequesData.chequeTargetName,
+        amountMoney: chequesData.chequeMoneyAmount,
+        transactionType: transactionType,
+        transactionTimeMillisecond: int.parse(chequesData.chequeDueMillisecond),
+        transactionTime: chequesData.chequeDueDate,
+        transactionTimeYear: DateTime(int.parse(chequesData.chequeDueMillisecond)).year.toString(),
+        transactionTimeMonth: DateTime(int.parse(chequesData.chequeDueMillisecond)).month.toString(),
+        colorTag: chequesData.colorTag,
+        budgetName: chequesData.chequeRelevantBudget
+    );
+
+    TransactionsDatabaseInputs transactionsDatabaseInputs = TransactionsDatabaseInputs();
+
+    transactionsDatabaseInputs.insertTransactionData(transactionsData, TransactionsDatabaseInputs.databaseTableName);
 
   }
 
