@@ -48,6 +48,7 @@ class StringsResources {
   static const String totalEarningText = "درآمد کلی";
   static const String totalSpendingText = "مخارج کلی";
 
+  /* Start - Transaction String Resources */
   static const String transactionAll = "تمام تراکنش ها";
   static const String transactionLatest = "آخرین تراکنش ها";
   static const String transactionTime = "زمان تراکنش";
@@ -73,7 +74,9 @@ class StringsResources {
   static const String transactionTypeHint = "نوع تراکنش";
   static const String transactionTypeReceive = "دریافت";
   static const String transactionTypeSend = "پرداخت";
+  /* End - Transaction String Resources */
 
+  /* Start - Budget String Resources */
   static const String budgetNameText = "نام بودجه";
   static const String budgetNameTextHint = "نام مورد نظر برای این بوجه را "
       "بنویسید";
@@ -86,6 +89,11 @@ class StringsResources {
   static const String budgetInitialTextHint = "مبلغ اولیه که در نظر گرفته اید"
       " را وارد کنید";
 
+  static const String transactionBudgetName = "بودجه مورد نظر را انتخاب کنید";
+  static const String transactionBudgetNameHint = "نام بودجه";
+  /* End - Budget String Resources */
+
+  /* Start - Customer String Resources */
   static const String customerNameText = "نام مشتری";
   static const String customerNameTextHint = "نام کامل مشتری یا شرکت را وارد کنید";
 
@@ -105,9 +113,16 @@ class StringsResources {
 
   static const String customerJobText = "شغل";
   static const String customerMaritalStatusText = "تاهل";
+  /* End - Customer String Resources */
 
+  /* Start - Cheque String Resources */
   static const String chequeIssueDate = "تاریخ صدور";
   static const String chequeDueDate = "تاریخ سررسید";
+
+  static const String chequeSourceAccount = "شماره حساب مبدا";
+  static const String chequeSourceAccountHint = "شماره حساب مبدا را وارد کنید";
+  static const String chequeTargetAccount = "شماره حساب مقصد";
+  static const String chequeTargetAccountHint = "شماره حساب یا کارت مقصد را وارد کنید";
 
   static const String chequeAmountHint = "مبلغ چک";
 
@@ -120,6 +135,7 @@ class StringsResources {
   static const String chequeBankBranch = "شعبه بانک";
 
   static const String chequeConfirmation = "تایید وصول چک";
+  /* End - Cheque String Resources */
 
   static const String sortHint = "مرتب سازی";
   static const String sortTimeNew = "بر اساس: زمان جدید";
@@ -134,9 +150,6 @@ class StringsResources {
 
   static const String colorSelectorHint = "برای تمایز و دسته بندی رنگ مورد "
       "نظر خود را انتخاب کنید";
-
-  static const String transactionBudgetName = "بودجه مورد نظر را انتخاب کنید";
-  static const String transactionBudgetNameHint = "نام بودجه";
 
   static const String featureCreditCardTitle = "کارت بانکی";
   static const String featureCreditCardDescription = "اطلاعات کار بانکی خود "

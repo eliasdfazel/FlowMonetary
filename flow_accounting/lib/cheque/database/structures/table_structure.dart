@@ -25,6 +25,8 @@ class ChequesData {
   final String chequeTitle;
   final String chequeDescription;
 
+  final String chequeNumber;
+
   final String chequeMoneyAmount;
 
   final String chequeTransactionType;
@@ -55,6 +57,8 @@ class ChequesData {
 
     required this.chequeTitle,
     required this.chequeDescription,
+
+    required this.chequeNumber,
 
     required this.chequeMoneyAmount,
 
@@ -88,6 +92,8 @@ class ChequesData {
 
       'chequeTitle': chequeTitle,
       'chequeDescription': chequeDescription,
+
+      'chequeNumber': chequeNumber,
 
       'chequeMoneyAmount': chequeMoneyAmount,
 
@@ -123,6 +129,8 @@ class ChequesData {
 
         'chequeTitle: $chequeTitle,'
         'chequeDescription: $chequeDescription,'
+
+        'chequeNumber: $chequeNumber,'
 
         'chequeMoneyAmount: $chequeMoneyAmount,'
 

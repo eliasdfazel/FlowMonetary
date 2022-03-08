@@ -35,6 +35,8 @@ class ChequesDatabaseInputs {
               'chequeTitle TEXT, '
               'chequeDescription TEXT, '
 
+              'chequeNumber TEXT, '
+
               'chequeMoneyAmount TEXT, '
 
               'chequeTransactionType TEXT, '
