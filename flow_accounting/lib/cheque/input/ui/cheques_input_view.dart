@@ -2662,7 +2662,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                               colorTag: colorSelectorView.selectedColor.value,
                             );
 
-                            databaseInputs.insertChequeData(chequesData!, TransactionsDatabaseInputs.databaseTableName);
+                            databaseInputs.insertChequeData(chequesData!, ChequesDatabaseInputs.databaseTableName);
 
                             addChequeReminder(
                                 calendarDueDateView.pickedDateTime,
