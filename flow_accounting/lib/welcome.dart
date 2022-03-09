@@ -20,7 +20,7 @@ void main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
 
-  runApp(const MaterialApp( home: WelcomePage()));
+  runApp(const MaterialApp(home: WelcomePage()));
 
 }
 

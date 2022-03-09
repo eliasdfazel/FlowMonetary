@@ -15,6 +15,15 @@ import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:shamsi_date/shamsi_date.dart';
 
+void main() async {
+
+  WidgetsFlutterBinding.ensureInitialized();
+
+  runApp(MaterialApp(home: CalendarView()));
+
+}
+
+
 class CalendarView extends StatefulWidget {
 
   String? pickedDataTimeText;
@@ -57,7 +66,7 @@ class _CalendarView extends State<CalendarView> {
   Widget build(BuildContext context) {
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(/*left*/1.1, /*top*/3, /*right*/1.1, /*bottom*/3),
+      padding: const EdgeInsets.fromLTRB(1.1, 3, 1.1, 3),
       child: Container (
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.only(topLeft: Radius.circular(17), topRight: Radius.circular(17), bottomLeft: Radius.circular(17), bottomRight: Radius.circular(17)),
@@ -65,63 +74,119 @@ class _CalendarView extends State<CalendarView> {
         ),
         child: TextButton(
             onPressed: () {
-              DatePicker.showDateTimePicker(
-                  context,
-                  theme: DatePickerTheme(
-                    backgroundColor: ColorsResources.primaryColorLightest.withOpacity(0.5),
-                    itemHeight: 73,
-                    headerColor: ColorsResources.lightTransparent,
-                    doneStyle: const TextStyle(
-                      color: ColorsResources.applicationGeeksEmpire,
-                      fontSize: 19,
-                      fontFamily: 'Sans',
-                    ),
-                    cancelStyle: const TextStyle(
-                      color: ColorsResources.darkTransparent,
-                      fontSize: 19,
-                      fontFamily: 'Sans',
-                    ),
-                    itemStyle: const TextStyle(
-                      color: ColorsResources.dark,
-                      fontSize: 23,
-                      fontFamily: 'Sans',
-                    ),
+
+              DatePicker.showPicker(
+                context,
+                theme: DatePickerTheme(
+                  backgroundColor: ColorsResources.light,
+                  itemHeight: 73,
+                  headerColor: ColorsResources.white,
+                  doneStyle: const TextStyle(
+                    color: ColorsResources.applicationGeeksEmpire,
+                    fontSize: 19,
+                    fontFamily: 'Sans',
                   ),
-                  showTitleActions: true,
-                  onChanged: (date) {
+                  cancelStyle: const TextStyle(
+                    color: ColorsResources.darkTransparent,
+                    fontSize: 19,
+                    fontFamily: 'Sans',
+                  ),
+                  itemStyle: const TextStyle(
+                    color: ColorsResources.dark,
+                    fontSize: 23,
+                    fontFamily: 'Sans',
+                    fontWeight: FontWeight.bold
+                  ),
+                ),
+                showTitleActions: true,
+                onChanged: (changedDate) {
 
-                  },
-                  onConfirm: (date) {
+                  Gregorian gregorianCalendar = Gregorian(changedDate.year, changedDate.month, changedDate.day, changedDate.hour, changedDate.minute, 0, 0);
+                  var iranianCalendar = gregorianCalendar.toJalali();
 
-                    widget.pickedDateTime = date;
+                  debugPrint("Picked Date Time: ${iranianCalendar}");
 
-                    Gregorian gregorianCalendar = Gregorian(date.year, date.month, date.day, date.hour, date.minute, 0, 0);
-                    var iranianCalendar = gregorianCalendar.toJalali();
+                },
+                onConfirm: (changedDate) {
 
-                    String yearNumber = iranianCalendar.formatter.yyyy.toString();
-                    String dayNumber = iranianCalendar.formatter.dd.toString();
+                  widget.pickedDateTime = changedDate;
 
-                    String weekdayName = iranianCalendar.formatter.wN.toString();
-                    String monthName = iranianCalendar.formatter.mN.toString();
+                  Gregorian gregorianCalendar = Gregorian(changedDate.year, changedDate.month, changedDate.day, changedDate.hour, changedDate.minute, 0, 0);
+                  var iranianCalendar = gregorianCalendar.toJalali();
 
-                    widget.pickedDataTimeYear = yearNumber;
-                    widget.pickedDataTimeMonth = iranianCalendar.formatter.mm;
+                  String yearNumber = iranianCalendar.formatter.yyyy.toString();
+                  String dayNumber = iranianCalendar.formatter.dd.toString();
 
-                    setState(() {
+                  String weekdayName = iranianCalendar.formatter.wN.toString();
+                  String monthName = iranianCalendar.formatter.mN.toString();
 
-                      widget.pickedDataTimeText = "" +
-                          weekdayName + " " +
-                          dayNumber + " " +
-                          monthName + " " +
-                          yearNumber +
-                          "\n"
-                          "ساعت" + " " +
-                          "${iranianCalendar.hour}:${iranianCalendar.minute}";
+                  widget.pickedDataTimeYear = yearNumber;
+                  widget.pickedDataTimeMonth = iranianCalendar.formatter.mm;
 
-                    });
+                  DatePicker.showTimePicker(
+                    context,
+                    theme: DatePickerTheme(
+                      backgroundColor: ColorsResources.light,
+                      itemHeight: 73,
+                      headerColor: ColorsResources.white,
+                      doneStyle: const TextStyle(
+                        color: ColorsResources.applicationGeeksEmpire,
+                        fontSize: 19,
+                        fontFamily: 'Sans',
+                          fontWeight: FontWeight.bold
+                      ),
+                      cancelStyle: const TextStyle(
+                        color: ColorsResources.darkTransparent,
+                        fontSize: 19,
+                        fontFamily: 'Sans',
+                      ),
+                      itemStyle: const TextStyle(
+                          color: ColorsResources.dark,
+                          fontSize: 23,
+                          fontFamily: 'Sans',
+                      ),
+                    ),
+                    showTitleActions: true,
+                    onConfirm: (changedTime) {
 
-                  },
-                  currentTime: DateTime.now(), locale: LocaleType.fa);
+                      setState(() {
+
+                        widget.pickedDataTimeText = "" +
+                            weekdayName + " " +
+                            dayNumber + " " +
+                            monthName + " " +
+                            yearNumber +
+                            "\n"
+                                "ساعت" + " " +
+                            "${changedTime.hour}:${changedTime.minute}";
+
+                      });
+
+                    },
+                    onCancel: () {
+
+                      setState(() {
+
+                        widget.pickedDataTimeText = "" +
+                            weekdayName + " " +
+                            dayNumber + " " +
+                            monthName + " " +
+                            yearNumber +
+                            "\n"
+                                "ساعت" + " " +
+                            "${iranianCalendar.hour}:${iranianCalendar.minute}";
+
+                      });
+
+                    },
+                    locale: LocaleType.fa,
+                  );
+
+                },
+                pickerModel: CustomDateTimePicker(date: widget.pickedDateTime, locale: LocaleType.fa),
+                locale: LocaleType.fa,
+              );
+
             },
             child: Align(
               alignment: AlignmentDirectional.center,
@@ -137,6 +202,79 @@ class _CalendarView extends State<CalendarView> {
             )
         ),
       ),
+    );
+  }
+
+}
+
+class CustomDateTimePicker extends CommonPickerModel {
+
+  CustomDateTimePicker({required DateTime date, required LocaleType locale}) : super(locale: locale) {
+
+    this.currentTime = date;
+
+    this.setLeftIndex(this.currentTime.year);
+
+    this.setMiddleIndex(this.currentTime.month);
+
+    this.setRightIndex(this.currentTime.day);
+
+  }
+
+  @override
+  String? leftStringAtIndex(int year) {//YEAR
+
+    Gregorian gregorianCalendar = Gregorian(year, currentMiddleIndex(), currentRightIndex());
+    var iranianCalendar = gregorianCalendar.toJalali();
+
+    return iranianCalendar.formatter.yyyy;
+  }
+
+  @override
+  String? middleStringAtIndex(int month) {//Month
+
+    Gregorian gregorianCalendar = Gregorian(currentLeftIndex(), month, currentRightIndex());
+    var iranianCalendar = gregorianCalendar.toJalali();
+
+    return iranianCalendar.formatter.mm;
+  }
+
+  @override
+  String? rightStringAtIndex(int day) {//Day
+
+    Gregorian gregorianCalendar = Gregorian(currentLeftIndex(), currentMiddleIndex(), day);
+    var iranianCalendar = gregorianCalendar.toJalali();
+
+    return iranianCalendar.formatter.dd;
+  }
+
+  @override
+  String leftDivider() {
+
+    return "|";
+  }
+
+  @override
+  String rightDivider() {
+
+    return "|";
+  }
+
+  @override
+  List<int> layoutProportions() {
+
+    return [7, 3, 3];
+  }
+
+  @override
+  DateTime finalTime() {
+
+    return DateTime(
+        this.currentLeftIndex(),
+        this.currentMiddleIndex(),
+        this.currentRightIndex(),
+        this.currentTime.hour,
+        this.currentTime.minute
     );
   }
 
