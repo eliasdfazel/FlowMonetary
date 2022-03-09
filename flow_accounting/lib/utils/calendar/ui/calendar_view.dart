@@ -60,12 +60,18 @@ class _CalendarView extends State<CalendarView> {
       padding: const EdgeInsets.fromLTRB(1.1, 3, 1.1, 3),
       child: Container (
         decoration: const BoxDecoration(
-          borderRadius: BorderRadius.only(topLeft: Radius.circular(17), topRight: Radius.circular(17), bottomLeft: Radius.circular(17), bottomRight: Radius.circular(17)),
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(17),
+              topRight: Radius.circular(17),
+              bottomLeft: Radius.circular(17),
+              bottomRight: Radius.circular(17)
+          ),
           color: ColorsResources.lightTransparent
         ),
         child: TextButton(
             onPressed: () {
 
+              /* Start - Date Picker */
               DatePicker.showPicker(
                 context,
                 theme: DatePickerTheme(
@@ -76,6 +82,7 @@ class _CalendarView extends State<CalendarView> {
                     color: ColorsResources.applicationGeeksEmpire,
                     fontSize: 19,
                     fontFamily: 'Sans',
+                    fontWeight: FontWeight.bold
                   ),
                   cancelStyle: const TextStyle(
                     color: ColorsResources.darkTransparent,
@@ -86,7 +93,6 @@ class _CalendarView extends State<CalendarView> {
                     color: ColorsResources.dark,
                     fontSize: 23,
                     fontFamily: 'Sans',
-                    fontWeight: FontWeight.bold
                   ),
                 ),
                 showTitleActions: true,
@@ -114,6 +120,7 @@ class _CalendarView extends State<CalendarView> {
                   widget.pickedDataTimeYear = yearNumber;
                   widget.pickedDataTimeMonth = iranianCalendar.formatter.mm;
 
+                  /* Start - Time Picker */
                   DatePicker.showTimePicker(
                     context,
                     theme: DatePickerTheme(
@@ -124,7 +131,7 @@ class _CalendarView extends State<CalendarView> {
                         color: ColorsResources.applicationGeeksEmpire,
                         fontSize: 19,
                         fontFamily: 'Sans',
-                          fontWeight: FontWeight.bold
+                        fontWeight: FontWeight.bold
                       ),
                       cancelStyle: const TextStyle(
                         color: ColorsResources.darkTransparent,
@@ -172,11 +179,13 @@ class _CalendarView extends State<CalendarView> {
                     },
                     locale: LocaleType.fa,
                   );
+                  /* End - Time Picker */
 
                 },
-                pickerModel: CustomDateTimePicker(date: widget.pickedDateTime, locale: LocaleType.fa),
+                pickerModel: CustomDatePicker(date: widget.pickedDateTime, locale: LocaleType.fa),
                 locale: LocaleType.fa,
               );
+              /* End - Date Picker */
 
             },
             child: Align(
@@ -198,9 +207,9 @@ class _CalendarView extends State<CalendarView> {
 
 }
 
-class CustomDateTimePicker extends CommonPickerModel {
+class CustomDatePicker extends CommonPickerModel {
 
-  CustomDateTimePicker({required DateTime date, required LocaleType locale}) : super(locale: locale) {
+  CustomDatePicker({required DateTime date, required LocaleType locale}) : super(locale: locale) {
 
     this.currentTime = date;
 
@@ -227,7 +236,7 @@ class CustomDateTimePicker extends CommonPickerModel {
     Gregorian gregorianCalendar = Gregorian(currentLeftIndex(), month, currentRightIndex());
     var iranianCalendar = gregorianCalendar.toJalali();
 
-    return iranianCalendar.formatter.mm;
+    return iranianCalendar.formatter.mN;
   }
 
   @override
@@ -242,19 +251,19 @@ class CustomDateTimePicker extends CommonPickerModel {
   @override
   String leftDivider() {
 
-    return "|";
+    return "/";
   }
 
   @override
   String rightDivider() {
 
-    return "|";
+    return "/";
   }
 
   @override
   List<int> layoutProportions() {
 
-    return [7, 3, 3];
+    return [7, 5, 3];
   }
 
   @override
