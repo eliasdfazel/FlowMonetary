@@ -75,8 +75,8 @@ class _CalendarView extends State<CalendarView> {
               DatePicker.showPicker(
                 context,
                 theme: DatePickerTheme(
-                  backgroundColor: ColorsResources.light,
                   itemHeight: 73,
+                  backgroundColor: ColorsResources.light,
                   headerColor: ColorsResources.white,
                   doneStyle: const TextStyle(
                     color: ColorsResources.applicationGeeksEmpire,
@@ -90,7 +90,7 @@ class _CalendarView extends State<CalendarView> {
                     fontFamily: 'Sans',
                   ),
                   itemStyle: const TextStyle(
-                    color: ColorsResources.dark,
+                    color: ColorsResources.applicationDarkGeeksEmpire,
                     fontSize: 23,
                     fontFamily: 'Sans',
                   ),
@@ -124,8 +124,8 @@ class _CalendarView extends State<CalendarView> {
                   DatePicker.showTimePicker(
                     context,
                     theme: DatePickerTheme(
-                      backgroundColor: ColorsResources.light,
                       itemHeight: 73,
+                      backgroundColor: ColorsResources.light,
                       headerColor: ColorsResources.white,
                       doneStyle: const TextStyle(
                         color: ColorsResources.applicationGeeksEmpire,
@@ -139,7 +139,7 @@ class _CalendarView extends State<CalendarView> {
                         fontFamily: 'Sans',
                       ),
                       itemStyle: const TextStyle(
-                          color: ColorsResources.dark,
+                          color: ColorsResources.applicationDarkGeeksEmpire,
                           fontSize: 23,
                           fontFamily: 'Sans',
                       ),
@@ -154,8 +154,8 @@ class _CalendarView extends State<CalendarView> {
                             dayNumber + " " +
                             monthName + " " +
                             yearNumber +
-                            "\n"
-                                "ساعت" + " " +
+                            "\n" +
+                            "ساعت" + " " +
                             "${changedTime.hour}:${changedTime.minute}";
 
                       });
@@ -170,8 +170,8 @@ class _CalendarView extends State<CalendarView> {
                             dayNumber + " " +
                             monthName + " " +
                             yearNumber +
-                            "\n"
-                                "ساعت" + " " +
+                            "\n" +
+                            "ساعت" + " " +
                             "${iranianCalendar.hour}:${iranianCalendar.minute}";
 
                       });
