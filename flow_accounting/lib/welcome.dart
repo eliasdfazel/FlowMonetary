@@ -9,6 +9,7 @@
  */
 
 import 'package:flow_accounting/home/home.dart';
+import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/utils/navigations/navigations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -33,6 +34,16 @@ class WelcomePage extends StatefulWidget {
 }
 
 class _WelcomePage extends State<WelcomePage> {
+
+  String signedInUser = UserInformation.UserId;
+
+  @override
+  void initState() {
+
+    getSignedInUserId();
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -169,6 +180,16 @@ class _WelcomePage extends State<WelcomePage> {
             )
         )
     );
+  }
+
+  void getSignedInUserId() async {
+
+    setState(() {
+
+      signedInUser;
+
+    });
+
   }
 
 }

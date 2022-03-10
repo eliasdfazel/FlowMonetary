@@ -51,6 +51,12 @@ class BudgetsDatabaseInputs {
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
 
+    if (databaseInstance.isOpen) {
+
+      databaseInstance.close();
+
+    }
+
   }
 
   Future<void> updateBudgetData(BudgetsData budgetsData, String? tableName, String usernameId) async {

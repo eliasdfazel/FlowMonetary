@@ -32,9 +32,7 @@ import 'sections/top_bar_view.dart';
 
 class DashboardView extends StatefulWidget {
 
-  final String signedInUser;
-
-  const DashboardView({Key? key, required this.signedInUser}) : super(key: key);
+  const DashboardView({Key? key}) : super(key: key);
 
   @override
   State<DashboardView> createState() => DashboardViewState();

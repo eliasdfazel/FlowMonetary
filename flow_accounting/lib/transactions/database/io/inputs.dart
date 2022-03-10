@@ -63,6 +63,12 @@ class TransactionsDatabaseInputs {
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
 
+    if (databaseInstance.isOpen) {
+
+      databaseInstance.close();
+
+    }
+
   }
 
   Future<void> updateTransactionData(TransactionsData transactionsData, String? tableName, String usernameId) async {

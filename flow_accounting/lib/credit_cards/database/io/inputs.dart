@@ -56,6 +56,12 @@ class CreditCardsDatabaseInputs {
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
 
+    if (databaseInstance.isOpen) {
+
+      databaseInstance.close();
+
+    }
+
   }
 
   Future<void> updateCreditCardsData(CreditCardsData creditCardsData,
@@ -102,6 +108,13 @@ class CreditCardsDatabaseInputs {
       where: 'id = ?',
       whereArgs: [id],
     );
+
+    if (databaseInstance.isOpen) {
+
+      databaseInstance.close();
+
+    }
+
   }
 
 }

@@ -81,6 +81,12 @@ class ChequesDatabaseInputs {
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
 
+    if (databaseInstance.isOpen) {
+
+      databaseInstance.close();
+
+    }
+
   }
 
   Future<void> updateChequeData(ChequesData chequesData, String? tableName, String usernameId) async {

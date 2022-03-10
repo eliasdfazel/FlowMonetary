@@ -8,7 +8,6 @@
  * https://opensource.org/licenses/MIT
  */
 
-import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -24,22 +23,16 @@ class FlowDashboard extends StatefulWidget {
 
 class _FlowDashboard extends State<FlowDashboard> {
 
-  String signedInUser = UserInformation.UserId;
+
+  @override
+  void initState(){
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
 
-    return DashboardView(signedInUser: signedInUser);
-  }
-
-  void getSignedInUserId() async {
-
-    setState(() {
-
-      signedInUser;
-
-    });
-
+    return DashboardView();
   }
 
 }

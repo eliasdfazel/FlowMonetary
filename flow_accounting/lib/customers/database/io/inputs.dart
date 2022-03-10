@@ -60,6 +60,12 @@ class CustomersDatabaseInputs {
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
 
+    if (databaseInstance.isOpen) {
+
+      databaseInstance.close();
+
+    }
+
   }
 
   Future<void> updateCustomerData(CustomersData customersData, String? tableName, String usernameId) async {
