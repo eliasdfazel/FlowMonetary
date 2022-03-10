@@ -49,14 +49,11 @@ class PrototypeData {
   ];
 
   List<String> customersList = [
-    "دانیال",
-    "آبان",
-    "الیاس",
-    "پویا",
-    "فاضل",
-    "شرکت آبان",
-    "عطیه",
-    "امی"
+    "دانیال راد",
+    "آرش مرادی",
+    "مریم عسگری",
+    "مرضیه یاسایی",
+    "نیما کشاورز",
   ];
 
   void generate() {
@@ -90,12 +87,23 @@ class PrototypeData {
 
     creditCardsData.add(CreditCardsData(
         id: DateTime.now().millisecondsSinceEpoch + 2,
-        cardNumber: "5274331211991147",
-        cardExpiry: "31/12",
+        cardNumber: "6037997111991147",
+        cardExpiry: "10/12",
         cardHolderName: "دانیال راد",
         cvv: "389",
-        bankName: "صادرات",
+        bankName: "ملی",
         cardBalance: "2300000",
+        colorTag: listOfColors.randomItem().value
+    ));
+
+    creditCardsData.add(CreditCardsData(
+        id: DateTime.now().millisecondsSinceEpoch + 3,
+        cardNumber: "5022291011998586",
+        cardExpiry: "05/01",
+        cardHolderName: " دانیال راد",
+        cvv: "686",
+        bankName: "پاسارگاد",
+        cardBalance: "3100000",
         colorTag: listOfColors.randomItem().value
     ));
 
@@ -127,17 +135,33 @@ class PrototypeData {
 
     budgetsData.add(BudgetsData(
         id: DateTime.now().millisecondsSinceEpoch + 2,
-        budgetName: "گربه",
-        budgetDescription: "مخارج شدو",
-        budgetBalance: "1000000",
+        budgetName: "شرکت نرم افزاری سفید",
+        budgetDescription: " بودجه حقوق سالیانه کارآموزان",
+        budgetBalance: "50000000",
         colorTag: listOfColors.randomItem().value
     ));
 
     budgetsData.add(BudgetsData(
         id: DateTime.now().millisecondsSinceEpoch + 3,
-        budgetName: "آکواریوم",
-        budgetDescription: "بودجه آکواریوم نیون",
-        budgetBalance: "370000",
+        budgetName: "شرکت نرم افزاری سداد",
+        budgetDescription: "بودجه تهیه سیستم های نرم افزاری",
+        budgetBalance: "60000000",
+        colorTag: listOfColors.randomItem().value
+    ));
+
+    budgetsData.add(BudgetsData(
+        id: DateTime.now().millisecondsSinceEpoch + 3,
+        budgetName: "شرکت ثبت برند ملاصدرا",
+        budgetDescription: "بودجه ثبت برند ",
+        budgetBalance: "7000000",
+        colorTag: listOfColors.randomItem().value
+    ));
+
+    budgetsData.add(BudgetsData(
+        id: DateTime.now().millisecondsSinceEpoch + 3,
+        budgetName: "شرکت تبلیغاتی رهام",
+        budgetDescription: "بودجه تبلیغات",
+        budgetBalance: "27000000",
         colorTag: listOfColors.randomItem().value
     ));
 
@@ -160,7 +184,7 @@ class PrototypeData {
     List<CustomersData> customersData = [];
 
     customersData.add(CustomersData(
-      id: DateTime.now().millisecondsSinceEpoch + 1,
+      id: DateTime.now().millisecondsSinceEpoch,
       customerName: "دانیال راد",
       customerDescription: "خریدار موبایل",
       customerCountry: "ایران",
@@ -169,7 +193,7 @@ class PrototypeData {
       customerPhoneNumber: "09334569871",
       customerEmailAddress: "Daniel@gmail.com",
       customerAge: "31",
-      customerBirthday: "شنبه ۱۲ فروردین ۱۳۶۸",
+      customerBirthday: "1368/01/12",
       customerJob: "برنامه نویس",
       customerMaritalStatus: "مجرد",
       customerImagePath: "/data/user/0/co.geeksempire.flow.accounting.flow_accounting/files/image_picker1337937822812840444.jpg",
@@ -177,18 +201,69 @@ class PrototypeData {
     ));
 
     customersData.add(CustomersData(
-      id: DateTime.now().millisecondsSinceEpoch + 2,
-      customerName: "شلدون",
-      customerDescription: "نرد اسکول",
-      customerCountry: "خارج",
-      customerCity: "پسدینا",
-      customerStreetAddress: "کنار نونوایی",
-      customerPhoneNumber: "01245487",
-      customerEmailAddress: "sheldon@bezinga.biz",
+      id: DateTime.now().millisecondsSinceEpoch + 1,
+      customerName: "آرش مرادی",
+      customerDescription: " تولید محتوا",
+      customerCountry: "ایران",
+      customerCity: "تهران",
+      customerStreetAddress: "یوسف آباد",
+      customerPhoneNumber: "09386561412",
+      customerEmailAddress: "َArash.Moradi@yahoo.com",
       customerAge: "37",
-      customerBirthday: "شنبه ۱۲ فروردین ۱۳۶۸",
+      customerBirthday: " 1363/05/16 ",
       customerJob: "فیزیک دان",
       customerMaritalStatus: "متاهل",
+      customerImagePath: "/data/user/0/co.geeksempire.flow.accounting.flow_accounting/files/image_picker1337937822812840444.jpg",
+      colorTag: listOfColors.randomItem().value,
+    ));
+
+    customersData.add(CustomersData(
+      id: DateTime.now().millisecondsSinceEpoch + 1,
+      customerName: "مریم عسگری",
+      customerDescription: "مدیریت مالی ",
+      customerCountry: "ایران",
+      customerCity: "تهران",
+      customerStreetAddress: "پاسداران ",
+      customerPhoneNumber: "09126563484",
+      customerEmailAddress: "Maryam12asgari@Gmail.com",
+      customerAge: "29",
+      customerBirthday: " 1371/09/28 ",
+      customerJob: " کارمند بانک",
+      customerMaritalStatus: "محرد",
+      customerImagePath: "/data/user/0/co.geeksempire.flow.accounting.flow_accounting/files/image_picker1337937822812840444.jpg",
+      colorTag: listOfColors.randomItem().value,
+    ));
+
+    customersData.add(CustomersData(
+      id: DateTime.now().millisecondsSinceEpoch + 1,
+      customerName: " مرضیه یاسایی",
+      customerDescription: "مدیریت پروژه",
+      customerCountry: "ایران",
+      customerCity: "کرج",
+      customerStreetAddress: " عظیمیه",
+      customerPhoneNumber: "09196789663",
+      customerEmailAddress: "Marziyeyasaei97@Gmail.com",
+      customerAge: "31",
+      customerBirthday: " 1369/11/08 ",
+      customerJob: " برنامه نویس",
+      customerMaritalStatus: "متاهل",
+      customerImagePath: "/data/user/0/co.geeksempire.flow.accounting.flow_accounting/files/image_picker1337937822812840444.jpg",
+      colorTag: listOfColors.randomItem().value,
+    ));
+
+    customersData.add(CustomersData(
+      id: DateTime.now().millisecondsSinceEpoch + 1,
+      customerName: "نیما کشاورز",
+      customerDescription: "تبلیغات ",
+      customerCountry: "ایران",
+      customerCity: "تهران",
+      customerStreetAddress: " سعادت آباد",
+      customerPhoneNumber: "09124587661",
+      customerEmailAddress: ".Moradi@yahoo.com",
+      customerAge: "33",
+      customerBirthday: " 1367/10/12 ",
+      customerJob: " دیجیتال مارکتینگ",
+      customerMaritalStatus: "مجرد",
       customerImagePath: "/data/user/0/co.geeksempire.flow.accounting.flow_accounting/files/image_picker1337937822812840444.jpg",
       colorTag: listOfColors.randomItem().value,
     ));
@@ -203,7 +278,7 @@ class PrototypeData {
 
     Future.delayed(const Duration(milliseconds: 799), () {
 
-     prepareTransactionsData();
+      prepareTransactionsData();
 
     });
 
@@ -216,16 +291,16 @@ class PrototypeData {
     List<TransactionsData> transactionsData = [];
 
     transactionsData.add(TransactionsData(
-        id: DateTime.now().millisecondsSinceEpoch + 1,
-        transactionTitle: "عنوانی برای تراکنش",
-        transactionDescription: "توضیحات تراکنش",
-        sourceCardNumber: "6274121200641696",
-        targetCardNumber: "6666121200641696",
+        id: DateTime.now().millisecondsSinceEpoch,
+        transactionTitle: "  کارت به کارت",
+        transactionDescription: " پرداخت حقوق ماه اول",
+        sourceCardNumber: "6221061211621294",
+        targetCardNumber: "5022291011998586",
         sourceBankName: StringsResources.listOfBanksIran.randomItem(),
         targetBankName: StringsResources.listOfBanksIran.randomItem(),
         sourceUsername: customersList.randomItem(),
         targetUsername: customersList.randomItem(),
-        amountMoney: "9735900",
+        amountMoney: "1500000",
         transactionType: TransactionsData.TransactionType_Receive,
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
         transactionTime: _generateDateText(),
@@ -236,71 +311,71 @@ class PrototypeData {
     ));
 
     transactionsData.add(TransactionsData(
-        id: DateTime.now().millisecondsSinceEpoch + 2,
-        transactionTitle: "عنوانی برای تراکنش",
-        transactionDescription: "توضیحات تراکنش",
-        sourceCardNumber: "6274121200641696",
-        targetCardNumber: "6274191200641696",
+        id: DateTime.now().millisecondsSinceEpoch,
+        transactionTitle: " کارت به کارت",
+        transactionDescription: "حقوق کارآموزان",
+        sourceCardNumber: "6037997111991147",
+        targetCardNumber: "5022291011998586",
         sourceBankName: StringsResources.listOfBanksIran.randomItem(),
         targetBankName: StringsResources.listOfBanksIran.randomItem(),
         sourceUsername: customersList.randomItem(),
         targetUsername: customersList.randomItem(),
-        amountMoney: "3590",
+        amountMoney: "2300000",
         transactionType: TransactionsData.TransactionType_Send,
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
         transactionTime: _generateDateText(),
         transactionTimeYear: "1400",
         transactionTimeMonth: 12.toString(),
         colorTag: listOfColors.randomItem().value,
-        budgetName: "آکواریوم"
+        budgetName: "شرکت نرم افزاری سفید"
     ));
 
     transactionsData.add(TransactionsData(
-        id: DateTime.now().millisecondsSinceEpoch + 3,
-        transactionTitle: "عنوانی برای تراکنش",
-        transactionDescription: "توضیحات تراکنش",
-        sourceCardNumber: "5274331211991147",
-        targetCardNumber: "6274121200641696",
+        id: DateTime.now().millisecondsSinceEpoch,
+        transactionTitle: "کارت به کارت",
+        transactionDescription: " هزینه تهیه نرم افزار",
+        sourceCardNumber: "5022291011998586",
+        targetCardNumber: "5022291011998586",
         sourceBankName: StringsResources.listOfBanksIran.randomItem(),
         targetBankName: StringsResources.listOfBanksIran.randomItem(),
         sourceUsername: customersList.randomItem(),
         targetUsername: customersList.randomItem(),
-        amountMoney: "71590",
+        amountMoney: "5300000",
         transactionType: TransactionsData.TransactionType_Send,
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
         transactionTime: _generateDateText(),
         transactionTimeYear: "1400",
         transactionTimeMonth: 7.toString(),
         colorTag: listOfColors.randomItem().value,
-        budgetName: "گربه"
+        budgetName: "شرکت نرم افزاری سداد"
     ));
 
     transactionsData.add(TransactionsData(
-        id: DateTime.now().millisecondsSinceEpoch + 4,
-        transactionTitle: "عنوانی برای تراکنش",
-        transactionDescription: "توضیحات تراکنش",
+        id: DateTime.now().millisecondsSinceEpoch,
+        transactionTitle: "کارت به کارت",
+        transactionDescription: "حقوق کارآموزان ",
         sourceCardNumber: "5274331211991147",
         targetCardNumber: "6274121200641696",
         sourceBankName: StringsResources.listOfBanksIran.randomItem(),
         targetBankName: StringsResources.listOfBanksIran.randomItem(),
         sourceUsername: customersList.randomItem(),
         targetUsername: customersList.randomItem(),
-        amountMoney: "1590",
+        amountMoney: "1630000",
         transactionType: TransactionsData.TransactionType_Send,
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
         transactionTime: _generateDateText(),
         transactionTimeYear: "1400",
         transactionTimeMonth: 7.toString(),
         colorTag: listOfColors.randomItem().value,
-        budgetName: "گربه"
+        budgetName: "شرکت نرم افزاری سفید"
     ));
 
     transactionsData.add(TransactionsData(
-        id: DateTime.now().millisecondsSinceEpoch + 5,
-        transactionTitle: "عنوانی برای تراکنش",
-        transactionDescription: "توضیحات تراکنش",
-        sourceCardNumber: "6274121200641696",
-        targetCardNumber: "6666121200641696",
+        id: DateTime.now().millisecondsSinceEpoch,
+        transactionTitle: "کارت به کارت ",
+        transactionDescription: "ثبت برند شرکت - ماه اول",
+        sourceCardNumber: "5274331211991147",
+        targetCardNumber: "5022291011998586",
         sourceBankName: StringsResources.listOfBanksIran.randomItem(),
         targetBankName: StringsResources.listOfBanksIran.randomItem(),
         sourceUsername: customersList.randomItem(),
@@ -312,40 +387,40 @@ class PrototypeData {
         transactionTimeYear: "1400",
         transactionTimeMonth: 1.toString(),
         colorTag: listOfColors.randomItem().value,
-        budgetName: "شرکت نرم افزاری آبان"
+        budgetName: "شرکت ثبت برند ملاصدرا "
     ));
 
     transactionsData.add(TransactionsData(
-        id: DateTime.now().millisecondsSinceEpoch + 6,
-        transactionTitle: "عنوانی برای تراکنش",
-        transactionDescription: "توضیحات تراکنش",
+        id: DateTime.now().millisecondsSinceEpoch,
+        transactionTitle: " کارت به کارت",
+        transactionDescription: " هزینه تبلیغات - ماه اول",
         sourceCardNumber: "6274121200641696",
-        targetCardNumber: "6274121200641686",
+        targetCardNumber: "5022291011998586",
         sourceBankName: StringsResources.listOfBanksIran.randomItem(),
         targetBankName: StringsResources.listOfBanksIran.randomItem(),
         sourceUsername: customersList.randomItem(),
         targetUsername: customersList.randomItem(),
-        amountMoney: "4590",
+        amountMoney: "2600000",
         transactionType: TransactionsData.TransactionType_Send,
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
         transactionTime: _generateDateText(),
         transactionTimeYear: "1400",
         transactionTimeMonth: 1.toString(),
         colorTag: listOfColors.randomItem().value,
-        budgetName: "گربه"
+        budgetName: "شرکت تبلیغاتی رهام"
     ));
 
     transactionsData.add(TransactionsData(
-        id: DateTime.now().millisecondsSinceEpoch + 7,
-        transactionTitle: "عنوانی برای تراکنش",
-        transactionDescription: "توضیحات تراکنش",
-        sourceCardNumber: "5274331211991147",
-        targetCardNumber: "6274121200641696",
+        id: DateTime.now().millisecondsSinceEpoch,
+        transactionTitle: " کارت به کارت",
+        transactionDescription: "پرداخت حقوق ماه دوم",
+        sourceCardNumber: "6221061211621294",
+        targetCardNumber: "5022291011998586",
         sourceBankName: StringsResources.listOfBanksIran.randomItem(),
         targetBankName: StringsResources.listOfBanksIran.randomItem(),
         sourceUsername: customersList.randomItem(),
         targetUsername: customersList.randomItem(),
-        amountMoney: "735900",
+        amountMoney: "1500000",
         transactionType: TransactionsData.TransactionType_Receive,
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
         transactionTime: _generateDateText(),
@@ -356,11 +431,31 @@ class PrototypeData {
     ));
 
     transactionsData.add(TransactionsData(
-        id: DateTime.now().millisecondsSinceEpoch + 8,
-        transactionTitle: "عنوانی برای تراکنش",
-        transactionDescription: "توضیحات تراکنش",
-        sourceCardNumber: "6274121200641696",
-        targetCardNumber: "6666121200641696",
+        id: DateTime.now().millisecondsSinceEpoch,
+        transactionTitle: " کارت به کارت",
+        transactionDescription: "پرداخت حقوق ماه سوم",
+        sourceCardNumber: "6221061211621294",
+        targetCardNumber: "5022291011998586",
+        sourceBankName: StringsResources.listOfBanksIran.randomItem(),
+        targetBankName: StringsResources.listOfBanksIran.randomItem(),
+        sourceUsername: customersList.randomItem(),
+        targetUsername: customersList.randomItem(),
+        amountMoney: "1500000",
+        transactionType: TransactionsData.TransactionType_Receive,
+        transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
+        transactionTime: _generateDateText(),
+        transactionTimeYear: "1400",
+        transactionTimeMonth: 8.toString(),
+        colorTag: listOfColors.randomItem().value,
+        budgetName: "شرکت نرم افزاری آبان"
+    ));
+
+    transactionsData.add(TransactionsData(
+        id: DateTime.now().millisecondsSinceEpoch,
+        transactionTitle: "کارت به کارت",
+        transactionDescription: " ثبت برند شرکت - ماه دوم",
+        sourceCardNumber: "5274331211991147",
+        targetCardNumber: "5022291011998586",
         sourceBankName: StringsResources.listOfBanksIran.randomItem(),
         targetBankName: StringsResources.listOfBanksIran.randomItem(),
         sourceUsername: customersList.randomItem(),
@@ -372,107 +467,87 @@ class PrototypeData {
         transactionTimeYear: "1400",
         transactionTimeMonth: 8.toString(),
         colorTag: listOfColors.randomItem().value,
-        budgetName: "شرکت نرم افزاری آبان"
+        budgetName: " شزکت ثبت برند ملاصدرا"
     ));
 
     transactionsData.add(TransactionsData(
-        id: DateTime.now().millisecondsSinceEpoch + 9,
-        transactionTitle: "عنوانی برای تراکنش",
-        transactionDescription: "توضیحات تراکنش",
+        id: DateTime.now().millisecondsSinceEpoch,
+        transactionTitle: "کارت به کارت",
+        transactionDescription: " هزینه تبلیغات - ماه دوم",
+        sourceCardNumber: "6276339200641696",
+        targetCardNumber: "6666121200641696",
+        sourceBankName: StringsResources.listOfBanksIran.randomItem(),
+        targetBankName: StringsResources.listOfBanksIran.randomItem(),
+        sourceUsername: customersList.randomItem(),
+        targetUsername: customersList.randomItem(),
+        amountMoney: "2900000",
+        transactionType: TransactionsData.TransactionType_Receive,
+        transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
+        transactionTime: _generateDateText(),
+        transactionTimeYear: "1400",
+        transactionTimeMonth: 7.toString(),
+        colorTag: listOfColors.randomItem().value,
+        budgetName: "شرکت تبلیغاتی رهام"
+    ));
+
+    transactionsData.add(TransactionsData(
+        id: DateTime.now().millisecondsSinceEpoch,
+        transactionTitle: " کارت به کارت",
+        transactionDescription: " خرید نرم افزار",
+        sourceCardNumber: "5892101200641696",
+        targetCardNumber: "6666121200641696",
+        sourceBankName: StringsResources.listOfBanksIran.randomItem(),
+        targetBankName: StringsResources.listOfBanksIran.randomItem(),
+        sourceUsername: customersList.randomItem(),
+        targetUsername: customersList.randomItem(),
+        amountMoney: "4630000",
+        transactionType: TransactionsData.TransactionType_Receive,
+        transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
+        transactionTime: _generateDateText(),
+        transactionTimeYear: "1400",
+        transactionTimeMonth: 7.toString(),
+        colorTag: listOfColors.randomItem().value,
+        budgetName: " شرکت نرم افزاری سفید"
+    ));
+
+    transactionsData.add(TransactionsData(
+        id: DateTime.now().millisecondsSinceEpoch,
+        transactionTitle: " کارت به کارت",
+        transactionDescription: " هزینه تبلیغات - ماه سوم",
+        sourceCardNumber: "6274121200641696",
+        targetCardNumber: "6666121200641696",
+        sourceBankName: StringsResources.listOfBanksIran.randomItem(),
+        targetBankName: StringsResources.listOfBanksIran.randomItem(),
+        sourceUsername: customersList.randomItem(),
+        targetUsername: customersList.randomItem(),
+        amountMoney: "2600000",
+        transactionType: TransactionsData.TransactionType_Receive,
+        transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
+        transactionTime: _generateDateText(),
+        transactionTimeYear: "1400",
+        transactionTimeMonth: 7.toString(),
+        colorTag: listOfColors.randomItem().value,
+        budgetName: "شرکت تبلیغاتی رهام"
+    ));
+
+    transactionsData.add(TransactionsData(
+        id: DateTime.now().millisecondsSinceEpoch,
+        transactionTitle: " کارت به کارت",
+        transactionDescription: "ثبت برند شرکت - ماه سوم",
         sourceCardNumber: "5274331211991147",
-        targetCardNumber: "6274121200641696",
+        targetCardNumber: "5022291011998586",
         sourceBankName: StringsResources.listOfBanksIran.randomItem(),
         targetBankName: StringsResources.listOfBanksIran.randomItem(),
         sourceUsername: customersList.randomItem(),
         targetUsername: customersList.randomItem(),
-        amountMoney: "9735900",
-        transactionType: TransactionsData.TransactionType_Receive,
-        transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
-        transactionTime: _generateDateText(),
-        transactionTimeYear: "1400",
-        transactionTimeMonth: 8.toString(),
-        colorTag: listOfColors.randomItem().value,
-        budgetName: "شرکت نرم افزاری آبان"
-    ));
-
-    transactionsData.add(TransactionsData(
-        id: DateTime.now().millisecondsSinceEpoch + 10,
-        transactionTitle: "عنوانی برای تراکنش",
-        transactionDescription: "توضیحات تراکنش",
-        sourceCardNumber: "6274121200641696",
-        targetCardNumber: "6666121200641696",
-        sourceBankName: StringsResources.listOfBanksIran.randomItem(),
-        targetBankName: StringsResources.listOfBanksIran.randomItem(),
-        sourceUsername: customersList.randomItem(),
-        targetUsername: customersList.randomItem(),
-        amountMoney: "1115900",
+        amountMoney: "5590000",
         transactionType: TransactionsData.TransactionType_Receive,
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
         transactionTime: _generateDateText(),
         transactionTimeYear: "1400",
         transactionTimeMonth: 7.toString(),
         colorTag: listOfColors.randomItem().value,
-        budgetName: "شرکت نرم افزاری آبان"
-    ));
-
-    transactionsData.add(TransactionsData(
-        id: DateTime.now().millisecondsSinceEpoch + 11,
-        transactionTitle: "عنوانی برای تراکنش",
-        transactionDescription: "توضیحات تراکنش",
-        sourceCardNumber: "6274121200641696",
-        targetCardNumber: "6666121200641696",
-        sourceBankName: StringsResources.listOfBanksIran.randomItem(),
-        targetBankName: StringsResources.listOfBanksIran.randomItem(),
-        sourceUsername: customersList.randomItem(),
-        targetUsername: customersList.randomItem(),
-        amountMoney: "9735900",
-        transactionType: TransactionsData.TransactionType_Receive,
-        transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
-        transactionTime: _generateDateText(),
-        transactionTimeYear: "1400",
-        transactionTimeMonth: 7.toString(),
-        colorTag: listOfColors.randomItem().value,
-        budgetName: "شرکت نرم افزاری آبان"
-    ));
-
-    transactionsData.add(TransactionsData(
-        id: DateTime.now().millisecondsSinceEpoch + 12,
-        transactionTitle: "عنوانی برای تراکنش",
-        transactionDescription: "توضیحات تراکنش",
-        sourceCardNumber: "6274121200641696",
-        targetCardNumber: "6666121200641696",
-        sourceBankName: StringsResources.listOfBanksIran.randomItem(),
-        targetBankName: StringsResources.listOfBanksIran.randomItem(),
-        sourceUsername: customersList.randomItem(),
-        targetUsername: customersList.randomItem(),
-        amountMoney: "35900",
-        transactionType: TransactionsData.TransactionType_Receive,
-        transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
-        transactionTime: _generateDateText(),
-        transactionTimeYear: "1400",
-        transactionTimeMonth: 7.toString(),
-        colorTag: listOfColors.randomItem().value,
-        budgetName: "شرکت نرم افزاری آبان"
-    ));
-
-    transactionsData.add(TransactionsData(
-        id: DateTime.now().millisecondsSinceEpoch + 13,
-        transactionTitle: "عنوانی برای تراکنش",
-        transactionDescription: "توضیحات تراکنش",
-        sourceCardNumber: "5274331211991147",
-        targetCardNumber: "6274121200641696",
-        sourceBankName: StringsResources.listOfBanksIran.randomItem(),
-        targetBankName: StringsResources.listOfBanksIran.randomItem(),
-        sourceUsername: customersList.randomItem(),
-        targetUsername: customersList.randomItem(),
-        amountMoney: "5535900",
-        transactionType: TransactionsData.TransactionType_Send,
-        transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
-        transactionTime: _generateDateText(),
-        transactionTimeYear: "1400",
-        transactionTimeMonth: 7.toString(),
-        colorTag: listOfColors.randomItem().value,
-        budgetName: "شرکت نرم افزاری آبان"
+        budgetName: "شرکت ثبت برند ملاصدرا"
     ));
 
     for (var element in transactionsData) {
