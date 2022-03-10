@@ -27,6 +27,7 @@ class ProfilesData {
 
   final String userId;
 
+  final String userImage;
   final String userEmailAddress;
   final String userPhoneNumber;
   final String userInstagram;
@@ -38,6 +39,7 @@ class ProfilesData {
 
     required this.userId,
 
+    required this.userImage,
     required this.userEmailAddress,
     required this.userPhoneNumber,
     required this.userInstagram,
@@ -53,6 +55,7 @@ class ProfilesData {
 
       'userId': userId,
 
+      'userImage': userImage,
       'userEmailAddress': userEmailAddress,
       'userPhoneNumber': userPhoneNumber,
       'userInstagram': userInstagram,
@@ -68,6 +71,7 @@ class ProfilesData {
 
       'userId: $userId, '
 
+      'userImage: $userImage, '
       'userEmailAddress: $userEmailAddress, '
       'userPhoneNumber: $userPhoneNumber, '
       'userInstagram: $userInstagram, '

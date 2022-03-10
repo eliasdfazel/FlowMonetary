@@ -34,10 +34,14 @@ class ProfileDatabaseQueries {
 
     return ProfilesData(
         id: int.parse(databaseContents[0]['id'].toString()),
+
         userId: databaseContents[0]['userId'].toString(),
+
+        userImage: databaseContents[0]['userImage'].toString(),
         userEmailAddress: databaseContents[0]['userEmailAddress'].toString(),
         userPhoneNumber: databaseContents[0]['userPhoneNumber'].toString(),
         userInstagram: databaseContents[0]['userInstagram'].toString(),
+
         userSignedIn: int.parse(databaseContents[0]['userSignedIn'].toString())
     );
   }
