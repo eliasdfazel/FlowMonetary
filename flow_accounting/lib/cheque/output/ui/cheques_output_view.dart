@@ -705,7 +705,22 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
     for (var element in inputChequesList) {
 
       if (element.chequeTitle.contains(searchQuery) ||
-          element.chequeDescription.contains(searchQuery)
+          element.chequeDescription.contains(searchQuery) ||
+          element.chequeNumber.contains(searchQuery) ||
+          element.chequeMoneyAmount.contains(searchQuery) ||
+          element.chequeIssueDate.contains(searchQuery) ||
+          element.chequeDueDate.contains(searchQuery) ||
+          element.chequeSourceId.contains(searchQuery) ||
+          element.chequeSourceName.contains(searchQuery) ||
+          element.chequeSourceBankName.contains(searchQuery) ||
+          element.chequeSourceBankBranch.contains(searchQuery) ||
+          element.chequeSourceAccountNumber.contains(searchQuery) ||
+          element.chequeTargetId.contains(searchQuery) ||
+          element.chequeTargetName.contains(searchQuery) ||
+          element.chequeTargetBankName.contains(searchQuery) ||
+          element.chequeTargetAccountNumber.contains(searchQuery) ||
+          element.chequeRelevantCreditCard.contains(searchQuery) ||
+          element.chequeRelevantBudget.contains(searchQuery)
       ) {
 
         searchResult.add(element);
