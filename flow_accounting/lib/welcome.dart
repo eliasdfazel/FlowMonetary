@@ -9,7 +9,9 @@
  */
 
 import 'package:flow_accounting/home/home.dart';
+import 'package:flow_accounting/profile/database/io/inputs.dart';
 import 'package:flow_accounting/profile/database/io/queries.dart';
+import 'package:flow_accounting/profile/database/structures/tables_structure.dart';
 import 'package:flow_accounting/utils/navigations/navigations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -184,9 +186,13 @@ class _WelcomePage extends State<WelcomePage> {
 
   void getSignedInUserId() async {
 
+    ProfileDatabaseQueries profileDatabaseQueries = ProfileDatabaseQueries();
+
+    ProfilesData profileData = await profileDatabaseQueries.querySignedInUser(ProfilesDatabaseInputs.databaseTableName);
+
     setState(() {
 
-      signedInUser;
+      signedInUser = profileData.userId;
 
     });
 

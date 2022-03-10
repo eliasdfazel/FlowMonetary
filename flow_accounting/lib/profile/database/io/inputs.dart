@@ -8,3 +8,10 @@
  * https://opensource.org/licenses/MIT
  */
 
+class ProfilesDatabaseInputs {
+
+  static const String databaseTableName = "all_profiles";
+
+  static const profileDatabase = "profiles_database.db";
+
+}
