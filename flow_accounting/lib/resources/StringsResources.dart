@@ -146,6 +146,8 @@ class StringsResources {
   static const String chequeConfirmation = "تایید وصول چک";
 
   static const String sortChequeDueDate = "مرتب سازی: تاریخ سررسید";
+
+  static const String chequeTargetName = "به نام";
   /* End - Cheque String Resources */
 
   static const String sortHint = "مرتب سازی";

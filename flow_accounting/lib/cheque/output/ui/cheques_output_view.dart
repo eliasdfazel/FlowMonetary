@@ -498,8 +498,8 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
                                         child: Text(
                                           chequeNumber,
                                           style: const TextStyle(
-                                            color: ColorsResources.dark,
-                                            fontSize: 19,
+                                            color: ColorsResources.black,
+                                            fontSize: 17,
                                           ),
                                         ),
                                       ),
@@ -580,7 +580,7 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
                             height: 57,
                             width: double.infinity,
                             child: Padding(
-                              padding: const EdgeInsets.fromLTRB(23, 7, 13, 7),
+                              padding: const EdgeInsets.fromLTRB(25, 7, 17, 7),
                               child: Align(
                                   alignment: Alignment.center,
                                   child: Marquee(
@@ -595,7 +595,7 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
                                     blankSpace: 199.0,
                                     velocity: 37.0,
                                     fadingEdgeStartFraction: 0.15,
-                                    fadingEdgeEndFraction: 0.13,
+                                    fadingEdgeEndFraction: 0.15,
                                     startAfter: const Duration(milliseconds: 777),
                                     numberOfRounds: 3,
                                     pauseAfterRound: const Duration(milliseconds: 500),
@@ -613,48 +613,52 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
                             height: 53,
                             width: double.infinity,
                             child: Padding(
-                              padding: const EdgeInsets.fromLTRB(29, 0, 13, 0),
+                              padding: const EdgeInsets.fromLTRB(37, 0, 17, 0),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Expanded(
-                                    flex: 9,
+                                    flex: 13,
                                     child: Align(
                                       alignment: Alignment.centerLeft,
                                       child: Text(
                                           chequeTargetAccountNumber,
-                                          textAlign: TextAlign.left,
+                                          textAlign: TextAlign.center,
+                                          maxLines: 1,
                                           style: TextStyle(
                                               color: ColorsResources.dark,
-                                              fontSize: 15
+                                              fontSize: 15,
                                           )
                                       )
                                     )
                                   ),
                                   Expanded(
-                                    flex: 5,
+                                    flex: 7,
                                     child: Align(
-                                        alignment: Alignment.centerLeft,
+                                        alignment: Alignment.centerRight,
                                         child: Text(
                                             chequeTargetName,
-                                            textAlign: TextAlign.left,
+                                            maxLines: 1,
+                                            textAlign: TextAlign.right,
                                             style: TextStyle(
-                                                color: ColorsResources.dark,
-                                                fontSize: 15
+                                              color: ColorsResources.dark,
+                                              fontSize: 17,
                                             )
                                         )
                                     )
                                   ),
                                   Expanded(
-                                    flex: 3,
+                                    flex: 5,
                                     child: Align(
-                                        alignment: Alignment.centerLeft,
+                                        alignment: Alignment.centerRight,
                                         child: Text(
-                                            StringsResources.transactionTargetName,
-                                            textAlign: TextAlign.left,
+                                            " :${StringsResources.chequeTargetName}",
+                                            textAlign: TextAlign.right,
+                                            maxLines: 1,
                                             style: TextStyle(
-                                                color: ColorsResources.dark,
-                                                fontSize: 15
+                                                color: ColorsResources.black,
+                                                fontSize: 13,
+                                                fontWeight: FontWeight.bold
                                             )
                                         )
                                     ),
