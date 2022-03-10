@@ -27,12 +27,20 @@ class ProfilesData {
 
   final String userId;
 
+  final String userEmailAddress;
+  final String userPhoneNumber;
+  final String userInstagram;
+
   final int userSignedIn;
 
   ProfilesData({
     required this.id,
 
     required this.userId,
+
+    required this.userEmailAddress,
+    required this.userPhoneNumber,
+    required this.userInstagram,
 
     required this.userSignedIn
   });
@@ -45,6 +53,10 @@ class ProfilesData {
 
       'userId': userId,
 
+      'userEmailAddress': userEmailAddress,
+      'userPhoneNumber': userPhoneNumber,
+      'userInstagram': userInstagram,
+
       'userSignedIn': userSignedIn,
     };
   }
@@ -55,6 +67,10 @@ class ProfilesData {
       'id: $id, '
 
       'userId: $userId, '
+
+      'userEmailAddress: $userEmailAddress, '
+      'userPhoneNumber: $userPhoneNumber, '
+      'userInstagram: $userInstagram, '
 
       'userSignedIn: $userSignedIn, '
     '}';
