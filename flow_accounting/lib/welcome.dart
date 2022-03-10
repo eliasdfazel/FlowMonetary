@@ -205,13 +205,13 @@ class _WelcomePage extends State<WelcomePage> {
 
       signedInUser = UserInformation.UserId;
 
-      debugPrint("Sign In User: ${signedInUser}");
+      debugPrint("Signed In User: ${signedInUser}");
 
     } on Exception {
 
       signedInUser = StringsResources.unknownText;
 
-      debugPrint("Sign In User: ${signedInUser}");
+      debugPrint("Sign In Process Error: ${signedInUser}");
 
     }
 
