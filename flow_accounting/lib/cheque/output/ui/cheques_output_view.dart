@@ -1,12 +1,15 @@
 
 import 'package:blur/blur.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flow_accounting/cheque/database/io/inputs.dart';
 import 'package:flow_accounting/cheque/database/io/queries.dart';
 import 'package:flow_accounting/cheque/database/structures/table_structure.dart';
 import 'package:flow_accounting/cheque/input/ui/cheques_input_view.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
+import 'package:flow_accounting/utils/colors/color_extractor.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
+import 'package:flow_accounting/utils/extensions/BankLogos.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:marquee/marquee.dart';
@@ -27,6 +30,8 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
   TextEditingController textEditorControllerQuery = TextEditingController();
 
   bool colorSelectorInitialized = false;
+
+  Color bankLogoColor = Colors.white;
 
   @override
   void dispose() {
@@ -377,12 +382,32 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
 
   Widget outputItem(BuildContext context, ChequesData chequesData) {
 
-    String chequeName = chequesData.chequeTitle;
-    String chequeDescription = chequesData.chequeDescription;
+    String chequeNumber = chequesData.chequeNumber;
 
     String chequeMoneyAmount = chequesData.chequeMoneyAmount;
 
+    String chequeBank = chequesData.chequeSourceBankName;
+    String chequeBankBranch = chequesData.chequeSourceBankBranch;
+
+    String chequeTargetName = chequesData.chequeTargetName;
+    String chequeTargetAccountNumber = chequesData.chequeTargetAccountNumber;
+
     Color chequeColorTag = Color(chequesData.colorTag);
+
+    CachedNetworkImage bankLogoImageView = CachedNetworkImage(
+      imageUrl: generateBankLogoUrl(chequeBank),
+      height: 51,
+      width: 51,
+      fit: BoxFit.cover,
+      imageBuilder: (context, imageProvider) {
+
+        extractBankDominantColor(imageProvider);
+
+        return Image(
+          image: imageProvider,
+        );
+      },
+    );
 
     return Slidable(
       closeOnScroll: true,
@@ -459,10 +484,103 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           SizedBox(
-                            height: 59,
+                              height: 79,
+                              width: double.infinity,
+                              child: Padding(
+                                padding: const EdgeInsets.fromLTRB(13, 11, 13, 7),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Expanded(
+                                      flex: 7,
+                                      child: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Text(
+                                          chequeNumber,
+                                          style: const TextStyle(
+                                            color: ColorsResources.dark,
+                                            fontSize: 19,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      flex: 5,
+                                      child: Padding(
+                                        padding: EdgeInsets.fromLTRB(3, 0, 13, 0),
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            SizedBox(
+                                              height: 31,
+                                              width: double.infinity,
+                                              child: Directionality(
+                                                textDirection: TextDirection.rtl,
+                                                child: Align(
+                                                  alignment: Alignment.centerRight,
+                                                  child: Text(
+                                                    chequeBank,
+                                                    style: const TextStyle(
+                                                      color: ColorsResources.dark,
+                                                      fontSize: 19,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 27,
+                                              width: double.infinity,
+                                              child: Directionality(
+                                                textDirection: TextDirection.rtl,
+                                                child: Align(
+                                                  alignment: Alignment.centerRight,
+                                                  child: Text(
+                                                    chequeBankBranch,
+                                                    style: const TextStyle(
+                                                      color: ColorsResources.darkTransparent,
+                                                      fontSize: 13,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      )
+                                    ),
+                                    Expanded(
+                                      flex: 3,
+                                      child: SizedBox(
+                                        height: 51,
+                                        width: 51,
+                                        child: Container(
+                                          decoration: const BoxDecoration(
+                                              color: ColorsResources.white,
+                                              shape: BoxShape.circle
+                                          ),
+                                          child: Align(
+                                            alignment: AlignmentDirectional.center,
+                                            child: Padding(
+                                              padding: const EdgeInsets.fromLTRB(7, 7, 7, 7),
+                                              child: Padding(
+                                                  padding: const EdgeInsets.fromLTRB(7, 7, 7, 7),
+                                                  child: bankLogoImageView
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              )
+                          ),
+                          SizedBox(
+                            height: 57,
                             width: double.infinity,
                             child: Padding(
-                              padding: const EdgeInsets.fromLTRB(27, 11, 13, 0),
+                              padding: const EdgeInsets.fromLTRB(23, 7, 13, 7),
                               child: Align(
                                   alignment: Alignment.center,
                                   child: Marquee(
@@ -476,7 +594,7 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     blankSpace: 199.0,
                                     velocity: 37.0,
-                                    fadingEdgeStartFraction: 0.13,
+                                    fadingEdgeStartFraction: 0.15,
                                     fadingEdgeEndFraction: 0.13,
                                     startAfter: const Duration(milliseconds: 777),
                                     numberOfRounds: 3,
@@ -492,51 +610,56 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
                             ),
                           ),
                           SizedBox(
-                              height: 39,
-                              width: double.infinity,
-                              child: Padding(
-                                padding: const EdgeInsets.fromLTRB(19, 11, 19, 0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Expanded(
-                                      flex: 1,
-                                      child: Directionality(
-                                        textDirection: TextDirection.rtl,
-                                        child: Align(
-                                          alignment: Alignment.centerRight,
-                                          child: Text(
-                                            chequeName,
-                                            style: const TextStyle(
-                                              color: ColorsResources.dark,
-                                              fontSize: 19,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              )
-                          ),
-                          SizedBox(
-                            height: 51,
+                            height: 53,
                             width: double.infinity,
                             child: Padding(
-                              padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
-                              child: Container(
-                                color: Colors.transparent,
-                                child: Align(
-                                  alignment: Alignment.centerRight,
-                                  child: Text(
-                                    chequeDescription,
-                                    textAlign: TextAlign.right,
-                                    style: TextStyle(
-                                        color: ColorsResources.dark.withOpacity(0.537),
-                                        fontSize: 15
-                                    ),
+                              padding: const EdgeInsets.fromLTRB(29, 0, 13, 0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Expanded(
+                                    flex: 9,
+                                    child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(
+                                          chequeTargetAccountNumber,
+                                          textAlign: TextAlign.left,
+                                          style: TextStyle(
+                                              color: ColorsResources.dark,
+                                              fontSize: 15
+                                          )
+                                      )
+                                    )
                                   ),
-                                ),
+                                  Expanded(
+                                    flex: 5,
+                                    child: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Text(
+                                            chequeTargetName,
+                                            textAlign: TextAlign.left,
+                                            style: TextStyle(
+                                                color: ColorsResources.dark,
+                                                fontSize: 15
+                                            )
+                                        )
+                                    )
+                                  ),
+                                  Expanded(
+                                    flex: 3,
+                                    child: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Text(
+                                            StringsResources.transactionTargetName,
+                                            textAlign: TextAlign.left,
+                                            style: TextStyle(
+                                                color: ColorsResources.dark,
+                                                fontSize: 15
+                                            )
+                                        )
+                                    ),
+                                  )
+                                ],
                               ),
                             ),
                           )
@@ -738,6 +861,30 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
       setState(() {
 
         allChequesItems = preparedAllBudgetsItem;
+
+      });
+
+    }
+
+  }
+
+  void extractBankDominantColor(ImageProvider? bankLogoImageProvider) async {
+
+    if (bankLogoImageProvider != null) {
+
+      Future<Color?> bankDominantColor = imageDominantColor(bankLogoImageProvider);
+
+      bankDominantColor.then((extractedColor) {
+
+        if (extractedColor != null) {
+
+          setState(() {
+
+            bankLogoColor = extractedColor;
+
+          });
+
+        }
 
       });
 
