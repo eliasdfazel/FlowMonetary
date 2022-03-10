@@ -76,6 +76,25 @@ class StringsResources {
   static const String transactionTypeSend = "پرداخت";
   /* End - Transaction String Resources */
 
+  /* Start - Credit Card String Resources */
+  static const String creditCardsBankName = "بانک صادر کننده";
+  static const String creditCardsBankNameHint = "نام بانک";
+  static const String creditCardsNameHolder = "نام";
+  static const String creditCardsNameHolderHint = "نام صاحب کارت";
+
+  static const String creditCardExpiryMonth = "ماه";
+  static const String creditCardExpiryMonthHint = "ماه انقضا";
+  static const String creditCardExpiryYear = "سال";
+  static const String creditCardExpiryYearHint = "سال انقضا";
+
+  static const String creditCardBalance = "موجودی";
+  static const String creditCardBalanceHint = "مبلغ موجودی را وارد کنید";
+  static const String creditCardBalanceChart = "نمودار موجودی";
+
+  static const String creditCardCvv = "CVV";
+  static const String creditCardCvvHint = "CVV";
+  /* End - Credit Card String Resources */
+
   /* Start - Budget String Resources */
   static const String budgetNameText = "نام بودجه";
   static const String budgetNameTextHint = "نام مورد نظر برای این بوجه را "
@@ -200,22 +219,7 @@ class StringsResources {
   static const String mySelfText = "خودم";
   static const String nothingText = "هیچ";
 
-  static const String creditCardsBankName = "بانک صادر کننده";
-  static const String creditCardsBankNameHint = "نام بانک";
-  static const String creditCardsNameHolder = "نام";
-  static const String creditCardsNameHolderHint = "نام صاحب کارت";
-
-  static const String creditCardExpiryMonth = "ماه";
-  static const String creditCardExpiryMonthHint = "ماه انقضا";
-  static const String creditCardExpiryYear = "سال";
-  static const String creditCardExpiryYearHint = "سال انقضا";
-
-  static const String creditCardBalance = "موجودی";
-  static const String creditCardBalanceHint = "مبلغ موجودی را وارد کنید";
-  static const String creditCardBalanceChart = "نمودار موجودی";
-
-  static const String creditCardCvv = "CVV";
-  static const String creditCardCvvHint = "CVV";
+  static const String unknownText = "Unknown";
 
   static const List<String> listOfBanksIran = [
     "انصار",

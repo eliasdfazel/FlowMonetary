@@ -33,8 +33,9 @@ class ProfileDatabaseQueries {
     );
 
     return ProfilesData(
-      id: int.parse(databaseContents[0]['id'].toString()),
-      userSignedIn: int.parse(databaseContents[0]['userSignedIn'].toString())
+        id: int.parse(databaseContents[0]['id'].toString()),
+        userId: databaseContents[0]['userId'].toString(),
+        userSignedIn: int.parse(databaseContents[0]['userSignedIn'].toString())
     );
   }
 
