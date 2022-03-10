@@ -22,6 +22,7 @@ import 'package:flow_accounting/customers/database/io/inputs.dart';
 import 'package:flow_accounting/customers/database/io/queries.dart';
 import 'package:flow_accounting/customers/database/structures/table_structure.dart';
 import 'package:flow_accounting/home/interface/dashboard.dart';
+import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/database/io/inputs.dart';
@@ -1769,7 +1770,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                             budgetName: budgetName,
                           );
 
-                          databaseInputs.updateTransactionData(transactionData, TransactionsDatabaseInputs.databaseTableName);
+                          databaseInputs.updateTransactionData(transactionData, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
                           Fluttertoast.showToast(
                               msg: StringsResources.updatedText,
@@ -1886,7 +1887,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
 
     CustomersDatabaseQueries customersDatabaseQueries = CustomersDatabaseQueries();
 
-    var retrievedCustomers = await customersDatabaseQueries.getAllCustomers(CustomersDatabaseInputs.databaseTableName);
+    var retrievedCustomers = await customersDatabaseQueries.getAllCustomers(CustomersDatabaseInputs.databaseTableName, UserInformation.UserId);
 
     if (retrievedCustomers.isNotEmpty) {
 
@@ -1908,7 +1909,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
 
     BudgetsDatabaseQueries budgetsDatabaseQueries = BudgetsDatabaseQueries();
 
-    var retrievedBudgets = await budgetsDatabaseQueries.getAllBudgets(BudgetsDatabaseInputs.databaseTableName);
+    var retrievedBudgets = await budgetsDatabaseQueries.getAllBudgets(BudgetsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
     if (retrievedBudgets.isNotEmpty) {
 
@@ -1925,7 +1926,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
 
     CreditCardsDatabaseQueries creditCardsDatabaseQueries = CreditCardsDatabaseQueries();
 
-    var retrievedCreditCards = await creditCardsDatabaseQueries.getAllCreditCards(CreditCardsDatabaseInputs.databaseTableName);
+    var retrievedCreditCards = await creditCardsDatabaseQueries.getAllCreditCards(CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
     if (retrievedCreditCards.isNotEmpty) {
 

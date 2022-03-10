@@ -12,6 +12,7 @@ import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:blur/blur.dart';
 import 'package:flow_accounting/budgets/database/io/inputs.dart';
 import 'package:flow_accounting/budgets/database/structures/tables_structure.dart';
+import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
@@ -589,13 +590,13 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
 
                                 if ((widget.budgetsData?.id)! != 0) {
 
-                                  databaseInputs.updateBudgetData(transactionData, BudgetsDatabaseInputs.databaseTableName);
+                                  databaseInputs.updateBudgetData(transactionData, BudgetsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
                                 }
 
                               } else {
 
-                                databaseInputs.insertBudgetData(transactionData, BudgetsDatabaseInputs.databaseTableName);
+                                databaseInputs.insertBudgetData(transactionData, BudgetsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
                               }
 

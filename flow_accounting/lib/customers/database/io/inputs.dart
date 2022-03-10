@@ -21,7 +21,7 @@ class CustomersDatabaseInputs {
   static const customersDatabase = "customers_database.db";
 
   Future<void> insertCustomerData(CustomersData customersData, String? tableName,
-      {String usernameId = "Unknown"}) async {
+      String usernameId) async {
 
     var tableNameQuery = (tableName != null) ? tableName : CustomersDatabaseInputs.databaseTableName;
     tableNameQuery = "${usernameId}_${tableNameQuery}";
@@ -62,7 +62,7 @@ class CustomersDatabaseInputs {
 
   }
 
-  Future<void> updateCustomerData(CustomersData customersData, String? tableName, {String usernameId = "Unknown"}) async {
+  Future<void> updateCustomerData(CustomersData customersData, String? tableName, String usernameId) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), CustomersDatabaseInputs.customersDatabase),

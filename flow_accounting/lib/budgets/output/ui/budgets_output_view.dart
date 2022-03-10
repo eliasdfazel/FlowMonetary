@@ -4,6 +4,7 @@ import 'package:flow_accounting/budgets/database/io/inputs.dart';
 import 'package:flow_accounting/budgets/database/io/queries.dart';
 import 'package:flow_accounting/budgets/database/structures/tables_structure.dart';
 import 'package:flow_accounting/budgets/input/ui/budgets_input_view.dart';
+import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/output/ui/transactions_output_view.dart';
@@ -608,7 +609,7 @@ class _BudgetOutputViewState extends State<BudgetsOutputView> {
 
     var databaseQueries = BudgetsDatabaseQueries();
 
-    databaseQueries.queryDeleteBudget(budgetsData.id, BudgetsDatabaseInputs.databaseTableName);
+    databaseQueries.queryDeleteBudget(budgetsData.id, BudgetsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
     retrieveAllBudgets(context);
 
@@ -642,7 +643,7 @@ class _BudgetOutputViewState extends State<BudgetsOutputView> {
 
     var databaseQueries = BudgetsDatabaseQueries();
 
-    allBudgets = await databaseQueries.getAllBudgets(BudgetsDatabaseInputs.databaseTableName);
+    allBudgets = await databaseQueries.getAllBudgets(BudgetsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
     for (var element in allBudgets) {
 

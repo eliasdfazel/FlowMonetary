@@ -15,6 +15,7 @@ import 'package:flow_accounting/credit_cards/database/io/inputs.dart';
 import 'package:flow_accounting/credit_cards/database/io/queries.dart';
 import 'package:flow_accounting/credit_cards/database/structures/tables_structure.dart';
 import 'package:flow_accounting/credit_cards/input/ui/credit_cards_input_view.dart';
+import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/utils/colors/color_extractor.dart';
@@ -223,7 +224,7 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
                               onPressed: () {
 
                                 CreditCardsDatabaseQueries()
-                                    .queryDeleteCreditCard(id, CreditCardsDatabaseInputs.databaseTableName);
+                                    .queryDeleteCreditCard(id, CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
                                 prepareCreditCardsData();
 
@@ -412,7 +413,7 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
 
     CreditCardsDatabaseQueries databaseQueries = CreditCardsDatabaseQueries();
 
-    List<CreditCardsData> listOfAllCreditCards = await databaseQueries.getAllCreditCards(CreditCardsDatabaseInputs.databaseTableName);
+    List<CreditCardsData> listOfAllCreditCards = await databaseQueries.getAllCreditCards(CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
     setState(() {
 

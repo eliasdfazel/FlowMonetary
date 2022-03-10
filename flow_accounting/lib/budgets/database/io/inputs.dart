@@ -21,7 +21,7 @@ class BudgetsDatabaseInputs {
   static const budgetsDatabase = "budgets_database.db";
 
   Future<void> insertBudgetData(BudgetsData budgetsData, String? tableName,
-      {String usernameId = "Unknown"}) async {
+      String usernameId) async {
 
     var tableNameQuery = (tableName != null) ? tableName : BudgetsDatabaseInputs.databaseTableName;
     tableNameQuery = "${usernameId}_${tableNameQuery}";
@@ -53,7 +53,7 @@ class BudgetsDatabaseInputs {
 
   }
 
-  Future<void> updateBudgetData(BudgetsData budgetsData, String? tableName, {String usernameId = "Unknown"}) async {
+  Future<void> updateBudgetData(BudgetsData budgetsData, String? tableName, String usernameId) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), BudgetsDatabaseInputs.budgetsDatabase),

@@ -9,6 +9,7 @@
  */
 
 import 'package:flow_accounting/general_data/ui/general_information_charts.dart';
+import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/database/io/inputs.dart';
@@ -404,7 +405,7 @@ class _GeneralDataView extends State<GeneralDataView> {
 
     TransactionsDatabaseQueries transactionsDatabaseQueries = TransactionsDatabaseQueries();
 
-    List<TransactionsData> allTransactions = await transactionsDatabaseQueries.getAllTransactions(TransactionsDatabaseInputs.databaseTableName);
+    List<TransactionsData> allTransactions = await transactionsDatabaseQueries.getAllTransactions(TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
     for (TransactionsData element in allTransactions) {
 
@@ -432,7 +433,7 @@ class _GeneralDataView extends State<GeneralDataView> {
 
     TransactionsDatabaseQueries transactionsDatabaseQueries = TransactionsDatabaseQueries();
 
-    List<TransactionsData> allTransactions = await transactionsDatabaseQueries.getAllTransactions(TransactionsDatabaseInputs.databaseTableName);
+    List<TransactionsData> allTransactions = await transactionsDatabaseQueries.getAllTransactions(TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
     for (TransactionsData element in allTransactions) {
 

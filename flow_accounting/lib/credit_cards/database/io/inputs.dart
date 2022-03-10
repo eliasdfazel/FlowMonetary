@@ -22,7 +22,7 @@ class CreditCardsDatabaseInputs {
   static const creditCardDatabase = "credit_cards_database.db";
 
   Future<void> insertCreditCardsData(CreditCardsData creditCardsData,
-      String? tableName, {String usernameId = "Unknown"}) async {
+      String? tableName, String usernameId) async {
 
     var tableNameQuery = (tableName != null) ? tableName : CreditCardsDatabaseInputs.databaseTableName;
     tableNameQuery = "${usernameId}_${tableNameQuery}";
@@ -59,7 +59,7 @@ class CreditCardsDatabaseInputs {
   }
 
   Future<void> updateCreditCardsData(CreditCardsData creditCardsData,
-      String? tableName, {String usernameId = "Unknown"}) async {
+      String? tableName, String usernameId) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), CreditCardsDatabaseInputs.creditCardDatabase),
@@ -86,7 +86,7 @@ class CreditCardsDatabaseInputs {
   }
 
   Future<void> deleteCreditCardsData(int id, String? tableName,
-      {String usernameId = "Unknown"}) async {
+      String usernameId) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), creditCardDatabase),

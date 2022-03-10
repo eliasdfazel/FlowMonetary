@@ -2,6 +2,7 @@
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:blur/blur.dart';
 import 'package:flow_accounting/home/interface/dashboard.dart';
+import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/database/io/inputs.dart';
@@ -888,7 +889,7 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
 
     var databaseQueries = TransactionsDatabaseQueries();
 
-    databaseQueries.queryDeleteTransaction(transactionsData.id, TransactionsDatabaseInputs.databaseTableName);
+    databaseQueries.queryDeleteTransaction(transactionsData.id, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
     retrieveAllTransactions(context);
 
@@ -926,7 +927,7 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
 
     var databaseQueries = TransactionsDatabaseQueries();
 
-    allTransactions = await databaseQueries.getAllTransactions(TransactionsDatabaseInputs.databaseTableName);
+    allTransactions = await databaseQueries.getAllTransactions(TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
     for (var element in allTransactions) {
 
@@ -1072,7 +1073,7 @@ class _TransactionsOutputView extends State<TransactionsOutputView> {
 
     var databaseQueries = TransactionsDatabaseQueries();
 
-    allTransactions = await databaseQueries.getAllTransactions(TransactionsDatabaseInputs.databaseTableName);
+    allTransactions = await databaseQueries.getAllTransactions(TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
     for (var element in allTransactions) {
 

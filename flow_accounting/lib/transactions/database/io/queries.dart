@@ -18,7 +18,7 @@ import 'package:sqflite/sqflite.dart';
 
 class TransactionsDatabaseQueries {
 
-  Future<List<TransactionsData>> getAllTransactions(String? tableName, {String usernameId = "Unknown"}) async {
+  Future<List<TransactionsData>> getAllTransactions(String? tableName, String usernameId) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), TransactionsDatabaseInputs.transactionDatabase),
@@ -56,7 +56,7 @@ class TransactionsDatabaseQueries {
   }
 
   Future<List<Map<String, Object?>>> queryTransactionByMonths(int transactionYear, int transactionMonth, String transactionType,
-      String? tableName, {String usernameId = "Unknown"}) async {
+      String? tableName, String usernameId) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), TransactionsDatabaseInputs.transactionDatabase),
@@ -79,7 +79,7 @@ class TransactionsDatabaseQueries {
   Future<List<Map<String, Object?>>> queryTransactionByCreditCard(
       String sourceCardNumber, String targetCardNumber,
       int transactionYear, int transactionMonth,
-      String? tableName, {String usernameId = "Unknown"}) async {
+      String? tableName, String usernameId) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), TransactionsDatabaseInputs.transactionDatabase),
@@ -100,7 +100,7 @@ class TransactionsDatabaseQueries {
   }
 
   Future<Map<String, Object?>> querySpecificTransaction(int id,
-      String? tableName, {String usernameId = "Unknown"}) async {
+      String? tableName, String usernameId) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), TransactionsDatabaseInputs.transactionDatabase),
@@ -121,7 +121,7 @@ class TransactionsDatabaseQueries {
   }
 
   Future<int> queryDeleteTransaction(int id,
-      String? tableName, {String usernameId = "Unknown"}) async {
+      String? tableName, String usernameId) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), TransactionsDatabaseInputs.transactionDatabase),

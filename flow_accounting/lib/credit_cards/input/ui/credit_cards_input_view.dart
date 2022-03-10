@@ -16,6 +16,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flow_accounting/credit_cards/database/io/inputs.dart';
 import 'package:flow_accounting/credit_cards/database/io/queries.dart';
 import 'package:flow_accounting/credit_cards/database/structures/tables_structure.dart';
+import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/database/io/inputs.dart';
@@ -1173,11 +1174,11 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
 
                             if (widget.creditCardsData.id == 0) {
 
-                              databaseInputs.insertCreditCardsData(creditCardsData, CreditCardsDatabaseInputs.databaseTableName);
+                              databaseInputs.insertCreditCardsData(creditCardsData, CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
                             } else {
 
-                              databaseInputs.updateCreditCardsData(creditCardsData, CreditCardsDatabaseInputs.databaseTableName);
+                              databaseInputs.updateCreditCardsData(creditCardsData, CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
                             }
 
@@ -1377,7 +1378,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
 
     CreditCardsDatabaseQueries creditCardsDatabaseQueries = CreditCardsDatabaseQueries();
 
-    creditCardsDatabaseQueries.queryDeleteCreditCard(creditCardsData.id, CreditCardsDatabaseInputs.databaseTableName);
+    creditCardsDatabaseQueries.queryDeleteCreditCard(creditCardsData.id, CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
     Navigator.pop(context);
 
@@ -1457,7 +1458,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
     double monthSumOne = 0;
     var monthOne = await transactionsDatabaseQueries.queryTransactionByCreditCard(widget.creditCardsData.cardNumber, widget.creditCardsData.cardNumber,
         selectedYear, 1,
-        TransactionsDatabaseInputs.databaseTableName);
+        TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
     for (var element in monthOne) {
 
       switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {
@@ -1481,7 +1482,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
     double monthSumTwo = 0;
     var monthTwo = await transactionsDatabaseQueries.queryTransactionByCreditCard(widget.creditCardsData.cardNumber, widget.creditCardsData.cardNumber,
         selectedYear, 2,
-        TransactionsDatabaseInputs.databaseTableName);
+        TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
     for (var element in monthTwo) {
 
       switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {
@@ -1505,7 +1506,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
     double monthSumThree = 0;
     var monthThree = await transactionsDatabaseQueries.queryTransactionByCreditCard(widget.creditCardsData.cardNumber, widget.creditCardsData.cardNumber,
         selectedYear, 3,
-        TransactionsDatabaseInputs.databaseTableName);
+        TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
     for (var element in monthThree) {
 
       switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {
@@ -1529,7 +1530,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
     double monthSumFour = 0;
     var monthFour = await transactionsDatabaseQueries.queryTransactionByCreditCard(widget.creditCardsData.cardNumber, widget.creditCardsData.cardNumber,
         selectedYear, 4,
-        TransactionsDatabaseInputs.databaseTableName);
+        TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
     for (var element in monthFour) {
 
       switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {
@@ -1553,7 +1554,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
     double monthSumFive = 0;
     var monthFive = await transactionsDatabaseQueries.queryTransactionByCreditCard(widget.creditCardsData.cardNumber, widget.creditCardsData.cardNumber,
         selectedYear, 5,
-        TransactionsDatabaseInputs.databaseTableName);
+        TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
     for (var element in monthFive) {
 
       switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {
@@ -1577,7 +1578,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
     double monthSumSix = 0;
     var monthSix = await transactionsDatabaseQueries.queryTransactionByCreditCard(widget.creditCardsData.cardNumber, widget.creditCardsData.cardNumber,
         selectedYear, 6,
-        TransactionsDatabaseInputs.databaseTableName);
+        TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
     for (var element in monthSix) {
 
       switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {
@@ -1601,7 +1602,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
     double monthSumSeven = 0;
     var monthSeven = await transactionsDatabaseQueries.queryTransactionByCreditCard(widget.creditCardsData.cardNumber, widget.creditCardsData.cardNumber,
         selectedYear, 7,
-        TransactionsDatabaseInputs.databaseTableName);
+        TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
     for (var element in monthSeven) {
 
       switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {
@@ -1625,7 +1626,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
     double monthSumEight = 0;
     var monthEight = await transactionsDatabaseQueries.queryTransactionByCreditCard(widget.creditCardsData.cardNumber, widget.creditCardsData.cardNumber,
         selectedYear, 8,
-        TransactionsDatabaseInputs.databaseTableName);
+        TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
     for (var element in monthEight) {
 
       switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {
@@ -1649,7 +1650,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
     double monthSumNine = 0;
     var monthNine = await transactionsDatabaseQueries.queryTransactionByCreditCard(widget.creditCardsData.cardNumber, widget.creditCardsData.cardNumber,
         selectedYear, 9,
-        TransactionsDatabaseInputs.databaseTableName);
+        TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
     for (var element in monthNine) {
 
       switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {
@@ -1673,7 +1674,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
     double monthSumTen = 0;
     var monthTen = await transactionsDatabaseQueries.queryTransactionByCreditCard(widget.creditCardsData.cardNumber, widget.creditCardsData.cardNumber,
         selectedYear, 10,
-        TransactionsDatabaseInputs.databaseTableName);
+        TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
     for (var element in monthTen) {
 
       switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {
@@ -1697,7 +1698,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
     double monthSumEleven = 0;
     var monthEleven = await transactionsDatabaseQueries.queryTransactionByCreditCard(widget.creditCardsData.cardNumber, widget.creditCardsData.cardNumber,
         selectedYear, 11,
-        TransactionsDatabaseInputs.databaseTableName);
+        TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
     for (var element in monthEleven) {
 
       switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {
@@ -1721,7 +1722,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
     double monthSumTwelve = 0;
     var monthTwelve = await transactionsDatabaseQueries.queryTransactionByCreditCard(widget.creditCardsData.cardNumber, widget.creditCardsData.cardNumber,
         selectedYear, 12,
-        TransactionsDatabaseInputs.databaseTableName);
+        TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
     for (var element in monthTwelve) {
 
       switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {

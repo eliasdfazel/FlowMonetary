@@ -14,6 +14,7 @@ import 'package:flow_accounting/credit_cards/database/io/inputs.dart';
 import 'package:flow_accounting/credit_cards/database/structures/tables_structure.dart';
 import 'package:flow_accounting/customers/database/io/inputs.dart';
 import 'package:flow_accounting/customers/database/structures/table_structure.dart';
+import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/database/io/inputs.dart';
 import 'package:flow_accounting/transactions/database/structures/tables_structure.dart';
@@ -109,7 +110,7 @@ class PrototypeData {
 
     for (var element in creditCardsData) {
 
-      creditCardsDatabaseInputs.insertCreditCardsData(element, CreditCardsDatabaseInputs.databaseTableName);
+      creditCardsDatabaseInputs.insertCreditCardsData(element, CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
     }
 
@@ -167,7 +168,7 @@ class PrototypeData {
 
     for (var element in budgetsData) {
 
-      budgetsDatabaseInputs.insertBudgetData(element, BudgetsDatabaseInputs.databaseTableName);
+      budgetsDatabaseInputs.insertBudgetData(element, BudgetsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
     }
 
@@ -270,7 +271,7 @@ class PrototypeData {
 
     for (var element in customersData) {
 
-      customersDatabaseInputs.insertCustomerData(element, CustomersDatabaseInputs.databaseTableName);
+      customersDatabaseInputs.insertCustomerData(element, CustomersDatabaseInputs.databaseTableName, UserInformation.UserId);
 
     }
 
@@ -552,7 +553,7 @@ class PrototypeData {
 
     for (var element in transactionsData) {
 
-      transactionsDatabaseInputs.insertTransactionData(element, TransactionsDatabaseInputs.databaseTableName);
+      transactionsDatabaseInputs.insertTransactionData(element, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
     }
 

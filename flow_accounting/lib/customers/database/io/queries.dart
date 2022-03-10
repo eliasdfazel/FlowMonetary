@@ -16,7 +16,7 @@ import 'package:sqflite/sqflite.dart';
 class CustomersDatabaseQueries {
 
   Future<List<CustomersData>> getAllCustomers(String? tableName,
-      {String usernameId = "Unknown"}) async {
+      String usernameId) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), CustomersDatabaseInputs.customersDatabase),
@@ -59,7 +59,7 @@ class CustomersDatabaseQueries {
   }
 
   Future<int> queryDeleteCustomer(int id,
-      String? tableName, {String usernameId = "Unknown"}) async {
+      String? tableName, String usernameId) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), CustomersDatabaseInputs.customersDatabase),

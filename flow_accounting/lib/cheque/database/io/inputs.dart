@@ -21,7 +21,7 @@ class ChequesDatabaseInputs {
   static const chequesDatabase = "cheques_database.db";
 
   Future<void> insertChequeData(ChequesData chequesData, String? tableName,
-      {String usernameId = "Unknown"}) async {
+      String usernameId) async {
 
     var tableNameQuery = (tableName != null) ? tableName : ChequesDatabaseInputs.databaseTableName;
     tableNameQuery = "${usernameId}_${tableNameQuery}";
@@ -83,7 +83,7 @@ class ChequesDatabaseInputs {
 
   }
 
-  Future<void> updateChequeData(ChequesData chequesData, String? tableName, {String usernameId = "Unknown"}) async {
+  Future<void> updateChequeData(ChequesData chequesData, String? tableName, String usernameId) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), ChequesDatabaseInputs.chequesDatabase),

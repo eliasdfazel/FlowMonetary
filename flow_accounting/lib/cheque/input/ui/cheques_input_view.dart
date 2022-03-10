@@ -25,6 +25,7 @@ import 'package:flow_accounting/customers/database/io/inputs.dart';
 import 'package:flow_accounting/customers/database/io/queries.dart';
 import 'package:flow_accounting/customers/database/structures/table_structure.dart';
 import 'package:flow_accounting/home/interface/dashboard.dart';
+import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/database/io/inputs.dart';
@@ -2662,7 +2663,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                               colorTag: colorSelectorView.selectedColor.value,
                             );
 
-                            databaseInputs.insertChequeData(chequesData!, ChequesDatabaseInputs.databaseTableName);
+                            databaseInputs.insertChequeData(chequesData!, ChequesDatabaseInputs.databaseTableName, UserInformation.UserId);
 
                             addChequeReminder(
                                 calendarDueDateView.pickedDateTime,
@@ -2788,7 +2789,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
     CustomersDatabaseQueries customersDatabaseQueries = CustomersDatabaseQueries();
 
-    var retrievedCustomers = await customersDatabaseQueries.getAllCustomers(CustomersDatabaseInputs.databaseTableName);
+    var retrievedCustomers = await customersDatabaseQueries.getAllCustomers(CustomersDatabaseInputs.databaseTableName, UserInformation.UserId);
 
     if (retrievedCustomers.isNotEmpty) {
 
@@ -2810,7 +2811,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
     BudgetsDatabaseQueries budgetsDatabaseQueries = BudgetsDatabaseQueries();
 
-    var retrievedBudgets = await budgetsDatabaseQueries.getAllBudgets(BudgetsDatabaseInputs.databaseTableName);
+    var retrievedBudgets = await budgetsDatabaseQueries.getAllBudgets(BudgetsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
     if (retrievedBudgets.isNotEmpty) {
 
@@ -2827,7 +2828,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
     CreditCardsDatabaseQueries creditCardsDatabaseQueries = CreditCardsDatabaseQueries();
 
-    var retrievedCreditCards = await creditCardsDatabaseQueries.getAllCreditCards(CreditCardsDatabaseInputs.databaseTableName);
+    var retrievedCreditCards = await creditCardsDatabaseQueries.getAllCreditCards(CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
     if (retrievedCreditCards.isNotEmpty) {
 
@@ -2845,7 +2846,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
       var creditCardsDatabaseQueries = CreditCardsDatabaseQueries();
 
       var sourceCreditCardData = await creditCardsDatabaseQueries.extractTransactionsQuery(
-          await creditCardsDatabaseQueries.querySpecificCreditCardByCardNumber(controllerChequeSourceAccount.text, CreditCardsDatabaseInputs.databaseTableName)
+          await creditCardsDatabaseQueries.querySpecificCreditCardByCardNumber(controllerChequeSourceAccount.text, CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId)
       );
 
       var newCardBalance = (int.parse(sourceCreditCardData.cardBalance) - int.parse(chequesData.chequeMoneyAmount)).toString();
@@ -2863,7 +2864,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
             cardBalance: newCardBalance,
             colorTag: sourceCreditCardData.colorTag
         ),
-        CreditCardsDatabaseInputs.databaseTableName
+        CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId
       );
 
     } else if (transactionType == ChequesData.TransactionType_Receive) {
@@ -2871,7 +2872,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
       var creditCardsDatabaseQueries = CreditCardsDatabaseQueries();
 
       var sourceCreditCardData = await creditCardsDatabaseQueries.extractTransactionsQuery(
-          await creditCardsDatabaseQueries.querySpecificCreditCardByCardNumber(controllerChequeTargetAccount.text, CreditCardsDatabaseInputs.databaseTableName)
+          await creditCardsDatabaseQueries.querySpecificCreditCardByCardNumber(controllerChequeTargetAccount.text, CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId)
       );
 
       var newCardBalance = (int.parse(sourceCreditCardData.cardBalance) + int.parse(chequesData.chequeMoneyAmount)).toString();
@@ -2889,7 +2890,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
               cardBalance: newCardBalance,
               colorTag: sourceCreditCardData.colorTag
           ),
-          CreditCardsDatabaseInputs.databaseTableName
+          CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId
       );
 
     }
@@ -2903,7 +2904,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
       var budgetsDatabaseQueries = BudgetsDatabaseQueries();
 
       var budgetData = await budgetsDatabaseQueries.extractBudgetsQuery(
-          await budgetsDatabaseQueries.querySpecificBudgetsByName(controllerChequeSourceAccount.text, CreditCardsDatabaseInputs.databaseTableName)
+          await budgetsDatabaseQueries.querySpecificBudgetsByName(controllerChequeSourceAccount.text, CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId)
       );
 
       var newBudgetBalance = (int.parse(budgetData.budgetBalance) - int.parse(chequesData.chequeMoneyAmount)).toString();
@@ -2918,7 +2919,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
               budgetBalance: newBudgetBalance,
               colorTag: budgetData.colorTag
           ),
-          CreditCardsDatabaseInputs.databaseTableName
+          CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId
       );
 
     } else if (transactionType == ChequesData.TransactionType_Receive) {
@@ -2926,7 +2927,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
       var budgetsDatabaseQueries = BudgetsDatabaseQueries();
 
       var budgetData = await budgetsDatabaseQueries.extractBudgetsQuery(
-          await budgetsDatabaseQueries.querySpecificBudgetsByName(controllerChequeSourceAccount.text, CreditCardsDatabaseInputs.databaseTableName)
+          await budgetsDatabaseQueries.querySpecificBudgetsByName(controllerChequeSourceAccount.text, CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId)
       );
 
       var newBudgetBalance = (int.parse(budgetData.budgetBalance) + int.parse(chequesData.chequeMoneyAmount)).toString();
@@ -2941,7 +2942,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
               budgetBalance: newBudgetBalance,
               colorTag: budgetData.colorTag
           ),
-          CreditCardsDatabaseInputs.databaseTableName
+          CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId
       );
 
     }
@@ -2984,7 +2985,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
     TransactionsDatabaseInputs transactionsDatabaseInputs = TransactionsDatabaseInputs();
 
-    transactionsDatabaseInputs.insertTransactionData(transactionsData, TransactionsDatabaseInputs.databaseTableName);
+    transactionsDatabaseInputs.insertTransactionData(transactionsData, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
   }
 

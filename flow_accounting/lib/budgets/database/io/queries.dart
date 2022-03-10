@@ -18,7 +18,7 @@ import 'package:sqflite/sqflite.dart';
 class BudgetsDatabaseQueries {
 
   Future<List<BudgetsData>> getAllBudgets(String? tableName,
-      {String usernameId = "Unknown"}) async {
+      String usernameId) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), BudgetsDatabaseInputs.budgetsDatabase),
@@ -48,7 +48,7 @@ class BudgetsDatabaseQueries {
 
   Future<Map<String, Object?>> querySpecificBudgetsByName(
       String budgetName,
-      String? tableName, {String usernameId = "Unknown"}) async {
+      String? tableName, String usernameId) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), BudgetsDatabaseInputs.budgetsDatabase),
@@ -69,7 +69,7 @@ class BudgetsDatabaseQueries {
   }
 
   Future<int> queryDeleteBudget(int id,
-      String? tableName, {String usernameId = "Unknown"}) async {
+      String? tableName, String usernameId) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), BudgetsDatabaseInputs.budgetsDatabase),

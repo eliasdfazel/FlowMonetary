@@ -22,6 +22,7 @@ import 'package:flow_accounting/customers/database/io/inputs.dart';
 import 'package:flow_accounting/customers/database/io/queries.dart';
 import 'package:flow_accounting/customers/database/structures/table_structure.dart';
 import 'package:flow_accounting/home/interface/dashboard.dart';
+import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/database/io/inputs.dart';
@@ -1877,7 +1878,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                               budgetName: budgetName,
                             );
 
-                            databaseInputs.insertTransactionData(transactionData, TransactionsDatabaseInputs.databaseTableName);
+                            databaseInputs.insertTransactionData(transactionData, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
                             Fluttertoast.showToast(
                                 msg: StringsResources.updatedText,
@@ -2000,7 +2001,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
     CustomersDatabaseQueries customersDatabaseQueries = CustomersDatabaseQueries();
 
-    var retrievedCustomers = await customersDatabaseQueries.getAllCustomers(CustomersDatabaseInputs.databaseTableName);
+    var retrievedCustomers = await customersDatabaseQueries.getAllCustomers(CustomersDatabaseInputs.databaseTableName, UserInformation.UserId);
 
     if (retrievedCustomers.isNotEmpty) {
 
@@ -2022,7 +2023,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
     BudgetsDatabaseQueries budgetsDatabaseQueries = BudgetsDatabaseQueries();
 
-    var retrievedBudgets = await budgetsDatabaseQueries.getAllBudgets(BudgetsDatabaseInputs.databaseTableName);
+    var retrievedBudgets = await budgetsDatabaseQueries.getAllBudgets(BudgetsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
     if (retrievedBudgets.isNotEmpty) {
 
@@ -2039,7 +2040,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
     CreditCardsDatabaseQueries creditCardsDatabaseQueries = CreditCardsDatabaseQueries();
 
-    var retrievedCreditCards = await creditCardsDatabaseQueries.getAllCreditCards(CreditCardsDatabaseInputs.databaseTableName);
+    var retrievedCreditCards = await creditCardsDatabaseQueries.getAllCreditCards(CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
     if (retrievedCreditCards.isNotEmpty) {
 
@@ -2057,7 +2058,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
       var creditCardsDatabaseQueries = CreditCardsDatabaseQueries();
 
       var sourceCreditCardData = await creditCardsDatabaseQueries.extractTransactionsQuery(
-          await creditCardsDatabaseQueries.querySpecificCreditCardByCardNumber(controllerTransactionSourceCard.text, CreditCardsDatabaseInputs.databaseTableName)
+          await creditCardsDatabaseQueries.querySpecificCreditCardByCardNumber(controllerTransactionSourceCard.text, CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId)
       );
 
       var newCardBalance = (int.parse(sourceCreditCardData.cardBalance) - int.parse(transactionsData.amountMoney)).toString();
@@ -2075,7 +2076,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
             cardBalance: newCardBalance,
             colorTag: sourceCreditCardData.colorTag
         ),
-        CreditCardsDatabaseInputs.databaseTableName
+        CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId
       );
 
     } else if (transactionType == TransactionsData.TransactionType_Receive) {
@@ -2083,7 +2084,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
       var creditCardsDatabaseQueries = CreditCardsDatabaseQueries();
 
       var sourceCreditCardData = await creditCardsDatabaseQueries.extractTransactionsQuery(
-          await creditCardsDatabaseQueries.querySpecificCreditCardByCardNumber(controllerTransactionTargetCard.text, CreditCardsDatabaseInputs.databaseTableName)
+          await creditCardsDatabaseQueries.querySpecificCreditCardByCardNumber(controllerTransactionTargetCard.text, CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId)
       );
 
       var newCardBalance = (int.parse(sourceCreditCardData.cardBalance) + int.parse(transactionsData.amountMoney)).toString();
@@ -2101,7 +2102,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
               cardBalance: newCardBalance,
               colorTag: sourceCreditCardData.colorTag
           ),
-          CreditCardsDatabaseInputs.databaseTableName
+          CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId
       );
 
     }
@@ -2115,7 +2116,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
       var budgetsDatabaseQueries = BudgetsDatabaseQueries();
 
       var budgetData = await budgetsDatabaseQueries.extractBudgetsQuery(
-          await budgetsDatabaseQueries.querySpecificBudgetsByName(controllerTransactionSourceCard.text, CreditCardsDatabaseInputs.databaseTableName)
+          await budgetsDatabaseQueries.querySpecificBudgetsByName(controllerTransactionSourceCard.text, CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId)
       );
 
       var newBudgetBalance = (int.parse(budgetData.budgetBalance) - int.parse(transactionsData.amountMoney)).toString();
@@ -2130,7 +2131,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
               budgetBalance: newBudgetBalance,
               colorTag: budgetData.colorTag
           ),
-          CreditCardsDatabaseInputs.databaseTableName
+          CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId
       );
 
     } else if (transactionType == TransactionsData.TransactionType_Receive) {
@@ -2138,7 +2139,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
       var budgetsDatabaseQueries = BudgetsDatabaseQueries();
 
       var budgetData = await budgetsDatabaseQueries.extractBudgetsQuery(
-          await budgetsDatabaseQueries.querySpecificBudgetsByName(controllerTransactionSourceCard.text, CreditCardsDatabaseInputs.databaseTableName)
+          await budgetsDatabaseQueries.querySpecificBudgetsByName(controllerTransactionSourceCard.text, CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId)
       );
 
       var newBudgetBalance = (int.parse(budgetData.budgetBalance) + int.parse(transactionsData.amountMoney)).toString();
@@ -2153,7 +2154,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
               budgetBalance: newBudgetBalance,
               colorTag: budgetData.colorTag
           ),
-          CreditCardsDatabaseInputs.databaseTableName
+          CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId
       );
 
     }

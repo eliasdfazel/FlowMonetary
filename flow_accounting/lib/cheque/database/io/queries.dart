@@ -18,7 +18,7 @@ import 'package:sqflite/sqflite.dart';
 class ChequesDatabaseQueries {
 
   Future<List<ChequesData>> getAllCheques(String? tableName,
-      {String usernameId = "Unknown"}) async {
+      String usernameId) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), ChequesDatabaseInputs.chequesDatabase),
@@ -76,7 +76,7 @@ class ChequesDatabaseQueries {
 
   Future<Map<String, Object?>> querySpecificChequesByNumber(
       String chequeNumber,
-      String? tableName, {String usernameId = "Unknown"}) async {
+      String? tableName, String usernameId) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), ChequesDatabaseInputs.chequesDatabase),
@@ -97,7 +97,7 @@ class ChequesDatabaseQueries {
   }
 
   Future<int> queryDeleteCheque(int id,
-      String? tableName, {String usernameId = "Unknown"}) async {
+      String? tableName, String usernameId) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), ChequesDatabaseInputs.chequesDatabase),

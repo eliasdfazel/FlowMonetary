@@ -5,6 +5,7 @@ import 'package:flow_accounting/cheque/database/io/inputs.dart';
 import 'package:flow_accounting/cheque/database/io/queries.dart';
 import 'package:flow_accounting/cheque/database/structures/table_structure.dart';
 import 'package:flow_accounting/cheque/input/ui/cheques_input_view.dart';
+import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/utils/colors/color_extractor.dart';
@@ -716,7 +717,7 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
 
     var databaseQueries = ChequesDatabaseQueries();
 
-    databaseQueries.queryDeleteCheque(chequesData.id, ChequesDatabaseInputs.databaseTableName);
+    databaseQueries.queryDeleteCheque(chequesData.id, ChequesDatabaseInputs.databaseTableName, UserInformation.UserId);
 
     retrieveAllCheque(context);
 
@@ -750,7 +751,7 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
 
     var databaseQueries = ChequesDatabaseQueries();
 
-    allCheques = await databaseQueries.getAllCheques(ChequesDatabaseInputs.databaseTableName);
+    allCheques = await databaseQueries.getAllCheques(ChequesDatabaseInputs.databaseTableName, UserInformation.UserId);
 
     for (var element in allCheques) {
 

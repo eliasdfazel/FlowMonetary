@@ -15,6 +15,7 @@ import 'package:flow_accounting/customers/database/io/inputs.dart';
 import 'package:flow_accounting/customers/database/io/queries.dart';
 import 'package:flow_accounting/customers/database/structures/table_structure.dart';
 import 'package:flow_accounting/customers/input/ui/customers_input_view.dart';
+import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
@@ -716,7 +717,7 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
 
     var databaseQueries = CustomersDatabaseQueries();
 
-    databaseQueries.queryDeleteCustomer(customersData.id, CustomersDatabaseInputs.databaseTableName);
+    databaseQueries.queryDeleteCustomer(customersData.id, CustomersDatabaseInputs.databaseTableName, UserInformation.UserId);
 
     retrieveAllCustomers(context);
 
@@ -750,7 +751,7 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
 
     var databaseQueries = CustomersDatabaseQueries();
 
-    allCustomers = await databaseQueries.getAllCustomers(CustomersDatabaseInputs.databaseTableName);
+    allCustomers = await databaseQueries.getAllCustomers(CustomersDatabaseInputs.databaseTableName, UserInformation.UserId);
 
     for (var element in allCustomers) {
 

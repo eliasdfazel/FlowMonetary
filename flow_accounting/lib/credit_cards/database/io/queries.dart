@@ -19,7 +19,7 @@ import 'package:sqflite/sqflite.dart';
 class CreditCardsDatabaseQueries {
 
   Future<List<CreditCardsData>> getAllCreditCards(String? tableName,
-      {String usernameId = "Unknown"}) async {
+      String usernameId) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), CreditCardsDatabaseInputs.creditCardDatabase),
@@ -48,7 +48,7 @@ class CreditCardsDatabaseQueries {
   }
 
   Future<Map<String, Object?>> querySpecificCreditCard(int id,
-      String? tableName, {String usernameId = "Unknown"}) async {
+      String? tableName, String usernameId) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), CreditCardsDatabaseInputs.creditCardDatabase),
@@ -70,7 +70,7 @@ class CreditCardsDatabaseQueries {
 
   Future<Map<String, Object?>> querySpecificCreditCardByCardNumber(
       String cardNumber,
-      String? tableName, {String usernameId = "Unknown"}) async {
+      String? tableName, String usernameId) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), CreditCardsDatabaseInputs.creditCardDatabase),
@@ -91,7 +91,7 @@ class CreditCardsDatabaseQueries {
   }
 
   Future<int> queryDeleteCreditCard(int id,
-      String? tableName, {String usernameId = "Unknown"}) async {
+      String? tableName, String usernameId) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), CreditCardsDatabaseInputs.creditCardDatabase),

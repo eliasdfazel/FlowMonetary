@@ -13,6 +13,7 @@ import 'package:flow_accounting/credit_cards/database/io/inputs.dart';
 import 'package:flow_accounting/credit_cards/database/io/queries.dart';
 import 'package:flow_accounting/credit_cards/database/structures/tables_structure.dart';
 import 'package:flow_accounting/home/interface/sections/latest_transactions_view.dart';
+import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/database/io/inputs.dart';
@@ -235,7 +236,7 @@ class DashboardViewState extends State<DashboardView> {
 
     TransactionsDatabaseQueries transactionsDatabaseQueries = TransactionsDatabaseQueries();
 
-    List<TransactionsData> latestTransactions = await transactionsDatabaseQueries.getAllTransactions(TransactionsDatabaseInputs.databaseTableName);
+    List<TransactionsData> latestTransactions = await transactionsDatabaseQueries.getAllTransactions(TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
     if (latestTransactions.length > 10) {
 
@@ -259,7 +260,7 @@ class DashboardViewState extends State<DashboardView> {
 
     CreditCardsDatabaseQueries databaseQueries = CreditCardsDatabaseQueries();
 
-    List<CreditCardsData> listOfAllCreditCards = await databaseQueries.getAllCreditCards(CreditCardsDatabaseInputs.databaseTableName);
+    List<CreditCardsData> listOfAllCreditCards = await databaseQueries.getAllCreditCards(CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
     setState(() {
 
