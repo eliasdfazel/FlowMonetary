@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/12/22, 5:45 AM
+ * Last modified 3/12/22, 6:00 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -304,7 +304,7 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Expanded(
-                              flex: 1,
+                              flex: 13,
                               child: Padding(
                                   padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
                                   child: Directionality(
@@ -380,6 +380,19 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                                   )
                               ),
                             ),
+                            Expanded(
+                              flex: 3,
+                              child: Padding(
+                                padding: EdgeInsets.fromLTRB(0, 0, 13, 0),
+                                child: AspectRatio(
+                                  aspectRatio: 1,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(51),
+                                    child: Image.network("https://myhousestore.ir/wp-content/uploads/2022/03/telephone.png"),
+                                  ),
+                                ),
+                              ),
+                            )
                           ],
                         ),
                       ),
@@ -394,7 +407,7 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Expanded(
-                              flex: 1,
+                              flex: 13,
                               child: Padding(
                                   padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
                                   child: Directionality(
@@ -413,7 +426,7 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                                       decoration: InputDecoration(
                                         alignLabelWithHint: true,
                                         border: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                            borderSide: BorderSide(color: Colors.lightBlue, width: 1.0),
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(13),
                                                 topRight: Radius.circular(13),
@@ -423,7 +436,7 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                                             gapPadding: 5
                                         ),
                                         enabledBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                            borderSide: BorderSide(color: Colors.lightBlue, width: 1.0),
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(13),
                                                 topRight: Radius.circular(13),
@@ -433,7 +446,7 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                                             gapPadding: 5
                                         ),
                                         focusedBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                                            borderSide: BorderSide(color: Colors.lightBlue, width: 1.0),
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(13),
                                                 topRight: Radius.circular(13),
@@ -443,7 +456,7 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                                             gapPadding: 5
                                         ),
                                         errorBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.red, width: 1.0),
+                                            borderSide: BorderSide(color: Colors.blue, width: 1.0),
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(13),
                                                 topRight: Radius.circular(13),
@@ -470,6 +483,19 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                                   )
                               ),
                             ),
+                            Expanded(
+                              flex: 3,
+                              child: Padding(
+                                padding: EdgeInsets.fromLTRB(0, 0, 13, 0),
+                                child: AspectRatio(
+                                  aspectRatio: 1,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(51),
+                                    child: Image.network("https://myhousestore.ir/wp-content/uploads/2022/03/email.png"),
+                                  ),
+                                ),
+                              ),
+                            )
                           ],
                         ),
                       ),
@@ -484,7 +510,7 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Expanded(
-                              flex: 1,
+                              flex: 13,
                               child: Padding(
                                   padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
                                   child: Directionality(
@@ -560,6 +586,19 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                                   )
                               ),
                             ),
+                            Expanded(
+                              flex: 3,
+                              child: Padding(
+                                padding: EdgeInsets.fromLTRB(0, 0, 13, 0),
+                                child: AspectRatio(
+                                  aspectRatio: 1,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(51),
+                                    child: Image.network("https://myhousestore.ir/wp-content/uploads/2022/03/instagram.png"),
+                                  ),
+                                ),
+                              ),
+                            )
                           ],
                         ),
                       ),
@@ -574,7 +613,7 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Expanded(
-                              flex: 1,
+                              flex: 13,
                               child: Padding(
                                   padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
                                   child: Directionality(
@@ -654,6 +693,22 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                                   )
                               ),
                             ),
+                            Expanded(
+                              flex: 3,
+                              child: Padding(
+                                padding: EdgeInsets.fromLTRB(0, 0, 13, 0),
+                                child: Align(
+                                  alignment: AlignmentDirectional.center,
+                                  child: AspectRatio(
+                                    aspectRatio: 1,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(51),
+                                      child: Image.network("https://myhousestore.ir/wp-content/uploads/2022/03/pin.png"),
+                                    ),
+                                  ),
+                                )
+                              ),
+                            )
                           ],
                         ),
                       ),
