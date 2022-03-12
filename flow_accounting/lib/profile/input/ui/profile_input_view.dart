@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/12/22, 5:09 AM
+ * Last modified 3/12/22, 5:36 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -42,11 +42,11 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
 
   TextEditingController controllerFullName = TextEditingController();
 
-  TextEditingController userEmailAddress = TextEditingController();
-  TextEditingController userInstagram = TextEditingController();
-  TextEditingController userPhoneNumber = TextEditingController();
+  TextEditingController controllerUserEmailAddress = TextEditingController();
+  TextEditingController controllerUserInstagram = TextEditingController();
+  TextEditingController controllerUserPhoneNumber = TextEditingController();
 
-  TextEditingController userLocationAddress = TextEditingController();
+  TextEditingController controllerUserLocationAddress = TextEditingController();
 
   int timeNow = DateTime.now().millisecondsSinceEpoch;
 
@@ -67,16 +67,16 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
   @override
   void initState() {
 
-    userId = widget.profilesData?.userId ?? userPhoneNumber.text;
+    userId = widget.profilesData?.userId ?? controllerUserPhoneNumber.text;
 
     controllerFullName.text = widget.profilesData?.userFullName ?? "";
     profileImage = widget.profilesData?.userImage ?? "";
 
-    userEmailAddress.text = widget.profilesData?.userEmailAddress ?? "";
-    userInstagram.text = widget.profilesData?.userInstagram ?? "";
-    userPhoneNumber.text = widget.profilesData?.userPhoneNumber ?? "";
+    controllerUserEmailAddress.text = widget.profilesData?.userEmailAddress ?? "";
+    controllerUserInstagram.text = widget.profilesData?.userInstagram ?? "";
+    controllerUserPhoneNumber.text = widget.profilesData?.userPhoneNumber ?? "";
 
-    userLocationAddress.text = widget.profilesData?.userLocationAddress ?? "";
+    controllerUserLocationAddress.text = widget.profilesData?.userLocationAddress ?? "";
 
     super.initState();
 
@@ -264,6 +264,370 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                         height: 13,
                         color: Colors.transparent,
                       ),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 73,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                  child: Directionality(
+                                    textDirection: TextDirection.rtl,
+                                    child: TextField(
+                                      controller: controllerUserPhoneNumber,
+                                      textAlign: TextAlign.right,
+                                      textDirection: TextDirection.ltr,
+                                      textAlignVertical: TextAlignVertical.bottom,
+                                      maxLines: 1,
+                                      cursorColor: ColorsResources.primaryColor,
+                                      autocorrect: true,
+                                      autofocus: false,
+                                      keyboardType: TextInputType.phone,
+                                      textInputAction: TextInputAction.next,
+                                      decoration: InputDecoration(
+                                        alignLabelWithHint: true,
+                                        border: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.greenAccent, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        enabledBorder: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.greenAccent, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        focusedBorder: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.green, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        errorBorder: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.greenAccent, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        errorText: warningNotice,
+                                        filled: true,
+                                        fillColor: ColorsResources.lightTransparent,
+                                        labelText: StringsResources.profileUserPhoneNumber,
+                                        labelStyle: const TextStyle(
+                                            color: ColorsResources.dark,
+                                            fontSize: 17.0
+                                        ),
+                                        hintText: StringsResources.profileUserPhoneNumberHint,
+                                        hintStyle: const TextStyle(
+                                            color: ColorsResources.darkTransparent,
+                                            fontSize: 17.0
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Divider(
+                        height: 13,
+                        color: Colors.transparent,
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 73,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                  child: Directionality(
+                                    textDirection: TextDirection.rtl,
+                                    child: TextField(
+                                      controller: controllerUserEmailAddress,
+                                      textAlign: TextAlign.right,
+                                      textDirection: TextDirection.ltr,
+                                      textAlignVertical: TextAlignVertical.bottom,
+                                      maxLines: 1,
+                                      cursorColor: ColorsResources.primaryColor,
+                                      autocorrect: true,
+                                      autofocus: false,
+                                      keyboardType: TextInputType.emailAddress,
+                                      textInputAction: TextInputAction.next,
+                                      decoration: InputDecoration(
+                                        alignLabelWithHint: true,
+                                        border: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        enabledBorder: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        focusedBorder: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        errorBorder: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.red, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        errorText: warningNotice,
+                                        filled: true,
+                                        fillColor: ColorsResources.lightTransparent,
+                                        labelText: StringsResources.profileUserEmail,
+                                        labelStyle: const TextStyle(
+                                            color: ColorsResources.dark,
+                                            fontSize: 17.0
+                                        ),
+                                        hintText: StringsResources.profileUserEmailHint,
+                                        hintStyle: const TextStyle(
+                                            color: ColorsResources.darkTransparent,
+                                            fontSize: 17.0
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Divider(
+                        height: 13,
+                        color: Colors.transparent,
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 73,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                  child: Directionality(
+                                    textDirection: TextDirection.rtl,
+                                    child: TextField(
+                                      controller: controllerUserInstagram,
+                                      textAlign: TextAlign.right,
+                                      textDirection: TextDirection.ltr,
+                                      textAlignVertical: TextAlignVertical.bottom,
+                                      maxLines: 1,
+                                      cursorColor: ColorsResources.primaryColor,
+                                      autocorrect: true,
+                                      autofocus: false,
+                                      keyboardType: TextInputType.text,
+                                      textInputAction: TextInputAction.next,
+                                      decoration: InputDecoration(
+                                        alignLabelWithHint: true,
+                                        border: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.purpleAccent, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        enabledBorder: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.purpleAccent, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        focusedBorder: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.purpleAccent, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        errorBorder: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.purpleAccent, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        errorText: warningNotice,
+                                        filled: true,
+                                        fillColor: ColorsResources.lightTransparent,
+                                        labelText: StringsResources.profileUserInstagram,
+                                        labelStyle: const TextStyle(
+                                            color: ColorsResources.dark,
+                                            fontSize: 17.0
+                                        ),
+                                        hintText: StringsResources.profileUserInstagramHint,
+                                        hintStyle: const TextStyle(
+                                            color: ColorsResources.darkTransparent,
+                                            fontSize: 17.0
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Divider(
+                        height: 13,
+                        color: Colors.transparent,
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 133,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                  child: Directionality(
+                                    textDirection: TextDirection.rtl,
+                                    child: TextField(
+                                      controller: controllerUserLocationAddress,
+                                      textAlign: TextAlign.right,
+                                      textDirection: TextDirection.ltr,
+                                      textAlignVertical: TextAlignVertical.top,
+                                      maxLines: 5,
+                                      cursorColor: ColorsResources.primaryColor,
+                                      autocorrect: true,
+                                      autofocus: false,
+                                      keyboardType: TextInputType.text,
+                                      textInputAction: TextInputAction.next,
+                                      style: const TextStyle(
+                                          fontSize: 12,
+                                          color: ColorsResources.applicationDarkGeeksEmpire
+                                      ),
+                                      decoration: InputDecoration(
+                                        alignLabelWithHint: true,
+                                        border: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        enabledBorder: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        focusedBorder: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        errorBorder: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.red, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        errorText: warningNotice,
+                                        filled: true,
+                                        fillColor: ColorsResources.lightTransparent,
+                                        labelText: StringsResources.profileUserLocationAddress,
+                                        labelStyle: const TextStyle(
+                                            color: ColorsResources.dark,
+                                            fontSize: 13.0
+                                        ),
+                                        hintText: StringsResources.profileUserLocationAddressHint,
+                                        hintStyle: const TextStyle(
+                                            color: ColorsResources.darkTransparent,
+                                            fontSize: 13.0
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Divider(
+                        height: 13,
+                        color: Colors.transparent,
+                      ),
                     ]
                 ),
                 Positioned(
@@ -347,11 +711,11 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                                 userFullName: controllerFullName.text,
                                 userImage: profileImage,
 
-                                userEmailAddress: userEmailAddress.text,
-                                userInstagram: userInstagram.text,
-                                userPhoneNumber: userPhoneNumber.text,
+                                userEmailAddress: controllerUserEmailAddress.text,
+                                userInstagram: controllerUserInstagram.text,
+                                userPhoneNumber: controllerUserPhoneNumber.text,
 
-                                userLocationAddress: userLocationAddress.text
+                                userLocationAddress: controllerUserLocationAddress.text
                               );
 
                               if (widget.profilesData != null) {

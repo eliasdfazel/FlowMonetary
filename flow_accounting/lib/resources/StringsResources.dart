@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/12/22, 5:09 AM
+ * Last modified 3/12/22, 5:33 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -54,6 +54,18 @@ class StringsResources {
 
   static const String profileUserFullName = "نام و نام خانوادگی";
   static const String profileUserFullNameHint = "نام و نام خانوادگی خود را مطابق کارت شناسایی خود وارد کنید";
+
+  static const String profileUserEmail = "آدرس پست الکترونیکی";
+  static const String profileUserEmailHint = "آدرس ایمیل معتبر خود را وارد کنید";
+
+  static const String profileUserPhoneNumber = "شماره تلفن همراه";
+  static const String profileUserPhoneNumberHint = "شماره تلفن خود را برای اعتبار سنجی وارد کنید";
+
+  static const String profileUserInstagram = "آدرس شبکه اجتماعی مجازی";
+  static const String profileUserInstagramHint = "آدرس شبکه اجتماعی مجازی خود را وارد کنید";
+
+  static const String profileUserLocationAddress = "آدرس پستی";
+  static const String profileUserLocationAddressHint = "آدرس محل سکونت یا کار خود را وارد کنید";
   /* End - Profile String Resources */
 
   /* Start - Transaction String Resources */
