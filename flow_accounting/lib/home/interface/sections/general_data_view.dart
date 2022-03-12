@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/13/22, 6:51 AM
+ * Last modified 3/12/22, 5:47 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -57,7 +57,7 @@ class _GeneralDataView extends State<GeneralDataView> {
     if (totalEarning > 0) {
 
       generalDataContent = Padding(
-        padding: const EdgeInsets.fromLTRB(13, 7, 13, 0),
+        padding: const EdgeInsets.fromLTRB(13, 13, 13, 0),
         child: Column(
           children: [
             SizedBox(
