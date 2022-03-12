@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/12/22, 5:10 AM
+ * Last modified 3/12/22, 7:25 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -14,6 +14,39 @@ import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 class ProfileDatabaseQueries {
+
+  Future<List<ProfilesData>> getAllProfileAccounts() async {
+
+    final database = openDatabase(
+      join(await getDatabasesPath(), ProfilesDatabaseInputs.profilesDatabase),
+    );
+
+    final databaseInstance = await database;
+
+    var tableNameQuery = ProfilesDatabaseInputs.databaseTableName;
+
+    final List<Map<String, dynamic>> maps = await databaseInstance.query(tableNameQuery);
+
+    return List.generate(maps.length, (i) {
+      return ProfilesData(
+        id: maps[i]['id'],
+
+        userId: maps[i]['userId'].toString(),
+
+        userFullName: maps[i]['userFullName'].toString(),
+        userImage: maps[i]['userImage'].toString(),
+
+        userEmailAddress: maps[i]['userEmailAddress'].toString(),
+        userPhoneNumber: maps[i]['userPhoneNumber'].toString(),
+        userInstagram: maps[i]['userInstagram'].toString(),
+
+        userLocationAddress: maps[i]['userLocationAddress'].toString(),
+
+        userSignedIn: maps[i]['userSignedIn'].toString(),
+      );
+    });
+
+  }
 
   Future<ProfilesData> querySignedInUser(String? tableName) async {
 

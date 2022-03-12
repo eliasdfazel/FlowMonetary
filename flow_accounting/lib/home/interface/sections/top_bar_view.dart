@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/12/22, 7:13 AM
+ * Last modified 3/12/22, 7:25 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -40,6 +40,7 @@ class _TopBarViewState extends State<TopBarView> {
       userLocationAddress: ''
   );
 
+  List<Widget> allAccountsViews = [];
 
   @override
   void initState() {
@@ -168,13 +169,18 @@ class _TopBarViewState extends State<TopBarView> {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(13))
       ),
+      scrollable: true,
       elevation: 13,
       backgroundColor: ColorsResources.lightestBlue,
       content: SizedBox(
         width: 303,
         height: 399,
-        child: ColoredBox(
-          color: Colors.lightGreenAccent,
+        child: ListView(
+          padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+          physics: BouncingScrollPhysics(),
+          children: [
+
+          ],
         ),
       ),
     );
@@ -204,6 +210,25 @@ class _TopBarViewState extends State<TopBarView> {
 
     }
 
+  }
+
+  void retrieveAllProfileAccounts() async{
+
+    ProfileDatabaseQueries profileDatabaseQueries = ProfileDatabaseQueries();
+
+    List<ProfilesData> allAccountsProfiles = await profileDatabaseQueries.getAllProfileAccounts();
+
+    for(var element in allAccountsProfiles) {
+
+      allAccountsViews.add(profilesItemView(element));
+
+    }
+
+  }
+
+  Widget profilesItemView(ProfilesData profilesData) {
+
+    return Container();
   }
 
 }
