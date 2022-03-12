@@ -8,7 +8,9 @@
  * https://opensource.org/licenses/MIT
  */
 
+import 'package:flow_accounting/profile/input/ui/profile_input_view.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
+import 'package:flow_accounting/utils/navigations/navigations.dart';
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -75,7 +77,7 @@ class TopBarView extends StatelessWidget {
                   child: GestureDetector(
                     onTap: () {
 
-
+                      NavigationProcess().goTo(context, ProfilesInputView());
 
                     },
                     child: const Align(

@@ -18,7 +18,7 @@ class ProfileDatabaseQueries {
   Future<ProfilesData> querySignedInUser(String? tableName) async {
 
     final database = openDatabase(
-      join(await getDatabasesPath(), ProfilesDatabaseInputs.profileDatabase),
+      join(await getDatabasesPath(), ProfilesDatabaseInputs.profilesDatabase),
     );
 
     final databaseInstance = await database;

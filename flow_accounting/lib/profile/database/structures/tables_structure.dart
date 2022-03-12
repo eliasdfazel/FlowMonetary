@@ -20,8 +20,8 @@
 
 class ProfilesData {
 
-  static const Profile_Not_Singed_In = 0;
-  static const Profile_Singed_In = 1;
+  static const Profile_Not_Singed_In = "0";
+  static const Profile_Singed_In = "1";
 
   final int id;
 
@@ -32,7 +32,7 @@ class ProfilesData {
   final String userPhoneNumber;
   final String userInstagram;
 
-  final int userSignedIn;
+  String userSignedIn = Profile_Not_Singed_In;
 
   ProfilesData({
     required this.id,
