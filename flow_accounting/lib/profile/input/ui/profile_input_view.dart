@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/12/22, 4:38 AM
+ * Last modified 3/12/22, 4:47 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -38,6 +38,8 @@ class ProfilesInputView extends StatefulWidget {
 }
 class _ProfilesInputViewState extends State<ProfilesInputView> {
 
+  String userId = "";
+
   TextEditingController controllerFullName = TextEditingController();
 
   TextEditingController userEmailAddress = TextEditingController();
@@ -63,7 +65,9 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
   }
 
   @override
-  void initState(){
+  void initState() {
+
+    userId = widget.profilesData?.userId ?? "";
 
     controllerFullName.text = widget.profilesData?.userFullName ?? "";
     profileImage = widget.profilesData?.userImage ?? "";
@@ -337,17 +341,17 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                               ProfilesData profilesData = ProfilesData(
                                 id: timeNow,
 
-                                userId: '',
+                                userId: userId,
                                 userSignedIn: ProfilesData.Profile_Not_Singed_In,
 
                                 userFullName: controllerFullName.text,
                                 userImage: profileImage,
 
-                                userEmailAddress: '',
-                                userInstagram: '',
-                                userPhoneNumber: '',
+                                userEmailAddress: userEmailAddress.text,
+                                userInstagram: userInstagram.text,
+                                userPhoneNumber: userPhoneNumber.text,
 
-                                userLocationAddress: ''
+                                userLocationAddress: userLocationAddress.text
                               );
 
                               if (widget.profilesData != null) {
