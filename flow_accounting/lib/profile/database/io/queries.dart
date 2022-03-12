@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/10/22, 7:35 AM
+ * Last modified 3/12/22, 4:07 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -38,11 +38,14 @@ class ProfileDatabaseQueries {
         userId: databaseContents[0]['userId'].toString(),
 
         userImage: databaseContents[0]['userImage'].toString(),
+
         userEmailAddress: databaseContents[0]['userEmailAddress'].toString(),
         userPhoneNumber: databaseContents[0]['userPhoneNumber'].toString(),
         userInstagram: databaseContents[0]['userInstagram'].toString(),
 
-        userSignedIn: int.parse(databaseContents[0]['userSignedIn'].toString())
+        userLocationAddress: databaseContents[0]['userLocationAddress'].toString(),
+
+        userSignedIn: databaseContents[0]['userSignedIn'].toString()
     );
   }
 

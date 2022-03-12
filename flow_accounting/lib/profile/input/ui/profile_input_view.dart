@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/12/22, 3:10 AM
+ * Last modified 3/12/22, 4:08 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -14,7 +14,6 @@ import 'package:flow_accounting/profile/database/io/inputs.dart';
 import 'package:flow_accounting/profile/database/structures/tables_structure.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
-import 'package:flow_accounting/utils/colors/color_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -24,10 +23,11 @@ class ProfilesInputView extends StatefulWidget {
     id: 0,
     userId: '',
     userSignedIn: ProfilesData.Profile_Not_Singed_In,
-    userEmailAddress: '',
     userImage: '',
+    userEmailAddress: '',
     userInstagram: '',
     userPhoneNumber: '',
+    userLocationAddress: ''
   );
 
   ProfilesInputView({Key? key, this.profilesData}) : super(key: key);
@@ -36,8 +36,6 @@ class ProfilesInputView extends StatefulWidget {
   _ProfilesInputViewState createState() => _ProfilesInputViewState();
 }
 class _ProfilesInputViewState extends State<ProfilesInputView> {
-
-  ColorSelectorView colorSelectorView = ColorSelectorView();
 
   TextEditingController controllerBudgetName = TextEditingController();
   TextEditingController controllerBudgetDescription = TextEditingController();
@@ -429,50 +427,6 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                           ],
                         ),
                       ),
-                      const Divider(
-                        height: 13,
-                        color: Colors.transparent,
-                      ),
-                      SizedBox(
-                        width: double.infinity,
-                        height: 37,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: const [
-                            Expanded(
-                              flex: 1,
-                              child: Padding(
-                                  padding: EdgeInsets.fromLTRB(13, 0, 13, 0),
-                                  child: Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: Text(
-                                      StringsResources.colorSelectorHint,
-                                      style: TextStyle(
-                                          fontSize: 15
-                                      ),
-                                    ),
-                                  )
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        width: double.infinity,
-                        height: 103,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Expanded(
-                              flex: 1,
-                              child: Padding(
-                                padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
-                                child: colorSelectorView,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
                     ]
                 ),
                 Positioned(
@@ -573,12 +527,17 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
 
                               ProfilesData profilesData = ProfilesData(
                                 id: timeNow,
+
                                 userId: '',
                                 userSignedIn: ProfilesData.Profile_Not_Singed_In,
-                                userEmailAddress: '',
+
                                 userImage: '',
+
+                                userEmailAddress: '',
                                 userInstagram: '',
                                 userPhoneNumber: '',
+
+                                userLocationAddress: ''
                               );
 
                               if (widget.profilesData != null) {
