@@ -2,11 +2,14 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/12/22, 5:36 AM
+ * Last modified 3/12/22, 5:45 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
+
+import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:blur/blur.dart';
@@ -16,6 +19,8 @@ import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
 
 class ProfilesInputView extends StatefulWidget {
 
@@ -47,6 +52,14 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
   TextEditingController controllerUserPhoneNumber = TextEditingController();
 
   TextEditingController controllerUserLocationAddress = TextEditingController();
+
+  Widget imagePickerWidget = const Opacity(
+    opacity: 0.7,
+    child: Image(
+      image: AssetImage("unknown_user.png"),
+      fit: BoxFit.cover,
+    ),
+  );
 
   int timeNow = DateTime.now().millisecondsSinceEpoch;
 
@@ -181,7 +194,7 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Expanded(
-                              flex: 1,
+                              flex: 13,
                               child: Padding(
                                   padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
                                   child: Directionality(
@@ -257,6 +270,26 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                                   )
                               ),
                             ),
+                            Expanded(
+                              flex: 3,
+                              child: Padding(
+                                padding: EdgeInsets.fromLTRB(0, 0, 13, 0),
+                                child: InkWell(
+                                  onTap: () {
+
+                                    invokeImagePicker();
+
+                                  },
+                                  child: AspectRatio(
+                                    aspectRatio: 1,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(51),
+                                      child: imagePickerWidget,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
                           ],
                         ),
                       ),
@@ -841,6 +874,54 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
         ),
       ),
     );
+  }
+
+  void invokeImagePicker() async {
+
+    final ImagePicker imagePicker = ImagePicker();
+
+    final XFile? selectedImage = await imagePicker.pickImage(source: ImageSource.gallery);
+
+    if (selectedImage != null) {
+
+      profileImage = await getFilePath(selectedImage.name);
+
+      var imageFileByte = await selectedImage.readAsBytes();
+
+      savePickedImageFile(profileImage, imageFileByte);
+
+      setState(() {
+
+        imagePickerWidget = Image.file(
+          File(selectedImage.path),
+          fit: BoxFit.cover,
+        );
+
+      });
+
+    }
+
+    debugPrint("Picked Image Path: $profileImage");
+
+  }
+
+  Future<String> getFilePath(String fileName) async {
+
+    Directory appDocumentsDirectory = await getApplicationSupportDirectory();
+
+    String appDocumentsPath = appDocumentsDirectory.path;
+
+    String filePath = '$appDocumentsPath/$fileName';
+
+    return filePath;
+  }
+
+  void savePickedImageFile(String imageFilePath, Uint8List imageBytes) async {
+
+    File file = File(imageFilePath);
+
+    file.writeAsBytes(imageBytes);
+
   }
 
 }
