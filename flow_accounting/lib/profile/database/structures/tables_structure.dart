@@ -2,17 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/10/22, 7:34 AM
- *
- * Licensed Under MIT License.
- * https://opensource.org/licenses/MIT
- */
-
-/*
- * Copyright © 2022 By Geeks Empire.
- *
- * Created by Elias Fazel
- * Last modified 1/13/22, 6:44 AM
+ * Last modified 3/12/22, 3:35 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
