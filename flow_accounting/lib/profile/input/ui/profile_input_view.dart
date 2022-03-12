@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/12/22, 4:48 AM
+ * Last modified 3/12/22, 5:09 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -141,7 +141,7 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(13, 13, 13, 0),
                         child:  Text(
-                          StringsResources.featureBudgetManagementsTitle,
+                          StringsResources.profileTitle,
                           textDirection: TextDirection.rtl,
                           style: TextStyle(
                             fontSize: 23,
@@ -159,7 +159,7 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(13, 13, 13, 19),
                         child: Text(
-                          StringsResources.featureBudgetManagementsDescription,
+                          StringsResources.profileDescription,
                           textDirection: TextDirection.rtl,
                           style: TextStyle(
                             fontSize: 15,
@@ -242,12 +242,12 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                                         errorText: warningNotice,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.budgetNameText,
+                                        labelText: StringsResources.profileUserFullName,
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.budgetNameTextHint,
+                                        hintText: StringsResources.profileUserFullNameHint,
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0

@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/13/22, 6:44 AM
+ * Last modified 3/12/22, 5:09 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -47,6 +47,14 @@ class StringsResources {
   static const String totalBalanceText = "موجودی کلی";
   static const String totalEarningText = "درآمد کلی";
   static const String totalSpendingText = "مخارج کلی";
+
+  /* Start - Profile String Resources */
+  static const String profileTitle = "حساب کاربری";
+  static const String profileDescription = "اصطلاعات حساب کاربری خود را با دقت و صحیح وارد کنید";
+
+  static const String profileUserFullName = "نام و نام خانوادگی";
+  static const String profileUserFullNameHint = "نام و نام خانوادگی خود را مطابق کارت شناسایی خود وارد کنید";
+  /* End - Profile String Resources */
 
   /* Start - Transaction String Resources */
   static const String transactionAll = "تمام تراکنش ها";
