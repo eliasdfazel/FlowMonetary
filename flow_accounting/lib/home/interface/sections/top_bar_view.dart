@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/12/22, 7:25 AM
+ * Last modified 3/12/22, 7:26 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -178,9 +178,7 @@ class _TopBarViewState extends State<TopBarView> {
         child: ListView(
           padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
           physics: BouncingScrollPhysics(),
-          children: [
-
-          ],
+          children: allAccountsViews,
         ),
       ),
     );
