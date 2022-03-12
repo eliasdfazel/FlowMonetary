@@ -2,12 +2,15 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/12/22, 6:53 AM
+ * Last modified 3/12/22, 7:06 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
+import 'package:flow_accounting/profile/database/io/inputs.dart';
+import 'package:flow_accounting/profile/database/io/queries.dart';
+import 'package:flow_accounting/profile/database/structures/tables_structure.dart';
 import 'package:flow_accounting/profile/input/ui/profile_input_view.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
@@ -25,8 +28,35 @@ class TopBarView extends StatefulWidget {
 
 class _TopBarViewState extends State<TopBarView> {
 
+  ProfilesData profilesData = ProfilesData(
+      id: 0,
+      userId: '',
+      userSignedIn: ProfilesData.Profile_Not_Singed_In,
+      userFullName: '',
+      userImage: '',
+      userEmailAddress: '',
+      userInstagram: '',
+      userPhoneNumber: '',
+      userLocationAddress: ''
+  );
+
+
+  @override
+  void initState() {
+
+    getSignedInProfile();
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+
+    if (profilesData.id != 0) {
+
+
+
+    }
 
     return Padding(padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
         child: SizedBox(
@@ -84,7 +114,12 @@ class _TopBarViewState extends State<TopBarView> {
                     child: GestureDetector(
                       onTap: () {
 
-                        NavigationProcess().goTo(context, ProfilesInputView());
+                        if (profilesData.id != 0) {
+
+                          NavigationProcess().goTo(context,
+                              ProfilesInputView(profilesData: profilesData));
+
+                        }
 
                       },
                       onLongPress: () {
@@ -143,6 +178,32 @@ class _TopBarViewState extends State<TopBarView> {
         ),
       ],
     );
+  }
+
+  void getSignedInProfile() async {
+
+    try {
+
+      ProfileDatabaseQueries profileDatabaseQueries = ProfileDatabaseQueries();
+
+      profilesData = await profileDatabaseQueries.querySignedInUser(ProfilesDatabaseInputs.databaseTableName);
+
+      UserInformation.UserId = profilesData.userId;
+
+      setState(() {
+
+        profilesData;
+
+      });
+
+      debugPrint("Signed In User: ${profilesData}");
+
+    } on Exception {
+
+      debugPrint("Sign In Process Error}");
+
+    }
+
   }
 
 }
