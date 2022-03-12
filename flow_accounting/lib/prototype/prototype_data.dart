@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 2/22/22, 6:00 AM
+ * Last modified 3/12/22, 5:16 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -55,6 +55,21 @@ class PrototypeData {
     "مریم عسگری",
     "مرضیه یاسایی",
     "نیما کشاورز",
+  ];
+
+  List<String> monthsList = [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "11",
+    "12",
   ];
 
   void generate() {
@@ -305,8 +320,8 @@ class PrototypeData {
         transactionType: TransactionsData.TransactionType_Receive,
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
         transactionTime: _generateDateText(),
-        transactionTimeYear: "1400",
-        transactionTimeMonth: 12.toString(),
+        transactionTimeYear: "1401",
+        transactionTimeMonth: monthsList.randomItem(),
         colorTag: listOfColors.randomItem().value,
         budgetName: "شرکت نرم افزاری آبان"
     ));
@@ -325,8 +340,8 @@ class PrototypeData {
         transactionType: TransactionsData.TransactionType_Send,
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
         transactionTime: _generateDateText(),
-        transactionTimeYear: "1400",
-        transactionTimeMonth: 12.toString(),
+        transactionTimeYear: "1401",
+        transactionTimeMonth: monthsList.randomItem(),
         colorTag: listOfColors.randomItem().value,
         budgetName: "شرکت نرم افزاری سفید"
     ));
@@ -345,8 +360,8 @@ class PrototypeData {
         transactionType: TransactionsData.TransactionType_Send,
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
         transactionTime: _generateDateText(),
-        transactionTimeYear: "1400",
-        transactionTimeMonth: 7.toString(),
+        transactionTimeYear: "1401",
+        transactionTimeMonth: monthsList.randomItem(),
         colorTag: listOfColors.randomItem().value,
         budgetName: "شرکت نرم افزاری سداد"
     ));
@@ -365,8 +380,8 @@ class PrototypeData {
         transactionType: TransactionsData.TransactionType_Send,
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
         transactionTime: _generateDateText(),
-        transactionTimeYear: "1400",
-        transactionTimeMonth: 7.toString(),
+        transactionTimeYear: "1401",
+        transactionTimeMonth: monthsList.randomItem(),
         colorTag: listOfColors.randomItem().value,
         budgetName: "شرکت نرم افزاری سفید"
     ));
@@ -385,8 +400,8 @@ class PrototypeData {
         transactionType: TransactionsData.TransactionType_Receive,
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
         transactionTime: _generateDateText(),
-        transactionTimeYear: "1400",
-        transactionTimeMonth: 1.toString(),
+        transactionTimeYear: "1401",
+        transactionTimeMonth: monthsList.randomItem(),
         colorTag: listOfColors.randomItem().value,
         budgetName: "شرکت ثبت برند ملاصدرا "
     ));
@@ -405,8 +420,8 @@ class PrototypeData {
         transactionType: TransactionsData.TransactionType_Send,
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
         transactionTime: _generateDateText(),
-        transactionTimeYear: "1400",
-        transactionTimeMonth: 1.toString(),
+        transactionTimeYear: "1401",
+        transactionTimeMonth: monthsList.randomItem(),
         colorTag: listOfColors.randomItem().value,
         budgetName: "شرکت تبلیغاتی رهام"
     ));
@@ -425,8 +440,8 @@ class PrototypeData {
         transactionType: TransactionsData.TransactionType_Receive,
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
         transactionTime: _generateDateText(),
-        transactionTimeYear: "1400",
-        transactionTimeMonth: 5.toString(),
+        transactionTimeYear: "1401",
+        transactionTimeMonth: monthsList.randomItem(),
         colorTag: listOfColors.randomItem().value,
         budgetName: "شرکت نرم افزاری آبان"
     ));
@@ -445,8 +460,8 @@ class PrototypeData {
         transactionType: TransactionsData.TransactionType_Receive,
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
         transactionTime: _generateDateText(),
-        transactionTimeYear: "1400",
-        transactionTimeMonth: 8.toString(),
+        transactionTimeYear: "1401",
+        transactionTimeMonth: monthsList.randomItem(),
         colorTag: listOfColors.randomItem().value,
         budgetName: "شرکت نرم افزاری آبان"
     ));
@@ -465,8 +480,8 @@ class PrototypeData {
         transactionType: TransactionsData.TransactionType_Receive,
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
         transactionTime: _generateDateText(),
-        transactionTimeYear: "1400",
-        transactionTimeMonth: 8.toString(),
+        transactionTimeYear: "1401",
+        transactionTimeMonth: monthsList.randomItem(),
         colorTag: listOfColors.randomItem().value,
         budgetName: " شزکت ثبت برند ملاصدرا"
     ));
@@ -485,8 +500,8 @@ class PrototypeData {
         transactionType: TransactionsData.TransactionType_Receive,
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
         transactionTime: _generateDateText(),
-        transactionTimeYear: "1400",
-        transactionTimeMonth: 7.toString(),
+        transactionTimeYear: "1401",
+        transactionTimeMonth: monthsList.randomItem(),
         colorTag: listOfColors.randomItem().value,
         budgetName: "شرکت تبلیغاتی رهام"
     ));
@@ -505,8 +520,8 @@ class PrototypeData {
         transactionType: TransactionsData.TransactionType_Receive,
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
         transactionTime: _generateDateText(),
-        transactionTimeYear: "1400",
-        transactionTimeMonth: 7.toString(),
+        transactionTimeYear: "1401",
+        transactionTimeMonth: monthsList.randomItem(),
         colorTag: listOfColors.randomItem().value,
         budgetName: " شرکت نرم افزاری سفید"
     ));
@@ -525,8 +540,8 @@ class PrototypeData {
         transactionType: TransactionsData.TransactionType_Receive,
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
         transactionTime: _generateDateText(),
-        transactionTimeYear: "1400",
-        transactionTimeMonth: 7.toString(),
+        transactionTimeYear: "1401",
+        transactionTimeMonth: monthsList.randomItem(),
         colorTag: listOfColors.randomItem().value,
         budgetName: "شرکت تبلیغاتی رهام"
     ));
@@ -545,8 +560,8 @@ class PrototypeData {
         transactionType: TransactionsData.TransactionType_Receive,
         transactionTimeMillisecond: DateTime.now().millisecondsSinceEpoch,
         transactionTime: _generateDateText(),
-        transactionTimeYear: "1400",
-        transactionTimeMonth: 7.toString(),
+        transactionTimeYear: "1401",
+        transactionTimeMonth: monthsList.randomItem(),
         colorTag: listOfColors.randomItem().value,
         budgetName: "شرکت ثبت برند ملاصدرا"
     ));
