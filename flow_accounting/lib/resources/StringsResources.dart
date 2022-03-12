@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/12/22, 5:33 AM
+ * Last modified 3/12/22, 6:48 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -22,6 +22,7 @@ class StringsResources {
   static const String welcomeText = "به جریان مالی خودتان خوش آمدید";
   static const String getStartedText = "شروع";
 
+  static const String selectProfileText = "انتخاب حساب کاربری";
   static const String detailsText = "جزئیات";
 
   static const String submitText = "ثبت";
@@ -43,6 +44,7 @@ class StringsResources {
   static const String descriptionText = "توضیحات";
 
   static const String grantText = "تایید";
+  static const String cancelText = "لغو";
 
   static const String totalBalanceText = "موجودی کلی";
   static const String totalEarningText = "درآمد کلی";
