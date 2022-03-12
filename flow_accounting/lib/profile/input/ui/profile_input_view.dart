@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/12/22, 6:00 AM
+ * Last modified 3/12/22, 6:58 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -388,7 +388,13 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                                   aspectRatio: 1,
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(51),
-                                    child: Image.network("https://myhousestore.ir/wp-content/uploads/2022/03/telephone.png"),
+                                    child: Padding(
+                                      padding: EdgeInsets.fromLTRB(3, 3, 3, 3),
+                                      child: Image.network(
+                                        "https://myhousestore.ir/wp-content/uploads/2022/03/telephone.png",
+                                        alignment: AlignmentDirectional.center,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -491,7 +497,13 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                                   aspectRatio: 1,
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(51),
-                                    child: Image.network("https://myhousestore.ir/wp-content/uploads/2022/03/email.png"),
+                                    child: Padding(
+                                      padding: EdgeInsets.fromLTRB(3, 3, 3, 3),
+                                      child: Image.network(
+                                        "https://myhousestore.ir/wp-content/uploads/2022/03/email.png",
+                                        alignment: AlignmentDirectional.center,
+                                      ),
+                                    )
                                   ),
                                 ),
                               ),
@@ -594,7 +606,13 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                                   aspectRatio: 1,
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(51),
-                                    child: Image.network("https://myhousestore.ir/wp-content/uploads/2022/03/instagram.png"),
+                                    child: Padding(
+                                      padding: EdgeInsets.fromLTRB(3, 3, 3, 3),
+                                      child: Image.network(
+                                        "https://myhousestore.ir/wp-content/uploads/2022/03/instagram.png",
+                                        alignment: AlignmentDirectional.center,
+                                      ),
+                                    )
                                   ),
                                 ),
                               ),
@@ -703,7 +721,13 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                                     aspectRatio: 1,
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(51),
-                                      child: Image.network("https://myhousestore.ir/wp-content/uploads/2022/03/pin.png"),
+                                      child: Padding(
+                                        padding: EdgeInsets.fromLTRB(3, 3, 3, 3),
+                                        child: Image.network(
+                                          "https://myhousestore.ir/wp-content/uploads/2022/03/pin.png",
+                                          alignment: AlignmentDirectional.center,
+                                        ),
+                                      )
                                     ),
                                   ),
                                 )
