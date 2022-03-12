@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/12/22, 3:38 AM
+ * Last modified 3/12/22, 4:23 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -17,6 +17,7 @@ class ProfilesData {
 
   final String userId;
 
+  final String userFullName;
   final String userImage;
 
   final String userEmailAddress;
@@ -32,6 +33,7 @@ class ProfilesData {
 
     required this.userId,
 
+    required this.userFullName,
     required this.userImage,
 
     required this.userEmailAddress,
@@ -51,6 +53,7 @@ class ProfilesData {
 
       'userId': userId,
 
+      'userFullName': userFullName,
       'userImage': userImage,
 
       'userEmailAddress': userEmailAddress,
@@ -70,6 +73,7 @@ class ProfilesData {
 
       'userId: $userId, '
 
+      'userFullName: $userFullName, '
       'userImage: $userImage, '
 
       'userEmailAddress: $userEmailAddress, '

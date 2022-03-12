@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/12/22, 3:46 AM
+ * Last modified 3/12/22, 4:23 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -29,6 +29,7 @@ class ProfilesDatabaseInputs {
         return databaseInstance.execute(
           'CREATE TABLE IF NOT EXISTS $tableNameQuery(id INTEGER PRIMARY KEY, '
               'userId TEXT, '
+              'userFullName TEXT, '
               'userImage TEXT, '
               'userEmailAddress TEXT, '
               'userPhoneNumber TEXT, '

@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/12/22, 4:08 AM
+ * Last modified 3/12/22, 4:38 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -23,6 +23,7 @@ class ProfilesInputView extends StatefulWidget {
     id: 0,
     userId: '',
     userSignedIn: ProfilesData.Profile_Not_Singed_In,
+    userFullName: '',
     userImage: '',
     userEmailAddress: '',
     userInstagram: '',
@@ -37,14 +38,19 @@ class ProfilesInputView extends StatefulWidget {
 }
 class _ProfilesInputViewState extends State<ProfilesInputView> {
 
-  TextEditingController controllerBudgetName = TextEditingController();
-  TextEditingController controllerBudgetDescription = TextEditingController();
+  TextEditingController controllerFullName = TextEditingController();
 
-  TextEditingController controllerBudgetBalance = TextEditingController();
+  TextEditingController userEmailAddress = TextEditingController();
+  TextEditingController userInstagram = TextEditingController();
+  TextEditingController userPhoneNumber = TextEditingController();
+
+  TextEditingController userLocationAddress = TextEditingController();
 
   int timeNow = DateTime.now().millisecondsSinceEpoch;
 
-  bool budgetDataUpdated = false;
+  String profileImage = "";
+
+  bool profileDataUpdated = false;
 
   String? warningNotice;
 
@@ -59,7 +65,14 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
   @override
   void initState(){
 
+    controllerFullName.text = widget.profilesData?.userFullName ?? "";
+    profileImage = widget.profilesData?.userImage ?? "";
 
+    userEmailAddress.text = widget.profilesData?.userEmailAddress ?? "";
+    userInstagram.text = widget.profilesData?.userInstagram ?? "";
+    userPhoneNumber.text = widget.profilesData?.userPhoneNumber ?? "";
+
+    userLocationAddress.text = widget.profilesData?.userLocationAddress ?? "";
 
     super.initState();
 
@@ -69,7 +82,7 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
 
   bool aInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
 
-    Navigator.pop(context, budgetDataUpdated);
+    Navigator.pop(context, profileDataUpdated);
 
     return true;
   }
@@ -170,7 +183,7 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: TextField(
-                                      controller: controllerBudgetName,
+                                      controller: controllerFullName,
                                       textAlign: TextAlign.right,
                                       textDirection: TextDirection.ltr,
                                       textAlignVertical: TextAlignVertical.bottom,
@@ -247,186 +260,6 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                         height: 13,
                         color: Colors.transparent,
                       ),
-                      SizedBox(
-                        width: double.infinity,
-                        height: 133,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Expanded(
-                              flex: 1,
-                              child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
-                                  child: Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: TextField(
-                                      controller: controllerBudgetDescription,
-                                      textAlign: TextAlign.right,
-                                      textDirection: TextDirection.ltr,
-                                      textAlignVertical: TextAlignVertical.top,
-                                      maxLines: 5,
-                                      cursorColor: ColorsResources.primaryColor,
-                                      autocorrect: true,
-                                      autofocus: false,
-                                      keyboardType: TextInputType.text,
-                                      textInputAction: TextInputAction.next,
-                                      style: const TextStyle(
-                                          fontSize: 12,
-                                          color: ColorsResources.applicationDarkGeeksEmpire
-                                      ),
-                                      decoration: InputDecoration(
-                                        alignLabelWithHint: true,
-                                        border: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        enabledBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        focusedBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        errorBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.red, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        errorText: warningNotice,
-                                        filled: true,
-                                        fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.budgetDescriptionText,
-                                        labelStyle: const TextStyle(
-                                            color: ColorsResources.dark,
-                                            fontSize: 13.0
-                                        ),
-                                        hintText: StringsResources.budgetDescriptionTextHint,
-                                        hintStyle: const TextStyle(
-                                            color: ColorsResources.darkTransparent,
-                                            fontSize: 13.0
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const Divider(
-                        height: 13,
-                        color: Colors.transparent,
-                      ),
-                      SizedBox(
-                        width: double.infinity,
-                        height: 73,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Expanded(
-                              flex: 1,
-                              child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
-                                  child: Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: TextField(
-                                      controller: controllerBudgetBalance,
-                                      textAlign: TextAlign.center,
-                                      textDirection: TextDirection.ltr,
-                                      textAlignVertical: TextAlignVertical.bottom,
-                                      maxLines: 1,
-                                      cursorColor: ColorsResources.primaryColor,
-                                      autocorrect: true,
-                                      autofocus: false,
-                                      keyboardType: TextInputType.number,
-                                      textInputAction: TextInputAction.done,
-                                      decoration: InputDecoration(
-                                        alignLabelWithHint: true,
-                                        border: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        enabledBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        focusedBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        errorBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.red, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        errorText: warningNotice,
-                                        filled: true,
-                                        fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.budgetInitialTextHint,
-                                        labelStyle: const TextStyle(
-                                            color: ColorsResources.dark,
-                                            fontSize: 17.0
-                                        ),
-                                        hintText: StringsResources.budgetInitialTextHint,
-                                        hintStyle: const TextStyle(
-                                            color: ColorsResources.darkTransparent,
-                                            fontSize: 17.0
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
                     ]
                 ),
                 Positioned(
@@ -435,7 +268,7 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                     child:  InkWell(
                       onTap: () {
 
-                        Navigator.pop(context, budgetDataUpdated);
+                        Navigator.pop(context, profileDataUpdated);
 
                       },
                       child: Container(
@@ -475,31 +308,7 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
 
                             bool noError = true;
 
-                            if (controllerBudgetName.text.isEmpty) {
-
-                              setState(() {
-
-                                warningNotice = StringsResources.errorText;
-
-                              });
-
-                              noError = false;
-
-                            }
-
-                            if (controllerBudgetDescription.text.isEmpty) {
-
-                              setState(() {
-
-                                warningNotice = StringsResources.errorText;
-
-                              });
-
-                              noError = false;
-
-                            }
-
-                            if (controllerBudgetBalance.text.isEmpty) {
+                            if (controllerFullName.text.isEmpty) {
 
                               setState(() {
 
@@ -531,7 +340,8 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                                 userId: '',
                                 userSignedIn: ProfilesData.Profile_Not_Singed_In,
 
-                                userImage: '',
+                                userFullName: controllerFullName.text,
+                                userImage: profileImage,
 
                                 userEmailAddress: '',
                                 userInstagram: '',
@@ -564,7 +374,7 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                                   fontSize: 16.0
                               );
 
-                              budgetDataUpdated = true;
+                              profileDataUpdated = true;
 
                             }
 
