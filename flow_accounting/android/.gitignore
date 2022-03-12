@@ -175,3 +175,4 @@ key.properties
 /app/build/outputs/logs/manifest-merger-debug-report.txt
 /app/build/intermediates/flutter/debug/flutter_assets/android/app/build/intermediates/
 /app/build/intermediates/merged_assets/debug/out/flutter_assets/android/app/build/intermediates/
+/app/build/
