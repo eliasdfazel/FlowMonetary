@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/12/22, 7:06 AM
+ * Last modified 3/12/22, 7:13 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -119,6 +119,11 @@ class _TopBarViewState extends State<TopBarView> {
                           NavigationProcess().goTo(context,
                               ProfilesInputView(profilesData: profilesData));
 
+                        } else {
+
+                          NavigationProcess().goTo(context,
+                              ProfilesInputView());
+                          
                         }
 
                       },
@@ -150,7 +155,20 @@ class _TopBarViewState extends State<TopBarView> {
   Widget popupProfileSelector(BuildContext context) {
 
     return AlertDialog(
-      title: const Text(StringsResources.selectProfileText),
+      title: const Directionality(
+          textDirection: TextDirection.rtl,
+          child: Text(
+            StringsResources.selectProfileText,
+            style: TextStyle(
+              color: ColorsResources.applicationDarkGeeksEmpire
+            ),
+          )
+      ),
+      alignment: AlignmentDirectional.center,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(13))
+      ),
+      elevation: 13,
       backgroundColor: ColorsResources.lightestBlue,
       content: SizedBox(
         width: 303,
@@ -159,24 +177,6 @@ class _TopBarViewState extends State<TopBarView> {
           color: Colors.lightGreenAccent,
         ),
       ),
-      actions: <Widget>[
-        MaterialButton(
-          onPressed: () {
-
-            Navigator.of(context).pop();
-
-          },
-          textColor: Theme.of(context).primaryColor,
-          child: const Text(
-            StringsResources.cancelText,
-            style: TextStyle(
-              color: ColorsResources.applicationDarkGeeksEmpire,
-              fontSize: 13,
-              fontWeight: FontWeight.bold
-            ),
-          ),
-        ),
-      ],
     );
   }
 
