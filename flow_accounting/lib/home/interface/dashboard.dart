@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/13/22, 6:50 AM
+ * Last modified 3/12/22, 6:02 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -155,7 +155,7 @@ class DashboardViewState extends State<DashboardView> {
                           colors: [
                             ColorsResources.yellow.withOpacity(0.3),
                             ColorsResources.yellow.withOpacity(0.5),
-                            ColorsResources.yellow.withOpacity(0.7),
+                            ColorsResources.yellow.withOpacity(0.5),
                           ],
                           heightPercentages: [0.13, 0.57, 0.79],
                           durations: [13000, 21000, 19000],
