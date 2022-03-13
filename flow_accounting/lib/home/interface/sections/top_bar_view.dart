@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/13/22, 7:00 AM
+ * Last modified 3/13/22, 10:15 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,7 +15,6 @@ import 'package:flow_accounting/profile/database/structures/tables_structure.dar
 import 'package:flow_accounting/profile/input/ui/profile_input_view.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
-import 'package:flow_accounting/utils/navigations/navigations.dart';
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -108,18 +107,36 @@ class _TopBarViewState extends State<TopBarView> {
                 Expanded(
                     flex: 3,
                     child: GestureDetector(
-                      onTap: () {
+                      onTap: () async {
 
                         if (profilesData.id != 0) {
 
-                          NavigationProcess().goTo(context,
-                              ProfilesInputView(profilesData: profilesData));
+                          bool dataUpdated = await Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ProfilesInputView(profilesData: profilesData))
+                          );
+
+                          if (dataUpdated) {
+
+                            getSignedInProfile();
+
+                          }
 
                         } else {
 
-                          NavigationProcess().goTo(context,
-                              ProfilesInputView());
-                          
+                          bool dataUpdated = await Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ProfilesInputView())
+                          );
+
+                          if (dataUpdated) {
+
+                            getSignedInProfile();
+
+                          }
+
                         }
 
                       },
@@ -208,6 +225,8 @@ class _TopBarViewState extends State<TopBarView> {
   }
 
   void retrieveAllProfileAccounts() async {
+
+    allAccountsViews.clear();
 
     try {
 
