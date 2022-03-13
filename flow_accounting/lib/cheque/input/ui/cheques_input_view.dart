@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/13/22, 5:50 AM
+ * Last modified 3/13/22, 8:34 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -40,31 +40,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 class ChequesInputView extends StatefulWidget {
 
-  ChequesData? chequesData = ChequesData(
-      id: 0,
-      chequeTitle: "",
-      chequeDescription: "",
-      chequeNumber: "",
-      chequeMoneyAmount: "0",
-      chequeTransactionType: "",
-      chequeSourceBankName: "",
-      chequeSourceBankBranch: "",
-      chequeTargetBankName: "",
-      chequeIssueDate: "",
-      chequeDueDate: "",
-      chequeIssueMillisecond: "0",
-      chequeDueMillisecond: "0",
-      chequeSourceId: "",
-      chequeSourceName: "",
-      chequeSourceAccountNumber: "0",
-      chequeTargetId: "",
-      chequeTargetName: "",
-      chequeTargetAccountNumber: "0",
-      chequeDoneConfirmation: ChequesData.ChequesConfirmation_NOT,
-      chequeRelevantCreditCard: "",
-      chequeRelevantBudget: "",
-      colorTag: ColorsResources.white.value
-  );
+  ChequesData? chequesData;
 
   ChequesInputView({Key? key, this.chequesData}) : super(key: key);
 

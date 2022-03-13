@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/13/22, 7:11 AM
+ * Last modified 3/13/22, 8:34 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -25,17 +25,7 @@ import 'package:path_provider/path_provider.dart';
 
 class ProfilesInputView extends StatefulWidget {
 
-  ProfilesData? profilesData = ProfilesData(
-    id: 0,
-    userId: '',
-    userSignedIn: ProfilesData.Profile_Not_Singed_In,
-    userFullName: '',
-    userImage: '',
-    userEmailAddress: '',
-    userInstagram: '',
-    userPhoneNumber: '',
-    userLocationAddress: ''
-  );
+  ProfilesData? profilesData;
 
   ProfilesInputView({Key? key, this.profilesData}) : super(key: key);
 
@@ -656,7 +646,7 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                                       autocorrect: true,
                                       autofocus: false,
                                       keyboardType: TextInputType.text,
-                                      textInputAction: TextInputAction.next,
+                                      textInputAction: TextInputAction.done,
                                       decoration: InputDecoration(
                                         contentPadding: EdgeInsets.fromLTRB(13, 19, 77, 17),
                                         alignLabelWithHint: true,

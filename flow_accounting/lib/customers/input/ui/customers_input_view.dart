@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/2/22, 5:07 AM
+ * Last modified 3/13/22, 8:34 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -28,30 +28,7 @@ import 'package:path_provider/path_provider.dart';
 
 class CustomersInputView extends StatefulWidget {
 
-  CustomersData? customersData = CustomersData(
-    id: 0,
-
-    customerName: '',
-    customerDescription: '',
-
-    customerCountry: '',
-    customerCity: '',
-    customerStreetAddress: '',
-
-    customerPhoneNumber: '',
-    customerEmailAddress: '',
-
-    customerAge: '',
-    customerBirthday: '',
-
-    customerJob: '',
-
-    customerMaritalStatus: '',
-
-    customerImagePath: '',
-
-    colorTag: ColorsResources.white.value,
-  );
+  CustomersData? customersData;
 
   CustomersInputView({Key? key, this.customersData}) : super(key: key);
 
