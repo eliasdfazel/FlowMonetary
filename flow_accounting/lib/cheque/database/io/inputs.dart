@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/13/22, 8:17 AM
+ * Last modified 3/13/22, 10:08 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -81,6 +81,12 @@ class ChequesDatabaseInputs {
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
 
+    if (databaseInstance.isOpen) {
+
+      await databaseInstance.close();
+
+    }
+
   }
 
   Future<void> updateChequeData(ChequesData chequesData, String? tableName, String usernameId) async {
@@ -100,6 +106,12 @@ class ChequesDatabaseInputs {
       where: 'id = ?',
       whereArgs: [chequesData.id],
     );
+
+    if (databaseInstance.isOpen) {
+
+      await databaseInstance.close();
+
+    }
 
   }
 
