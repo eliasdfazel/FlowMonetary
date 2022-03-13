@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/13/22, 11:46 AM
+ * Last modified 3/13/22, 11:58 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -157,19 +157,19 @@ class _TopBarViewState extends State<TopBarView> {
 
   Widget popupProfileSelector(BuildContext context) {
 
-    return AlertDialog(
+    AlertDialog alertDialog = AlertDialog(
       title: const Directionality(
           textDirection: TextDirection.rtl,
           child: Text(
             StringsResources.selectProfileText,
             style: TextStyle(
-              color: ColorsResources.applicationDarkGeeksEmpire
+                color: ColorsResources.applicationDarkGeeksEmpire
             ),
           )
       ),
       alignment: AlignmentDirectional.center,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(13))
+          borderRadius: BorderRadius.all(Radius.circular(13))
       ),
       scrollable: true,
       elevation: 13,
@@ -184,6 +184,8 @@ class _TopBarViewState extends State<TopBarView> {
         ),
       ),
     );
+
+    return alertDialog;
   }
 
   void getSignedInProfile() async {
@@ -265,66 +267,82 @@ class _TopBarViewState extends State<TopBarView> {
               borderRadius: BorderRadius.circular(13)
           ),
           child: Padding(
-            padding: EdgeInsets.fromLTRB(1, 1, 1, 1),
-            child: Container(
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: [
-                        ColorsResources.lightestBlue,
-                        ColorsResources.light,
-                      ],
-                      begin: FractionalOffset(0.0, 0.0),
-                      end: FractionalOffset(1.0, 0.0),
-                      stops: [0.0, 1.0],
-                      transform: GradientRotation(45),
-                      tileMode: TileMode.clamp
-                  ),
-                  borderRadius: BorderRadius.circular(13)
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Expanded(
-                      flex: 13,
-                      child: Padding(
-                          padding: EdgeInsets.fromLTRB(11, 0, 11, 0),
-                          child: Align(
-                            alignment: AlignmentDirectional.centerEnd,
-                            child: Directionality(
-                              textDirection: TextDirection.rtl,
-                              child: Text(
-                                profilesData.userFullName,
-                                textDirection: TextDirection.rtl,
-                                textAlign: TextAlign.right,
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    color: ColorsResources.dark,
-                                    fontWeight: FontWeight.bold
-                                ),
-                              ),
-                            ),
+            padding: EdgeInsets.fromLTRB(1.3, 1.3, 1.3, 1.3),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(13.0),
+              child: Material(
+                  shadowColor: Colors.transparent,
+                  color: Colors.transparent,
+                  child: InkWell(
+                    splashColor: ColorsResources.lightestBlue,
+                    splashFactory: InkRipple.splashFactory,
+                    onTap: () {
+
+                      Navigator.of(context, rootNavigator: true).pop();
+
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                              colors: [
+                                ColorsResources.lightestBlue,
+                                ColorsResources.light,
+                              ],
+                              begin: FractionalOffset(0.0, 0.0),
+                              end: FractionalOffset(1.0, 0.0),
+                              stops: [0.0, 1.0],
+                              transform: GradientRotation(45),
+                              tileMode: TileMode.clamp
+                          ),
+                          borderRadius: BorderRadius.circular(13)
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Expanded(
+                              flex: 13,
+                              child: Padding(
+                                  padding: EdgeInsets.fromLTRB(11, 0, 11, 0),
+                                  child: Align(
+                                    alignment: AlignmentDirectional.centerEnd,
+                                    child: Directionality(
+                                      textDirection: TextDirection.rtl,
+                                      child: Text(
+                                        profilesData.userFullName,
+                                        textDirection: TextDirection.rtl,
+                                        textAlign: TextAlign.right,
+                                        style: TextStyle(
+                                            fontSize: 15,
+                                            color: ColorsResources.dark,
+                                            fontWeight: FontWeight.bold
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                              )
+                          ),
+                          Expanded(
+                              flex: 3,
+                              child: Padding(
+                                  padding: EdgeInsets.fromLTRB(3, 0, 11, 0),
+                                  child: AspectRatio(
+                                    aspectRatio: 1,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(51),
+                                      child: Image.file(
+                                        File(profilesData.userImage),
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  )
+                              )
                           )
-                      )
-                  ),
-                  Expanded(
-                      flex: 3,
-                      child: Padding(
-                          padding: EdgeInsets.fromLTRB(3, 0, 11, 0),
-                          child: AspectRatio(
-                            aspectRatio: 1,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(51),
-                              child: Image.file(
-                                File(profilesData.userImage),
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          )
-                      )
+                        ],
+                      ),
+                    ),
                   )
-                ],
               ),
-            ),
+            )
           )
         ),
       ),
