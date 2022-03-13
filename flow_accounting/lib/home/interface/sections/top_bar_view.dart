@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/13/22, 5:55 AM
+ * Last modified 3/13/22, 7:00 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,7 +10,6 @@
 
 import 'dart:io';
 
-import 'package:flow_accounting/profile/database/io/inputs.dart';
 import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/profile/database/structures/tables_structure.dart';
 import 'package:flow_accounting/profile/input/ui/profile_input_view.dart';
@@ -54,12 +53,6 @@ class _TopBarViewState extends State<TopBarView> {
 
   @override
   Widget build(BuildContext context) {
-
-    if (profilesData.id != 0) {
-
-
-
-    }
 
     return Padding(padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
         child: SizedBox(
@@ -192,7 +185,7 @@ class _TopBarViewState extends State<TopBarView> {
 
       ProfileDatabaseQueries profileDatabaseQueries = ProfileDatabaseQueries();
 
-      profilesData = await profileDatabaseQueries.querySignedInUser(ProfilesDatabaseInputs.databaseTableName);
+      profilesData = await profileDatabaseQueries.querySignedInUser();
 
       UserInformation.UserId = profilesData.userId;
 
@@ -210,25 +203,35 @@ class _TopBarViewState extends State<TopBarView> {
 
     }
 
+    retrieveAllProfileAccounts();
+
   }
 
-  void retrieveAllProfileAccounts() async{
+  void retrieveAllProfileAccounts() async {
 
-    ProfileDatabaseQueries profileDatabaseQueries = ProfileDatabaseQueries();
+    try {
 
-    List<ProfilesData> allAccountsProfiles = await profileDatabaseQueries.getAllProfileAccounts();
+      ProfileDatabaseQueries profileDatabaseQueries = ProfileDatabaseQueries();
 
-    for(var element in allAccountsProfiles) {
+      List<ProfilesData> allAccountsProfiles = await profileDatabaseQueries.getAllProfileAccounts();
 
-      allAccountsViews.add(profilesItemView(element));
+      for(var element in allAccountsProfiles) {
+
+        allAccountsViews.add(profilesItemView(element));
+
+      }
+
+      setState(() {
+
+        allAccountsViews;
+
+      });
+
+    } on Exception {
+
+
 
     }
-
-    setState(() {
-
-      allAccountsViews;
-
-    });
 
   }
 

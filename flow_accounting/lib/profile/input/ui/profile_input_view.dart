@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/12/22, 6:58 AM
+ * Last modified 3/13/22, 6:59 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -13,6 +13,7 @@ import 'dart:typed_data';
 
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:blur/blur.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flow_accounting/profile/database/io/inputs.dart';
 import 'package:flow_accounting/profile/database/structures/tables_structure.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
@@ -300,104 +301,108 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                       SizedBox(
                         width: double.infinity,
                         height: 73,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        child: Stack(
                           children: [
-                            Expanded(
-                              flex: 13,
-                              child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
-                                  child: Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: TextField(
-                                      controller: controllerUserPhoneNumber,
-                                      textAlign: TextAlign.right,
-                                      textDirection: TextDirection.ltr,
-                                      textAlignVertical: TextAlignVertical.bottom,
-                                      maxLines: 1,
-                                      cursorColor: ColorsResources.primaryColor,
-                                      autocorrect: true,
-                                      autofocus: false,
-                                      keyboardType: TextInputType.phone,
-                                      textInputAction: TextInputAction.next,
-                                      decoration: InputDecoration(
-                                        alignLabelWithHint: true,
-                                        border: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.greenAccent, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        enabledBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.greenAccent, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        focusedBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.green, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        errorBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.greenAccent, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        errorText: warningNotice,
-                                        filled: true,
-                                        fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.profileUserPhoneNumber,
-                                        labelStyle: const TextStyle(
-                                            color: ColorsResources.dark,
-                                            fontSize: 17.0
-                                        ),
-                                        hintText: StringsResources.profileUserPhoneNumberHint,
-                                        hintStyle: const TextStyle(
-                                            color: ColorsResources.darkTransparent,
-                                            fontSize: 17.0
-                                        ),
+                            Padding(
+                                padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                child: Directionality(
+                                  textDirection: TextDirection.rtl,
+                                  child: TextField(
+                                    controller: controllerUserPhoneNumber,
+                                    textAlign: TextAlign.right,
+                                    textDirection: TextDirection.ltr,
+                                    textAlignVertical: TextAlignVertical.bottom,
+                                    maxLines: 1,
+                                    cursorColor: ColorsResources.primaryColor,
+                                    autocorrect: true,
+                                    autofocus: false,
+                                    keyboardType: TextInputType.phone,
+                                    textInputAction: TextInputAction.next,
+                                    decoration: InputDecoration(
+                                      contentPadding: EdgeInsets.fromLTRB(13, 25, 77, 17),
+                                      alignLabelWithHint: true,
+                                      border: const OutlineInputBorder(
+                                          borderSide: BorderSide(color: Colors.greenAccent, width: 1.0),
+                                          borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(13),
+                                              topRight: Radius.circular(13),
+                                              bottomLeft: Radius.circular(13),
+                                              bottomRight: Radius.circular(13)
+                                          ),
+                                          gapPadding: 5
+                                      ),
+                                      enabledBorder: const OutlineInputBorder(
+                                          borderSide: BorderSide(color: Colors.greenAccent, width: 1.0),
+                                          borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(13),
+                                              topRight: Radius.circular(13),
+                                              bottomLeft: Radius.circular(13),
+                                              bottomRight: Radius.circular(13)
+                                          ),
+                                          gapPadding: 5
+                                      ),
+                                      focusedBorder: const OutlineInputBorder(
+                                          borderSide: BorderSide(color: Colors.green, width: 1.0),
+                                          borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(13),
+                                              topRight: Radius.circular(13),
+                                              bottomLeft: Radius.circular(13),
+                                              bottomRight: Radius.circular(13)
+                                          ),
+                                          gapPadding: 5
+                                      ),
+                                      errorBorder: const OutlineInputBorder(
+                                          borderSide: BorderSide(color: Colors.greenAccent, width: 1.0),
+                                          borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(13),
+                                              topRight: Radius.circular(13),
+                                              bottomLeft: Radius.circular(13),
+                                              bottomRight: Radius.circular(13)
+                                          ),
+                                          gapPadding: 5
+                                      ),
+                                      errorText: warningNotice,
+                                      filled: true,
+                                      fillColor: ColorsResources.lightTransparent,
+                                      labelText: StringsResources.profileUserPhoneNumber,
+                                      labelStyle: const TextStyle(
+                                          color: ColorsResources.dark,
+                                          fontSize: 17.0
+                                      ),
+                                      hintText: StringsResources.profileUserPhoneNumberHint,
+                                      hintStyle: const TextStyle(
+                                          color: ColorsResources.darkTransparent,
+                                          fontSize: 17.0
                                       ),
                                     ),
                                   )
-                              ),
+                                )
                             ),
-                            Expanded(
-                              flex: 3,
-                              child: Padding(
-                                padding: EdgeInsets.fromLTRB(0, 0, 13, 0),
-                                child: AspectRatio(
+                            Positioned(
+                              right: 13,
+                              top: 0,
+                              bottom: 3,
+                              child: AspectRatio(
                                   aspectRatio: 1,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(51),
-                                    child: Padding(
-                                      padding: EdgeInsets.fromLTRB(3, 3, 3, 3),
-                                      child: Image.network(
-                                        "https://myhousestore.ir/wp-content/uploads/2022/03/telephone.png",
-                                        alignment: AlignmentDirectional.center,
-                                      ),
+                                  child: Padding(
+                                    padding: EdgeInsets.fromLTRB(17, 17, 17, 17),
+                                    child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(51),
+                                        child: CachedNetworkImage(
+                                          imageUrl: "https://myhousestore.ir/wp-content/uploads/2022/03/telephone.png",
+                                          fit: BoxFit.cover,
+                                          imageBuilder: (context, imageProvider) {
+
+                                            return Image(
+                                              image: imageProvider,
+                                              alignment: AlignmentDirectional.center,
+                                              fit: BoxFit.cover,
+                                            );
+                                          },
+                                        )
                                     ),
-                                  ),
-                                ),
-                              ),
+                                  )
+                              )
                             )
                           ],
                         ),
@@ -409,14 +414,11 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                       SizedBox(
                         width: double.infinity,
                         height: 73,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        child: Stack(
                           children: [
-                            Expanded(
-                              flex: 13,
-                              child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
-                                  child: Directionality(
+                            Padding(
+                                padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: TextField(
                                       controller: controllerUserEmailAddress,
@@ -430,6 +432,7 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                                       keyboardType: TextInputType.emailAddress,
                                       textInputAction: TextInputAction.next,
                                       decoration: InputDecoration(
+                                        contentPadding: EdgeInsets.fromLTRB(13, 25, 77, 17),
                                         alignLabelWithHint: true,
                                         border: const OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.lightBlue, width: 1.0),
@@ -485,28 +488,34 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                                             fontSize: 17.0
                                         ),
                                       ),
-                                    ),
-                                  )
-                              ),
+                                    )
+                                )
                             ),
-                            Expanded(
-                              flex: 3,
-                              child: Padding(
-                                padding: EdgeInsets.fromLTRB(0, 0, 13, 0),
+                            Positioned(
+                                right: 13,
+                                top: 0,
+                                bottom: 3,
                                 child: AspectRatio(
-                                  aspectRatio: 1,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(51),
+                                    aspectRatio: 1,
                                     child: Padding(
-                                      padding: EdgeInsets.fromLTRB(3, 3, 3, 3),
-                                      child: Image.network(
-                                        "https://myhousestore.ir/wp-content/uploads/2022/03/email.png",
-                                        alignment: AlignmentDirectional.center,
+                                      padding: EdgeInsets.fromLTRB(17, 17, 17, 17),
+                                      child: ClipRRect(
+                                          borderRadius: BorderRadius.circular(51),
+                                          child: CachedNetworkImage(
+                                            imageUrl: "https://myhousestore.ir/wp-content/uploads/2022/03/email.png",
+                                            fit: BoxFit.cover,
+                                            imageBuilder: (context, imageProvider) {
+
+                                              return Image(
+                                                image: imageProvider,
+                                                alignment: AlignmentDirectional.center,
+                                                fit: BoxFit.cover,
+                                              );
+                                            },
+                                          )
                                       ),
                                     )
-                                  ),
-                                ),
-                              ),
+                                )
                             )
                           ],
                         ),
@@ -518,14 +527,11 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                       SizedBox(
                         width: double.infinity,
                         height: 73,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        child: Stack(
                           children: [
-                            Expanded(
-                              flex: 13,
-                              child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
-                                  child: Directionality(
+                            Padding(
+                                padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: TextField(
                                       controller: controllerUserInstagram,
@@ -539,6 +545,7 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                                       keyboardType: TextInputType.text,
                                       textInputAction: TextInputAction.next,
                                       decoration: InputDecoration(
+                                        contentPadding: EdgeInsets.fromLTRB(13, 25, 77, 17),
                                         alignLabelWithHint: true,
                                         border: const OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.purpleAccent, width: 1.0),
@@ -594,28 +601,34 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                                             fontSize: 17.0
                                         ),
                                       ),
-                                    ),
-                                  )
-                              ),
+                                    )
+                                )
                             ),
-                            Expanded(
-                              flex: 3,
-                              child: Padding(
-                                padding: EdgeInsets.fromLTRB(0, 0, 13, 0),
+                            Positioned(
+                                right: 13,
+                                top: 0,
+                                bottom: 3,
                                 child: AspectRatio(
-                                  aspectRatio: 1,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(51),
+                                    aspectRatio: 1,
                                     child: Padding(
-                                      padding: EdgeInsets.fromLTRB(3, 3, 3, 3),
-                                      child: Image.network(
-                                        "https://myhousestore.ir/wp-content/uploads/2022/03/instagram.png",
-                                        alignment: AlignmentDirectional.center,
+                                      padding: EdgeInsets.fromLTRB(17, 17, 17, 17),
+                                      child: ClipRRect(
+                                          borderRadius: BorderRadius.circular(51),
+                                          child: CachedNetworkImage(
+                                            imageUrl: "https://myhousestore.ir/wp-content/uploads/2022/03/instagram.png",
+                                            fit: BoxFit.cover,
+                                            imageBuilder: (context, imageProvider) {
+
+                                              return Image(
+                                                image: imageProvider,
+                                                alignment: AlignmentDirectional.center,
+                                                fit: BoxFit.cover,
+                                              );
+                                            },
+                                          )
                                       ),
                                     )
-                                  ),
-                                ),
-                              ),
+                                )
                             )
                           ],
                         ),
@@ -627,31 +640,25 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                       SizedBox(
                         width: double.infinity,
                         height: 133,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        child: Stack(
                           children: [
-                            Expanded(
-                              flex: 13,
-                              child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
-                                  child: Directionality(
+                            Padding(
+                                padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: TextField(
                                       controller: controllerUserLocationAddress,
                                       textAlign: TextAlign.right,
                                       textDirection: TextDirection.ltr,
-                                      textAlignVertical: TextAlignVertical.top,
-                                      maxLines: 5,
+                                      textAlignVertical: TextAlignVertical.bottom,
+                                      maxLines: 3,
                                       cursorColor: ColorsResources.primaryColor,
                                       autocorrect: true,
                                       autofocus: false,
                                       keyboardType: TextInputType.text,
                                       textInputAction: TextInputAction.next,
-                                      style: const TextStyle(
-                                          fontSize: 12,
-                                          color: ColorsResources.applicationDarkGeeksEmpire
-                                      ),
                                       decoration: InputDecoration(
+                                        contentPadding: EdgeInsets.fromLTRB(13, 19, 77, 17),
                                         alignLabelWithHint: true,
                                         border: const OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
@@ -704,34 +711,34 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                                         hintText: StringsResources.profileUserLocationAddressHint,
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
-                                            fontSize: 13.0
+                                            fontSize: 17.0
                                         ),
                                       ),
-                                    ),
-                                  )
-                              ),
+                                    )
+                                )
                             ),
-                            Expanded(
-                              flex: 3,
-                              child: Padding(
-                                padding: EdgeInsets.fromLTRB(0, 0, 13, 0),
-                                child: Align(
-                                  alignment: AlignmentDirectional.center,
-                                  child: AspectRatio(
-                                    aspectRatio: 1,
-                                    child: ClipRRect(
+                            Positioned(
+                                right: 31,
+                                top: 13,
+                                child: SizedBox(
+                                  height: 37,
+                                  width: 37,
+                                  child: ClipRRect(
                                       borderRadius: BorderRadius.circular(51),
-                                      child: Padding(
-                                        padding: EdgeInsets.fromLTRB(3, 3, 3, 3),
-                                        child: Image.network(
-                                          "https://myhousestore.ir/wp-content/uploads/2022/03/pin.png",
-                                          alignment: AlignmentDirectional.center,
-                                        ),
+                                      child: CachedNetworkImage(
+                                        imageUrl: "https://myhousestore.ir/wp-content/uploads/2022/03/pin.png",
+                                        fit: BoxFit.cover,
+                                        imageBuilder: (context, imageProvider) {
+
+                                          return Image(
+                                            image: imageProvider,
+                                            alignment: AlignmentDirectional.center,
+                                            fit: BoxFit.cover,
+                                          );
+                                        },
                                       )
-                                    ),
                                   ),
                                 )
-                              ),
                             )
                           ],
                         ),

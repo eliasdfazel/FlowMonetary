@@ -2,14 +2,13 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/13/22, 6:44 AM
+ * Last modified 3/13/22, 7:00 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
 import 'package:flow_accounting/home/home.dart';
-import 'package:flow_accounting/profile/database/io/inputs.dart';
 import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/profile/database/structures/tables_structure.dart';
 import 'package:flow_accounting/utils/navigations/navigations.dart';
@@ -199,7 +198,7 @@ class _WelcomePage extends State<WelcomePage> {
 
       ProfileDatabaseQueries profileDatabaseQueries = ProfileDatabaseQueries();
 
-      ProfilesData profileData = await profileDatabaseQueries.querySignedInUser(ProfilesDatabaseInputs.databaseTableName);
+      ProfilesData profileData = await profileDatabaseQueries.querySignedInUser();
 
       UserInformation.UserId = profileData.userId;
 
