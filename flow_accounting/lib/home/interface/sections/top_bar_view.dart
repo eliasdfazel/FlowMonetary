@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/13/22, 11:58 AM
+ * Last modified 3/13/22, 12:00 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -277,6 +277,9 @@ class _TopBarViewState extends State<TopBarView> {
                     splashColor: ColorsResources.lightestBlue,
                     splashFactory: InkRipple.splashFactory,
                     onTap: () {
+
+                      //Update Database of Selected Use to Signed In
+                      //Then Restart The Application
 
                       Navigator.of(context, rootNavigator: true).pop();
 
