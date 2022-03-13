@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/13/22, 7:13 AM
+ * Last modified 3/13/22, 8:17 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -51,12 +51,6 @@ class BudgetsDatabaseInputs {
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
 
-    if (databaseInstance.isOpen) {
-
-      databaseInstance.close();
-
-    }
-
   }
 
   Future<void> updateBudgetData(BudgetsData budgetsData, String? tableName, String usernameId) async {
@@ -76,12 +70,6 @@ class BudgetsDatabaseInputs {
       where: 'id = ?',
       whereArgs: [budgetsData.id],
     );
-
-    if (databaseInstance.isOpen) {
-
-      databaseInstance.close();
-
-    }
 
   }
 

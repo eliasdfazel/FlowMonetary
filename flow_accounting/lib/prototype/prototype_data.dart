@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/13/22, 8:07 AM
+ * Last modified 3/13/22, 8:13 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -129,7 +129,7 @@ class PrototypeData {
 
     }
 
-    debugPrint("Credit Cards Created");
+    debugPrint("Credit Cards Created ${creditCardsData.length}");
 
     prepareBudgetsData();
 
@@ -187,7 +187,7 @@ class PrototypeData {
 
     }
 
-    debugPrint("Budgets Created");
+    debugPrint("Budgets Created ${budgetsData.length}");
 
     prepareCustomersData();
 
@@ -290,7 +290,7 @@ class PrototypeData {
 
     }
 
-    debugPrint("Customers Created");
+    debugPrint("Customers Created ${customersData.length}");
 
     prepareTransactionsData();
 
@@ -562,15 +562,13 @@ class PrototypeData {
         budgetName: "شرکت ثبت برند ملاصدرا"
     ));
 
-    print(">>>>>>> ${transactionsData.length}");
-
     for (var element in transactionsData) {
 
       transactionsDatabaseInputs.insertTransactionData(element, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
     }
 
-    debugPrint("Transactions Created");
+    debugPrint("Transactions Created  ${transactionsData.length}");
 
   }
 

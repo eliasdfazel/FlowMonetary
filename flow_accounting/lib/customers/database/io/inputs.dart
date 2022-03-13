@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/2/22, 5:53 AM
+ * Last modified 3/13/22, 8:17 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -60,12 +60,6 @@ class CustomersDatabaseInputs {
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
 
-    if (databaseInstance.isOpen) {
-
-      databaseInstance.close();
-
-    }
-
   }
 
   Future<void> updateCustomerData(CustomersData customersData, String? tableName, String usernameId) async {
@@ -85,12 +79,6 @@ class CustomersDatabaseInputs {
       where: 'id = ?',
       whereArgs: [customersData.id],
     );
-
-    if (databaseInstance.isOpen) {
-
-      databaseInstance.close();
-
-    }
 
   }
 
