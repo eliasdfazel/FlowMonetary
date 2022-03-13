@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/13/22, 6:44 AM
+ * Last modified 3/13/22, 7:13 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -34,7 +34,7 @@ class BudgetsDatabaseInputs {
           'CREATE TABLE IF NOT EXISTS $tableNameQuery(id INTEGER PRIMARY KEY, '
               'budgetName TEXT, '
               'budgetDescription TEXT, '
-              'budgetBalance TEXT,'
+              'budgetBalance TEXT, '
               'colorTag TEXT'
               ')',
         );

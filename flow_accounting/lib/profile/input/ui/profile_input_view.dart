@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/13/22, 6:59 AM
+ * Last modified 3/13/22, 7:11 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -841,13 +841,13 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
 
                                 if ((widget.profilesData?.id)! != 0) {
 
-                                  databaseInputs.updateProfileData(profilesData, ProfilesDatabaseInputs.databaseTableName);
+                                  databaseInputs.updateProfileData(profilesData);
 
                                 }
 
                               } else {
 
-                                databaseInputs.insertProfileData(profilesData, ProfilesDatabaseInputs.databaseTableName);
+                                databaseInputs.insertProfileData(profilesData);
 
                               }
 

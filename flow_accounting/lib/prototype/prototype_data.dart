@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/12/22, 5:16 AM
+ * Last modified 3/13/22, 8:07 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -166,7 +166,7 @@ class PrototypeData {
     ));
 
     budgetsData.add(BudgetsData(
-        id: DateTime.now().millisecondsSinceEpoch + 3,
+        id: DateTime.now().millisecondsSinceEpoch + 4,
         budgetName: "شرکت ثبت برند ملاصدرا",
         budgetDescription: "بودجه ثبت برند ",
         budgetBalance: "7000000",
@@ -174,7 +174,7 @@ class PrototypeData {
     ));
 
     budgetsData.add(BudgetsData(
-        id: DateTime.now().millisecondsSinceEpoch + 3,
+        id: DateTime.now().millisecondsSinceEpoch + 5,
         budgetName: "شرکت تبلیغاتی رهام",
         budgetDescription: "بودجه تبلیغات",
         budgetBalance: "27000000",
@@ -234,7 +234,7 @@ class PrototypeData {
     ));
 
     customersData.add(CustomersData(
-      id: DateTime.now().millisecondsSinceEpoch + 1,
+      id: DateTime.now().millisecondsSinceEpoch + 2,
       customerName: "مریم عسگری",
       customerDescription: "مدیریت مالی ",
       customerCountry: "ایران",
@@ -251,7 +251,7 @@ class PrototypeData {
     ));
 
     customersData.add(CustomersData(
-      id: DateTime.now().millisecondsSinceEpoch + 1,
+      id: DateTime.now().millisecondsSinceEpoch + 3,
       customerName: " مرضیه یاسایی",
       customerDescription: "مدیریت پروژه",
       customerCountry: "ایران",
@@ -268,7 +268,7 @@ class PrototypeData {
     ));
 
     customersData.add(CustomersData(
-      id: DateTime.now().millisecondsSinceEpoch + 1,
+      id: DateTime.now().millisecondsSinceEpoch + 4,
       customerName: "نیما کشاورز",
       customerDescription: "تبلیغات ",
       customerCountry: "ایران",
@@ -292,11 +292,7 @@ class PrototypeData {
 
     debugPrint("Customers Created");
 
-    Future.delayed(const Duration(milliseconds: 799), () {
-
-      prepareTransactionsData();
-
-    });
+    prepareTransactionsData();
 
   }
 
@@ -307,7 +303,7 @@ class PrototypeData {
     List<TransactionsData> transactionsData = [];
 
     transactionsData.add(TransactionsData(
-        id: DateTime.now().millisecondsSinceEpoch,
+        id: DateTime.now().millisecondsSinceEpoch + 1,
         transactionTitle: "  کارت به کارت",
         transactionDescription: " پرداخت حقوق ماه اول",
         sourceCardNumber: "6221061211621294",
@@ -327,7 +323,7 @@ class PrototypeData {
     ));
 
     transactionsData.add(TransactionsData(
-        id: DateTime.now().millisecondsSinceEpoch,
+        id: DateTime.now().millisecondsSinceEpoch + 2,
         transactionTitle: " کارت به کارت",
         transactionDescription: "حقوق کارآموزان",
         sourceCardNumber: "6037997111991147",
@@ -347,7 +343,7 @@ class PrototypeData {
     ));
 
     transactionsData.add(TransactionsData(
-        id: DateTime.now().millisecondsSinceEpoch,
+        id: DateTime.now().millisecondsSinceEpoch + 3,
         transactionTitle: "کارت به کارت",
         transactionDescription: " هزینه تهیه نرم افزار",
         sourceCardNumber: "5022291011998586",
@@ -367,7 +363,7 @@ class PrototypeData {
     ));
 
     transactionsData.add(TransactionsData(
-        id: DateTime.now().millisecondsSinceEpoch,
+        id: DateTime.now().millisecondsSinceEpoch + 4,
         transactionTitle: "کارت به کارت",
         transactionDescription: "حقوق کارآموزان ",
         sourceCardNumber: "5274331211991147",
@@ -387,7 +383,7 @@ class PrototypeData {
     ));
 
     transactionsData.add(TransactionsData(
-        id: DateTime.now().millisecondsSinceEpoch,
+        id: DateTime.now().millisecondsSinceEpoch + 5,
         transactionTitle: "کارت به کارت ",
         transactionDescription: "ثبت برند شرکت - ماه اول",
         sourceCardNumber: "5274331211991147",
@@ -407,7 +403,7 @@ class PrototypeData {
     ));
 
     transactionsData.add(TransactionsData(
-        id: DateTime.now().millisecondsSinceEpoch,
+        id: DateTime.now().millisecondsSinceEpoch + 6,
         transactionTitle: " کارت به کارت",
         transactionDescription: " هزینه تبلیغات - ماه اول",
         sourceCardNumber: "6274121200641696",
@@ -427,7 +423,7 @@ class PrototypeData {
     ));
 
     transactionsData.add(TransactionsData(
-        id: DateTime.now().millisecondsSinceEpoch,
+        id: DateTime.now().millisecondsSinceEpoch + 7,
         transactionTitle: " کارت به کارت",
         transactionDescription: "پرداخت حقوق ماه دوم",
         sourceCardNumber: "6221061211621294",
@@ -447,7 +443,7 @@ class PrototypeData {
     ));
 
     transactionsData.add(TransactionsData(
-        id: DateTime.now().millisecondsSinceEpoch,
+        id: DateTime.now().millisecondsSinceEpoch + 8,
         transactionTitle: " کارت به کارت",
         transactionDescription: "پرداخت حقوق ماه سوم",
         sourceCardNumber: "6221061211621294",
@@ -467,7 +463,7 @@ class PrototypeData {
     ));
 
     transactionsData.add(TransactionsData(
-        id: DateTime.now().millisecondsSinceEpoch,
+        id: DateTime.now().millisecondsSinceEpoch + 9,
         transactionTitle: "کارت به کارت",
         transactionDescription: " ثبت برند شرکت - ماه دوم",
         sourceCardNumber: "5274331211991147",
@@ -487,7 +483,7 @@ class PrototypeData {
     ));
 
     transactionsData.add(TransactionsData(
-        id: DateTime.now().millisecondsSinceEpoch,
+        id: DateTime.now().millisecondsSinceEpoch + 10,
         transactionTitle: "کارت به کارت",
         transactionDescription: " هزینه تبلیغات - ماه دوم",
         sourceCardNumber: "6276339200641696",
@@ -507,7 +503,7 @@ class PrototypeData {
     ));
 
     transactionsData.add(TransactionsData(
-        id: DateTime.now().millisecondsSinceEpoch,
+        id: DateTime.now().millisecondsSinceEpoch + 11,
         transactionTitle: " کارت به کارت",
         transactionDescription: " خرید نرم افزار",
         sourceCardNumber: "5892101200641696",
@@ -527,7 +523,7 @@ class PrototypeData {
     ));
 
     transactionsData.add(TransactionsData(
-        id: DateTime.now().millisecondsSinceEpoch,
+        id: DateTime.now().millisecondsSinceEpoch + 12,
         transactionTitle: " کارت به کارت",
         transactionDescription: " هزینه تبلیغات - ماه سوم",
         sourceCardNumber: "6274121200641696",
@@ -547,7 +543,7 @@ class PrototypeData {
     ));
 
     transactionsData.add(TransactionsData(
-        id: DateTime.now().millisecondsSinceEpoch,
+        id: DateTime.now().millisecondsSinceEpoch + 13,
         transactionTitle: " کارت به کارت",
         transactionDescription: "ثبت برند شرکت - ماه سوم",
         sourceCardNumber: "5274331211991147",
@@ -565,6 +561,8 @@ class PrototypeData {
         colorTag: listOfColors.randomItem().value,
         budgetName: "شرکت ثبت برند ملاصدرا"
     ));
+
+    print(">>>>>>> ${transactionsData.length}");
 
     for (var element in transactionsData) {
 

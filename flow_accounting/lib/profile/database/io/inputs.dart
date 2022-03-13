@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/12/22, 4:23 AM
+ * Last modified 3/13/22, 7:14 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -18,7 +18,7 @@ class ProfilesDatabaseInputs {
 
   static const profilesDatabase = "profiles_database.db";
 
-  Future<void> insertProfileData(ProfilesData profilesData, String tableName) async {
+  Future<void> insertProfileData(ProfilesData profilesData) async {
 
     var tableNameQuery = ProfilesDatabaseInputs.databaseTableName;
 
@@ -59,7 +59,7 @@ class ProfilesDatabaseInputs {
 
   }
 
-  Future<void> updateProfileData(ProfilesData profilesData, String tableName) async {
+  Future<void> updateProfileData(ProfilesData profilesData) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), ProfilesDatabaseInputs.profilesDatabase),
