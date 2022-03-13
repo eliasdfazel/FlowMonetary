@@ -2,11 +2,13 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/12/22, 7:26 AM
+ * Last modified 3/13/22, 5:55 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
+
+import 'dart:io';
 
 import 'package:flow_accounting/profile/database/io/inputs.dart';
 import 'package:flow_accounting/profile/database/io/queries.dart';
@@ -222,11 +224,76 @@ class _TopBarViewState extends State<TopBarView> {
 
     }
 
+    setState(() {
+
+      allAccountsViews;
+
+    });
+
   }
 
   Widget profilesItemView(ProfilesData profilesData) {
 
-    return Container();
+    return SizedBox(
+      height: 53,
+      width: double.infinity,
+      child: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+              colors: [
+                ColorsResources.white,
+                ColorsResources.light,
+              ],
+              begin: FractionalOffset(0.0, 0.0),
+              end: FractionalOffset(1.0, 0.0),
+              stops: [0.0, 1.0],
+              transform: GradientRotation(45),
+              tileMode: TileMode.clamp
+          ),
+          borderRadius: BorderRadius.circular(13)
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Expanded(
+              flex: 13,
+              child: Align(
+                alignment: AlignmentDirectional.centerEnd,
+                child: Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: Text(
+                    profilesData.userFullName,
+                    textDirection: TextDirection.rtl,
+                    textAlign: TextAlign.right,
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: ColorsResources.dark,
+                      fontWeight: FontWeight.bold
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 3,
+              child: AspectRatio(
+                aspectRatio: 1,
+                child:  Padding(
+                  padding: const EdgeInsets.fromLTRB(3, 3, 3, 3),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(51),
+                    child: Image.file(
+                      File(profilesData.userImage),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
   }
 
 }

@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/23/22, 4:13 AM
+ * Last modified 3/13/22, 5:50 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -1271,7 +1271,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                                   ),
                                                   Expanded(
                                                       flex: 5,
-                                                      child:  AspectRatio(
+                                                      child: AspectRatio(
                                                         aspectRatio: 1,
                                                         child: Container(
                                                           decoration: BoxDecoration(
