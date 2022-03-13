@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/13/22, 11:19 AM
+ * Last modified 3/13/22, 11:37 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -26,6 +26,7 @@ class ProfileDatabaseQueries {
     bool profilesDatabaseExist = await databaseExists(profileDatabasePath);
 
     if (profilesDatabaseExist) {
+
       final database = openDatabase(
         join(await getDatabasesPath(), ProfilesDatabaseInputs.profilesDatabase),
       );
@@ -79,28 +80,32 @@ class ProfileDatabaseQueries {
 
       var tableNameQuery = ProfilesDatabaseInputs.databaseTableName;
 
-      var databaseContents = await databaseInstance.query(
+      List<Map<String, Object?>>? databaseContents = await databaseInstance.query(
         tableNameQuery,
         where: 'userSignedIn = ?',
         whereArgs: [ProfilesData.Profile_Singed_In],
       );
 
-      profilesData = ProfilesData(
-        id: int.parse(databaseContents[0]['id'].toString()),
+      if (databaseContents.isNotEmpty) {
 
-        userId: databaseContents[0]['userId'].toString(),
+        profilesData = ProfilesData(
+          id: int.parse(databaseContents[0]['id'].toString()),
 
-        userFullName: databaseContents[0]['userFullName'].toString(),
-        userImage: databaseContents[0]['userImage'].toString(),
+          userId: databaseContents[0]['userId'].toString(),
 
-        userEmailAddress: databaseContents[0]['userEmailAddress'].toString(),
-        userPhoneNumber: databaseContents[0]['userPhoneNumber'].toString(),
-        userInstagram: databaseContents[0]['userInstagram'].toString(),
+          userFullName: databaseContents[0]['userFullName'].toString(),
+          userImage: databaseContents[0]['userImage'].toString(),
 
-        userLocationAddress: databaseContents[0]['userLocationAddress'].toString(),
+          userEmailAddress: databaseContents[0]['userEmailAddress'].toString(),
+          userPhoneNumber: databaseContents[0]['userPhoneNumber'].toString(),
+          userInstagram: databaseContents[0]['userInstagram'].toString(),
 
-        userSignedIn: databaseContents[0]['userSignedIn'].toString(),
-      );
+          userLocationAddress: databaseContents[0]['userLocationAddress'].toString(),
+
+          userSignedIn: databaseContents[0]['userSignedIn'].toString(),
+        );
+
+      }
 
     }
 
