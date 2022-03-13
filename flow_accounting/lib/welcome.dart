@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/13/22, 11:22 AM
+ * Last modified 3/13/22, 12:08 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -13,7 +13,7 @@ import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/profile/database/structures/tables_structure.dart';
 import 'package:flow_accounting/utils/navigations/navigations.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 
 import 'resources/ColorsResources.dart';
 import 'resources/StringsResources.dart';
@@ -22,7 +22,11 @@ void main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
 
-  runApp(const MaterialApp(home: WelcomePage()));
+  runApp(
+      Phoenix(
+          child: MaterialApp(home: WelcomePage())
+      )
+  );
 
 }
 

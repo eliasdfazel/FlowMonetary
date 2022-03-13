@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/13/22, 12:00 PM
+ * Last modified 3/13/22, 12:14 PM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,12 +10,14 @@
 
 import 'dart:io';
 
+import 'package:flow_accounting/profile/database/io/inputs.dart';
 import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/profile/database/structures/tables_structure.dart';
 import 'package:flow_accounting/profile/input/ui/profile_input_view.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -276,12 +278,24 @@ class _TopBarViewState extends State<TopBarView> {
                   child: InkWell(
                     splashColor: ColorsResources.lightestBlue,
                     splashFactory: InkRipple.splashFactory,
-                    onTap: () {
+                    onTap: () async {
 
-                      //Update Database of Selected Use to Signed In
-                      //Then Restart The Application
+                      profilesData.userSignedIn = ProfilesData.Profile_Singed_In;
 
-                      Navigator.of(context, rootNavigator: true).pop();
+                      ProfilesDatabaseInputs profilesDatabaseInputs = ProfilesDatabaseInputs();
+                      await profilesDatabaseInputs.updateProfileData(profilesData);
+
+                      Future.delayed(Duration(milliseconds: 357), () {
+
+                        Navigator.of(context, rootNavigator: true).pop();
+
+                      });
+
+                      Future.delayed(Duration(milliseconds: 579), () {
+
+                        Phoenix.rebirth(context);
+
+                      });
 
                     },
                     child: Container(
