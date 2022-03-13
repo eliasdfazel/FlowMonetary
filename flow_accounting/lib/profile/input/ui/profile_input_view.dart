@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/13/22, 8:34 AM
+ * Last modified 3/13/22, 10:35 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -732,10 +732,6 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                             )
                           ],
                         ),
-                      ),
-                      const Divider(
-                        height: 13,
-                        color: Colors.transparent,
                       ),
                     ]
                 ),
