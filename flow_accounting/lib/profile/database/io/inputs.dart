@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/13/22, 10:37 AM
+ * Last modified 3/13/22, 11:26 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -41,6 +41,7 @@ class ProfilesDatabaseInputs {
       },
 
       version: 1,
+      readOnly: false
     );
 
     final databaseInstance = await database;
