@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/13/22, 10:15 AM
+ * Last modified 3/13/22, 11:14 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -28,17 +28,7 @@ class TopBarView extends StatefulWidget {
 
 class _TopBarViewState extends State<TopBarView> {
 
-  ProfilesData profilesData = ProfilesData(
-      id: 0,
-      userId: '',
-      userSignedIn: ProfilesData.Profile_Not_Singed_In,
-      userFullName: '',
-      userImage: '',
-      userEmailAddress: '',
-      userInstagram: '',
-      userPhoneNumber: '',
-      userLocationAddress: ''
-  );
+  ProfilesData? profilesData;
 
   List<Widget> allAccountsViews = [];
 
@@ -109,7 +99,7 @@ class _TopBarViewState extends State<TopBarView> {
                     child: GestureDetector(
                       onTap: () async {
 
-                        if (profilesData.id != 0) {
+                        if (profilesData?.id != 0) {
 
                           bool dataUpdated = await Navigator.push(
                             context,
@@ -204,7 +194,7 @@ class _TopBarViewState extends State<TopBarView> {
 
       profilesData = await profileDatabaseQueries.querySignedInUser();
 
-      UserInformation.UserId = profilesData.userId;
+      UserInformation.UserId = profilesData?.userId ?? "Unknown";
 
       setState(() {
 

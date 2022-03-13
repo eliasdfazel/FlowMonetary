@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/13/22, 7:00 AM
+ * Last modified 3/13/22, 11:22 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -198,11 +198,19 @@ class _WelcomePage extends State<WelcomePage> {
 
       ProfileDatabaseQueries profileDatabaseQueries = ProfileDatabaseQueries();
 
-      ProfilesData profileData = await profileDatabaseQueries.querySignedInUser();
+      ProfilesData? profileData = await profileDatabaseQueries.querySignedInUser();
 
-      UserInformation.UserId = profileData.userId;
+      if (profileData != null) {
 
-      signedInUser = UserInformation.UserId;
+        UserInformation.UserId = profileData.userId;
+
+        signedInUser = UserInformation.UserId;
+
+      } else {
+
+        signedInUser = StringsResources.unknownText;
+
+      }
 
       debugPrint("Signed In User: ${signedInUser}");
 

@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/13/22, 6:01 AM
+ * Last modified 3/13/22, 11:19 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -17,15 +17,26 @@ class ProfileDatabaseQueries {
 
   Future<List<ProfilesData>> getAllProfileAccounts() async {
 
-    final database = openDatabase(
-      join(await getDatabasesPath(), ProfilesDatabaseInputs.profilesDatabase),
-    );
+    List<Map<String, dynamic>> maps = [];
 
-    final databaseInstance = await database;
+    String databaseDirectory = await getDatabasesPath();
 
-    var tableNameQuery = ProfilesDatabaseInputs.databaseTableName;
+    String profileDatabasePath = "${databaseDirectory}/${ProfilesDatabaseInputs.profilesDatabase}";
 
-    final List<Map<String, dynamic>> maps = await databaseInstance.query(tableNameQuery);
+    bool profilesDatabaseExist = await databaseExists(profileDatabasePath);
+
+    if (profilesDatabaseExist) {
+      final database = openDatabase(
+        join(await getDatabasesPath(), ProfilesDatabaseInputs.profilesDatabase),
+      );
+
+      final databaseInstance = await database;
+
+      var tableNameQuery = ProfilesDatabaseInputs.databaseTableName;
+
+      maps = await databaseInstance.query(tableNameQuery);
+
+    }
 
     return List.generate(maps.length, (i) {
       return ProfilesData(
@@ -48,23 +59,33 @@ class ProfileDatabaseQueries {
 
   }
 
-  Future<ProfilesData> querySignedInUser() async {
+  Future<ProfilesData?> querySignedInUser() async {
 
-    final database = openDatabase(
-      join(await getDatabasesPath(), ProfilesDatabaseInputs.profilesDatabase),
-    );
+    ProfilesData? profilesData;
 
-    final databaseInstance = await database;
+    String databaseDirectory = await getDatabasesPath();
 
-    var tableNameQuery = ProfilesDatabaseInputs.databaseTableName;
+    String profileDatabasePath = "${databaseDirectory}/${ProfilesDatabaseInputs.profilesDatabase}";
 
-    var databaseContents = await databaseInstance.query(
-      tableNameQuery,
-      where: 'userSignedIn = ?',
-      whereArgs: [ProfilesData.Profile_Singed_In],
-    );
+    bool profilesDatabaseExist = await databaseExists(profileDatabasePath);
 
-    return ProfilesData(
+    if (profilesDatabaseExist) {
+
+      final database = openDatabase(
+        join(await getDatabasesPath(), ProfilesDatabaseInputs.profilesDatabase),
+      );
+
+      final databaseInstance = await database;
+
+      var tableNameQuery = ProfilesDatabaseInputs.databaseTableName;
+
+      var databaseContents = await databaseInstance.query(
+        tableNameQuery,
+        where: 'userSignedIn = ?',
+        whereArgs: [ProfilesData.Profile_Singed_In],
+      );
+
+      profilesData = ProfilesData(
         id: int.parse(databaseContents[0]['id'].toString()),
 
         userId: databaseContents[0]['userId'].toString(),
@@ -79,7 +100,11 @@ class ProfileDatabaseQueries {
         userLocationAddress: databaseContents[0]['userLocationAddress'].toString(),
 
         userSignedIn: databaseContents[0]['userSignedIn'].toString(),
-    );
+      );
+
+    }
+
+    return profilesData;
   }
 
 }
