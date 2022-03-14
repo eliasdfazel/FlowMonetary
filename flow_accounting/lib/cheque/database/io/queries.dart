@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/14/22, 5:13 AM
+ * Last modified 3/14/22, 5:39 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -27,7 +27,7 @@ class ChequesDatabaseQueries {
 
     final databaseInstance = await database;
 
-    var tableNameQuery = (tableName != StringsResources.unknownText) ? tableName : ChequesDatabaseInputs.databaseTableName;
+    var tableNameQuery = (usernameId == StringsResources.unknownText) ? tableName : ChequesDatabaseInputs.databaseTableName;
     tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     final List<Map<String, dynamic>> maps = await databaseInstance.query(tableNameQuery);
@@ -85,7 +85,7 @@ class ChequesDatabaseQueries {
 
     final databaseInstance = await database;
 
-    var tableNameQuery = (tableName != StringsResources.unknownText) ? tableName : ChequesDatabaseInputs.databaseTableName;
+    var tableNameQuery = (usernameId == StringsResources.unknownText) ? tableName : ChequesDatabaseInputs.databaseTableName;
     tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     var databaseContents = await databaseInstance.query(
@@ -106,7 +106,7 @@ class ChequesDatabaseQueries {
 
     final databaseInstance = await database;
 
-    var tableNameQuery = (tableName != StringsResources.unknownText) ? tableName : ChequesDatabaseInputs.databaseTableName;
+    var tableNameQuery = (usernameId == StringsResources.unknownText) ? tableName : ChequesDatabaseInputs.databaseTableName;
     tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     var queryResult = await databaseInstance.delete(

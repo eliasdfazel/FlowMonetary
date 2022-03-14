@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/14/22, 5:11 AM
+ * Last modified 3/14/22, 5:39 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -24,7 +24,7 @@ class CustomersDatabaseInputs {
   Future<void> insertCustomerData(CustomersData customersData, String tableName,
       String usernameId) async {
 
-    var tableNameQuery = (tableName != StringsResources.unknownText) ? tableName : CustomersDatabaseInputs.databaseTableName;
+    var tableNameQuery = (usernameId == StringsResources.unknownText) ? tableName : CustomersDatabaseInputs.databaseTableName;
     tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     final database = openDatabase(
@@ -78,7 +78,7 @@ class CustomersDatabaseInputs {
 
     final databaseInstance = await database;
 
-    var tableNameQuery = (tableName != StringsResources.unknownText) ? tableName : CustomersDatabaseInputs.databaseTableName;
+    var tableNameQuery = (usernameId == StringsResources.unknownText) ? tableName : CustomersDatabaseInputs.databaseTableName;
     tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     await databaseInstance.update(

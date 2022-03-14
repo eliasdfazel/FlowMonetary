@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/14/22, 5:13 AM
+ * Last modified 3/14/22, 5:39 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -24,7 +24,7 @@ class ChequesDatabaseInputs {
   Future<void> insertChequeData(ChequesData chequesData, String tableName,
       String usernameId) async {
 
-    var tableNameQuery = (tableName != StringsResources.unknownText) ? tableName : ChequesDatabaseInputs.databaseTableName;
+    var tableNameQuery = (usernameId == StringsResources.unknownText) ? tableName : ChequesDatabaseInputs.databaseTableName;
     tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     final database = openDatabase(
@@ -99,7 +99,7 @@ class ChequesDatabaseInputs {
 
     final databaseInstance = await database;
 
-    var tableNameQuery = (tableName != StringsResources.unknownText) ? tableName : ChequesDatabaseInputs.databaseTableName;
+    var tableNameQuery = (usernameId == StringsResources.unknownText) ? tableName : ChequesDatabaseInputs.databaseTableName;
     tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     await databaseInstance.update(
