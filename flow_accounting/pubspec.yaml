@@ -68,6 +68,7 @@ flutter:
     - search_shape.png
     - coins_icon.png
     - unknown_user.png
+    - assets/sign_up.json
 
   fonts:
     - family: Sans
