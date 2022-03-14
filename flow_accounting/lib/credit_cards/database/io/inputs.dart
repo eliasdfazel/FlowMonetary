@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/14/22, 6:42 AM
+ * Last modified 3/14/22, 7:28 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -23,7 +23,7 @@ class CreditCardsDatabaseInputs {
   static const creditCardDatabase = "credit_cards_database.db";
 
   Future<void> insertCreditCardsData(CreditCardsData creditCardsData,
-      String tableName, String usernameId) async {
+      String tableName, String usernameId, {bool isPrototype = false}) async {
 
     var databaseNameQuery = (usernameId == StringsResources.unknownText) ? CreditCardsDatabaseInputs.creditCardDatabase : "${usernameId}_${CreditCardsDatabaseInputs.creditCardDatabase}";
     var tableNameQuery = CreditCardsDatabaseInputs.databaseTableName;
@@ -57,7 +57,7 @@ class CreditCardsDatabaseInputs {
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
 
-    if (databaseInstance.isOpen) {
+    if (databaseInstance.isOpen && !isPrototype) {
 
       await databaseInstance.close();
 

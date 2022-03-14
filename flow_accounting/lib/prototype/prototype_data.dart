@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/14/22, 7:16 AM
+ * Last modified 3/14/22, 7:26 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -140,7 +140,7 @@ class PrototypeData {
 
     for (var element in creditCardsData) {
 
-      creditCardsDatabaseInputs.insertCreditCardsData(element, CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId);
+      creditCardsDatabaseInputs.insertCreditCardsData(element, CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId, isPrototype: true);
 
     }
 
@@ -196,7 +196,7 @@ class PrototypeData {
 
     for (var element in budgetsData) {
 
-      budgetsDatabaseInputs.insertBudgetData(element, BudgetsDatabaseInputs.databaseTableName, UserInformation.UserId);
+      budgetsDatabaseInputs.insertBudgetData(element, BudgetsDatabaseInputs.databaseTableName, UserInformation.UserId, isPrototype: true);
 
     }
 
@@ -297,7 +297,7 @@ class PrototypeData {
 
     for (var element in customersData) {
 
-      customersDatabaseInputs.insertCustomerData(element, CustomersDatabaseInputs.databaseTableName, UserInformation.UserId);
+      customersDatabaseInputs.insertCustomerData(element, CustomersDatabaseInputs.databaseTableName, UserInformation.UserId, isPrototype: true);
 
     }
 
@@ -573,7 +573,7 @@ class PrototypeData {
 
     for (var element in transactionsData) {
 
-      transactionsDatabaseInputs.insertTransactionData(element, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
+      transactionsDatabaseInputs.insertTransactionData(element, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId, isPrototype: true);
 
     }
 
