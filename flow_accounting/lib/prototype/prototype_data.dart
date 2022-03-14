@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/14/22, 4:52 AM
+ * Last modified 3/14/22, 5:17 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,6 +15,7 @@ import 'package:flow_accounting/credit_cards/database/structures/tables_structur
 import 'package:flow_accounting/customers/database/io/inputs.dart';
 import 'package:flow_accounting/customers/database/structures/table_structure.dart';
 import 'package:flow_accounting/profile/database/io/queries.dart';
+import 'package:flow_accounting/profile/database/structures/tables_structure.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/database/io/inputs.dart';
 import 'package:flow_accounting/transactions/database/structures/tables_structure.dart';
@@ -72,9 +73,21 @@ class PrototypeData {
     "12",
   ];
 
-  void generate() {
+  void generate() async {
 
-    UserInformation.UserId = "09039753777";
+    ProfileDatabaseQueries profileDatabaseQueries = ProfileDatabaseQueries();
+
+    ProfilesData? profileData = await profileDatabaseQueries.querySignedInUser();
+
+    if (profileData != null) {
+
+      UserInformation.UserId = profileData.userId;
+
+    } else {
+
+      UserInformation.UserId = StringsResources.unknownText;
+
+    }
 
     prepareCreditCardsData();
 
