@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/14/22, 6:13 AM
+ * Last modified 3/14/22, 6:42 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -19,13 +19,14 @@ class CustomersDatabaseQueries {
   Future<List<CustomersData>> getAllCustomers(String tableName,
       String usernameId) async {
 
+    var databaseNameQuery = (usernameId == StringsResources.unknownText) ? CustomersDatabaseInputs.customersDatabase : "${usernameId}_${CustomersDatabaseInputs.customersDatabase}";
+    var tableNameQuery = CustomersDatabaseInputs.databaseTableName;
+
     final database = openDatabase(
-      join(await getDatabasesPath(), CustomersDatabaseInputs.customersDatabase),
+      join(await getDatabasesPath(), databaseNameQuery),
     );
 
     final databaseInstance = await database;
-
-    var tableNameQuery = (usernameId == StringsResources.unknownText) ? CustomersDatabaseInputs.databaseTableName : "${usernameId}_${CustomersDatabaseInputs.specificDatabaseTableName}";
 
     final List<Map<String, dynamic>> maps = await databaseInstance.query(tableNameQuery);
 
@@ -61,13 +62,14 @@ class CustomersDatabaseQueries {
   Future<int> queryDeleteCustomer(int id,
       String tableName, String usernameId) async {
 
+    var databaseNameQuery = (usernameId == StringsResources.unknownText) ? CustomersDatabaseInputs.customersDatabase : "${usernameId}_${CustomersDatabaseInputs.customersDatabase}";
+    var tableNameQuery = CustomersDatabaseInputs.databaseTableName;
+
     final database = openDatabase(
-      join(await getDatabasesPath(), CustomersDatabaseInputs.customersDatabase),
+      join(await getDatabasesPath(), databaseNameQuery),
     );
 
     final databaseInstance = await database;
-
-    var tableNameQuery = (usernameId == StringsResources.unknownText) ? CustomersDatabaseInputs.databaseTableName : "${usernameId}_${CustomersDatabaseInputs.specificDatabaseTableName}";
 
     var queryResult = await databaseInstance.delete(
       tableNameQuery,

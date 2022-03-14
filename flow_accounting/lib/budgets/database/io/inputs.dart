@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/14/22, 6:08 AM
+ * Last modified 3/14/22, 6:42 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -18,17 +18,17 @@ import 'package:sqflite/sqflite.dart';
 class BudgetsDatabaseInputs {
 
   static const String databaseTableName = "all_budgets";
-  static const String specificDatabaseTableName = "budgets";
 
   static const budgetsDatabase = "budgets_database.db";
 
   Future<void> insertBudgetData(BudgetsData budgetsData, String tableName,
       String usernameId) async {
 
-    var tableNameQuery = (usernameId == StringsResources.unknownText) ? BudgetsDatabaseInputs.databaseTableName : "${usernameId}_${BudgetsDatabaseInputs.specificDatabaseTableName}";
+    var databaseNameQuery = (usernameId == StringsResources.unknownText) ? BudgetsDatabaseInputs.budgetsDatabase : "${usernameId}_${BudgetsDatabaseInputs.budgetsDatabase}";
+    var tableNameQuery = BudgetsDatabaseInputs.databaseTableName;
 
     final database = openDatabase(
-      join(await getDatabasesPath(), BudgetsDatabaseInputs.budgetsDatabase),
+      join(await getDatabasesPath(), databaseNameQuery),
       onCreate: (databaseInstance, version) {
 
         return databaseInstance.execute(
@@ -62,13 +62,14 @@ class BudgetsDatabaseInputs {
 
   Future<void> updateBudgetData(BudgetsData budgetsData, String tableName, String usernameId) async {
 
+    var databaseNameQuery = (usernameId == StringsResources.unknownText) ? BudgetsDatabaseInputs.budgetsDatabase : "${usernameId}_${BudgetsDatabaseInputs.budgetsDatabase}";
+    var tableNameQuery = BudgetsDatabaseInputs.databaseTableName;
+
     final database = openDatabase(
-      join(await getDatabasesPath(), BudgetsDatabaseInputs.budgetsDatabase),
+      join(await getDatabasesPath(), databaseNameQuery),
     );
 
     final databaseInstance = await database;
-
-    var tableNameQuery = (usernameId == StringsResources.unknownText) ? BudgetsDatabaseInputs.databaseTableName : "${usernameId}_${BudgetsDatabaseInputs.specificDatabaseTableName}";
 
     await databaseInstance.update(
       tableNameQuery,

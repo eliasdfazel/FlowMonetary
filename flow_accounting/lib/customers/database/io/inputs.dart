@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/14/22, 6:13 AM
+ * Last modified 3/14/22, 6:42 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -18,17 +18,17 @@ import 'package:sqflite/sqflite.dart';
 class CustomersDatabaseInputs {
 
   static const String databaseTableName = "all_customers";
-  static const String specificDatabaseTableName = "customers";
 
   static const customersDatabase = "customers_database.db";
 
   Future<void> insertCustomerData(CustomersData customersData, String tableName,
       String usernameId) async {
 
-    var tableNameQuery = (usernameId == StringsResources.unknownText) ? CustomersDatabaseInputs.databaseTableName : "${usernameId}_${CustomersDatabaseInputs.specificDatabaseTableName}";
+    var databaseNameQuery = (usernameId == StringsResources.unknownText) ? CustomersDatabaseInputs.customersDatabase : "${usernameId}_${CustomersDatabaseInputs.customersDatabase}";
+    var tableNameQuery = CustomersDatabaseInputs.databaseTableName;
 
     final database = openDatabase(
-      join(await getDatabasesPath(), CustomersDatabaseInputs.customersDatabase),
+      join(await getDatabasesPath(), databaseNameQuery),
       onCreate: (databaseInstance, version) {
 
         return databaseInstance.execute(
@@ -72,13 +72,14 @@ class CustomersDatabaseInputs {
 
   Future<void> updateCustomerData(CustomersData customersData, String tableName, String usernameId) async {
 
+    var databaseNameQuery = (usernameId == StringsResources.unknownText) ? CustomersDatabaseInputs.customersDatabase : "${usernameId}_${CustomersDatabaseInputs.customersDatabase}";
+    var tableNameQuery = CustomersDatabaseInputs.databaseTableName;
+
     final database = openDatabase(
-      join(await getDatabasesPath(), CustomersDatabaseInputs.customersDatabase),
+      join(await getDatabasesPath(), databaseNameQuery),
     );
 
     final databaseInstance = await database;
-
-    var tableNameQuery = (usernameId == StringsResources.unknownText) ? CustomersDatabaseInputs.databaseTableName : "${usernameId}_${CustomersDatabaseInputs.specificDatabaseTableName}";
 
     await databaseInstance.update(
       tableNameQuery,

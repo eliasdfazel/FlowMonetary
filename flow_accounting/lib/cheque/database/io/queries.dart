@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/14/22, 6:13 AM
+ * Last modified 3/14/22, 6:42 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -21,13 +21,14 @@ class ChequesDatabaseQueries {
   Future<List<ChequesData>> getAllCheques(String tableName,
       String usernameId) async {
 
+    var databaseNameQuery = (usernameId == StringsResources.unknownText) ? ChequesDatabaseInputs.chequesDatabase : "${usernameId}_${ChequesDatabaseInputs.chequesDatabase}";
+    var tableNameQuery = ChequesDatabaseInputs.databaseTableName;
+
     final database = openDatabase(
-      join(await getDatabasesPath(), ChequesDatabaseInputs.chequesDatabase),
+      join(await getDatabasesPath(), databaseNameQuery),
     );
 
     final databaseInstance = await database;
-
-    var tableNameQuery = (usernameId == StringsResources.unknownText) ? ChequesDatabaseInputs.databaseTableName : "${usernameId}_${ChequesDatabaseInputs.specificDatabaseTableName}";
 
     final List<Map<String, dynamic>> maps = await databaseInstance.query(tableNameQuery);
 
@@ -78,13 +79,14 @@ class ChequesDatabaseQueries {
       String chequeNumber,
       String tableName, String usernameId) async {
 
+    var databaseNameQuery = (usernameId == StringsResources.unknownText) ? ChequesDatabaseInputs.chequesDatabase : "${usernameId}_${ChequesDatabaseInputs.chequesDatabase}";
+    var tableNameQuery = ChequesDatabaseInputs.databaseTableName;
+
     final database = openDatabase(
-      join(await getDatabasesPath(), ChequesDatabaseInputs.chequesDatabase),
+      join(await getDatabasesPath(), databaseNameQuery),
     );
 
     final databaseInstance = await database;
-
-    var tableNameQuery = (usernameId == StringsResources.unknownText) ? ChequesDatabaseInputs.databaseTableName : "${usernameId}_${ChequesDatabaseInputs.specificDatabaseTableName}";
 
     var databaseContents = await databaseInstance.query(
       tableNameQuery,
@@ -98,13 +100,14 @@ class ChequesDatabaseQueries {
   Future<int> queryDeleteCheque(int id,
       String tableName, String usernameId) async {
 
+    var databaseNameQuery = (usernameId == StringsResources.unknownText) ? ChequesDatabaseInputs.chequesDatabase : "${usernameId}_${ChequesDatabaseInputs.chequesDatabase}";
+    var tableNameQuery = ChequesDatabaseInputs.databaseTableName;
+
     final database = openDatabase(
-      join(await getDatabasesPath(), ChequesDatabaseInputs.chequesDatabase),
+      join(await getDatabasesPath(), databaseNameQuery),
     );
 
     final databaseInstance = await database;
-
-    var tableNameQuery = (usernameId == StringsResources.unknownText) ? ChequesDatabaseInputs.databaseTableName : "${usernameId}_${ChequesDatabaseInputs.specificDatabaseTableName}";
 
     var queryResult = await databaseInstance.delete(
       tableNameQuery,

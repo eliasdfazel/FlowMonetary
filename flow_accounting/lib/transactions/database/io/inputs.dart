@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/14/22, 6:13 AM
+ * Last modified 3/14/22, 6:42 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -19,16 +19,16 @@ import 'package:sqflite/sqflite.dart';
 class TransactionsDatabaseInputs {
 
   static const String databaseTableName = "all_transactions";
-  static const String specificDatabaseTableName = "transactions";
 
   static const transactionDatabase = "transactions_database.db";
 
   Future<void> insertTransactionData(TransactionsData transactionsData, String tableName, String usernameId) async {
 
-    var tableNameQuery = (usernameId == StringsResources.unknownText) ? TransactionsDatabaseInputs.databaseTableName : "${usernameId}_${TransactionsDatabaseInputs.specificDatabaseTableName}";
+    var databaseNameQuery = (usernameId == StringsResources.unknownText) ? TransactionsDatabaseInputs.transactionDatabase : "${usernameId}_${TransactionsDatabaseInputs.transactionDatabase}";
+    var tableNameQuery = TransactionsDatabaseInputs.databaseTableName;
 
     final database = openDatabase(
-      join(await getDatabasesPath(), TransactionsDatabaseInputs.transactionDatabase),
+      join(await getDatabasesPath(), databaseNameQuery),
       onCreate: (databaseInstance, version) {
 
         return databaseInstance.execute(
@@ -75,13 +75,14 @@ class TransactionsDatabaseInputs {
 
   Future<void> updateTransactionData(TransactionsData transactionsData, String tableName, String usernameId) async {
 
+    var databaseNameQuery = (usernameId == StringsResources.unknownText) ? TransactionsDatabaseInputs.transactionDatabase : "${usernameId}_${TransactionsDatabaseInputs.transactionDatabase}";
+    var tableNameQuery = TransactionsDatabaseInputs.databaseTableName;
+
     final database = openDatabase(
-      join(await getDatabasesPath(), TransactionsDatabaseInputs.transactionDatabase),
+      join(await getDatabasesPath(), databaseNameQuery),
     );
 
     final databaseInstance = await database;
-
-    var tableNameQuery = (usernameId == StringsResources.unknownText) ? TransactionsDatabaseInputs.databaseTableName : "${usernameId}_${TransactionsDatabaseInputs.specificDatabaseTableName}";
 
     await databaseInstance.update(
       tableNameQuery,
