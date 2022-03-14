@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/13/22, 11:28 AM
+ * Last modified 3/14/22, 5:11 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -12,6 +12,7 @@ import 'dart:async';
 import 'dart:core';
 
 import 'package:flow_accounting/credit_cards/database/structures/tables_structure.dart';
+import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -22,9 +23,9 @@ class CreditCardsDatabaseInputs {
   static const creditCardDatabase = "credit_cards_database.db";
 
   Future<void> insertCreditCardsData(CreditCardsData creditCardsData,
-      String? tableName, String usernameId) async {
+      String tableName, String usernameId) async {
 
-    var tableNameQuery = (tableName != null) ? tableName : CreditCardsDatabaseInputs.databaseTableName;
+    var tableNameQuery = (tableName != StringsResources.unknownText) ? tableName : CreditCardsDatabaseInputs.databaseTableName;
     tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     final database = openDatabase(
@@ -66,7 +67,7 @@ class CreditCardsDatabaseInputs {
   }
 
   Future<void> updateCreditCardsData(CreditCardsData creditCardsData,
-      String? tableName, String usernameId) async {
+      String tableName, String usernameId) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), CreditCardsDatabaseInputs.creditCardDatabase),
@@ -74,7 +75,7 @@ class CreditCardsDatabaseInputs {
 
     final databaseInstance = await database;
 
-    var tableNameQuery = (tableName != null) ? tableName : CreditCardsDatabaseInputs.databaseTableName;
+    var tableNameQuery = (tableName != StringsResources.unknownText) ? tableName : CreditCardsDatabaseInputs.databaseTableName;
     tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     await databaseInstance.update(
@@ -92,7 +93,7 @@ class CreditCardsDatabaseInputs {
 
   }
 
-  Future<void> deleteCreditCardsData(int id, String? tableName,
+  Future<void> deleteCreditCardsData(int id, String tableName,
       String usernameId) async {
 
     final database = openDatabase(
@@ -101,7 +102,7 @@ class CreditCardsDatabaseInputs {
 
     final databaseInstance = await database;
 
-    var tableNameQuery = (tableName != null) ? tableName : CreditCardsDatabaseInputs.databaseTableName;
+    var tableNameQuery = (tableName != StringsResources.unknownText) ? tableName : CreditCardsDatabaseInputs.databaseTableName;
     tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     await databaseInstance.delete(

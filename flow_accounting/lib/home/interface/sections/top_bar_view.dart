@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/14/22, 4:22 AM
+ * Last modified 3/14/22, 4:52 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -123,6 +123,7 @@ class _TopBarViewState extends State<TopBarView> {
                                 builder: (context) => ProfilesInputView())
                           );
 
+                          debugPrint("Profile Database Updated");
                           if (dataUpdated) {
 
                             getSignedInProfile();

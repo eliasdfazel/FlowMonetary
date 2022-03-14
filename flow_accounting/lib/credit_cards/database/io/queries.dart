@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/13/22, 6:44 AM
+ * Last modified 3/14/22, 5:13 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -13,12 +13,13 @@ import 'dart:core';
 
 import 'package:flow_accounting/credit_cards/database/io/inputs.dart';
 import 'package:flow_accounting/credit_cards/database/structures/tables_structure.dart';
+import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 class CreditCardsDatabaseQueries {
 
-  Future<List<CreditCardsData>> getAllCreditCards(String? tableName,
+  Future<List<CreditCardsData>> getAllCreditCards(String tableName,
       String usernameId) async {
 
     final database = openDatabase(
@@ -27,7 +28,7 @@ class CreditCardsDatabaseQueries {
 
     final databaseInstance = await database;
 
-    var tableNameQuery = (tableName != null) ? tableName : CreditCardsDatabaseInputs.databaseTableName;
+    var tableNameQuery = (tableName != StringsResources.unknownText) ? tableName : CreditCardsDatabaseInputs.databaseTableName;
     tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     final List<Map<String, dynamic>> maps = await databaseInstance.query(tableNameQuery);
@@ -48,7 +49,7 @@ class CreditCardsDatabaseQueries {
   }
 
   Future<Map<String, Object?>> querySpecificCreditCard(int id,
-      String? tableName, String usernameId) async {
+      String tableName, String usernameId) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), CreditCardsDatabaseInputs.creditCardDatabase),
@@ -56,7 +57,7 @@ class CreditCardsDatabaseQueries {
 
     final databaseInstance = await database;
 
-    var tableNameQuery = (tableName != null) ? tableName : CreditCardsDatabaseInputs.databaseTableName;
+    var tableNameQuery = (tableName != StringsResources.unknownText) ? tableName : CreditCardsDatabaseInputs.databaseTableName;
     tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     var databaseContents = await databaseInstance.query(
@@ -70,7 +71,7 @@ class CreditCardsDatabaseQueries {
 
   Future<Map<String, Object?>> querySpecificCreditCardByCardNumber(
       String cardNumber,
-      String? tableName, String usernameId) async {
+      String tableName, String usernameId) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), CreditCardsDatabaseInputs.creditCardDatabase),
@@ -78,7 +79,7 @@ class CreditCardsDatabaseQueries {
 
     final databaseInstance = await database;
 
-    var tableNameQuery = (tableName != null) ? tableName : CreditCardsDatabaseInputs.databaseTableName;
+    var tableNameQuery = (tableName != StringsResources.unknownText) ? tableName : CreditCardsDatabaseInputs.databaseTableName;
     tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     var databaseContents = await databaseInstance.query(
@@ -91,7 +92,7 @@ class CreditCardsDatabaseQueries {
   }
 
   Future<int> queryDeleteCreditCard(int id,
-      String? tableName, String usernameId) async {
+      String tableName, String usernameId) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), CreditCardsDatabaseInputs.creditCardDatabase),
@@ -99,7 +100,7 @@ class CreditCardsDatabaseQueries {
 
     final databaseInstance = await database;
 
-    var tableNameQuery = (tableName != null) ? tableName : CreditCardsDatabaseInputs.databaseTableName;
+    var tableNameQuery = (tableName != StringsResources.unknownText) ? tableName : CreditCardsDatabaseInputs.databaseTableName;
     tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     var queryResult = await databaseInstance.delete(

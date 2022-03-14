@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/13/22, 6:44 AM
+ * Last modified 3/14/22, 5:13 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -11,6 +11,7 @@
 import 'dart:async';
 import 'dart:core';
 
+import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/database/io/inputs.dart';
 import 'package:flow_accounting/transactions/database/structures/tables_structure.dart';
 import 'package:path/path.dart';
@@ -18,7 +19,7 @@ import 'package:sqflite/sqflite.dart';
 
 class TransactionsDatabaseQueries {
 
-  Future<List<TransactionsData>> getAllTransactions(String? tableName, String usernameId) async {
+  Future<List<TransactionsData>> getAllTransactions(String tableName, String usernameId) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), TransactionsDatabaseInputs.transactionDatabase),
@@ -26,7 +27,7 @@ class TransactionsDatabaseQueries {
 
     final databaseInstance = await database;
 
-    var tableNameQuery = (tableName != null) ? tableName : TransactionsDatabaseInputs.databaseTableName;
+    var tableNameQuery = (tableName != StringsResources.unknownText) ? tableName : TransactionsDatabaseInputs.databaseTableName;
     tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     final List<Map<String, dynamic>> maps = await databaseInstance.query(tableNameQuery, orderBy: "transactionTimeMillisecond DESC",);
@@ -56,7 +57,7 @@ class TransactionsDatabaseQueries {
   }
 
   Future<List<Map<String, Object?>>> queryTransactionByMonths(int transactionYear, int transactionMonth, String transactionType,
-      String? tableName, String usernameId) async {
+      String tableName, String usernameId) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), TransactionsDatabaseInputs.transactionDatabase),
@@ -64,7 +65,7 @@ class TransactionsDatabaseQueries {
 
     final databaseInstance = await database;
 
-    var tableNameQuery = (tableName != null) ? tableName : TransactionsDatabaseInputs.databaseTableName;
+    var tableNameQuery = (tableName != StringsResources.unknownText) ? tableName : TransactionsDatabaseInputs.databaseTableName;
     tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     var databaseContents = await databaseInstance.query(
@@ -79,7 +80,7 @@ class TransactionsDatabaseQueries {
   Future<List<Map<String, Object?>>> queryTransactionByCreditCard(
       String sourceCardNumber, String targetCardNumber,
       int transactionYear, int transactionMonth,
-      String? tableName, String usernameId) async {
+      String tableName, String usernameId) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), TransactionsDatabaseInputs.transactionDatabase),
@@ -87,7 +88,7 @@ class TransactionsDatabaseQueries {
 
     final databaseInstance = await database;
 
-    var tableNameQuery = (tableName != null) ? tableName : TransactionsDatabaseInputs.databaseTableName;
+    var tableNameQuery = (tableName != StringsResources.unknownText) ? tableName : TransactionsDatabaseInputs.databaseTableName;
     tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     var databaseContents = await databaseInstance.query(
@@ -100,7 +101,7 @@ class TransactionsDatabaseQueries {
   }
 
   Future<Map<String, Object?>> querySpecificTransaction(int id,
-      String? tableName, String usernameId) async {
+      String tableName, String usernameId) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), TransactionsDatabaseInputs.transactionDatabase),
@@ -108,7 +109,7 @@ class TransactionsDatabaseQueries {
 
     final databaseInstance = await database;
 
-    var tableNameQuery = (tableName != null) ? tableName : TransactionsDatabaseInputs.databaseTableName;
+    var tableNameQuery = (tableName != StringsResources.unknownText) ? tableName : TransactionsDatabaseInputs.databaseTableName;
     tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     var databaseContents = await databaseInstance.query(
@@ -121,7 +122,7 @@ class TransactionsDatabaseQueries {
   }
 
   Future<int> queryDeleteTransaction(int id,
-      String? tableName, String usernameId) async {
+      String tableName, String usernameId) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), TransactionsDatabaseInputs.transactionDatabase),
@@ -129,7 +130,7 @@ class TransactionsDatabaseQueries {
 
     final databaseInstance = await database;
 
-    var tableNameQuery = (tableName != null) ? tableName : TransactionsDatabaseInputs.databaseTableName;
+    var tableNameQuery = (tableName != StringsResources.unknownText) ? tableName : TransactionsDatabaseInputs.databaseTableName;
     tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     var queryResult = await databaseInstance.delete(

@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/13/22, 11:28 AM
+ * Last modified 3/14/22, 5:13 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -11,6 +11,7 @@
 import 'dart:async';
 import 'dart:core';
 
+import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/database/structures/tables_structure.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -21,9 +22,9 @@ class TransactionsDatabaseInputs {
 
   static const transactionDatabase = "transactions_database.db";
 
-  Future<void> insertTransactionData(TransactionsData transactionsData, String? tableName, String usernameId) async {
+  Future<void> insertTransactionData(TransactionsData transactionsData, String tableName, String usernameId) async {
 
-    var tableNameQuery = (tableName != null) ? tableName : TransactionsDatabaseInputs.databaseTableName;
+    var tableNameQuery = (tableName != StringsResources.unknownText) ? tableName : TransactionsDatabaseInputs.databaseTableName;
     tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     final database = openDatabase(
@@ -72,7 +73,7 @@ class TransactionsDatabaseInputs {
 
   }
 
-  Future<void> updateTransactionData(TransactionsData transactionsData, String? tableName, String usernameId) async {
+  Future<void> updateTransactionData(TransactionsData transactionsData, String tableName, String usernameId) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), TransactionsDatabaseInputs.transactionDatabase),
@@ -80,7 +81,7 @@ class TransactionsDatabaseInputs {
 
     final databaseInstance = await database;
 
-    var tableNameQuery = (tableName != null) ? tableName : TransactionsDatabaseInputs.databaseTableName;
+    var tableNameQuery = (tableName != StringsResources.unknownText) ? tableName : TransactionsDatabaseInputs.databaseTableName;
     tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     await databaseInstance.update(

@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/13/22, 6:44 AM
+ * Last modified 3/14/22, 5:13 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -12,12 +12,13 @@ import 'dart:core';
 
 import 'package:flow_accounting/budgets/database/io/inputs.dart';
 import 'package:flow_accounting/budgets/database/structures/tables_structure.dart';
+import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 class BudgetsDatabaseQueries {
 
-  Future<List<BudgetsData>> getAllBudgets(String? tableName,
+  Future<List<BudgetsData>> getAllBudgets(String tableName,
       String usernameId) async {
 
     final database = openDatabase(
@@ -26,7 +27,7 @@ class BudgetsDatabaseQueries {
 
     final databaseInstance = await database;
 
-    var tableNameQuery = (tableName != null) ? tableName : BudgetsDatabaseInputs.databaseTableName;
+    var tableNameQuery = (tableName != StringsResources.unknownText) ? tableName : BudgetsDatabaseInputs.databaseTableName;
     tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     final List<Map<String, dynamic>> maps = await databaseInstance.query(tableNameQuery);
@@ -48,7 +49,7 @@ class BudgetsDatabaseQueries {
 
   Future<Map<String, Object?>> querySpecificBudgetsByName(
       String budgetName,
-      String? tableName, String usernameId) async {
+      String tableName, String usernameId) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), BudgetsDatabaseInputs.budgetsDatabase),
@@ -56,7 +57,7 @@ class BudgetsDatabaseQueries {
 
     final databaseInstance = await database;
 
-    var tableNameQuery = (tableName != null) ? tableName : BudgetsDatabaseInputs.databaseTableName;
+    var tableNameQuery = (tableName != StringsResources.unknownText) ? tableName : BudgetsDatabaseInputs.databaseTableName;
     tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     var databaseContents = await databaseInstance.query(
@@ -69,7 +70,7 @@ class BudgetsDatabaseQueries {
   }
 
   Future<int> queryDeleteBudget(int id,
-      String? tableName, String usernameId) async {
+      String tableName, String usernameId) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), BudgetsDatabaseInputs.budgetsDatabase),
@@ -77,7 +78,7 @@ class BudgetsDatabaseQueries {
 
     final databaseInstance = await database;
 
-    var tableNameQuery = (tableName != null) ? tableName : BudgetsDatabaseInputs.databaseTableName;
+    var tableNameQuery = (tableName != StringsResources.unknownText) ? tableName : BudgetsDatabaseInputs.databaseTableName;
     tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     var queryResult = await databaseInstance.delete(

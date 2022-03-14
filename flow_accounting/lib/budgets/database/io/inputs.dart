@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/13/22, 11:28 AM
+ * Last modified 3/14/22, 5:13 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -11,6 +11,7 @@
 import 'dart:core';
 
 import 'package:flow_accounting/budgets/database/structures/tables_structure.dart';
+import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -20,10 +21,10 @@ class BudgetsDatabaseInputs {
 
   static const budgetsDatabase = "budgets_database.db";
 
-  Future<void> insertBudgetData(BudgetsData budgetsData, String? tableName,
+  Future<void> insertBudgetData(BudgetsData budgetsData, String tableName,
       String usernameId) async {
 
-    var tableNameQuery = (tableName != null) ? tableName : BudgetsDatabaseInputs.databaseTableName;
+    var tableNameQuery = (tableName != StringsResources.unknownText) ? tableName : BudgetsDatabaseInputs.databaseTableName;
     tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     final database = openDatabase(
@@ -59,7 +60,7 @@ class BudgetsDatabaseInputs {
     }
   }
 
-  Future<void> updateBudgetData(BudgetsData budgetsData, String? tableName, String usernameId) async {
+  Future<void> updateBudgetData(BudgetsData budgetsData, String tableName, String usernameId) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), BudgetsDatabaseInputs.budgetsDatabase),
@@ -67,7 +68,7 @@ class BudgetsDatabaseInputs {
 
     final databaseInstance = await database;
 
-    var tableNameQuery = (tableName != null) ? tableName : BudgetsDatabaseInputs.databaseTableName;
+    var tableNameQuery = (tableName != StringsResources.unknownText) ? tableName : BudgetsDatabaseInputs.databaseTableName;
     tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     await databaseInstance.update(

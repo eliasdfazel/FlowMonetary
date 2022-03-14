@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/13/22, 11:28 AM
+ * Last modified 3/14/22, 5:11 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -11,6 +11,7 @@
 import 'dart:core';
 
 import 'package:flow_accounting/customers/database/structures/table_structure.dart';
+import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -20,10 +21,10 @@ class CustomersDatabaseInputs {
 
   static const customersDatabase = "customers_database.db";
 
-  Future<void> insertCustomerData(CustomersData customersData, String? tableName,
+  Future<void> insertCustomerData(CustomersData customersData, String tableName,
       String usernameId) async {
 
-    var tableNameQuery = (tableName != null) ? tableName : CustomersDatabaseInputs.databaseTableName;
+    var tableNameQuery = (tableName != StringsResources.unknownText) ? tableName : CustomersDatabaseInputs.databaseTableName;
     tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     final database = openDatabase(
@@ -69,7 +70,7 @@ class CustomersDatabaseInputs {
 
   }
 
-  Future<void> updateCustomerData(CustomersData customersData, String? tableName, String usernameId) async {
+  Future<void> updateCustomerData(CustomersData customersData, String tableName, String usernameId) async {
 
     final database = openDatabase(
       join(await getDatabasesPath(), CustomersDatabaseInputs.customersDatabase),
@@ -77,7 +78,7 @@ class CustomersDatabaseInputs {
 
     final databaseInstance = await database;
 
-    var tableNameQuery = (tableName != null) ? tableName : CustomersDatabaseInputs.databaseTableName;
+    var tableNameQuery = (tableName != StringsResources.unknownText) ? tableName : CustomersDatabaseInputs.databaseTableName;
     tableNameQuery = "${usernameId}_${tableNameQuery}";
 
     await databaseInstance.update(
