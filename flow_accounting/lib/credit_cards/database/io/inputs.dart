@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/14/22, 6:13 AM
+ * Last modified 3/14/22, 6:25 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -29,13 +29,12 @@ class CreditCardsDatabaseInputs {
     var tableNameQuery = (usernameId == StringsResources.unknownText) ? CreditCardsDatabaseInputs.databaseTableName : "${usernameId}_${CreditCardsDatabaseInputs.specificDatabaseTableName}";
 
     final database = openDatabase(
-      join(await getDatabasesPath(), CreditCardsDatabaseInputs.creditCardDatabase),
+      join(await getDatabasesPath(), "6666" + CreditCardsDatabaseInputs.creditCardDatabase),
       onCreate: (databaseInstance, version) {
 
         return databaseInstance.execute(
           'CREATE TABLE IF NOT EXISTS $tableNameQuery(id INTEGER PRIMARY KEY, '
               'cardNumber TEXT, '
-              'targetCardNumber TEXT, '
               'cardExpiry TEXT, '
               'cardHolderName TEXT, '
               'cvv TEXT, '
@@ -111,7 +110,7 @@ class CreditCardsDatabaseInputs {
 
     if (databaseInstance.isOpen) {
 
-      await databaseInstance.close();
+      // await databaseInstance.close();
 
     }
 
