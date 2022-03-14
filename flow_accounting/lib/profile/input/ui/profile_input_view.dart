@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/13/22, 10:35 AM
+ * Last modified 3/14/22, 4:39 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -70,8 +70,6 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
 
   @override
   void initState() {
-
-    userId = widget.profilesData?.userId ?? controllerUserPhoneNumber.text;
 
     controllerFullName.text = widget.profilesData?.userFullName ?? "";
     profileImage = widget.profilesData?.userImage ?? "";
@@ -810,7 +808,7 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                               ProfilesData profilesData = ProfilesData(
                                 id: timeNow,
 
-                                userId: userId,
+                                userId: widget.profilesData?.userId ?? controllerUserPhoneNumber.text,
                                 userSignedIn: ProfilesData.Profile_Not_Singed_In,
 
                                 userFullName: controllerFullName.text,

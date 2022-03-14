@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/13/22, 12:14 PM
+ * Last modified 3/14/22, 4:22 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -291,7 +291,7 @@ class _TopBarViewState extends State<TopBarView> {
 
                       });
 
-                      Future.delayed(Duration(milliseconds: 579), () {
+                      Future.delayed(Duration(milliseconds: 379), () {
 
                         Phoenix.rebirth(context);
 

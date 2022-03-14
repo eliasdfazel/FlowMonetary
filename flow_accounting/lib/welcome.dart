@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/13/22, 12:08 PM
+ * Last modified 3/14/22, 4:33 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -44,10 +44,10 @@ class _WelcomePage extends State<WelcomePage> {
 
   @override
   void initState() {
+    super.initState();
 
     getSignedInUserId();
 
-    super.initState();
   }
 
   @override
@@ -62,6 +62,7 @@ class _WelcomePage extends State<WelcomePage> {
       }
 
     });
+
 
     return SafeArea(
         child: MaterialApp(
