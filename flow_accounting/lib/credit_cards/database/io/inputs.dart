@@ -29,7 +29,7 @@ class CreditCardsDatabaseInputs {
     var tableNameQuery = (usernameId == StringsResources.unknownText) ? CreditCardsDatabaseInputs.databaseTableName : "${usernameId}_${CreditCardsDatabaseInputs.specificDatabaseTableName}";
 
     final database = openDatabase(
-      join(await getDatabasesPath(), "6666" + CreditCardsDatabaseInputs.creditCardDatabase),
+      join(await getDatabasesPath(), CreditCardsDatabaseInputs.creditCardDatabase),
       onCreate: (databaseInstance, version) {
 
         return databaseInstance.execute(
