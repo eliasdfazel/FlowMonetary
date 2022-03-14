@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/13/22, 6:51 AM
+ * Last modified 3/14/22, 6:53 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -133,19 +133,19 @@ class _LatestTransactionsView extends State<LatestTransactionsView> {
                 bottomRight: Radius.circular(13)),
             border: Border(
                 top: BorderSide(
-                  color: transactionColor,
+                  color: transactionColor.withOpacity(0.3),
                   width: 1,
                 ),
                 bottom: BorderSide(
-                  color: transactionColor,
+                  color: transactionColor.withOpacity(0.3),
                   width: 1,
                 ),
                 left: BorderSide(
-                  color: transactionColor,
+                  color: transactionColor.withOpacity(0.3),
                   width: 1,
                 ),
                 right: BorderSide(
-                  color: transactionColor,
+                  color: transactionColor.withOpacity(0.3),
                   width: 1,
                 )
             ),

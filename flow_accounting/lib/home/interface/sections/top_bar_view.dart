@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/14/22, 4:52 AM
+ * Last modified 3/14/22, 6:51 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -33,6 +33,10 @@ class _TopBarViewState extends State<TopBarView> {
   ProfilesData? profilesData;
 
   List<Widget> allAccountsViews = [];
+
+  Widget profileImageView = Image(
+      image: AssetImage("add_profile_icon.png")
+  );
 
   @override
   void initState() {
@@ -141,12 +145,12 @@ class _TopBarViewState extends State<TopBarView> {
                         );
 
                       },
-                      child: const Align(
+                      child: Align(
                         alignment: Alignment.center,
                         child: SizedBox(
                           height: 43,
                           width: 43,
-                          child: Image(image: AssetImage("add_profile_icon.png")),
+                          child: profileImageView,
                         ),
                       ),
                     )
@@ -201,9 +205,26 @@ class _TopBarViewState extends State<TopBarView> {
 
       UserInformation.UserId = profilesData?.userId ?? "Unknown";
 
+      if (profilesData != null) {
+
+        if (profilesData!.userImage.isNotEmpty) {
+
+          profileImageView = ClipRRect(
+            borderRadius: BorderRadius.circular(15),
+            child: Image.file(
+              File(profilesData!.userImage),
+              fit: BoxFit.cover,
+            ),
+          );
+
+        }
+
+      }
+
       setState(() {
 
         profilesData;
+        profileImageView;
 
       });
 

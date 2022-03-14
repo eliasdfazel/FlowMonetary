@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/12/22, 5:47 AM
+ * Last modified 3/14/22, 6:53 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -128,21 +128,21 @@ class _GeneralDataView extends State<GeneralDataView> {
                                               bottomLeft: Radius.circular(23),
                                               bottomRight: Radius.circular(23)
                                           ),
-                                          border: const Border(
+                                          border: Border(
                                               top: BorderSide(
-                                                color: ColorsResources.green,
+                                                color: ColorsResources.green.withOpacity(0.3),
                                                 width: 1,
                                               ),
                                               bottom: BorderSide(
-                                                color: ColorsResources.green,
+                                                color: ColorsResources.green.withOpacity(0.3),
                                                 width: 1,
                                               ),
                                               left: BorderSide(
-                                                color: ColorsResources.green,
+                                                color: ColorsResources.green.withOpacity(0.3),
                                                 width: 1,
                                               ),
                                               right: BorderSide(
-                                                color: ColorsResources.green,
+                                                color: ColorsResources.green.withOpacity(0.3),
                                                 width: 1,
                                               )
                                           ),
@@ -233,21 +233,21 @@ class _GeneralDataView extends State<GeneralDataView> {
                                               bottomLeft: Radius.circular(23),
                                               bottomRight: Radius.circular(23)
                                           ),
-                                          border: const Border(
+                                          border: Border(
                                               top: BorderSide(
-                                                color: ColorsResources.applicationGeeksEmpire,
+                                                color: ColorsResources.applicationGeeksEmpire.withOpacity(0.3),
                                                 width: 1,
                                               ),
                                               bottom: BorderSide(
-                                                color: ColorsResources.applicationGeeksEmpire,
+                                                color: ColorsResources.applicationGeeksEmpire.withOpacity(0.3),
                                                 width: 1,
                                               ),
                                               left: BorderSide(
-                                                color: ColorsResources.applicationGeeksEmpire,
+                                                color: ColorsResources.applicationGeeksEmpire.withOpacity(0.3),
                                                 width: 1,
                                               ),
                                               right: BorderSide(
-                                                color: ColorsResources.applicationGeeksEmpire,
+                                                color: ColorsResources.applicationGeeksEmpire.withOpacity(0.3),
                                                 width: 1,
                                               )
                                           ),
@@ -341,21 +341,21 @@ class _GeneralDataView extends State<GeneralDataView> {
                                               topRight: Radius.circular(7),
                                               bottomLeft: Radius.circular(23),
                                               bottomRight: Radius.circular(23)),
-                                          border: const Border(
+                                          border: Border(
                                               top: BorderSide(
-                                                color: ColorsResources.red,
+                                                color: ColorsResources.red.withOpacity(0.3),
                                                 width: 1,
                                               ),
                                               bottom: BorderSide(
-                                                color: ColorsResources.red,
+                                                color: ColorsResources.red.withOpacity(0.3),
                                                 width: 1,
                                               ),
                                               left: BorderSide(
-                                                color: ColorsResources.red,
+                                                color: ColorsResources.red.withOpacity(0.3),
                                                 width: 1,
                                               ),
                                               right: BorderSide(
-                                                color: ColorsResources.red,
+                                                color: ColorsResources.red.withOpacity(0.3),
                                                 width: 1,
                                               )
                                           ),
