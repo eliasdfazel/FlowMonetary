@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/14/22, 5:39 AM
+ * Last modified 3/14/22, 6:13 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -18,14 +18,14 @@ import 'package:sqflite/sqflite.dart';
 class CustomersDatabaseInputs {
 
   static const String databaseTableName = "all_customers";
+  static const String specificDatabaseTableName = "customers";
 
   static const customersDatabase = "customers_database.db";
 
   Future<void> insertCustomerData(CustomersData customersData, String tableName,
       String usernameId) async {
 
-    var tableNameQuery = (usernameId == StringsResources.unknownText) ? tableName : CustomersDatabaseInputs.databaseTableName;
-    tableNameQuery = "${usernameId}_${tableNameQuery}";
+    var tableNameQuery = (usernameId == StringsResources.unknownText) ? CustomersDatabaseInputs.databaseTableName : "${usernameId}_${CustomersDatabaseInputs.specificDatabaseTableName}";
 
     final database = openDatabase(
       join(await getDatabasesPath(), CustomersDatabaseInputs.customersDatabase),
@@ -78,8 +78,7 @@ class CustomersDatabaseInputs {
 
     final databaseInstance = await database;
 
-    var tableNameQuery = (usernameId == StringsResources.unknownText) ? tableName : CustomersDatabaseInputs.databaseTableName;
-    tableNameQuery = "${usernameId}_${tableNameQuery}";
+    var tableNameQuery = (usernameId == StringsResources.unknownText) ? CustomersDatabaseInputs.databaseTableName : "${usernameId}_${CustomersDatabaseInputs.specificDatabaseTableName}";
 
     await databaseInstance.update(
       tableNameQuery,

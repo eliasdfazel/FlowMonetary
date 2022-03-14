@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/14/22, 5:39 AM
+ * Last modified 3/14/22, 6:13 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -25,8 +25,7 @@ class CustomersDatabaseQueries {
 
     final databaseInstance = await database;
 
-    var tableNameQuery = (usernameId == StringsResources.unknownText) ? tableName : CustomersDatabaseInputs.databaseTableName;
-    tableNameQuery = "${usernameId}_${tableNameQuery}";
+    var tableNameQuery = (usernameId == StringsResources.unknownText) ? CustomersDatabaseInputs.databaseTableName : "${usernameId}_${CustomersDatabaseInputs.specificDatabaseTableName}";
 
     final List<Map<String, dynamic>> maps = await databaseInstance.query(tableNameQuery);
 
@@ -68,8 +67,7 @@ class CustomersDatabaseQueries {
 
     final databaseInstance = await database;
 
-    var tableNameQuery = (usernameId == StringsResources.unknownText) ? tableName : CustomersDatabaseInputs.databaseTableName;
-    tableNameQuery = "${usernameId}_${tableNameQuery}";
+    var tableNameQuery = (usernameId == StringsResources.unknownText) ? CustomersDatabaseInputs.databaseTableName : "${usernameId}_${CustomersDatabaseInputs.specificDatabaseTableName}";
 
     var queryResult = await databaseInstance.delete(
       tableNameQuery,

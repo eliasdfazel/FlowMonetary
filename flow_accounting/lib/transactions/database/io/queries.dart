@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/14/22, 5:39 AM
+ * Last modified 3/14/22, 6:13 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -27,8 +27,7 @@ class TransactionsDatabaseQueries {
 
     final databaseInstance = await database;
 
-    var tableNameQuery = (usernameId == StringsResources.unknownText) ? tableName : TransactionsDatabaseInputs.databaseTableName;
-    tableNameQuery = "${usernameId}_${tableNameQuery}";
+    var tableNameQuery = (usernameId == StringsResources.unknownText) ? TransactionsDatabaseInputs.databaseTableName : "${usernameId}_${TransactionsDatabaseInputs.specificDatabaseTableName}";
 
     final List<Map<String, dynamic>> maps = await databaseInstance.query(tableNameQuery, orderBy: "transactionTimeMillisecond DESC",);
 
@@ -65,8 +64,7 @@ class TransactionsDatabaseQueries {
 
     final databaseInstance = await database;
 
-    var tableNameQuery = (usernameId == StringsResources.unknownText) ? tableName : TransactionsDatabaseInputs.databaseTableName;
-    tableNameQuery = "${usernameId}_${tableNameQuery}";
+    var tableNameQuery = (usernameId == StringsResources.unknownText) ? TransactionsDatabaseInputs.databaseTableName : "${usernameId}_${TransactionsDatabaseInputs.specificDatabaseTableName}";
 
     var databaseContents = await databaseInstance.query(
       tableNameQuery,
@@ -88,8 +86,7 @@ class TransactionsDatabaseQueries {
 
     final databaseInstance = await database;
 
-    var tableNameQuery = (usernameId == StringsResources.unknownText) ? tableName : TransactionsDatabaseInputs.databaseTableName;
-    tableNameQuery = "${usernameId}_${tableNameQuery}";
+    var tableNameQuery = (usernameId == StringsResources.unknownText) ? TransactionsDatabaseInputs.databaseTableName : "${usernameId}_${TransactionsDatabaseInputs.specificDatabaseTableName}";
 
     var databaseContents = await databaseInstance.query(
       tableNameQuery,
@@ -109,8 +106,7 @@ class TransactionsDatabaseQueries {
 
     final databaseInstance = await database;
 
-    var tableNameQuery = (usernameId == StringsResources.unknownText) ? tableName : TransactionsDatabaseInputs.databaseTableName;
-    tableNameQuery = "${usernameId}_${tableNameQuery}";
+    var tableNameQuery = (usernameId == StringsResources.unknownText) ? TransactionsDatabaseInputs.databaseTableName : "${usernameId}_${TransactionsDatabaseInputs.specificDatabaseTableName}";
 
     var databaseContents = await databaseInstance.query(
       tableNameQuery,
@@ -130,8 +126,7 @@ class TransactionsDatabaseQueries {
 
     final databaseInstance = await database;
 
-    var tableNameQuery = (usernameId == StringsResources.unknownText) ? tableName : TransactionsDatabaseInputs.databaseTableName;
-    tableNameQuery = "${usernameId}_${tableNameQuery}";
+    var tableNameQuery = (usernameId == StringsResources.unknownText) ? TransactionsDatabaseInputs.databaseTableName : "${usernameId}_${TransactionsDatabaseInputs.specificDatabaseTableName}";
 
     var queryResult = await databaseInstance.delete(
       tableNameQuery,

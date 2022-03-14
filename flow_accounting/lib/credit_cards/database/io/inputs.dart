@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/14/22, 5:39 AM
+ * Last modified 3/14/22, 6:13 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -19,14 +19,14 @@ import 'package:sqflite/sqflite.dart';
 class CreditCardsDatabaseInputs {
 
   static const String databaseTableName = "all_credit_cards";
+  static const String specificDatabaseTableName = "credit_cards";
 
   static const creditCardDatabase = "credit_cards_database.db";
 
   Future<void> insertCreditCardsData(CreditCardsData creditCardsData,
       String tableName, String usernameId) async {
 
-    var tableNameQuery = (usernameId == StringsResources.unknownText) ? tableName : CreditCardsDatabaseInputs.databaseTableName;
-    tableNameQuery = "${usernameId}_${tableNameQuery}";
+    var tableNameQuery = (usernameId == StringsResources.unknownText) ? CreditCardsDatabaseInputs.databaseTableName : "${usernameId}_${CreditCardsDatabaseInputs.specificDatabaseTableName}";
 
     final database = openDatabase(
       join(await getDatabasesPath(), CreditCardsDatabaseInputs.creditCardDatabase),
@@ -75,8 +75,7 @@ class CreditCardsDatabaseInputs {
 
     final databaseInstance = await database;
 
-    var tableNameQuery = (usernameId == StringsResources.unknownText) ? tableName : CreditCardsDatabaseInputs.databaseTableName;
-    tableNameQuery = "${usernameId}_${tableNameQuery}";
+    var tableNameQuery = (usernameId == StringsResources.unknownText) ? CreditCardsDatabaseInputs.databaseTableName : "${usernameId}_${CreditCardsDatabaseInputs.specificDatabaseTableName}";
 
     await databaseInstance.update(
       tableNameQuery,
@@ -102,8 +101,7 @@ class CreditCardsDatabaseInputs {
 
     final databaseInstance = await database;
 
-    var tableNameQuery = (usernameId == StringsResources.unknownText) ? tableName : CreditCardsDatabaseInputs.databaseTableName;
-    tableNameQuery = "${usernameId}_${tableNameQuery}";
+    var tableNameQuery = (usernameId == StringsResources.unknownText) ? CreditCardsDatabaseInputs.databaseTableName : "${usernameId}_${CreditCardsDatabaseInputs.specificDatabaseTableName}";
 
     await databaseInstance.delete(
       tableNameQuery,

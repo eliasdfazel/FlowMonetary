@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/14/22, 5:39 AM
+ * Last modified 3/14/22, 6:13 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -27,8 +27,7 @@ class ChequesDatabaseQueries {
 
     final databaseInstance = await database;
 
-    var tableNameQuery = (usernameId == StringsResources.unknownText) ? tableName : ChequesDatabaseInputs.databaseTableName;
-    tableNameQuery = "${usernameId}_${tableNameQuery}";
+    var tableNameQuery = (usernameId == StringsResources.unknownText) ? ChequesDatabaseInputs.databaseTableName : "${usernameId}_${ChequesDatabaseInputs.specificDatabaseTableName}";
 
     final List<Map<String, dynamic>> maps = await databaseInstance.query(tableNameQuery);
 
@@ -85,8 +84,7 @@ class ChequesDatabaseQueries {
 
     final databaseInstance = await database;
 
-    var tableNameQuery = (usernameId == StringsResources.unknownText) ? tableName : ChequesDatabaseInputs.databaseTableName;
-    tableNameQuery = "${usernameId}_${tableNameQuery}";
+    var tableNameQuery = (usernameId == StringsResources.unknownText) ? ChequesDatabaseInputs.databaseTableName : "${usernameId}_${ChequesDatabaseInputs.specificDatabaseTableName}";
 
     var databaseContents = await databaseInstance.query(
       tableNameQuery,
@@ -106,8 +104,7 @@ class ChequesDatabaseQueries {
 
     final databaseInstance = await database;
 
-    var tableNameQuery = (usernameId == StringsResources.unknownText) ? tableName : ChequesDatabaseInputs.databaseTableName;
-    tableNameQuery = "${usernameId}_${tableNameQuery}";
+    var tableNameQuery = (usernameId == StringsResources.unknownText) ? ChequesDatabaseInputs.databaseTableName : "${usernameId}_${ChequesDatabaseInputs.specificDatabaseTableName}";
 
     var queryResult = await databaseInstance.delete(
       tableNameQuery,
