@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/15/22, 9:24 AM
+ * Last modified 3/15/22, 9:40 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -19,7 +19,7 @@ class ProductsDatabaseInputs {
 
   static const productsDatabase = "products_database.db";
 
-  Future<void> insertProductData(ProductsData budgetsData, String tableName,
+  Future<void> insertProductData(ProductsData productsData, String tableName,
       String usernameId, {bool isPrototype = false}) async {
 
     var databaseNameQuery = (usernameId == StringsResources.unknownText) ? ProductsDatabaseInputs.productsDatabase : "${usernameId}_${ProductsDatabaseInputs.productsDatabase}";
@@ -31,9 +31,13 @@ class ProductsDatabaseInputs {
 
           return databaseInstance.execute(
             'CREATE TABLE IF NOT EXISTS $tableNameQuery(id INTEGER PRIMARY KEY, '
-
-
-
+                'productImageUrl TEXT, '
+                'productName TEXT, '
+                'productDescription TEXT, '
+                'productCategory TEXT, '
+                'productBrand TEXT, '
+                'productBrandLogoUrl TEXT, '
+                'productPrice TEXT, '
                 'colorTag TEXT'
                 ')',
           );
@@ -47,7 +51,7 @@ class ProductsDatabaseInputs {
 
     await databaseInstance.insert(
       tableNameQuery,
-      budgetsData.toMap(),
+      productsData.toMap(),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
 
@@ -58,7 +62,7 @@ class ProductsDatabaseInputs {
     }
   }
 
-  Future<void> updateBudgetData(ProductsData budgetsData, String tableName, String usernameId) async {
+  Future<void> updateProductData(ProductsData productsData, String tableName, String usernameId) async {
 
     var databaseNameQuery = (usernameId == StringsResources.unknownText) ? ProductsDatabaseInputs.productsDatabase : "${usernameId}_${ProductsDatabaseInputs.productsDatabase}";
     var tableNameQuery = ProductsDatabaseInputs.databaseTableName;
@@ -71,9 +75,9 @@ class ProductsDatabaseInputs {
 
     await databaseInstance.update(
       tableNameQuery,
-      budgetsData.toMap(),
+      productsData.toMap(),
       where: 'id = ?',
-      whereArgs: [budgetsData.id],
+      whereArgs: [productsData.id],
     );
 
     if (databaseInstance.isOpen) {

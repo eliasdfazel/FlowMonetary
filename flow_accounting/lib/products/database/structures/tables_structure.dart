@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/15/22, 9:24 AM
+ * Last modified 3/15/22, 9:40 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -14,14 +14,34 @@ class ProductsData {
 
   final int id;
 
+  final String productImageUrl;
 
+  final String productName;
+  final String productDescription;
+
+  final String productCategory;
+
+  final String productBrand;
+  final String productBrandLogoUrl;
+
+  final String productPrice;
 
   int colorTag = ColorsResources.dark.value;
 
   ProductsData({
     required this.id,
 
+    required this.productImageUrl,
 
+    required this.productName,
+    required this.productDescription,
+
+    required this.productCategory,
+
+    required this.productBrand,
+    required this.productBrandLogoUrl,
+
+    required this.productPrice,
 
     required this.colorTag,
   });
@@ -30,7 +50,17 @@ class ProductsData {
     return {
       'id': id,
 
+      'productImageUrl': productImageUrl,
 
+      'productName': productName,
+      'productDescription': productDescription,
+
+      'productCategory': productCategory,
+
+      'productBrand': productBrand,
+      'productBrandLogoUrl': productBrandLogoUrl,
+
+      'productPrice': productBrand,
 
       'colorTag': colorTag,
     };
@@ -41,7 +71,17 @@ class ProductsData {
     return 'ProductsData{'
       'id: $id,'
 
+      'productImageUrl: $productImageUrl,'
 
+      'productName: $productName,'
+      'productDescription: $productDescription,'
+
+      'productCategory: $productCategory,'
+
+      'productBrand: $productBrand,'
+      'productBrandLogoUrl: $productBrandLogoUrl,'
+
+      'productPrice: $productBrand,'
 
       'colorTag: $colorTag,'
     '}';
