@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/15/22, 9:53 AM
+ * Last modified 3/15/22, 10:09 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -136,7 +136,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(13, 13, 13, 0),
                         child:  Text(
-                          StringsResources.featureBudgetManagementsTitle,
+                          StringsResources.featureProductsTitle,
                           textDirection: TextDirection.rtl,
                           style: TextStyle(
                             fontSize: 23,
@@ -154,7 +154,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(13, 13, 13, 19),
                         child: Text(
-                          StringsResources.featureBudgetManagementsDescription,
+                          StringsResources.featureProductsDescription,
                           textDirection: TextDirection.rtl,
                           style: TextStyle(
                             fontSize: 15,
