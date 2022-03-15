@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/15/22, 8:13 AM
+ * Last modified 3/15/22, 8:21 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -20,6 +20,7 @@ import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/input/ui/transactions_input_view.dart';
 import 'package:flow_accounting/transactions/output/ui/transactions_output_view.dart';
+import 'package:flow_accounting/utils/colors/color_modifier.dart';
 import 'package:flutter/material.dart';
 
 import 'search_bar_view.dart';
@@ -251,10 +252,10 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
 
           allFeaturesOptionsWidgets.add(featuresOptionsRow(
               allFeaturesStructure[index].featureColor,
-              allFeaturesStructure[index].featuresTitle,
-              allFeaturesStructure[index + 1].featuresTitle,
               allFeaturesStructure[index].featureIconUrl,
               allFeaturesStructure[index + 1].featureIconUrl,
+              allFeaturesStructure[index].featuresTitle,
+              allFeaturesStructure[index + 1].featuresTitle,
               allFeaturesStructure[index].featuresDescription,
               allFeaturesStructure[index + 1].featuresDescription,
               allFeaturesStructure[index].featureViewToSubmitData,
@@ -463,7 +464,7 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
                               image: AssetImage(featureIconUrl),
                               height: 59,
                               width: 59,
-                              color: backgroundColor.withOpacity(0.19),
+                              color: backgroundColor.darken(0.37).withOpacity(0.19),
                             ),
                           ),
                           Padding(
