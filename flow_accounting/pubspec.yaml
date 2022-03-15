@@ -54,6 +54,7 @@ flutter:
   uses-material-design: true
 
   assets:
+    - assets/sign_up.json
     - pattern_card_background_one.png
     - pattern_card_background_two.png
     - pattern_card_background_three.png
@@ -68,7 +69,16 @@ flutter:
     - search_shape.png
     - coins_icon.png
     - unknown_user.png
-    - assets/sign_up.json
+    - transactions_icon.png
+    - sell_invoices_icon.png
+    - buy_invoices_icon.png
+    - products_icon.png
+    - cheques_icon.png
+    - debtors_icon.png
+    - creditors_icon.png
+    - customers_icon.png
+    - budgets_icon.png
+    - loans_icon.png
 
   fonts:
     - family: Sans

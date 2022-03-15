@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/15/22, 6:50 AM
+ * Last modified 3/15/22, 8:13 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -20,7 +20,6 @@ import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/input/ui/transactions_input_view.dart';
 import 'package:flow_accounting/transactions/output/ui/transactions_output_view.dart';
-import 'package:flow_accounting/utils/colors/color_modifier.dart';
 import 'package:flutter/material.dart';
 
 import 'search_bar_view.dart';
@@ -462,9 +461,9 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
                             alignment: AlignmentDirectional.center,
                             child: Image(
                               image: AssetImage(featureIconUrl),
-                              height: 53,
-                              width: 53,
-                              color: backgroundColor.darken(),
+                              height: 59,
+                              width: 59,
+                              color: backgroundColor.withOpacity(0.19),
                             ),
                           ),
                           Padding(
