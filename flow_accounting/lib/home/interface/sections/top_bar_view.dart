@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/14/22, 7:52 AM
+ * Last modified 3/15/22, 8:27 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -211,7 +211,7 @@ class _TopBarViewState extends State<TopBarView> {
         if (profilesData!.userImage.isNotEmpty) {
 
           profileImageView = ClipRRect(
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(13),
             child: Image.file(
               File(profilesData!.userImage),
               fit: BoxFit.cover,
@@ -251,6 +251,8 @@ class _TopBarViewState extends State<TopBarView> {
 
       if (allAccountsProfiles.isNotEmpty) {
 
+        allAccountsViews.clear();
+
         for(var element in allAccountsProfiles) {
 
           allAccountsViews.add(profilesItemView(element));
@@ -258,6 +260,8 @@ class _TopBarViewState extends State<TopBarView> {
         }
 
       } else {
+
+        allAccountsViews.clear();
 
         allAccountsViews.add(noProfilesView());
 
