@@ -2,11 +2,14 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/15/22, 10:18 AM
+ * Last modified 3/15/22, 10:24 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
+
+import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:blur/blur.dart';
@@ -18,6 +21,8 @@ import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
 
 class ProductsInputView extends StatefulWidget {
 
@@ -45,6 +50,14 @@ class _ProductsInputViewState extends State<ProductsInputView> {
   String productImageUrl = "";
 
   String productBrandLogoUrl = "";
+
+  Widget imagePickerWidget = const Opacity(
+    opacity: 0.7,
+    child: Image(
+      image: AssetImage("unknown_user.png"),
+      fit: BoxFit.cover,
+    ),
+  );
 
   int timeNow = DateTime.now().millisecondsSinceEpoch;
 
@@ -169,6 +182,34 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                             ],
                           ),
                         ),
+                      ),
+                      SizedBox(
+                        height: 501,
+                        width: double.infinity,
+                        child: Padding(
+                          padding: EdgeInsets.fromLTRB(13, 0, 13, 0),
+                          child: InkWell(
+                            onTap: () {
+
+                              invokeImagePicker();
+
+                            },
+                            child: Align(
+                              alignment: AlignmentDirectional.center,
+                              child: AspectRatio(
+                                aspectRatio: 1,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(51),
+                                  child: imagePickerWidget,
+                                ),
+                              ),
+                            )
+                          ),
+                        ),
+                      ),
+                      const Divider(
+                        height: 13,
+                        color: Colors.transparent,
                       ),
                       SizedBox(
                         width: double.infinity,
@@ -813,6 +854,54 @@ class _ProductsInputViewState extends State<ProductsInputView> {
         ),
       ),
     );
+  }
+
+  void invokeImagePicker() async {
+
+    final ImagePicker imagePicker = ImagePicker();
+
+    final XFile? selectedImage = await imagePicker.pickImage(source: ImageSource.gallery);
+
+    if (selectedImage != null) {
+
+      productImageUrl = await getFilePath(selectedImage.name);
+
+      var imageFileByte = await selectedImage.readAsBytes();
+
+      savePickedImageFile(productImageUrl, imageFileByte);
+
+      setState(() {
+
+        imagePickerWidget = Image.file(
+          File(selectedImage.path),
+          fit: BoxFit.cover,
+        );
+
+      });
+
+    }
+
+    debugPrint("Picked Image Path: $productImageUrl");
+
+  }
+
+  Future<String> getFilePath(String fileName) async {
+
+    Directory appDocumentsDirectory = await getApplicationSupportDirectory();
+
+    String appDocumentsPath = appDocumentsDirectory.path;
+
+    String filePath = '$appDocumentsPath/$fileName';
+
+    return filePath;
+  }
+
+  void savePickedImageFile(String imageFilePath, Uint8List imageBytes) async {
+
+    File file = File(imageFilePath);
+
+    file.writeAsBytes(imageBytes);
+
   }
 
 }
