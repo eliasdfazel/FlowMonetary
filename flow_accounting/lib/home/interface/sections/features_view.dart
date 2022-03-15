@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/15/22, 8:21 AM
+ * Last modified 3/15/22, 8:23 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -476,9 +476,9 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
                                   child: Text(
                                     featureDescription,
                                     maxLines: 5,
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                         fontSize: 12,
-                                        color: ColorsResources.blueGreen,
+                                        color: ColorsResources.dark.withOpacity(0.59),
                                         shadows: [
                                           Shadow(
                                               color: ColorsResources.light,
