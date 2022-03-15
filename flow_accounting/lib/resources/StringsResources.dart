@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/13/22, 5:53 AM
+ * Last modified 3/15/22, 10:18 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -190,6 +190,20 @@ class StringsResources {
 
   static const String chequeTargetName = "به نام";
   /* End - Cheque String Resources */
+
+  /* Start - Product String Resources */
+  static const String productName = "نام محصول";
+  static const String productNameHint = "نام محصول را با کد مدل وارد کنید";
+
+  static const String productDescription = "توضیحات محصول";
+  static const String productDescriptionHint = "توضیحات و ویژگی های محصول";
+
+  static const String productBuyingPrice = "قیمت خرید";
+  static const String productBuyingPriceHint = "قیمت خرید محصول را وارد کنید";
+
+  static const String productProfitPercent = "درصد سود %";
+  static const String productProfitPercentHint = "مقدار درصد سود برای قیمت فروش را وارد کنید";
+  /* End - Product String Resources */
 
   static const String sortHint = "مرتب سازی";
   static const String sortTimeNew = "بر اساس: زمان جدید";
