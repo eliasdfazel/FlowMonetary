@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/13/22, 8:30 AM
+ * Last modified 3/15/22, 6:50 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -20,6 +20,7 @@ import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/input/ui/transactions_input_view.dart';
 import 'package:flow_accounting/transactions/output/ui/transactions_output_view.dart';
+import 'package:flow_accounting/utils/colors/color_modifier.dart';
 import 'package:flutter/material.dart';
 
 import 'search_bar_view.dart';
@@ -74,6 +75,7 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
 
   @override
   Widget build(BuildContext context) {
+
     SearchBarView searchBarView =
         SearchBarView(initialFeaturesStructure: initializeFeatures());
 
@@ -116,14 +118,17 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
 
     allFeaturesStructure.add(FeaturesStructure(
       featureColor: ColorsResources.lightestPurple,
+      featureIconUrl: "transactions_icon.png",
       importantFeature: true,
       featuresTitle: StringsResources.featureTransactionsTitle,
       featuresDescription: StringsResources.featureTransactionsDescription,
       featureViewToSubmitData: const TransactionsInputView(),
       featureToPresentData: TransactionsOutputView(),
     ));
+
     allFeaturesStructure.add(FeaturesStructure(
         featureColor: ColorsResources.lightestBlue,
+        featureIconUrl: "sell_invoices_icon.png",
         importantFeature: false,
         featuresTitle: StringsResources.featureSellInvoicesTitle,
         featuresDescription: StringsResources.featureSellInvoicesDescription,
@@ -131,27 +136,34 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
         featureToPresentData: null));
     allFeaturesStructure.add(FeaturesStructure(
         featureColor: ColorsResources.lightestBlue,
+        featureIconUrl: "buy_invoices_icon.png",
         importantFeature: false,
         featuresTitle: StringsResources.featureBuyInvoicesTitle,
         featuresDescription: StringsResources.featureBuyInvoicesDescription,
         featureViewToSubmitData: null,
         featureToPresentData: null));
+
     allFeaturesStructure.add(FeaturesStructure(
         featureColor: ColorsResources.lightestOrange,
+        featureIconUrl: "products_icon.png",
         importantFeature: true,
         featuresTitle: StringsResources.featureProductsTitle,
         featuresDescription: StringsResources.featureProductsDescription,
         featureViewToSubmitData: null,
         featureToPresentData: null));
+
     allFeaturesStructure.add(FeaturesStructure(
         featureColor: ColorsResources.lightestCyan,
+        featureIconUrl: "cheques_icon.png",
         importantFeature: true,
         featuresTitle: StringsResources.featureChequesTitle,
         featuresDescription: StringsResources.featureChequesDescription,
         featureViewToSubmitData: ChequesInputView(),
         featureToPresentData: ChequesOutputView()));
+
     allFeaturesStructure.add(FeaturesStructure(
         featureColor: ColorsResources.lightestRed,
+        featureIconUrl: "debtors_icon.png",
         importantFeature: false,
         featuresTitle: StringsResources.featureDebtorsTitle,
         featuresDescription: StringsResources.featureDebtorsDescription,
@@ -159,20 +171,25 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
         featureToPresentData: null));
     allFeaturesStructure.add(FeaturesStructure(
         featureColor: ColorsResources.lightestRed,
+        featureIconUrl: "creditors_icon.png",
         importantFeature: false,
         featuresTitle: StringsResources.featureCreditorsTitle,
         featuresDescription: StringsResources.featureCreditorsDescription,
         featureViewToSubmitData: null,
         featureToPresentData: null));
+
     allFeaturesStructure.add(FeaturesStructure(
         featureColor: ColorsResources.lightestGreen,
+        featureIconUrl: "customers_icon.png",
         importantFeature: true,
         featuresTitle: StringsResources.featureCustomersTitle,
         featuresDescription: StringsResources.featureCustomersDescription,
         featureViewToSubmitData: CustomersInputView(),
         featureToPresentData: const CustomersOutputView()));
+
     allFeaturesStructure.add(FeaturesStructure(
         featureColor: ColorsResources.lightestYellow,
+        featureIconUrl: "budgets_icon.png",
         importantFeature: false,
         featuresTitle: StringsResources.featureBudgetManagementsTitle,
         featuresDescription:
@@ -181,6 +198,7 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
         featureToPresentData: const BudgetsOutputView()));
     allFeaturesStructure.add(FeaturesStructure(
         featureColor: ColorsResources.lightestYellow,
+        featureIconUrl: "loans_icon.png",
         importantFeature: false,
         featuresTitle: StringsResources.featureLoansTitle,
         featuresDescription: StringsResources.featureLoansDescription,
@@ -200,6 +218,10 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
         allFeaturesOptionsWidgets.add(featuresOptionsRow(
             /* featureBackgroundColor */
             allFeaturesStructure[index].featureColor,
+            /* featureOneIconUrl */
+            allFeaturesStructure[index].featureIconUrl,
+            /* featureTwoIconUrl */
+            null,
             /* featureOneTitle */
             allFeaturesStructure[index].featuresTitle,
             /* featureTwoTitle */
@@ -232,6 +254,8 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
               allFeaturesStructure[index].featureColor,
               allFeaturesStructure[index].featuresTitle,
               allFeaturesStructure[index + 1].featuresTitle,
+              allFeaturesStructure[index].featureIconUrl,
+              allFeaturesStructure[index + 1].featureIconUrl,
               allFeaturesStructure[index].featuresDescription,
               allFeaturesStructure[index + 1].featuresDescription,
               allFeaturesStructure[index].featureViewToSubmitData,
@@ -251,6 +275,10 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
       allFeaturesOptionsWidgets.add(featuresOptionsRow(
           /* featureBackgroundColor */
           allFeaturesStructure[index].featureColor,
+          /* featureOneIconUrl */
+          allFeaturesStructure[index].featureIconUrl,
+          /* featureTwoIconUrl */
+          null,
           /* featureOneTitle */
           allFeaturesStructure[index].featuresTitle,
           /* featureTwoTitle */
@@ -274,6 +302,8 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
 
   Widget featuresOptionsRow(
       Color backgroundColor,
+      String featureOneIcon,
+      String? featureTwoIcon,
       String featureOneTitle,
       String? featureTwoTitle,
       String featureOneDescription,
@@ -286,6 +316,7 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
     
     Widget firstWidget = featuresOptionsItem(
         backgroundColor,
+        featureOneIcon,
         featureOneTitle,
         featureOneDescription,
         featureOneTargetViewToSubmitData,
@@ -296,9 +327,10 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
       color: Colors.transparent,
     );
 
-    if (featureTwoTitle != null && featureTwoDescription != null) {
+    if (featureTwoTitle != null && featureTwoDescription != null && featureTwoIcon != null) {
       secondWidget = featuresOptionsItem(
           backgroundColor,
+          featureTwoIcon,
           featureTwoTitle,
           featureTwoDescription,
           featureTwoTargetViewToSubmitData,
@@ -317,6 +349,7 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
 
   Widget featuresOptionsItem(
       Color backgroundColor,
+      String featureIconUrl,
       String featureTitle,
       String featureDescription,
       StatefulWidget? targetViewToSubmitData,
@@ -401,7 +434,8 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
                               ),
                             ),
                           )),
-                    )),
+                    )
+                ),
                 SizedBox(
                     height: 119,
                     child: Container(
@@ -422,29 +456,44 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
                             transform: const GradientRotation(45),
                             tileMode: TileMode.clamp),
                       ),
-                      child: Padding(
-                          padding: const EdgeInsets.fromLTRB(11, 7, 11, 0),
-                          child: Directionality(
-                            textDirection: TextDirection.rtl,
-                            child: Align(
-                              alignment: Alignment.topRight,
-                              child: Text(
-                                featureDescription,
-                                maxLines: 5,
-                                style: const TextStyle(
-                                    fontSize: 12,
-                                    color: ColorsResources.blueGreen,
-                                    shadows: [
-                                      Shadow(
-                                          color: ColorsResources.light,
-                                          offset: Offset(0, 0),
-                                          blurRadius: 7
-                                      )
-                                    ]),
-                              ),
+                      child: Stack(
+                        children: [
+                          Align(
+                            alignment: AlignmentDirectional.center,
+                            child: Image(
+                              image: AssetImage(featureIconUrl),
+                              height: 53,
+                              width: 53,
+                              color: backgroundColor.darken(),
                             ),
-                          )),
-                    )),
+                          ),
+                          Padding(
+                              padding: const EdgeInsets.fromLTRB(11, 7, 11, 0),
+                              child: Directionality(
+                                textDirection: TextDirection.rtl,
+                                child: Align(
+                                  alignment: Alignment.topRight,
+                                  child: Text(
+                                    featureDescription,
+                                    maxLines: 5,
+                                    style: const TextStyle(
+                                        fontSize: 12,
+                                        color: ColorsResources.blueGreen,
+                                        shadows: [
+                                          Shadow(
+                                              color: ColorsResources.light,
+                                              offset: Offset(0, 0),
+                                              blurRadius: 7
+                                          )
+                                        ]),
+                                  ),
+                                ),
+                              )
+                          )
+                        ],
+                      ),
+                    )
+                ),
                 SizedBox(
                     height: 53,
                     child: Padding(
@@ -595,7 +644,8 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
                               ))
                         ],
                       ),
-                    )),
+                    )
+                ),
               ],
             ),
           ),
@@ -606,7 +656,9 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
 }
 
 class FeaturesStructure {
+
   final Color featureColor;
+  final String featureIconUrl;
 
   final bool importantFeature;
 
@@ -618,9 +670,13 @@ class FeaturesStructure {
 
   FeaturesStructure({
     required this.featureColor,
+    required this.featureIconUrl,
+
     required this.importantFeature,
+
     required this.featuresTitle,
     required this.featuresDescription,
+
     required this.featureViewToSubmitData,
     required this.featureToPresentData,
   });
