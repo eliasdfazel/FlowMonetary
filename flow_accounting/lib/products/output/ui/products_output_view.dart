@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/16/22, 8:51 AM
+ * Last modified 3/16/22, 9:17 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -39,7 +39,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
 
   ColorSelectorView colorSelectorView = ColorSelectorView();
 
-  List<ProductsData> allTransactions = [];
+  List<ProductsData> allProducts = [];
   List<Widget> allProductsItems = [];
 
   TextEditingController controllerTransactionTitle = TextEditingController();
@@ -55,7 +55,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
 
       textEditorControllerQuery.text = widget.initialSearchQuery!;
 
-      searchTransactionsInitially(context, widget.initialSearchQuery!);
+      searchProductsInitially(context, widget.initialSearchQuery!);
 
     } else {
 
@@ -91,7 +91,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
 
     colorSelectorView.selectedColorNotifier.addListener(() {
 
-      filterByColorTag(context, allTransactions, colorSelectorView.selectedColorNotifier.value);
+      filterByColorTag(context, allProducts, colorSelectorView.selectedColorNotifier.value);
 
     });
 
@@ -225,7 +225,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
                                     InkWell(
                                       onTap: () {
 
-                                        sortProductByPrice(context, allTransactions);
+                                        sortProductByPrice(context, allProducts);
 
                                       },
                                       child: const SizedBox(
@@ -280,7 +280,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
                                     InkWell(
                                       onTap: () {
 
-                                        sortProductsByProfit(context, allTransactions);
+                                        sortProductsByProfit(context, allProducts);
 
                                       },
                                       child: const SizedBox(
@@ -376,7 +376,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
 
                                     String searchQuery = textEditorControllerQuery.text;
 
-                                    searchTransactions(context, allTransactions, searchQuery);
+                                    searchProducts(context, allProducts, searchQuery);
 
                                   },
                                   child: const SizedBox(
@@ -410,7 +410,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
                                         textInputAction: TextInputAction.search,
                                         onSubmitted: (searchQuery) {
 
-                                          searchTransactions(context, allTransactions, searchQuery);
+                                          searchProducts(context, allProducts, searchQuery);
 
                                         },
                                         decoration: const InputDecoration(
@@ -938,9 +938,9 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
 
     var databaseQueries = ProductsDatabaseQueries();
 
-    allTransactions = await databaseQueries.getAllProducts(ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+    allProducts = await databaseQueries.getAllProducts(ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
-    for (var element in allTransactions) {
+    for (var element in allProducts) {
 
       preparedAllTransactionsItem.add(outputItem(context, element));
 
@@ -1038,39 +1038,35 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
 
   }
 
-  void searchTransactions(BuildContext context,
+  void searchProducts(BuildContext context,
       List<ProductsData> inputTransactionsList, String searchQuery) {
 
     List<ProductsData> searchResult = [];
 
     for (var element in inputTransactionsList) {
 
-      if (element.transactionTitle.contains(searchQuery) ||
-          element.transactionDescription.contains(searchQuery) ||
-          element.transactionTime.contains(searchQuery) ||
-          element.sourceUsername.contains(searchQuery) ||
-          element.sourceBankName.contains(searchQuery) ||
-          element.sourceCardNumber.contains(searchQuery) ||
-          element.targetUsername.contains(searchQuery) ||
-          element.targetBankName.contains(searchQuery) ||
-          element.targetCardNumber.contains(searchQuery) ||
-          element.budgetName.contains(searchQuery)) {
+      if (element.productName.contains(searchQuery) ||
+          element.productDescription.contains(searchQuery) ||
+          element.productBrand.contains(searchQuery) ||
+          element.productCategory.contains(searchQuery) ||
+          element.productPrice.contains(searchQuery) ||
+          element.productProfitPercent.contains(searchQuery)) {
 
         searchResult.add(element);
 
       }
 
-      List<Widget> preparedAllTransactionsItem = [];
+      List<Widget> preparedAllProductsItem = [];
 
       for (var element in searchResult) {
 
-        preparedAllTransactionsItem.add(outputItem(context, element));
+        preparedAllProductsItem.add(outputItem(context, element));
 
       }
 
       setState(() {
 
-        allProductsItems = preparedAllTransactionsItem;
+        allProductsItems = preparedAllProductsItem;
 
       });
 
@@ -1078,40 +1074,38 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
 
   }
 
-  void searchTransactionsInitially(BuildContext context, String searchQuery) async {
+  void searchProductsInitially(BuildContext context, String searchQuery) async {
 
     List<ProductsData> searchResult = [];
 
     var databaseQueries = ProductsDatabaseQueries();
 
-    allTransactions = await databaseQueries.getAllProducts(ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+    allProducts = await databaseQueries.getAllProducts(ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
-    for (var element in allTransactions) {
+    for (var element in allProducts) {
 
-      if (element.transactionTime.contains(searchQuery) ||
-          element.sourceUsername.contains(searchQuery) ||
-          element.sourceBankName.contains(searchQuery) ||
-          element.sourceCardNumber.contains(searchQuery) ||
-          element.targetUsername.contains(searchQuery) ||
-          element.targetBankName.contains(searchQuery) ||
-          element.targetCardNumber.contains(searchQuery) ||
-          element.budgetName.contains(searchQuery)) {
+      if (element.productName.contains(searchQuery) ||
+          element.productDescription.contains(searchQuery) ||
+          element.productBrand.contains(searchQuery) ||
+          element.productCategory.contains(searchQuery) ||
+          element.productPrice.contains(searchQuery) ||
+          element.productProfitPercent.contains(searchQuery)) {
 
         searchResult.add(element);
 
       }
 
-      List<Widget> preparedAllTransactionsItem = [];
+      List<Widget> preparedAllProductsItem = [];
 
       for (var element in searchResult) {
 
-        preparedAllTransactionsItem.add(outputItem(context, element));
+        preparedAllProductsItem.add(outputItem(context, element));
 
       }
 
       setState(() {
 
-        allProductsItems = preparedAllTransactionsItem;
+        allProductsItems = preparedAllProductsItem;
 
       });
 
