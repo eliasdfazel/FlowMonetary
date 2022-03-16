@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/14/22, 4:39 AM
+ * Last modified 3/16/22, 8:33 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -954,7 +954,15 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
 
     if (selectedImage != null) {
 
-      profileImage = await getFilePath(selectedImage.name);
+      String fileName = selectedImage.name;
+
+      if (controllerUserPhoneNumber.text.isNotEmpty) {
+
+        fileName = "${controllerUserPhoneNumber.text}_image.png";
+
+      }
+
+      profileImage = await getFilePath(fileName);
 
       var imageFileByte = await selectedImage.readAsBytes();
 

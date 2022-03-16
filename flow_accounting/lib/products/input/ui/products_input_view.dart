@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/16/22, 8:25 AM
+ * Last modified 3/16/22, 8:33 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -1182,7 +1182,15 @@ class _ProductsInputViewState extends State<ProductsInputView> {
 
     if (selectedImage != null) {
 
-      productImageUrl = await getFilePath(selectedImage.name);
+      String fileName = selectedImage.name;
+
+      if (controllerProductName.text.isNotEmpty) {
+
+        fileName = "${controllerProductName.text}_image.png";
+
+      }
+
+      productImageUrl = await getFilePath(fileName);
 
       var imageFileByte = await selectedImage.readAsBytes();
 
@@ -1214,7 +1222,15 @@ class _ProductsInputViewState extends State<ProductsInputView> {
 
     if (selectedImage != null) {
 
-      productBrandLogoUrl = await getFilePath(selectedImage.name);
+      String fileName = selectedImage.name;
+
+      if (controllerProductBrand.text.isNotEmpty) {
+
+        fileName = "${controllerProductBrand.text}_logo.png";
+
+      }
+
+      productBrandLogoUrl = await getFilePath(fileName);
 
       var imageFileByte = await selectedImage.readAsBytes();
 

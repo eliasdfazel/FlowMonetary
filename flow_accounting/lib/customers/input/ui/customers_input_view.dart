@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/13/22, 8:34 AM
+ * Last modified 3/16/22, 8:33 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -1573,7 +1573,15 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
     if (selectedImage != null) {
 
-      customerImage = await getFilePath(selectedImage.name);
+      String fileName = selectedImage.name;
+
+      if (controllerCustomerName.text.isNotEmpty) {
+
+        fileName = "${controllerCustomerName.text.replaceAll(" ", "_")}_image.png";
+
+      }
+
+      customerImage = await getFilePath(fileName);
 
       var imageFileByte = await selectedImage.readAsBytes();
 
