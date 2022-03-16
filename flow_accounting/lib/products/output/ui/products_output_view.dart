@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/16/22, 8:44 AM
+ * Last modified 3/16/22, 8:51 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -12,10 +12,14 @@
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:blur/blur.dart';
 import 'package:flow_accounting/home/interface/dashboard.dart';
+import 'package:flow_accounting/products/database/io/inputs.dart';
+import 'package:flow_accounting/products/database/io/queries.dart';
 import 'package:flow_accounting/products/database/structures/tables_structure.dart';
+import 'package:flow_accounting/products/input/ui/products_input_view.dart';
 import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
+import 'package:flow_accounting/transactions/input/ui/transactions_input_view.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
 import 'package:flow_accounting/utils/extensions/CreditCardNumber.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +40,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
   ColorSelectorView colorSelectorView = ColorSelectorView();
 
   List<ProductsData> allTransactions = [];
-  List<Widget> allTransactionsItems = [];
+  List<Widget> allProductsItems = [];
 
   TextEditingController controllerTransactionTitle = TextEditingController();
 
@@ -55,7 +59,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
 
     } else {
 
-      retrieveAllTransactions(context);
+      retrieveAllProducts(context);
 
     }
 
@@ -96,7 +100,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
       padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
       child: colorSelectorView,
     ));
-    allListContentWidgets.addAll(allTransactionsItems);
+    allListContentWidgets.addAll(allProductsItems);
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -221,7 +225,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
                                     InkWell(
                                       onTap: () {
 
-                                        sortTransactionsByMoneyAmount(context, allTransactions);
+                                        sortProductByPrice(context, allTransactions);
 
                                       },
                                       child: const SizedBox(
@@ -276,7 +280,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
                                     InkWell(
                                       onTap: () {
 
-                                        sortTransactionsByTime(context, allTransactions);
+                                        sortProductsByProfit(context, allTransactions);
 
                                       },
                                       child: const SizedBox(
@@ -331,7 +335,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
                                     child: InkWell(
                                       onTap: () {
 
-                                        retrieveAllTransactions(context);
+                                        retrieveAllProducts(context);
 
                                       },
                                       child: const Icon(
@@ -892,49 +896,49 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
 
   }
 
-  void deleteTransaction(BuildContext context, TransactionsData transactionsData) async {
+  void deleteTransaction(BuildContext context, ProductsData productsData) async {
 
-    var databaseQueries = TransactionsDatabaseQueries();
+    var databaseQueries = ProductsDatabaseQueries();
 
-    databaseQueries.queryDeleteTransaction(transactionsData.id, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
+    databaseQueries.queryDeleteProduct(productsData.id, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
-    retrieveAllTransactions(context);
+    retrieveAllProducts(context);
 
     transactionDataUpdated = true;
 
   }
 
-  void editTransaction(BuildContext context, TransactionsData transactionsData) async {
+  void editTransaction(BuildContext context, ProductsData productsData) async {
 
-    bool transactionDataUpdated = await Navigator.push(
+    bool productDataUpdated = await Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => TransactionsEditView(transactionsData: transactionsData)),
+      MaterialPageRoute(builder: (context) => ProductsInputView(productsData: productsData)),
     );
 
-    debugPrint("Transaction Data Update => ${transactionDataUpdated}");
-    if (transactionDataUpdated) {
+    debugPrint("Transaction Data Update => ${productDataUpdated}");
+    if (productDataUpdated) {
 
-      transactionDataUpdated = true;
+      productDataUpdated = true;
 
-      retrieveAllTransactions(context);
+      retrieveAllProducts(context);
 
     }
 
   }
 
-  void retrieveAllTransactions(BuildContext context) async {
+  void retrieveAllProducts(BuildContext context) async {
 
-    if (allTransactionsItems.isNotEmpty) {
+    if (allProductsItems.isNotEmpty) {
 
-      allTransactionsItems.clear();
+      allProductsItems.clear();
 
     }
 
     List<Widget> preparedAllTransactionsItem = [];
 
-    var databaseQueries = TransactionsDatabaseQueries();
+    var databaseQueries = ProductsDatabaseQueries();
 
-    allTransactions = await databaseQueries.getAllTransactions(TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
+    allTransactions = await databaseQueries.getAllProducts(ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
     for (var element in allTransactions) {
 
@@ -944,71 +948,71 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
 
     setState(() {
 
-      allTransactionsItems = preparedAllTransactionsItem;
+      allProductsItems = preparedAllTransactionsItem;
 
     });
 
   }
 
-  void sortTransactionsByTime(BuildContext context,
-      List<TransactionsData> inputTransactionsList) {
+  void sortProductsByProfit(BuildContext context,
+      List<ProductsData> inputTransactionsList) {
 
-    if (allTransactionsItems.isNotEmpty) {
+    if (allProductsItems.isNotEmpty) {
 
-      allTransactionsItems.clear();
+      allProductsItems.clear();
 
     }
 
-    inputTransactionsList.sort((a, b) => (a.transactionTime).compareTo(b.transactionTime));
+    inputTransactionsList.sort((a, b) => (a.productProfitPercent).compareTo(b.productProfitPercent));
 
-    List<Widget> preparedAllTransactionsItem = [];
+    List<Widget> preparedAllProductsItem = [];
 
     for (var element in inputTransactionsList) {
 
-      preparedAllTransactionsItem.add(outputItem(context, element));
+      preparedAllProductsItem.add(outputItem(context, element));
 
     }
 
     setState(() {
 
-      allTransactionsItems = preparedAllTransactionsItem;
+      allProductsItems = preparedAllProductsItem;
 
     });
 
   }
 
-  void sortTransactionsByMoneyAmount(BuildContext context,
-      List<TransactionsData> inputTransactionsList) {
+  void sortProductByPrice(BuildContext context,
+      List<ProductsData> inputTransactionsList) {
 
-    if (allTransactionsItems.isNotEmpty) {
+    if (allProductsItems.isNotEmpty) {
 
-      allTransactionsItems.clear();
+      allProductsItems.clear();
 
     }
-    inputTransactionsList.sort((a, b) => (a.amountMoney).compareTo(b.amountMoney));
+    inputTransactionsList.sort((a, b) => (a.productPrice).compareTo(b.productPrice));
 
-    List<Widget> preparedAllTransactionsItem = [];
+    List<Widget> preparedAllProductsItem = [];
 
     for (var element in inputTransactionsList) {
 
-      preparedAllTransactionsItem.add(outputItem(context, element));
+      preparedAllProductsItem.add(outputItem(context, element));
 
     }
 
     setState(() {
 
-      allTransactionsItems = preparedAllTransactionsItem;
+      allProductsItems = preparedAllProductsItem;
 
     });
 
   }
 
   void filterByColorTag(BuildContext context,
-      List<TransactionsData> inputTransactionsList, Color colorQuery) {
+      List<ProductsData> inputProductsList, Color colorQuery) {
 
-    List<TransactionsData> searchResult = [];
+    List<ProductsData> searchResult = [];
 
-    for (var element in inputTransactionsList) {
+    for (var element in inputProductsList) {
 
       if (element.colorTag == colorQuery.value) {
 
@@ -1026,7 +1030,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
 
       setState(() {
 
-        allTransactionsItems = preparedAllTransactionsItem;
+        allProductsItems = preparedAllTransactionsItem;
 
       });
 
@@ -1035,9 +1039,9 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
   }
 
   void searchTransactions(BuildContext context,
-      List<TransactionsData> inputTransactionsList, String searchQuery) {
+      List<ProductsData> inputTransactionsList, String searchQuery) {
 
-    List<TransactionsData> searchResult = [];
+    List<ProductsData> searchResult = [];
 
     for (var element in inputTransactionsList) {
 
@@ -1066,7 +1070,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
 
       setState(() {
 
-        allTransactionsItems = preparedAllTransactionsItem;
+        allProductsItems = preparedAllTransactionsItem;
 
       });
 
@@ -1076,11 +1080,11 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
 
   void searchTransactionsInitially(BuildContext context, String searchQuery) async {
 
-    List<TransactionsData> searchResult = [];
+    List<ProductsData> searchResult = [];
 
-    var databaseQueries = TransactionsDatabaseQueries();
+    var databaseQueries = ProductsDatabaseQueries();
 
-    allTransactions = await databaseQueries.getAllTransactions(TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
+    allTransactions = await databaseQueries.getAllProducts(ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
     for (var element in allTransactions) {
 
@@ -1107,7 +1111,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
 
       setState(() {
 
-        allTransactionsItems = preparedAllTransactionsItem;
+        allProductsItems = preparedAllTransactionsItem;
 
       });
 

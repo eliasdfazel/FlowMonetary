@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/16/22, 6:57 AM
+ * Last modified 3/16/22, 8:51 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -50,6 +50,27 @@ class ProductsDatabaseQueries {
       );
     });
 
+  }
+
+  Future<int> queryDeleteProduct(int id,
+      String tableName, String usernameId) async {
+
+    var databaseNameQuery = (usernameId == StringsResources.unknownText) ? ProductsDatabaseInputs.productsDatabase : "${usernameId}_${ProductsDatabaseInputs.productsDatabase}";
+    var tableNameQuery = ProductsDatabaseInputs.databaseTableName;
+
+    final database = openDatabase(
+      join(await getDatabasesPath(), databaseNameQuery),
+    );
+
+    final databaseInstance = await database;
+
+    var queryResult = await databaseInstance.delete(
+      tableNameQuery,
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+
+    return queryResult;
   }
 
 }
