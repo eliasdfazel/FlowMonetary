@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/16/22, 9:17 AM
+ * Last modified 3/16/22, 10:44 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -19,12 +19,9 @@ import 'package:flow_accounting/products/input/ui/products_input_view.dart';
 import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
-import 'package:flow_accounting/transactions/input/ui/transactions_input_view.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
-import 'package:flow_accounting/utils/extensions/CreditCardNumber.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:marquee/marquee.dart';
 
 class ProductsOutputView extends StatefulWidget {
 
@@ -146,7 +143,12 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
                       height: double.infinity,
                     ),
                   ),
-                  ListView(
+                  GridView(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 5.0,
+                      mainAxisSpacing: 5.0,
+                    ),
                     padding: const EdgeInsets.fromLTRB(0, 73, 0, 79),
                     physics: const BouncingScrollPhysics(),
                     children: allListContentWidgets,
@@ -472,48 +474,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
     );
   }
 
-  Widget outputItem(BuildContext context, TransactionsData transactionsData) {
-
-    String transactionTypeMark = TransactionsData.TransactionType_Send;
-    Color transactionTypeColor = ColorsResources.dark;
-
-    String transactionCardNumber = transactionsData.sourceCardNumber;
-
-    String transactionName = transactionsData.sourceUsername;
-    String transactionBank = transactionsData.sourceBankName;
-
-    Color transactionColorTag = Color(transactionsData.colorTag);
-
-    switch (transactionsData.transactionType) {
-      case TransactionsData.TransactionType_Send: {
-
-        transactionTypeMark = TransactionsData.TransactionType_Send;
-        transactionTypeColor = Colors.red;
-
-        transactionName = transactionsData.targetUsername;
-
-        break;
-      }
-      case TransactionsData.TransactionType_Receive: {
-
-        transactionTypeMark = TransactionsData.TransactionType_Receive;
-        transactionTypeColor = Colors.green;
-
-        transactionName = transactionsData.sourceUsername;
-
-        break;
-      }
-    }
-
-    if (transactionsData.transactionDescription.isNotEmpty) {
-
-      controllerTransactionTitle.text = transactionsData.transactionDescription;
-
-    } else {
-
-      controllerTransactionTitle.text = transactionsData.transactionTitle;
-
-    }
+  Widget outputItem(BuildContext context, ProductsData productsData) {
 
     return Slidable(
       closeOnScroll: true,
@@ -524,7 +485,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
             flex: 1,
             onPressed: (BuildContext context) {
 
-              deleteTransaction(context, transactionsData);
+              deleteTransaction(context, productsData);
 
             },
             backgroundColor: Colors.transparent,
@@ -537,7 +498,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
             flex: 1,
             onPressed: (BuildContext context) {
 
-              editTransaction(context, transactionsData);
+              editProduct(context, productsData);
 
             },
             backgroundColor: Colors.transparent,
@@ -549,17 +510,17 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
         ],
       ),
       child: Padding(
-        padding: const  EdgeInsets.fromLTRB(13, 7, 13, 13),
+        padding: EdgeInsets.fromLTRB(13, 7, 13, 13),
         child: PhysicalModel(
           color: ColorsResources.light,
           elevation: 7,
-          shadowColor: transactionColorTag.withOpacity(0.7),
+          shadowColor: Color(productsData.colorTag).withOpacity(0.7),
           shape: BoxShape.rectangle,
           borderRadius: const BorderRadius.all(Radius.circular(17)),
           child: InkWell(
             onTap: () {
 
-              editTransaction(context, transactionsData);
+              editProduct(context, productsData);
 
             },
             child: Container(
@@ -582,312 +543,6 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
                     tileMode: TileMode.clamp
                 ),
               ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  SizedBox(
-                    height: 99,
-                    width: double.infinity,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Expanded(
-                          flex: 19,
-                          child: Padding(
-                              padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                              child: Stack(
-                                children: [
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      SizedBox(
-                                        height: 59,
-                                        width: double.infinity,
-                                        child: Padding(
-                                          padding: const EdgeInsets.fromLTRB(27,
-                                              11, 13, 0),
-                                          child: Align(
-                                              alignment: Alignment.center,
-                                              child: Marquee(
-                                                text: transactionsData.amountMoney,
-                                                style: const TextStyle(
-                                                  color: ColorsResources.dark,
-                                                  fontSize: 31,
-                                                  fontFamily: "Numbers",
-                                                ),
-                                                scrollAxis: Axis.horizontal,
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                blankSpace: 173.0,
-                                                velocity: 37.0,
-                                                fadingEdgeStartFraction: 0.13,
-                                                fadingEdgeEndFraction: 0.13,
-                                                startAfter: const Duration(milliseconds: 777),
-                                                numberOfRounds: 3,
-                                                pauseAfterRound: const Duration(milliseconds: 500),
-                                                showFadingOnlyWhenScrolling: true,
-                                                startPadding: 13.0,
-                                                accelerationDuration: const Duration(milliseconds: 500),
-                                                accelerationCurve: Curves.linear,
-                                                decelerationDuration: const Duration(milliseconds: 500),
-                                                decelerationCurve: Curves.easeOut,
-                                              )
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                          height: 39,
-                                          width: double.infinity,
-                                          child: Padding(
-                                            padding: const EdgeInsets.fromLTRB(13, 11, 13, 0),
-                                            child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                              children: [
-                                                Expanded(
-                                                  flex: 1,
-                                                  child: Directionality(
-                                                    textDirection: TextDirection.rtl,
-                                                    child: Align(
-                                                      alignment: Alignment.centerRight,
-                                                      child: Text(
-                                                        transactionName,
-                                                        style: TextStyle(
-                                                          color: ColorsResources.dark.withOpacity(0.579),
-                                                          fontSize: 13,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                                Expanded(
-                                                  flex: 1,
-                                                  child: Directionality(
-                                                    textDirection: TextDirection.rtl,
-                                                    child: Align(
-                                                      alignment: Alignment.centerRight,
-                                                      child: Text(
-                                                        transactionBank,
-                                                        style: TextStyle(
-                                                          color: ColorsResources.dark.withOpacity(0.579),
-                                                          fontSize: 13,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                          )
-                                      )
-                                    ],
-                                  ),
-                                  Positioned(
-                                    left: 0,
-                                    top: 0,
-                                    child: RotatedBox(
-                                      quarterTurns: 3,
-                                      child: SizedBox(
-                                        height: 27,
-                                        width: 79,
-                                        child: Container(
-                                            decoration: BoxDecoration(
-                                              borderRadius: const BorderRadius.only(
-                                                  topLeft: Radius.circular(0),
-                                                  topRight: Radius.circular(17),
-                                                  bottomLeft: Radius.circular(17),
-                                                  bottomRight: Radius.circular(0)
-                                              ),
-                                              gradient: LinearGradient(
-                                                  colors: [
-                                                    ColorsResources.light,
-                                                    transactionColorTag.withOpacity(0.7),
-                                                  ],
-                                                  begin: const FractionalOffset(0.0, 0.0),
-                                                  end: const FractionalOffset(1.0, 0.0),
-                                                  stops: const [0.0, 1.0],
-                                                  transform: const GradientRotation(-45),
-                                                  tileMode: TileMode.clamp
-                                              ),
-                                            ),
-                                            child: Align(
-                                              alignment: Alignment.center,
-                                              child: Text(
-                                                transactionsData.budgetName,
-                                                maxLines: 1,
-                                                style: const TextStyle(
-                                                  color: ColorsResources.dark,
-                                                  fontSize: 13,
-                                                ),
-                                              ),
-                                            )
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              )
-                          ),
-                        ),
-                        Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(0, 7, 7, 0),
-                              child: Align(
-                                alignment: Alignment.center,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: transactionTypeColor.withOpacity(0.3),
-                                  ),
-                                  child: Align(
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      transactionTypeMark,
-                                      style: TextStyle(
-                                          color: transactionTypeColor,
-                                          fontSize: 65
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            )
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(7, 9, 7, 9),
-                    child: Align(
-                      alignment: Alignment.centerRight,
-                      child: Directionality(
-                        textDirection: TextDirection.rtl,
-                        child: TextField(
-                          controller: controllerTransactionTitle,
-                          textAlign: TextAlign.right,
-                          textDirection: TextDirection.ltr,
-                          textAlignVertical: TextAlignVertical.center,
-                          maxLines: 1,
-                          cursorColor: ColorsResources.primaryColor,
-                          style: const TextStyle(
-                            fontSize: 13,
-                            color: ColorsResources.applicationDarkGeeksEmpire
-                          ),
-                          decoration: const InputDecoration(
-                            alignLabelWithHint: true,
-                            enabled: false,
-                            border: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(13),
-                                    topRight: Radius.circular(13),
-                                    bottomLeft: Radius.circular(13),
-                                    bottomRight: Radius.circular(13)
-                                ),
-                                gapPadding: 5
-                            ),
-                            disabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: ColorsResources.white, width: 1.0),
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(13),
-                                    topRight: Radius.circular(13),
-                                    bottomLeft: Radius.circular(13),
-                                    bottomRight: Radius.circular(13)
-                                ),
-                                gapPadding: 5
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: ColorsResources.white, width: 1.0),
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(13),
-                                    topRight: Radius.circular(13),
-                                    bottomLeft: Radius.circular(13),
-                                    bottomRight: Radius.circular(13)
-                                ),
-                                gapPadding: 5
-                            ),
-                            errorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: ColorsResources.white, width: 1.0),
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(13),
-                                    topRight: Radius.circular(13),
-                                    bottomLeft: Radius.circular(13),
-                                    bottomRight: Radius.circular(13)
-                                ),
-                                gapPadding: 5
-                            ),
-                            filled: true,
-                            fillColor: ColorsResources.lightTransparent,
-
-                            labelText: StringsResources.descriptionText,
-                            labelStyle: TextStyle(
-                              color: ColorsResources.dark,
-                              fontSize: 13.0,
-                              fontWeight: FontWeight.bold
-                            ),
-                            hintText: StringsResources.descriptionText,
-                            hintStyle: TextStyle(
-                              color: ColorsResources.dark,
-                              fontSize: 13.0,
-                              fontWeight: FontWeight.bold
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 51,
-                    width: double.infinity,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Expanded(
-                          flex: 13,
-                          child: Padding(
-                            padding: const EdgeInsets.fromLTRB(11, 0, 11, 0),
-                            child: Container(
-                              color: Colors.transparent,
-                              child: Align(
-                                alignment: Alignment.center,
-                                child: Text(
-                                  prepareCreditCard(transactionCardNumber),
-                                  style: const TextStyle(
-                                      color: ColorsResources.dark,
-                                      fontSize: 17
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 7,
-                          child: Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 0, 11, 0),
-                            child: Container(
-                              color: Colors.transparent,
-                              child: Align(
-                                alignment: Alignment.center,
-                                child: Directionality(
-                                  textDirection: TextDirection.rtl,
-                                  child: Text(
-                                    transactionsData.transactionTime,
-                                    style: TextStyle(
-                                        color: ColorsResources.dark.withOpacity(0.59),
-                                        fontSize: 11,
-                                        fontWeight: FontWeight.bold
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
             ),
           ),
         ),
@@ -908,7 +563,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
 
   }
 
-  void editTransaction(BuildContext context, ProductsData productsData) async {
+  void editProduct(BuildContext context, ProductsData productsData) async {
 
     bool productDataUpdated = await Navigator.push(
       context,
