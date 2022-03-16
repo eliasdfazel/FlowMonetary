@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/16/22, 10:44 AM
+ * Last modified 3/16/22, 11:10 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -93,10 +93,6 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
     });
 
     List<Widget> allListContentWidgets = [];
-    allListContentWidgets.add(Padding(
-      padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
-      child: colorSelectorView,
-    ));
     allListContentWidgets.addAll(allProductsItems);
 
     return MaterialApp(
@@ -355,6 +351,12 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
                       )
                   ),
                   Positioned(
+                    top: 59,
+                    left: 13,
+                    right: 13,
+                    child: colorSelectorView,
+                  ),
+                  Positioned(
                     bottom: 19,
                     left: 11,
                     right: 11,
@@ -543,6 +545,11 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
                     tileMode: TileMode.clamp
                 ),
               ),
+              child: SizedBox(
+                height: 197,
+                width: double.infinity,
+                child: ColoredBox(color: Colors.lime),
+              ),
             ),
           ),
         ),
@@ -589,7 +596,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
 
     }
 
-    List<Widget> preparedAllTransactionsItem = [];
+    List<Widget> preparedAllProductsItem = [];
 
     var databaseQueries = ProductsDatabaseQueries();
 
@@ -597,13 +604,13 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
 
     for (var element in allProducts) {
 
-      preparedAllTransactionsItem.add(outputItem(context, element));
+      preparedAllProductsItem.add(outputItem(context, element));
 
     }
 
     setState(() {
 
-      allProductsItems = preparedAllTransactionsItem;
+      allProductsItems = preparedAllProductsItem;
 
     });
 
@@ -675,17 +682,17 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
 
       }
 
-      List<Widget> preparedAllTransactionsItem = [];
+      List<Widget> preparedAllProductsItem = [];
 
       for (var element in searchResult) {
 
-        preparedAllTransactionsItem.add(outputItem(context, element));
+        preparedAllProductsItem.add(outputItem(context, element));
 
       }
 
       setState(() {
 
-        allProductsItems = preparedAllTransactionsItem;
+        allProductsItems = preparedAllProductsItem;
 
       });
 
