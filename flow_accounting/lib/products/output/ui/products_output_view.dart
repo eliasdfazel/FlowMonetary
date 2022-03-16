@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/16/22, 11:10 AM
+ * Last modified 3/16/22, 11:28 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -22,6 +22,7 @@ import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:sqflite/sqflite.dart';
 
 class ProductsOutputView extends StatefulWidget {
 
@@ -560,13 +561,23 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
 
   void deleteTransaction(BuildContext context, ProductsData productsData) async {
 
-    var databaseQueries = ProductsDatabaseQueries();
+    String databaseDirectory = await getDatabasesPath();
 
-    databaseQueries.queryDeleteProduct(productsData.id, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+    String productDatabasePath = "${databaseDirectory}/${ProductsDatabaseInputs.productsDatabase}";
 
-    retrieveAllProducts(context);
+    bool productsDatabaseExist = await databaseExists(productDatabasePath);
 
-    transactionDataUpdated = true;
+    if (productsDatabaseExist) {
+
+      var databaseQueries = ProductsDatabaseQueries();
+
+      databaseQueries.queryDeleteProduct(productsData.id, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+      retrieveAllProducts(context);
+
+      transactionDataUpdated = true;
+
+    }
 
   }
 
@@ -596,23 +607,33 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
 
     }
 
-    List<Widget> preparedAllProductsItem = [];
+    String databaseDirectory = await getDatabasesPath();
 
-    var databaseQueries = ProductsDatabaseQueries();
+    String productDatabasePath = "${databaseDirectory}/${ProductsDatabaseInputs.productsDatabase}";
 
-    allProducts = await databaseQueries.getAllProducts(ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+    bool productsDatabaseExist = await databaseExists(productDatabasePath);
 
-    for (var element in allProducts) {
+    if (productsDatabaseExist) {
 
-      preparedAllProductsItem.add(outputItem(context, element));
+      List<Widget> preparedAllProductsItem = [];
+
+      var databaseQueries = ProductsDatabaseQueries();
+
+      allProducts = await databaseQueries.getAllProducts(ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+      for (var element in allProducts) {
+
+        preparedAllProductsItem.add(outputItem(context, element));
+
+      }
+
+      setState(() {
+
+        allProductsItems = preparedAllProductsItem;
+
+      });
 
     }
-
-    setState(() {
-
-      allProductsItems = preparedAllProductsItem;
-
-    });
 
   }
 
@@ -738,38 +759,48 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
 
   void searchProductsInitially(BuildContext context, String searchQuery) async {
 
-    List<ProductsData> searchResult = [];
+    String databaseDirectory = await getDatabasesPath();
 
-    var databaseQueries = ProductsDatabaseQueries();
+    String productDatabasePath = "${databaseDirectory}/${ProductsDatabaseInputs.productsDatabase}";
 
-    allProducts = await databaseQueries.getAllProducts(ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+    bool productsDatabaseExist = await databaseExists(productDatabasePath);
 
-    for (var element in allProducts) {
+    if (productsDatabaseExist) {
 
-      if (element.productName.contains(searchQuery) ||
-          element.productDescription.contains(searchQuery) ||
-          element.productBrand.contains(searchQuery) ||
-          element.productCategory.contains(searchQuery) ||
-          element.productPrice.contains(searchQuery) ||
-          element.productProfitPercent.contains(searchQuery)) {
+      List<ProductsData> searchResult = [];
 
-        searchResult.add(element);
+      var databaseQueries = ProductsDatabaseQueries();
+
+      allProducts = await databaseQueries.getAllProducts(ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+      for (var element in allProducts) {
+
+        if (element.productName.contains(searchQuery) ||
+            element.productDescription.contains(searchQuery) ||
+            element.productBrand.contains(searchQuery) ||
+            element.productCategory.contains(searchQuery) ||
+            element.productPrice.contains(searchQuery) ||
+            element.productProfitPercent.contains(searchQuery)) {
+
+          searchResult.add(element);
+
+        }
+
+        List<Widget> preparedAllProductsItem = [];
+
+        for (var element in searchResult) {
+
+          preparedAllProductsItem.add(outputItem(context, element));
+
+        }
+
+        setState(() {
+
+          allProductsItems = preparedAllProductsItem;
+
+        });
 
       }
-
-      List<Widget> preparedAllProductsItem = [];
-
-      for (var element in searchResult) {
-
-        preparedAllProductsItem.add(outputItem(context, element));
-
-      }
-
-      setState(() {
-
-        allProductsItems = preparedAllProductsItem;
-
-      });
 
     }
 
