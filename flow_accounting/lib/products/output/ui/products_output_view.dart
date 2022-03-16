@@ -12,33 +12,30 @@
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:blur/blur.dart';
 import 'package:flow_accounting/home/interface/dashboard.dart';
+import 'package:flow_accounting/products/database/structures/tables_structure.dart';
 import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
-import 'package:flow_accounting/transactions/database/io/inputs.dart';
-import 'package:flow_accounting/transactions/database/io/queries.dart';
-import 'package:flow_accounting/transactions/database/structures/tables_structure.dart';
-import 'package:flow_accounting/transactions/edit/ui/transactions_edit_view.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
 import 'package:flow_accounting/utils/extensions/CreditCardNumber.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:marquee/marquee.dart';
 
-class TransactionsOutputView extends StatefulWidget {
+class ProductsOutputView extends StatefulWidget {
 
   String? initialSearchQuery;
 
-  TransactionsOutputView({Key? key, this.initialSearchQuery}) : super(key: key);
+  ProductsOutputView({Key? key, this.initialSearchQuery}) : super(key: key);
 
   @override
-  _TransactionsOutputViewState createState() => _TransactionsOutputViewState();
+  _ProductsOutputViewState createState() => _ProductsOutputViewState();
 }
-class _TransactionsOutputViewState extends State<TransactionsOutputView> {
+class _ProductsOutputViewState extends State<ProductsOutputView> {
 
   ColorSelectorView colorSelectorView = ColorSelectorView();
 
-  List<TransactionsData> allTransactions = [];
+  List<ProductsData> allTransactions = [];
   List<Widget> allTransactionsItems = [];
 
   TextEditingController controllerTransactionTitle = TextEditingController();
