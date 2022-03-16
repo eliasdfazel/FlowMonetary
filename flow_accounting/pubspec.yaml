@@ -79,6 +79,7 @@ flutter:
     - customers_icon.png
     - budgets_icon.png
     - loans_icon.png
+    - unknown_products.png
 
   fonts:
     - family: Sans

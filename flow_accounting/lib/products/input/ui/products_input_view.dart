@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/15/22, 10:26 AM
+ * Last modified 3/16/22, 6:49 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -20,6 +20,7 @@ import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
@@ -51,12 +52,15 @@ class _ProductsInputViewState extends State<ProductsInputView> {
 
   String productBrandLogoUrl = "";
 
-  Widget imagePickerWidget = const Opacity(
+  Widget imagePickerWidget = Opacity(
     opacity: 0.7,
-    child: Image(
-      image: AssetImage("unknown_user.png"),
-      fit: BoxFit.cover,
-    ),
+    child: ColoredBox(
+      color: ColorsResources.lightestBlue.withOpacity(0.73),
+      child: Image(
+        image: AssetImage("unknown_products.png"),
+        fit: BoxFit.cover,
+      )
+    )
   );
 
   int timeNow = DateTime.now().millisecondsSinceEpoch;
@@ -183,8 +187,12 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                           ),
                         ),
                       ),
+                      const Divider(
+                        height: 1,
+                        color: Colors.transparent,
+                      ),
                       SizedBox(
-                        height: 501,
+                        height: 279,
                         width: double.infinity,
                         child: Padding(
                           padding: EdgeInsets.fromLTRB(13, 0, 13, 0),
@@ -208,7 +216,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                         ),
                       ),
                       const Divider(
-                        height: 13,
+                        height: 17,
                         color: Colors.transparent,
                       ),
                       SizedBox(
@@ -384,6 +392,142 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                             fontSize: 13.0
                                         ),
                                       ),
+                                    ),
+                                  )
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Divider(
+                        height: 13,
+                        color: Colors.transparent,
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 73,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                  child: Directionality(
+                                    textDirection: TextDirection.rtl,
+                                    child: TypeAheadField<ProductsData>(
+                                        suggestionsCallback: (pattern) async {
+
+                                          return await getProductsCategories();
+                                        },
+                                        itemBuilder: (context, suggestion) {
+
+                                          return ListTile(
+                                              title: Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                children: [
+                                                  Expanded(
+                                                      flex: 11,
+                                                      child:  Padding(
+                                                        padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
+                                                        child: Directionality(
+                                                          textDirection: TextDirection.rtl,
+                                                          child: Text(
+                                                            suggestion.productCategory,
+                                                            style: const TextStyle(
+                                                                color: ColorsResources.darkTransparent,
+                                                                fontSize: 15
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      )
+                                                  ),
+                                                ],
+                                              )
+                                          );
+                                        },
+                                        onSuggestionSelected: (suggestion) {
+
+                                          controllerProductCategory.text = suggestion.productCategory.toString();
+
+                                        },
+                                        errorBuilder: (context, suggestion) {
+
+                                          return const Padding(
+                                              padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
+                                              child: Text(StringsResources.nothingText)
+                                          );
+                                        },
+                                        suggestionsBoxDecoration: SuggestionsBoxDecoration(
+                                            elevation: 7,
+                                            color: ColorsResources.light,
+                                            shadowColor: ColorsResources.darkTransparent,
+                                            borderRadius: BorderRadius.circular(17)
+                                        ),
+                                        textFieldConfiguration: TextFieldConfiguration(
+                                          controller: controllerProductCategory,
+                                          autofocus: false,
+                                          maxLines: 1,
+                                          cursorColor: ColorsResources.primaryColor,
+                                          keyboardType: TextInputType.name,
+                                          textInputAction: TextInputAction.next,
+                                          decoration: InputDecoration(
+                                            alignLabelWithHint: true,
+                                            border: const OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
+                                                    bottomRight: Radius.circular(13)
+                                                ),
+                                                gapPadding: 5
+                                            ),
+                                            enabledBorder: const OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
+                                                    bottomRight: Radius.circular(13)
+                                                ),
+                                                gapPadding: 5
+                                            ),
+                                            focusedBorder: const OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
+                                                    bottomRight: Radius.circular(13)
+                                                ),
+                                                gapPadding: 5
+                                            ),
+                                            errorBorder: const OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.red, width: 1.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
+                                                    bottomRight: Radius.circular(13)
+                                                ),
+                                                gapPadding: 5
+                                            ),
+                                            errorText: warningNotice,
+                                            filled: true,
+                                            fillColor: ColorsResources.lightTransparent,
+                                            labelText: StringsResources.productCategory,
+                                            labelStyle: const TextStyle(
+                                                color: ColorsResources.dark,
+                                                fontSize: 17.0
+                                            ),
+                                            hintText: StringsResources.productCategoryHint,
+                                            hintStyle: const TextStyle(
+                                                color: ColorsResources.darkTransparent,
+                                                fontSize: 17.0
+                                            ),
+                                          ),
+                                        )
                                     ),
                                   )
                               ),
@@ -872,9 +1016,12 @@ class _ProductsInputViewState extends State<ProductsInputView> {
 
       setState(() {
 
-        imagePickerWidget = Image.file(
-          File(selectedImage.path),
-          fit: BoxFit.cover,
+        imagePickerWidget = ColoredBox(
+          color: ColorsResources.lightestBlue.withOpacity(0.73),
+          child: Image.file(
+            File(selectedImage.path),
+            fit: BoxFit.cover,
+          ),
         );
 
       });
@@ -902,6 +1049,11 @@ class _ProductsInputViewState extends State<ProductsInputView> {
 
     file.writeAsBytes(imageBytes);
 
+  }
+
+  Future<List<ProductsData>> getProductsCategories() async {
+
+    return [];
   }
 
 }

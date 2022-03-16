@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/15/22, 10:18 AM
+ * Last modified 3/16/22, 6:25 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -203,6 +203,9 @@ class StringsResources {
 
   static const String productProfitPercent = "درصد سود %";
   static const String productProfitPercentHint = "مقدار درصد سود برای قیمت فروش را وارد کنید";
+
+  static const String productCategory = "دسته بندی محصول";
+  static const String productCategoryHint = "دسته بندی اصلی محصول را وارد کنید";
   /* End - Product String Resources */
 
   static const String sortHint = "مرتب سازی";
