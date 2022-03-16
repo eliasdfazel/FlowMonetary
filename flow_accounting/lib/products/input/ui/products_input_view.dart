@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/16/22, 8:33 AM
+ * Last modified 3/16/22, 8:35 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -801,7 +801,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                         },
                                         onSuggestionSelected: (suggestion) {
 
-                                          controllerProductCategory.text = suggestion.productBrand.toString();
+                                          controllerProductBrand.text = suggestion.productBrand.toString();
 
                                         },
                                         errorBuilder: (context, suggestion) {
@@ -818,7 +818,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                             borderRadius: BorderRadius.circular(17)
                                         ),
                                         textFieldConfiguration: TextFieldConfiguration(
-                                          controller: controllerProductCategory,
+                                          controller: controllerProductBrand,
                                           autofocus: false,
                                           maxLines: 1,
                                           cursorColor: ColorsResources.primaryColor,
@@ -869,12 +869,12 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                             errorText: warningNotice,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
-                                            labelText: StringsResources.productCategory,
+                                            labelText: StringsResources.productBrand,
                                             labelStyle: const TextStyle(
                                                 color: ColorsResources.dark,
                                                 fontSize: 17.0
                                             ),
-                                            hintText: StringsResources.productCategoryHint,
+                                            hintText: StringsResources.productBrandHint,
                                             hintStyle: const TextStyle(
                                                 color: ColorsResources.darkTransparent,
                                                 fontSize: 17.0
