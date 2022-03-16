@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/16/22, 6:57 AM
+ * Last modified 3/16/22, 8:17 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -37,6 +37,8 @@ class ProductsInputView extends StatefulWidget {
 }
 class _ProductsInputViewState extends State<ProductsInputView> {
 
+  List<ProductsData> allProducts = [];
+
   ColorSelectorView colorSelectorView = ColorSelectorView();
 
   TextEditingController controllerProductName = TextEditingController();
@@ -53,7 +55,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
 
   String productBrandLogoUrl = "";
 
-  Widget imagePickerWidget = Opacity(
+  Widget imagePickerProductImage = Opacity(
     opacity: 0.7,
     child: ColoredBox(
       color: ColorsResources.lightestBlue.withOpacity(0.73),
@@ -62,6 +64,14 @@ class _ProductsInputViewState extends State<ProductsInputView> {
         fit: BoxFit.cover,
       )
     )
+  );
+
+  Widget imagePickerProductBrand = Opacity(
+      opacity: 0.7,
+      child: Image(
+        image: AssetImage("unknown_products.png"),
+        fit: BoxFit.cover,
+      )
   );
 
   int timeNow = DateTime.now().millisecondsSinceEpoch;
@@ -80,6 +90,8 @@ class _ProductsInputViewState extends State<ProductsInputView> {
 
   @override
   void initState(){
+
+    getAllProducts();
 
     controllerProductName.text = widget.productsData?.productName == null ? "" : (widget.productsData?.productName)!;
     controllerProductDescription.text = widget.productsData?.productDescription == null ? "" : (widget.productsData?.productDescription)!;
@@ -201,7 +213,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                           child: InkWell(
                             onTap: () {
 
-                              invokeImagePicker();
+                              invokeImagePickerProductImage();
 
                             },
                             child: Align(
@@ -210,7 +222,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                 aspectRatio: 1,
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(13),
-                                  child: imagePickerWidget,
+                                  child: imagePickerProductImage,
                                 ),
                               ),
                             )
@@ -723,6 +735,162 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                       ),
                       SizedBox(
                         width: double.infinity,
+                        height: 73,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Expanded(
+                              flex: 3,
+                              child: InkWell(
+                                onTap: () {
+
+                                  invokeImagePickerProductBrand();
+
+                                },
+                                child: AspectRatio(
+                                  aspectRatio: 1,
+                                  child: Padding(
+                                    padding: EdgeInsets.fromLTRB(3, 3, 3, 3),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(51),
+                                      child: imagePickerProductBrand,
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ),
+                            Expanded(
+                              flex: 13,
+                              child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                  child: Directionality(
+                                    textDirection: TextDirection.rtl,
+                                    child: TypeAheadField<ProductsData>(
+                                        suggestionsCallback: (pattern) async {
+
+                                          return await getProductsBrands();
+                                        },
+                                        itemBuilder: (context, suggestion) {
+
+                                          return ListTile(
+                                              title: Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                children: [
+                                                  Expanded(
+                                                      flex: 11,
+                                                      child:  Padding(
+                                                        padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
+                                                        child: Directionality(
+                                                          textDirection: TextDirection.rtl,
+                                                          child: Text(
+                                                            suggestion.productBrand,
+                                                            style: const TextStyle(
+                                                                color: ColorsResources.darkTransparent,
+                                                                fontSize: 15
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      )
+                                                  ),
+                                                ],
+                                              )
+                                          );
+                                        },
+                                        onSuggestionSelected: (suggestion) {
+
+                                          controllerProductCategory.text = suggestion.productBrand.toString();
+
+                                        },
+                                        errorBuilder: (context, suggestion) {
+
+                                          return const Padding(
+                                              padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
+                                              child: Text(StringsResources.nothingText)
+                                          );
+                                        },
+                                        suggestionsBoxDecoration: SuggestionsBoxDecoration(
+                                            elevation: 7,
+                                            color: ColorsResources.light,
+                                            shadowColor: ColorsResources.darkTransparent,
+                                            borderRadius: BorderRadius.circular(17)
+                                        ),
+                                        textFieldConfiguration: TextFieldConfiguration(
+                                          controller: controllerProductCategory,
+                                          autofocus: false,
+                                          maxLines: 1,
+                                          cursorColor: ColorsResources.primaryColor,
+                                          keyboardType: TextInputType.name,
+                                          textInputAction: TextInputAction.next,
+                                          decoration: InputDecoration(
+                                            alignLabelWithHint: true,
+                                            border: const OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
+                                                    bottomRight: Radius.circular(13)
+                                                ),
+                                                gapPadding: 5
+                                            ),
+                                            enabledBorder: const OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
+                                                    bottomRight: Radius.circular(13)
+                                                ),
+                                                gapPadding: 5
+                                            ),
+                                            focusedBorder: const OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
+                                                    bottomRight: Radius.circular(13)
+                                                ),
+                                                gapPadding: 5
+                                            ),
+                                            errorBorder: const OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.red, width: 1.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
+                                                    bottomRight: Radius.circular(13)
+                                                ),
+                                                gapPadding: 5
+                                            ),
+                                            errorText: warningNotice,
+                                            filled: true,
+                                            fillColor: ColorsResources.lightTransparent,
+                                            labelText: StringsResources.productCategory,
+                                            labelStyle: const TextStyle(
+                                                color: ColorsResources.dark,
+                                                fontSize: 17.0
+                                            ),
+                                            hintText: StringsResources.productCategoryHint,
+                                            hintStyle: const TextStyle(
+                                                color: ColorsResources.darkTransparent,
+                                                fontSize: 17.0
+                                            ),
+                                          ),
+                                        )
+                                    ),
+                                  )
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Divider(
+                        height: 13,
+                        color: Colors.transparent,
+                      ),
+                      SizedBox(
+                        width: double.infinity,
                         height: 37,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -1003,7 +1171,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
     );
   }
 
-  void invokeImagePicker() async {
+  void invokeImagePickerProductImage() async {
 
     final ImagePicker imagePicker = ImagePicker();
 
@@ -1019,7 +1187,39 @@ class _ProductsInputViewState extends State<ProductsInputView> {
 
       setState(() {
 
-        imagePickerWidget = ColoredBox(
+        imagePickerProductImage = ColoredBox(
+          color: ColorsResources.lightestBlue.withOpacity(0.73),
+          child: Image.file(
+            File(selectedImage.path),
+            fit: BoxFit.cover,
+          ),
+        );
+
+      });
+
+    }
+
+    debugPrint("Picked Image Path: $productImageUrl");
+
+  }
+
+  void invokeImagePickerProductBrand() async {
+
+    final ImagePicker imagePicker = ImagePicker();
+
+    final XFile? selectedImage = await imagePicker.pickImage(source: ImageSource.gallery);
+
+    if (selectedImage != null) {
+
+      productBrandLogoUrl = await getFilePath(selectedImage.name);
+
+      var imageFileByte = await selectedImage.readAsBytes();
+
+      savePickedImageFile(productBrandLogoUrl, imageFileByte);
+
+      setState(() {
+
+        imagePickerProductBrand = ColoredBox(
           color: ColorsResources.lightestBlue.withOpacity(0.73),
           child: Image.file(
             File(selectedImage.path),
@@ -1054,11 +1254,28 @@ class _ProductsInputViewState extends State<ProductsInputView> {
 
   }
 
-  Future<List<ProductsData>> getProductsCategories() async {
+  Future getAllProducts() async {
 
     ProductsDatabaseQueries productsDatabaseQueries = ProductsDatabaseQueries();
 
-    return await productsDatabaseQueries.getAllProducts(ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+     allProducts = await productsDatabaseQueries.getAllProducts(ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+     setState(() {
+
+       allProducts;
+
+     });
+
+  }
+
+  Future<List<ProductsData>> getProductsCategories() async {
+
+    return allProducts;
+  }
+
+  Future<List<ProductsData>> getProductsBrands() async {
+
+    return allProducts;
   }
 
 }
