@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/16/22, 10:25 AM
+ * Last modified 3/16/22, 11:23 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -25,6 +25,7 @@ import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:sqflite/sqflite.dart';
 
 class ProductsInputView extends StatefulWidget {
 
@@ -823,7 +824,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                           maxLines: 1,
                                           cursorColor: ColorsResources.primaryColor,
                                           keyboardType: TextInputType.name,
-                                          textInputAction: TextInputAction.next,
+                                          textInputAction: TextInputAction.done,
                                           decoration: InputDecoration(
                                             alignLabelWithHint: true,
                                             border: const OutlineInputBorder(
@@ -1275,15 +1276,25 @@ class _ProductsInputViewState extends State<ProductsInputView> {
 
   Future getAllProducts() async {
 
-    ProductsDatabaseQueries productsDatabaseQueries = ProductsDatabaseQueries();
+    String databaseDirectory = await getDatabasesPath();
 
-     allProducts = await productsDatabaseQueries.getAllProducts(ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+    String productDatabasePath = "${databaseDirectory}/${ProductsDatabaseInputs.productsDatabase}";
 
-     setState(() {
+    bool productsDatabaseExist = await databaseExists(productDatabasePath);
 
-       allProducts;
+    if (productsDatabaseExist) {
 
-     });
+      ProductsDatabaseQueries productsDatabaseQueries = ProductsDatabaseQueries();
+
+      allProducts = await productsDatabaseQueries.getAllProducts(ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+      setState(() {
+
+        allProducts;
+
+      });
+
+    }
 
   }
 
