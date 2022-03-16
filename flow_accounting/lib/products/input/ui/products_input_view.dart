@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/16/22, 6:49 AM
+ * Last modified 3/16/22, 6:57 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -14,6 +14,7 @@ import 'dart:typed_data';
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:blur/blur.dart';
 import 'package:flow_accounting/products/database/io/inputs.dart';
+import 'package:flow_accounting/products/database/io/queries.dart';
 import 'package:flow_accounting/products/database/structures/tables_structure.dart';
 import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
@@ -88,6 +89,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
     controllerProductBrand.text = widget.productsData?.productBrand == null ? "" : (widget.productsData?.productBrand)!;
 
     controllerProductBuyingPrice.text = widget.productsData?.productPrice == null ? "0" : (widget.productsData?.productPrice)!;
+    controllerProductProfitPercent.text = widget.productsData?.productProfitPercent == null ? "0" : (widget.productsData?.productProfitPercent)!;
 
     colorSelectorView.inputColor = Color(widget.productsData?.colorTag ?? Colors.white.value);
 
@@ -871,6 +873,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                   productBrandLogoUrl: productBrandLogoUrl,
 
                                   productPrice: controllerProductBuyingPrice.text,
+                                  productProfitPercent: controllerProductProfitPercent.text,
 
                                   colorTag: colorSelectorView.selectedColor.value
                               );
@@ -1053,7 +1056,9 @@ class _ProductsInputViewState extends State<ProductsInputView> {
 
   Future<List<ProductsData>> getProductsCategories() async {
 
-    return [];
+    ProductsDatabaseQueries productsDatabaseQueries = ProductsDatabaseQueries();
+
+    return await productsDatabaseQueries.getAllProducts(ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
   }
 
 }
