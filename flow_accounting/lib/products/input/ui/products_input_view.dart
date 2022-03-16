@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/16/22, 8:17 AM
+ * Last modified 3/16/22, 8:25 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -741,22 +741,25 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                           children: [
                             Expanded(
                               flex: 3,
-                              child: InkWell(
-                                onTap: () {
+                              child: Padding(
+                                padding: EdgeInsets.fromLTRB(13, 0, 0, 0),
+                                child: InkWell(
+                                  onTap: () {
 
-                                  invokeImagePickerProductBrand();
+                                    invokeImagePickerProductBrand();
 
-                                },
-                                child: AspectRatio(
-                                  aspectRatio: 1,
-                                  child: Padding(
-                                    padding: EdgeInsets.fromLTRB(3, 3, 3, 3),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(51),
-                                      child: imagePickerProductBrand,
+                                  },
+                                  child: AspectRatio(
+                                    aspectRatio: 1,
+                                    child: Padding(
+                                      padding: EdgeInsets.fromLTRB(3, 3, 3, 3),
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(51),
+                                        child: imagePickerProductBrand,
+                                      ),
                                     ),
                                   ),
-                                ),
+                                )
                               )
                             ),
                             Expanded(
