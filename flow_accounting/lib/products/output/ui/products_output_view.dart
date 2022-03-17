@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/17/22, 9:30 AM
+ * Last modified 3/17/22, 9:59 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -483,6 +483,10 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
 
   Widget outputItem(BuildContext context, ProductsData productsData) {
 
+    String percentProfit = productsData.productProfitPercent.replaceAll("%", "");
+    double profitMargin = (int.parse(productsData.productPrice) * int.parse(percentProfit)) / 100;
+    double sellingPrice = int.parse(productsData.productPrice) + profitMargin;
+
     return Slidable(
       closeOnScroll: true,
       endActionPane: ActionPane(
@@ -561,7 +565,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
                                           child: Image.file(
                                             File(productsData.productImageUrl),
                                             fit: BoxFit.cover,
-                                            height: 121,
+                                            height: 131,
                                             width: double.infinity,
                                           ),
                                         )
@@ -609,20 +613,20 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
                                             child: Text(
                                               productsData.productBrand,
                                               style: TextStyle(
-                                                color: ColorsResources.applicationDarkGeeksEmpire,
+                                                  color: ColorsResources.applicationDarkGeeksEmpire,
                                                   fontSize: 15,
                                                   shadows: [
-                                                  Shadow(
-                                                    color: ColorsResources.white,
-                                                    blurRadius: 3,
-                                                    offset: Offset(-1, -1)
-                                                  ),
-                                                  Shadow(
-                                                      color: ColorsResources.dark.withOpacity(0.31),
-                                                      blurRadius: 5,
-                                                      offset: Offset(1, 1)
-                                                  )
-                                                ]
+                                                    Shadow(
+                                                        color: ColorsResources.white,
+                                                        blurRadius: 3,
+                                                        offset: Offset(-1, -1)
+                                                    ),
+                                                    Shadow(
+                                                        color: ColorsResources.dark.withOpacity(0.31),
+                                                        blurRadius: 5,
+                                                        offset: Offset(1, 1)
+                                                    )
+                                                  ]
                                               ),
                                             ),
                                           ),
@@ -646,8 +650,20 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
                                         productsData.productName,
                                         textAlign: TextAlign.end,
                                         style: TextStyle(
-                                            color: ColorsResources.dark,
-                                            fontSize: 17
+                                          color: ColorsResources.applicationDarkGeeksEmpire,
+                                          fontSize: 17,
+                                          shadows: [
+                                            Shadow(
+                                              color: ColorsResources.white,
+                                              blurRadius: 3,
+                                              offset: Offset(-1, -1)
+                                            ),
+                                            Shadow(
+                                                color: ColorsResources.dark.withOpacity(0.31),
+                                                blurRadius: 5,
+                                                offset: Offset(1, 1)
+                                            )
+                                          ]
                                         ),
                                       ),
                                     )
@@ -658,16 +674,51 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
                             height: 51,
                             width: double.infinity,
                             child: Padding(
-                                padding: EdgeInsets.fromLTRB(3, 3, 3, 3),
-                                child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(17),
-                                    child: ColoredBox(
-                                      color: ColorsResources.lightestBlue.withOpacity(0.73),
-                                      child: Image.file(
-                                        File(productsData.productImageUrl),
-                                        fit: BoxFit.cover,
+                                padding: EdgeInsets.fromLTRB(7, 3, 7, 3),
+                                child: Directionality(
+                                    textDirection: TextDirection.rtl,
+                                    child: Align(
+                                      alignment: Alignment.topRight,
+                                      child: Text(
+                                        productsData.productDescription,
+                                        textAlign: TextAlign.end,
+                                        maxLines: 2,
+                                        style: TextStyle(
+                                            color: ColorsResources.darkTransparent,
+                                            fontSize: 13
+                                        ),
                                       ),
                                     )
+                                )
+                            )
+                        ),
+                        SizedBox(
+                            height: 41,
+                            width: double.infinity,
+                            child: Padding(
+                                padding: EdgeInsets.fromLTRB(7, 3, 7, 3),
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    "${sellingPrice}",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        color: ColorsResources.black,
+                                        fontSize: 15,
+                                        shadows: [
+                                          Shadow(
+                                              color: ColorsResources.white,
+                                              blurRadius: 3,
+                                              offset: Offset(-1, -1)
+                                          ),
+                                          Shadow(
+                                              color: ColorsResources.dark.withOpacity(0.31),
+                                              blurRadius: 5,
+                                              offset: Offset(1, 1)
+                                          )
+                                        ]
+                                    ),
+                                  ),
                                 )
                             )
                         ),
