@@ -2134,6 +2134,12 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
     if (transactionsData.transactionType == TransactionsData.TransactionType_Send) {
 
+      String databaseDirectory = await getDatabasesPath();
+
+      String budgetDatabasePath = "${databaseDirectory}/${BudgetsDatabaseInputs.budgetsDatabase}";
+
+      bool budgetDatabaseExist = await databaseExists(budgetDatabasePath);
+
       if (budgetDatabaseExist) {
 
         var budgetsDatabaseQueries = BudgetsDatabaseQueries();
