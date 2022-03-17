@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/15/22, 8:27 AM
+ * Last modified 3/17/22, 3:48 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -28,7 +28,6 @@ class TopBarView extends StatefulWidget {
   @override
   State<TopBarView> createState() => _TopBarViewState();
 }
-
 class _TopBarViewState extends State<TopBarView> {
 
   ProfilesData? profilesData;
@@ -182,6 +181,9 @@ class _TopBarViewState extends State<TopBarView> {
       scrollable: true,
       elevation: 13,
       backgroundColor: ColorsResources.lightestBlue,
+      actions: [
+        addProfilesView()
+      ],
       content: SizedBox(
         width: 303,
         height: 399,
@@ -396,6 +398,63 @@ class _TopBarViewState extends State<TopBarView> {
               ),
             )
           )
+        ),
+      ),
+    );
+  }
+
+  Widget addProfilesView() {
+
+    return Padding(
+      padding: EdgeInsets.fromLTRB(0, 3, 0, 9),
+      child: SizedBox(
+        height: 103,
+        width: double.infinity,
+        child: Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    colors: [
+                      ColorsResources.light,
+                      ColorsResources.lightestBlue,
+                    ],
+                    begin: FractionalOffset(0.0, 0.0),
+                    end: FractionalOffset(1.0, 0.0),
+                    stops: [0.0, 1.0],
+                    transform: GradientRotation(45),
+                    tileMode: TileMode.clamp
+                ),
+                borderRadius: BorderRadius.circular(13)
+            ),
+            child: Padding(
+                padding: EdgeInsets.fromLTRB(1.3, 1.3, 1.3, 1.3),
+                child: InkWell(
+                  onTap: () async {
+
+                    bool dataUpdated = await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ProfilesInputView())
+                    );
+
+                    if (dataUpdated) {
+
+                      getSignedInProfile();
+
+                    }
+
+                    Future.delayed(Duration(milliseconds: 357), () {
+
+                      Navigator.of(context, rootNavigator: true).pop();
+
+                    });
+
+                  },
+                  child: Align(
+                    alignment: AlignmentDirectional.center,
+                    child: Lottie.asset("assets/sign_up.json"),
+                  ),
+                )
+            )
         ),
       ),
     );
