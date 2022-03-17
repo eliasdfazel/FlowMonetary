@@ -1,4 +1,14 @@
 
+/*
+ * Copyright © 2022 By Geeks Empire.
+ *
+ * Created by Elias Fazel
+ * Last modified 3/17/22, 3:12 AM
+ *
+ * Licensed Under MIT License.
+ * https://opensource.org/licenses/MIT
+ */
+
 import 'package:blur/blur.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flow_accounting/cheque/database/io/inputs.dart';
@@ -14,6 +24,7 @@ import 'package:flow_accounting/utils/extensions/BankLogos.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:marquee/marquee.dart';
+import 'package:sqflite/sqflite.dart';
 
 class ChequesOutputView extends StatefulWidget {
   const ChequesOutputView({Key? key}) : super(key: key);
@@ -715,11 +726,21 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
 
   void deleteCheque(BuildContext context, ChequesData chequesData) async {
 
-    var databaseQueries = ChequesDatabaseQueries();
+    String databaseDirectory = await getDatabasesPath();
 
-    databaseQueries.queryDeleteCheque(chequesData.id, ChequesDatabaseInputs.databaseTableName, UserInformation.UserId);
+    String chequeDatabasePath = "${databaseDirectory}/${ChequesDatabaseInputs.chequesDatabase}";
 
-    retrieveAllCheque(context);
+    bool chequesDatabaseExist = await databaseExists(chequeDatabasePath);
+
+    if (chequesDatabaseExist) {
+
+      var databaseQueries = ChequesDatabaseQueries();
+
+      databaseQueries.queryDeleteCheque(chequesData.id, ChequesDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+      retrieveAllCheque(context);
+
+    }
 
   }
 
@@ -747,25 +768,35 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
 
     }
 
-    List<Widget> preparedAllChequesItem = [];
+    String databaseDirectory = await getDatabasesPath();
 
-    var databaseQueries = ChequesDatabaseQueries();
+    String chequeDatabasePath = "${databaseDirectory}/${ChequesDatabaseInputs.chequesDatabase}";
 
-    allCheques = await databaseQueries.getAllCheques(ChequesDatabaseInputs.databaseTableName, UserInformation.UserId);
+    bool chequesDatabaseExist = await databaseExists(chequeDatabasePath);
 
-    for (var element in allCheques) {
+    if (chequesDatabaseExist) {
 
-      preparedAllChequesItem.add(outputItem(context, element));
+      List<Widget> preparedAllChequesItem = [];
+
+      var databaseQueries = ChequesDatabaseQueries();
+
+      allCheques = await databaseQueries.getAllCheques(ChequesDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+      for (var element in allCheques) {
+
+        preparedAllChequesItem.add(outputItem(context, element));
+
+      }
+
+      colorSelectorInitialized = false;
+
+      setState(() {
+
+        allChequesItems = preparedAllChequesItem;
+
+      });
 
     }
-
-    colorSelectorInitialized = false;
-
-    setState(() {
-
-      allChequesItems = preparedAllChequesItem;
-
-    });
 
   }
 
