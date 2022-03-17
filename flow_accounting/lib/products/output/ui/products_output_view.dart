@@ -3,11 +3,13 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/17/22, 6:15 AM
+ * Last modified 3/17/22, 9:08 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
+
+import 'dart:io';
 
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:blur/blur.dart';
@@ -234,7 +236,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
                                         child: Align(
                                           alignment: Alignment.center,
                                           child: Text(
-                                            StringsResources.sortTransactionAmountHigh,
+                                            StringsResources.productSortByPrice,
                                             style: TextStyle(
                                               fontSize: 13,
                                               color: ColorsResources.applicationGeeksEmpire,
@@ -289,7 +291,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
                                         child: Align(
                                           alignment: Alignment.center,
                                           child: Text(
-                                            StringsResources.sortTimeNew,
+                                            StringsResources.productSortByProfit,
                                             style: TextStyle(
                                               fontSize: 13,
                                               color: ColorsResources.applicationGeeksEmpire,
@@ -515,7 +517,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
 
             },
             child: Container(
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(17),
                     topRight: Radius.circular(17),
@@ -524,7 +526,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
                 ),
                 gradient: LinearGradient(
                     colors: [
-                      ColorsResources.white,
+                      Color(productsData.colorTag).withOpacity(0.37),
                       ColorsResources.light,
                     ],
                     begin: FractionalOffset(0.0, 0.0),
@@ -535,9 +537,138 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
                 ),
               ),
               child: SizedBox(
-                height: 301,
+                height: 303,
                 width: double.infinity,
-                child: ColoredBox(color: Colors.lime),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(17),
+                  child: Align(
+                    alignment: AlignmentDirectional.topCenter,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        SizedBox(
+                            height: 131,
+                            width: double.infinity,
+                            child: Padding(
+                                padding: EdgeInsets.fromLTRB(3, 3, 3, 3),
+                                child: Stack(
+                                  children: [
+                                    ClipRRect(
+                                        borderRadius: BorderRadius.circular(17),
+                                        child: ColoredBox(
+                                          color: ColorsResources.lightestBlue.withOpacity(0.73),
+                                          child: Image.file(
+                                            File(productsData.productImageUrl),
+                                            fit: BoxFit.cover,
+                                            height: 131,
+                                            width: double.infinity,
+                                          ),
+                                        )
+                                    ),
+                                    ClipRRect(
+                                        borderRadius: BorderRadius.circular(51),
+                                        child: ColoredBox(
+                                          color: ColorsResources.lightestBlue.withOpacity(0.73),
+                                          child: Image.file(
+                                            File(productsData.productBrandLogoUrl),
+                                            fit: BoxFit.cover,
+                                            height: 31,
+                                            width: 31,
+                                          ),
+                                        )
+                                    ),
+                                    Positioned(
+                                      top: 0,
+                                      left: 33,
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(51),
+                                              topRight: Radius.circular(51),
+                                              bottomLeft: Radius.circular(51),
+                                              bottomRight: Radius.circular(51)
+                                          ),
+                                          gradient: LinearGradient(
+                                              colors: [
+                                                Color(productsData.colorTag).withOpacity(0.73),
+                                                ColorsResources.light.withOpacity(0.57),
+                                              ],
+                                              begin: FractionalOffset(0.0, 0.0),
+                                              end: FractionalOffset(1.0, 0.0),
+                                              stops: [0.0, 1.0],
+                                              transform: GradientRotation(45),
+                                              tileMode: TileMode.clamp
+                                          ),
+                                        ),
+                                        height: 31,
+                                        child: Padding(
+                                          padding: EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                          child: Align(
+                                            alignment: AlignmentDirectional.center,
+                                            child: Text(
+                                              productsData.productBrand,
+                                              style: TextStyle(
+                                                color: ColorsResources.applicationDarkGeeksEmpire,
+                                                shadows: [
+                                                  Shadow(
+                                                    color: ColorsResources.white,
+                                                    blurRadius: 3,
+                                                    offset: Offset(-1, -1)
+                                                  ),
+                                                  Shadow(
+                                                      color: ColorsResources.black,
+                                                      blurRadius: 3,
+                                                      offset: Offset(1, 1)
+                                                  )
+                                                ]
+                                              ),
+                                            ),
+                                          ),
+                                        )
+                                      )
+                                    )
+                                  ],
+                                )
+                            )
+                        ),
+                        SizedBox(
+                            height: 73,
+                            width: double.infinity,
+                            child: Padding(
+                                padding: EdgeInsets.fromLTRB(3, 3, 3, 3),
+                                child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(17),
+                                    child: ColoredBox(
+                                      color: ColorsResources.lightestBlue.withOpacity(0.73),
+                                      child: Image.file(
+                                        File(productsData.productImageUrl),
+                                        fit: BoxFit.cover,
+                                      ),
+                                    )
+                                )
+                            )
+                        ),
+                        SizedBox(
+                            height: 51,
+                            width: double.infinity,
+                            child: Padding(
+                                padding: EdgeInsets.fromLTRB(3, 3, 3, 3),
+                                child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(17),
+                                    child: ColoredBox(
+                                      color: ColorsResources.lightestBlue.withOpacity(0.73),
+                                      child: Image.file(
+                                        File(productsData.productImageUrl),
+                                        fit: BoxFit.cover,
+                                      ),
+                                    )
+                                )
+                            )
+                        ),
+                      ],
+                    ),
+                  )
+                ),
               ),
             ),
           ),

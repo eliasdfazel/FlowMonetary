@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/17/22, 4:31 AM
+ * Last modified 3/17/22, 8:21 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -212,6 +212,9 @@ class StringsResources {
 
   static const String productBrand = "برند محصول";
   static const String productBrandHint = "نام شرکت سازنده محصول را وارد کنید";
+
+  static const String productSortByPrice = "مرتب سازی: بیشترین قیمت";
+  static const String productSortByProfit = "مرتب سازی: بیشترین سود";
   /* End - Product String Resources */
 
   static const String sortHint = "مرتب سازی";
