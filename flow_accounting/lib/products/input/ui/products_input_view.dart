@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/17/22, 7:55 AM
+ * Last modified 3/17/22, 8:02 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -1429,7 +1429,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                                     alignment: AlignmentDirectional.center,
                                                     child: Image(
                                                       image: AssetImage("quick_save.png"),
-                                                      color: ColorsResources.applicationDarkGeeksEmpire,
+                                                      color: ColorsResources.lightestOrange,
                                                     )
                                                 )
                                             )
