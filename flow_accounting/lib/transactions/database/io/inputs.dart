@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/14/22, 7:28 AM
+ * Last modified 3/17/22, 3:33 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -20,11 +20,11 @@ class TransactionsDatabaseInputs {
 
   static const String databaseTableName = "all_transactions";
 
-  static const transactionDatabase = "transactions_database.db";
+  static const transactionsDatabase = "transactions_database.db";
 
   Future<void> insertTransactionData(TransactionsData transactionsData, String tableName, String usernameId, {bool isPrototype = false}) async {
 
-    var databaseNameQuery = (usernameId == StringsResources.unknownText) ? TransactionsDatabaseInputs.transactionDatabase : "${usernameId}_${TransactionsDatabaseInputs.transactionDatabase}";
+    var databaseNameQuery = (usernameId == StringsResources.unknownText) ? TransactionsDatabaseInputs.transactionsDatabase : "${usernameId}_${TransactionsDatabaseInputs.transactionsDatabase}";
     var tableNameQuery = TransactionsDatabaseInputs.databaseTableName;
 
     final database = openDatabase(
@@ -75,7 +75,7 @@ class TransactionsDatabaseInputs {
 
   Future<void> updateTransactionData(TransactionsData transactionsData, String tableName, String usernameId) async {
 
-    var databaseNameQuery = (usernameId == StringsResources.unknownText) ? TransactionsDatabaseInputs.transactionDatabase : "${usernameId}_${TransactionsDatabaseInputs.transactionDatabase}";
+    var databaseNameQuery = (usernameId == StringsResources.unknownText) ? TransactionsDatabaseInputs.transactionsDatabase : "${usernameId}_${TransactionsDatabaseInputs.transactionsDatabase}";
     var tableNameQuery = TransactionsDatabaseInputs.databaseTableName;
 
     final database = openDatabase(

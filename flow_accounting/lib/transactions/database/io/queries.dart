@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/14/22, 6:42 AM
+ * Last modified 3/17/22, 3:33 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -21,7 +21,7 @@ class TransactionsDatabaseQueries {
 
   Future<List<TransactionsData>> getAllTransactions(String tableName, String usernameId) async {
 
-    var databaseNameQuery = (usernameId == StringsResources.unknownText) ? TransactionsDatabaseInputs.transactionDatabase : "${usernameId}_${TransactionsDatabaseInputs.transactionDatabase}";
+    var databaseNameQuery = (usernameId == StringsResources.unknownText) ? TransactionsDatabaseInputs.transactionsDatabase : "${usernameId}_${TransactionsDatabaseInputs.transactionsDatabase}";
     var tableNameQuery = TransactionsDatabaseInputs.databaseTableName;
 
     final database = openDatabase(
@@ -59,7 +59,7 @@ class TransactionsDatabaseQueries {
   Future<List<Map<String, Object?>>> queryTransactionByMonths(int transactionYear, int transactionMonth, String transactionType,
       String tableName, String usernameId) async {
 
-    var databaseNameQuery = (usernameId == StringsResources.unknownText) ? TransactionsDatabaseInputs.transactionDatabase : "${usernameId}_${TransactionsDatabaseInputs.transactionDatabase}";
+    var databaseNameQuery = (usernameId == StringsResources.unknownText) ? TransactionsDatabaseInputs.transactionsDatabase : "${usernameId}_${TransactionsDatabaseInputs.transactionsDatabase}";
     var tableNameQuery = TransactionsDatabaseInputs.databaseTableName;
 
     final database = openDatabase(
@@ -82,7 +82,7 @@ class TransactionsDatabaseQueries {
       int transactionYear, int transactionMonth,
       String tableName, String usernameId) async {
 
-    var databaseNameQuery = (usernameId == StringsResources.unknownText) ? TransactionsDatabaseInputs.transactionDatabase : "${usernameId}_${TransactionsDatabaseInputs.transactionDatabase}";
+    var databaseNameQuery = (usernameId == StringsResources.unknownText) ? TransactionsDatabaseInputs.transactionsDatabase : "${usernameId}_${TransactionsDatabaseInputs.transactionsDatabase}";
     var tableNameQuery = TransactionsDatabaseInputs.databaseTableName;
 
     final database = openDatabase(
@@ -103,7 +103,7 @@ class TransactionsDatabaseQueries {
   Future<Map<String, Object?>> querySpecificTransaction(int id,
       String tableName, String usernameId) async {
 
-    var databaseNameQuery = (usernameId == StringsResources.unknownText) ? TransactionsDatabaseInputs.transactionDatabase : "${usernameId}_${TransactionsDatabaseInputs.transactionDatabase}";
+    var databaseNameQuery = (usernameId == StringsResources.unknownText) ? TransactionsDatabaseInputs.transactionsDatabase : "${usernameId}_${TransactionsDatabaseInputs.transactionsDatabase}";
     var tableNameQuery = TransactionsDatabaseInputs.databaseTableName;
 
     final database = openDatabase(
@@ -124,7 +124,7 @@ class TransactionsDatabaseQueries {
   Future<int> queryDeleteTransaction(int id,
       String tableName, String usernameId) async {
 
-    var databaseNameQuery = (usernameId == StringsResources.unknownText) ? TransactionsDatabaseInputs.transactionDatabase : "${usernameId}_${TransactionsDatabaseInputs.transactionDatabase}";
+    var databaseNameQuery = (usernameId == StringsResources.unknownText) ? TransactionsDatabaseInputs.transactionsDatabase : "${usernameId}_${TransactionsDatabaseInputs.transactionsDatabase}";
     var tableNameQuery = TransactionsDatabaseInputs.databaseTableName;
 
     final database = openDatabase(

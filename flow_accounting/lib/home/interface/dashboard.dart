@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/12/22, 6:02 AM
+ * Last modified 3/17/22, 3:33 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -22,6 +22,7 @@ import 'package:flow_accounting/transactions/database/structures/tables_structur
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:sqflite/sqflite.dart';
 import 'package:wave/config.dart';
 import 'package:wave/wave.dart';
 
@@ -232,23 +233,33 @@ class DashboardViewState extends State<DashboardView> {
 
   void retrieveLatestTransactions() async {
 
-    TransactionsDatabaseQueries transactionsDatabaseQueries = TransactionsDatabaseQueries();
+    String databaseDirectory = await getDatabasesPath();
 
-    List<TransactionsData> latestTransactions = await transactionsDatabaseQueries.getAllTransactions(TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
+    String transactionDatabasePath = "${databaseDirectory}/${TransactionsDatabaseInputs.transactionsDatabase}";
 
-    if (latestTransactions.length > 10) {
+    bool transactionDatabaseExist = await databaseExists(transactionDatabasePath);
 
-      latestTransactions = latestTransactions.sublist(0, 10);
+    if (transactionDatabaseExist) {
+
+      TransactionsDatabaseQueries transactionsDatabaseQueries = TransactionsDatabaseQueries();
+
+      List<TransactionsData> latestTransactions = await transactionsDatabaseQueries.getAllTransactions(TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+      if (latestTransactions.length > 10) {
+
+        latestTransactions = latestTransactions.sublist(0, 10);
+
+      }
+
+      latestTransactions.sort(((a, b) => (a.transactionTime).compareTo(b.transactionTime)));
+
+      setState(() {
+
+        someLatestTransactions = latestTransactions;
+
+      });
 
     }
-
-    latestTransactions.sort(((a, b) => (a.transactionTime).compareTo(b.transactionTime)));
-
-    setState(() {
-
-      someLatestTransactions = latestTransactions;
-
-    });
 
     prepareCreditCardsData();
 

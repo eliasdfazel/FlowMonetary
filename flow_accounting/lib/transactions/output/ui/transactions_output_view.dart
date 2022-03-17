@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/16/22, 8:44 AM
+ * Last modified 3/17/22, 3:33 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -24,6 +24,7 @@ import 'package:flow_accounting/utils/extensions/CreditCardNumber.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:marquee/marquee.dart';
+import 'package:sqflite/sqflite.dart';
 
 class TransactionsOutputView extends StatefulWidget {
 
@@ -897,13 +898,23 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> {
 
   void deleteTransaction(BuildContext context, TransactionsData transactionsData) async {
 
-    var databaseQueries = TransactionsDatabaseQueries();
+    String databaseDirectory = await getDatabasesPath();
 
-    databaseQueries.queryDeleteTransaction(transactionsData.id, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
+    String transactionDatabasePath = "${databaseDirectory}/${TransactionsDatabaseInputs.transactionsDatabase}";
 
-    retrieveAllTransactions(context);
+    bool transactionDatabaseExist = await databaseExists(transactionDatabasePath);
 
-    transactionDataUpdated = true;
+    if (transactionDatabaseExist) {
+
+      var databaseQueries = TransactionsDatabaseQueries();
+
+      databaseQueries.queryDeleteTransaction(transactionsData.id, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+      retrieveAllTransactions(context);
+
+      transactionDataUpdated = true;
+
+    }
 
   }
 
@@ -935,21 +946,31 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> {
 
     List<Widget> preparedAllTransactionsItem = [];
 
-    var databaseQueries = TransactionsDatabaseQueries();
+    String databaseDirectory = await getDatabasesPath();
 
-    allTransactions = await databaseQueries.getAllTransactions(TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
+    String transactionDatabasePath = "${databaseDirectory}/${TransactionsDatabaseInputs.transactionsDatabase}";
 
-    for (var element in allTransactions) {
+    bool transactionDatabaseExist = await databaseExists(transactionDatabasePath);
 
-      preparedAllTransactionsItem.add(outputItem(context, element));
+    if (transactionDatabaseExist) {
+
+      var databaseQueries = TransactionsDatabaseQueries();
+
+      allTransactions = await databaseQueries.getAllTransactions(TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+      for (var element in allTransactions) {
+
+        preparedAllTransactionsItem.add(outputItem(context, element));
+
+      }
+
+      setState(() {
+
+        allTransactionsItems = preparedAllTransactionsItem;
+
+      });
 
     }
-
-    setState(() {
-
-      allTransactionsItems = preparedAllTransactionsItem;
-
-    });
 
   }
 
@@ -1081,38 +1102,48 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> {
 
     List<TransactionsData> searchResult = [];
 
-    var databaseQueries = TransactionsDatabaseQueries();
+    String databaseDirectory = await getDatabasesPath();
 
-    allTransactions = await databaseQueries.getAllTransactions(TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
+    String transactionDatabasePath = "${databaseDirectory}/${TransactionsDatabaseInputs.transactionsDatabase}";
 
-    for (var element in allTransactions) {
+    bool transactionDatabaseExist = await databaseExists(transactionDatabasePath);
 
-      if (element.transactionTime.contains(searchQuery) ||
-          element.sourceUsername.contains(searchQuery) ||
-          element.sourceBankName.contains(searchQuery) ||
-          element.sourceCardNumber.contains(searchQuery) ||
-          element.targetUsername.contains(searchQuery) ||
-          element.targetBankName.contains(searchQuery) ||
-          element.targetCardNumber.contains(searchQuery) ||
-          element.budgetName.contains(searchQuery)) {
+    if (transactionDatabaseExist) {
 
-        searchResult.add(element);
+      var databaseQueries = TransactionsDatabaseQueries();
+
+      allTransactions = await databaseQueries.getAllTransactions(TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+      for (var element in allTransactions) {
+
+        if (element.transactionTime.contains(searchQuery) ||
+            element.sourceUsername.contains(searchQuery) ||
+            element.sourceBankName.contains(searchQuery) ||
+            element.sourceCardNumber.contains(searchQuery) ||
+            element.targetUsername.contains(searchQuery) ||
+            element.targetBankName.contains(searchQuery) ||
+            element.targetCardNumber.contains(searchQuery) ||
+            element.budgetName.contains(searchQuery)) {
+
+          searchResult.add(element);
+
+        }
+
+        List<Widget> preparedAllTransactionsItem = [];
+
+        for (var element in searchResult) {
+
+          preparedAllTransactionsItem.add(outputItem(context, element));
+
+        }
+
+        setState(() {
+
+          allTransactionsItems = preparedAllTransactionsItem;
+
+        });
 
       }
-
-      List<Widget> preparedAllTransactionsItem = [];
-
-      for (var element in searchResult) {
-
-        preparedAllTransactionsItem.add(outputItem(context, element));
-
-      }
-
-      setState(() {
-
-        allTransactionsItems = preparedAllTransactionsItem;
-
-      });
 
     }
 

@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/14/22, 6:53 AM
+ * Last modified 3/17/22, 3:33 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -17,6 +17,7 @@ import 'package:flow_accounting/transactions/database/io/queries.dart';
 import 'package:flow_accounting/transactions/database/structures/tables_structure.dart';
 import 'package:flow_accounting/utils/navigations/navigations.dart';
 import 'package:flutter/material.dart';
+import 'package:sqflite/sqflite.dart';
 
 class GeneralDataView extends StatefulWidget {
   const GeneralDataView({Key? key}) : super(key: key);
@@ -401,27 +402,37 @@ class _GeneralDataView extends State<GeneralDataView> {
 
   void retrieveTotalEarning() async {
 
-    int calculatedEarning = 0;
+    String databaseDirectory = await getDatabasesPath();
 
-    TransactionsDatabaseQueries transactionsDatabaseQueries = TransactionsDatabaseQueries();
+    String transactionDatabasePath = "${databaseDirectory}/${TransactionsDatabaseInputs.transactionsDatabase}";
 
-    List<TransactionsData> allTransactions = await transactionsDatabaseQueries.getAllTransactions(TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
+    bool transactionDatabaseExist = await databaseExists(transactionDatabasePath);
 
-    for (TransactionsData element in allTransactions) {
+    if (transactionDatabaseExist) {
 
-      if (element.transactionType == TransactionsData.TransactionType_Receive) {
+      int calculatedEarning = 0;
 
-        calculatedEarning += int.parse(element.amountMoney);
+      TransactionsDatabaseQueries transactionsDatabaseQueries = TransactionsDatabaseQueries();
+
+      List<TransactionsData> allTransactions = await transactionsDatabaseQueries.getAllTransactions(TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+      for (TransactionsData element in allTransactions) {
+
+        if (element.transactionType == TransactionsData.TransactionType_Receive) {
+
+          calculatedEarning += int.parse(element.amountMoney);
+
+        }
 
       }
 
+      setState(() {
+
+        totalEarning = calculatedEarning;
+
+      });
+
     }
-
-    setState(() {
-
-      totalEarning = calculatedEarning;
-
-    });
 
     retrieveTotalSpending();
 
@@ -429,27 +440,37 @@ class _GeneralDataView extends State<GeneralDataView> {
 
   void retrieveTotalSpending() async {
 
-    int calculatedSpending = 0;
+    String databaseDirectory = await getDatabasesPath();
 
-    TransactionsDatabaseQueries transactionsDatabaseQueries = TransactionsDatabaseQueries();
+    String transactionDatabasePath = "${databaseDirectory}/${TransactionsDatabaseInputs.transactionsDatabase}";
 
-    List<TransactionsData> allTransactions = await transactionsDatabaseQueries.getAllTransactions(TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
+    bool transactionDatabaseExist = await databaseExists(transactionDatabasePath);
 
-    for (TransactionsData element in allTransactions) {
+    if (transactionDatabaseExist) {
 
-      if (element.transactionType == TransactionsData.TransactionType_Send) {
+      int calculatedSpending = 0;
 
-        calculatedSpending += int.parse(element.amountMoney);
+      TransactionsDatabaseQueries transactionsDatabaseQueries = TransactionsDatabaseQueries();
+
+      List<TransactionsData> allTransactions = await transactionsDatabaseQueries.getAllTransactions(TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+      for (TransactionsData element in allTransactions) {
+
+        if (element.transactionType == TransactionsData.TransactionType_Send) {
+
+          calculatedSpending += int.parse(element.amountMoney);
+
+        }
 
       }
 
+      setState(() {
+
+        totalSpending = calculatedSpending;
+
+      });
+
     }
-
-    setState(() {
-
-      totalSpending = calculatedSpending;
-
-    });
 
     retrieveTotalBalance();
 

@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 2/20/22, 4:28 AM
+ * Last modified 3/17/22, 3:33 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -18,6 +18,7 @@ import 'package:flow_accounting/transactions/database/structures/tables_structur
 import 'package:flow_accounting/utils/chart/chart_view.dart';
 import 'package:flutter/material.dart';
 import 'package:shamsi_date/shamsi_date.dart';
+import 'package:sqflite/sqflite.dart';
 
 class GeneralFinancialCharts extends StatefulWidget {
   const GeneralFinancialCharts({Key? key}) : super(key: key);
@@ -353,139 +354,149 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
 
   void getTransactionsReceiveSum(int selectedYear) async {
 
-    TransactionsDatabaseQueries transactionsDatabaseQueries = TransactionsDatabaseQueries();
+    String databaseDirectory = await getDatabasesPath();
 
-    double monthSumOne = 0;
-    var monthOne = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 1, TransactionsData.TransactionType_Receive, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
-    for (var element in monthOne) {
+    String transactionDatabasePath = "${databaseDirectory}/${TransactionsDatabaseInputs.transactionsDatabase}";
 
-      monthSumOne += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+    bool transactionDatabaseExist = await databaseExists(transactionDatabasePath);
+
+    if (transactionDatabaseExist) {
+
+      TransactionsDatabaseQueries transactionsDatabaseQueries = TransactionsDatabaseQueries();
+
+      double monthSumOne = 0;
+      var monthOne = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 1, TransactionsData.TransactionType_Receive, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
+      for (var element in monthOne) {
+
+        monthSumOne += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+      }
+      debugPrint("1: $monthSumOne");
+
+      double monthSumTwo = 0;
+      var monthTwo = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 2, TransactionsData.TransactionType_Receive, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
+      for (var element in monthTwo) {
+
+        monthSumTwo += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+      }
+      debugPrint("2: $monthSumTwo");
+
+      double monthSumThree = 0;
+      var monthThree = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 3, TransactionsData.TransactionType_Receive, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
+      for (var element in monthThree) {
+
+        monthSumThree += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+      }
+      debugPrint("3: $monthSumThree");
+
+      double monthSumFour = 0;
+      var monthFour = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 4, TransactionsData.TransactionType_Receive, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
+      for (var element in monthFour) {
+
+        monthSumFour += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+      }
+      debugPrint("4: $monthSumFour");
+
+      double monthSumFive = 0;
+      var monthFive = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 5, TransactionsData.TransactionType_Receive, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
+      for (var element in monthFive) {
+
+        monthSumFive += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+      }
+      debugPrint("5: $monthSumFive");
+
+      double monthSumSix = 0;
+      var monthSix = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 6, TransactionsData.TransactionType_Receive, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
+      for (var element in monthSix) {
+
+        monthSumSix += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+      }
+      debugPrint("6: $monthSumSix");
+
+      double monthSumSeven = 0;
+      var monthSeven = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 7, TransactionsData.TransactionType_Receive, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
+      for (var element in monthSeven) {
+
+        monthSumSeven += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+      }
+      debugPrint("7: $monthSumSeven");
+
+      double monthSumEight = 0;
+      var monthEight = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 8, TransactionsData.TransactionType_Receive, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
+      for (var element in monthEight) {
+
+        monthSumEight += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+      }
+      debugPrint("8: $monthSumEight");
+
+      double monthSumNine = 0;
+      var monthNine = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 9, TransactionsData.TransactionType_Receive, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
+      for (var element in monthNine) {
+
+        monthSumNine += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+      }
+      debugPrint("9: $monthSumNine");
+
+      double monthSumTen = 0;
+      var monthTen = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 10, TransactionsData.TransactionType_Receive, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
+      for (var element in monthTen) {
+
+        monthSumTen += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+      }
+      debugPrint("10: $monthSumTen");
+
+      double monthSumEleven = 0;
+      var monthEleven = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 11, TransactionsData.TransactionType_Receive, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
+      for (var element in monthEleven) {
+
+        monthSumEleven += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+      }
+      debugPrint("11: $monthSumEleven");
+
+      double monthSumTwelve = 0;
+      var monthTwelve = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 12, TransactionsData.TransactionType_Receive, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
+      for (var element in monthTwelve) {
+
+        monthSumTwelve += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+
+      }
+      debugPrint("12: $monthSumTwelve");
+
+      listOfEarningPoint.clear();
+      listOfEarningPoint.addAll([
+        monthSumOne,
+        monthSumTwo,
+        monthSumThree,
+        monthSumFour,
+        monthSumFive,
+        monthSumSix,
+        monthSumSeven,
+        monthSumEight,
+        monthSumNine,
+        monthSumTen,
+        monthSumEleven,
+        monthSumTwelve
+      ]);
+
+      setState(() {
+
+        totalEarningPlaceholder = LineChartView(listOfSpotY: listOfEarningPoint);
+
+      });
+
+      getTransactionsSendSum(selectedYear);
 
     }
-    debugPrint("1: $monthSumOne");
-
-    double monthSumTwo = 0;
-    var monthTwo = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 2, TransactionsData.TransactionType_Receive, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
-    for (var element in monthTwo) {
-
-      monthSumTwo += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
-
-    }
-    debugPrint("2: $monthSumTwo");
-
-    double monthSumThree = 0;
-    var monthThree = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 3, TransactionsData.TransactionType_Receive, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
-    for (var element in monthThree) {
-
-      monthSumThree += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
-
-    }
-    debugPrint("3: $monthSumThree");
-
-    double monthSumFour = 0;
-    var monthFour = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 4, TransactionsData.TransactionType_Receive, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
-    for (var element in monthFour) {
-
-      monthSumFour += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
-
-    }
-    debugPrint("4: $monthSumFour");
-
-    double monthSumFive = 0;
-    var monthFive = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 5, TransactionsData.TransactionType_Receive, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
-    for (var element in monthFive) {
-
-      monthSumFive += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
-
-    }
-    debugPrint("5: $monthSumFive");
-
-    double monthSumSix = 0;
-    var monthSix = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 6, TransactionsData.TransactionType_Receive, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
-    for (var element in monthSix) {
-
-      monthSumSix += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
-
-    }
-    debugPrint("6: $monthSumSix");
-
-    double monthSumSeven = 0;
-    var monthSeven = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 7, TransactionsData.TransactionType_Receive, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
-    for (var element in monthSeven) {
-
-      monthSumSeven += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
-
-    }
-    debugPrint("7: $monthSumSeven");
-
-    double monthSumEight = 0;
-    var monthEight = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 8, TransactionsData.TransactionType_Receive, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
-    for (var element in monthEight) {
-
-      monthSumEight += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
-
-    }
-    debugPrint("8: $monthSumEight");
-
-    double monthSumNine = 0;
-    var monthNine = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 9, TransactionsData.TransactionType_Receive, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
-    for (var element in monthNine) {
-
-      monthSumNine += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
-
-    }
-    debugPrint("9: $monthSumNine");
-
-    double monthSumTen = 0;
-    var monthTen = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 10, TransactionsData.TransactionType_Receive, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
-    for (var element in monthTen) {
-
-      monthSumTen += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
-
-    }
-    debugPrint("10: $monthSumTen");
-
-    double monthSumEleven = 0;
-    var monthEleven = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 11, TransactionsData.TransactionType_Receive, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
-    for (var element in monthEleven) {
-
-      monthSumEleven += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
-
-    }
-    debugPrint("11: $monthSumEleven");
-
-    double monthSumTwelve = 0;
-    var monthTwelve = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 12, TransactionsData.TransactionType_Receive, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
-    for (var element in monthTwelve) {
-
-      monthSumTwelve += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
-
-    }
-    debugPrint("12: $monthSumTwelve");
-
-    listOfEarningPoint.clear();
-    listOfEarningPoint.addAll([
-      monthSumOne,
-      monthSumTwo,
-      monthSumThree,
-      monthSumFour,
-      monthSumFive,
-      monthSumSix,
-      monthSumSeven,
-      monthSumEight,
-      monthSumNine,
-      monthSumTen,
-      monthSumEleven,
-      monthSumTwelve
-    ]);
-
-    setState(() {
-
-      totalEarningPlaceholder = LineChartView(listOfSpotY: listOfEarningPoint);
-
-    });
-
-    getTransactionsSendSum(selectedYear);
 
   }
 
