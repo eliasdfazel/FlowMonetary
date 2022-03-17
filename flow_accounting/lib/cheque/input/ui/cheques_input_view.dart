@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/17/22, 3:42 AM
+ * Last modified 3/17/22, 4:18 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -89,7 +89,26 @@ class _ChequeInputViewState extends State<ChequesInputView> {
   String chequeConfirmation = ChequesData.ChequesConfirmation_NOT;
   bool chequeConfirmed = false;
 
-  String? warningNotice;
+  String? warningNoticeChequeNumber;
+
+  String? warningNoticeMoneyAmount;
+
+  String? warningNoticeTitle;
+  String? warningNoticeDescription;
+
+  String? warningNoticeSourceId;
+  String? warningNoticeSourceName;
+  String? warningNoticeBank;
+  String? warningNoticeBankBranch;
+  String? warningNoticeSourceAccount;
+
+  String? warningNoticeTargetId;
+  String? warningNoticeTargetName;
+  String? warningNoticeTargetBank;
+  String? warningNoticeTargetAccount;
+
+  String? warningNoticeCreditCard;
+  String? warningNoticeBudget;
 
   @override
   void initState() {
@@ -462,7 +481,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorText: warningNotice,
+                                        errorText: warningNoticeTitle,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.titleText,
@@ -556,7 +575,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorText: warningNotice,
+                                        errorText: warningNoticeDescription,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.descriptionText,
@@ -646,7 +665,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorText: warningNotice,
+                                        errorText: warningNoticeChequeNumber,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.chequeNumber,
@@ -736,7 +755,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorText: warningNotice,
+                                        errorText: warningNoticeMoneyAmount,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.transactionAmount,
@@ -925,7 +944,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorText: warningNotice,
+                                        errorText: warningNoticeSourceAccount,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.chequeSourceAccount,
@@ -1015,7 +1034,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorText: warningNotice,
+                                        errorText: warningNoticeTargetAccount,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.chequeTargetAccount,
@@ -1105,7 +1124,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorText: warningNotice,
+                                        errorText: warningNoticeTargetId,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.chequeTargetId,
@@ -1182,7 +1201,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorText: warningNotice,
+                                        errorText: warningNoticeSourceId,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.chequeSourceId,
@@ -1339,7 +1358,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                                 ),
                                                 gapPadding: 5
                                             ),
-                                            errorText: warningNotice,
+                                            errorText: warningNoticeTargetName,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
                                             labelText: StringsResources.transactionTargetName,
@@ -1484,7 +1503,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                                 ),
                                                 gapPadding: 5
                                             ),
-                                            errorText: warningNotice,
+                                            errorText: warningNoticeSourceName,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
                                             labelText: StringsResources.transactionSourceName,
@@ -1642,7 +1661,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                                 ),
                                                 gapPadding: 5
                                             ),
-                                            errorText: warningNotice,
+                                            errorText: warningNoticeTargetBank,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
                                             labelText: StringsResources.transactionTargetBank,
@@ -1787,7 +1806,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                                 ),
                                                 gapPadding: 5
                                             ),
-                                            errorText: warningNotice,
+                                            errorText: warningNoticeBank,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
                                             labelText: StringsResources.transactionSourceBank,
@@ -1880,7 +1899,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                               ),
                                               gapPadding: 5
                                           ),
-                                          errorText: warningNotice,
+                                          errorText: warningNoticeBankBranch,
                                           filled: true,
                                           fillColor: ColorsResources.lightTransparent,
                                           labelText: StringsResources.chequeBankBranch,
@@ -2116,7 +2135,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                                 ),
                                                 gapPadding: 5
                                             ),
-                                            errorText: warningNotice,
+                                            errorText: warningNoticeCreditCard,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
                                             labelText: StringsResources.chequeCard,
@@ -2270,7 +2289,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                         ),
                                         gapPadding: 5
                                     ),
-                                    errorText: warningNotice,
+                                    errorText: warningNoticeBudget,
                                     filled: true,
                                     fillColor: ColorsResources.lightTransparent,
                                     labelText: StringsResources.transactionBudgetName,
@@ -2387,7 +2406,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                             setState(() {
 
-                              warningNotice = StringsResources.errorText;
+                              warningNoticeChequeNumber = StringsResources.errorText;
 
                             });
 
@@ -2399,7 +2418,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                             setState(() {
 
-                              warningNotice = StringsResources.errorText;
+                              warningNoticeSourceAccount = StringsResources.errorText;
 
                             });
 
@@ -2411,7 +2430,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                             setState(() {
 
-                              warningNotice = StringsResources.errorText;
+                              warningNoticeTargetAccount = StringsResources.errorText;
 
                             });
 
@@ -2423,7 +2442,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                             setState(() {
 
-                              warningNotice = StringsResources.errorText;
+                              warningNoticeMoneyAmount = StringsResources.errorText;
 
                             });
 
@@ -2435,7 +2454,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                             setState(() {
 
-                              warningNotice = StringsResources.errorText;
+                              warningNoticeTitle = StringsResources.errorText;
 
                             });
 
@@ -2447,7 +2466,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                             setState(() {
 
-                              warningNotice = StringsResources.errorText;
+                              warningNoticeDescription = StringsResources.errorText;
 
                             });
 
@@ -2459,7 +2478,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                             setState(() {
 
-                              warningNotice = StringsResources.errorText;
+                              warningNoticeSourceId = StringsResources.errorText;
 
                             });
 
@@ -2471,7 +2490,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                             setState(() {
 
-                              warningNotice = StringsResources.errorText;
+                              warningNoticeSourceName = StringsResources.errorText;
 
                             });
 
@@ -2483,7 +2502,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                             setState(() {
 
-                              warningNotice = StringsResources.errorText;
+                              warningNoticeBank = StringsResources.errorText;
 
                             });
 
@@ -2495,7 +2514,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                             setState(() {
 
-                              warningNotice = StringsResources.errorText;
+                              warningNoticeBankBranch = StringsResources.errorText;
 
                             });
 
@@ -2507,7 +2526,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                             setState(() {
 
-                              warningNotice = StringsResources.errorText;
+                              warningNoticeSourceAccount = StringsResources.errorText;
 
                             });
 
@@ -2519,7 +2538,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                             setState(() {
 
-                              warningNotice = StringsResources.errorText;
+                              warningNoticeTargetId = StringsResources.errorText;
 
                             });
 
@@ -2531,7 +2550,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                             setState(() {
 
-                              warningNotice = StringsResources.errorText;
+                              warningNoticeTargetName = StringsResources.errorText;
 
                             });
 
@@ -2543,7 +2562,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                             setState(() {
 
-                              warningNotice = StringsResources.errorText;
+                              warningNoticeTargetBank = StringsResources.errorText;
 
                             });
 
@@ -2555,7 +2574,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                             setState(() {
 
-                              warningNotice = StringsResources.errorText;
+                              warningNoticeTargetAccount = StringsResources.errorText;
 
                             });
 
@@ -2567,7 +2586,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                             setState(() {
 
-                              warningNotice = StringsResources.errorText;
+                              warningNoticeBudget = StringsResources.errorText;
 
                             });
 
@@ -2579,7 +2598,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                             setState(() {
 
-                              warningNotice = StringsResources.errorText;
+                              warningNoticeCreditCard = StringsResources.errorText;
 
                             });
 
