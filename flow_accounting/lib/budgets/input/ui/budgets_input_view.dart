@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/13/22, 8:34 AM
+ * Last modified 3/17/22, 4:09 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -41,7 +41,10 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
 
   bool budgetDataUpdated = false;
 
-  String? warningNotice;
+  String? warningNoticeName;
+  String? warningNoticeDescription;
+
+  String? warningNoticeBalance;
 
   @override
   void dispose() {
@@ -222,7 +225,7 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorText: warningNotice,
+                                        errorText: warningNoticeName,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.budgetNameText,
@@ -316,7 +319,7 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorText: warningNotice,
+                                        errorText: warningNoticeDescription,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.budgetDescriptionText,
@@ -406,7 +409,7 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorText: warningNotice,
+                                        errorText: warningNoticeBalance,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.budgetInitialTextHint,
@@ -523,7 +526,7 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
 
                               setState(() {
 
-                                warningNotice = StringsResources.errorText;
+                                warningNoticeName = StringsResources.errorText;
 
                               });
 
@@ -535,7 +538,7 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
 
                               setState(() {
 
-                                warningNotice = StringsResources.errorText;
+                                warningNoticeDescription = StringsResources.errorText;
 
                               });
 
@@ -547,7 +550,7 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
 
                               setState(() {
 
-                                warningNotice = StringsResources.errorText;
+                                warningNoticeBalance = StringsResources.errorText;
 
                               });
 
