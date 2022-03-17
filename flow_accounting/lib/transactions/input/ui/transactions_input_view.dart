@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/17/22, 5:55 AM
+ * Last modified 3/17/22, 6:23 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -1918,6 +1918,11 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                 }
 
                               },
+                              onLongPress: () {
+
+
+
+                              },
                               child: Container(
                                   decoration: BoxDecoration(
                                     borderRadius: const BorderRadius.only(
@@ -2196,6 +2201,11 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                     transactionDataUpdated = true;
 
                                   }
+
+                                },
+                                onLongPress: () {
+
+
 
                                 },
                                 child: Container(
