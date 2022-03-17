@@ -3,13 +3,14 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/17/22, 9:08 AM
+ * Last modified 3/17/22, 9:30 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
 import 'dart:io';
+import 'dart:ui';
 
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:blur/blur.dart';
@@ -560,7 +561,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
                                           child: Image.file(
                                             File(productsData.productImageUrl),
                                             fit: BoxFit.cover,
-                                            height: 131,
+                                            height: 121,
                                             width: double.infinity,
                                           ),
                                         )
@@ -591,7 +592,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
                                           gradient: LinearGradient(
                                               colors: [
                                                 Color(productsData.colorTag).withOpacity(0.73),
-                                                ColorsResources.light.withOpacity(0.57),
+                                                ColorsResources.light.withOpacity(0.79),
                                               ],
                                               begin: FractionalOffset(0.0, 0.0),
                                               end: FractionalOffset(1.0, 0.0),
@@ -609,15 +610,16 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
                                               productsData.productBrand,
                                               style: TextStyle(
                                                 color: ColorsResources.applicationDarkGeeksEmpire,
-                                                shadows: [
+                                                  fontSize: 15,
+                                                  shadows: [
                                                   Shadow(
                                                     color: ColorsResources.white,
                                                     blurRadius: 3,
                                                     offset: Offset(-1, -1)
                                                   ),
                                                   Shadow(
-                                                      color: ColorsResources.black,
-                                                      blurRadius: 3,
+                                                      color: ColorsResources.dark.withOpacity(0.31),
+                                                      blurRadius: 5,
                                                       offset: Offset(1, 1)
                                                   )
                                                 ]
@@ -632,17 +634,21 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
                             )
                         ),
                         SizedBox(
-                            height: 73,
+                            height: 31,
                             width: double.infinity,
                             child: Padding(
-                                padding: EdgeInsets.fromLTRB(3, 3, 3, 3),
-                                child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(17),
-                                    child: ColoredBox(
-                                      color: ColorsResources.lightestBlue.withOpacity(0.73),
-                                      child: Image.file(
-                                        File(productsData.productImageUrl),
-                                        fit: BoxFit.cover,
+                                padding: EdgeInsets.fromLTRB(7, 3, 7, 3),
+                                child: Directionality(
+                                    textDirection: TextDirection.rtl,
+                                    child: Align(
+                                      alignment: Alignment.centerRight,
+                                      child: Text(
+                                        productsData.productName,
+                                        textAlign: TextAlign.end,
+                                        style: TextStyle(
+                                            color: ColorsResources.dark,
+                                            fontSize: 17
+                                        ),
                                       ),
                                     )
                                 )
