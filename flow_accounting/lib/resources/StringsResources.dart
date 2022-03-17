@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/16/22, 8:17 AM
+ * Last modified 3/17/22, 4:31 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -103,6 +103,9 @@ class StringsResources {
   static const String creditCardsBankNameHint = "نام بانک";
   static const String creditCardsNameHolder = "نام";
   static const String creditCardsNameHolderHint = "نام صاحب کارت";
+
+  static const String creditCardNumber = "شماره کارت را وارد کنید";
+  static const String creditCardNumberHint = "شماره کارت";
 
   static const String creditCardExpiryMonth = "ماه";
   static const String creditCardExpiryMonthHint = "ماه انقضا";

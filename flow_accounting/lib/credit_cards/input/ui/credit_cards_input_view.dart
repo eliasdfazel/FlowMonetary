@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/17/22, 3:42 AM
+ * Last modified 3/17/22, 4:34 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -89,7 +89,18 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
 
   bool creditCardDataUpdated = false;
 
-  String? warningNotice;
+  String? warningNoticeBankName;
+
+  String? warningNoticeHolderName;
+
+  String? warningNoticeCardNumber;
+
+  String? warningNoticeYear;
+  String? warningNoticeMonth;
+
+  String? warningNoticeBalance;
+
+  String? warningNoticeCvv;
 
   @override
   void initState() {
@@ -447,7 +458,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                                 ),
                                                 gapPadding: 5
                                             ),
-                                            errorText: warningNotice,
+                                            errorText: warningNoticeBankName,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
                                             labelText: StringsResources.creditCardsBankName,
@@ -524,7 +535,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorText: warningNotice,
+                                        errorText: warningNoticeHolderName,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.creditCardsNameHolder,
@@ -616,15 +627,15 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorText: warningNotice,
+                                        errorText: warningNoticeCardNumber,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.transactionTargetCard,
+                                        labelText: StringsResources.creditCardNumber,
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.transactionTargetCardHint,
+                                        hintText: StringsResources.creditCardNumberHint,
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
@@ -709,7 +720,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorText: warningNotice,
+                                        errorText: warningNoticeCvv,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.creditCardCvv,
@@ -788,7 +799,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorText: warningNotice,
+                                        errorText: warningNoticeYear,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.creditCardExpiryYear,
@@ -867,7 +878,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorText: warningNotice,
+                                        errorText: warningNoticeMonth,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.creditCardExpiryMonth,
@@ -956,7 +967,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorText: warningNotice,
+                                        errorText: warningNoticeBalance,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.creditCardBalance,
@@ -1074,7 +1085,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
 
                             setState(() {
 
-                              warningNotice = StringsResources.errorText;
+                              warningNoticeBankName = StringsResources.errorText;
 
                             });
 
@@ -1086,7 +1097,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
 
                             setState(() {
 
-                              warningNotice = StringsResources.errorText;
+                              warningNoticeHolderName = StringsResources.errorText;
 
                             });
 
@@ -1098,7 +1109,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
 
                             setState(() {
 
-                              warningNotice = StringsResources.errorText;
+                              warningNoticeCardNumber = StringsResources.errorText;
 
                             });
 
@@ -1110,7 +1121,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
 
                             setState(() {
 
-                              warningNotice = StringsResources.errorText;
+                              warningNoticeYear = StringsResources.errorText;
 
                             });
 
@@ -1122,7 +1133,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
 
                             setState(() {
 
-                              warningNotice = StringsResources.errorText;
+                              warningNoticeMonth = StringsResources.errorText;
 
                             });
 
@@ -1134,7 +1145,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
 
                             setState(() {
 
-                              warningNotice = StringsResources.errorText;
+                              warningNoticeBalance = StringsResources.errorText;
 
                             });
 
@@ -1146,7 +1157,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
 
                             setState(() {
 
-                              warningNotice = StringsResources.errorText;
+                              warningNoticeCvv = StringsResources.errorText;
 
                             });
 
