@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/17/22, 4:25 AM
+ * Last modified 3/17/22, 7:55 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -975,240 +975,473 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                 ),
                 Positioned(
                     bottom: 19,
-                    left: 71,
-                    right: 71,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(51.0),
-                      child: Material(
-                        shadowColor: Colors.transparent,
-                        color: Colors.transparent,
-                        child: InkWell(
-                          splashColor: ColorsResources.applicationGeeksEmpire.withOpacity(0.5),
-                          splashFactory: InkRipple.splashFactory,
-                          onTap: () {
+                    left: 59,
+                    right: 59,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Expanded(
+                          flex: 13,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(51.0),
+                            child: Material(
+                              shadowColor: Colors.transparent,
+                              color: Colors.transparent,
+                              child: InkWell(
+                                splashColor: ColorsResources.applicationGeeksEmpire.withOpacity(0.5),
+                                splashFactory: InkRipple.splashFactory,
+                                onTap: () {
 
-                            bool noError = true;
+                                  bool noError = true;
 
-                            if (controllerProductName.text.isEmpty) {
+                                  if (controllerProductName.text.isEmpty) {
 
-                              setState(() {
+                                    setState(() {
 
-                                warningNoticeName= StringsResources.errorText;
+                                      warningNoticeName= StringsResources.errorText;
 
-                              });
+                                    });
 
-                              noError = false;
+                                    noError = false;
 
-                            }
+                                  }
 
-                            if (controllerProductDescription.text.isEmpty) {
+                                  if (controllerProductDescription.text.isEmpty) {
 
-                              setState(() {
+                                    setState(() {
 
-                                warningNoticeDescription = StringsResources.errorText;
+                                      warningNoticeDescription = StringsResources.errorText;
 
-                              });
+                                    });
 
-                              noError = false;
+                                    noError = false;
 
-                            }
+                                  }
 
-                            if (controllerProductCategory.text.isEmpty) {
+                                  if (controllerProductCategory.text.isEmpty) {
 
-                              setState(() {
+                                    setState(() {
 
-                                warningNoticeCategory = StringsResources.errorText;
+                                      warningNoticeCategory = StringsResources.errorText;
 
-                              });
+                                    });
 
-                              noError = false;
+                                    noError = false;
 
-                            }
+                                  }
 
-                            if (controllerProductBuyingPrice.text.isEmpty) {
+                                  if (controllerProductBuyingPrice.text.isEmpty) {
 
-                              setState(() {
+                                    setState(() {
 
-                                warningNoticeBuyingPrice = StringsResources.errorText;
+                                      warningNoticeBuyingPrice = StringsResources.errorText;
 
-                              });
+                                    });
 
-                              noError = false;
+                                    noError = false;
 
-                            }
+                                  }
 
-                            if (controllerProductProfitPercent.text.isEmpty) {
+                                  if (controllerProductProfitPercent.text.isEmpty) {
 
-                              setState(() {
+                                    setState(() {
 
-                                warningNoticeProfitPercent = StringsResources.errorText;
+                                      warningNoticeProfitPercent = StringsResources.errorText;
 
-                              });
+                                    });
 
-                              noError = false;
+                                    noError = false;
 
-                            }
+                                  }
 
-                            if (controllerProductBrand.text.isEmpty) {
+                                  if (controllerProductBrand.text.isEmpty) {
 
-                              setState(() {
+                                    setState(() {
 
-                                warningNoticeBrand = StringsResources.errorText;
+                                      warningNoticeBrand = StringsResources.errorText;
 
-                              });
+                                    });
 
-                              noError = false;
+                                    noError = false;
 
-                            }
+                                  }
 
-                            if (noError) {
+                                  if (noError) {
 
-                              if (widget.productsData != null) {
+                                    if (widget.productsData != null) {
 
-                                if ((widget.productsData?.id)! != 0) {
+                                      if ((widget.productsData?.id)! != 0) {
 
-                                  timeNow = (widget.productsData?.id)!;
+                                        timeNow = (widget.productsData?.id)!;
 
-                                }
+                                      }
 
-                              }
+                                    }
 
-                              var databaseInputs = ProductsDatabaseInputs();
+                                    var databaseInputs = ProductsDatabaseInputs();
 
-                              ProductsData productData = ProductsData(
-                                  id: timeNow,
+                                    ProductsData productData = ProductsData(
+                                        id: timeNow,
 
-                                  productImageUrl: productImageUrl,
+                                        productImageUrl: productImageUrl,
 
-                                  productName: controllerProductName.text,
-                                  productDescription: controllerProductDescription.text,
+                                        productName: controllerProductName.text,
+                                        productDescription: controllerProductDescription.text,
 
-                                  productCategory: controllerProductCategory.text,
+                                        productCategory: controllerProductCategory.text,
 
-                                  productBrand: controllerProductBrand.text,
-                                  productBrandLogoUrl: productBrandLogoUrl,
+                                        productBrand: controllerProductBrand.text,
+                                        productBrandLogoUrl: productBrandLogoUrl,
 
-                                  productPrice: controllerProductBuyingPrice.text,
-                                  productProfitPercent: "${controllerProductProfitPercent.text}%",
+                                        productPrice: controllerProductBuyingPrice.text,
+                                        productProfitPercent: "${controllerProductProfitPercent.text}%",
 
-                                  colorTag: colorSelectorView.selectedColor.value
-                              );
+                                        colorTag: colorSelectorView.selectedColor.value
+                                    );
 
-                              if (widget.productsData != null) {
+                                    if (widget.productsData != null) {
 
-                                if ((widget.productsData?.id)! != 0) {
+                                      if ((widget.productsData?.id)! != 0) {
 
-                                  databaseInputs.updateProductData(productData, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+                                        databaseInputs.updateProductData(productData, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
-                                }
+                                      }
 
-                              } else {
+                                    } else {
 
-                                databaseInputs.insertProductData(productData, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+                                      databaseInputs.insertProductData(productData, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
-                              }
+                                    }
 
-                              Fluttertoast.showToast(
-                                  msg: StringsResources.updatedText,
-                                  toastLength: Toast.LENGTH_SHORT,
-                                  gravity: ToastGravity.CENTER,
-                                  timeInSecForIosWeb: 1,
-                                  backgroundColor: ColorsResources.lightTransparent,
-                                  textColor: ColorsResources.dark,
-                                  fontSize: 16.0
-                              );
+                                    Fluttertoast.showToast(
+                                        msg: StringsResources.updatedText,
+                                        toastLength: Toast.LENGTH_SHORT,
+                                        gravity: ToastGravity.CENTER,
+                                        timeInSecForIosWeb: 1,
+                                        backgroundColor: ColorsResources.lightTransparent,
+                                        textColor: ColorsResources.dark,
+                                        fontSize: 16.0
+                                    );
 
-                              productDataUpdated = true;
+                                    productDataUpdated = true;
 
-                            }
+                                  }
 
-                          },
-                          child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(51),
-                                    topRight: Radius.circular(51),
-                                    bottomLeft: Radius.circular(51),
-                                    bottomRight: Radius.circular(51)
-                                ),
-                                border: const Border(
-                                    top: BorderSide(
-                                      color: ColorsResources.primaryColorLight,
-                                      width: 1,
+                                },
+                                child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(51),
+                                          topRight: Radius.circular(51),
+                                          bottomLeft: Radius.circular(51),
+                                          bottomRight: Radius.circular(51)
+                                      ),
+                                      border: const Border(
+                                          top: BorderSide(
+                                            color: ColorsResources.primaryColorLight,
+                                            width: 1,
+                                          ),
+                                          bottom: BorderSide(
+                                            color: ColorsResources.primaryColorLight,
+                                            width: 1,
+                                          ),
+                                          left: BorderSide(
+                                            color: ColorsResources.primaryColorLight,
+                                            width: 1,
+                                          ),
+                                          right: BorderSide(
+                                            color: ColorsResources.primaryColorLight,
+                                            width: 1,
+                                          )
+                                      ),
+                                      gradient: LinearGradient(
+                                          colors: [
+                                            ColorsResources.primaryColor.withOpacity(0.3),
+                                            ColorsResources.primaryColorLight.withOpacity(0.3),
+                                          ],
+                                          begin: const FractionalOffset(0.0, 0.0),
+                                          end: const FractionalOffset(1.0, 0.0),
+                                          stops: const [0.0, 1.0],
+                                          transform: const GradientRotation(45),
+                                          tileMode: TileMode.clamp
+                                      ),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: ColorsResources.dark.withOpacity(0.179),
+                                          blurRadius: 13.0,
+                                          spreadRadius: 0.3,
+                                          offset: const Offset(3.0, 3.0),
+                                        ),
+                                      ],
                                     ),
-                                    bottom: BorderSide(
-                                      color: ColorsResources.primaryColorLight,
-                                      width: 1,
-                                    ),
-                                    left: BorderSide(
-                                      color: ColorsResources.primaryColorLight,
-                                      width: 1,
-                                    ),
-                                    right: BorderSide(
-                                      color: ColorsResources.primaryColorLight,
-                                      width: 1,
-                                    )
-                                ),
-                                gradient: LinearGradient(
-                                    colors: [
-                                      ColorsResources.primaryColor.withOpacity(0.3),
-                                      ColorsResources.primaryColorLight.withOpacity(0.3),
-                                    ],
-                                    begin: const FractionalOffset(0.0, 0.0),
-                                    end: const FractionalOffset(1.0, 0.0),
-                                    stops: const [0.0, 1.0],
-                                    transform: const GradientRotation(45),
-                                    tileMode: TileMode.clamp
-                                ),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: ColorsResources.dark.withOpacity(0.179),
-                                    blurRadius: 13.0,
-                                    spreadRadius: 0.3,
-                                    offset: const Offset(3.0, 3.0),
-                                  ),
-                                ],
-                              ),
-                              child: Stack(
-                                children: [
-                                  Blur(
-                                    blur: 3.0,
-                                    borderRadius: BorderRadius.circular(51),
-                                    alignment: AlignmentDirectional.center,
-                                    blurColor: Colors.blue,
-                                    colorOpacity: 0.0,
-                                    child: const SizedBox(
-                                      width: double.infinity,
-                                      height: 53,
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                      width: double.infinity,
-                                      height: 53,
-                                      child: Align(
-                                        alignment: AlignmentDirectional.center,
-                                        child: Text(
-                                          StringsResources.submitText,
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                              fontSize: 19,
-                                              color: ColorsResources.darkTransparent,
-                                              shadows: [
-                                                Shadow(
-                                                    color: ColorsResources.primaryColorDark,
-                                                    blurRadius: 7.0,
-                                                    offset: Offset(1, 1)
-                                                )
-                                              ]
+                                    child: Stack(
+                                      children: [
+                                        Blur(
+                                          blur: 3.0,
+                                          borderRadius: BorderRadius.circular(51),
+                                          alignment: AlignmentDirectional.center,
+                                          blurColor: Colors.blue,
+                                          colorOpacity: 0.0,
+                                          child: const SizedBox(
+                                            width: double.infinity,
+                                            height: 53,
                                           ),
                                         ),
-                                      )
-                                  )
-                                ],
-                              )
+                                        const SizedBox(
+                                            width: double.infinity,
+                                            height: 53,
+                                            child: Align(
+                                              alignment: AlignmentDirectional.center,
+                                              child: Text(
+                                                StringsResources.submitText,
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                    fontSize: 19,
+                                                    color: ColorsResources.darkTransparent,
+                                                    shadows: [
+                                                      Shadow(
+                                                          color: ColorsResources.primaryColorDark,
+                                                          blurRadius: 7.0,
+                                                          offset: Offset(1, 1)
+                                                      )
+                                                    ]
+                                                ),
+                                              ),
+                                            )
+                                        )
+                                      ],
+                                    )
+                                ),
+                              ),
+                            ),
                           ),
                         ),
-                      ),
+                        Expanded(
+                          flex: 1,
+                          child: ColoredBox(color: Colors.transparent),
+                        ),
+                        Expanded(
+                            flex: 3,
+                            child: AspectRatio(
+                              aspectRatio: 1,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(51.0),
+                                child: Material(
+                                  shadowColor: Colors.transparent,
+                                  color: Colors.transparent,
+                                  child: InkWell(
+                                    splashColor: ColorsResources.applicationGeeksEmpire.withOpacity(0.5),
+                                    splashFactory: InkRipple.splashFactory,
+                                    onTap: () {
+
+                                      bool noError = true;
+
+                                      if (controllerProductName.text.isEmpty) {
+
+                                        setState(() {
+
+                                          warningNoticeName= StringsResources.errorText;
+
+                                        });
+
+                                        noError = false;
+
+                                      }
+
+                                      if (controllerProductDescription.text.isEmpty) {
+
+                                        setState(() {
+
+                                          warningNoticeDescription = StringsResources.errorText;
+
+                                        });
+
+                                        noError = false;
+
+                                      }
+
+                                      if (controllerProductCategory.text.isEmpty) {
+
+                                        setState(() {
+
+                                          warningNoticeCategory = StringsResources.errorText;
+
+                                        });
+
+                                        noError = false;
+
+                                      }
+
+                                      if (controllerProductBuyingPrice.text.isEmpty) {
+
+                                        setState(() {
+
+                                          warningNoticeBuyingPrice = StringsResources.errorText;
+
+                                        });
+
+                                        noError = false;
+
+                                      }
+
+                                      if (controllerProductProfitPercent.text.isEmpty) {
+
+                                        setState(() {
+
+                                          warningNoticeProfitPercent = StringsResources.errorText;
+
+                                        });
+
+                                        noError = false;
+
+                                      }
+
+                                      if (controllerProductBrand.text.isEmpty) {
+
+                                        setState(() {
+
+                                          warningNoticeBrand = StringsResources.errorText;
+
+                                        });
+
+                                        noError = false;
+
+                                      }
+
+                                      if (noError) {
+
+                                        if (widget.productsData != null) {
+
+                                          if ((widget.productsData?.id)! != 0) {
+
+                                            timeNow = (widget.productsData?.id)!;
+
+                                          }
+
+                                        }
+
+                                        var databaseInputs = ProductsDatabaseInputs();
+
+                                        ProductsData productData = ProductsData(
+                                            id: DateTime.now().millisecondsSinceEpoch,
+
+                                            productImageUrl: productImageUrl,
+
+                                            productName: controllerProductName.text,
+                                            productDescription: controllerProductDescription.text,
+
+                                            productCategory: controllerProductCategory.text,
+
+                                            productBrand: controllerProductBrand.text,
+                                            productBrandLogoUrl: productBrandLogoUrl,
+
+                                            productPrice: controllerProductBuyingPrice.text,
+                                            productProfitPercent: "${controllerProductProfitPercent.text}%",
+
+                                            colorTag: colorSelectorView.selectedColor.value
+                                        );
+
+                                        databaseInputs.insertProductData(productData, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+                                        Fluttertoast.showToast(
+                                            msg: StringsResources.updatedText,
+                                            toastLength: Toast.LENGTH_SHORT,
+                                            gravity: ToastGravity.CENTER,
+                                            timeInSecForIosWeb: 1,
+                                            backgroundColor: ColorsResources.lightTransparent,
+                                            textColor: ColorsResources.dark,
+                                            fontSize: 16.0
+                                        );
+
+                                        productDataUpdated = true;
+
+                                      }
+
+                                    },
+                                    onLongPress: () {
+
+
+
+                                    },
+                                    child: Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius: const BorderRadius.only(
+                                              topLeft: Radius.circular(51),
+                                              topRight: Radius.circular(51),
+                                              bottomLeft: Radius.circular(51),
+                                              bottomRight: Radius.circular(51)
+                                          ),
+                                          border: const Border(
+                                              top: BorderSide(
+                                                color: ColorsResources.primaryColorLight,
+                                                width: 1,
+                                              ),
+                                              bottom: BorderSide(
+                                                color: ColorsResources.primaryColorLight,
+                                                width: 1,
+                                              ),
+                                              left: BorderSide(
+                                                color: ColorsResources.primaryColorLight,
+                                                width: 1,
+                                              ),
+                                              right: BorderSide(
+                                                color: ColorsResources.primaryColorLight,
+                                                width: 1,
+                                              )
+                                          ),
+                                          gradient: LinearGradient(
+                                              colors: [
+                                                ColorsResources.primaryColor.withOpacity(0.3),
+                                                ColorsResources.primaryColorLight.withOpacity(0.3),
+                                              ],
+                                              begin: const FractionalOffset(0.0, 0.0),
+                                              end: const FractionalOffset(1.0, 0.0),
+                                              stops: const [0.0, 1.0],
+                                              transform: const GradientRotation(45),
+                                              tileMode: TileMode.clamp
+                                          ),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: ColorsResources.dark.withOpacity(0.179),
+                                              blurRadius: 13.0,
+                                              spreadRadius: 0.3,
+                                              offset: const Offset(3.0, 3.0),
+                                            ),
+                                          ],
+                                        ),
+                                        child: Stack(
+                                          children: [
+                                            Blur(
+                                              blur: 3.0,
+                                              borderRadius: BorderRadius.circular(51),
+                                              alignment: AlignmentDirectional.center,
+                                              blurColor: Colors.blue,
+                                              colorOpacity: 0.0,
+                                              child: const SizedBox(
+                                                width: double.infinity,
+                                                height: 53,
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                                width: 53,
+                                                height: 53,
+                                                child: Align(
+                                                    alignment: AlignmentDirectional.center,
+                                                    child: Image(
+                                                      image: AssetImage("quick_save.png"),
+                                                      color: ColorsResources.applicationDarkGeeksEmpire,
+                                                    )
+                                                )
+                                            )
+                                          ],
+                                        )
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
+                        )
+                      ],
                     )
                 )
               ],
