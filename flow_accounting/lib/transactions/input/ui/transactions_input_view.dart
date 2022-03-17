@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/17/22, 3:23 AM
+ * Last modified 3/17/22, 3:42 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -2059,13 +2059,23 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
     List<CreditCardsData> listOfCreditCards = [];
 
-    CreditCardsDatabaseQueries creditCardsDatabaseQueries = CreditCardsDatabaseQueries();
+    String databaseDirectory = await getDatabasesPath();
 
-    var retrievedCreditCards = await creditCardsDatabaseQueries.getAllCreditCards(CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId);
+    String creditCardDatabasePath = "${databaseDirectory}/${CreditCardsDatabaseInputs.creditCardDatabase}";
 
-    if (retrievedCreditCards.isNotEmpty) {
+    bool creditCardDatabaseExist = await databaseExists(creditCardDatabasePath);
 
-      listOfCreditCards.addAll(retrievedCreditCards);
+    if (creditCardDatabaseExist) {
+
+      CreditCardsDatabaseQueries creditCardsDatabaseQueries = CreditCardsDatabaseQueries();
+
+      var retrievedCreditCards = await creditCardsDatabaseQueries.getAllCreditCards(CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+      if (retrievedCreditCards.isNotEmpty) {
+
+        listOfCreditCards.addAll(retrievedCreditCards);
+
+      }
 
     }
 
@@ -2076,55 +2086,75 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
     if (transactionsData.transactionType == TransactionsData.TransactionType_Send) {
 
-      var creditCardsDatabaseQueries = CreditCardsDatabaseQueries();
+      String databaseDirectory = await getDatabasesPath();
 
-      var sourceCreditCardData = await creditCardsDatabaseQueries.extractTransactionsQuery(
-          await creditCardsDatabaseQueries.querySpecificCreditCardByCardNumber(controllerTransactionSourceCard.text, CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId)
-      );
+      String creditCardDatabasePath = "${databaseDirectory}/${CreditCardsDatabaseInputs.creditCardDatabase}";
 
-      var newCardBalance = (int.parse(sourceCreditCardData.cardBalance) - int.parse(transactionsData.amountMoney)).toString();
+      bool creditCardDatabaseExist = await databaseExists(creditCardDatabasePath);
 
-      var creditCardsDatabaseInputs = CreditCardsDatabaseInputs();
+      if (creditCardDatabaseExist) {
 
-      creditCardsDatabaseInputs.updateCreditCardsData(
-        CreditCardsData(
-            id: sourceCreditCardData.id,
-            cardNumber: sourceCreditCardData.cardNumber,
-            cardExpiry: sourceCreditCardData.cardExpiry,
-            cardHolderName: sourceCreditCardData.cardHolderName,
-            cvv: sourceCreditCardData.cvv,
-            bankName: sourceCreditCardData.bankName,
-            cardBalance: newCardBalance,
-            colorTag: sourceCreditCardData.colorTag
-        ),
-        CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId
-      );
+        var creditCardsDatabaseQueries = CreditCardsDatabaseQueries();
+
+        var sourceCreditCardData = await creditCardsDatabaseQueries.extractTransactionsQuery(
+            await creditCardsDatabaseQueries.querySpecificCreditCardByCardNumber(controllerTransactionSourceCard.text, CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId)
+        );
+
+        var newCardBalance = (int.parse(sourceCreditCardData.cardBalance) - int.parse(transactionsData.amountMoney)).toString();
+
+        var creditCardsDatabaseInputs = CreditCardsDatabaseInputs();
+
+        creditCardsDatabaseInputs.updateCreditCardsData(
+            CreditCardsData(
+                id: sourceCreditCardData.id,
+                cardNumber: sourceCreditCardData.cardNumber,
+                cardExpiry: sourceCreditCardData.cardExpiry,
+                cardHolderName: sourceCreditCardData.cardHolderName,
+                cvv: sourceCreditCardData.cvv,
+                bankName: sourceCreditCardData.bankName,
+                cardBalance: newCardBalance,
+                colorTag: sourceCreditCardData.colorTag
+            ),
+            CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId
+        );
+
+      }
 
     } else if (transactionType == TransactionsData.TransactionType_Receive) {
 
-      var creditCardsDatabaseQueries = CreditCardsDatabaseQueries();
+      String databaseDirectory = await getDatabasesPath();
 
-      var sourceCreditCardData = await creditCardsDatabaseQueries.extractTransactionsQuery(
-          await creditCardsDatabaseQueries.querySpecificCreditCardByCardNumber(controllerTransactionTargetCard.text, CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId)
-      );
+      String creditCardDatabasePath = "${databaseDirectory}/${CreditCardsDatabaseInputs.creditCardDatabase}";
 
-      var newCardBalance = (int.parse(sourceCreditCardData.cardBalance) + int.parse(transactionsData.amountMoney)).toString();
+      bool creditCardDatabaseExist = await databaseExists(creditCardDatabasePath);
 
-      var creditCardsDatabaseInputs = CreditCardsDatabaseInputs();
+      if (creditCardDatabaseExist) {
 
-      creditCardsDatabaseInputs.updateCreditCardsData(
-          CreditCardsData(
-              id: sourceCreditCardData.id,
-              cardNumber: sourceCreditCardData.cardNumber,
-              cardExpiry: sourceCreditCardData.cardExpiry,
-              cardHolderName: sourceCreditCardData.cardHolderName,
-              cvv: sourceCreditCardData.cvv,
-              bankName: sourceCreditCardData.bankName,
-              cardBalance: newCardBalance,
-              colorTag: sourceCreditCardData.colorTag
-          ),
-          CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId
-      );
+        var creditCardsDatabaseQueries = CreditCardsDatabaseQueries();
+
+        var sourceCreditCardData = await creditCardsDatabaseQueries.extractTransactionsQuery(
+            await creditCardsDatabaseQueries.querySpecificCreditCardByCardNumber(controllerTransactionTargetCard.text, CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId)
+        );
+
+        var newCardBalance = (int.parse(sourceCreditCardData.cardBalance) + int.parse(transactionsData.amountMoney)).toString();
+
+        var creditCardsDatabaseInputs = CreditCardsDatabaseInputs();
+
+        creditCardsDatabaseInputs.updateCreditCardsData(
+            CreditCardsData(
+                id: sourceCreditCardData.id,
+                cardNumber: sourceCreditCardData.cardNumber,
+                cardExpiry: sourceCreditCardData.cardExpiry,
+                cardHolderName: sourceCreditCardData.cardHolderName,
+                cvv: sourceCreditCardData.cvv,
+                bankName: sourceCreditCardData.bankName,
+                cardBalance: newCardBalance,
+                colorTag: sourceCreditCardData.colorTag
+            ),
+            CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId
+        );
+
+      }
 
     }
 

@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/17/22, 3:33 AM
+ * Last modified 3/17/22, 3:42 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -267,15 +267,25 @@ class DashboardViewState extends State<DashboardView> {
 
   void prepareCreditCardsData() async {
 
-    CreditCardsDatabaseQueries databaseQueries = CreditCardsDatabaseQueries();
+    String databaseDirectory = await getDatabasesPath();
 
-    List<CreditCardsData> listOfAllCreditCards = await databaseQueries.getAllCreditCards(CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId);
+    String creditCardDatabasePath = "${databaseDirectory}/${CreditCardsDatabaseInputs.creditCardDatabase}";
 
-    setState(() {
+    bool creditCardDatabaseExist = await databaseExists(creditCardDatabasePath);
 
-      allCreditCards = listOfAllCreditCards;
+    if (creditCardDatabaseExist) {
 
-    });
+      CreditCardsDatabaseQueries databaseQueries = CreditCardsDatabaseQueries();
+
+      List<CreditCardsData> listOfAllCreditCards = await databaseQueries.getAllCreditCards(CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+      setState(() {
+
+        allCreditCards = listOfAllCreditCards;
+
+      });
+
+    }
 
   }
 

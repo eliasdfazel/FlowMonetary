@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/17/22, 3:23 AM
+ * Last modified 3/17/22, 3:42 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -1945,13 +1945,23 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
 
     List<CreditCardsData> listOfCreditCards = [];
 
-    CreditCardsDatabaseQueries creditCardsDatabaseQueries = CreditCardsDatabaseQueries();
+    String databaseDirectory = await getDatabasesPath();
 
-    var retrievedCreditCards = await creditCardsDatabaseQueries.getAllCreditCards(CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId);
+    String creditCardDatabasePath = "${databaseDirectory}/${CreditCardsDatabaseInputs.creditCardDatabase}";
 
-    if (retrievedCreditCards.isNotEmpty) {
+    bool creditCardDatabaseExist = await databaseExists(creditCardDatabasePath);
 
-      listOfCreditCards.addAll(retrievedCreditCards);
+    if (creditCardDatabaseExist) {
+
+      CreditCardsDatabaseQueries creditCardsDatabaseQueries = CreditCardsDatabaseQueries();
+
+      var retrievedCreditCards = await creditCardsDatabaseQueries.getAllCreditCards(CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+      if (retrievedCreditCards.isNotEmpty) {
+
+        listOfCreditCards.addAll(retrievedCreditCards);
+
+      }
 
     }
 

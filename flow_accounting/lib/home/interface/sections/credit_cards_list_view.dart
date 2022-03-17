@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/13/22, 6:44 AM
+ * Last modified 3/17/22, 3:42 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -22,6 +22,7 @@ import 'package:flow_accounting/utils/colors/color_extractor.dart';
 import 'package:flow_accounting/utils/extensions/BankLogos.dart';
 import 'package:flow_accounting/utils/navigations/navigations.dart';
 import 'package:flutter/material.dart';
+import 'package:sqflite/sqflite.dart';
 
 class CreditCardsListView extends StatefulWidget {
 
@@ -221,12 +222,22 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
                             ),
                             action: SnackBarAction(
                               label: StringsResources.deleteText,
-                              onPressed: () {
+                              onPressed: () async {
 
-                                CreditCardsDatabaseQueries()
-                                    .queryDeleteCreditCard(id, CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId);
+                                String databaseDirectory = await getDatabasesPath();
 
-                                prepareCreditCardsData();
+                                String creditCardDatabasePath = "${databaseDirectory}/${CreditCardsDatabaseInputs.creditCardDatabase}";
+
+                                bool creditCardDatabaseExist = await databaseExists(creditCardDatabasePath);
+
+                                if (creditCardDatabaseExist) {
+
+                                  CreditCardsDatabaseQueries()
+                                      .queryDeleteCreditCard(id, CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+                                  prepareCreditCardsData();
+
+                                }
 
                               },
                             ),
@@ -411,15 +422,25 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
 
     widget.allCreditCardsData.clear();
 
-    CreditCardsDatabaseQueries databaseQueries = CreditCardsDatabaseQueries();
+    String databaseDirectory = await getDatabasesPath();
 
-    List<CreditCardsData> listOfAllCreditCards = await databaseQueries.getAllCreditCards(CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId);
+    String creditCardDatabasePath = "${databaseDirectory}/${CreditCardsDatabaseInputs.creditCardDatabase}";
 
-    setState(() {
+    bool creditCardDatabaseExist = await databaseExists(creditCardDatabasePath);
 
-      widget.allCreditCardsData = listOfAllCreditCards;
+    if (creditCardDatabaseExist) {
 
-    });
+      CreditCardsDatabaseQueries databaseQueries = CreditCardsDatabaseQueries();
+
+      List<CreditCardsData> listOfAllCreditCards = await databaseQueries.getAllCreditCards(CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+      setState(() {
+
+        widget.allCreditCardsData = listOfAllCreditCards;
+
+      });
+
+    }
 
   }
 

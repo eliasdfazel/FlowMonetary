@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/17/22, 3:33 AM
+ * Last modified 3/17/22, 3:42 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -1377,11 +1377,21 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
 
   void deleteCreditCards(BuildContext context, CreditCardsData creditCardsData) async {
 
-    CreditCardsDatabaseQueries creditCardsDatabaseQueries = CreditCardsDatabaseQueries();
+    String databaseDirectory = await getDatabasesPath();
 
-    creditCardsDatabaseQueries.queryDeleteCreditCard(creditCardsData.id, CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId);
+    String creditCardDatabasePath = "${databaseDirectory}/${CreditCardsDatabaseInputs.creditCardDatabase}";
 
-    Navigator.pop(context);
+    bool creditCardDatabaseExist = await databaseExists(creditCardDatabasePath);
+
+    if (creditCardDatabaseExist) {
+
+      CreditCardsDatabaseQueries creditCardsDatabaseQueries = CreditCardsDatabaseQueries();
+
+      creditCardsDatabaseQueries.queryDeleteCreditCard(creditCardsData.id, CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+      Navigator.pop(context);
+
+    }
 
   }
 
