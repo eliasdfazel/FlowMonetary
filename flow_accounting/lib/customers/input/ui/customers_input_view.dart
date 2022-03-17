@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/16/22, 8:33 AM
+ * Last modified 3/17/22, 4:21 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -71,7 +71,21 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
   String customerImage = "";
 
-  String? warningNotice;
+  String? warningNoticeName;
+  String? warningNoticeDescription;
+
+  String? warningNoticeCountry;
+  String? warningNoticeCity;
+  String? warningNoticeAddress;
+
+  String? warningNoticePhoneNumber;
+  String? warningNoticeEmail;
+
+  String? warningNoticeAge;
+
+  String? warningNoticeJob;
+
+  String? warningNoticeMaritalStatus;
 
   bool customerDataUpdated = false;
 
@@ -324,7 +338,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                                 ),
                                                 gapPadding: 5
                                             ),
-                                            errorText: warningNotice,
+                                            errorText: warningNoticeName,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
                                             labelText: StringsResources.customerNameText,
@@ -420,7 +434,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorText: warningNotice,
+                                        errorText: warningNoticeDescription,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.descriptionText,
@@ -510,7 +524,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorText: warningNotice,
+                                        errorText: warningNoticeCity,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.customerCityText,
@@ -591,7 +605,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorText: warningNotice,
+                                        errorText: warningNoticeCountry,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.customerCountryText,
@@ -685,7 +699,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorText: warningNotice,
+                                        errorText: warningNoticeAddress,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.customerStreetAddressText,
@@ -820,7 +834,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                               ),
                                               gapPadding: 5
                                           ),
-                                          errorText: warningNotice,
+                                          errorText: warningNoticeAge,
                                           filled: true,
                                           fillColor: ColorsResources.lightTransparent,
                                           labelText: StringsResources.customerAgeText,
@@ -911,7 +925,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorText: warningNotice,
+                                        errorText: warningNoticePhoneNumber,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.customerPhoneNumberText,
@@ -1001,7 +1015,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorText: warningNotice,
+                                        errorText: warningNoticeEmail,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.customerEmailAddressText,
@@ -1091,7 +1105,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorText: warningNotice,
+                                        errorText: warningNoticeJob,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.customerJobText,
@@ -1168,7 +1182,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorText: warningNotice,
+                                        errorText: warningNoticeMaritalStatus,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.customerMaritalStatusText,
@@ -1285,7 +1299,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
                               setState(() {
 
-                                warningNotice = StringsResources.errorText;
+                                warningNoticeName = StringsResources.errorText;
 
                               });
 
@@ -1297,7 +1311,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
                               setState(() {
 
-                                warningNotice = StringsResources.errorText;
+                                warningNoticeDescription = StringsResources.errorText;
 
                               });
 
@@ -1309,7 +1323,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
                               setState(() {
 
-                                warningNotice = StringsResources.errorText;
+                                warningNoticeCountry = StringsResources.errorText;
 
                               });
 
@@ -1321,7 +1335,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
                               setState(() {
 
-                                warningNotice = StringsResources.errorText;
+                                warningNoticeCity = StringsResources.errorText;
 
                               });
 
@@ -1333,7 +1347,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
                               setState(() {
 
-                                warningNotice = StringsResources.errorText;
+                                warningNoticeAddress = StringsResources.errorText;
 
                               });
 
@@ -1345,7 +1359,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
                               setState(() {
 
-                                warningNotice = StringsResources.errorText;
+                                warningNoticePhoneNumber = StringsResources.errorText;
 
                               });
 
@@ -1357,7 +1371,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
                               setState(() {
 
-                                warningNotice = StringsResources.errorText;
+                                warningNoticeEmail = StringsResources.errorText;
 
                               });
 
@@ -1369,7 +1383,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
                               setState(() {
 
-                                warningNotice = StringsResources.errorText;
+                                warningNoticeAge = StringsResources.errorText;
 
                               });
 
@@ -1381,7 +1395,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
                               setState(() {
 
-                                warningNotice = StringsResources.errorText;
+                                warningNoticeJob = StringsResources.errorText;
 
                               });
 
@@ -1393,7 +1407,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
                               setState(() {
 
-                                warningNotice = StringsResources.errorText;
+                                warningNoticeMaritalStatus = StringsResources.errorText;
 
                               });
 
