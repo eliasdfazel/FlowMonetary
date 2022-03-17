@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/16/22, 10:24 AM
+ * Last modified 3/17/22, 3:58 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -58,7 +58,12 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
 
   bool profileDataUpdated = false;
 
-  String? warningNotice;
+  String? warningNoticeFullName;
+  String? warningNoticeEmailAddress;
+  String? warningNoticeInstagram;
+  String? warningNoticePhoneNumber;
+
+  String? warningNoticeLocationAddress;
 
   @override
   void dispose() {
@@ -241,7 +246,7 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorText: warningNotice,
+                                        errorText: warningNoticeFullName,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.profileUserFullName,
@@ -349,7 +354,7 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                                           ),
                                           gapPadding: 5
                                       ),
-                                      errorText: warningNotice,
+                                      errorText: warningNoticePhoneNumber,
                                       filled: true,
                                       fillColor: ColorsResources.lightTransparent,
                                       labelText: StringsResources.profileUserPhoneNumber,
@@ -462,7 +467,7 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorText: warningNotice,
+                                        errorText: warningNoticeEmailAddress,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.profileUserEmail,
@@ -575,7 +580,7 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorText: warningNotice,
+                                        errorText: warningNoticeInstagram,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.profileUserInstagram,
@@ -688,7 +693,7 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorText: warningNotice,
+                                        errorText: warningNoticeLocationAddress,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.profileUserLocationAddress,
@@ -783,7 +788,55 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
 
                               setState(() {
 
-                                warningNotice = StringsResources.errorText;
+                                warningNoticeFullName = StringsResources.errorText;
+
+                              });
+
+                              noError = false;
+
+                            }
+
+                            if (controllerUserPhoneNumber.text.isEmpty) {
+
+                              setState(() {
+
+                                warningNoticePhoneNumber = StringsResources.errorText;
+
+                              });
+
+                              noError = false;
+
+                            }
+
+                            if (controllerUserInstagram.text.isEmpty) {
+
+                              setState(() {
+
+                                warningNoticeInstagram = StringsResources.errorText;
+
+                              });
+
+                              noError = false;
+
+                            }
+
+                            if (controllerUserEmailAddress.text.isEmpty) {
+
+                              setState(() {
+
+                                warningNoticeEmailAddress = StringsResources.errorText;
+
+                              });
+
+                              noError = false;
+
+                            }
+
+                            if (controllerUserLocationAddress.text.isEmpty) {
+
+                              setState(() {
+
+                                warningNoticeLocationAddress = StringsResources.errorText;
 
                               });
 
