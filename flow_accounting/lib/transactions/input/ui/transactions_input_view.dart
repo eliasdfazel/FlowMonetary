@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/17/22, 4:07 AM
+ * Last modified 3/17/22, 5:55 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -1727,278 +1727,556 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                 ),
                 Positioned(
                   bottom: 19,
-                  left: 71,
-                  right: 71,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(51.0),
-                    child: Material(
-                      shadowColor: Colors.transparent,
-                      color: Colors.transparent,
-                      child: InkWell(
-                        splashColor: ColorsResources.applicationGeeksEmpire.withOpacity(0.5),
-                        splashFactory: InkRipple.splashFactory,
-                        onTap: () {
+                  left: 59,
+                  right: 59,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Expanded(
+                        flex: 13,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(51.0),
+                          child: Material(
+                            shadowColor: Colors.transparent,
+                            color: Colors.transparent,
+                            child: InkWell(
+                              splashColor: ColorsResources.applicationGeeksEmpire.withOpacity(0.5),
+                              splashFactory: InkRipple.splashFactory,
+                              onTap: () {
 
-                          bool noError = true;
+                                bool noError = true;
 
-                          if (controllerTransactionSourceCard.text.length < 16) {
+                                if (controllerTransactionSourceCard.text.length < 16) {
 
-                            setState(() {
+                                  setState(() {
 
-                              warningNoticeSourceCard = StringsResources.errorText;
+                                    warningNoticeSourceCard = StringsResources.errorText;
 
-                            });
+                                  });
 
-                            noError = false;
+                                  noError = false;
 
-                          }
+                                }
 
-                          if (controllerTransactionTargetCard.text.length < 16) {
+                                if (controllerTransactionTargetCard.text.length < 16) {
 
-                            setState(() {
+                                  setState(() {
 
-                              warningNoticeTargetCard = StringsResources.errorText;
+                                    warningNoticeTargetCard = StringsResources.errorText;
 
-                            });
+                                  });
 
-                            noError = false;
+                                  noError = false;
 
-                          }
+                                }
 
-                          if (controllerMoneyAmount.text.isEmpty) {
+                                if (controllerMoneyAmount.text.isEmpty) {
 
-                            setState(() {
+                                  setState(() {
 
-                              warningNoticeMoneyAmount = StringsResources.errorText;
+                                    warningNoticeMoneyAmount = StringsResources.errorText;
 
-                            });
+                                  });
 
-                            noError = false;
+                                  noError = false;
 
-                          }
+                                }
 
-                          if (controllerTransactionTitle.text.isEmpty) {
+                                if (controllerTransactionTitle.text.isEmpty) {
 
-                            setState(() {
+                                  setState(() {
 
-                              warningNoticeTitle = StringsResources.errorText;
+                                    warningNoticeTitle = StringsResources.errorText;
 
-                            });
+                                  });
 
-                            noError = false;
+                                  noError = false;
 
-                          }
+                                }
 
-                          if (controllerTransactionDescription.text.isEmpty) {
+                                if (controllerTransactionDescription.text.isEmpty) {
 
-                            setState(() {
+                                  setState(() {
 
-                              warningNoticeDescription = StringsResources.errorText;
+                                    warningNoticeDescription = StringsResources.errorText;
 
-                            });
+                                  });
 
-                            noError = false;
+                                  noError = false;
 
-                          }
+                                }
 
-                          if (controllerTransactionSourceName.text.isEmpty) {
+                                if (controllerTransactionSourceName.text.isEmpty) {
 
-                            setState(() {
+                                  setState(() {
 
-                              warningNoticeSourceName = StringsResources.errorText;
+                                    warningNoticeSourceName = StringsResources.errorText;
 
-                            });
+                                  });
 
-                            noError = false;
+                                  noError = false;
 
-                          }
+                                }
 
-                          if (controllerTransactionSourceBank.text.isEmpty) {
+                                if (controllerTransactionSourceBank.text.isEmpty) {
 
-                            setState(() {
+                                  setState(() {
 
-                              warningNoticeSourceBank = StringsResources.errorText;
+                                    warningNoticeSourceBank = StringsResources.errorText;
 
-                            });
+                                  });
 
-                            noError = false;
+                                  noError = false;
 
-                          }
+                                }
 
-                          if (controllerTransactionTargetName.text.isEmpty) {
+                                if (controllerTransactionTargetName.text.isEmpty) {
 
-                            setState(() {
+                                  setState(() {
 
-                              warningNoticeTargetName = StringsResources.errorText;
+                                    warningNoticeTargetName = StringsResources.errorText;
 
-                            });
+                                  });
 
-                            noError = false;
+                                  noError = false;
 
-                          }
+                                }
 
-                          if (controllerTransactionTargetBank.text.isEmpty) {
+                                if (controllerTransactionTargetBank.text.isEmpty) {
 
-                            setState(() {
+                                  setState(() {
 
-                              warningNoticeTargetBank = StringsResources.errorText;
+                                    warningNoticeTargetBank = StringsResources.errorText;
 
-                            });
+                                  });
 
-                            noError = false;
+                                  noError = false;
 
-                          }
+                                }
 
-                          if (controllerBudget.text.isEmpty) {
+                                if (controllerBudget.text.isEmpty) {
 
-                            setState(() {
+                                  setState(() {
 
-                              warningNoticeBudget = StringsResources.errorText;
+                                    warningNoticeBudget = StringsResources.errorText;
 
-                            });
+                                  });
 
-                            noError = false;
+                                  noError = false;
 
-                          }
+                                }
 
-                          if (noError) {
+                                if (noError) {
 
-                            var databaseInputs = TransactionsDatabaseInputs();
+                                  var databaseInputs = TransactionsDatabaseInputs();
 
-                            TransactionsData transactionData = TransactionsData(
-                              id: timeNow,
+                                  TransactionsData transactionData = TransactionsData(
+                                    id: timeNow,
 
-                              transactionTitle: controllerTransactionTitle.text,
-                              transactionDescription: controllerTransactionDescription.text,
+                                    transactionTitle: controllerTransactionTitle.text,
+                                    transactionDescription: controllerTransactionDescription.text,
 
-                              amountMoney: controllerMoneyAmount.text,
-                              transactionType: transactionType,
+                                    amountMoney: controllerMoneyAmount.text,
+                                    transactionType: transactionType,
 
-                              transactionTimeMillisecond: calendarView.pickedDateTime.millisecond,
-                              transactionTime: calendarView.pickedDataTimeText ?? "",
-                              transactionTimeYear: calendarView.pickedDataTimeYear,
-                              transactionTimeMonth: calendarView.pickedDataTimeMonth,
+                                    transactionTimeMillisecond: calendarView.pickedDateTime.millisecond,
+                                    transactionTime: calendarView.pickedDataTimeText ?? "",
+                                    transactionTimeYear: calendarView.pickedDataTimeYear,
+                                    transactionTimeMonth: calendarView.pickedDataTimeMonth,
 
-                              sourceUsername: controllerTransactionSourceName.text,
-                              sourceBankName: controllerTransactionSourceBank.text,
-                              sourceCardNumber: controllerTransactionSourceCard.text,
+                                    sourceUsername: controllerTransactionSourceName.text,
+                                    sourceBankName: controllerTransactionSourceBank.text,
+                                    sourceCardNumber: controllerTransactionSourceCard.text,
 
-                              targetUsername: controllerTransactionTargetName.text,
-                              targetBankName: controllerTransactionTargetBank.text,
-                              targetCardNumber: controllerTransactionTargetCard.text,
+                                    targetUsername: controllerTransactionTargetName.text,
+                                    targetBankName: controllerTransactionTargetBank.text,
+                                    targetCardNumber: controllerTransactionTargetCard.text,
 
-                              colorTag: colorSelectorView.selectedColor.value,
+                                    colorTag: colorSelectorView.selectedColor.value,
 
-                              budgetName: budgetName,
-                            );
+                                    budgetName: budgetName,
+                                  );
 
-                            databaseInputs.insertTransactionData(transactionData, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
+                                  databaseInputs.insertTransactionData(transactionData, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
-                            Fluttertoast.showToast(
-                                msg: StringsResources.updatedText,
-                                toastLength: Toast.LENGTH_SHORT,
-                                gravity: ToastGravity.CENTER,
-                                timeInSecForIosWeb: 1,
-                                backgroundColor: ColorsResources.lightTransparent,
-                                textColor: ColorsResources.dark,
-                                fontSize: 16.0
-                            );
+                                  Fluttertoast.showToast(
+                                      msg: StringsResources.updatedText,
+                                      toastLength: Toast.LENGTH_SHORT,
+                                      gravity: ToastGravity.CENTER,
+                                      timeInSecForIosWeb: 1,
+                                      backgroundColor: ColorsResources.lightTransparent,
+                                      textColor: ColorsResources.dark,
+                                      fontSize: 16.0
+                                  );
 
-                            processCreditCardsBalance(transactionData);
+                                  processCreditCardsBalance(transactionData);
 
-                            processBudgetBalance(transactionData);
+                                  processBudgetBalance(transactionData);
 
-                            transactionDataUpdated = true;
+                                  transactionDataUpdated = true;
 
-                          }
+                                }
 
-                        },
-                        child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(51),
-                                  topRight: Radius.circular(51),
-                                  bottomLeft: Radius.circular(51),
-                                  bottomRight: Radius.circular(51)
-                              ),
-                              border: const Border(
-                                  top: BorderSide(
-                                    color: ColorsResources.primaryColorLight,
-                                    width: 1,
+                              },
+                              child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(51),
+                                        topRight: Radius.circular(51),
+                                        bottomLeft: Radius.circular(51),
+                                        bottomRight: Radius.circular(51)
+                                    ),
+                                    border: const Border(
+                                        top: BorderSide(
+                                          color: ColorsResources.primaryColorLight,
+                                          width: 1,
+                                        ),
+                                        bottom: BorderSide(
+                                          color: ColorsResources.primaryColorLight,
+                                          width: 1,
+                                        ),
+                                        left: BorderSide(
+                                          color: ColorsResources.primaryColorLight,
+                                          width: 1,
+                                        ),
+                                        right: BorderSide(
+                                          color: ColorsResources.primaryColorLight,
+                                          width: 1,
+                                        )
+                                    ),
+                                    gradient: LinearGradient(
+                                        colors: [
+                                          ColorsResources.primaryColor.withOpacity(0.3),
+                                          ColorsResources.primaryColorLight.withOpacity(0.3),
+                                        ],
+                                        begin: const FractionalOffset(0.0, 0.0),
+                                        end: const FractionalOffset(1.0, 0.0),
+                                        stops: const [0.0, 1.0],
+                                        transform: const GradientRotation(45),
+                                        tileMode: TileMode.clamp
+                                    ),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: ColorsResources.dark.withOpacity(0.179),
+                                        blurRadius: 13.0,
+                                        spreadRadius: 0.3,
+                                        offset: const Offset(3.0, 3.0),
+                                      ),
+                                    ],
                                   ),
-                                  bottom: BorderSide(
-                                    color: ColorsResources.primaryColorLight,
-                                    width: 1,
-                                  ),
-                                  left: BorderSide(
-                                    color: ColorsResources.primaryColorLight,
-                                    width: 1,
-                                  ),
-                                  right: BorderSide(
-                                    color: ColorsResources.primaryColorLight,
-                                    width: 1,
-                                  )
-                              ),
-                              gradient: LinearGradient(
-                                  colors: [
-                                    ColorsResources.primaryColor.withOpacity(0.3),
-                                    ColorsResources.primaryColorLight.withOpacity(0.3),
-                                  ],
-                                  begin: const FractionalOffset(0.0, 0.0),
-                                  end: const FractionalOffset(1.0, 0.0),
-                                  stops: const [0.0, 1.0],
-                                  transform: const GradientRotation(45),
-                                  tileMode: TileMode.clamp
-                              ),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: ColorsResources.dark.withOpacity(0.179),
-                                  blurRadius: 13.0,
-                                  spreadRadius: 0.3,
-                                  offset: const Offset(3.0, 3.0),
-                                ),
-                              ],
-                            ),
-                            child: Stack(
-                              children: [
-                                Blur(
-                                  blur: 3.0,
-                                  borderRadius: BorderRadius.circular(51),
-                                  alignment: AlignmentDirectional.center,
-                                  blurColor: Colors.blue,
-                                  colorOpacity: 0.0,
-                                  child: const SizedBox(
-                                    width: double.infinity,
-                                    height: 53,
-                                  ),
-                                ),
-                                const SizedBox(
-                                    width: double.infinity,
-                                    height: 53,
-                                    child: Align(
-                                      alignment: AlignmentDirectional.center,
-                                      child: Text(
-                                        StringsResources.submitText,
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                            fontSize: 19,
-                                            color: ColorsResources.darkTransparent,
-                                            shadows: [
-                                              Shadow(
-                                                  color: ColorsResources.primaryColorDark,
-                                                  blurRadius: 7.0,
-                                                  offset: Offset(1, 1)
-                                              )
-                                            ]
+                                  child: Stack(
+                                    children: [
+                                      Blur(
+                                        blur: 3.0,
+                                        borderRadius: BorderRadius.circular(51),
+                                        alignment: AlignmentDirectional.center,
+                                        blurColor: Colors.blue,
+                                        colorOpacity: 0.0,
+                                        child: const SizedBox(
+                                          width: double.infinity,
+                                          height: 53,
                                         ),
                                       ),
-                                    )
-                                )
-                              ],
-                            )
-                        ),
+                                      const SizedBox(
+                                          width: double.infinity,
+                                          height: 53,
+                                          child: Align(
+                                            alignment: AlignmentDirectional.center,
+                                            child: Text(
+                                              StringsResources.submitText,
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  fontSize: 19,
+                                                  color: ColorsResources.darkTransparent,
+                                                  shadows: [
+                                                    Shadow(
+                                                        color: ColorsResources.primaryColorDark,
+                                                        blurRadius: 7.0,
+                                                        offset: Offset(1, 1)
+                                                    )
+                                                  ]
+                                              ),
+                                            ),
+                                          )
+                                      )
+                                    ],
+                                  )
+                              ),
+                            ),
+                          ),
+                        )
                       ),
-                    ),
+                      Expanded(
+                        flex: 1,
+                        child: ColoredBox(color: Colors.transparent),
+                      ),
+                      Expanded(
+                        flex: 3,
+                        child: AspectRatio(
+                          aspectRatio: 1,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(51.0),
+                            child: Material(
+                              shadowColor: Colors.transparent,
+                              color: Colors.transparent,
+                              child: InkWell(
+                                splashColor: ColorsResources.applicationGeeksEmpire.withOpacity(0.5),
+                                splashFactory: InkRipple.splashFactory,
+                                onTap: () {
+
+                                  bool noError = true;
+
+                                  if (controllerTransactionSourceCard.text.length < 16) {
+
+                                    setState(() {
+
+                                      warningNoticeSourceCard = StringsResources.errorText;
+
+                                    });
+
+                                    noError = false;
+
+                                  }
+
+                                  if (controllerTransactionTargetCard.text.length < 16) {
+
+                                    setState(() {
+
+                                      warningNoticeTargetCard = StringsResources.errorText;
+
+                                    });
+
+                                    noError = false;
+
+                                  }
+
+                                  if (controllerMoneyAmount.text.isEmpty) {
+
+                                    setState(() {
+
+                                      warningNoticeMoneyAmount = StringsResources.errorText;
+
+                                    });
+
+                                    noError = false;
+
+                                  }
+
+                                  if (controllerTransactionTitle.text.isEmpty) {
+
+                                    setState(() {
+
+                                      warningNoticeTitle = StringsResources.errorText;
+
+                                    });
+
+                                    noError = false;
+
+                                  }
+
+                                  if (controllerTransactionDescription.text.isEmpty) {
+
+                                    setState(() {
+
+                                      warningNoticeDescription = StringsResources.errorText;
+
+                                    });
+
+                                    noError = false;
+
+                                  }
+
+                                  if (controllerTransactionSourceName.text.isEmpty) {
+
+                                    setState(() {
+
+                                      warningNoticeSourceName = StringsResources.errorText;
+
+                                    });
+
+                                    noError = false;
+
+                                  }
+
+                                  if (controllerTransactionSourceBank.text.isEmpty) {
+
+                                    setState(() {
+
+                                      warningNoticeSourceBank = StringsResources.errorText;
+
+                                    });
+
+                                    noError = false;
+
+                                  }
+
+                                  if (controllerTransactionTargetName.text.isEmpty) {
+
+                                    setState(() {
+
+                                      warningNoticeTargetName = StringsResources.errorText;
+
+                                    });
+
+                                    noError = false;
+
+                                  }
+
+                                  if (controllerTransactionTargetBank.text.isEmpty) {
+
+                                    setState(() {
+
+                                      warningNoticeTargetBank = StringsResources.errorText;
+
+                                    });
+
+                                    noError = false;
+
+                                  }
+
+                                  if (controllerBudget.text.isEmpty) {
+
+                                    setState(() {
+
+                                      warningNoticeBudget = StringsResources.errorText;
+
+                                    });
+
+                                    noError = false;
+
+                                  }
+
+                                  if (noError) {
+
+                                    var databaseInputs = TransactionsDatabaseInputs();
+
+                                    TransactionsData transactionData = TransactionsData(
+                                      id: DateTime.now().millisecondsSinceEpoch,
+
+                                      transactionTitle: controllerTransactionTitle.text,
+                                      transactionDescription: controllerTransactionDescription.text,
+
+                                      amountMoney: controllerMoneyAmount.text,
+                                      transactionType: transactionType,
+
+                                      transactionTimeMillisecond: calendarView.pickedDateTime.millisecond,
+                                      transactionTime: calendarView.pickedDataTimeText ?? "",
+                                      transactionTimeYear: calendarView.pickedDataTimeYear,
+                                      transactionTimeMonth: calendarView.pickedDataTimeMonth,
+
+                                      sourceUsername: controllerTransactionSourceName.text,
+                                      sourceBankName: controllerTransactionSourceBank.text,
+                                      sourceCardNumber: controllerTransactionSourceCard.text,
+
+                                      targetUsername: controllerTransactionTargetName.text,
+                                      targetBankName: controllerTransactionTargetBank.text,
+                                      targetCardNumber: controllerTransactionTargetCard.text,
+
+                                      colorTag: colorSelectorView.selectedColor.value,
+
+                                      budgetName: budgetName,
+                                    );
+
+                                    databaseInputs.insertTransactionData(transactionData, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+                                    Fluttertoast.showToast(
+                                        msg: StringsResources.updatedText,
+                                        toastLength: Toast.LENGTH_SHORT,
+                                        gravity: ToastGravity.CENTER,
+                                        timeInSecForIosWeb: 1,
+                                        backgroundColor: ColorsResources.lightTransparent,
+                                        textColor: ColorsResources.dark,
+                                        fontSize: 16.0
+                                    );
+
+                                    processCreditCardsBalance(transactionData);
+
+                                    processBudgetBalance(transactionData);
+
+                                    transactionDataUpdated = true;
+
+                                  }
+
+                                },
+                                child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(51),
+                                          topRight: Radius.circular(51),
+                                          bottomLeft: Radius.circular(51),
+                                          bottomRight: Radius.circular(51)
+                                      ),
+                                      border: const Border(
+                                          top: BorderSide(
+                                            color: ColorsResources.primaryColorLight,
+                                            width: 1,
+                                          ),
+                                          bottom: BorderSide(
+                                            color: ColorsResources.primaryColorLight,
+                                            width: 1,
+                                          ),
+                                          left: BorderSide(
+                                            color: ColorsResources.primaryColorLight,
+                                            width: 1,
+                                          ),
+                                          right: BorderSide(
+                                            color: ColorsResources.primaryColorLight,
+                                            width: 1,
+                                          )
+                                      ),
+                                      gradient: LinearGradient(
+                                          colors: [
+                                            ColorsResources.primaryColor.withOpacity(0.3),
+                                            ColorsResources.primaryColorLight.withOpacity(0.3),
+                                          ],
+                                          begin: const FractionalOffset(0.0, 0.0),
+                                          end: const FractionalOffset(1.0, 0.0),
+                                          stops: const [0.0, 1.0],
+                                          transform: const GradientRotation(45),
+                                          tileMode: TileMode.clamp
+                                      ),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: ColorsResources.dark.withOpacity(0.179),
+                                          blurRadius: 13.0,
+                                          spreadRadius: 0.3,
+                                          offset: const Offset(3.0, 3.0),
+                                        ),
+                                      ],
+                                    ),
+                                    child: Stack(
+                                      children: [
+                                        Blur(
+                                          blur: 3.0,
+                                          borderRadius: BorderRadius.circular(51),
+                                          alignment: AlignmentDirectional.center,
+                                          blurColor: Colors.blue,
+                                          colorOpacity: 0.0,
+                                          child: const SizedBox(
+                                            width: double.infinity,
+                                            height: 53,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                            width: 53,
+                                            height: 53,
+                                            child: Align(
+                                                alignment: AlignmentDirectional.center,
+                                                child: Image(
+                                                  image: AssetImage("quick_save.png"),
+                                                  color: ColorsResources.applicationDarkGeeksEmpire,
+                                                )
+                                            )
+                                        )
+                                      ],
+                                    )
+                                ),
+                              ),
+                            ),
+                          ),
+                        )
+                      )
+                    ],
                   )
                 )
               ],
