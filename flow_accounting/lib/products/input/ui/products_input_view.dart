@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/16/22, 11:23 AM
+ * Last modified 3/17/22, 4:25 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -79,7 +79,15 @@ class _ProductsInputViewState extends State<ProductsInputView> {
 
   bool productDataUpdated = false;
 
-  String? warningNotice;
+  String? warningNoticeName;
+  String? warningNoticeDescription;
+
+  String? warningNoticeCategory;
+
+  String? warningNoticeBrand;
+
+  String? warningNoticeBuyingPrice;
+  String? warningNoticeProfitPercent;
 
   @override
   void dispose() {
@@ -299,7 +307,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorText: warningNotice,
+                                        errorText: warningNoticeName,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.productName,
@@ -393,7 +401,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorText: warningNotice,
+                                        errorText: warningNoticeDescription,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.productDescription,
@@ -528,7 +536,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                                 ),
                                                 gapPadding: 5
                                             ),
-                                            errorText: warningNotice,
+                                            errorText: warningNoticeCategory,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
                                             labelText: StringsResources.productCategory,
@@ -619,7 +627,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorText: warningNotice,
+                                        errorText: warningNoticeBuyingPrice,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.productBuyingPrice,
@@ -709,7 +717,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorText: warningNotice,
+                                        errorText: warningNoticeProfitPercent,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.productProfitPercent,
@@ -867,7 +875,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                                 ),
                                                 gapPadding: 5
                                             ),
-                                            errorText: warningNotice,
+                                            errorText: warningNoticeBrand,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
                                             labelText: StringsResources.productBrand,
@@ -985,7 +993,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
 
                               setState(() {
 
-                                warningNotice = StringsResources.errorText;
+                                warningNoticeName= StringsResources.errorText;
 
                               });
 
@@ -997,7 +1005,19 @@ class _ProductsInputViewState extends State<ProductsInputView> {
 
                               setState(() {
 
-                                warningNotice = StringsResources.errorText;
+                                warningNoticeDescription = StringsResources.errorText;
+
+                              });
+
+                              noError = false;
+
+                            }
+
+                            if (controllerProductCategory.text.isEmpty) {
+
+                              setState(() {
+
+                                warningNoticeCategory = StringsResources.errorText;
 
                               });
 
@@ -1009,7 +1029,31 @@ class _ProductsInputViewState extends State<ProductsInputView> {
 
                               setState(() {
 
-                                warningNotice = StringsResources.errorText;
+                                warningNoticeBuyingPrice = StringsResources.errorText;
+
+                              });
+
+                              noError = false;
+
+                            }
+
+                            if (controllerProductProfitPercent.text.isEmpty) {
+
+                              setState(() {
+
+                                warningNoticeProfitPercent = StringsResources.errorText;
+
+                              });
+
+                              noError = false;
+
+                            }
+
+                            if (controllerProductBrand.text.isEmpty) {
+
+                              setState(() {
+
+                                warningNoticeBrand = StringsResources.errorText;
 
                               });
 
