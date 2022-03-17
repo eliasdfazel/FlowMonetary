@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/16/22, 11:28 AM
+ * Last modified 3/17/22, 6:15 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -143,10 +143,11 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
                   GridView(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
+                      childAspectRatio: 0.7,
                       crossAxisSpacing: 5.0,
                       mainAxisSpacing: 5.0,
                     ),
-                    padding: const EdgeInsets.fromLTRB(0, 73, 0, 79),
+                    padding: const EdgeInsets.fromLTRB(0, 179, 0, 79),
                     physics: const BouncingScrollPhysics(),
                     children: allListContentWidgets,
                   ),
@@ -497,19 +498,6 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
             label: StringsResources.deleteText,
             autoClose: true,
           ),
-          SlidableAction(
-            flex: 1,
-            onPressed: (BuildContext context) {
-
-              editProduct(context, productsData);
-
-            },
-            backgroundColor: Colors.transparent,
-            foregroundColor: ColorsResources.applicationGeeksEmpire,
-            icon: Icons.edit_rounded,
-            label: StringsResources.editText,
-            autoClose: true,
-          ),
         ],
       ),
       child: Padding(
@@ -547,7 +535,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
                 ),
               ),
               child: SizedBox(
-                height: 197,
+                height: 301,
                 width: double.infinity,
                 child: ColoredBox(color: Colors.lime),
               ),
