@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/17/22, 3:42 AM
+ * Last modified 3/17/22, 4:07 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -71,7 +71,20 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
   bool transactionDataUpdated = false;
 
-  String? warningNotice;
+  String? warningNoticeMoneyAmount;
+
+  String? warningNoticeTitle;
+  String? warningNoticeDescription;
+
+  String? warningNoticeSourceName;
+  String? warningNoticeSourceBank;
+  String? warningNoticeSourceCard;
+
+  String? warningNoticeTargetName;
+  String? warningNoticeTargetBank;
+  String? warningNoticeTargetCard;
+
+  String? warningNoticeBudget;
 
   @override
   void initState() {
@@ -246,7 +259,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorText: warningNotice,
+                                        errorText: warningNoticeTitle,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.titleText,
@@ -340,7 +353,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorText: warningNotice,
+                                        errorText: warningNoticeDescription,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.descriptionText,
@@ -430,7 +443,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorText: warningNotice,
+                                        errorText: warningNoticeMoneyAmount,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.transactionAmount,
@@ -753,7 +766,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                                 ),
                                                 gapPadding: 5
                                             ),
-                                            errorText: warningNotice,
+                                            errorText: warningNoticeTargetName,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
                                             labelText: StringsResources.transactionTargetName,
@@ -898,7 +911,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                                 ),
                                                 gapPadding: 5
                                             ),
-                                            errorText: warningNotice,
+                                            errorText: warningNoticeSourceName,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
                                             labelText: StringsResources.transactionSourceName,
@@ -1056,7 +1069,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                                 ),
                                                 gapPadding: 5
                                             ),
-                                            errorText: warningNotice,
+                                            errorText: warningNoticeTargetBank,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
                                             labelText: StringsResources.transactionTargetBank,
@@ -1201,7 +1214,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                                 ),
                                                 gapPadding: 5
                                             ),
-                                            errorText: warningNotice,
+                                            errorText: warningNoticeSourceBank,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
                                             labelText: StringsResources.transactionSourceBank,
@@ -1327,7 +1340,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                                 ),
                                                 gapPadding: 5
                                             ),
-                                            errorText: warningNotice,
+                                            errorText: warningNoticeSourceCard,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
                                             labelText: StringsResources.transactionSourceCard,
@@ -1453,7 +1466,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                                 ),
                                                 gapPadding: 5
                                             ),
-                                            errorText: warningNotice,
+                                            errorText: warningNoticeTargetCard,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
                                             labelText: StringsResources.transactionTargetCard,
@@ -1612,7 +1625,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                                 ),
                                                 gapPadding: 5
                                             ),
-                                            errorText: warningNotice,
+                                            errorText: warningNoticeBudget,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
                                             labelText: StringsResources.transactionBudgetName,
@@ -1732,7 +1745,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
                             setState(() {
 
-                              warningNotice = StringsResources.errorText;
+                              warningNoticeSourceCard = StringsResources.errorText;
 
                             });
 
@@ -1744,7 +1757,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
                             setState(() {
 
-                              warningNotice = StringsResources.errorText;
+                              warningNoticeTargetCard = StringsResources.errorText;
 
                             });
 
@@ -1756,7 +1769,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
                             setState(() {
 
-                              warningNotice = StringsResources.errorText;
+                              warningNoticeMoneyAmount = StringsResources.errorText;
 
                             });
 
@@ -1768,7 +1781,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
                             setState(() {
 
-                              warningNotice = StringsResources.errorText;
+                              warningNoticeTitle = StringsResources.errorText;
 
                             });
 
@@ -1780,7 +1793,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
                             setState(() {
 
-                              warningNotice = StringsResources.errorText;
+                              warningNoticeDescription = StringsResources.errorText;
 
                             });
 
@@ -1792,7 +1805,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
                             setState(() {
 
-                              warningNotice = StringsResources.errorText;
+                              warningNoticeSourceName = StringsResources.errorText;
 
                             });
 
@@ -1804,7 +1817,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
                             setState(() {
 
-                              warningNotice = StringsResources.errorText;
+                              warningNoticeSourceBank = StringsResources.errorText;
 
                             });
 
@@ -1816,7 +1829,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
                             setState(() {
 
-                              warningNotice = StringsResources.errorText;
+                              warningNoticeTargetName = StringsResources.errorText;
 
                             });
 
@@ -1828,7 +1841,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
                             setState(() {
 
-                              warningNotice = StringsResources.errorText;
+                              warningNoticeTargetBank = StringsResources.errorText;
 
                             });
 
@@ -1840,7 +1853,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
                             setState(() {
 
-                              warningNotice = StringsResources.errorText;
+                              warningNoticeBudget = StringsResources.errorText;
 
                             });
 
