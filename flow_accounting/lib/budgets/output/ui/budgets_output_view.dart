@@ -1,4 +1,14 @@
 
+/*
+ * Copyright © 2022 By Geeks Empire.
+ *
+ * Created by Elias Fazel
+ * Last modified 3/17/22, 3:23 AM
+ *
+ * Licensed Under MIT License.
+ * https://opensource.org/licenses/MIT
+ */
+
 import 'package:blur/blur.dart';
 import 'package:flow_accounting/budgets/database/io/inputs.dart';
 import 'package:flow_accounting/budgets/database/io/queries.dart';
@@ -13,6 +23,7 @@ import 'package:flow_accounting/utils/navigations/navigations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:marquee/marquee.dart';
+import 'package:sqflite/sqflite.dart';
 
 class BudgetsOutputView extends StatefulWidget {
   const BudgetsOutputView({Key? key}) : super(key: key);
@@ -607,11 +618,23 @@ class _BudgetOutputViewState extends State<BudgetsOutputView> {
 
   void deleteBudget(BuildContext context, BudgetsData budgetsData) async {
 
-    var databaseQueries = BudgetsDatabaseQueries();
+    String databaseDirectory = await getDatabasesPath();
 
-    databaseQueries.queryDeleteBudget(budgetsData.id, BudgetsDatabaseInputs.databaseTableName, UserInformation.UserId);
+    String budgetDatabasePath = "${databaseDirectory}/${BudgetsDatabaseInputs.budgetsDatabase}";
 
-    retrieveAllBudgets(context);
+    bool budgetDatabaseExist = await databaseExists(budgetDatabasePath);
+
+    if (budgetDatabaseExist) {
+
+      var databaseQueries = BudgetsDatabaseQueries();
+
+      databaseQueries.queryDeleteBudget(
+          budgetsData.id, BudgetsDatabaseInputs.databaseTableName,
+          UserInformation.UserId);
+
+      retrieveAllBudgets(context);
+
+    }
 
   }
 
@@ -639,25 +662,35 @@ class _BudgetOutputViewState extends State<BudgetsOutputView> {
 
     }
 
-    List<Widget> preparedAllBudgetsItem = [];
+    String databaseDirectory = await getDatabasesPath();
 
-    var databaseQueries = BudgetsDatabaseQueries();
+    String budgetDatabasePath = "${databaseDirectory}/${BudgetsDatabaseInputs.budgetsDatabase}";
 
-    allBudgets = await databaseQueries.getAllBudgets(BudgetsDatabaseInputs.databaseTableName, UserInformation.UserId);
+    bool budgetDatabaseExist = await databaseExists(budgetDatabasePath);
 
-    for (var element in allBudgets) {
+    if (budgetDatabaseExist) {
 
-      preparedAllBudgetsItem.add(outputItem(context, element));
+      List<Widget> preparedAllBudgetsItem = [];
+
+      var databaseQueries = BudgetsDatabaseQueries();
+
+      allBudgets = await databaseQueries.getAllBudgets(BudgetsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+      for (var element in allBudgets) {
+
+        preparedAllBudgetsItem.add(outputItem(context, element));
+
+      }
+
+      colorSelectorInitialized = false;
+
+      setState(() {
+
+        allBudgetsItems = preparedAllBudgetsItem;
+
+      });
 
     }
-
-    colorSelectorInitialized = false;
-
-    setState(() {
-
-      allBudgetsItems = preparedAllBudgetsItem;
-
-    });
 
   }
 

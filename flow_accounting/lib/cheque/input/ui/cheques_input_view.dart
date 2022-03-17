@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/13/22, 8:34 AM
+ * Last modified 3/17/22, 3:23 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -37,6 +37,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:sqflite/sqflite.dart';
 
 class ChequesInputView extends StatefulWidget {
 
@@ -2763,13 +2764,23 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
     List<CustomersData> listOfCustomers = [];
 
-    CustomersDatabaseQueries customersDatabaseQueries = CustomersDatabaseQueries();
+    String databaseDirectory = await getDatabasesPath();
 
-    var retrievedCustomers = await customersDatabaseQueries.getAllCustomers(CustomersDatabaseInputs.databaseTableName, UserInformation.UserId);
+    String customerDatabasePath = "${databaseDirectory}/${CustomersDatabaseInputs.customersDatabase}";
 
-    if (retrievedCustomers.isNotEmpty) {
+    bool customerDatabaseExist = await databaseExists(customerDatabasePath);
 
-      listOfCustomers.addAll(retrievedCustomers);
+    if (customerDatabaseExist) {
+
+      CustomersDatabaseQueries customersDatabaseQueries = CustomersDatabaseQueries();
+
+      var retrievedCustomers = await customersDatabaseQueries.getAllCustomers(CustomersDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+      if (retrievedCustomers.isNotEmpty) {
+
+        listOfCustomers.addAll(retrievedCustomers);
+
+      }
 
     }
 
@@ -2785,13 +2796,23 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
     List<BudgetsData> listOfBudgets = [];
 
-    BudgetsDatabaseQueries budgetsDatabaseQueries = BudgetsDatabaseQueries();
+    String databaseDirectory = await getDatabasesPath();
 
-    var retrievedBudgets = await budgetsDatabaseQueries.getAllBudgets(BudgetsDatabaseInputs.databaseTableName, UserInformation.UserId);
+    String budgetDatabasePath = "${databaseDirectory}/${BudgetsDatabaseInputs.budgetsDatabase}";
 
-    if (retrievedBudgets.isNotEmpty) {
+    bool budgetDatabaseExist = await databaseExists(budgetDatabasePath);
 
-      listOfBudgets.addAll(retrievedBudgets);
+    if (budgetDatabaseExist) {
+
+      BudgetsDatabaseQueries budgetsDatabaseQueries = BudgetsDatabaseQueries();
+
+      var retrievedBudgets = await budgetsDatabaseQueries.getAllBudgets(BudgetsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+      if (retrievedBudgets.isNotEmpty) {
+
+        listOfBudgets.addAll(retrievedBudgets);
+
+      }
 
     }
 
@@ -2877,49 +2898,69 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
     if (chequesData.chequeTransactionType == ChequesData.TransactionType_Send) {
 
-      var budgetsDatabaseQueries = BudgetsDatabaseQueries();
+      String databaseDirectory = await getDatabasesPath();
 
-      var budgetData = await budgetsDatabaseQueries.extractBudgetsQuery(
-          await budgetsDatabaseQueries.querySpecificBudgetsByName(controllerChequeSourceAccount.text, CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId)
-      );
+      String budgetDatabasePath = "${databaseDirectory}/${BudgetsDatabaseInputs.budgetsDatabase}";
 
-      var newBudgetBalance = (int.parse(budgetData.budgetBalance) - int.parse(chequesData.chequeMoneyAmount)).toString();
+      bool budgetDatabaseExist = await databaseExists(budgetDatabasePath);
 
-      var budgetsDatabaseInputs = BudgetsDatabaseInputs();
+      if (budgetDatabaseExist) {
 
-      budgetsDatabaseInputs.updateBudgetData(
-          BudgetsData(
-              id: budgetData.id,
-              budgetName: budgetData.budgetName,
-              budgetDescription: budgetData.budgetDescription,
-              budgetBalance: newBudgetBalance,
-              colorTag: budgetData.colorTag
-          ),
-          CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId
-      );
+        var budgetsDatabaseQueries = BudgetsDatabaseQueries();
+
+        var budgetData = await budgetsDatabaseQueries.extractBudgetsQuery(
+            await budgetsDatabaseQueries.querySpecificBudgetsByName(controllerChequeSourceAccount.text, CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId)
+        );
+
+        var newBudgetBalance = (int.parse(budgetData.budgetBalance) - int.parse(chequesData.chequeMoneyAmount)).toString();
+
+        var budgetsDatabaseInputs = BudgetsDatabaseInputs();
+
+        budgetsDatabaseInputs.updateBudgetData(
+            BudgetsData(
+                id: budgetData.id,
+                budgetName: budgetData.budgetName,
+                budgetDescription: budgetData.budgetDescription,
+                budgetBalance: newBudgetBalance,
+                colorTag: budgetData.colorTag
+            ),
+            CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId
+        );
+
+      }
 
     } else if (transactionType == ChequesData.TransactionType_Receive) {
 
-      var budgetsDatabaseQueries = BudgetsDatabaseQueries();
+      String databaseDirectory = await getDatabasesPath();
 
-      var budgetData = await budgetsDatabaseQueries.extractBudgetsQuery(
-          await budgetsDatabaseQueries.querySpecificBudgetsByName(controllerChequeSourceAccount.text, CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId)
-      );
+      String budgetDatabasePath = "${databaseDirectory}/${BudgetsDatabaseInputs.budgetsDatabase}";
 
-      var newBudgetBalance = (int.parse(budgetData.budgetBalance) + int.parse(chequesData.chequeMoneyAmount)).toString();
+      bool budgetDatabaseExist = await databaseExists(budgetDatabasePath);
 
-      var budgetsDatabaseInputs = BudgetsDatabaseInputs();
+      if (budgetDatabaseExist) {
 
-      budgetsDatabaseInputs.updateBudgetData(
-          BudgetsData(
-              id: budgetData.id,
-              budgetName: budgetData.budgetName,
-              budgetDescription: budgetData.budgetDescription,
-              budgetBalance: newBudgetBalance,
-              colorTag: budgetData.colorTag
-          ),
-          CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId
-      );
+        var budgetsDatabaseQueries = BudgetsDatabaseQueries();
+
+        var budgetData = await budgetsDatabaseQueries.extractBudgetsQuery(
+            await budgetsDatabaseQueries.querySpecificBudgetsByName(controllerChequeSourceAccount.text, CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId)
+        );
+
+        var newBudgetBalance = (int.parse(budgetData.budgetBalance) + int.parse(chequesData.chequeMoneyAmount)).toString();
+
+        var budgetsDatabaseInputs = BudgetsDatabaseInputs();
+
+        budgetsDatabaseInputs.updateBudgetData(
+            BudgetsData(
+                id: budgetData.id,
+                budgetName: budgetData.budgetName,
+                budgetDescription: budgetData.budgetDescription,
+                budgetBalance: newBudgetBalance,
+                colorTag: budgetData.colorTag
+            ),
+            CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId
+        );
+
+      }
 
     }
 

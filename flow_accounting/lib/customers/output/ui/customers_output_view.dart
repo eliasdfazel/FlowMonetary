@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/2/22, 10:04 AM
+ * Last modified 3/17/22, 3:16 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -21,6 +21,7 @@ import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:sqflite/sqflite.dart';
 
 class CustomersOutputView extends StatefulWidget {
   const CustomersOutputView({Key? key}) : super(key: key);
@@ -715,11 +716,21 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
 
   void deleteCustomer(BuildContext context, CustomersData customersData) async {
 
-    var databaseQueries = CustomersDatabaseQueries();
+    String databaseDirectory = await getDatabasesPath();
 
-    databaseQueries.queryDeleteCustomer(customersData.id, CustomersDatabaseInputs.databaseTableName, UserInformation.UserId);
+    String customerDatabasePath = "${databaseDirectory}/${CustomersDatabaseInputs.customersDatabase}";
 
-    retrieveAllCustomers(context);
+    bool customerDatabaseExist = await databaseExists(customerDatabasePath);
+
+    if (customerDatabaseExist) {
+
+      var databaseQueries = CustomersDatabaseQueries();
+
+      databaseQueries.queryDeleteCustomer(customersData.id, CustomersDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+      retrieveAllCustomers(context);
+
+    }
 
   }
 
@@ -747,25 +758,35 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
 
     }
 
-    List<Widget> preparedAllBudgetsItem = [];
+    String databaseDirectory = await getDatabasesPath();
 
-    var databaseQueries = CustomersDatabaseQueries();
+    String customerDatabasePath = "${databaseDirectory}/${CustomersDatabaseInputs.customersDatabase}";
 
-    allCustomers = await databaseQueries.getAllCustomers(CustomersDatabaseInputs.databaseTableName, UserInformation.UserId);
+    bool customerDatabaseExist = await databaseExists(customerDatabasePath);
 
-    for (var element in allCustomers) {
+    if (customerDatabaseExist) {
 
-      preparedAllBudgetsItem.add(outputItem(context, element));
+      List<Widget> preparedAllBudgetsItem = [];
+
+      var databaseQueries = CustomersDatabaseQueries();
+
+      allCustomers = await databaseQueries.getAllCustomers(CustomersDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+      for (var element in allCustomers) {
+
+        preparedAllBudgetsItem.add(outputItem(context, element));
+
+      }
+
+      colorSelectorInitialized = false;
+
+      setState(() {
+
+        allCustomersItems = preparedAllBudgetsItem;
+
+      });
 
     }
-
-    colorSelectorInitialized = false;
-
-    setState(() {
-
-      allCustomersItems = preparedAllBudgetsItem;
-
-    });
 
   }
 

@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/23/22, 4:13 AM
+ * Last modified 3/17/22, 3:23 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -33,6 +33,7 @@ import 'package:flow_accounting/utils/extensions/BankLogos.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:sqflite/sqflite.dart';
 
 class TransactionsEditView extends StatefulWidget {
 
@@ -1885,13 +1886,23 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
 
     List<CustomersData> listOfCustomers = [];
 
-    CustomersDatabaseQueries customersDatabaseQueries = CustomersDatabaseQueries();
+    String databaseDirectory = await getDatabasesPath();
 
-    var retrievedCustomers = await customersDatabaseQueries.getAllCustomers(CustomersDatabaseInputs.databaseTableName, UserInformation.UserId);
+    String customerDatabasePath = "${databaseDirectory}/${CustomersDatabaseInputs.customersDatabase}";
 
-    if (retrievedCustomers.isNotEmpty) {
+    bool customerDatabaseExist = await databaseExists(customerDatabasePath);
 
-      listOfCustomers.addAll(retrievedCustomers);
+    if (customerDatabaseExist) {
+
+      CustomersDatabaseQueries customersDatabaseQueries = CustomersDatabaseQueries();
+
+      var retrievedCustomers = await customersDatabaseQueries.getAllCustomers(CustomersDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+      if (retrievedCustomers.isNotEmpty) {
+
+        listOfCustomers.addAll(retrievedCustomers);
+
+      }
 
     }
 
@@ -1907,13 +1918,23 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
 
     List<BudgetsData> listOfBudgets = [];
 
-    BudgetsDatabaseQueries budgetsDatabaseQueries = BudgetsDatabaseQueries();
+    String databaseDirectory = await getDatabasesPath();
 
-    var retrievedBudgets = await budgetsDatabaseQueries.getAllBudgets(BudgetsDatabaseInputs.databaseTableName, UserInformation.UserId);
+    String budgetDatabasePath = "${databaseDirectory}/${BudgetsDatabaseInputs.budgetsDatabase}";
 
-    if (retrievedBudgets.isNotEmpty) {
+    bool budgetDatabaseExist = await databaseExists(budgetDatabasePath);
 
-      listOfBudgets.addAll(retrievedBudgets);
+    if (budgetDatabaseExist) {
+
+      BudgetsDatabaseQueries budgetsDatabaseQueries = BudgetsDatabaseQueries();
+
+      var retrievedBudgets = await budgetsDatabaseQueries.getAllBudgets(BudgetsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+      if (retrievedBudgets.isNotEmpty) {
+
+        listOfBudgets.addAll(retrievedBudgets);
+
+      }
 
     }
 
