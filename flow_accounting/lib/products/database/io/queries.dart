@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/19/22, 5:57 AM
+ * Last modified 3/19/22, 6:34 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -46,7 +46,7 @@ class ProductsDatabaseQueries {
         productPrice: maps[i]['productPrice'],
         productProfitPercent: maps[i]['productProfitPercent'],
 
-        productQuantity: maps[i]['productQuantity'],
+        productQuantity: int.parse(maps[i]['productQuantity'].toString()),
 
         colorTag: int.parse(maps[i]['colorTag'].toString()),
       );
