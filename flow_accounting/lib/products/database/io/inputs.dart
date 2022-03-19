@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/16/22, 6:57 AM
+ * Last modified 3/19/22, 5:57 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -39,6 +39,7 @@ class ProductsDatabaseInputs {
                 'productBrandLogoUrl TEXT, '
                 'productPrice TEXT, '
                 'productProfitPercent TEXT, '
+                'productQuantity TEXT, '
                 'colorTag TEXT'
                 ')',
           );

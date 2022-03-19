@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/17/22, 8:02 AM
+ * Last modified 3/19/22, 6:10 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -51,6 +51,8 @@ class _ProductsInputViewState extends State<ProductsInputView> {
 
   TextEditingController controllerProductBuyingPrice = TextEditingController();
   TextEditingController controllerProductProfitPercent = TextEditingController();
+  
+  TextEditingController controllerProductQuantity = TextEditingController();
 
   String productImageUrl = "";
 
@@ -111,6 +113,8 @@ class _ProductsInputViewState extends State<ProductsInputView> {
 
     controllerProductBuyingPrice.text = widget.productsData?.productPrice == null ? "0" : (widget.productsData?.productPrice)!;
     controllerProductProfitPercent.text = widget.productsData?.productProfitPercent == null ? "0" : (widget.productsData?.productProfitPercent)!;
+
+    controllerProductQuantity.text = widget.productsData?.productQuantity == null ? "0" : (widget.productsData?.productQuantity.toString())!;
 
     colorSelectorView.inputColor = Color(widget.productsData?.colorTag ?? Colors.white.value);
 
@@ -432,6 +436,83 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
+                            Expanded(
+                              flex: 1,
+                              child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                  child: Directionality(
+                                    textDirection: TextDirection.rtl,
+                                    child: TextField(
+                                      controller: controllerProductQuantity,
+                                      textAlign: TextAlign.right,
+                                      textDirection: TextDirection.ltr,
+                                      textAlignVertical: TextAlignVertical.bottom,
+                                      maxLines: 1,
+                                      cursorColor: ColorsResources.primaryColor,
+                                      autocorrect: true,
+                                      autofocus: false,
+                                      keyboardType: TextInputType.number,
+                                      textInputAction: TextInputAction.next,
+                                      decoration: InputDecoration(
+                                        alignLabelWithHint: true,
+                                        border: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        enabledBorder: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        focusedBorder: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        errorBorder: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.red, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        errorText: warningNoticeName,
+                                        filled: true,
+                                        fillColor: ColorsResources.lightTransparent,
+                                        labelText: StringsResources.productQuantity,
+                                        labelStyle: const TextStyle(
+                                            color: ColorsResources.dark,
+                                            fontSize: 17.0
+                                        ),
+                                        hintText: StringsResources.productQuantityHint,
+                                        hintStyle: const TextStyle(
+                                            color: ColorsResources.darkTransparent,
+                                            fontSize: 17.0
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                              ),
+                            ),
                             Expanded(
                               flex: 1,
                               child: Padding(
@@ -1096,6 +1177,8 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                         productPrice: controllerProductBuyingPrice.text,
                                         productProfitPercent: "${controllerProductProfitPercent.text}%",
 
+                                        productQuantity: int.parse(controllerProductQuantity.text),
+                                        
                                         colorTag: colorSelectorView.selectedColor.value
                                     );
 
@@ -1337,6 +1420,8 @@ class _ProductsInputViewState extends State<ProductsInputView> {
 
                                             productPrice: controllerProductBuyingPrice.text,
                                             productProfitPercent: "${controllerProductProfitPercent.text}%",
+
+                                            productQuantity: int.parse(controllerProductQuantity.text),
 
                                             colorTag: colorSelectorView.selectedColor.value
                                         );

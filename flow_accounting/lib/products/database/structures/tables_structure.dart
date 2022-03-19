@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/16/22, 6:57 AM
+ * Last modified 3/19/22, 5:57 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -27,6 +27,8 @@ class ProductsData {
   final String productPrice;
   final String productProfitPercent;
 
+  int productQuantity = 0;
+
   int colorTag = ColorsResources.dark.value;
 
   ProductsData({
@@ -44,6 +46,8 @@ class ProductsData {
 
     required this.productPrice,
     required this.productProfitPercent,
+
+    required this.productQuantity,
 
     required this.colorTag,
   });
@@ -64,6 +68,8 @@ class ProductsData {
 
       'productPrice': productPrice,
       'productProfitPercent': productProfitPercent,
+
+      'productQuantity': productQuantity,
 
       'colorTag': colorTag,
     };
@@ -86,6 +92,8 @@ class ProductsData {
 
       'productPrice: $productPrice,'
       'productProfitPercent: $productProfitPercent,'
+
+      'productQuantity: $productQuantity,'
 
       'colorTag: $colorTag,'
     '}';
