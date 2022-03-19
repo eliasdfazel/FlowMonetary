@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/17/22, 4:18 AM
+ * Last modified 3/19/22, 6:18 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -3057,7 +3057,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
   Future addChequeReminder(DateTime reminderTime, String chequeTitle, String chequeDescription, String bankNameBranch) async {
 
-    Add2Calendar.addEvent2Cal(Event(
+    bool eventAdded = await Add2Calendar.addEvent2Cal(Event(
         title: chequeTitle,
         description: chequeDescription,
         location: bankNameBranch,
@@ -3074,9 +3074,10 @@ class _ChequeInputViewState extends State<ChequesInputView> {
           frequency: Frequency.monthly,
           interval: 1,
           ocurrences: 3,
-          endDate: reminderTime,
         )
     ));
+
+    debugPrint("Event Added: ${eventAdded}");
 
   }
 
