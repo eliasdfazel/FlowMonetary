@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/19/22, 6:44 AM
+ * Last modified 3/19/22, 7:53 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -278,108 +278,111 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
                     right: 11,
                     child: Align(
                         alignment: Alignment.center,
-                        child: SizedBox(
-                          height: 73,
-                          width: 219,
-                          child: Stack(
-                            children: [
-                              const Image(
-                                image: AssetImage("search_shape.png"),
-                                height: 73,
-                                width: 213,
-                                color: ColorsResources.primaryColorDark,
-                              ),
-                              Align(
-                                alignment: Alignment.centerRight,
-                                child: InkWell(
-                                  onTap: () {
+                        child: Transform.scale(
+                          scale: 1.1,
+                          child: SizedBox(
+                            height: 73,
+                            width: 219,
+                            child: Stack(
+                              children: [
+                                const Image(
+                                  image: AssetImage("search_shape.png"),
+                                  height: 73,
+                                  width: 213,
+                                  color: ColorsResources.primaryColorDark,
+                                ),
+                                Align(
+                                  alignment: Alignment.centerRight,
+                                  child: InkWell(
+                                    onTap: () {
 
-                                    String searchQuery = textEditorControllerQuery.text;
+                                      String searchQuery = textEditorControllerQuery.text;
 
-                                    searchCheques(context, allCheques, searchQuery);
+                                      searchCheques(context, allCheques, searchQuery);
 
-                                  },
-                                  child: const SizedBox(
-                                    height: 71,
-                                    width: 53,
-                                    child: Icon(
-                                      Icons.search_rounded,
-                                      size: 23,
-                                      color: ColorsResources.darkTransparent,
+                                    },
+                                    child: const SizedBox(
+                                      height: 71,
+                                      width: 53,
+                                      child: Icon(
+                                        Icons.search_rounded,
+                                        size: 23,
+                                        color: ColorsResources.darkTransparent,
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                              Align(
-                                alignment: Alignment.centerLeft,
-                                child: SizedBox(
-                                    width: 153,
-                                    height: 47,
-                                    child: Directionality(
-                                      textDirection: TextDirection.rtl,
-                                      child: TextField(
-                                        controller: textEditorControllerQuery,
-                                        textAlign: TextAlign.right,
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: SizedBox(
+                                      width: 153,
+                                      height: 47,
+                                      child: Directionality(
                                         textDirection: TextDirection.rtl,
-                                        textAlignVertical: TextAlignVertical.bottom,
-                                        maxLines: 1,
-                                        cursorColor: ColorsResources.primaryColor,
-                                        autocorrect: true,
-                                        autofocus: false,
-                                        keyboardType: TextInputType.text,
-                                        textInputAction: TextInputAction.search,
-                                        onSubmitted: (searchQuery) {
+                                        child: TextField(
+                                          controller: textEditorControllerQuery,
+                                          textAlign: TextAlign.right,
+                                          textDirection: TextDirection.rtl,
+                                          textAlignVertical: TextAlignVertical.bottom,
+                                          maxLines: 1,
+                                          cursorColor: ColorsResources.primaryColor,
+                                          autocorrect: true,
+                                          autofocus: false,
+                                          keyboardType: TextInputType.text,
+                                          textInputAction: TextInputAction.search,
+                                          onSubmitted: (searchQuery) {
 
-                                          searchCheques(context, allCheques, searchQuery);
+                                            searchCheques(context, allCheques, searchQuery);
 
-                                        },
-                                        decoration: const InputDecoration(
-                                          border: OutlineInputBorder(
-                                              borderSide: BorderSide(color: Colors.transparent, width: 1.0),
-                                              borderRadius: BorderRadius.only(
-                                                  topLeft: Radius.circular(51),
-                                                  topRight: Radius.circular(51),
-                                                  bottomLeft: Radius.circular(51),
-                                                  bottomRight: Radius.circular(51)
-                                              ),
-                                              gapPadding: 5
-                                          ),
-                                          focusedBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(color: Colors.transparent, width: 1.0),
-                                              borderRadius: BorderRadius.only(
-                                                  topLeft: Radius.circular(51),
-                                                  topRight: Radius.circular(51),
-                                                  bottomLeft: Radius.circular(51),
-                                                  bottomRight: Radius.circular(51)
-                                              ),
-                                              gapPadding: 5
-                                          ),
-                                          enabledBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(color: Colors.transparent, width: 1.0),
-                                              borderRadius: BorderRadius.only(
-                                                  topLeft: Radius.circular(51),
-                                                  topRight: Radius.circular(51),
-                                                  bottomLeft: Radius.circular(51),
-                                                  bottomRight: Radius.circular(51)
-                                              ),
-                                              gapPadding: 5
-                                          ),
-                                          hintText: StringsResources.searchHintText,
-                                          hintStyle: TextStyle(
-                                              color: ColorsResources.darkTransparent,
-                                              fontSize: 13.0
-                                          ),
-                                          labelText: StringsResources.searchText,
-                                          labelStyle: TextStyle(
-                                              color: ColorsResources.dark,
-                                              fontSize: 15.0
+                                          },
+                                          decoration: const InputDecoration(
+                                            border: OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.transparent, width: 1.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(51),
+                                                    topRight: Radius.circular(51),
+                                                    bottomLeft: Radius.circular(51),
+                                                    bottomRight: Radius.circular(51)
+                                                ),
+                                                gapPadding: 5
+                                            ),
+                                            focusedBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.transparent, width: 1.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(51),
+                                                    topRight: Radius.circular(51),
+                                                    bottomLeft: Radius.circular(51),
+                                                    bottomRight: Radius.circular(51)
+                                                ),
+                                                gapPadding: 5
+                                            ),
+                                            enabledBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.transparent, width: 1.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(51),
+                                                    topRight: Radius.circular(51),
+                                                    bottomLeft: Radius.circular(51),
+                                                    bottomRight: Radius.circular(51)
+                                                ),
+                                                gapPadding: 5
+                                            ),
+                                            hintText: StringsResources.searchHintText,
+                                            hintStyle: TextStyle(
+                                                color: ColorsResources.darkTransparent,
+                                                fontSize: 13.0
+                                            ),
+                                            labelText: StringsResources.searchText,
+                                            labelStyle: TextStyle(
+                                                color: ColorsResources.dark,
+                                                fontSize: 15.0
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    )
-                                ),
-                              )
-                            ],
+                                      )
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                         )
                     ),
