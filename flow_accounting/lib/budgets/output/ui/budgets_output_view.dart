@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/17/22, 3:23 AM
+ * Last modified 3/19/22, 6:44 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -360,7 +360,7 @@ class _BudgetOutputViewState extends State<BudgetsOutputView> {
                                               ),
                                               gapPadding: 5
                                           ),
-                                          hintText: StringsResources.searchTransactionsText,
+                                          hintText: StringsResources.searchHintText,
                                           hintStyle: TextStyle(
                                               color: ColorsResources.darkTransparent,
                                               fontSize: 13.0

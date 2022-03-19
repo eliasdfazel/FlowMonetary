@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/17/22, 9:59 AM
+ * Last modified 3/19/22, 7:11 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -356,7 +356,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
                       )
                   ),
                   Positioned(
-                    top: 59,
+                    top: 67,
                     left: 13,
                     right: 13,
                     child: colorSelectorView,
@@ -367,109 +367,112 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
                     right: 11,
                     child: Align(
                         alignment: Alignment.center,
-                        child: SizedBox(
-                          height: 73,
-                          width: 219,
-                          child: Stack(
-                            children: [
-                              const Image(
-                                image: AssetImage("search_shape.png"),
-                                height: 73,
-                                width: 213,
-                                color: ColorsResources.primaryColorDark,
-                              ),
-                              Align(
-                                alignment: Alignment.centerRight,
-                                child: InkWell(
-                                  onTap: () {
+                        child: Transform.scale(
+                          scale: 1.1,
+                          child: SizedBox(
+                            height: 73,
+                            width: 219,
+                            child: Stack(
+                              children: [
+                                const Image(
+                                  image: AssetImage("search_shape.png"),
+                                  height: 73,
+                                  width: 213,
+                                  color: ColorsResources.primaryColorDark,
+                                ),
+                                Align(
+                                  alignment: Alignment.centerRight,
+                                  child: InkWell(
+                                    onTap: () {
 
-                                    String searchQuery = textEditorControllerQuery.text;
+                                      String searchQuery = textEditorControllerQuery.text;
 
-                                    searchProducts(context, allProducts, searchQuery);
+                                      searchProducts(context, allProducts, searchQuery);
 
-                                  },
-                                  child: const SizedBox(
-                                    height: 71,
-                                    width: 53,
-                                    child: Icon(
-                                      Icons.search_rounded,
-                                      size: 23,
-                                      color: ColorsResources.darkTransparent,
+                                    },
+                                    child: const SizedBox(
+                                      height: 71,
+                                      width: 53,
+                                      child: Icon(
+                                        Icons.search_rounded,
+                                        size: 23,
+                                        color: ColorsResources.darkTransparent,
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                              Align(
-                                alignment: Alignment.centerLeft,
-                                child: SizedBox(
-                                    width: 153,
-                                    height: 47,
-                                    child: Directionality(
-                                      textDirection: TextDirection.rtl,
-                                      child: TextField(
-                                        controller: textEditorControllerQuery,
-                                        textAlign: TextAlign.right,
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: SizedBox(
+                                      width: 153,
+                                      height: 47,
+                                      child: Directionality(
                                         textDirection: TextDirection.rtl,
-                                        textAlignVertical: TextAlignVertical.bottom,
-                                        maxLines: 1,
-                                        cursorColor: ColorsResources.primaryColor,
-                                        autocorrect: true,
-                                        autofocus: false,
-                                        keyboardType: TextInputType.text,
-                                        textInputAction: TextInputAction.search,
-                                        onSubmitted: (searchQuery) {
+                                        child: TextField(
+                                          controller: textEditorControllerQuery,
+                                          textAlign: TextAlign.right,
+                                          textDirection: TextDirection.rtl,
+                                          textAlignVertical: TextAlignVertical.bottom,
+                                          maxLines: 1,
+                                          cursorColor: ColorsResources.primaryColor,
+                                          autocorrect: true,
+                                          autofocus: false,
+                                          keyboardType: TextInputType.text,
+                                          textInputAction: TextInputAction.search,
+                                          onSubmitted: (searchQuery) {
 
-                                          searchProducts(context, allProducts, searchQuery);
+                                            searchProducts(context, allProducts, searchQuery);
 
-                                        },
-                                        decoration: const InputDecoration(
-                                          border: OutlineInputBorder(
-                                              borderSide: BorderSide(color: Colors.transparent, width: 1.0),
-                                              borderRadius: BorderRadius.only(
-                                                  topLeft: Radius.circular(51),
-                                                  topRight: Radius.circular(51),
-                                                  bottomLeft: Radius.circular(51),
-                                                  bottomRight: Radius.circular(51)
-                                              ),
-                                              gapPadding: 5
-                                          ),
-                                          focusedBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(color: Colors.transparent, width: 1.0),
-                                              borderRadius: BorderRadius.only(
-                                                  topLeft: Radius.circular(51),
-                                                  topRight: Radius.circular(51),
-                                                  bottomLeft: Radius.circular(51),
-                                                  bottomRight: Radius.circular(51)
-                                              ),
-                                              gapPadding: 5
-                                          ),
-                                          enabledBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(color: Colors.transparent, width: 1.0),
-                                              borderRadius: BorderRadius.only(
-                                                  topLeft: Radius.circular(51),
-                                                  topRight: Radius.circular(51),
-                                                  bottomLeft: Radius.circular(51),
-                                                  bottomRight: Radius.circular(51)
-                                              ),
-                                              gapPadding: 5
-                                          ),
-                                          hintText: StringsResources.searchTransactionsText,
-                                          hintStyle: TextStyle(
-                                              color: ColorsResources.darkTransparent,
-                                              fontSize: 13.0
-                                          ),
-                                          labelText: StringsResources.searchText,
-                                          labelStyle: TextStyle(
-                                              color: ColorsResources.dark,
-                                              fontSize: 15.0
+                                          },
+                                          decoration: const InputDecoration(
+                                            border: OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.transparent, width: 1.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(51),
+                                                    topRight: Radius.circular(51),
+                                                    bottomLeft: Radius.circular(51),
+                                                    bottomRight: Radius.circular(51)
+                                                ),
+                                                gapPadding: 5
+                                            ),
+                                            focusedBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.transparent, width: 1.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(51),
+                                                    topRight: Radius.circular(51),
+                                                    bottomLeft: Radius.circular(51),
+                                                    bottomRight: Radius.circular(51)
+                                                ),
+                                                gapPadding: 5
+                                            ),
+                                            enabledBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.transparent, width: 1.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(51),
+                                                    topRight: Radius.circular(51),
+                                                    bottomLeft: Radius.circular(51),
+                                                    bottomRight: Radius.circular(51)
+                                                ),
+                                                gapPadding: 5
+                                            ),
+                                            hintText: StringsResources.searchHintText,
+                                            hintStyle: TextStyle(
+                                                color: ColorsResources.darkTransparent,
+                                                fontSize: 13.0
+                                            ),
+                                            labelText: StringsResources.searchText,
+                                            labelStyle: TextStyle(
+                                                color: ColorsResources.dark,
+                                                fontSize: 15.0
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    )
-                                ),
-                              )
-                            ],
-                          ),
+                                      )
+                                  ),
+                                )
+                              ],
+                            ),
+                          )
                         )
                     ),
                   )
@@ -529,134 +532,177 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
                     bottomLeft: Radius.circular(17),
                     bottomRight: Radius.circular(17)
                 ),
-                gradient: LinearGradient(
-                    colors: [
-                      Color(productsData.colorTag).withOpacity(0.37),
-                      ColorsResources.light,
-                    ],
-                    begin: FractionalOffset(0.0, 0.0),
-                    end: FractionalOffset(1.0, 0.0),
-                    stops: [0.0, 1.0],
-                    transform: GradientRotation(45),
-                    tileMode: TileMode.clamp
-                ),
+                color: ColorsResources.light,
               ),
               child: SizedBox(
                 height: 303,
                 width: double.infinity,
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(17),
-                  child: Align(
-                    alignment: AlignmentDirectional.topCenter,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        SizedBox(
-                            height: 131,
-                            width: double.infinity,
-                            child: Padding(
-                                padding: EdgeInsets.fromLTRB(3, 3, 3, 3),
-                                child: Stack(
-                                  children: [
-                                    ClipRRect(
-                                        borderRadius: BorderRadius.circular(17),
-                                        child: ColoredBox(
-                                          color: ColorsResources.lightestBlue.withOpacity(0.73),
-                                          child: Image.file(
-                                            File(productsData.productImageUrl),
-                                            fit: BoxFit.cover,
-                                            height: 131,
-                                            width: double.infinity,
-                                          ),
-                                        )
-                                    ),
-                                    ClipRRect(
-                                        borderRadius: BorderRadius.circular(51),
-                                        child: ColoredBox(
-                                          color: ColorsResources.lightestBlue.withOpacity(0.73),
-                                          child: Image.file(
-                                            File(productsData.productBrandLogoUrl),
-                                            fit: BoxFit.cover,
-                                            height: 31,
-                                            width: 31,
-                                          ),
-                                        )
-                                    ),
-                                    Positioned(
-                                      top: 0,
-                                      left: 33,
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(51),
-                                              topRight: Radius.circular(51),
-                                              bottomLeft: Radius.circular(51),
-                                              bottomRight: Radius.circular(51)
-                                          ),
-                                          gradient: LinearGradient(
-                                              colors: [
-                                                Color(productsData.colorTag).withOpacity(0.73),
-                                                ColorsResources.light.withOpacity(0.79),
-                                              ],
-                                              begin: FractionalOffset(0.0, 0.0),
-                                              end: FractionalOffset(1.0, 0.0),
-                                              stops: [0.0, 1.0],
-                                              transform: GradientRotation(45),
-                                              tileMode: TileMode.clamp
+                    borderRadius: BorderRadius.circular(17),
+                    child: Align(
+                      alignment: AlignmentDirectional.topCenter,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          SizedBox(
+                              height: 131,
+                              width: double.infinity,
+                              child: Padding(
+                                  padding: EdgeInsets.fromLTRB(3, 3, 3, 3),
+                                  child: Stack(
+                                    children: [
+                                      ClipRRect(
+                                          borderRadius: BorderRadius.circular(17),
+                                          child: ColoredBox(
+                                            color: ColorsResources.lightestBlue.withOpacity(0.73),
+                                            child: Image.file(
+                                              File(productsData.productImageUrl),
+                                              fit: BoxFit.cover,
+                                              height: 131,
+                                              width: double.infinity,
+                                            ),
+                                          )
+                                      ),
+                                      ClipRRect(
+                                          borderRadius: BorderRadius.circular(51),
+                                          child: ColoredBox(
+                                            color: ColorsResources.lightestBlue.withOpacity(0.73),
+                                            child: Image.file(
+                                              File(productsData.productBrandLogoUrl),
+                                              fit: BoxFit.cover,
+                                              height: 31,
+                                              width: 31,
+                                            ),
+                                          )
+                                      ),
+                                      Positioned(
+                                          top: 0,
+                                          left: 33,
+                                          child: Container(
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(51),
+                                                    topRight: Radius.circular(51),
+                                                    bottomLeft: Radius.circular(51),
+                                                    bottomRight: Radius.circular(51)
+                                                ),
+                                                gradient: LinearGradient(
+                                                    colors: [
+                                                      Color(productsData.colorTag).withOpacity(0.53),
+                                                      ColorsResources.light.withOpacity(0.79),
+                                                    ],
+                                                    begin: FractionalOffset(0.0, 0.0),
+                                                    end: FractionalOffset(1.0, 0.0),
+                                                    stops: [0.0, 1.0],
+                                                    transform: GradientRotation(45),
+                                                    tileMode: TileMode.clamp
+                                                ),
+                                              ),
+                                              height: 31,
+                                              child: Padding(
+                                                padding: EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                                child: Align(
+                                                  alignment: AlignmentDirectional.center,
+                                                  child: Text(
+                                                    productsData.productBrand,
+                                                    style: TextStyle(
+                                                        color: ColorsResources.applicationDarkGeeksEmpire,
+                                                        fontSize: 15,
+                                                        shadows: [
+                                                          Shadow(
+                                                              color: ColorsResources.white,
+                                                              blurRadius: 3,
+                                                              offset: Offset(-1, -1)
+                                                          ),
+                                                          Shadow(
+                                                              color: ColorsResources.dark.withOpacity(0.31),
+                                                              blurRadius: 5,
+                                                              offset: Offset(1, 1)
+                                                          )
+                                                        ]
+                                                    ),
+                                                  ),
+                                                ),
+                                              )
+                                          )
+                                      )
+                                    ],
+                                  )
+                              )
+                          ),
+                          SizedBox(
+                              height: 31,
+                              width: double.infinity,
+                              child: Padding(
+                                  padding: EdgeInsets.fromLTRB(7, 3, 7, 3),
+                                  child: Directionality(
+                                      textDirection: TextDirection.rtl,
+                                      child: Align(
+                                        alignment: Alignment.centerRight,
+                                        child: Text(
+                                          productsData.productName,
+                                          textAlign: TextAlign.end,
+                                          style: TextStyle(
+                                              color: ColorsResources.applicationDarkGeeksEmpire,
+                                              fontSize: 17,
+                                              shadows: [
+                                                Shadow(
+                                                    color: ColorsResources.white,
+                                                    blurRadius: 3,
+                                                    offset: Offset(-1, -1)
+                                                ),
+                                                Shadow(
+                                                    color: ColorsResources.dark.withOpacity(0.31),
+                                                    blurRadius: 5,
+                                                    offset: Offset(1, 1)
+                                                )
+                                              ]
                                           ),
                                         ),
-                                        height: 31,
-                                        child: Padding(
-                                          padding: EdgeInsets.fromLTRB(13, 0, 13, 0),
-                                          child: Align(
-                                            alignment: AlignmentDirectional.center,
-                                            child: Text(
-                                              productsData.productBrand,
-                                              style: TextStyle(
-                                                  color: ColorsResources.applicationDarkGeeksEmpire,
-                                                  fontSize: 15,
-                                                  shadows: [
-                                                    Shadow(
-                                                        color: ColorsResources.white,
-                                                        blurRadius: 3,
-                                                        offset: Offset(-1, -1)
-                                                    ),
-                                                    Shadow(
-                                                        color: ColorsResources.dark.withOpacity(0.31),
-                                                        blurRadius: 5,
-                                                        offset: Offset(1, 1)
-                                                    )
-                                                  ]
-                                              ),
-                                            ),
-                                          ),
-                                        )
                                       )
-                                    )
-                                  ],
-                                )
-                            )
-                        ),
-                        SizedBox(
-                            height: 31,
-                            width: double.infinity,
-                            child: Padding(
-                                padding: EdgeInsets.fromLTRB(7, 3, 7, 3),
-                                child: Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: Align(
-                                      alignment: Alignment.centerRight,
-                                      child: Text(
-                                        productsData.productName,
-                                        textAlign: TextAlign.end,
-                                        style: TextStyle(
-                                          color: ColorsResources.applicationDarkGeeksEmpire,
+                                  )
+                              )
+                          ),
+                          SizedBox(
+                              height: 51,
+                              width: double.infinity,
+                              child: Padding(
+                                  padding: EdgeInsets.fromLTRB(7, 3, 7, 3),
+                                  child: Directionality(
+                                      textDirection: TextDirection.rtl,
+                                      child: Align(
+                                        alignment: Alignment.topRight,
+                                        child: Text(
+                                          productsData.productDescription,
+                                          textAlign: TextAlign.end,
+                                          maxLines: 2,
+                                          style: TextStyle(
+                                              color: ColorsResources.darkTransparent,
+                                              fontSize: 13
+                                          ),
+                                        ),
+                                      )
+                                  )
+                              )
+                          ),
+                          SizedBox(
+                              height: 41,
+                              width: double.infinity,
+                              child: Padding(
+                                  padding: EdgeInsets.fromLTRB(7, 3, 7, 3),
+                                  child: Align(
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      "${sellingPrice}",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          color: ColorsResources.black,
                                           fontSize: 17,
                                           shadows: [
                                             Shadow(
-                                              color: ColorsResources.white,
-                                              blurRadius: 3,
-                                              offset: Offset(-1, -1)
+                                                color: ColorsResources.white,
+                                                blurRadius: 3,
+                                                offset: Offset(-1, -1)
                                             ),
                                             Shadow(
                                                 color: ColorsResources.dark.withOpacity(0.31),
@@ -664,69 +710,16 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
                                                 offset: Offset(1, 1)
                                             )
                                           ]
-                                        ),
                                       ),
-                                    )
-                                )
-                            )
-                        ),
-                        SizedBox(
-                            height: 51,
-                            width: double.infinity,
-                            child: Padding(
-                                padding: EdgeInsets.fromLTRB(7, 3, 7, 3),
-                                child: Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: Align(
-                                      alignment: Alignment.topRight,
-                                      child: Text(
-                                        productsData.productDescription,
-                                        textAlign: TextAlign.end,
-                                        maxLines: 2,
-                                        style: TextStyle(
-                                            color: ColorsResources.darkTransparent,
-                                            fontSize: 13
-                                        ),
-                                      ),
-                                    )
-                                )
-                            )
-                        ),
-                        SizedBox(
-                            height: 41,
-                            width: double.infinity,
-                            child: Padding(
-                                padding: EdgeInsets.fromLTRB(7, 3, 7, 3),
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    "${sellingPrice}",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        color: ColorsResources.black,
-                                        fontSize: 15,
-                                        shadows: [
-                                          Shadow(
-                                              color: ColorsResources.white,
-                                              blurRadius: 3,
-                                              offset: Offset(-1, -1)
-                                          ),
-                                          Shadow(
-                                              color: ColorsResources.dark.withOpacity(0.31),
-                                              blurRadius: 5,
-                                              offset: Offset(1, 1)
-                                          )
-                                        ]
                                     ),
-                                  ),
-                                )
-                            )
-                        ),
-                      ],
-                    ),
-                  )
+                                  )
+                              )
+                          ),
+                        ],
+                      ),
+                    )
                 ),
-              ),
+              )
             ),
           ),
         ),

@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/19/22, 6:06 AM
+ * Last modified 3/19/22, 6:44 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -35,7 +35,7 @@ class StringsResources {
 
   static const String searchText = "جستجو";
   static const String searchFeaturesText = "امکان مورد نظر خود را جستجو کنید";
-  static const String searchTransactionsText = "جستجو در تراکنش ها";
+  static const String searchHintText = "جستجو کنید";
 
   static const String editText = "ویرایش";
   static const String deleteText = "حذف";
