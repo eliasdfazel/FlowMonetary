@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/19/22, 6:10 AM
+ * Last modified 3/19/22, 6:38 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -117,6 +117,10 @@ class _ProductsInputViewState extends State<ProductsInputView> {
     controllerProductQuantity.text = widget.productsData?.productQuantity == null ? "0" : (widget.productsData?.productQuantity.toString())!;
 
     colorSelectorView.inputColor = Color(widget.productsData?.colorTag ?? Colors.white.value);
+
+    productImageUrl = widget.productsData?.productImageUrl ?? "";
+
+    productBrandLogoUrl = widget.productsData?.productBrandLogoUrl ?? "";
 
     super.initState();
 
