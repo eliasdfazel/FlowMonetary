@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/20/22, 10:11 AM
+ * Last modified 3/20/22, 10:15 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -208,7 +208,7 @@ class DashboardViewState extends State<DashboardView> {
                     child: Expanded(
                       child: ListView(
                           physics: const BouncingScrollPhysics(),
-                          padding: const EdgeInsets.fromLTRB(7, 3, 7, 79),
+                          padding: const EdgeInsets.fromLTRB(7, 3, 7, 73),
                           scrollDirection: Axis.vertical,
                           children: [ // List Of All Contents
                             const TopBarView(),
