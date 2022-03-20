@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/16/22, 8:44 AM
+ * Last modified 3/20/22, 6:08 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -18,6 +18,7 @@ import 'package:flow_accounting/customers/output/ui/customers_output_view.dart';
 import 'package:flow_accounting/home/interface/dashboard.dart';
 import 'package:flow_accounting/products/input/ui/products_input_view.dart';
 import 'package:flow_accounting/products/output/ui/products_output_view.dart';
+import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/input/ui/transactions_input_view.dart';
@@ -438,63 +439,10 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
                           )),
                     )
                 ),
-                SizedBox(
-                    height: 119,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(0),
-                            topRight: Radius.circular(0),
-                            bottomLeft: Radius.circular(0),
-                            bottomRight: Radius.circular(0)),
-                        gradient: LinearGradient(
-                            colors: [
-                              ColorsResources.white.withOpacity(0.3),
-                              ColorsResources.light.withOpacity(0.3),
-                            ],
-                            begin: const FractionalOffset(0.0, 0.0),
-                            end: const FractionalOffset(1.0, 0.0),
-                            stops: const [0.0, 1.0],
-                            transform: const GradientRotation(45),
-                            tileMode: TileMode.clamp),
-                      ),
-                      child: Stack(
-                        children: [
-                          Align(
-                            alignment: AlignmentDirectional.center,
-                            child: Image(
-                              image: AssetImage(featureIconUrl),
-                              height: 59,
-                              width: 59,
-                              color: backgroundColor.darken(0.37).withOpacity(0.19),
-                            ),
-                          ),
-                          Padding(
-                              padding: const EdgeInsets.fromLTRB(11, 7, 11, 0),
-                              child: Directionality(
-                                textDirection: TextDirection.rtl,
-                                child: Align(
-                                  alignment: Alignment.topRight,
-                                  child: Text(
-                                    featureDescription,
-                                    maxLines: 5,
-                                    style: TextStyle(
-                                        fontSize: 12,
-                                        color: ColorsResources.dark.withOpacity(0.59),
-                                        shadows: [
-                                          Shadow(
-                                              color: ColorsResources.light,
-                                              offset: Offset(0, 0),
-                                              blurRadius: 7
-                                          )
-                                        ]),
-                                  ),
-                                ),
-                              )
-                          )
-                        ],
-                      ),
-                    )
+                FeatureDescriptionView(
+                  backgroundColor: backgroundColor,
+                  featureIconUrl: featureIconUrl,
+                  featureDescription: featureDescription
                 ),
                 SizedBox(
                     height: 53,
@@ -655,6 +603,94 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
       ),
     );
   }
+}
+
+class FeatureDescriptionView extends StatefulWidget {
+
+  Color backgroundColor;
+
+  String featureIconUrl;
+  String featureDescription;
+
+  FeatureDescriptionView({Key? key, required this.backgroundColor, required this.featureIconUrl, required this.featureDescription}) : super(key: key);
+
+  @override
+  State<FeatureDescriptionView> createState() => FeatureDescriptionViewState();
+}
+class FeatureDescriptionViewState extends State<FeatureDescriptionView> {
+
+  @override
+  Widget build(BuildContext context) {
+
+    if (UserInformation.UserId != StringsResources.unknownText) {
+
+      /*
+       * Show Description when User Not Signed In
+       * After Sign In Click then Show the Descriptions
+       */
+
+    }
+
+    return SizedBox(
+        height: 119,
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(0),
+                topRight: Radius.circular(0),
+                bottomLeft: Radius.circular(0),
+                bottomRight: Radius.circular(0)),
+            gradient: LinearGradient(
+                colors: [
+                  ColorsResources.white.withOpacity(0.3),
+                  ColorsResources.light.withOpacity(0.3),
+                ],
+                begin: const FractionalOffset(0.0, 0.0),
+                end: const FractionalOffset(1.0, 0.0),
+                stops: const [0.0, 1.0],
+                transform: const GradientRotation(45),
+                tileMode: TileMode.clamp),
+          ),
+          child: Stack(
+            children: [
+              Align(
+                alignment: AlignmentDirectional.center,
+                child: Image(
+                  image: AssetImage(widget.featureIconUrl),
+                  height: 59,
+                  width: 59,
+                  color: widget.backgroundColor.darken(0.37).withOpacity(0.19),
+                ),
+              ),
+              Padding(
+                  padding: const EdgeInsets.fromLTRB(11, 7, 11, 0),
+                  child: Directionality(
+                    textDirection: TextDirection.rtl,
+                    child: Align(
+                      alignment: Alignment.topRight,
+                      child: Text(
+                        widget.featureDescription,
+                        maxLines: 5,
+                        style: TextStyle(
+                            fontSize: 12,
+                            color: ColorsResources.dark.withOpacity(0.59),
+                            shadows: [
+                              Shadow(
+                                  color: ColorsResources.light,
+                                  offset: Offset(0, 0),
+                                  blurRadius: 7
+                              )
+                            ]),
+                      ),
+                    ),
+                  )
+              )
+            ],
+          ),
+        )
+    );
+  }
+
 }
 
 class FeaturesStructure {
