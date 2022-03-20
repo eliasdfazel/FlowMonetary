@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/19/22, 6:18 AM
+ * Last modified 3/20/22, 5:52 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -26,6 +26,7 @@ import 'package:flow_accounting/customers/database/io/queries.dart';
 import 'package:flow_accounting/customers/database/structures/table_structure.dart';
 import 'package:flow_accounting/home/interface/dashboard.dart';
 import 'package:flow_accounting/profile/database/io/queries.dart';
+import 'package:flow_accounting/profile/database/structures/tables_structure.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/database/io/inputs.dart';
@@ -2782,6 +2783,30 @@ class _ChequeInputViewState extends State<ChequesInputView> {
   Future<List<CustomersData>> getCustomersNames() async {
 
     List<CustomersData> listOfCustomers = [];
+
+    if (UserInformation.UserId != StringsResources.unknownText) {
+
+      ProfileDatabaseQueries profileDatabaseQueries = ProfileDatabaseQueries();
+
+      ProfilesData profilesData = (await profileDatabaseQueries.querySignedInUser())!;
+
+      listOfCustomers.add(CustomersData(
+          id: profilesData.id,
+          customerName: StringsResources.mySelfText,
+          customerDescription: profilesData.userFullName,
+          customerCountry: "",
+          customerCity: "",
+          customerStreetAddress: "",
+          customerPhoneNumber: profilesData.userPhoneNumber,
+          customerEmailAddress: profilesData.userEmailAddress,
+          customerAge: "100",
+          customerBirthday: "",
+          customerJob: "",
+          customerMaritalStatus: "",
+          customerImagePath: profilesData.userImage,
+          colorTag: Colors.white.value));
+
+    }
 
     String databaseDirectory = await getDatabasesPath();
 
