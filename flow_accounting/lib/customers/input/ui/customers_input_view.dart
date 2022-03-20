@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/17/22, 4:21 AM
+ * Last modified 3/20/22, 5:15 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -13,7 +13,6 @@ import 'dart:typed_data';
 
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:blur/blur.dart';
-import 'package:flow_accounting/budgets/database/io/inputs.dart';
 import 'package:flow_accounting/customers/database/io/inputs.dart';
 import 'package:flow_accounting/customers/database/structures/table_structure.dart';
 import 'package:flow_accounting/profile/database/io/queries.dart';
@@ -1458,13 +1457,13 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
                                 if ((widget.customersData?.id)! != 0) {
 
-                                  databaseInputs.updateCustomerData(transactionData, BudgetsDatabaseInputs.databaseTableName, UserInformation.UserId);
+                                  databaseInputs.updateCustomerData(transactionData, CustomersDatabaseInputs.databaseTableName, UserInformation.UserId);
 
                                 }
 
                               } else {
 
-                                databaseInputs.insertCustomerData(transactionData, BudgetsDatabaseInputs.databaseTableName, UserInformation.UserId);
+                                databaseInputs.insertCustomerData(transactionData, CustomersDatabaseInputs.databaseTableName, UserInformation.UserId);
 
                               }
 
