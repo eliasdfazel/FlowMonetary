@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/19/22, 7:49 AM
+ * Last modified 3/20/22, 10:09 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -48,7 +48,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
 
   TextEditingController textEditorControllerQuery = TextEditingController();
 
-  bool transactionDataUpdated = false;
+  bool productDataUpdated = false;
 
   @override
   void initState() {
@@ -83,7 +83,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
 
     UpdatedData.UpdatedDataType = UpdatedData.LatestTransactions;
 
-    Navigator.pop(context, transactionDataUpdated);
+    Navigator.pop(context, productDataUpdated);
 
     return true;
   }
@@ -163,7 +163,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
 
                           UpdatedData.UpdatedDataType = UpdatedData.LatestTransactions;
 
-                          Navigator.pop(context, transactionDataUpdated);
+                          Navigator.pop(context, productDataUpdated);
 
                         },
                         child: Container(
@@ -775,7 +775,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
 
       retrieveAllProducts(context);
 
-      transactionDataUpdated = true;
+      productDataUpdated = true;
 
     }
 
