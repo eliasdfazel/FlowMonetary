@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/20/22, 7:58 AM
+ * Last modified 3/20/22, 8:16 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -619,29 +619,16 @@ class FeatureDescriptionView extends StatefulWidget {
 }
 class FeatureDescriptionViewState extends State<FeatureDescriptionView> with SingleTickerProviderStateMixin {
 
-  AnimationController? descriptionAnimationController;
+  bool descriptionVisibility = true;
 
   @override
   void initState() {
     super.initState();
-
-    descriptionAnimationController = AnimationController(
-      vsync: this,
-      duration: const Duration(
-        milliseconds: 777,
-      ),
-    );
-
-    descriptionAnimationController?.forward();
-
   }
 
   @override
   void dispose() {
     super.dispose();
-
-    descriptionAnimationController?.dispose();
-
   }
 
   @override
@@ -653,7 +640,7 @@ class FeatureDescriptionViewState extends State<FeatureDescriptionView> with Sin
        * Show Description when User Not Signed In
        * After Sign In Click then Show the Descriptions
        */
-      descriptionAnimationController?.reverse();
+
 
 
     }
@@ -690,10 +677,23 @@ class FeatureDescriptionViewState extends State<FeatureDescriptionView> with Sin
                     child: InkWell(
                       splashColor: widget.backgroundColor.darken(0.37),
                       splashFactory: InkRipple.splashFactory,
-                      onTapDown: (tapDownDetails) {
+                      onTap: () {
 
-                        print(">>>>>>>>>>>>>>>>>>>>>>>");
-                        descriptionAnimationController?.forward();
+                        setState(() {
+
+                          descriptionVisibility = !descriptionVisibility;
+
+                        });
+
+                        Future.delayed(Duration(seconds: 3), () {
+
+                          setState(() {
+
+                            descriptionVisibility = !descriptionVisibility;
+
+                          });
+
+                        });
 
                       },
                       child: Image(
@@ -712,8 +712,9 @@ class FeatureDescriptionViewState extends State<FeatureDescriptionView> with Sin
                     textDirection: TextDirection.rtl,
                     child: Align(
                       alignment: Alignment.topRight,
-                      child: Opacity(
-                        opacity: descriptionAnimationController?.value ?? 1,
+                      child: AnimatedOpacity(
+                        opacity: descriptionVisibility ? 1.0 : 0.0,
+                        duration: Duration(milliseconds: 777),
                         child: Text(
                           widget.featureDescription,
                           maxLines: 5,
