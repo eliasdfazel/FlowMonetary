@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/20/22, 6:08 AM
+ * Last modified 3/20/22, 7:58 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -617,7 +617,32 @@ class FeatureDescriptionView extends StatefulWidget {
   @override
   State<FeatureDescriptionView> createState() => FeatureDescriptionViewState();
 }
-class FeatureDescriptionViewState extends State<FeatureDescriptionView> {
+class FeatureDescriptionViewState extends State<FeatureDescriptionView> with SingleTickerProviderStateMixin {
+
+  AnimationController? descriptionAnimationController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    descriptionAnimationController = AnimationController(
+      vsync: this,
+      duration: const Duration(
+        milliseconds: 777,
+      ),
+    );
+
+    descriptionAnimationController?.forward();
+
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+
+    descriptionAnimationController?.dispose();
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -628,6 +653,8 @@ class FeatureDescriptionViewState extends State<FeatureDescriptionView> {
        * Show Description when User Not Signed In
        * After Sign In Click then Show the Descriptions
        */
+      descriptionAnimationController?.reverse();
+
 
     }
 
@@ -655,12 +682,29 @@ class FeatureDescriptionViewState extends State<FeatureDescriptionView> {
             children: [
               Align(
                 alignment: AlignmentDirectional.center,
-                child: Image(
-                  image: AssetImage(widget.featureIconUrl),
-                  height: 59,
-                  width: 59,
-                  color: widget.backgroundColor.darken(0.37).withOpacity(0.19),
-                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(1.0),
+                  child: Material(
+                    shadowColor: Colors.transparent,
+                    color: Colors.transparent,
+                    child: InkWell(
+                      splashColor: widget.backgroundColor.darken(0.37),
+                      splashFactory: InkRipple.splashFactory,
+                      onTapDown: (tapDownDetails) {
+
+                        print(">>>>>>>>>>>>>>>>>>>>>>>");
+                        descriptionAnimationController?.forward();
+
+                      },
+                      child: Image(
+                        image: AssetImage(widget.featureIconUrl),
+                        height: 59,
+                        width: 59,
+                        color: widget.backgroundColor.darken(0.37).withOpacity(0.19),
+                      ),
+                    )
+                  ),
+                )
               ),
               Padding(
                   padding: const EdgeInsets.fromLTRB(11, 7, 11, 0),
@@ -668,20 +712,23 @@ class FeatureDescriptionViewState extends State<FeatureDescriptionView> {
                     textDirection: TextDirection.rtl,
                     child: Align(
                       alignment: Alignment.topRight,
-                      child: Text(
-                        widget.featureDescription,
-                        maxLines: 5,
-                        style: TextStyle(
-                            fontSize: 12,
-                            color: ColorsResources.dark.withOpacity(0.59),
-                            shadows: [
-                              Shadow(
-                                  color: ColorsResources.light,
-                                  offset: Offset(0, 0),
-                                  blurRadius: 7
-                              )
-                            ]),
-                      ),
+                      child: Opacity(
+                        opacity: descriptionAnimationController?.value ?? 1,
+                        child: Text(
+                          widget.featureDescription,
+                          maxLines: 5,
+                          style: TextStyle(
+                              fontSize: 12,
+                              color: ColorsResources.dark.withOpacity(0.59),
+                              shadows: [
+                                Shadow(
+                                    color: ColorsResources.light,
+                                    offset: Offset(0, 0),
+                                    blurRadius: 7
+                                )
+                              ]),
+                        ),
+                      )
                     ),
                   )
               )
