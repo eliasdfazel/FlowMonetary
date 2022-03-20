@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/20/22, 8:16 AM
+ * Last modified 3/20/22, 9:12 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -619,11 +619,14 @@ class FeatureDescriptionView extends StatefulWidget {
 }
 class FeatureDescriptionViewState extends State<FeatureDescriptionView> with SingleTickerProviderStateMixin {
 
-  bool descriptionVisibility = true;
+  bool descriptionVisibility = false;
 
   @override
   void initState() {
     super.initState();
+
+    descriptionVisibility = (UserInformation.UserId == StringsResources.unknownText) ? true : false;
+
   }
 
   @override
@@ -634,106 +637,106 @@ class FeatureDescriptionViewState extends State<FeatureDescriptionView> with Sin
   @override
   Widget build(BuildContext context) {
 
-    if (UserInformation.UserId != StringsResources.unknownText) {
-
-      /*
-       * Show Description when User Not Signed In
-       * After Sign In Click then Show the Descriptions
-       */
-
-
-
-    }
-
     return SizedBox(
         height: 119,
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(0),
-                topRight: Radius.circular(0),
-                bottomLeft: Radius.circular(0),
-                bottomRight: Radius.circular(0)),
-            gradient: LinearGradient(
-                colors: [
-                  ColorsResources.white.withOpacity(0.3),
-                  ColorsResources.light.withOpacity(0.3),
-                ],
-                begin: const FractionalOffset(0.0, 0.0),
-                end: const FractionalOffset(1.0, 0.0),
-                stops: const [0.0, 1.0],
-                transform: const GradientRotation(45),
-                tileMode: TileMode.clamp),
-          ),
-          child: Stack(
-            children: [
-              Align(
-                alignment: AlignmentDirectional.center,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(1.0),
-                  child: Material(
-                    shadowColor: Colors.transparent,
-                    color: Colors.transparent,
-                    child: InkWell(
-                      splashColor: widget.backgroundColor.darken(0.37),
-                      splashFactory: InkRipple.splashFactory,
-                      onTap: () {
+        child: Material(
+          shadowColor: Colors.transparent,
+          color: Colors.transparent,
+          child: InkWell(
+            splashColor: widget.backgroundColor.darken(0.1),
+            splashFactory: InkRipple.splashFactory,
+            onTap: () {
 
-                        setState(() {
+              if (UserInformation.UserId != StringsResources.unknownText) {
 
-                          descriptionVisibility = !descriptionVisibility;
+                setState(() {
 
-                        });
+                  descriptionVisibility = !descriptionVisibility;
 
-                        Future.delayed(Duration(seconds: 3), () {
+                });
 
-                          setState(() {
+                Future.delayed(Duration(seconds: 7), () {
 
-                            descriptionVisibility = !descriptionVisibility;
+                  if (descriptionVisibility) {
 
-                          });
+                    setState(() {
 
-                        });
+                      descriptionVisibility = false;
 
-                      },
-                      child: Image(
-                        image: AssetImage(widget.featureIconUrl),
-                        height: 59,
-                        width: 59,
-                        color: widget.backgroundColor.darken(0.37).withOpacity(0.19),
-                      ),
-                    )
-                  ),
-                )
+                    });
+
+                  }
+
+                });
+
+              }
+
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(0),
+                    topRight: Radius.circular(0),
+                    bottomLeft: Radius.circular(0),
+                    bottomRight: Radius.circular(0)),
+                gradient: LinearGradient(
+                    colors: [
+                      ColorsResources.white.withOpacity(0.3),
+                      ColorsResources.light.withOpacity(0.3),
+                    ],
+                    begin: const FractionalOffset(0.0, 0.0),
+                    end: const FractionalOffset(1.0, 0.0),
+                    stops: const [0.0, 1.0],
+                    transform: const GradientRotation(45),
+                    tileMode: TileMode.clamp),
               ),
-              Padding(
-                  padding: const EdgeInsets.fromLTRB(11, 7, 11, 0),
-                  child: Directionality(
-                    textDirection: TextDirection.rtl,
-                    child: Align(
-                      alignment: Alignment.topRight,
+              child: Stack(
+                children: [
+                  Align(
+                      alignment: AlignmentDirectional.center,
                       child: AnimatedOpacity(
-                        opacity: descriptionVisibility ? 1.0 : 0.0,
-                        duration: Duration(milliseconds: 777),
-                        child: Text(
-                          widget.featureDescription,
-                          maxLines: 5,
-                          style: TextStyle(
-                              fontSize: 12,
-                              color: ColorsResources.dark.withOpacity(0.59),
-                              shadows: [
-                                Shadow(
-                                    color: ColorsResources.light,
-                                    offset: Offset(0, 0),
-                                    blurRadius: 7
-                                )
-                              ]),
+                          opacity: descriptionVisibility ? 0.5 : 1.0,
+                          duration: Duration(milliseconds: 777),
+                          curve: Curves.easeOut,
+                          child: Image(
+                            image: AssetImage(widget.featureIconUrl),
+                            height: 59,
+                            width: 59,
+                            color: widget.backgroundColor.darken(0.37).withOpacity(0.19),
+                          )
+                      )
+                  ),
+                  Padding(
+                      padding: const EdgeInsets.fromLTRB(11, 7, 11, 0),
+                      child: Directionality(
+                        textDirection: TextDirection.rtl,
+                        child: Align(
+                            alignment: Alignment.topRight,
+                            child: AnimatedOpacity(
+                              opacity: descriptionVisibility ? 1.0 : 0.0,
+                              duration: Duration(milliseconds: 777),
+                              curve: Curves.easeIn,
+                              child: Text(
+                                widget.featureDescription,
+                                maxLines: 5,
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    color: ColorsResources.dark.withOpacity(0.59),
+                                    shadows: [
+                                      Shadow(
+                                          color: ColorsResources.light,
+                                          offset: Offset(0, 0),
+                                          blurRadius: 7
+                                      )
+                                    ]),
+                              ),
+                            )
                         ),
                       )
-                    ),
                   )
-              )
-            ],
+                ],
+              ),
+            ),
           ),
         )
     );
