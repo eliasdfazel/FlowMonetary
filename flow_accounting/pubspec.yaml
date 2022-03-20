@@ -82,6 +82,7 @@ flutter:
     - loans_icon.png
     - unknown_products.png
     - quick_save.png
+    - support_icon.png
 
   fonts:
     - family: Sans

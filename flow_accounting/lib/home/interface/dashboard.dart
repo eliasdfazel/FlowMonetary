@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/17/22, 3:42 AM
+ * Last modified 3/20/22, 10:05 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -23,6 +23,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:wave/config.dart';
 import 'package:wave/wave.dart';
 
@@ -198,7 +199,7 @@ class DashboardViewState extends State<DashboardView> {
                 ),
                 // All Contents
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(/*left*/1.1, /*top*/3, /*right*/1.1, /*bottom*/7.3),
+                  padding: const EdgeInsets.fromLTRB(1.1, 3, 1.1, 7.3),
                   child: Container (
                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                     decoration: const BoxDecoration(
@@ -207,7 +208,7 @@ class DashboardViewState extends State<DashboardView> {
                     child: Expanded(
                       child: ListView(
                           physics: const BouncingScrollPhysics(),
-                          padding: const EdgeInsets.fromLTRB(7, 3, 7, 3),
+                          padding: const EdgeInsets.fromLTRB(7, 3, 7, 79),
                           scrollDirection: Axis.vertical,
                           children: [ // List Of All Contents
                             const TopBarView(),
@@ -224,6 +225,67 @@ class DashboardViewState extends State<DashboardView> {
                     ),
                   ),
                 ),
+                // Support
+                Positioned(
+                  left: 19,
+                  bottom: 19,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      boxShadow: [
+                        BoxShadow(
+                            color: ColorsResources.black,
+                            blurRadius: 3,
+                            offset: Offset(1.7, 1.7)
+                        ),
+                        BoxShadow(
+                            color: ColorsResources.white,
+                            blurRadius: 3,
+                            offset: Offset(-1.7, -1.7)
+                        ),
+                        BoxShadow(
+                            color: ColorsResources.lightBlue.withOpacity(0.7),
+                            blurRadius: 7,
+                            offset: Offset(1, -1)
+                        ),
+                        BoxShadow(
+                            color: ColorsResources.blue.withOpacity(0.7),
+                            blurRadius: 7,
+                            offset: Offset(-1, 1)
+                        ),
+                      ]
+                    ),
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.circular(51),
+                        child: Container(
+                            decoration: BoxDecoration(
+                              color: ColorsResources.applicationDarkGeeksEmpire,
+                            ),
+                            child: Material(
+                                shadowColor: Colors.transparent,
+                                color: Colors.transparent,
+                                child: InkWell(
+                                    splashColor: ColorsResources.lightBlue,
+                                    splashFactory: InkRipple.splashFactory,
+                                    onTap: () async {
+
+                                      await launch(StringsResources.instagramLink);
+
+                                    },
+                                    child: Align(
+                                        alignment: AlignmentDirectional.center,
+                                        child: Image(
+                                          image: AssetImage("support_icon.png"),
+                                          height: 51,
+                                          width: 51,
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                  )
+                )
               ],
             ),
           ),
