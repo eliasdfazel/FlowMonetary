@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/20/22, 5:15 AM
+ * Last modified 3/20/22, 5:19 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -14,9 +14,7 @@ import 'dart:typed_data';
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:blur/blur.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flow_accounting/customers/database/io/inputs.dart';
 import 'package:flow_accounting/profile/database/io/inputs.dart';
-import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/profile/database/structures/tables_structure.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
@@ -887,33 +885,6 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                               } else {
 
                                 databaseInputs.insertProfileData(profilesData);
-
-                                var customerDatabaseInputs = CustomersDatabaseInputs();
-
-                                customerDatabaseInputs.insertCustomerData(CustomersData(
-                                    id: timeNow,
-
-                                    customerName: controllerCustomerName.text,
-                                    customerDescription: controllerCustomerDescription.text,
-
-                                    customerCountry: controllerCustomerCountry.text,
-                                    customerCity: controllerCustomerCity.text,
-                                    customerStreetAddress: controllerCustomerStreetAddress.text,
-
-                                    customerPhoneNumber: controllerCustomerPhoneNumber.text,
-                                    customerEmailAddress: controllerCustomerEmailAddress.text,
-
-                                    customerAge: controllerCustomerAge.text,
-                                    customerBirthday: calendarView.pickedDataTimeText ?? "",
-
-                                    customerJob: controllerCustomerJob.text,
-
-                                    customerMaritalStatus: controllerCustomerMaritalStatus.text,
-
-                                    customerImagePath: customerImage,
-
-                                    colorTag: colorSelectorView.selectedColor.value
-                                ), BudgetsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
                               }
 
