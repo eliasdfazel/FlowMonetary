@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/24/22, 1:11 AM
+ * Last modified 3/21/22, 6:16 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -19,7 +19,7 @@ class CalendarView extends StatefulWidget {
 
   String? pickedDataTimeText;
 
-  CalendarView({Key? key, this.pickedDataTimeText = StringsResources.transactionTime}) : super(key: key);
+  CalendarView({Key? key, this.pickedDataTimeText}) : super(key: key);
 
   String? inputDateTime;
 
@@ -39,6 +39,8 @@ class _CalendarView extends State<CalendarView> {
     initializeDateFormatting();
 
     super.initState();
+
+    widget.pickedDataTimeText = StringsResources.transactionTime;
 
     if (widget.inputDateTime != null) {
 

@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/17/22, 3:55 AM
+ * Last modified 3/21/22, 6:16 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -165,7 +165,7 @@ class _TopBarViewState extends State<TopBarView> {
   Widget popupProfileSelector(BuildContext context) {
 
     AlertDialog alertDialog = AlertDialog(
-      title: const Directionality(
+      title: Directionality(
           textDirection: TextDirection.rtl,
           child: Text(
             StringsResources.selectProfileText,

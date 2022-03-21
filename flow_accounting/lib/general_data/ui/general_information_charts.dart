@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/17/22, 3:33 AM
+ * Last modified 3/21/22, 6:09 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -101,7 +101,7 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
                   padding: const EdgeInsets.fromLTRB(27, 3, 27, 7),
                   child: Column(
                     children: [
-                      const Padding(
+                      Padding(
                         padding: EdgeInsets.fromLTRB(0, 3, 0, 7),
                         child: Align(
                           alignment: Alignment.centerRight,
@@ -137,7 +137,7 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
                   padding: const EdgeInsets.fromLTRB(27, 13, 27, 7),
                   child: Column(
                     children: [
-                      const Padding(
+                      Padding(
                         padding: EdgeInsets.fromLTRB(0, 3, 0, 7),
                         child: Align(
                           alignment: Alignment.centerRight,
@@ -173,7 +173,7 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
                   padding: const EdgeInsets.fromLTRB(27, 13, 27, 7),
                   child: Column(
                     children: [
-                      const Padding(
+                      Padding(
                         padding: EdgeInsets.fromLTRB(0, 3, 0, 7),
                         child: Align(
                           alignment: Alignment.centerRight,

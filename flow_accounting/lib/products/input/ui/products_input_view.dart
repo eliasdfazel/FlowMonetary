@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/19/22, 6:38 AM
+ * Last modified 3/21/22, 6:16 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -561,7 +561,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                         },
                                         errorBuilder: (context, suggestion) {
 
-                                          return const Padding(
+                                          return Padding(
                                               padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
                                               child: Text(StringsResources.nothingText)
                                           );
@@ -900,7 +900,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                         },
                                         errorBuilder: (context, suggestion) {
 
-                                          return const Padding(
+                                          return Padding(
                                               padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
                                               child: Text(StringsResources.nothingText)
                                           );
@@ -991,7 +991,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                         height: 37,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: const [
+                          children: [
                             Expanded(
                               flex: 1,
                               child: Padding(
@@ -1274,7 +1274,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                             height: 53,
                                           ),
                                         ),
-                                        const SizedBox(
+                                        SizedBox(
                                             width: double.infinity,
                                             height: 53,
                                             child: Align(

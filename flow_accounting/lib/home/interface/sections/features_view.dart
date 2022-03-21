@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/20/22, 9:12 AM
+ * Last modified 3/21/22, 6:16 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -496,7 +496,7 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
                                         }
                                       });
                                 },
-                                child: const Text(
+                                child: Text(
                                   StringsResources.presentText,
                                   style: TextStyle(fontSize: 13, shadows: [
                                     Shadow(
@@ -570,7 +570,7 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
                                         }
                                       });
                                 },
-                                child: const Text(
+                                child: Text(
                                   StringsResources.submitText,
                                   style: TextStyle(fontSize: 13, shadows: [
                                     Shadow(

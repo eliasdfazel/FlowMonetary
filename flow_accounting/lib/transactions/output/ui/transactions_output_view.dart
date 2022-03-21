@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/19/22, 7:53 AM
+ * Last modified 3/21/22, 6:16 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -228,7 +228,7 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> {
                                         sortTransactionsByMoneyAmount(context, allTransactions);
 
                                       },
-                                      child: const SizedBox(
+                                      child: SizedBox(
                                         height: 43,
                                         width: double.infinity,
                                         child: Align(
@@ -283,7 +283,7 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> {
                                         sortTransactionsByTime(context, allTransactions);
 
                                       },
-                                      child: const SizedBox(
+                                      child: SizedBox(
                                         height: 43,
                                         width: double.infinity,
                                         child: Align(
@@ -415,7 +415,7 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> {
                                             searchTransactions(context, allTransactions, searchQuery);
 
                                           },
-                                          decoration: const InputDecoration(
+                                          decoration: InputDecoration(
                                             border: OutlineInputBorder(
                                                 borderSide: BorderSide(color: Colors.transparent, width: 1.0),
                                                 borderRadius: BorderRadius.only(
@@ -775,7 +775,7 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> {
                             fontSize: 13,
                             color: ColorsResources.applicationDarkGeeksEmpire
                           ),
-                          decoration: const InputDecoration(
+                          decoration: InputDecoration(
                             alignLabelWithHint: true,
                             enabled: false,
                             border: OutlineInputBorder(

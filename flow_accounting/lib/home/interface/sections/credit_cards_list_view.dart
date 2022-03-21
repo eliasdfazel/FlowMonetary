@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/17/22, 3:42 AM
+ * Last modified 3/21/22, 6:16 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -390,7 +390,7 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
                                   tileMode: TileMode.clamp),
                             ),
                             alignment: AlignmentDirectional.center,
-                            child: const RotatedBox(
+                            child: RotatedBox(
                                 quarterTurns: 3,
                                 child: Align(
                                   alignment: Alignment.center,

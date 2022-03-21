@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/20/22, 10:09 AM
+ * Last modified 3/21/22, 6:16 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -232,7 +232,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
                                         sortProductByPrice(context, allProducts);
 
                                       },
-                                      child: const SizedBox(
+                                      child: SizedBox(
                                         height: 43,
                                         width: double.infinity,
                                         child: Align(
@@ -287,7 +287,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
                                         sortProductsByProfit(context, allProducts);
 
                                       },
-                                      child: const SizedBox(
+                                      child: SizedBox(
                                         height: 43,
                                         width: double.infinity,
                                         child: Align(
@@ -425,7 +425,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
                                             searchProducts(context, allProducts, searchQuery);
 
                                           },
-                                          decoration: const InputDecoration(
+                                          decoration: InputDecoration(
                                             border: OutlineInputBorder(
                                                 borderSide: BorderSide(color: Colors.transparent, width: 1.0),
                                                 borderRadius: BorderRadius.only(

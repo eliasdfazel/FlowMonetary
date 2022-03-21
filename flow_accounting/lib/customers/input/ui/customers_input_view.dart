@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/20/22, 5:15 AM
+ * Last modified 3/21/22, 6:09 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -1211,7 +1211,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                         height: 37,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: const [
+                          children: [
                             Expanded(
                               flex: 1,
                               child: Padding(
@@ -1541,7 +1541,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                       height: 53,
                                     ),
                                   ),
-                                  const SizedBox(
+                                  SizedBox(
                                       width: double.infinity,
                                       height: 53,
                                       child: Align(

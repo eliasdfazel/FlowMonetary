@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/20/22, 5:52 AM
+ * Last modified 3/21/22, 6:16 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -239,7 +239,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                       autofocus: false,
                                       keyboardType: TextInputType.text,
                                       textInputAction: TextInputAction.next,
-                                      decoration: const InputDecoration(
+                                      decoration: InputDecoration(
                                         alignLabelWithHint: true,
                                         border: OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
@@ -332,7 +332,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                           fontSize: 12,
                                           color: ColorsResources.applicationDarkGeeksEmpire
                                       ),
-                                      decoration: const InputDecoration(
+                                      decoration: InputDecoration(
                                         alignLabelWithHint: true,
                                         border: OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
@@ -420,7 +420,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                       autocorrect: true,
                                       autofocus: false,
                                       keyboardType: TextInputType.number,
-                                      decoration: const InputDecoration(
+                                      decoration: InputDecoration(
                                         alignLabelWithHint: true,
                                         border: OutlineInputBorder(
                                             borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
@@ -626,7 +626,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                             ),
                                           )
                                       ),
-                                      const Padding(
+                                      Padding(
                                           padding: EdgeInsets.fromLTRB(0, 5, 7, 0),
                                           child: Align(
                                             alignment: Alignment.centerRight,
@@ -723,7 +723,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                         },
                                         errorBuilder: (context, suggestion) {
 
-                                          return const Padding(
+                                          return Padding(
                                               padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
                                               child: Text(StringsResources.nothingText)
                                           );
@@ -741,7 +741,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                           cursorColor: ColorsResources.primaryColor,
                                           keyboardType: TextInputType.name,
                                           textInputAction: TextInputAction.next,
-                                          decoration: const InputDecoration(
+                                          decoration: InputDecoration(
                                             alignLabelWithHint: true,
                                             border: OutlineInputBorder(
                                                 borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
@@ -867,7 +867,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                         },
                                         errorBuilder: (context, suggestion) {
 
-                                          return const Padding(
+                                          return Padding(
                                               padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
                                               child: Text(StringsResources.nothingText)
                                           );
@@ -885,7 +885,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                           cursorColor: ColorsResources.primaryColor,
                                           keyboardType: TextInputType.name,
                                           textInputAction: TextInputAction.next,
-                                          decoration: const InputDecoration(
+                                          decoration: InputDecoration(
                                             alignLabelWithHint: true,
                                             border: OutlineInputBorder(
                                                 borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
@@ -1024,7 +1024,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                         },
                                         errorBuilder: (context, suggestion) {
 
-                                          return const Padding(
+                                          return Padding(
                                               padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
                                               child: Text(StringsResources.nothingText)
                                           );
@@ -1042,7 +1042,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                           cursorColor: ColorsResources.primaryColor,
                                           keyboardType: TextInputType.name,
                                           textInputAction: TextInputAction.next,
-                                          decoration: const InputDecoration(
+                                          decoration: InputDecoration(
                                             alignLabelWithHint: true,
                                             border: OutlineInputBorder(
                                                 borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
@@ -1168,7 +1168,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                         },
                                         errorBuilder: (context, suggestion) {
 
-                                          return const Padding(
+                                          return Padding(
                                               padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
                                               child: Text(StringsResources.nothingText)
                                           );
@@ -1186,7 +1186,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                           cursorColor: ColorsResources.primaryColor,
                                           keyboardType: TextInputType.name,
                                           textInputAction: TextInputAction.next,
-                                          decoration: const InputDecoration(
+                                          decoration: InputDecoration(
                                             alignLabelWithHint: true,
                                             border: OutlineInputBorder(
                                                 borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
@@ -1290,7 +1290,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                         },
                                         errorBuilder: (context, suggestion) {
 
-                                          return const Padding(
+                                          return Padding(
                                               padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
                                               child: Text(StringsResources.nothingText)
                                           );
@@ -1308,7 +1308,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                           cursorColor: ColorsResources.primaryColor,
                                           keyboardType: TextInputType.number,
                                           textInputAction: TextInputAction.next,
-                                          decoration: const InputDecoration(
+                                          decoration: InputDecoration(
                                             alignLabelWithHint: true,
                                             border: OutlineInputBorder(
                                                 borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
@@ -1412,7 +1412,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                         },
                                         errorBuilder: (context, suggestion) {
 
-                                          return const Padding(
+                                          return Padding(
                                               padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
                                               child: Text(StringsResources.nothingText)
                                           );
@@ -1430,7 +1430,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                           cursorColor: ColorsResources.primaryColor,
                                           keyboardType: TextInputType.number,
                                           textInputAction: TextInputAction.next,
-                                          decoration: const InputDecoration(
+                                          decoration: InputDecoration(
                                             alignLabelWithHint: true,
                                             border: OutlineInputBorder(
                                                 borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
@@ -1570,7 +1570,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                         },
                                         errorBuilder: (context, suggestion) {
 
-                                          return const Padding(
+                                          return Padding(
                                               padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
                                               child: Text(StringsResources.nothingText)
                                           );
@@ -1588,7 +1588,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                           cursorColor: ColorsResources.primaryColor,
                                           keyboardType: TextInputType.text,
                                           textInputAction: TextInputAction.done,
-                                          decoration: const InputDecoration(
+                                          decoration: InputDecoration(
                                             alignLabelWithHint: true,
                                             border: OutlineInputBorder(
                                                 borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
@@ -1660,7 +1660,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                         height: 37,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: const [
+                          children: [
                             Expanded(
                               flex: 1,
                               child: Padding(
@@ -1846,7 +1846,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                     height: 53,
                                   ),
                                 ),
-                                const SizedBox(
+                                SizedBox(
                                     width: double.infinity,
                                     height: 53,
                                     child: Align(

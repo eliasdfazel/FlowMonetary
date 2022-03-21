@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/17/22, 3:33 AM
+ * Last modified 3/21/22, 6:16 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -73,7 +73,7 @@ class _GeneralDataView extends State<GeneralDataView> {
                         flex: 3,
                         child: Column(
                           children: [
-                            const SizedBox(
+                            SizedBox(
                               width: double.infinity,
                               height: 21,
                               child: Align(
@@ -178,7 +178,7 @@ class _GeneralDataView extends State<GeneralDataView> {
                         flex: 5,
                         child: Column(
                           children: [
-                            const SizedBox(
+                            SizedBox(
                               width: double.infinity,
                               height: 21,
                               child: Align(
@@ -283,7 +283,7 @@ class _GeneralDataView extends State<GeneralDataView> {
                         flex: 3,
                         child: Column(
                           children: [
-                            const SizedBox(
+                            SizedBox(
                               width: double.infinity,
                               height: 21,
                               child: Align(
