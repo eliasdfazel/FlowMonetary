@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/21/22, 10:01 AM
+ * Last modified 3/21/22, 10:08 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -112,7 +112,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
     controllerProductBrand.text = widget.productsData?.productBrand == null ? "" : (widget.productsData?.productBrand)!;
 
     controllerProductBuyingPrice.text = widget.productsData?.productPrice == null ? "0" : (widget.productsData?.productPrice)!;
-    controllerProductProfitPercent.text = widget.productsData?.productProfitPercent == null ? "0" : (widget.productsData?.productProfitPercent)!;
+    controllerProductProfitPercent.text = widget.productsData?.productProfitPercent.replaceAll("%", "") == null ? "0" : (widget.productsData?.productProfitPercent)!.replaceAll("%", "");
 
     controllerProductQuantity.text = widget.productsData?.productQuantity == null ? "0" : (widget.productsData?.productQuantity.toString())!;
 
