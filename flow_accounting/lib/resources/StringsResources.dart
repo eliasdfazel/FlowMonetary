@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/21/22, 6:28 AM
+ * Last modified 3/21/22, 6:37 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -36,33 +36,90 @@ class StringsResources {
     return "شروع";
   }
 
-  static String selectProfileText = "انتخاب حساب کاربری";
-  static String detailsText = "جزئیات";
+  static String selectProfileText() {
 
-  static String submitText = "ثبت";
-  static String presentText = "نمایش";
+    return "انتخاب حساب کاربری";
+  }
+  static String detailsText() {
 
-  static String returnText = "بازگشت";
-  static String updatedText = "بروز رسانی انجام شد";
+    return "جزئیات";
+  }
 
-  static String errorText = "خطا ⚠";
+  static String submitText() {
 
-  static String searchText = "جستجو";
-  static String searchFeaturesText = "امکان مورد نظر خود را جستجو کنید";
-  static String searchHintText = "جستجو کنید";
+    return "ثبت";
+  }
+  static String presentText() {
 
-  static String editText = "ویرایش";
-  static String deleteText = "حذف";
+    return "نمایش";
+  }
 
-  static String titleText = "عنوان";
-  static String descriptionText = "توضیحات";
+  static String returnText() {
 
-  static String grantText = "تایید";
-  static String cancelText = "لغو";
+    return "بازگشت";
+  }
+  static String updatedText() {
 
-  static String totalBalanceText = "موجودی کلی";
-  static String totalEarningText = "درآمد کلی";
-  static String totalSpendingText = "مخارج کلی";
+    return "بروز رسانی انجام شد";
+  }
+
+  static String errorText() {
+
+    return "خطا ⚠";
+  }
+
+  static String searchText() {
+
+    return "جستجو";
+  }
+  static String searchFeaturesText() {
+
+    return "امکان مورد نظر خود را جستجو کنید";
+  }
+  static String searchHintText() {
+
+    return "جستجو کنید";
+  }
+
+  static String editText() {
+
+    return "ویرایش";
+  }
+  static String deleteText() {
+
+    return "حذف";
+  }
+
+  static String titleText() {
+
+    return "عنوان";
+  }
+  static String descriptionText() {
+
+    return "توضیحات";
+  }
+
+  static String grantText() {
+
+    return "تایید";
+  }
+  static String cancelText() {
+
+    return "لغو";
+  }
+
+  static String totalBalanceText() {
+
+    return "موجودی کلی";
+  }
+  static String totalEarningText() {
+
+    return "درآمد کلی";
+  }
+  static String totalSpendingText() {
+
+    return "مخارج کلی";
+  }
 
   /* Start - Profile String Resources */
   static String profileTitle = "حساب کاربری";
