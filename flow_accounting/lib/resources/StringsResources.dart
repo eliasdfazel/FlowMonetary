@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/21/22, 6:50 AM
+ * Last modified 3/21/22, 6:55 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -199,24 +199,72 @@ class StringsResources {
     return "مبلغ تراکنش";
   }
 
-  static String transactionSourceName = "نام صاحب حساب مبدا";
-  static String transactionSourceNameHint = "نام مبدا";
-  static String transactionSourceBank = "نام بانک حساب مبدا";
-  static String transactionSourceBankHint = "نام بانک";
-  static String transactionSourceCard = "شماره کارت یا حساب مبدا را وارد کنید";
-  static String transactionSourceCardHint = "کارت مبدا";
+  static String transactionSourceName() {
 
-  static String transactionTargetName = "نام صاحب حساب مقصد";
-  static String transactionTargetNameHint = "نام مقصد";
-  static String transactionTargetBank = "نام بانک حساب مقصد";
-  static String transactionTargetBankHint = "نام بانک";
-  static String transactionTargetCard = "شماره کارت یا حساب مقصد را وارد کنید";
-  static String transactionTargetCardHint = "کارت مقصد";
+    return "نام صاحب حساب مبدا";
+  }
+  static String transactionSourceNameHint() {
 
-  static String transactionType = "تراکنش دریافتی یا پرداختی است؟";
-  static String transactionTypeHint = "نوع تراکنش";
-  static String transactionTypeReceive = "دریافت";
-  static String transactionTypeSend = "پرداخت";
+    return "نام مبدا";
+  }
+  static String transactionSourceBank() {
+
+    return "نام بانک حساب مبدا";
+  }
+  static String transactionSourceBankHint() {
+
+    return "نام بانک";
+  }
+  static String transactionSourceCard() {
+
+    return "شماره کارت یا حساب مبدا را وارد کنید";
+  }
+  static String transactionSourceCardHint() {
+
+    return "کارت مبدا";
+  }
+
+  static String transactionTargetName() {
+
+    return "نام صاحب حساب مقصد";
+  }
+  static String transactionTargetNameHint() {
+
+    return "نام مقصد";
+  }
+  static String transactionTargetBank() {
+
+    return "نام بانک حساب مقصد";
+  }
+  static String transactionTargetBankHint() {
+
+    return "نام بانک";
+  }
+  static String transactionTargetCard() {
+
+    return "شماره کارت یا حساب مقصد را وارد کنید";
+  }
+  static String transactionTargetCardHint() {
+
+    return "کارت مقصد";
+  }
+
+  static String transactionType() {
+
+    return "تراکنش دریافتی یا پرداختی است؟";
+  }
+  static String transactionTypeHint() {
+
+    return "نوع تراکنش";
+  }
+  static String transactionTypeReceive() {
+
+    return "دریافت";
+  }
+  static String transactionTypeSend() {
+
+    return "پرداخت";
+  }
   /* End - Transaction String Resources */
 
   /* Start - Credit Card String Resources */
