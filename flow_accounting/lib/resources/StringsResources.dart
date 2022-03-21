@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/21/22, 7:09 AM
+ * Last modified 3/21/22, 7:15 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -538,42 +538,112 @@ class StringsResources {
   /* End - Cheque String Resources */
 
   /* Start - Product String Resources */
-  static String productName = "نام محصول";
-  static String productNameHint = "نام محصول را با کد مدل وارد کنید";
+  static String productName() {
 
-  static String productDescription = "توضیحات محصول";
-  static String productDescriptionHint = "توضیحات و ویژگی های محصول";
+    return "نام محصول";
+  }
+  static String productNameHint() {
 
-  static String productBuyingPrice = "قیمت خرید";
-  static String productBuyingPriceHint = "قیمت خرید محصول را وارد کنید";
+    return "نام محصول را با کد مدل وارد کنید";
+  }
 
-  static String productProfitPercent = "درصد سود %";
-  static String productProfitPercentHint = "مقدار درصد سود برای قیمت فروش را وارد کنید";
+  static String productDescription() {
 
-  static String productCategory = "دسته بندی محصول";
-  static String productCategoryHint = "دسته بندی اصلی محصول را وارد کنید";
+    return "توضیحات محصول";
+  }
+  static String productDescriptionHint() {
 
-  static String productBrand = "برند محصول";
-  static String productBrandHint = "نام شرکت سازنده محصول را وارد کنید";
+    return "توضیحات و ویژگی های محصول";
+  }
 
-  static String productSortByPrice = "مرتب سازی: بیشترین قیمت";
-  static String productSortByProfit = "مرتب سازی: بیشترین سود";
+  static String productBuyingPrice() {
 
-  static String productQuantity = "تعداد";
-  static String productQuantityHint = "تعداد موجودی اولیه را وارد کنید";
+    return "قیمت خرید";
+  }
+  static String productBuyingPriceHint() {
+
+    return "قیمت خرید محصول را وارد کنید";
+  }
+
+  static String productProfitPercent() {
+
+    return "درصد سود %";
+  }
+  static String productProfitPercentHint() {
+
+    return "مقدار درصد سود برای قیمت فروش را وارد کنید";
+  }
+
+  static String productCategory() {
+
+    return "دسته بندی محصول";
+  }
+  static String productCategoryHint() {
+
+    return "دسته بندی اصلی محصول را وارد کنید";
+  }
+
+  static String productBrand() {
+
+    return "برند محصول";
+  }
+  static String productBrandHint() {
+
+    return "نام شرکت سازنده محصول را وارد کنید";
+  }
+
+  static String productSortByPrice() {
+
+    return "مرتب سازی: بیشترین قیمت";
+  }
+  static String productSortByProfit() {
+
+    return "مرتب سازی: بیشترین سود";
+  }
+
+  static String productQuantity() {
+
+    return "تعداد";
+  }
+  static String productQuantityHint() {
+
+    return "تعداد موجودی اولیه را وارد کنید";
+  }
   /* End - Product String Resources */
 
-  static String sortHint = "مرتب سازی";
-  static String sortTimeNew = "بر اساس: زمان جدید";
-  static String sortTimeOld = "بر اساس: زمان گذشته";
+  static String sortHint() {
 
-  static String sortMoneyAmountLow = "مرتب سازی: تراکنش کمک";
-  static String sortTransactionAmountHigh = "مرتب سازی: تراکنش زیاد";
+    return "مرتب سازی";
+  }
+  static String sortTimeNew() {
 
-  static String sortCustomerAge = "مرتب سازی: سن مشتری";
+    return "بر اساس: زمان جدید";
+  }
+  static String sortTimeOld() {
 
-  static String colorSelectorHint = "برای تمایز و دسته بندی رنگ مورد نظر خود را انتخاب کنید";
+    return "بر اساس: زمان گذشته";
+  }
 
+  static String sortMoneyAmountLow() {
+
+    return "مرتب سازی: تراکنش کمک";
+  }
+  static String sortTransactionAmountHigh() {
+
+    return "مرتب سازی: تراکنش زیاد";
+  }
+
+  static String sortCustomerAge() {
+
+    return "مرتب سازی: سن مشتری";
+  }
+
+  static String colorSelectorHint() {
+
+    return "برای تمایز و دسته بندی رنگ مورد نظر خود را انتخاب کنید";
+  }
+
+  /* Start - Features Descriptions */
   static String featureCreditCardTitle = "کارت بانکی";
   static String featureCreditCardDescription = "اطلاعات کار بانکی خود را وارد کنید تا بتوانید راحت تر حسابرسی انجام بدهید";
 
@@ -606,6 +676,7 @@ class StringsResources {
 
   static String featureLoansTitle = "وام";
   static String featureLoansDescription = "شما میتوانید تمام اطلاعات مرتبط با وام گرفته شده خود را اعم از مبلغ وام/ تاریخ و ... را کادر زیر در ردیف/ستون خواسته شده وارد کنید.";
+  /* End - Features Descriptions */
 
   static String mySelfText = "خودم";
   static String nothingText = "هیچ";
