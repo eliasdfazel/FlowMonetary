@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/21/22, 6:55 AM
+ * Last modified 3/21/22, 6:58 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -268,30 +268,81 @@ class StringsResources {
   /* End - Transaction String Resources */
 
   /* Start - Credit Card String Resources */
-  static String creditCardsBankName = "بانک صادر کننده";
-  static String creditCardsBankNameHint = "نام بانک";
-  static String creditCardsNameHolder = "نام";
-  static String creditCardsNameHolderHint = "نام صاحب کارت";
+  static String creditCardsBankName() {
 
-  static String creditCardNumber = "شماره کارت را وارد کنید";
-  static String creditCardNumberHint = "شماره کارت";
+    return "بانک صادر کننده";
+  }
+  static String creditCardsBankNameHint() {
 
-  static String creditCardExpiryMonth = "ماه";
-  static String creditCardExpiryMonthHint = "ماه انقضا";
-  static String creditCardExpiryYear = "سال";
-  static String creditCardExpiryYearHint = "سال انقضا";
+    return "نام بانک";
+  }
+  static String creditCardsNameHolder() {
 
-  static String creditCardBalance = "موجودی";
-  static String creditCardBalanceHint = "مبلغ موجودی را وارد کنید";
-  static String creditCardBalanceChart = "نمودار موجودی";
+    return "نام";
+  }
+  static String creditCardsNameHolderHint() {
 
-  static String creditCardCvv = "CVV";
-  static String creditCardCvvHint = "CVV";
+    return "نام صاحب کارت";
+  }
+
+  static String creditCardNumber() {
+
+    return "شماره کارت را وارد کنید";
+  }
+  static String creditCardNumberHint() {
+
+    return "شماره کارت";
+  }
+
+  static String creditCardExpiryMonth() {
+
+    return "ماه";
+  }
+  static String creditCardExpiryMonthHint() {
+
+    return "ماه انقضا";
+  }
+  static String creditCardExpiryYear() {
+
+    return "سال";
+  }
+  static String creditCardExpiryYearHint() {
+
+    return "سال انقضا";
+  }
+
+  static String creditCardBalance() {
+
+    return "موجودی";
+  }
+  static String creditCardBalanceHint() {
+
+    return "مبلغ موجودی را وارد کنید";
+  }
+  static String creditCardBalanceChart() {
+
+    return "نمودار موجودی";
+  }
+
+  static String creditCardCvv() {
+
+    return "CVV";
+  }
+  static String creditCardCvvHint() {
+
+    return "CVV";
+  }
   /* End - Credit Card String Resources */
 
   /* Start - Budget String Resources */
-  static String budgetNameText = "نام بودجه";
-  static String budgetNameTextHint = "نام مورد نظر برای این بوجه را بنویسید";
+  static String budgetNameText() {
+
+    return "نام بودجه";
+  }
+  static String budgetNameTextHint() {
+
+    return "نام مورد نظر برای این بوجه را بنویسید";
+  }
 
   static String budgetDescriptionText = "توضیحات بودجه";
   static String budgetDescriptionTextHint = "این بودجه برای چه منظوری تایین شده است؟";
