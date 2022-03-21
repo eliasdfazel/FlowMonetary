@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/21/22, 6:37 AM
+ * Last modified 3/21/22, 6:50 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -122,31 +122,82 @@ class StringsResources {
   }
 
   /* Start - Profile String Resources */
-  static String profileTitle = "حساب کاربری";
-  static String profileDescription = "اصطلاعات حساب کاربری خود را با دقت و صحیح وارد کنید";
+  static String profileTitle() {
 
-  static String profileUserFullName = "نام یا نام شرکت";
-  static String profileUserFullNameHint = "نام خود را مطابق مدارک شناسایی خود وارد کنید";
+    return "حساب کاربری";
+  }
+  static String profileDescription() {
 
-  static String profileUserEmail = "آدرس پست الکترونیکی";
-  static String profileUserEmailHint = "آدرس ایمیل معتبر خود را وارد کنید";
+    return "اصطلاعات حساب کاربری خود را با دقت و صحیح وارد کنید";
+  }
 
-  static String profileUserPhoneNumber = "شماره تلفن همراه";
-  static String profileUserPhoneNumberHint = "شماره تلفن خود را برای اعتبار سنجی وارد کنید";
+  static String profileUserFullName() {
 
-  static String profileUserInstagram = "آدرس شبکه اجتماعی مجازی";
-  static String profileUserInstagramHint = "آدرس شبکه اجتماعی مجازی خود را وارد کنید";
+    return "نام یا نام شرکت";
+  }
+  static String profileUserFullNameHint() {
 
-  static String profileUserLocationAddress = "آدرس پستی";
-  static String profileUserLocationAddressHint = "آدرس محل سکونت یا کار خود را وارد کنید";
+    return "نام خود را مطابق مدارک شناسایی خود وارد کنید";
+  }
+
+  static String profileUserEmail() {
+
+    return "آدرس پست الکترونیکی";
+  }
+  static String profileUserEmailHint() {
+
+    return "آدرس ایمیل معتبر خود را وارد کنید";
+  }
+
+  static String profileUserPhoneNumber() {
+
+    return "شماره تلفن همراه";
+  }
+  static String profileUserPhoneNumberHint() {
+
+    return "شماره تلفن خود را برای اعتبار سنجی وارد کنید";
+  }
+
+  static String profileUserInstagram() {
+
+    return "آدرس شبکه اجتماعی مجازی";
+  }
+  static String profileUserInstagramHint() {
+
+    return "آدرس شبکه اجتماعی مجازی خود را وارد کنید";
+  }
+
+  static String profileUserLocationAddress() {
+
+    return "آدرس پستی";
+  }
+  static String profileUserLocationAddressHint() {
+
+    return "آدرس محل سکونت یا کار خود را وارد کنید";
+  }
   /* End - Profile String Resources */
 
   /* Start - Transaction String Resources */
-  static String transactionAll = "تمام تراکنش ها";
-  static String transactionLatest = "آخرین تراکنش ها";
-  static String transactionTime = "زمان تراکنش";
-  static String transactionAmount = "مبلغ  دریافتی یا پرداختی را وارد کنید";
-  static String transactionAmountHint = "مبلغ تراکنش";
+  static String transactionAll() {
+
+    return "تمام تراکنش ها";
+  }
+  static String transactionLatest() {
+
+    return "آخرین تراکنش ها";
+  }
+  static String transactionTime() {
+
+    return "زمان تراکنش";
+  }
+  static String transactionAmount() {
+
+    return "مبلغ  دریافتی یا پرداختی را وارد کنید";
+  }
+  static String transactionAmountHint() {
+
+    return "مبلغ تراکنش";
+  }
 
   static String transactionSourceName = "نام صاحب حساب مبدا";
   static String transactionSourceNameHint = "نام مبدا";
