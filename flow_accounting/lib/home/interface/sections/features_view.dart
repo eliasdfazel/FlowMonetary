@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/21/22, 6:16 AM
+ * Last modified 3/21/22, 9:52 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -123,8 +123,8 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
       featureColor: ColorsResources.lightestPurple,
       featureIconUrl: "transactions_icon.png",
       importantFeature: true,
-      featuresTitle: StringsResources.featureTransactionsTitle,
-      featuresDescription: StringsResources.featureTransactionsDescription,
+      featuresTitle: StringsResources.featureTransactionsTitle(),
+      featuresDescription: StringsResources.featureTransactionsDescription(),
       featureViewToSubmitData: const TransactionsInputView(),
       featureToPresentData: TransactionsOutputView(),
     ));
@@ -133,16 +133,16 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
         featureColor: ColorsResources.lightestBlue,
         featureIconUrl: "sell_invoices_icon.png",
         importantFeature: false,
-        featuresTitle: StringsResources.featureSellInvoicesTitle,
-        featuresDescription: StringsResources.featureSellInvoicesDescription,
+        featuresTitle: StringsResources.featureSellInvoicesTitle(),
+        featuresDescription: StringsResources.featureSellInvoicesDescription(),
         featureViewToSubmitData: null,
         featureToPresentData: null));
     allFeaturesStructure.add(FeaturesStructure(
         featureColor: ColorsResources.lightestBlue,
         featureIconUrl: "buy_invoices_icon.png",
         importantFeature: false,
-        featuresTitle: StringsResources.featureBuyInvoicesTitle,
-        featuresDescription: StringsResources.featureBuyInvoicesDescription,
+        featuresTitle: StringsResources.featureBuyInvoicesTitle(),
+        featuresDescription: StringsResources.featureBuyInvoicesDescription(),
         featureViewToSubmitData: null,
         featureToPresentData: null));
 
@@ -150,8 +150,8 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
         featureColor: ColorsResources.lightestOrange,
         featureIconUrl: "products_icon.png",
         importantFeature: true,
-        featuresTitle: StringsResources.featureProductsTitle,
-        featuresDescription: StringsResources.featureProductsDescription,
+        featuresTitle: StringsResources.featureProductsTitle(),
+        featuresDescription: StringsResources.featureProductsDescription(),
         featureViewToSubmitData: ProductsInputView(),
         featureToPresentData: ProductsOutputView()));
 
@@ -159,8 +159,8 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
         featureColor: ColorsResources.lightestCyan,
         featureIconUrl: "cheques_icon.png",
         importantFeature: true,
-        featuresTitle: StringsResources.featureChequesTitle,
-        featuresDescription: StringsResources.featureChequesDescription,
+        featuresTitle: StringsResources.featureChequesTitle(),
+        featuresDescription: StringsResources.featureChequesDescription(),
         featureViewToSubmitData: ChequesInputView(),
         featureToPresentData: ChequesOutputView()));
 
@@ -168,16 +168,16 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
         featureColor: ColorsResources.lightestRed,
         featureIconUrl: "debtors_icon.png",
         importantFeature: false,
-        featuresTitle: StringsResources.featureDebtorsTitle,
-        featuresDescription: StringsResources.featureDebtorsDescription,
+        featuresTitle: StringsResources.featureDebtorsTitle(),
+        featuresDescription: StringsResources.featureDebtorsDescription(),
         featureViewToSubmitData: null,
         featureToPresentData: null));
     allFeaturesStructure.add(FeaturesStructure(
         featureColor: ColorsResources.lightestRed,
         featureIconUrl: "creditors_icon.png",
         importantFeature: false,
-        featuresTitle: StringsResources.featureCreditorsTitle,
-        featuresDescription: StringsResources.featureCreditorsDescription,
+        featuresTitle: StringsResources.featureCreditorsTitle(),
+        featuresDescription: StringsResources.featureCreditorsDescription(),
         featureViewToSubmitData: null,
         featureToPresentData: null));
 
@@ -185,8 +185,8 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
         featureColor: ColorsResources.lightestGreen,
         featureIconUrl: "customers_icon.png",
         importantFeature: true,
-        featuresTitle: StringsResources.featureCustomersTitle,
-        featuresDescription: StringsResources.featureCustomersDescription,
+        featuresTitle: StringsResources.featureCustomersTitle(),
+        featuresDescription: StringsResources.featureCustomersDescription(),
         featureViewToSubmitData: CustomersInputView(),
         featureToPresentData: const CustomersOutputView()));
 
@@ -194,17 +194,16 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
         featureColor: ColorsResources.lightestYellow,
         featureIconUrl: "budgets_icon.png",
         importantFeature: false,
-        featuresTitle: StringsResources.featureBudgetManagementsTitle,
-        featuresDescription:
-            StringsResources.featureBudgetManagementsDescription,
+        featuresTitle: StringsResources.featureBudgetManagementsTitle(),
+        featuresDescription: StringsResources.featureBudgetManagementsDescription(),
         featureViewToSubmitData: BudgetsInputView(),
         featureToPresentData: const BudgetsOutputView()));
     allFeaturesStructure.add(FeaturesStructure(
         featureColor: ColorsResources.lightestYellow,
         featureIconUrl: "loans_icon.png",
         importantFeature: false,
-        featuresTitle: StringsResources.featureLoansTitle,
-        featuresDescription: StringsResources.featureLoansDescription,
+        featuresTitle: StringsResources.featureLoansTitle(),
+        featuresDescription: StringsResources.featureLoansDescription(),
         featureViewToSubmitData: null,
         featureToPresentData: null));
 
@@ -497,7 +496,7 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
                                       });
                                 },
                                 child: Text(
-                                  StringsResources.presentText,
+                                  StringsResources.presentText(),
                                   style: TextStyle(fontSize: 13, shadows: [
                                     Shadow(
                                         color: ColorsResources.light,
@@ -571,7 +570,7 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
                                       });
                                 },
                                 child: Text(
-                                  StringsResources.submitText,
+                                  StringsResources.submitText(),
                                   style: TextStyle(fontSize: 13, shadows: [
                                     Shadow(
                                         color: ColorsResources.light,
