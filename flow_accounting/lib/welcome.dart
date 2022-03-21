@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/21/22, 6:28 AM
+ * Last modified 3/21/22, 7:38 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -114,7 +114,7 @@ class _WelcomePage extends State<WelcomePage> {
                   right: 13,
                   child: Center(
                     child: Text(
-                      StringsResources.welcomeText,
+                      StringsResources.welcomeText(),
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 23
@@ -163,7 +163,7 @@ class _WelcomePage extends State<WelcomePage> {
 
                                   },
                                   child: Text(
-                                    StringsResources.getStartedText,
+                                    StringsResources.getStartedText(),
                                     style: TextStyle(fontSize: 29,shadows: [
                                       Shadow(
                                           color: ColorsResources.light,
@@ -214,7 +214,7 @@ class _WelcomePage extends State<WelcomePage> {
 
       } else {
 
-        signedInUser = StringsResources.unknownText;
+        signedInUser = StringsResources.unknownText();
 
       }
 
@@ -222,7 +222,7 @@ class _WelcomePage extends State<WelcomePage> {
 
     } on Exception {
 
-      signedInUser = StringsResources.unknownText;
+      signedInUser = StringsResources.unknownText();
 
       debugPrint("Sign In Process Error: ${signedInUser}");
 

@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/21/22, 6:16 AM
+ * Last modified 3/21/22, 7:38 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -40,7 +40,7 @@ class _CalendarView extends State<CalendarView> {
 
     super.initState();
 
-    widget.pickedDataTimeText = StringsResources.transactionTime;
+    widget.pickedDataTimeText = StringsResources.transactionTime();
 
     if (widget.inputDateTime != null) {
 

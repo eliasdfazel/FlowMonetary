@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 2/12/22, 5:20 AM
+ * Last modified 3/21/22, 7:38 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -14,9 +14,9 @@ String generateBankLogoUrl(String bankLogoFileName) {
 
   String logoFileName = "Other_Banks.png";
 
-  if (StringsResources.mapBanksIranLogo.keys.contains(bankLogoFileName)) {
+  if (StringsResources.mapBanksIranLogo().keys.contains(bankLogoFileName)) {
 
-    logoFileName = StringsResources.mapBanksIranLogo[bankLogoFileName].toString();
+    logoFileName = StringsResources.mapBanksIranLogo()[bankLogoFileName].toString();
 
   }
 

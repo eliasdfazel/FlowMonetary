@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/21/22, 6:16 AM
+ * Last modified 3/21/22, 7:38 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -102,15 +102,15 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
 
     if (widget.transactionsData.transactionType == TransactionsData.TransactionType_Send) {
 
-      transactionType = StringsResources.transactionTypeSend;
+      transactionType = StringsResources.transactionTypeSend();
 
     } else if (widget.transactionsData.transactionType == TransactionsData.TransactionType_Receive) {
 
-      transactionType = StringsResources.transactionTypeReceive;
+      transactionType = StringsResources.transactionTypeReceive();
 
     } else {
 
-      transactionType = StringsResources.transactionTypeSend;
+      transactionType = StringsResources.transactionTypeSend();
 
     }
 
@@ -183,7 +183,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(13, 13, 13, 0),
                         child:  Text(
-                          StringsResources.featureTransactionsTitle,
+                          StringsResources.featureTransactionsTitle(),
                           textDirection: TextDirection.rtl,
                           style: TextStyle(
                             fontSize: 23,
@@ -201,7 +201,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(13, 13, 13, 19),
                         child: Text(
-                          StringsResources.featureTransactionsDescription,
+                          StringsResources.featureTransactionsDescription(),
                           textDirection: TextDirection.rtl,
                           style: TextStyle(
                             fontSize: 15,
@@ -283,12 +283,12 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                         ),
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.titleText,
+                                        labelText: StringsResources.titleText(),
                                         labelStyle: TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.titleText,
+                                        hintText: StringsResources.titleText(),
                                         hintStyle: TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
@@ -376,12 +376,12 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                         ),
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.descriptionText,
+                                        labelText: StringsResources.descriptionText(),
                                         labelStyle: TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.descriptionText,
+                                        hintText: StringsResources.descriptionText(),
                                         hintStyle: TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
@@ -464,12 +464,12 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                         ),
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.transactionAmount,
+                                        labelText: StringsResources.transactionAmount(),
                                         labelStyle: TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.transactionAmountHint,
+                                        hintText: StringsResources.transactionAmountHint(),
                                         hintStyle: TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
@@ -586,8 +586,8 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                               ),
                                               value: StringsResources.transactionTypeSend,
                                               items: <String> [
-                                                StringsResources.transactionTypeSend,
-                                                StringsResources.transactionTypeReceive
+                                                StringsResources.transactionTypeSend(),
+                                                StringsResources.transactionTypeReceive()
                                               ].map<DropdownMenuItem<String>>((String value) {
 
                                                 return DropdownMenuItem<String>(
@@ -631,7 +631,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                           child: Align(
                                             alignment: Alignment.centerRight,
                                             child: Text(
-                                              StringsResources.transactionTypeHint,
+                                              StringsResources.transactionTypeHint(),
                                               textAlign: TextAlign.right,
                                               style: TextStyle(
                                                   color: ColorsResources.applicationGeeksEmpire,
@@ -725,7 +725,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
 
                                           return Padding(
                                               padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
-                                              child: Text(StringsResources.nothingText)
+                                              child: Text(StringsResources.nothingText())
                                           );
                                         },
                                         suggestionsBoxDecoration: SuggestionsBoxDecoration(
@@ -785,12 +785,12 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                             ),
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
-                                            labelText: StringsResources.transactionTargetName,
+                                            labelText: StringsResources.transactionTargetName(),
                                             labelStyle: TextStyle(
                                                 color: ColorsResources.dark,
                                                 fontSize: 17.0
                                             ),
-                                            hintText: StringsResources.transactionTargetNameHint,
+                                            hintText: StringsResources.transactionTargetNameHint(),
                                             hintStyle: TextStyle(
                                                 color: ColorsResources.darkTransparent,
                                                 fontSize: 17.0
@@ -869,7 +869,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
 
                                           return Padding(
                                               padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
-                                              child: Text(StringsResources.nothingText)
+                                              child: Text(StringsResources.nothingText())
                                           );
                                         },
                                         suggestionsBoxDecoration: SuggestionsBoxDecoration(
@@ -929,12 +929,12 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                             ),
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
-                                            labelText: StringsResources.transactionSourceName,
+                                            labelText: StringsResources.transactionSourceName(),
                                             labelStyle: TextStyle(
                                                 color: ColorsResources.dark,
                                                 fontSize: 17.0
                                             ),
-                                            hintText: StringsResources.transactionSourceNameHint,
+                                            hintText: StringsResources.transactionSourceNameHint(),
                                             hintStyle: TextStyle(
                                                 color: ColorsResources.darkTransparent,
                                                 fontSize: 17.0
@@ -1026,7 +1026,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
 
                                           return Padding(
                                               padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
-                                              child: Text(StringsResources.nothingText)
+                                              child: Text(StringsResources.nothingText())
                                           );
                                         },
                                         suggestionsBoxDecoration: SuggestionsBoxDecoration(
@@ -1086,12 +1086,12 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                             ),
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
-                                            labelText: StringsResources.transactionTargetBank,
+                                            labelText: StringsResources.transactionTargetBank(),
                                             labelStyle: TextStyle(
                                                 color: ColorsResources.dark,
                                                 fontSize: 17.0
                                             ),
-                                            hintText: StringsResources.transactionTargetBankHint,
+                                            hintText: StringsResources.transactionTargetBankHint(),
                                             hintStyle: TextStyle(
                                                 color: ColorsResources.darkTransparent,
                                                 fontSize: 17.0
@@ -1170,7 +1170,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
 
                                           return Padding(
                                               padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
-                                              child: Text(StringsResources.nothingText)
+                                              child: Text(StringsResources.nothingText())
                                           );
                                         },
                                         suggestionsBoxDecoration: SuggestionsBoxDecoration(
@@ -1230,12 +1230,12 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                             ),
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
-                                            labelText: StringsResources.transactionSourceBank,
+                                            labelText: StringsResources.transactionSourceBank(),
                                             labelStyle: TextStyle(
                                                 color: ColorsResources.dark,
                                                 fontSize: 17.0
                                             ),
-                                            hintText: StringsResources.transactionSourceBankHint,
+                                            hintText: StringsResources.transactionSourceBankHint(),
                                             hintStyle: TextStyle(
                                                 color: ColorsResources.darkTransparent,
                                                 fontSize: 17.0
@@ -1292,7 +1292,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
 
                                           return Padding(
                                               padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
-                                              child: Text(StringsResources.nothingText)
+                                              child: Text(StringsResources.nothingText())
                                           );
                                         },
                                         suggestionsBoxDecoration: SuggestionsBoxDecoration(
@@ -1352,12 +1352,12 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                             ),
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
-                                            labelText: StringsResources.transactionSourceCard,
+                                            labelText: StringsResources.transactionSourceCard(),
                                             labelStyle: TextStyle(
                                                 color: ColorsResources.dark,
                                                 fontSize: 17.0
                                             ),
-                                            hintText: StringsResources.transactionSourceCardHint,
+                                            hintText: StringsResources.transactionSourceCardHint(),
                                             hintStyle: TextStyle(
                                                 color: ColorsResources.darkTransparent,
                                                 fontSize: 17.0
@@ -1414,7 +1414,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
 
                                           return Padding(
                                               padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
-                                              child: Text(StringsResources.nothingText)
+                                              child: Text(StringsResources.nothingText())
                                           );
                                         },
                                         suggestionsBoxDecoration: SuggestionsBoxDecoration(
@@ -1474,12 +1474,12 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                             ),
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
-                                            labelText: StringsResources.transactionTargetCard,
+                                            labelText: StringsResources.transactionTargetCard(),
                                             labelStyle: TextStyle(
                                                 color: ColorsResources.dark,
                                                 fontSize: 17.0
                                             ),
-                                            hintText: StringsResources.transactionTargetCardHint,
+                                            hintText: StringsResources.transactionTargetCardHint(),
                                             hintStyle: TextStyle(
                                                 color: ColorsResources.darkTransparent,
                                                 fontSize: 17.0
@@ -1572,7 +1572,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
 
                                           return Padding(
                                               padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
-                                              child: Text(StringsResources.nothingText)
+                                              child: Text(StringsResources.nothingText())
                                           );
                                         },
                                         suggestionsBoxDecoration: SuggestionsBoxDecoration(
@@ -1632,12 +1632,12 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                             ),
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
-                                            labelText: StringsResources.transactionBudgetName,
+                                            labelText: StringsResources.transactionBudgetName(),
                                             labelStyle: TextStyle(
                                                 color: ColorsResources.dark,
                                                 fontSize: 17.0
                                             ),
-                                            hintText: StringsResources.transactionBudgetNameHint,
+                                            hintText: StringsResources.transactionBudgetNameHint(),
                                             hintStyle: TextStyle(
                                                 color: ColorsResources.darkTransparent,
                                                 fontSize: 17.0
@@ -1668,7 +1668,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: Text(
-                                      StringsResources.colorSelectorHint,
+                                      StringsResources.colorSelectorHint(),
                                       style: TextStyle(
                                           fontSize: 15
                                       ),
@@ -1775,7 +1775,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                           databaseInputs.updateTransactionData(transactionData, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
                           Fluttertoast.showToast(
-                              msg: StringsResources.updatedText,
+                              msg: StringsResources.updatedText(),
                               toastLength: Toast.LENGTH_SHORT,
                               gravity: ToastGravity.CENTER,
                               timeInSecForIosWeb: 1,
@@ -1852,7 +1852,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                     child: Align(
                                       alignment: AlignmentDirectional.center,
                                       child: Text(
-                                        StringsResources.editText,
+                                        StringsResources.editText(),
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                             fontSize: 19,
@@ -1895,7 +1895,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
 
       listOfCustomers.add(CustomersData(
           id: profilesData.id,
-          customerName: StringsResources.mySelfText,
+          customerName: StringsResources.mySelfText(),
           customerDescription: profilesData.userFullName,
           customerCountry: "",
           customerCity: "",
@@ -1936,7 +1936,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
 
   Future<List<String>> getBanksNames() async {
 
-    return StringsResources.listOfBanksIran;
+    return StringsResources.listOfBanksIran();
   }
 
   Future<List<BudgetsData>> getBudgetNames() async {

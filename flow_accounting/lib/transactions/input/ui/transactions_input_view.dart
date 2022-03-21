@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/21/22, 6:16 AM
+ * Last modified 3/21/22, 7:39 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -162,7 +162,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(13, 13, 13, 0),
                         child:  Text(
-                          StringsResources.featureTransactionsTitle,
+                          StringsResources.featureTransactionsTitle(),
                           textDirection: TextDirection.rtl,
                           style: TextStyle(
                             fontSize: 23,
@@ -180,7 +180,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(13, 13, 13, 19),
                         child: Text(
-                          StringsResources.featureTransactionsDescription,
+                          StringsResources.featureTransactionsDescription(),
                           textDirection: TextDirection.rtl,
                           style: TextStyle(
                             fontSize: 15,
@@ -263,12 +263,12 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                         errorText: warningNoticeTitle,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.titleText,
+                                        labelText: StringsResources.titleText(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.titleText,
+                                        hintText: StringsResources.titleText(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
@@ -357,12 +357,12 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                         errorText: warningNoticeDescription,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.descriptionText,
+                                        labelText: StringsResources.descriptionText(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 13.0
                                         ),
-                                        hintText: StringsResources.descriptionText,
+                                        hintText: StringsResources.descriptionText(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 13.0
@@ -447,12 +447,12 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                         errorText: warningNoticeMoneyAmount,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.transactionAmount,
+                                        labelText: StringsResources.transactionAmount(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.transactionAmountHint,
+                                        hintText: StringsResources.transactionAmountHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
@@ -569,8 +569,8 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                               ),
                                               value: StringsResources.transactionTypeSend,
                                               items: <String> [
-                                                StringsResources.transactionTypeSend,
-                                                StringsResources.transactionTypeReceive
+                                                StringsResources.transactionTypeSend(),
+                                                StringsResources.transactionTypeReceive()
                                               ].map<DropdownMenuItem<String>>((String value) {
 
                                                 return DropdownMenuItem<String>(
@@ -615,7 +615,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                           child: Align(
                                             alignment: Alignment.centerRight,
                                             child: Text(
-                                              StringsResources.transactionTypeHint,
+                                              StringsResources.transactionTypeHint(),
                                               textAlign: TextAlign.right,
                                               style: TextStyle(
                                                   color: ColorsResources.applicationGeeksEmpire,
@@ -709,7 +709,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
                                           return Padding(
                                               padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
-                                              child: Text(StringsResources.nothingText)
+                                              child: Text(StringsResources.nothingText())
                                           );
                                         },
                                         suggestionsBoxDecoration: SuggestionsBoxDecoration(
@@ -770,12 +770,12 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                             errorText: warningNoticeTargetName,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
-                                            labelText: StringsResources.transactionTargetName,
+                                            labelText: StringsResources.transactionTargetName(),
                                             labelStyle: const TextStyle(
                                                 color: ColorsResources.dark,
                                                 fontSize: 17.0
                                             ),
-                                            hintText: StringsResources.transactionTargetNameHint,
+                                            hintText: StringsResources.transactionTargetNameHint(),
                                             hintStyle: const TextStyle(
                                                 color: ColorsResources.darkTransparent,
                                                 fontSize: 17.0
@@ -854,7 +854,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
                                           return Padding(
                                               padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
-                                              child: Text(StringsResources.nothingText)
+                                              child: Text(StringsResources.nothingText())
                                           );
                                         },
                                         suggestionsBoxDecoration: SuggestionsBoxDecoration(
@@ -915,12 +915,12 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                             errorText: warningNoticeSourceName,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
-                                            labelText: StringsResources.transactionSourceName,
+                                            labelText: StringsResources.transactionSourceName(),
                                             labelStyle: const TextStyle(
                                                 color: ColorsResources.dark,
                                                 fontSize: 17.0
                                             ),
-                                            hintText: StringsResources.transactionSourceNameHint,
+                                            hintText: StringsResources.transactionSourceNameHint(),
                                             hintStyle: const TextStyle(
                                                 color: ColorsResources.darkTransparent,
                                                 fontSize: 17.0
@@ -1012,7 +1012,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
                                           return Padding(
                                               padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
-                                              child: Text(StringsResources.nothingText)
+                                              child: Text(StringsResources.nothingText())
                                           );
                                         },
                                         suggestionsBoxDecoration: SuggestionsBoxDecoration(
@@ -1073,12 +1073,12 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                             errorText: warningNoticeTargetBank,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
-                                            labelText: StringsResources.transactionTargetBank,
+                                            labelText: StringsResources.transactionTargetBank(),
                                             labelStyle: const TextStyle(
                                                 color: ColorsResources.dark,
                                                 fontSize: 17.0
                                             ),
-                                            hintText: StringsResources.transactionTargetBankHint,
+                                            hintText: StringsResources.transactionTargetBankHint(),
                                             hintStyle: const TextStyle(
                                                 color: ColorsResources.darkTransparent,
                                                 fontSize: 17.0
@@ -1157,7 +1157,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
                                           return Padding(
                                               padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
-                                              child: Text(StringsResources.nothingText)
+                                              child: Text(StringsResources.nothingText())
                                           );
                                         },
                                         suggestionsBoxDecoration: SuggestionsBoxDecoration(
@@ -1218,12 +1218,12 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                             errorText: warningNoticeSourceBank,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
-                                            labelText: StringsResources.transactionSourceBank,
+                                            labelText: StringsResources.transactionSourceBank(),
                                             labelStyle: const TextStyle(
                                                 color: ColorsResources.dark,
                                                 fontSize: 17.0
                                             ),
-                                            hintText: StringsResources.transactionSourceBankHint,
+                                            hintText: StringsResources.transactionSourceBankHint(),
                                             hintStyle: const TextStyle(
                                                 color: ColorsResources.darkTransparent,
                                                 fontSize: 17.0
@@ -1280,7 +1280,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
                                           return Padding(
                                             padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
-                                            child: Text(StringsResources.nothingText)
+                                            child: Text(StringsResources.nothingText())
                                           );
                                         },
                                         suggestionsBoxDecoration: SuggestionsBoxDecoration(
@@ -1344,12 +1344,12 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                             errorText: warningNoticeSourceCard,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
-                                            labelText: StringsResources.transactionSourceCard,
+                                            labelText: StringsResources.transactionSourceCard(),
                                             labelStyle: const TextStyle(
                                                 color: ColorsResources.dark,
                                                 fontSize: 17.0
                                             ),
-                                            hintText: StringsResources.transactionSourceCardHint,
+                                            hintText: StringsResources.transactionSourceCardHint(),
                                             hintStyle: const TextStyle(
                                                 color: ColorsResources.darkTransparent,
                                                 fontSize: 17.0
@@ -1406,7 +1406,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
                                           return Padding(
                                               padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
-                                              child: Text(StringsResources.nothingText)
+                                              child: Text(StringsResources.nothingText())
                                           );
                                         },
                                         suggestionsBoxDecoration: SuggestionsBoxDecoration(
@@ -1470,12 +1470,12 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                             errorText: warningNoticeTargetCard,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
-                                            labelText: StringsResources.transactionTargetCard,
+                                            labelText: StringsResources.transactionTargetCard(),
                                             labelStyle: const TextStyle(
                                                 color: ColorsResources.dark,
                                                 fontSize: 17.0
                                             ),
-                                            hintText: StringsResources.transactionTargetCardHint,
+                                            hintText: StringsResources.transactionTargetCardHint(),
                                             hintStyle: const TextStyle(
                                                 color: ColorsResources.darkTransparent,
                                                 fontSize: 17.0
@@ -1568,7 +1568,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
                                           return Padding(
                                               padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
-                                              child: Text(StringsResources.nothingText)
+                                              child: Text(StringsResources.nothingText())
                                           );
                                         },
                                         suggestionsBoxDecoration: SuggestionsBoxDecoration(
@@ -1629,12 +1629,12 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                             errorText: warningNoticeBudget,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
-                                            labelText: StringsResources.transactionBudgetName,
+                                            labelText: StringsResources.transactionBudgetName(),
                                             labelStyle: const TextStyle(
                                                 color: ColorsResources.dark,
                                                 fontSize: 17.0
                                             ),
-                                            hintText: StringsResources.transactionBudgetNameHint,
+                                            hintText: StringsResources.transactionBudgetNameHint(),
                                             hintStyle: const TextStyle(
                                                 color: ColorsResources.darkTransparent,
                                                 fontSize: 17.0
@@ -1665,7 +1665,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: Text(
-                                      StringsResources.colorSelectorHint,
+                                      StringsResources.colorSelectorHint(),
                                       style: TextStyle(
                                           fontSize: 15
                                       ),
@@ -1751,7 +1751,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
                                   setState(() {
 
-                                    warningNoticeSourceCard = StringsResources.errorText;
+                                    warningNoticeSourceCard = StringsResources.errorText();
 
                                   });
 
@@ -1763,7 +1763,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
                                   setState(() {
 
-                                    warningNoticeTargetCard = StringsResources.errorText;
+                                    warningNoticeTargetCard = StringsResources.errorText();
 
                                   });
 
@@ -1775,7 +1775,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
                                   setState(() {
 
-                                    warningNoticeMoneyAmount = StringsResources.errorText;
+                                    warningNoticeMoneyAmount = StringsResources.errorText();
 
                                   });
 
@@ -1787,7 +1787,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
                                   setState(() {
 
-                                    warningNoticeTitle = StringsResources.errorText;
+                                    warningNoticeTitle = StringsResources.errorText();
 
                                   });
 
@@ -1799,7 +1799,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
                                   setState(() {
 
-                                    warningNoticeDescription = StringsResources.errorText;
+                                    warningNoticeDescription = StringsResources.errorText();
 
                                   });
 
@@ -1811,7 +1811,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
                                   setState(() {
 
-                                    warningNoticeSourceName = StringsResources.errorText;
+                                    warningNoticeSourceName = StringsResources.errorText();
 
                                   });
 
@@ -1823,7 +1823,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
                                   setState(() {
 
-                                    warningNoticeSourceBank = StringsResources.errorText;
+                                    warningNoticeSourceBank = StringsResources.errorText();
 
                                   });
 
@@ -1835,7 +1835,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
                                   setState(() {
 
-                                    warningNoticeTargetName = StringsResources.errorText;
+                                    warningNoticeTargetName = StringsResources.errorText();
 
                                   });
 
@@ -1847,7 +1847,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
                                   setState(() {
 
-                                    warningNoticeTargetBank = StringsResources.errorText;
+                                    warningNoticeTargetBank = StringsResources.errorText();
 
                                   });
 
@@ -1859,7 +1859,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
                                   setState(() {
 
-                                    warningNoticeBudget = StringsResources.errorText;
+                                    warningNoticeBudget = StringsResources.errorText();
 
                                   });
 
@@ -1901,7 +1901,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                   databaseInputs.insertTransactionData(transactionData, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
                                   Fluttertoast.showToast(
-                                      msg: StringsResources.updatedText,
+                                      msg: StringsResources.updatedText(),
                                       toastLength: Toast.LENGTH_SHORT,
                                       gravity: ToastGravity.CENTER,
                                       timeInSecForIosWeb: 1,
@@ -1989,7 +1989,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                           child: Align(
                                             alignment: AlignmentDirectional.center,
                                             child: Text(
-                                              StringsResources.submitText,
+                                              StringsResources.submitText(),
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
                                                   fontSize: 19,
@@ -2036,7 +2036,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
                                     setState(() {
 
-                                      warningNoticeSourceCard = StringsResources.errorText;
+                                      warningNoticeSourceCard = StringsResources.errorText();
 
                                     });
 
@@ -2048,7 +2048,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
                                     setState(() {
 
-                                      warningNoticeTargetCard = StringsResources.errorText;
+                                      warningNoticeTargetCard = StringsResources.errorText();
 
                                     });
 
@@ -2060,7 +2060,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
                                     setState(() {
 
-                                      warningNoticeMoneyAmount = StringsResources.errorText;
+                                      warningNoticeMoneyAmount = StringsResources.errorText();
 
                                     });
 
@@ -2072,7 +2072,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
                                     setState(() {
 
-                                      warningNoticeTitle = StringsResources.errorText;
+                                      warningNoticeTitle = StringsResources.errorText();
 
                                     });
 
@@ -2084,7 +2084,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
                                     setState(() {
 
-                                      warningNoticeDescription = StringsResources.errorText;
+                                      warningNoticeDescription = StringsResources.errorText();
 
                                     });
 
@@ -2096,7 +2096,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
                                     setState(() {
 
-                                      warningNoticeSourceName = StringsResources.errorText;
+                                      warningNoticeSourceName = StringsResources.errorText();
 
                                     });
 
@@ -2108,7 +2108,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
                                     setState(() {
 
-                                      warningNoticeSourceBank = StringsResources.errorText;
+                                      warningNoticeSourceBank = StringsResources.errorText();
 
                                     });
 
@@ -2120,7 +2120,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
                                     setState(() {
 
-                                      warningNoticeTargetName = StringsResources.errorText;
+                                      warningNoticeTargetName = StringsResources.errorText();
 
                                     });
 
@@ -2132,7 +2132,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
                                     setState(() {
 
-                                      warningNoticeTargetBank = StringsResources.errorText;
+                                      warningNoticeTargetBank = StringsResources.errorText();
 
                                     });
 
@@ -2144,7 +2144,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
                                     setState(() {
 
-                                      warningNoticeBudget = StringsResources.errorText;
+                                      warningNoticeBudget = StringsResources.errorText();
 
                                     });
 
@@ -2186,7 +2186,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                     databaseInputs.insertTransactionData(transactionData, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
                                     Fluttertoast.showToast(
-                                        msg: StringsResources.updatedText,
+                                        msg: StringsResources.updatedText(),
                                         toastLength: Toast.LENGTH_SHORT,
                                         gravity: ToastGravity.CENTER,
                                         timeInSecForIosWeb: 1,
@@ -2310,7 +2310,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
       listOfCustomers.add(CustomersData(
           id: profilesData.id,
-          customerName: StringsResources.mySelfText,
+          customerName: StringsResources.mySelfText(),
           customerDescription: profilesData.userFullName,
           customerCountry: "",
           customerCity: "",
@@ -2351,7 +2351,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
   Future<List<String>> getBanksNames() async {
 
-    return StringsResources.listOfBanksIran;
+    return StringsResources.listOfBanksIran();
   }
 
   Future<List<BudgetsData>> getBudgetNames() async {
