@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/21/22, 7:01 AM
+ * Last modified 3/21/22, 7:03 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -387,22 +387,58 @@ class StringsResources {
     return "نام کامل مشتری یا شرکت را وارد کنید";
   }
 
-  static String customerCountryText = "کشور";
-  static String customerCityText = "شهر";
-  static String customerStreetAddressText = "ادرس";
-  static String customerStreetAddressTextHint = "ادرس دقیق پستی را وارد کنید";
+  static String customerCountryText() {
 
-  static String customerAgeText = "سن";
-  static String customerBirthdayText = "تاریخ تولد";
+    return "کشور";
+  }
+  static String customerCityText() {
 
-  static String customerPhoneNumberText = "شماره تلفن";
-  static String customerPhoneNumberTextHint = "شماره تلفن همراه یا ثابت";
+    return "شهر";
+  }
+  static String customerStreetAddressText() {
 
-  static String customerEmailAddressText = "آدرس اینترنتی";
-  static String customerEmailAddressTextHint = "آدرس ایمیل یا اینستاگرام مشتری";
+    return "ادرس";
+  }
+  static String customerStreetAddressTextHint() {
 
-  static String customerJobText = "شغل";
-  static String customerMaritalStatusText = "تاهل";
+    return "ادرس دقیق پستی را وارد کنید";
+  }
+
+  static String customerAgeText() {
+
+    return "سن";
+  }
+  static String customerBirthdayText() {
+
+    return "تاریخ تولد";
+  }
+
+  static String customerPhoneNumberText() {
+
+    return "شماره تلفن";
+  }
+  static String customerPhoneNumberTextHint() {
+
+    return "شماره تلفن همراه یا ثابت";
+  }
+
+  static String customerEmailAddressText() {
+
+    return "آدرس اینترنتی";
+  }
+  static String customerEmailAddressTextHint() {
+
+    return "آدرس ایمیل یا اینستاگرام مشتری";
+  }
+
+  static String customerJobText() {
+
+    return "شغل";
+  }
+  static String customerMaritalStatusText() {
+
+    return "تاهل";
+  }
   /* End - Customer String Resources */
 
   /* Start - Cheque String Resources */
