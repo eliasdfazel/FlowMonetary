@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/21/22, 7:03 AM
+ * Last modified 3/21/22, 7:09 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -442,36 +442,99 @@ class StringsResources {
   /* End - Customer String Resources */
 
   /* Start - Cheque String Resources */
-  static String chequeNumber = "شماره چک";
-  static String chequeNumberHint = "شماره چک را با دقت وارد کنید";
+  static String chequeNumber() {
 
-  static String chequeIssueDate = "تاریخ صدور";
-  static String chequeDueDate = "تاریخ سررسید";
+    return "شماره چک";
+  }
+  static String chequeNumberHint() {
 
-  static String chequeSourceId = "کد شناسایی صادر کننده";
-  static String chequeSourceIdHint = "صادر کننده";
-  static String chequeSourceAccount = "شماره حساب مبدا";
-  static String chequeSourceAccountHint = "شماره حساب یا کارت مبدا را وارد کنید";
-  static String chequeTargetId = "کد شناسایی دریافت کننده";
-  static String chequeTargetIdHint = "دریافت کننده";
-  static String chequeTargetAccount = "شماره حساب مقصد";
-  static String chequeTargetAccountHint = "شماره حساب یا کارت مقصد را وارد کنید";
+    return "شماره چک را با دقت وارد کنید";
+  }
 
-  static String chequeAmountHint = "مبلغ چک";
+  static String chequeIssueDate() {
 
-  static String chequeCard = "شماره کارت مرتبط را وارد کنید";
-  static String chequeCardHint = "کارت مرتبط";
+    return "تاریخ صدور";
+  }
+  static String chequeDueDate() {
 
-  static String chequeBudget = "بودجه مرتبط";
-  static String chequeBudgetHint = "بودجه مرتبط";
+    return "تاریخ سررسید";
+  }
 
-  static String chequeBankBranch = "شعبه بانک صادر کننده";
+  static String chequeSourceId() {
 
-  static String chequeConfirmation = "تایید وصول چک";
+    return "کد شناسایی صادر کننده";
+  }
+  static String chequeSourceIdHint() {
 
-  static String sortChequeDueDate = "مرتب سازی: تاریخ سررسید";
+    return "صادر کننده";
+  }
+  static String chequeSourceAccount() {
 
-  static String chequeTargetName = "به نام";
+    return "شماره حساب مبدا";
+  }
+  static String chequeSourceAccountHint() {
+
+    return "شماره حساب یا کارت مبدا را وارد کنید";
+  }
+  static String chequeTargetId() {
+
+    return "کد شناسایی دریافت کننده";
+  }
+  static String chequeTargetIdHint() {
+
+    return "دریافت کننده";
+  }
+  static String chequeTargetAccount() {
+
+    return "شماره حساب مقصد";
+  }
+  static String chequeTargetAccountHint() {
+
+    return "شماره حساب یا کارت مقصد را وارد کنید";
+  }
+
+  static String chequeAmountHint() {
+
+    return "مبلغ چک";
+  }
+
+  static String chequeCard() {
+
+    return "شماره کارت مرتبط را وارد کنید";
+  }
+  static String chequeCardHint() {
+
+    return "کارت مرتبط";
+  }
+
+  static String chequeBudget() {
+
+    return "بودجه مرتبط";
+  }
+  static String chequeBudgetHint() {
+
+    return "بودجه مرتبط";
+  }
+
+  static String chequeBankBranch() {
+
+    return "شعبه بانک صادر کننده";
+  }
+
+  static String chequeConfirmation() {
+
+    return "تایید وصول چک";
+  }
+
+  static String sortChequeDueDate() {
+
+    return "مرتب سازی: تاریخ سررسید";
+  }
+
+  static String chequeTargetName() {
+
+    return "به نام";
+  }
   /* End - Cheque String Resources */
 
   /* Start - Product String Resources */
