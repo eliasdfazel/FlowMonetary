@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/21/22, 7:15 AM
+ * Last modified 3/21/22, 7:20 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -644,111 +644,192 @@ class StringsResources {
   }
 
   /* Start - Features Descriptions */
-  static String featureCreditCardTitle = "کارت بانکی";
-  static String featureCreditCardDescription = "اطلاعات کار بانکی خود را وارد کنید تا بتوانید راحت تر حسابرسی انجام بدهید";
+  static String featureCreditCardTitle() {
 
-  static String featureTransactionsTitle = "تراکنش";
-  static String featureTransactionsDescription = "شما میتوانید تمام اطلاعات مرتبط با تراکنش های اخیر خود را اعم از تاریخ انجام تراکنش / مبلغ و ... را کادر زیر در ردیف/ستون خواسته شده وارد کنید.";
+    return "کارت بانکی";
+  }
+  static String featureCreditCardDescription() {
 
-  static String featureChequesTitle = "چک";
-  static String featureChequesDescription = "شما میتوانید تمام اطلاعات مرتبط با چک خود را اعم از مبلغ / نام / تاریخ صدور و ... را کادر زیر در ردیف/ستون خواسته شده وارد کنید.";
+    return "اطلاعات کار بانکی خود را وارد کنید تا بتوانید راحت تر حسابرسی انجام بدهید";
+  }
 
-  static String featureCustomersTitle = "مشتری";
-  static String featureCustomersDescription = "شما میتوانید تمام اطلاعات مرتبط با اطلاعات مشتری خود را اعم از نام / اطلاعات شخصی و ... را کادر زیر در ردیف/ستون خواسته شده وارد کنید.";
+  static String featureTransactionsTitle() {
 
-  static String featureProductsTitle = "محصول";
-  static String featureProductsDescription = "شما میتوانید تمام اطلاعات مرتبط با محصولات خود را اعم از نام محصول / قیمت محصول و ... را کادر زیر در ردیف/ستون خواسته شده وارد کنید.";
+    return "تراکنش";
+  }
+  static String featureTransactionsDescription() {
 
-  static String featureSellInvoicesTitle = "فاکتور فروش";
-  static String featureSellInvoicesDescription = "شما میتوانید تمام اطلاعات مرتبط با فاکتور فروش خود را اعم از تاریخ / شماره مشتری و فاکتور و ... را کادر زیر در ردیف/ستون خواسته شده وارد کنید.";
+    return "شما میتوانید تمام اطلاعات مرتبط با تراکنش های اخیر خود را اعم از تاریخ انجام تراکنش / مبلغ و ... را کادر زیر در ردیف/ستون خواسته شده وارد کنید.";
+  }
 
-  static String featureBuyInvoicesTitle = "فاکتور خرید";
-  static String featureBuyInvoicesDescription = "شما میتوانید تمام اطلاعات مرتبط با فاکتور خرید خود را اعم از تاریخ / شماره مشتری و فاکتور و ... را کادر زیر در ردیف/ستون خواسته شده وارد کنید.";
+  static String featureChequesTitle() {
 
-  static String featureDebtorsTitle = "بدهکار";
-  static String featureDebtorsDescription = "شما میتوانید تمام اطلاعات مرتبط با مقدار بدهکاری خود را اعم از مبلغ بدهی/ مقدار پرداختی ها و ... را کادر زیر در ردیف/ستون خواسته شده وارد کنید.";
+    return "چک";
+  }
+  static String featureChequesDescription() {
 
-  static String featureCreditorsTitle = "بستانکار";
-  static String featureCreditorsDescription = "شما میتوانید تمام اطلاعات مرتبط با فاکتور خرید خود را اعم از مبلغ بستانکاری / اطلاعات کل حساب و ... را کادر زیر در ردیف/ستون خواسته شده وارد کنید.";
+    return "شما میتوانید تمام اطلاعات مرتبط با چک خود را اعم از مبلغ / نام / تاریخ صدور و ... را کادر زیر در ردیف/ستون خواسته شده وارد کنید.";
+  }
 
-  static String featureBudgetManagementsTitle = "مدیریت بودجه";
-  static String featureBudgetManagementsDescription = "شما میتوانید تمام اطلاعات مرتبط با مدیریت بودجه بندی خود را  در کادرهای زیر وارد کنید.";
+  static String featureCustomersTitle() {
 
-  static String featureLoansTitle = "وام";
-  static String featureLoansDescription = "شما میتوانید تمام اطلاعات مرتبط با وام گرفته شده خود را اعم از مبلغ وام/ تاریخ و ... را کادر زیر در ردیف/ستون خواسته شده وارد کنید.";
+    return "مشتری";
+  }
+  static String featureCustomersDescription() {
+
+    return "شما میتوانید تمام اطلاعات مرتبط با اطلاعات مشتری خود را اعم از نام / اطلاعات شخصی و ... را کادر زیر در ردیف/ستون خواسته شده وارد کنید.";
+  }
+
+  static String featureProductsTitle() {
+
+    return "محصول";
+  }
+  static String featureProductsDescription() {
+
+    return "شما میتوانید تمام اطلاعات مرتبط با محصولات خود را اعم از نام محصول / قیمت محصول و ... را کادر زیر در ردیف/ستون خواسته شده وارد کنید.";
+  }
+
+  static String featureSellInvoicesTitle() {
+
+    return "فاکتور فروش";
+  }
+  static String featureSellInvoicesDescription() {
+
+    return "شما میتوانید تمام اطلاعات مرتبط با فاکتور فروش خود را اعم از تاریخ / شماره مشتری و فاکتور و ... را کادر زیر در ردیف/ستون خواسته شده وارد کنید.";
+  }
+
+  static String featureBuyInvoicesTitle() {
+
+    return "فاکتور خرید";
+  }
+  static String featureBuyInvoicesDescription() {
+
+    return "شما میتوانید تمام اطلاعات مرتبط با فاکتور خرید خود را اعم از تاریخ / شماره مشتری و فاکتور و ... را کادر زیر در ردیف/ستون خواسته شده وارد کنید.";
+  }
+
+  static String featureDebtorsTitle() {
+
+    return "بدهکار";
+  }
+  static String featureDebtorsDescription() {
+
+    return "شما میتوانید تمام اطلاعات مرتبط با مقدار بدهکاری خود را اعم از مبلغ بدهی/ مقدار پرداختی ها و ... را کادر زیر در ردیف/ستون خواسته شده وارد کنید.";
+  }
+
+  static String featureCreditorsTitle() {
+
+    return "بستانکار";
+  }
+  static String featureCreditorsDescription() {
+
+    return "شما میتوانید تمام اطلاعات مرتبط با فاکتور خرید خود را اعم از مبلغ بستانکاری / اطلاعات کل حساب و ... را کادر زیر در ردیف/ستون خواسته شده وارد کنید.";
+  }
+
+  static String featureBudgetManagementsTitle() {
+
+    return "مدیریت بودجه";
+  }
+  static String featureBudgetManagementsDescription() {
+
+    return "شما میتوانید تمام اطلاعات مرتبط با مدیریت بودجه بندی خود را  در کادرهای زیر وارد کنید.";
+  }
+
+  static String featureLoansTitle() {
+
+    return "وام";
+  }
+  static String featureLoansDescription() {
+
+    return "شما میتوانید تمام اطلاعات مرتبط با وام گرفته شده خود را اعم از مبلغ وام/ تاریخ و ... را کادر زیر در ردیف/ستون خواسته شده وارد کنید.";
+  }
   /* End - Features Descriptions */
 
-  static String mySelfText = "خودم";
-  static String nothingText = "هیچ";
+  static String mySelfText() {
 
-  static String unknownText = "Unknown";
+    return "خودم";
+  }
+  static String nothingText() {
 
-  static List<String> listOfBanksIran = [
-    "انصار",
-    "دی",
-    "اقتصاد نوین",
-    "گردشگری",
-    "قوامین",
-    "حکمت ایرانیان",
-    "ایران ونزویلا",
-    "ایران زمین",
-    "کار آفرین",
-    "کشاورزی",
-    "خاورمیانه",
-    "مسکن",
-    "مهر",
-    "ملت",
-    "ملی",
-    "پارسیان",
-    "پاسارگاد",
-    "پست بانک",
-    "رفا",
-    "رسالت",
-    "صادرات",
-    "سامان",
-    "صنعت و معدن",
-    "سرمایه",
-    "سپه",
-    "شهر",
-    "سینا",
-    "تجارت",
-    "توسعه صادرات",
-    "توسعه تعاون",
-    "سایر",
-  ];
+    return "هیچ";
+  }
 
-  static Map<String, String> mapBanksIranLogo = {
-    "انصار": "Ansar_Icon.png",
-    "دی": "Day_Icon.jpg",
-    "اقتصاد نوین": "Eghtesad_Novin_Icon.jpg",
-    "گردشگری": "Gardeshgari_Icon.jpg",
-    "قوامین": "Ghavamin_Icon.png",
-    "حکمت ایرانیان": "Hekmat_Iranian_Icon.jpg",
-    "ایران ونزویلا": "Iran_Venezuela_Icon.png",
-    "ایران زمین": "Iranzamin_Icon.png",
-    "کار آفرین": "Karafarin_Icon.jpg",
-    "کشاورزی": "Keshavarzi_Icon.png",
-    "خاورمیانه": "Khavarmiyaneh_Icon.jpg",
-    "مسکن": "Maskan_Icon.jpg",
-    "مهر": "Mehre_Iran_Icon.jpg",
-    "ملت": "Mellat_Icon.png",
-    "ملی": "Melli_Icon.png",
-    "پارسیان": "Parsian_Icon.jpg",
-    "پاسارگاد": "Pasargad_Icon.jpg",
-    "پست بانک": "Postbank_Icon.jpg",
-    "رفا": "Refah_Icon.jpg",
-    "رسالت": "Resalat_Icon.jpeg",
-    "صادرات": "Saderat_Icon.jpg",
-    "سامان": "Saman_Icon.png",
-    "صنعت و معدن": "Sanat_Madan_Icon.png",
-    "سرمایه": "Sarmayeh_Icon.png",
-    "سپه": "Sepah_Icon.png",
-    "شهر": "Shahr_Icon.jpg",
-    "سینا": "Sina_Icon.jpg",
-    "تجارت": "Tejarat_Icon.jpg",
-    "توسعه صادرات": "Tosee_Saderat_Iran_Icon.jpg",
-    "توسعه تعاون": "Tosee_Taavon_Icon.png",
-    "سایر": "Other_Banks.png",
-  };
+  static String unknownText() {
+
+    return "Unknown";
+  }
+
+  static List<String> listOfBanksIran() {
+
+    return [
+      "انصار",
+      "دی",
+      "اقتصاد نوین",
+      "گردشگری",
+      "قوامین",
+      "حکمت ایرانیان",
+      "ایران ونزویلا",
+      "ایران زمین",
+      "کار آفرین",
+      "کشاورزی",
+      "خاورمیانه",
+      "مسکن",
+      "مهر",
+      "ملت",
+      "ملی",
+      "پارسیان",
+      "پاسارگاد",
+      "پست بانک",
+      "رفا",
+      "رسالت",
+      "صادرات",
+      "سامان",
+      "صنعت و معدن",
+      "سرمایه",
+      "سپه",
+      "شهر",
+      "سینا",
+      "تجارت",
+      "توسعه صادرات",
+      "توسعه تعاون",
+      "سایر",
+    ];
+  }
+
+  static Map<String, String> mapBanksIranLogo() {
+
+    return  {
+      "انصار": "Ansar_Icon.png",
+      "دی": "Day_Icon.jpg",
+      "اقتصاد نوین": "Eghtesad_Novin_Icon.jpg",
+      "گردشگری": "Gardeshgari_Icon.jpg",
+      "قوامین": "Ghavamin_Icon.png",
+      "حکمت ایرانیان": "Hekmat_Iranian_Icon.jpg",
+      "ایران ونزویلا": "Iran_Venezuela_Icon.png",
+      "ایران زمین": "Iranzamin_Icon.png",
+      "کار آفرین": "Karafarin_Icon.jpg",
+      "کشاورزی": "Keshavarzi_Icon.png",
+      "خاورمیانه": "Khavarmiyaneh_Icon.jpg",
+      "مسکن": "Maskan_Icon.jpg",
+      "مهر": "Mehre_Iran_Icon.jpg",
+      "ملت": "Mellat_Icon.png",
+      "ملی": "Melli_Icon.png",
+      "پارسیان": "Parsian_Icon.jpg",
+      "پاسارگاد": "Pasargad_Icon.jpg",
+      "پست بانک": "Postbank_Icon.jpg",
+      "رفا": "Refah_Icon.jpg",
+      "رسالت": "Resalat_Icon.jpeg",
+      "صادرات": "Saderat_Icon.jpg",
+      "سامان": "Saman_Icon.png",
+      "صنعت و معدن": "Sanat_Madan_Icon.png",
+      "سرمایه": "Sarmayeh_Icon.png",
+      "سپه": "Sepah_Icon.png",
+      "شهر": "Shahr_Icon.jpg",
+      "سینا": "Sina_Icon.jpg",
+      "تجارت": "Tejarat_Icon.jpg",
+      "توسعه صادرات": "Tosee_Saderat_Iran_Icon.jpg",
+      "توسعه تعاون": "Tosee_Taavon_Icon.png",
+      "سایر": "Other_Banks.png",
+    };
+  }
 
 }
