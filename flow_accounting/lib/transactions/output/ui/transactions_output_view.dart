@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/21/22, 6:16 AM
+ * Last modified 3/21/22, 7:41 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -234,7 +234,7 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> {
                                         child: Align(
                                           alignment: Alignment.center,
                                           child: Text(
-                                            StringsResources.sortTransactionAmountHigh,
+                                            StringsResources.sortTransactionAmountHigh(),
                                             style: TextStyle(
                                               fontSize: 13,
                                               color: ColorsResources.applicationGeeksEmpire,
@@ -289,7 +289,7 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> {
                                         child: Align(
                                           alignment: Alignment.center,
                                           child: Text(
-                                            StringsResources.sortTimeNew,
+                                            StringsResources.sortTimeNew(),
                                             style: TextStyle(
                                               fontSize: 13,
                                               color: ColorsResources.applicationGeeksEmpire,
@@ -446,12 +446,12 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> {
                                                 ),
                                                 gapPadding: 5
                                             ),
-                                            hintText: StringsResources.searchHintText,
+                                            hintText: StringsResources.searchHintText(),
                                             hintStyle: TextStyle(
                                                 color: ColorsResources.darkTransparent,
                                                 fontSize: 13.0
                                             ),
-                                            labelText: StringsResources.searchText,
+                                            labelText: StringsResources.searchText(),
                                             labelStyle: TextStyle(
                                                 color: ColorsResources.dark,
                                                 fontSize: 15.0
@@ -533,7 +533,7 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> {
             backgroundColor: Colors.transparent,
             foregroundColor: ColorsResources.gameGeeksEmpire,
             icon: Icons.delete_rounded,
-            label: StringsResources.deleteText,
+            label: StringsResources.deleteText(),
             autoClose: true,
           ),
           SlidableAction(
@@ -546,7 +546,7 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> {
             backgroundColor: Colors.transparent,
             foregroundColor: ColorsResources.applicationGeeksEmpire,
             icon: Icons.edit_rounded,
-            label: StringsResources.editText,
+            label: StringsResources.editText(),
             autoClose: true,
           ),
         ],
@@ -821,13 +821,13 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> {
                             filled: true,
                             fillColor: ColorsResources.lightTransparent,
 
-                            labelText: StringsResources.descriptionText,
+                            labelText: StringsResources.descriptionText(),
                             labelStyle: TextStyle(
                               color: ColorsResources.dark,
                               fontSize: 13.0,
                               fontWeight: FontWeight.bold
                             ),
-                            hintText: StringsResources.descriptionText,
+                            hintText: StringsResources.descriptionText(),
                             hintStyle: TextStyle(
                               color: ColorsResources.dark,
                               fontSize: 13.0,
