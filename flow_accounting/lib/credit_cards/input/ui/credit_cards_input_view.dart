@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/21/22, 6:07 AM
+ * Last modified 3/21/22, 7:33 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -105,8 +105,8 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
   @override
   void initState() {
 
-    creditCardBankNameController.text = widget.creditCardsData.bankName.isEmpty ? StringsResources.creditCardsBankName : widget.creditCardsData.bankName;
-    creditCardNameHolderController.text = widget.creditCardsData.cardHolderName.isEmpty ? StringsResources.creditCardsNameHolder : widget.creditCardsData.cardHolderName;
+    creditCardBankNameController.text = widget.creditCardsData.bankName.isEmpty ? StringsResources.creditCardsBankName() : widget.creditCardsData.bankName;
+    creditCardNameHolderController.text = widget.creditCardsData.cardHolderName.isEmpty ? StringsResources.creditCardsNameHolder() : widget.creditCardsData.cardHolderName;
 
     creditCardNumberController.text = widget.creditCardsData.cardNumber.isEmpty ? "0000000000000000" : widget.creditCardsData.cardNumber;
 
@@ -221,7 +221,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                       Padding(
                         padding: const EdgeInsets.fromLTRB(13, 13, 13, 0),
                         child:  Text(
-                          StringsResources.featureCreditCardTitle,
+                          StringsResources.featureCreditCardTitle(),
                           textDirection: TextDirection.rtl,
                           style: TextStyle(
                             fontSize: 23,
@@ -239,7 +239,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                       Padding(
                         padding: const EdgeInsets.fromLTRB(13, 13, 13, 19),
                         child: Text(
-                          StringsResources.featureCreditCardDescription,
+                          StringsResources.featureCreditCardDescription(),
                           textDirection: TextDirection.rtl,
                           style: TextStyle(
                             fontSize: 15,
@@ -269,7 +269,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                               backgroundColor: Colors.transparent,
                               foregroundColor: ColorsResources.gameGeeksEmpire,
                               icon: Icons.delete_rounded,
-                              label: StringsResources.deleteText,
+                              label: StringsResources.deleteText(),
                               autoClose: true,
                             ),
                             SlidableAction(
@@ -282,7 +282,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                               backgroundColor: Colors.transparent,
                               foregroundColor: ColorsResources.applicationGeeksEmpire,
                               icon: Icons.money_rounded,
-                              label: StringsResources.transactionAll,
+                              label: StringsResources.transactionAll(),
                               autoClose: true,
                             ),
                           ],
@@ -461,12 +461,12 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                             errorText: warningNoticeBankName,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
-                                            labelText: StringsResources.creditCardsBankName,
+                                            labelText: StringsResources.creditCardsBankName(),
                                             labelStyle: const TextStyle(
                                                 color: ColorsResources.dark,
                                                 fontSize: 17.0
                                             ),
-                                            hintText: StringsResources.creditCardsBankNameHint,
+                                            hintText: StringsResources.creditCardsBankNameHint(),
                                             hintStyle: const TextStyle(
                                                 color: ColorsResources.darkTransparent,
                                                 fontSize: 17.0
@@ -538,12 +538,12 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                         errorText: warningNoticeHolderName,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.creditCardsNameHolder,
+                                        labelText: StringsResources.creditCardsNameHolder(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.creditCardsNameHolderHint,
+                                        hintText: StringsResources.creditCardsNameHolderHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
@@ -630,12 +630,12 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                         errorText: warningNoticeCardNumber,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.creditCardNumber,
+                                        labelText: StringsResources.creditCardNumber(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.creditCardNumberHint,
+                                        hintText: StringsResources.creditCardNumberHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
@@ -723,12 +723,12 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                         errorText: warningNoticeCvv,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.creditCardCvv,
+                                        labelText: StringsResources.creditCardCvv(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.creditCardCvvHint,
+                                        hintText: StringsResources.creditCardCvvHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
@@ -802,12 +802,12 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                         errorText: warningNoticeYear,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.creditCardExpiryYear,
+                                        labelText: StringsResources.creditCardExpiryYear(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.creditCardExpiryYearHint,
+                                        hintText: StringsResources.creditCardExpiryYearHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
@@ -881,12 +881,12 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                         errorText: warningNoticeMonth,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.creditCardExpiryMonth,
+                                        labelText: StringsResources.creditCardExpiryMonth(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.creditCardExpiryMonthHint,
+                                        hintText: StringsResources.creditCardExpiryMonthHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
@@ -970,12 +970,12 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                         errorText: warningNoticeBalance,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.creditCardBalance,
+                                        labelText: StringsResources.creditCardBalance(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.creditCardBalanceHint,
+                                        hintText: StringsResources.creditCardBalanceHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
@@ -1005,7 +1005,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: Text(
-                                      StringsResources.colorSelectorHint,
+                                      StringsResources.colorSelectorHint(),
                                       style: TextStyle(
                                           fontSize: 15
                                       ),
@@ -1085,7 +1085,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
 
                             setState(() {
 
-                              warningNoticeBankName = StringsResources.errorText;
+                              warningNoticeBankName = StringsResources.errorText();
 
                             });
 
@@ -1097,7 +1097,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
 
                             setState(() {
 
-                              warningNoticeHolderName = StringsResources.errorText;
+                              warningNoticeHolderName = StringsResources.errorText();
 
                             });
 
@@ -1109,7 +1109,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
 
                             setState(() {
 
-                              warningNoticeCardNumber = StringsResources.errorText;
+                              warningNoticeCardNumber = StringsResources.errorText();
 
                             });
 
@@ -1121,7 +1121,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
 
                             setState(() {
 
-                              warningNoticeYear = StringsResources.errorText;
+                              warningNoticeYear = StringsResources.errorText();
 
                             });
 
@@ -1133,7 +1133,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
 
                             setState(() {
 
-                              warningNoticeMonth = StringsResources.errorText;
+                              warningNoticeMonth = StringsResources.errorText();
 
                             });
 
@@ -1145,7 +1145,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
 
                             setState(() {
 
-                              warningNoticeBalance = StringsResources.errorText;
+                              warningNoticeBalance = StringsResources.errorText();
 
                             });
 
@@ -1157,7 +1157,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
 
                             setState(() {
 
-                              warningNoticeCvv = StringsResources.errorText;
+                              warningNoticeCvv = StringsResources.errorText();
 
                             });
 
@@ -1195,7 +1195,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                             }
 
                             Fluttertoast.showToast(
-                                msg: StringsResources.updatedText,
+                                msg: StringsResources.updatedText(),
                                 toastLength: Toast.LENGTH_SHORT,
                                 gravity: ToastGravity.CENTER,
                                 timeInSecForIosWeb: 1,
@@ -1274,7 +1274,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                     child: Align(
                                       alignment: AlignmentDirectional.center,
                                       child: Text(
-                                        StringsResources.submitText,
+                                        StringsResources.submitText(),
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                             fontSize: 19,
@@ -1358,7 +1358,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
 
   Future<List<String>> getBanksNames() async {
 
-    return StringsResources.listOfBanksIran;
+    return StringsResources.listOfBanksIran();
   }
 
   void extractBankDominantColor(ImageProvider? bankLogoImageProvider) async {
@@ -1804,7 +1804,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
               top: 3,
               right: 23,
               child: Text(
-                StringsResources.creditCardBalanceChart,
+                StringsResources.creditCardBalanceChart(),
                 style: TextStyle(
                   color: ColorsResources.light.withOpacity(0.3),
                   fontSize: 15,

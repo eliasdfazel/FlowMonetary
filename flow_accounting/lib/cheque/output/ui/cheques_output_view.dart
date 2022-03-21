@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/21/22, 6:07 AM
+ * Last modified 3/21/22, 7:32 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -209,7 +209,7 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
                                         child: Align(
                                           alignment: Alignment.center,
                                           child: Text(
-                                            StringsResources.sortChequeDueDate,
+                                            StringsResources.sortChequeDueDate(),
                                             maxLines: 1,
                                             style: TextStyle(
                                               fontSize: 13,
@@ -366,12 +366,12 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
                                                 ),
                                                 gapPadding: 5
                                             ),
-                                            hintText: StringsResources.searchHintText,
+                                            hintText: StringsResources.searchHintText(),
                                             hintStyle: TextStyle(
                                                 color: ColorsResources.darkTransparent,
                                                 fontSize: 13.0
                                             ),
-                                            labelText: StringsResources.searchText,
+                                            labelText: StringsResources.searchText(),
                                             labelStyle: TextStyle(
                                                 color: ColorsResources.dark,
                                                 fontSize: 15.0
@@ -439,7 +439,7 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
             backgroundColor: Colors.transparent,
             foregroundColor: ColorsResources.gameGeeksEmpire,
             icon: Icons.delete_rounded,
-            label: StringsResources.deleteText,
+            label: StringsResources.deleteText(),
             autoClose: true,
           ),
           SlidableAction(
@@ -452,7 +452,7 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
             backgroundColor: Colors.transparent,
             foregroundColor: ColorsResources.applicationGeeksEmpire,
             icon: Icons.edit_rounded,
-            label: StringsResources.editText,
+            label: StringsResources.editText(),
             autoClose: true,
           ),
         ],
