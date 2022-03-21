@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/19/22, 7:53 AM
+ * Last modified 3/21/22, 6:07 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -203,7 +203,7 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
                                         sortChequesByDueDate(context, allCheques);
 
                                       },
-                                      child: const SizedBox(
+                                      child: SizedBox(
                                         height: 43,
                                         width: double.infinity,
                                         child: Align(
@@ -335,7 +335,7 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
                                             searchCheques(context, allCheques, searchQuery);
 
                                           },
-                                          decoration: const InputDecoration(
+                                          decoration: InputDecoration(
                                             border: OutlineInputBorder(
                                                 borderSide: BorderSide(color: Colors.transparent, width: 1.0),
                                                 borderRadius: BorderRadius.only(

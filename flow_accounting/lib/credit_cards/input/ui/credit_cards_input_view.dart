@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/17/22, 4:34 AM
+ * Last modified 3/21/22, 6:07 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -997,7 +997,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                         height: 37,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: const [
+                          children: [
                             Expanded(
                               flex: 1,
                               child: Padding(
@@ -1268,7 +1268,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                     height: 53,
                                   ),
                                 ),
-                                const SizedBox(
+                                SizedBox(
                                     width: double.infinity,
                                     height: 53,
                                     child: Align(

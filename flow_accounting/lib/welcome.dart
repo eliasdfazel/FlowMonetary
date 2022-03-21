@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/14/22, 4:33 AM
+ * Last modified 3/21/22, 6:05 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -108,12 +108,13 @@ class _WelcomePage extends State<WelcomePage> {
           height: double.infinity,
           child: Stack(
             children: [
-              const Positioned(
+              Positioned(
                   top: 39,
                   left: 13,
                   right: 13,
                   child: Center(
-                    child: Text(StringsResources.welcomeText,
+                    child: Text(
+                      StringsResources.welcomeText,
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 23
@@ -161,7 +162,7 @@ class _WelcomePage extends State<WelcomePage> {
                                     });
 
                                   },
-                                  child: const Text(
+                                  child: Text(
                                     StringsResources.getStartedText,
                                     style: TextStyle(fontSize: 29,shadows: [
                                       Shadow(

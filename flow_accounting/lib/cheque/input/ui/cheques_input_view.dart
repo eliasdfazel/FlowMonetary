@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/20/22, 5:52 AM
+ * Last modified 3/21/22, 6:07 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -1299,7 +1299,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                         },
                                         errorBuilder: (context, suggestion) {
 
-                                          return const Padding(
+                                          return Padding(
                                               padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
                                               child: Text(StringsResources.nothingText)
                                           );
@@ -1444,7 +1444,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                         },
                                         errorBuilder: (context, suggestion) {
 
-                                          return const Padding(
+                                          return Padding(
                                               padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
                                               child: Text(StringsResources.nothingText)
                                           );
@@ -1602,7 +1602,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                         },
                                         errorBuilder: (context, suggestion) {
 
-                                          return const Padding(
+                                          return Padding(
                                               padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
                                               child: Text(StringsResources.nothingText)
                                           );
@@ -1747,7 +1747,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                         },
                                         errorBuilder: (context, suggestion) {
 
-                                          return const Padding(
+                                          return Padding(
                                               padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
                                               child: Text(StringsResources.nothingText)
                                           );
@@ -1797,7 +1797,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                                 ),
                                                 gapPadding: 5
                                             ),
-                                            errorBorder: const OutlineInputBorder(
+                                            errorBorder: OutlineInputBorder(
                                                 borderSide: BorderSide(color: Colors.red, width: 1.0),
                                                 borderRadius: BorderRadius.only(
                                                     topLeft: Radius.circular(13),
@@ -2011,7 +2011,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                             ),
                                           )
                                       ),
-                                      const Padding(
+                                      Padding(
                                           padding: EdgeInsets.fromLTRB(0, 5, 7, 0),
                                           child: Align(
                                             alignment: Alignment.centerRight,
@@ -2073,7 +2073,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                         },
                                         errorBuilder: (context, suggestion) {
 
-                                          return const Padding(
+                                          return Padding(
                                               padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
                                               child: Text(StringsResources.nothingText)
                                           );
@@ -2230,7 +2230,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                 },
                                 errorBuilder: (context, suggestion) {
 
-                                  return const Padding(
+                                  return Padding(
                                       padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
                                       child: Text(StringsResources.nothingText)
                                   );
@@ -2318,7 +2318,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                         height: 37,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: const [
+                          children: [
                             Expanded(
                               flex: 1,
                               child: Padding(
@@ -2743,7 +2743,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                     height: 53,
                                   ),
                                 ),
-                                const SizedBox(
+                                SizedBox(
                                     width: double.infinity,
                                     height: 53,
                                     child: Align(
