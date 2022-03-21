@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/21/22, 6:58 AM
+ * Last modified 3/21/22, 7:01 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -344,21 +344,48 @@ class StringsResources {
     return "نام مورد نظر برای این بوجه را بنویسید";
   }
 
-  static String budgetDescriptionText = "توضیحات بودجه";
-  static String budgetDescriptionTextHint = "این بودجه برای چه منظوری تایین شده است؟";
+  static String budgetDescriptionText() {
 
-  static String budgetInitialText = "مبلغ بودجه";
-  static String budgetInitialTextHint = "مبلغ اولیه که در نظر گرفته اید را وارد کنید";
+    return "توضیحات بودجه";
+  }
+  static String budgetDescriptionTextHint() {
 
-  static String transactionBudgetName = "بودجه مورد نظر را انتخاب کنید";
-  static String transactionBudgetNameHint = "نام بودجه";
+    return "این بودجه برای چه منظوری تایین شده است؟";
+  }
 
-  static String sortBudgetAmountHigh = "مرتب سازی: مبلغ بوجه";
+  static String budgetInitialText() {
+
+    return "مبلغ بودجه";
+  }
+  static String budgetInitialTextHint() {
+
+    return "مبلغ اولیه که در نظر گرفته اید را وارد کنید";
+  }
+
+  static String transactionBudgetName() {
+
+    return "بودجه مورد نظر را انتخاب کنید";
+  }
+  static String transactionBudgetNameHint() {
+
+    return "نام بودجه";
+  }
+
+  static String sortBudgetAmountHigh() {
+
+    return "مرتب سازی: مبلغ بوجه";
+  }
   /* End - Budget String Resources */
 
   /* Start - Customer String Resources */
-  static String customerNameText = "نام مشتری";
-  static String customerNameTextHint = "نام کامل مشتری یا شرکت را وارد کنید";
+  static String customerNameText() {
+
+    return "نام مشتری";
+  }
+  static String customerNameTextHint() {
+
+    return "نام کامل مشتری یا شرکت را وارد کنید";
+  }
 
   static String customerCountryText = "کشور";
   static String customerCityText = "شهر";
