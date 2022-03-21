@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/21/22, 6:05 AM
+ * Last modified 3/21/22, 6:28 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,16 +10,31 @@
 
 class StringsResources {
 
-  static String applicationName = "حسابداری جریان";
+  static String applicationName() {
 
-  static String sharingText = "حسابداری جریان - جریان اقتصادی خود را در دست بگیرید."
-      "\n"
-      "\n"
-      "https://instagram.com/flowaccounting";
-  static String instagramLink = "https://instagram.com/flowaccounting";
+    return "حسابداری جریان";
+  }
 
-  static String welcomeText = "به جریان مالی خودتان خوش آمدید";
-  static String getStartedText = "شروع";
+  static String sharingText() {
+
+    return "حسابداری جریان - جریان اقتصادی خود را در دست بگیرید."
+        "\n"
+        "\n"
+        "https://instagram.com/flowaccounting";
+  }
+  static String instagramLink() {
+
+    return "https://instagram.com/flowaccounting";
+  }
+
+  static String welcomeText() {
+
+    return "به جریان مالی خودتان خوش آمدید";
+  }
+  static String getStartedText() {
+
+    return "شروع";
+  }
 
   static String selectProfileText = "انتخاب حساب کاربری";
   static String detailsText = "جزئیات";

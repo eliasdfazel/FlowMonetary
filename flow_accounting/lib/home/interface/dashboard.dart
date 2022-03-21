@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/20/22, 10:15 AM
+ * Last modified 3/21/22, 6:28 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -85,7 +85,7 @@ class DashboardViewState extends State<DashboardView> {
     return SafeArea (
         child: MaterialApp (
           debugShowCheckedModeBanner: false,
-          title: StringsResources.applicationName,
+          title: StringsResources.applicationName(),
           color: ColorsResources.black,
           theme: ThemeData(
             fontFamily: 'Sans',
