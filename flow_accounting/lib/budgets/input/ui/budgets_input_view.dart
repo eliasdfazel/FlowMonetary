@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/21/22, 6:07 AM
+ * Last modified 3/21/22, 6:40 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -526,7 +526,7 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
 
                               setState(() {
 
-                                warningNoticeName = StringsResources.errorText;
+                                warningNoticeName = StringsResources.errorText();
 
                               });
 
@@ -538,7 +538,7 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
 
                               setState(() {
 
-                                warningNoticeDescription = StringsResources.errorText;
+                                warningNoticeDescription = StringsResources.errorText();
 
                               });
 
@@ -550,7 +550,7 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
 
                               setState(() {
 
-                                warningNoticeBalance = StringsResources.errorText;
+                                warningNoticeBalance = StringsResources.errorText();
 
                               });
 
@@ -598,7 +598,7 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
                               }
 
                               Fluttertoast.showToast(
-                                  msg: StringsResources.updatedText,
+                                  msg: StringsResources.updatedText(),
                                   toastLength: Toast.LENGTH_SHORT,
                                   gravity: ToastGravity.CENTER,
                                   timeInSecForIosWeb: 1,
@@ -677,7 +677,7 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
                                       child: Align(
                                         alignment: AlignmentDirectional.center,
                                         child: Text(
-                                          StringsResources.submitText,
+                                          StringsResources.submitText(),
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                               fontSize: 19,
