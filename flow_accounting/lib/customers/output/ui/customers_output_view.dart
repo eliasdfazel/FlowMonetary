@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/21/22, 6:09 AM
+ * Last modified 3/21/22, 10:05 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -204,7 +204,7 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
                                         child: Align(
                                           alignment: Alignment.center,
                                           child: Text(
-                                            StringsResources.sortCustomerAge,
+                                            StringsResources.sortCustomerAge(),
                                             style: TextStyle(
                                               fontSize: 13,
                                               color: ColorsResources.applicationGeeksEmpire,
@@ -360,12 +360,12 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
                                                 ),
                                                 gapPadding: 5
                                             ),
-                                            hintText: StringsResources.searchHintText,
+                                            hintText: StringsResources.searchHintText(),
                                             hintStyle: TextStyle(
                                                 color: ColorsResources.darkTransparent,
                                                 fontSize: 13.0
                                             ),
-                                            labelText: StringsResources.searchText,
+                                            labelText: StringsResources.searchText(),
                                             labelStyle: TextStyle(
                                                 color: ColorsResources.dark,
                                                 fontSize: 15.0
@@ -433,7 +433,7 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
               backgroundColor: Colors.transparent,
               foregroundColor: ColorsResources.gameGeeksEmpire,
               icon: Icons.delete_rounded,
-              label: StringsResources.deleteText,
+              label: StringsResources.deleteText(),
               autoClose: true,
             ),
             SlidableAction(
@@ -446,7 +446,7 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
               backgroundColor: Colors.transparent,
               foregroundColor: ColorsResources.applicationGeeksEmpire,
               icon: Icons.edit_rounded,
-              label: StringsResources.editText,
+              label: StringsResources.editText(),
               autoClose: true,
             ),
           ],

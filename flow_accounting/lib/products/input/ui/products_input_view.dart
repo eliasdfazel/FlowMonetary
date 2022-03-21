@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/21/22, 6:16 AM
+ * Last modified 3/21/22, 10:01 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -185,7 +185,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(13, 13, 13, 0),
                         child:  Text(
-                          StringsResources.featureProductsTitle,
+                          StringsResources.featureProductsTitle(),
                           textDirection: TextDirection.rtl,
                           style: TextStyle(
                             fontSize: 23,
@@ -203,7 +203,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(13, 13, 13, 19),
                         child: Text(
-                          StringsResources.featureProductsDescription,
+                          StringsResources.featureProductsDescription(),
                           textDirection: TextDirection.rtl,
                           style: TextStyle(
                             fontSize: 15,
@@ -318,12 +318,12 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                         errorText: warningNoticeName,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.productName,
+                                        labelText: StringsResources.productName(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.productNameHint,
+                                        hintText: StringsResources.productNameHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
@@ -412,12 +412,12 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                         errorText: warningNoticeDescription,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.productDescription,
+                                        labelText: StringsResources.productDescription(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 13.0
                                         ),
-                                        hintText: StringsResources.productDescriptionHint,
+                                        hintText: StringsResources.productDescriptionHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 13.0
@@ -502,12 +502,12 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                         errorText: warningNoticeName,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.productQuantity,
+                                        labelText: StringsResources.productQuantity(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.productQuantityHint,
+                                        hintText: StringsResources.productQuantityHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
@@ -563,7 +563,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
 
                                           return Padding(
                                               padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
-                                              child: Text(StringsResources.nothingText)
+                                              child: Text(StringsResources.nothingText())
                                           );
                                         },
                                         suggestionsBoxDecoration: SuggestionsBoxDecoration(
@@ -624,12 +624,12 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                             errorText: warningNoticeCategory,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
-                                            labelText: StringsResources.productCategory,
+                                            labelText: StringsResources.productCategory(),
                                             labelStyle: const TextStyle(
                                                 color: ColorsResources.dark,
                                                 fontSize: 17.0
                                             ),
-                                            hintText: StringsResources.productCategoryHint,
+                                            hintText: StringsResources.productCategoryHint(),
                                             hintStyle: const TextStyle(
                                                 color: ColorsResources.darkTransparent,
                                                 fontSize: 17.0
@@ -715,12 +715,12 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                         errorText: warningNoticeBuyingPrice,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.productBuyingPrice,
+                                        labelText: StringsResources.productBuyingPrice(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.productBuyingPriceHint,
+                                        hintText: StringsResources.productBuyingPriceHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
@@ -805,12 +805,12 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                         errorText: warningNoticeProfitPercent,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.productProfitPercent,
+                                        labelText: StringsResources.productProfitPercent(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.productProfitPercentHint,
+                                        hintText: StringsResources.productProfitPercentHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
@@ -902,7 +902,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
 
                                           return Padding(
                                               padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
-                                              child: Text(StringsResources.nothingText)
+                                              child: Text(StringsResources.nothingText())
                                           );
                                         },
                                         suggestionsBoxDecoration: SuggestionsBoxDecoration(
@@ -963,12 +963,12 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                             errorText: warningNoticeBrand,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
-                                            labelText: StringsResources.productBrand,
+                                            labelText: StringsResources.productBrand(),
                                             labelStyle: const TextStyle(
                                                 color: ColorsResources.dark,
                                                 fontSize: 17.0
                                             ),
-                                            hintText: StringsResources.productBrandHint,
+                                            hintText: StringsResources.productBrandHint(),
                                             hintStyle: const TextStyle(
                                                 color: ColorsResources.darkTransparent,
                                                 fontSize: 17.0
@@ -999,7 +999,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: Text(
-                                      StringsResources.colorSelectorHint,
+                                      StringsResources.colorSelectorHint(),
                                       style: TextStyle(
                                           fontSize: 15
                                       ),
@@ -1083,7 +1083,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
 
                                     setState(() {
 
-                                      warningNoticeName= StringsResources.errorText;
+                                      warningNoticeName= StringsResources.errorText();
 
                                     });
 
@@ -1095,7 +1095,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
 
                                     setState(() {
 
-                                      warningNoticeDescription = StringsResources.errorText;
+                                      warningNoticeDescription = StringsResources.errorText();
 
                                     });
 
@@ -1107,7 +1107,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
 
                                     setState(() {
 
-                                      warningNoticeCategory = StringsResources.errorText;
+                                      warningNoticeCategory = StringsResources.errorText();
 
                                     });
 
@@ -1119,7 +1119,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
 
                                     setState(() {
 
-                                      warningNoticeBuyingPrice = StringsResources.errorText;
+                                      warningNoticeBuyingPrice = StringsResources.errorText();
 
                                     });
 
@@ -1131,7 +1131,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
 
                                     setState(() {
 
-                                      warningNoticeProfitPercent = StringsResources.errorText;
+                                      warningNoticeProfitPercent = StringsResources.errorText();
 
                                     });
 
@@ -1143,7 +1143,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
 
                                     setState(() {
 
-                                      warningNoticeBrand = StringsResources.errorText;
+                                      warningNoticeBrand = StringsResources.errorText();
 
                                     });
 
@@ -1201,7 +1201,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                     }
 
                                     Fluttertoast.showToast(
-                                        msg: StringsResources.updatedText,
+                                        msg: StringsResources.updatedText(),
                                         toastLength: Toast.LENGTH_SHORT,
                                         gravity: ToastGravity.CENTER,
                                         timeInSecForIosWeb: 1,
@@ -1280,7 +1280,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                             child: Align(
                                               alignment: AlignmentDirectional.center,
                                               child: Text(
-                                                StringsResources.submitText,
+                                                StringsResources.submitText(),
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                     fontSize: 19,
@@ -1327,7 +1327,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
 
                                         setState(() {
 
-                                          warningNoticeName= StringsResources.errorText;
+                                          warningNoticeName= StringsResources.errorText();
 
                                         });
 
@@ -1339,7 +1339,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
 
                                         setState(() {
 
-                                          warningNoticeDescription = StringsResources.errorText;
+                                          warningNoticeDescription = StringsResources.errorText();
 
                                         });
 
@@ -1351,7 +1351,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
 
                                         setState(() {
 
-                                          warningNoticeCategory = StringsResources.errorText;
+                                          warningNoticeCategory = StringsResources.errorText();
 
                                         });
 
@@ -1363,7 +1363,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
 
                                         setState(() {
 
-                                          warningNoticeBuyingPrice = StringsResources.errorText;
+                                          warningNoticeBuyingPrice = StringsResources.errorText();
 
                                         });
 
@@ -1375,7 +1375,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
 
                                         setState(() {
 
-                                          warningNoticeProfitPercent = StringsResources.errorText;
+                                          warningNoticeProfitPercent = StringsResources.errorText();
 
                                         });
 
@@ -1387,7 +1387,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
 
                                         setState(() {
 
-                                          warningNoticeBrand = StringsResources.errorText;
+                                          warningNoticeBrand = StringsResources.errorText();
 
                                         });
 
@@ -1433,7 +1433,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                         databaseInputs.insertProductData(productData, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
                                         Fluttertoast.showToast(
-                                            msg: StringsResources.updatedText,
+                                            msg: StringsResources.updatedText(),
                                             toastLength: Toast.LENGTH_SHORT,
                                             gravity: ToastGravity.CENTER,
                                             timeInSecForIosWeb: 1,

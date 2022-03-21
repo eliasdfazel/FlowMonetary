@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/21/22, 6:16 AM
+ * Last modified 3/21/22, 10:01 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -148,7 +148,7 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(13, 13, 13, 0),
                         child:  Text(
-                          StringsResources.profileTitle,
+                          StringsResources.profileTitle(),
                           textDirection: TextDirection.rtl,
                           style: TextStyle(
                             fontSize: 23,
@@ -166,7 +166,7 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(13, 13, 13, 19),
                         child: Text(
-                          StringsResources.profileDescription,
+                          StringsResources.profileDescription(),
                           textDirection: TextDirection.rtl,
                           style: TextStyle(
                             fontSize: 15,
@@ -249,12 +249,12 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                                         errorText: warningNoticeFullName,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.profileUserFullName,
+                                        labelText: StringsResources.profileUserFullName(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.profileUserFullNameHint,
+                                        hintText: StringsResources.profileUserFullNameHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
@@ -357,12 +357,12 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                                       errorText: warningNoticePhoneNumber,
                                       filled: true,
                                       fillColor: ColorsResources.lightTransparent,
-                                      labelText: StringsResources.profileUserPhoneNumber,
+                                      labelText: StringsResources.profileUserPhoneNumber(),
                                       labelStyle: const TextStyle(
                                           color: ColorsResources.dark,
                                           fontSize: 17.0
                                       ),
-                                      hintText: StringsResources.profileUserPhoneNumberHint,
+                                      hintText: StringsResources.profileUserPhoneNumberHint(),
                                       hintStyle: const TextStyle(
                                           color: ColorsResources.darkTransparent,
                                           fontSize: 17.0
@@ -470,12 +470,12 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                                         errorText: warningNoticeEmailAddress,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.profileUserEmail,
+                                        labelText: StringsResources.profileUserEmail(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.profileUserEmailHint,
+                                        hintText: StringsResources.profileUserEmailHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
@@ -583,12 +583,12 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                                         errorText: warningNoticeInstagram,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.profileUserInstagram,
+                                        labelText: StringsResources.profileUserInstagram(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.profileUserInstagramHint,
+                                        hintText: StringsResources.profileUserInstagramHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
@@ -696,12 +696,12 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                                         errorText: warningNoticeLocationAddress,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.profileUserLocationAddress,
+                                        labelText: StringsResources.profileUserLocationAddress(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 13.0
                                         ),
-                                        hintText: StringsResources.profileUserLocationAddressHint,
+                                        hintText: StringsResources.profileUserLocationAddressHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
@@ -788,7 +788,7 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
 
                               setState(() {
 
-                                warningNoticeFullName = StringsResources.errorText;
+                                warningNoticeFullName = StringsResources.errorText();
 
                               });
 
@@ -800,7 +800,7 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
 
                               setState(() {
 
-                                warningNoticePhoneNumber = StringsResources.errorText;
+                                warningNoticePhoneNumber = StringsResources.errorText();
 
                               });
 
@@ -812,7 +812,7 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
 
                               setState(() {
 
-                                warningNoticeInstagram = StringsResources.errorText;
+                                warningNoticeInstagram = StringsResources.errorText();
 
                               });
 
@@ -824,7 +824,7 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
 
                               setState(() {
 
-                                warningNoticeEmailAddress = StringsResources.errorText;
+                                warningNoticeEmailAddress = StringsResources.errorText();
 
                               });
 
@@ -836,7 +836,7 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
 
                               setState(() {
 
-                                warningNoticeLocationAddress = StringsResources.errorText;
+                                warningNoticeLocationAddress = StringsResources.errorText();
 
                               });
 
@@ -889,7 +889,7 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                               }
 
                               Fluttertoast.showToast(
-                                  msg: StringsResources.updatedText,
+                                  msg: StringsResources.updatedText(),
                                   toastLength: Toast.LENGTH_SHORT,
                                   gravity: ToastGravity.CENTER,
                                   timeInSecForIosWeb: 1,
@@ -962,13 +962,13 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                                       height: 53,
                                     ),
                                   ),
-                                  SizedBox(
+                                   SizedBox(
                                       width: double.infinity,
                                       height: 53,
                                       child: Align(
                                         alignment: AlignmentDirectional.center,
                                         child: Text(
-                                          StringsResources.submitText,
+                                          StringsResources.submitText(),
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                               fontSize: 19,

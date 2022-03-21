@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/21/22, 6:16 AM
+ * Last modified 3/21/22, 10:01 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -221,7 +221,7 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
                               borderRadius: BorderRadius.all(Radius.circular(51)),
                             ),
                             action: SnackBarAction(
-                              label: StringsResources.deleteText,
+                              label: StringsResources.deleteText(),
                               onPressed: () async {
 
                                 String databaseDirectory = await getDatabasesPath();
@@ -394,7 +394,7 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
                                 quarterTurns: 3,
                                 child: Align(
                                   alignment: Alignment.center,
-                                  child: Text(StringsResources.detailsText,
+                                  child: Text(StringsResources.detailsText(),
                                     style: TextStyle(fontSize: 23,shadows: [
                                       Shadow(
                                           color: ColorsResources.light,

@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/21/22, 6:16 AM
+ * Last modified 3/21/22, 10:01 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -238,7 +238,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
                                         child: Align(
                                           alignment: Alignment.center,
                                           child: Text(
-                                            StringsResources.productSortByPrice,
+                                            StringsResources.productSortByPrice(),
                                             style: TextStyle(
                                               fontSize: 13,
                                               color: ColorsResources.applicationGeeksEmpire,
@@ -293,7 +293,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
                                         child: Align(
                                           alignment: Alignment.center,
                                           child: Text(
-                                            StringsResources.productSortByProfit,
+                                            StringsResources.productSortByProfit(),
                                             style: TextStyle(
                                               fontSize: 13,
                                               color: ColorsResources.applicationGeeksEmpire,
@@ -456,12 +456,12 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
                                                 ),
                                                 gapPadding: 5
                                             ),
-                                            hintText: StringsResources.searchHintText,
+                                            hintText: StringsResources.searchHintText(),
                                             hintStyle: TextStyle(
                                                 color: ColorsResources.darkTransparent,
                                                 fontSize: 13.0
                                             ),
-                                            labelText: StringsResources.searchText,
+                                            labelText: StringsResources.searchText(),
                                             labelStyle: TextStyle(
                                                 color: ColorsResources.dark,
                                                 fontSize: 15.0
@@ -506,7 +506,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
             backgroundColor: Colors.transparent,
             foregroundColor: ColorsResources.gameGeeksEmpire,
             icon: Icons.delete_rounded,
-            label: StringsResources.deleteText,
+            label: StringsResources.deleteText(),
             autoClose: true,
           ),
         ],

@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/21/22, 6:28 AM
+ * Last modified 3/21/22, 10:01 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -106,7 +106,7 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
                         child: Align(
                           alignment: Alignment.centerRight,
                           child: Text(
-                            StringsResources.totalEarningText,
+                            StringsResources.totalEarningText(),
                             style: TextStyle(
                               color: ColorsResources.light,
                               fontSize: 17,
@@ -142,7 +142,7 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
                         child: Align(
                           alignment: Alignment.centerRight,
                           child: Text(
-                            StringsResources.totalSpendingText,
+                            StringsResources.totalSpendingText(),
                             style: TextStyle(
                                 color: ColorsResources.light,
                                 fontSize: 17,
@@ -178,7 +178,7 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
                         child: Align(
                           alignment: Alignment.centerRight,
                           child: Text(
-                            StringsResources.totalBalanceText,
+                            StringsResources.totalBalanceText(),
                             style: TextStyle(
                                 color: ColorsResources.light,
                                 fontSize: 17,

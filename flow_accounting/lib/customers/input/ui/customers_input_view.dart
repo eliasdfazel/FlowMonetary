@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/21/22, 6:09 AM
+ * Last modified 3/21/22, 10:05 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -38,7 +38,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
   ColorSelectorView colorSelectorView = ColorSelectorView();
 
-  CalendarView calendarView = CalendarView(pickedDataTimeText: StringsResources.customerBirthdayText);
+  CalendarView calendarView = CalendarView(pickedDataTimeText: StringsResources.customerBirthdayText());
 
   TextEditingController controllerCustomerName = TextEditingController();
   TextEditingController controllerCustomerDescription = TextEditingController();
@@ -121,7 +121,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
     customerColorTag = Color(widget.customersData?.colorTag ?? Colors.blueGrey.value);
 
-    calendarView.inputDateTime = widget.customersData?.customerBirthday ?? StringsResources.customerBirthdayText;
+    calendarView.inputDateTime = widget.customersData?.customerBirthday ?? StringsResources.customerBirthdayText();
 
     super.initState();
 
@@ -205,7 +205,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(13, 13, 13, 0),
                         child:  Text(
-                          StringsResources.featureCustomersTitle,
+                          StringsResources.featureCustomersTitle(),
                           textDirection: TextDirection.rtl,
                           style: TextStyle(
                             fontSize: 23,
@@ -223,7 +223,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(13, 13, 13, 19),
                         child: Text(
-                          StringsResources.featureCustomersDescription,
+                          StringsResources.featureCustomersDescription(),
                           textDirection: TextDirection.rtl,
                           style: TextStyle(
                             fontSize: 15,
@@ -340,12 +340,12 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                             errorText: warningNoticeName,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
-                                            labelText: StringsResources.customerNameText,
+                                            labelText: StringsResources.customerNameText(),
                                             labelStyle: const TextStyle(
                                                 color: ColorsResources.dark,
                                                 fontSize: 17.0
                                             ),
-                                            hintText: StringsResources.customerNameTextHint,
+                                            hintText: StringsResources.customerNameTextHint(),
                                             hintStyle: const TextStyle(
                                                 color: ColorsResources.darkTransparent,
                                                 fontSize: 17.0
@@ -436,12 +436,12 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                         errorText: warningNoticeDescription,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.descriptionText,
+                                        labelText: StringsResources.descriptionText(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 13.0
                                         ),
-                                        hintText: StringsResources.descriptionText,
+                                        hintText: StringsResources.descriptionText(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 13.0
@@ -526,12 +526,12 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                         errorText: warningNoticeCity,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.customerCityText,
+                                        labelText: StringsResources.customerCityText(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.customerCityText,
+                                        hintText: StringsResources.customerCityText(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
@@ -607,12 +607,12 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                         errorText: warningNoticeCountry,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.customerCountryText,
+                                        labelText: StringsResources.customerCountryText(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.customerCountryText,
+                                        hintText: StringsResources.customerCountryText(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
@@ -701,12 +701,12 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                         errorText: warningNoticeAddress,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.customerStreetAddressText,
+                                        labelText: StringsResources.customerStreetAddressText(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 13.0
                                         ),
-                                        hintText: StringsResources.customerStreetAddressTextHint,
+                                        hintText: StringsResources.customerStreetAddressTextHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 13.0
@@ -836,12 +836,12 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                           errorText: warningNoticeAge,
                                           filled: true,
                                           fillColor: ColorsResources.lightTransparent,
-                                          labelText: StringsResources.customerAgeText,
+                                          labelText: StringsResources.customerAgeText(),
                                           labelStyle: const TextStyle(
                                               color: ColorsResources.dark,
                                               fontSize: 17.0
                                           ),
-                                          hintText: StringsResources.customerAgeText,
+                                          hintText: StringsResources.customerAgeText(),
                                           hintStyle: const TextStyle(
                                               color: ColorsResources.darkTransparent,
                                               fontSize: 17.0
@@ -927,12 +927,12 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                         errorText: warningNoticePhoneNumber,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.customerPhoneNumberText,
+                                        labelText: StringsResources.customerPhoneNumberText(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.customerPhoneNumberTextHint,
+                                        hintText: StringsResources.customerPhoneNumberTextHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
@@ -1017,12 +1017,12 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                         errorText: warningNoticeEmail,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.customerEmailAddressText,
+                                        labelText: StringsResources.customerEmailAddressText(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.customerEmailAddressTextHint,
+                                        hintText: StringsResources.customerEmailAddressTextHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
@@ -1107,12 +1107,12 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                         errorText: warningNoticeJob,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.customerJobText,
+                                        labelText: StringsResources.customerJobText(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.customerJobText,
+                                        hintText: StringsResources.customerJobText(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
@@ -1184,12 +1184,12 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                         errorText: warningNoticeMaritalStatus,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.customerMaritalStatusText,
+                                        labelText: StringsResources.customerMaritalStatusText(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.customerMaritalStatusText,
+                                        hintText: StringsResources.customerMaritalStatusText(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
@@ -1219,7 +1219,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: Text(
-                                      StringsResources.colorSelectorHint,
+                                      StringsResources.colorSelectorHint(),
                                       style: TextStyle(
                                           fontSize: 15
                                       ),
@@ -1298,7 +1298,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
                               setState(() {
 
-                                warningNoticeName = StringsResources.errorText;
+                                warningNoticeName = StringsResources.errorText();
 
                               });
 
@@ -1310,7 +1310,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
                               setState(() {
 
-                                warningNoticeDescription = StringsResources.errorText;
+                                warningNoticeDescription = StringsResources.errorText();
 
                               });
 
@@ -1322,7 +1322,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
                               setState(() {
 
-                                warningNoticeCountry = StringsResources.errorText;
+                                warningNoticeCountry = StringsResources.errorText();
 
                               });
 
@@ -1334,7 +1334,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
                               setState(() {
 
-                                warningNoticeCity = StringsResources.errorText;
+                                warningNoticeCity = StringsResources.errorText();
 
                               });
 
@@ -1346,7 +1346,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
                               setState(() {
 
-                                warningNoticeAddress = StringsResources.errorText;
+                                warningNoticeAddress = StringsResources.errorText();
 
                               });
 
@@ -1358,7 +1358,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
                               setState(() {
 
-                                warningNoticePhoneNumber = StringsResources.errorText;
+                                warningNoticePhoneNumber = StringsResources.errorText();
 
                               });
 
@@ -1370,7 +1370,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
                               setState(() {
 
-                                warningNoticeEmail = StringsResources.errorText;
+                                warningNoticeEmail = StringsResources.errorText();
 
                               });
 
@@ -1382,7 +1382,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
                               setState(() {
 
-                                warningNoticeAge = StringsResources.errorText;
+                                warningNoticeAge = StringsResources.errorText();
 
                               });
 
@@ -1394,7 +1394,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
                               setState(() {
 
-                                warningNoticeJob = StringsResources.errorText;
+                                warningNoticeJob = StringsResources.errorText();
 
                               });
 
@@ -1406,7 +1406,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
                               setState(() {
 
-                                warningNoticeMaritalStatus = StringsResources.errorText;
+                                warningNoticeMaritalStatus = StringsResources.errorText();
 
                               });
 
@@ -1468,7 +1468,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                               }
 
                               Fluttertoast.showToast(
-                                  msg: StringsResources.updatedText,
+                                  msg: StringsResources.updatedText(),
                                   toastLength: Toast.LENGTH_SHORT,
                                   gravity: ToastGravity.CENTER,
                                   timeInSecForIosWeb: 1,
@@ -1547,7 +1547,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                       child: Align(
                                         alignment: AlignmentDirectional.center,
                                         child: Text(
-                                          StringsResources.submitText,
+                                          StringsResources.submitText(),
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                               fontSize: 19,

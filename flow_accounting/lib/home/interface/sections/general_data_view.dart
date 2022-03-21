@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/21/22, 6:16 AM
+ * Last modified 3/21/22, 10:01 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -79,7 +79,7 @@ class _GeneralDataView extends State<GeneralDataView> {
                               child: Align(
                                 alignment: Alignment.centerRight,
                                 child: Text(
-                                  StringsResources.totalEarningText,
+                                  StringsResources.totalEarningText(),
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       color: ColorsResources.dark,
@@ -184,7 +184,7 @@ class _GeneralDataView extends State<GeneralDataView> {
                               child: Align(
                                 alignment: Alignment.centerRight,
                                 child: Text(
-                                  StringsResources.totalBalanceText,
+                                  StringsResources.totalBalanceText(),
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       color: ColorsResources.dark,
@@ -289,7 +289,7 @@ class _GeneralDataView extends State<GeneralDataView> {
                               child: Align(
                                 alignment: Alignment.centerRight,
                                 child: Text(
-                                  StringsResources.totalSpendingText,
+                                  StringsResources.totalSpendingText(),
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       color: ColorsResources.dark,
