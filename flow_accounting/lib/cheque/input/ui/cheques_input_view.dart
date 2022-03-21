@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/21/22, 6:07 AM
+ * Last modified 3/21/22, 7:30 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -53,8 +53,8 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
   ChequesData? chequesData;
 
-  CalendarView calendarIssueDateView = CalendarView(pickedDataTimeText: StringsResources.chequeIssueDate);
-  CalendarView calendarDueDateView = CalendarView(pickedDataTimeText: StringsResources.chequeDueDate);
+  CalendarView calendarIssueDateView = CalendarView();
+  CalendarView calendarDueDateView = CalendarView();
 
   ColorSelectorView colorSelectorView = ColorSelectorView();
 
@@ -113,6 +113,9 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
   @override
   void initState() {
+
+    calendarIssueDateView.pickedDataTimeText = StringsResources.chequeIssueDate();
+    calendarDueDateView.pickedDataTimeText = StringsResources.chequeDueDate();
 
     if (widget.chequesData != null) {
 
@@ -259,7 +262,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                   child: Padding(
                                     padding: EdgeInsets.fromLTRB(13, 0, 17, 0),
                                     child: Text(
-                                      StringsResources.chequeConfirmation,
+                                      StringsResources.chequeConfirmation(),
                                       textAlign: TextAlign.right,
                                       style: TextStyle(
                                           fontSize: 15,
@@ -384,7 +387,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(13, 13, 13, 0),
                         child:  Text(
-                          StringsResources.featureChequesTitle,
+                          StringsResources.featureChequesTitle(),
                           textDirection: TextDirection.rtl,
                           style: TextStyle(
                             fontSize: 23,
@@ -402,7 +405,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(13, 13, 13, 19),
                         child: Text(
-                          StringsResources.featureChequesDescription,
+                          StringsResources.featureChequesDescription(),
                           textDirection: TextDirection.rtl,
                           style: TextStyle(
                             fontSize: 15,
@@ -485,12 +488,12 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                         errorText: warningNoticeTitle,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.titleText,
+                                        labelText: StringsResources.titleText(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.titleText,
+                                        hintText: StringsResources.titleText(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
@@ -579,12 +582,12 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                         errorText: warningNoticeDescription,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.descriptionText,
+                                        labelText: StringsResources.descriptionText(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 13.0
                                         ),
-                                        hintText: StringsResources.descriptionText,
+                                        hintText: StringsResources.descriptionText(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 13.0
@@ -669,12 +672,12 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                         errorText: warningNoticeChequeNumber,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.chequeNumber,
+                                        labelText: StringsResources.chequeNumber(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.chequeNumberHint,
+                                        hintText: StringsResources.chequeNumberHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
@@ -759,12 +762,12 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                         errorText: warningNoticeMoneyAmount,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.transactionAmount,
+                                        labelText: StringsResources.transactionAmount(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.chequeAmountHint,
+                                        hintText: StringsResources.chequeAmountHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
@@ -948,12 +951,12 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                         errorText: warningNoticeSourceAccount,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.chequeSourceAccount,
+                                        labelText: StringsResources.chequeSourceAccount(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 15.0
                                         ),
-                                        hintText: StringsResources.chequeSourceAccountHint,
+                                        hintText: StringsResources.chequeSourceAccountHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
@@ -1038,12 +1041,12 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                         errorText: warningNoticeTargetAccount,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.chequeTargetAccount,
+                                        labelText: StringsResources.chequeTargetAccount(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 15.0
                                         ),
-                                        hintText: StringsResources.chequeTargetAccountHint,
+                                        hintText: StringsResources.chequeTargetAccountHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
@@ -1128,12 +1131,12 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                         errorText: warningNoticeTargetId,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.chequeTargetId,
+                                        labelText: StringsResources.chequeTargetId(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 15.0
                                         ),
-                                        hintText: StringsResources.chequeTargetIdHint,
+                                        hintText: StringsResources.chequeTargetIdHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
@@ -1205,12 +1208,12 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                         errorText: warningNoticeSourceId,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.chequeSourceId,
+                                        labelText: StringsResources.chequeSourceId(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 15.0
                                         ),
-                                        hintText: StringsResources.chequeSourceIdHint,
+                                        hintText: StringsResources.chequeSourceIdHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
@@ -1301,7 +1304,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                                           return Padding(
                                               padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
-                                              child: Text(StringsResources.nothingText)
+                                              child: Text(StringsResources.nothingText())
                                           );
                                         },
                                         suggestionsBoxDecoration: SuggestionsBoxDecoration(
@@ -1362,12 +1365,12 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                             errorText: warningNoticeTargetName,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
-                                            labelText: StringsResources.transactionTargetName,
+                                            labelText: StringsResources.transactionTargetName(),
                                             labelStyle: const TextStyle(
                                                 color: ColorsResources.dark,
                                                 fontSize: 17.0
                                             ),
-                                            hintText: StringsResources.transactionTargetNameHint,
+                                            hintText: StringsResources.transactionTargetNameHint(),
                                             hintStyle: const TextStyle(
                                                 color: ColorsResources.darkTransparent,
                                                 fontSize: 17.0
@@ -1446,7 +1449,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                                           return Padding(
                                               padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
-                                              child: Text(StringsResources.nothingText)
+                                              child: Text(StringsResources.nothingText())
                                           );
                                         },
                                         suggestionsBoxDecoration: SuggestionsBoxDecoration(
@@ -1507,12 +1510,12 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                             errorText: warningNoticeSourceName,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
-                                            labelText: StringsResources.transactionSourceName,
+                                            labelText: StringsResources.transactionSourceName(),
                                             labelStyle: const TextStyle(
                                                 color: ColorsResources.dark,
                                                 fontSize: 17.0
                                             ),
-                                            hintText: StringsResources.transactionSourceNameHint,
+                                            hintText: StringsResources.transactionSourceNameHint(),
                                             hintStyle: const TextStyle(
                                                 color: ColorsResources.darkTransparent,
                                                 fontSize: 17.0
@@ -1604,7 +1607,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                                           return Padding(
                                               padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
-                                              child: Text(StringsResources.nothingText)
+                                              child: Text(StringsResources.nothingText())
                                           );
                                         },
                                         suggestionsBoxDecoration: SuggestionsBoxDecoration(
@@ -1665,12 +1668,12 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                             errorText: warningNoticeTargetBank,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
-                                            labelText: StringsResources.transactionTargetBank,
+                                            labelText: StringsResources.transactionTargetBank(),
                                             labelStyle: const TextStyle(
                                                 color: ColorsResources.dark,
                                                 fontSize: 17.0
                                             ),
-                                            hintText: StringsResources.transactionTargetBankHint,
+                                            hintText: StringsResources.transactionTargetBankHint(),
                                             hintStyle: const TextStyle(
                                                 color: ColorsResources.darkTransparent,
                                                 fontSize: 17.0
@@ -1749,7 +1752,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                                           return Padding(
                                               padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
-                                              child: Text(StringsResources.nothingText)
+                                              child: Text(StringsResources.nothingText())
                                           );
                                         },
                                         suggestionsBoxDecoration: SuggestionsBoxDecoration(
@@ -1810,12 +1813,12 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                             errorText: warningNoticeBank,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
-                                            labelText: StringsResources.transactionSourceBank,
+                                            labelText: StringsResources.transactionSourceBank(),
                                             labelStyle: const TextStyle(
                                                 color: ColorsResources.dark,
                                                 fontSize: 17.0
                                             ),
-                                            hintText: StringsResources.transactionSourceBankHint,
+                                            hintText: StringsResources.transactionSourceBankHint(),
                                             hintStyle: const TextStyle(
                                                 color: ColorsResources.darkTransparent,
                                                 fontSize: 17.0
@@ -1903,12 +1906,12 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                           errorText: warningNoticeBankBranch,
                                           filled: true,
                                           fillColor: ColorsResources.lightTransparent,
-                                          labelText: StringsResources.chequeBankBranch,
+                                          labelText: StringsResources.chequeBankBranch(),
                                           labelStyle: const TextStyle(
                                               color: ColorsResources.dark,
                                               fontSize: 17.0
                                           ),
-                                          hintText: StringsResources.chequeBankBranch,
+                                          hintText: StringsResources.chequeBankBranch(),
                                           hintStyle: const TextStyle(
                                               color: ColorsResources.darkTransparent,
                                               fontSize: 17.0
@@ -1970,8 +1973,8 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                               ),
                                               value: StringsResources.transactionTypeSend,
                                               items: <String> [
-                                                StringsResources.transactionTypeSend,
-                                                StringsResources.transactionTypeReceive
+                                                StringsResources.transactionTypeSend(),
+                                                StringsResources.transactionTypeReceive()
                                               ].map<DropdownMenuItem<String>>((String value) {
 
                                                 return DropdownMenuItem<String>(
@@ -2016,7 +2019,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                           child: Align(
                                             alignment: Alignment.centerRight,
                                             child: Text(
-                                              StringsResources.transactionTypeHint,
+                                              StringsResources.transactionTypeHint(),
                                               textAlign: TextAlign.right,
                                               style: TextStyle(
                                                   color: ColorsResources.applicationGeeksEmpire,
@@ -2075,7 +2078,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                                           return Padding(
                                               padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
-                                              child: Text(StringsResources.nothingText)
+                                              child: Text(StringsResources.nothingText())
                                           );
                                         },
                                         suggestionsBoxDecoration: SuggestionsBoxDecoration(
@@ -2139,12 +2142,12 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                             errorText: warningNoticeCreditCard,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
-                                            labelText: StringsResources.chequeCard,
+                                            labelText: StringsResources.chequeCard(),
                                             labelStyle: const TextStyle(
                                                 color: ColorsResources.dark,
                                                 fontSize: 17.0
                                             ),
-                                            hintText: StringsResources.chequeCardHint,
+                                            hintText: StringsResources.chequeCardHint(),
                                             hintStyle: const TextStyle(
                                                 color: ColorsResources.darkTransparent,
                                                 fontSize: 17.0
@@ -2232,7 +2235,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                                   return Padding(
                                       padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
-                                      child: Text(StringsResources.nothingText)
+                                      child: Text(StringsResources.nothingText())
                                   );
                                 },
                                 suggestionsBoxDecoration: SuggestionsBoxDecoration(
@@ -2293,12 +2296,12 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                     errorText: warningNoticeBudget,
                                     filled: true,
                                     fillColor: ColorsResources.lightTransparent,
-                                    labelText: StringsResources.transactionBudgetName,
+                                    labelText: StringsResources.transactionBudgetName(),
                                     labelStyle: const TextStyle(
                                         color: ColorsResources.dark,
                                         fontSize: 17.0
                                     ),
-                                    hintText: StringsResources.transactionBudgetNameHint,
+                                    hintText: StringsResources.transactionBudgetNameHint(),
                                     hintStyle: const TextStyle(
                                         color: ColorsResources.darkTransparent,
                                         fontSize: 17.0
@@ -2326,7 +2329,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: Text(
-                                      StringsResources.colorSelectorHint,
+                                      StringsResources.colorSelectorHint(),
                                       style: TextStyle(
                                           fontSize: 15
                                       ),
@@ -2407,7 +2410,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                             setState(() {
 
-                              warningNoticeChequeNumber = StringsResources.errorText;
+                              warningNoticeChequeNumber = StringsResources.errorText();
 
                             });
 
@@ -2419,7 +2422,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                             setState(() {
 
-                              warningNoticeSourceAccount = StringsResources.errorText;
+                              warningNoticeSourceAccount = StringsResources.errorText();
 
                             });
 
@@ -2431,7 +2434,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                             setState(() {
 
-                              warningNoticeTargetAccount = StringsResources.errorText;
+                              warningNoticeTargetAccount = StringsResources.errorText();
 
                             });
 
@@ -2443,7 +2446,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                             setState(() {
 
-                              warningNoticeMoneyAmount = StringsResources.errorText;
+                              warningNoticeMoneyAmount = StringsResources.errorText();
 
                             });
 
@@ -2455,7 +2458,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                             setState(() {
 
-                              warningNoticeTitle = StringsResources.errorText;
+                              warningNoticeTitle = StringsResources.errorText();
 
                             });
 
@@ -2467,7 +2470,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                             setState(() {
 
-                              warningNoticeDescription = StringsResources.errorText;
+                              warningNoticeDescription = StringsResources.errorText();
 
                             });
 
@@ -2479,7 +2482,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                             setState(() {
 
-                              warningNoticeSourceId = StringsResources.errorText;
+                              warningNoticeSourceId = StringsResources.errorText();
 
                             });
 
@@ -2491,7 +2494,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                             setState(() {
 
-                              warningNoticeSourceName = StringsResources.errorText;
+                              warningNoticeSourceName = StringsResources.errorText();
 
                             });
 
@@ -2503,7 +2506,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                             setState(() {
 
-                              warningNoticeBank = StringsResources.errorText;
+                              warningNoticeBank = StringsResources.errorText();
 
                             });
 
@@ -2515,7 +2518,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                             setState(() {
 
-                              warningNoticeBankBranch = StringsResources.errorText;
+                              warningNoticeBankBranch = StringsResources.errorText();
 
                             });
 
@@ -2527,7 +2530,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                             setState(() {
 
-                              warningNoticeSourceAccount = StringsResources.errorText;
+                              warningNoticeSourceAccount = StringsResources.errorText();
 
                             });
 
@@ -2539,7 +2542,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                             setState(() {
 
-                              warningNoticeTargetId = StringsResources.errorText;
+                              warningNoticeTargetId = StringsResources.errorText();
 
                             });
 
@@ -2551,7 +2554,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                             setState(() {
 
-                              warningNoticeTargetName = StringsResources.errorText;
+                              warningNoticeTargetName = StringsResources.errorText();
 
                             });
 
@@ -2563,7 +2566,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                             setState(() {
 
-                              warningNoticeTargetBank = StringsResources.errorText;
+                              warningNoticeTargetBank = StringsResources.errorText();
 
                             });
 
@@ -2575,7 +2578,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                             setState(() {
 
-                              warningNoticeTargetAccount = StringsResources.errorText;
+                              warningNoticeTargetAccount = StringsResources.errorText();
 
                             });
 
@@ -2587,7 +2590,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                             setState(() {
 
-                              warningNoticeBudget = StringsResources.errorText;
+                              warningNoticeBudget = StringsResources.errorText();
 
                             });
 
@@ -2599,7 +2602,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                             setState(() {
 
-                              warningNoticeCreditCard = StringsResources.errorText;
+                              warningNoticeCreditCard = StringsResources.errorText();
 
                             });
 
@@ -2670,7 +2673,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                             );
 
                             Fluttertoast.showToast(
-                                msg: StringsResources.updatedText,
+                                msg: StringsResources.updatedText(),
                                 toastLength: Toast.LENGTH_SHORT,
                                 gravity: ToastGravity.CENTER,
                                 timeInSecForIosWeb: 1,
@@ -2749,7 +2752,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                     child: Align(
                                       alignment: AlignmentDirectional.center,
                                       child: Text(
-                                        StringsResources.submitText,
+                                        StringsResources.submitText(),
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                             fontSize: 19,
@@ -2792,7 +2795,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
       listOfCustomers.add(CustomersData(
           id: profilesData.id,
-          customerName: StringsResources.mySelfText,
+          customerName: StringsResources.mySelfText(),
           customerDescription: profilesData.userFullName,
           customerCountry: "",
           customerCity: "",
@@ -2833,7 +2836,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
   Future<List<String>> getBanksNames() async {
 
-    return StringsResources.listOfBanksIran;
+    return StringsResources.listOfBanksIran();
   }
 
   Future<List<BudgetsData>> getBudgetNames() async {
