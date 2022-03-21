@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/21/22, 6:07 AM
+ * Last modified 3/21/22, 7:22 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -206,7 +206,7 @@ class _BudgetOutputViewState extends State<BudgetsOutputView> {
                                         child: Align(
                                           alignment: Alignment.center,
                                           child: Text(
-                                            StringsResources.sortBudgetAmountHigh,
+                                            StringsResources.sortBudgetAmountHigh(),
                                             style: TextStyle(
                                               fontSize: 13,
                                               color: ColorsResources.applicationGeeksEmpire,
@@ -362,12 +362,12 @@ class _BudgetOutputViewState extends State<BudgetsOutputView> {
                                                 ),
                                                 gapPadding: 5
                                             ),
-                                            hintText: StringsResources.searchHintText,
+                                            hintText: StringsResources.searchHintText(),
                                             hintStyle: TextStyle(
                                                 color: ColorsResources.darkTransparent,
                                                 fontSize: 13.0
                                             ),
-                                            labelText: StringsResources.searchText,
+                                            labelText: StringsResources.searchText(),
                                             labelStyle: TextStyle(
                                                 color: ColorsResources.dark,
                                                 fontSize: 15.0
@@ -415,7 +415,7 @@ class _BudgetOutputViewState extends State<BudgetsOutputView> {
             backgroundColor: Colors.transparent,
             foregroundColor: ColorsResources.gameGeeksEmpire,
             icon: Icons.delete_rounded,
-            label: StringsResources.deleteText,
+            label: StringsResources.deleteText(),
             autoClose: true,
           ),
           SlidableAction(
@@ -428,7 +428,7 @@ class _BudgetOutputViewState extends State<BudgetsOutputView> {
             backgroundColor: Colors.transparent,
             foregroundColor: ColorsResources.applicationGeeksEmpire,
             icon: Icons.edit_rounded,
-            label: StringsResources.editText,
+            label: StringsResources.editText(),
             autoClose: true,
           ),
         ],
@@ -446,7 +446,7 @@ class _BudgetOutputViewState extends State<BudgetsOutputView> {
             backgroundColor: Colors.transparent,
             foregroundColor: ColorsResources.greenGray,
             icon: Icons.money_rounded,
-            label: StringsResources.transactionAll,
+            label: StringsResources.transactionAll(),
             autoClose: true,
           ),
         ],

@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/21/22, 6:40 AM
+ * Last modified 3/21/22, 7:22 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -127,7 +127,7 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(13, 13, 13, 0),
                         child:  Text(
-                          StringsResources.featureBudgetManagementsTitle,
+                          StringsResources.featureBudgetManagementsTitle(),
                           textDirection: TextDirection.rtl,
                           style: TextStyle(
                             fontSize: 23,
@@ -145,7 +145,7 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(13, 13, 13, 19),
                         child: Text(
-                          StringsResources.featureBudgetManagementsDescription,
+                          StringsResources.featureBudgetManagementsDescription(),
                           textDirection: TextDirection.rtl,
                           style: TextStyle(
                             fontSize: 15,
@@ -228,12 +228,12 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
                                         errorText: warningNoticeName,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.budgetNameText,
+                                        labelText: StringsResources.budgetNameText(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.budgetNameTextHint,
+                                        hintText: StringsResources.budgetNameTextHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
@@ -322,12 +322,12 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
                                         errorText: warningNoticeDescription,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.budgetDescriptionText,
+                                        labelText: StringsResources.budgetDescriptionText(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 13.0
                                         ),
-                                        hintText: StringsResources.budgetDescriptionTextHint,
+                                        hintText: StringsResources.budgetDescriptionTextHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 13.0
@@ -412,12 +412,12 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
                                         errorText: warningNoticeBalance,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.budgetInitialTextHint,
+                                        labelText: StringsResources.budgetInitialTextHint(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.budgetInitialTextHint,
+                                        hintText: StringsResources.budgetInitialTextHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
@@ -447,7 +447,7 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: Text(
-                                      StringsResources.colorSelectorHint,
+                                      StringsResources.colorSelectorHint(),
                                       style: TextStyle(
                                           fontSize: 15
                                       ),
