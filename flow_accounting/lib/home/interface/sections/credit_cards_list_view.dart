@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/21/22, 10:01 AM
+ * Last modified 3/22/22, 6:07 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -226,7 +226,7 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
 
                                 String databaseDirectory = await getDatabasesPath();
 
-                                String creditCardDatabasePath = "${databaseDirectory}/${CreditCardsDatabaseInputs.creditCardDatabase}";
+                                String creditCardDatabasePath = "${databaseDirectory}/${CreditCardsDatabaseInputs.creditCardDatabase()}";
 
                                 bool creditCardDatabaseExist = await databaseExists(creditCardDatabasePath);
 
@@ -424,7 +424,7 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
 
     String databaseDirectory = await getDatabasesPath();
 
-    String creditCardDatabasePath = "${databaseDirectory}/${CreditCardsDatabaseInputs.creditCardDatabase}";
+    String creditCardDatabasePath = "${databaseDirectory}/${CreditCardsDatabaseInputs.creditCardDatabase()}";
 
     bool creditCardDatabaseExist = await databaseExists(creditCardDatabasePath);
 

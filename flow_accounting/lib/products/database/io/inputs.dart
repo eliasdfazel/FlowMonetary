@@ -2,13 +2,14 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/19/22, 5:57 AM
+ * Last modified 3/22/22, 6:11 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
 import 'package:flow_accounting/products/database/structures/tables_structure.dart';
+import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -17,12 +18,15 @@ class ProductsDatabaseInputs {
 
   static const String databaseTableName = "all_products";
 
-  static const productsDatabase = "products_database.db";
+  static String productsDatabase() {
+
+    return (UserInformation.UserId == StringsResources.unknownText) ? "products_database.db" : "${UserInformation.UserId}_products_database.db";
+  }
 
   Future<void> insertProductData(ProductsData productsData, String tableName,
       String usernameId, {bool isPrototype = false}) async {
 
-    var databaseNameQuery = (usernameId == StringsResources.unknownText) ? ProductsDatabaseInputs.productsDatabase : "${usernameId}_${ProductsDatabaseInputs.productsDatabase}";
+    var databaseNameQuery = ProductsDatabaseInputs.productsDatabase();
     var tableNameQuery = ProductsDatabaseInputs.databaseTableName;
 
     final database = openDatabase(
@@ -66,7 +70,7 @@ class ProductsDatabaseInputs {
 
   Future<void> updateProductData(ProductsData productsData, String tableName, String usernameId) async {
 
-    var databaseNameQuery = (usernameId == StringsResources.unknownText) ? ProductsDatabaseInputs.productsDatabase : "${usernameId}_${ProductsDatabaseInputs.productsDatabase}";
+    var databaseNameQuery = ProductsDatabaseInputs.productsDatabase();
     var tableNameQuery = ProductsDatabaseInputs.databaseTableName;
 
     final database = openDatabase(

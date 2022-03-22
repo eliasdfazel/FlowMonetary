@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/14/22, 6:42 AM
+ * Last modified 3/22/22, 6:11 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -12,7 +12,6 @@ import 'dart:core';
 
 import 'package:flow_accounting/budgets/database/io/inputs.dart';
 import 'package:flow_accounting/budgets/database/structures/tables_structure.dart';
-import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -21,7 +20,7 @@ class BudgetsDatabaseQueries {
   Future<List<BudgetsData>> getAllBudgets(String tableName,
       String usernameId) async {
 
-    var databaseNameQuery = (usernameId == StringsResources.unknownText) ? BudgetsDatabaseInputs.budgetsDatabase : "${usernameId}_${BudgetsDatabaseInputs.budgetsDatabase}";
+    var databaseNameQuery = BudgetsDatabaseInputs.budgetsDatabase();
     var tableNameQuery = BudgetsDatabaseInputs.databaseTableName;
 
     final database = openDatabase(
@@ -51,7 +50,7 @@ class BudgetsDatabaseQueries {
       String budgetName,
       String tableName, String usernameId) async {
 
-    var databaseNameQuery = (usernameId == StringsResources.unknownText) ? BudgetsDatabaseInputs.budgetsDatabase : "${usernameId}_${BudgetsDatabaseInputs.budgetsDatabase}";
+    var databaseNameQuery = BudgetsDatabaseInputs.budgetsDatabase();
     var tableNameQuery = BudgetsDatabaseInputs.databaseTableName;
 
     final database = openDatabase(
@@ -72,7 +71,7 @@ class BudgetsDatabaseQueries {
   Future<int> queryDeleteBudget(int id,
       String tableName, String usernameId) async {
 
-    var databaseNameQuery = (usernameId == StringsResources.unknownText) ? BudgetsDatabaseInputs.budgetsDatabase : "${usernameId}_${BudgetsDatabaseInputs.budgetsDatabase}";
+    var databaseNameQuery = BudgetsDatabaseInputs.budgetsDatabase();
     var tableNameQuery = BudgetsDatabaseInputs.databaseTableName;
 
     final database = openDatabase(

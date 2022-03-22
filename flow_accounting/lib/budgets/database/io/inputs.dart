@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/14/22, 7:28 AM
+ * Last modified 3/22/22, 5:57 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -11,6 +11,7 @@
 import 'dart:core';
 
 import 'package:flow_accounting/budgets/database/structures/tables_structure.dart';
+import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -19,12 +20,15 @@ class BudgetsDatabaseInputs {
 
   static const String databaseTableName = "all_budgets";
 
-  static const budgetsDatabase = "budgets_database.db";
+  static String budgetsDatabase() {
+
+    return (UserInformation.UserId == StringsResources.unknownText) ? "budgets_database.db" : "${UserInformation.UserId}_budgets_database.db";;
+  }
 
   Future<void> insertBudgetData(BudgetsData budgetsData, String tableName,
       String usernameId, {bool isPrototype = false}) async {
 
-    var databaseNameQuery = (usernameId == StringsResources.unknownText) ? BudgetsDatabaseInputs.budgetsDatabase : "${usernameId}_${BudgetsDatabaseInputs.budgetsDatabase}";
+    var databaseNameQuery = BudgetsDatabaseInputs.budgetsDatabase();
     var tableNameQuery = BudgetsDatabaseInputs.databaseTableName;
 
     final database = openDatabase(
@@ -62,7 +66,7 @@ class BudgetsDatabaseInputs {
 
   Future<void> updateBudgetData(BudgetsData budgetsData, String tableName, String usernameId) async {
 
-    var databaseNameQuery = (usernameId == StringsResources.unknownText) ? BudgetsDatabaseInputs.budgetsDatabase : "${usernameId}_${BudgetsDatabaseInputs.budgetsDatabase}";
+    var databaseNameQuery = BudgetsDatabaseInputs.budgetsDatabase();
     var tableNameQuery = BudgetsDatabaseInputs.databaseTableName;
 
     final database = openDatabase(

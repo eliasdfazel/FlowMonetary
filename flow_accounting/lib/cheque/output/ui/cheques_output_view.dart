@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/21/22, 7:32 AM
+ * Last modified 3/22/22, 6:07 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -731,7 +731,7 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
 
     String databaseDirectory = await getDatabasesPath();
 
-    String chequeDatabasePath = "${databaseDirectory}/${ChequesDatabaseInputs.chequesDatabase}";
+    String chequeDatabasePath = "${databaseDirectory}/${ChequesDatabaseInputs.chequesDatabase()}";
 
     bool chequesDatabaseExist = await databaseExists(chequeDatabasePath);
 
@@ -773,7 +773,7 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
 
     String databaseDirectory = await getDatabasesPath();
 
-    String chequeDatabasePath = "${databaseDirectory}/${ChequesDatabaseInputs.chequesDatabase}";
+    String chequeDatabasePath = "${databaseDirectory}/${ChequesDatabaseInputs.chequesDatabase()}";
 
     bool chequesDatabaseExist = await databaseExists(chequeDatabasePath);
 

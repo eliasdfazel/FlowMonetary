@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/21/22, 10:01 AM
+ * Last modified 3/22/22, 6:07 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -356,7 +356,7 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
 
     String databaseDirectory = await getDatabasesPath();
 
-    String transactionDatabasePath = "${databaseDirectory}/${TransactionsDatabaseInputs.transactionsDatabase}";
+    String transactionDatabasePath = "${databaseDirectory}/${TransactionsDatabaseInputs.transactionsDatabase()}";
 
     bool transactionDatabaseExist = await databaseExists(transactionDatabasePath);
 

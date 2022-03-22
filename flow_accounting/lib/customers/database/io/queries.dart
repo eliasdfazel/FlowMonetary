@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/14/22, 6:42 AM
+ * Last modified 3/22/22, 6:11 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,7 +10,6 @@
 
 import 'package:flow_accounting/customers/database/io/inputs.dart';
 import 'package:flow_accounting/customers/database/structures/table_structure.dart';
-import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -19,7 +18,7 @@ class CustomersDatabaseQueries {
   Future<List<CustomersData>> getAllCustomers(String tableName,
       String usernameId) async {
 
-    var databaseNameQuery = (usernameId == StringsResources.unknownText) ? CustomersDatabaseInputs.customersDatabase : "${usernameId}_${CustomersDatabaseInputs.customersDatabase}";
+    var databaseNameQuery = CustomersDatabaseInputs.customersDatabase();
     var tableNameQuery = CustomersDatabaseInputs.databaseTableName;
 
     final database = openDatabase(
@@ -62,7 +61,7 @@ class CustomersDatabaseQueries {
   Future<int> queryDeleteCustomer(int id,
       String tableName, String usernameId) async {
 
-    var databaseNameQuery = (usernameId == StringsResources.unknownText) ? CustomersDatabaseInputs.customersDatabase : "${usernameId}_${CustomersDatabaseInputs.customersDatabase}";
+    var databaseNameQuery = CustomersDatabaseInputs.customersDatabase();
     var tableNameQuery = CustomersDatabaseInputs.databaseTableName;
 
     final database = openDatabase(

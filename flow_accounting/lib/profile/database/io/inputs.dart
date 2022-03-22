@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/13/22, 11:26 AM
+ * Last modified 3/22/22, 6:11 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -16,14 +16,17 @@ class ProfilesDatabaseInputs {
 
   static const String databaseTableName = "all_profiles";
 
-  static const profilesDatabase = "profiles_database.db";
+  static String profilesDatabase() {
+
+    return "profiles_database.db";
+  }
 
   Future<void> insertProfileData(ProfilesData profilesData) async {
 
     var tableNameQuery = ProfilesDatabaseInputs.databaseTableName;
 
     final database = openDatabase(
-      join(await getDatabasesPath(), ProfilesDatabaseInputs.profilesDatabase),
+      join(await getDatabasesPath(), ProfilesDatabaseInputs.profilesDatabase()),
       onCreate: (databaseInstance, version) {
 
         return databaseInstance.execute(
@@ -63,7 +66,7 @@ class ProfilesDatabaseInputs {
   Future<void> updateProfileData(ProfilesData profilesData) async {
 
     final database = openDatabase(
-      join(await getDatabasesPath(), ProfilesDatabaseInputs.profilesDatabase),
+      join(await getDatabasesPath(), ProfilesDatabaseInputs.profilesDatabase()),
     );
 
     final databaseInstance = await database;

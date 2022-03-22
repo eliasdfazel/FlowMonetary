@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/14/22, 7:28 AM
+ * Last modified 3/22/22, 6:07 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -12,6 +12,7 @@ import 'dart:async';
 import 'dart:core';
 
 import 'package:flow_accounting/credit_cards/database/structures/tables_structure.dart';
+import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -20,12 +21,15 @@ class CreditCardsDatabaseInputs {
 
   static const String databaseTableName = "all_credit_cards";
 
-  static const creditCardDatabase = "credit_cards_database.db";
+  static String creditCardDatabase() {
+
+    return (UserInformation.UserId == StringsResources.unknownText) ? "credit_cards_database.db" : "${UserInformation.UserId}_credit_cards_database.db";
+  }
 
   Future<void> insertCreditCardsData(CreditCardsData creditCardsData,
       String tableName, String usernameId, {bool isPrototype = false}) async {
 
-    var databaseNameQuery = (usernameId == StringsResources.unknownText) ? CreditCardsDatabaseInputs.creditCardDatabase : "${usernameId}_${CreditCardsDatabaseInputs.creditCardDatabase}";
+    var databaseNameQuery = CreditCardsDatabaseInputs.creditCardDatabase();
     var tableNameQuery = CreditCardsDatabaseInputs.databaseTableName;
 
     final database = openDatabase(
@@ -68,7 +72,7 @@ class CreditCardsDatabaseInputs {
   Future<void> updateCreditCardsData(CreditCardsData creditCardsData,
       String tableName, String usernameId) async {
 
-    var databaseNameQuery = (usernameId == StringsResources.unknownText) ? CreditCardsDatabaseInputs.creditCardDatabase : "${usernameId}_${CreditCardsDatabaseInputs.creditCardDatabase}";
+    var databaseNameQuery = CreditCardsDatabaseInputs.creditCardDatabase();
     var tableNameQuery = CreditCardsDatabaseInputs.databaseTableName;
 
     final database = openDatabase(
@@ -95,7 +99,7 @@ class CreditCardsDatabaseInputs {
   Future<void> deleteCreditCardsData(int id, String tableName,
       String usernameId) async {
 
-    var databaseNameQuery = (usernameId == StringsResources.unknownText) ? CreditCardsDatabaseInputs.creditCardDatabase : "${usernameId}_${CreditCardsDatabaseInputs.creditCardDatabase}";
+    var databaseNameQuery = CreditCardsDatabaseInputs.creditCardDatabase();
     var tableNameQuery = CreditCardsDatabaseInputs.databaseTableName;
 
     final database = openDatabase(
@@ -112,7 +116,7 @@ class CreditCardsDatabaseInputs {
 
     if (databaseInstance.isOpen) {
 
-      // await databaseInstance.close();
+      await databaseInstance.close();
 
     }
 

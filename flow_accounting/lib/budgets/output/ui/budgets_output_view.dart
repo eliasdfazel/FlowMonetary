@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/21/22, 7:22 AM
+ * Last modified 3/22/22, 6:07 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -623,7 +623,7 @@ class _BudgetOutputViewState extends State<BudgetsOutputView> {
 
     String databaseDirectory = await getDatabasesPath();
 
-    String budgetDatabasePath = "${databaseDirectory}/${BudgetsDatabaseInputs.budgetsDatabase}";
+    String budgetDatabasePath = "${databaseDirectory}/${BudgetsDatabaseInputs.budgetsDatabase()}";
 
     bool budgetDatabaseExist = await databaseExists(budgetDatabasePath);
 
@@ -667,7 +667,7 @@ class _BudgetOutputViewState extends State<BudgetsOutputView> {
 
     String databaseDirectory = await getDatabasesPath();
 
-    String budgetDatabasePath = "${databaseDirectory}/${BudgetsDatabaseInputs.budgetsDatabase}";
+    String budgetDatabasePath = "${databaseDirectory}/${BudgetsDatabaseInputs.budgetsDatabase()}";
 
     bool budgetDatabaseExist = await databaseExists(budgetDatabasePath);
 

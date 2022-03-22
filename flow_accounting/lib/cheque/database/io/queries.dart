@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/14/22, 6:42 AM
+ * Last modified 3/22/22, 6:11 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -12,7 +12,6 @@ import 'dart:core';
 
 import 'package:flow_accounting/cheque/database/io/inputs.dart';
 import 'package:flow_accounting/cheque/database/structures/table_structure.dart';
-import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -21,7 +20,7 @@ class ChequesDatabaseQueries {
   Future<List<ChequesData>> getAllCheques(String tableName,
       String usernameId) async {
 
-    var databaseNameQuery = (usernameId == StringsResources.unknownText) ? ChequesDatabaseInputs.chequesDatabase : "${usernameId}_${ChequesDatabaseInputs.chequesDatabase}";
+    var databaseNameQuery = ChequesDatabaseInputs.chequesDatabase();
     var tableNameQuery = ChequesDatabaseInputs.databaseTableName;
 
     final database = openDatabase(
@@ -79,7 +78,7 @@ class ChequesDatabaseQueries {
       String chequeNumber,
       String tableName, String usernameId) async {
 
-    var databaseNameQuery = (usernameId == StringsResources.unknownText) ? ChequesDatabaseInputs.chequesDatabase : "${usernameId}_${ChequesDatabaseInputs.chequesDatabase}";
+    var databaseNameQuery = ChequesDatabaseInputs.chequesDatabase();
     var tableNameQuery = ChequesDatabaseInputs.databaseTableName;
 
     final database = openDatabase(
@@ -100,7 +99,7 @@ class ChequesDatabaseQueries {
   Future<int> queryDeleteCheque(int id,
       String tableName, String usernameId) async {
 
-    var databaseNameQuery = (usernameId == StringsResources.unknownText) ? ChequesDatabaseInputs.chequesDatabase : "${usernameId}_${ChequesDatabaseInputs.chequesDatabase}";
+    var databaseNameQuery = ChequesDatabaseInputs.chequesDatabase();
     var tableNameQuery = ChequesDatabaseInputs.databaseTableName;
 
     final database = openDatabase(

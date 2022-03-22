@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/21/22, 10:05 AM
+ * Last modified 3/22/22, 6:07 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -721,7 +721,7 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
 
     String databaseDirectory = await getDatabasesPath();
 
-    String customerDatabasePath = "${databaseDirectory}/${CustomersDatabaseInputs.customersDatabase}";
+    String customerDatabasePath = "${databaseDirectory}/${CustomersDatabaseInputs.customersDatabase()}";
 
     bool customerDatabaseExist = await databaseExists(customerDatabasePath);
 
@@ -763,7 +763,7 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
 
     String databaseDirectory = await getDatabasesPath();
 
-    String customerDatabasePath = "${databaseDirectory}/${CustomersDatabaseInputs.customersDatabase}";
+    String customerDatabasePath = "${databaseDirectory}/${CustomersDatabaseInputs.customersDatabase()}";
 
     bool customerDatabaseExist = await databaseExists(customerDatabasePath);
 

@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/17/22, 3:33 AM
+ * Last modified 3/22/22, 6:11 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -11,6 +11,7 @@
 import 'dart:async';
 import 'dart:core';
 
+import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/database/structures/tables_structure.dart';
 import 'package:path/path.dart';
@@ -20,11 +21,14 @@ class TransactionsDatabaseInputs {
 
   static const String databaseTableName = "all_transactions";
 
-  static const transactionsDatabase = "transactions_database.db";
+  static String transactionsDatabase() {
+
+    return (UserInformation.UserId == StringsResources.unknownText) ? "transactions_database.db" : "${UserInformation.UserId}_transactions_database.db";
+  }
 
   Future<void> insertTransactionData(TransactionsData transactionsData, String tableName, String usernameId, {bool isPrototype = false}) async {
 
-    var databaseNameQuery = (usernameId == StringsResources.unknownText) ? TransactionsDatabaseInputs.transactionsDatabase : "${usernameId}_${TransactionsDatabaseInputs.transactionsDatabase}";
+    var databaseNameQuery = TransactionsDatabaseInputs.transactionsDatabase();
     var tableNameQuery = TransactionsDatabaseInputs.databaseTableName;
 
     final database = openDatabase(
@@ -75,7 +79,7 @@ class TransactionsDatabaseInputs {
 
   Future<void> updateTransactionData(TransactionsData transactionsData, String tableName, String usernameId) async {
 
-    var databaseNameQuery = (usernameId == StringsResources.unknownText) ? TransactionsDatabaseInputs.transactionsDatabase : "${usernameId}_${TransactionsDatabaseInputs.transactionsDatabase}";
+    var databaseNameQuery = TransactionsDatabaseInputs.transactionsDatabase();
     var tableNameQuery = TransactionsDatabaseInputs.databaseTableName;
 
     final database = openDatabase(

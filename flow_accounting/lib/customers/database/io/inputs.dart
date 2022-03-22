@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/14/22, 7:28 AM
+ * Last modified 3/22/22, 6:07 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -11,6 +11,7 @@
 import 'dart:core';
 
 import 'package:flow_accounting/customers/database/structures/table_structure.dart';
+import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -19,12 +20,15 @@ class CustomersDatabaseInputs {
 
   static const String databaseTableName = "all_customers";
 
-  static const customersDatabase = "customers_database.db";
+  static String customersDatabase() {
+
+    return (UserInformation.UserId == StringsResources.unknownText) ? "customers_database.db" : "${UserInformation.UserId}_customers_database.db";;
+  }
 
   Future<void> insertCustomerData(CustomersData customersData, String tableName,
       String usernameId, {bool isPrototype = false}) async {
 
-    var databaseNameQuery = (usernameId == StringsResources.unknownText) ? CustomersDatabaseInputs.customersDatabase : "${usernameId}_${CustomersDatabaseInputs.customersDatabase}";
+    var databaseNameQuery = CustomersDatabaseInputs.customersDatabase();
     var tableNameQuery = CustomersDatabaseInputs.databaseTableName;
 
     final database = openDatabase(
@@ -72,7 +76,7 @@ class CustomersDatabaseInputs {
 
   Future<void> updateCustomerData(CustomersData customersData, String tableName, String usernameId) async {
 
-    var databaseNameQuery = (usernameId == StringsResources.unknownText) ? CustomersDatabaseInputs.customersDatabase : "${usernameId}_${CustomersDatabaseInputs.customersDatabase}";
+    var databaseNameQuery = CustomersDatabaseInputs.customersDatabase();
     var tableNameQuery = CustomersDatabaseInputs.databaseTableName;
 
     final database = openDatabase(

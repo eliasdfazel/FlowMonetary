@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/14/22, 6:42 AM
+ * Last modified 3/22/22, 6:07 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -11,6 +11,7 @@
 import 'dart:core';
 
 import 'package:flow_accounting/cheque/database/structures/table_structure.dart';
+import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -19,12 +20,15 @@ class ChequesDatabaseInputs {
 
   static const String databaseTableName = "all_cheques";
 
-  static const chequesDatabase = "cheques_database.db";
+  static String chequesDatabase() {
+
+    return (UserInformation.UserId == StringsResources.unknownText) ? "cheques_database.db" : "${UserInformation.UserId}_cheques_database.db";
+  }
 
   Future<void> insertChequeData(ChequesData chequesData, String tableName,
       String usernameId) async {
 
-    var databaseNameQuery = (usernameId == StringsResources.unknownText) ? ChequesDatabaseInputs.chequesDatabase : "${usernameId}_${ChequesDatabaseInputs.chequesDatabase}";
+    var databaseNameQuery = ChequesDatabaseInputs.chequesDatabase();
     var tableNameQuery = ChequesDatabaseInputs.databaseTableName;
 
     final database = openDatabase(
@@ -93,7 +97,7 @@ class ChequesDatabaseInputs {
 
   Future<void> updateChequeData(ChequesData chequesData, String tableName, String usernameId) async {
 
-    var databaseNameQuery = (usernameId == StringsResources.unknownText) ? ChequesDatabaseInputs.chequesDatabase : "${usernameId}_${ChequesDatabaseInputs.chequesDatabase}";
+    var databaseNameQuery = ChequesDatabaseInputs.chequesDatabase();
     var tableNameQuery = ChequesDatabaseInputs.databaseTableName;
 
     final database = openDatabase(

@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/13/22, 11:37 AM
+ * Last modified 3/22/22, 6:11 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -21,14 +21,14 @@ class ProfileDatabaseQueries {
 
     String databaseDirectory = await getDatabasesPath();
 
-    String profileDatabasePath = "${databaseDirectory}/${ProfilesDatabaseInputs.profilesDatabase}";
+    String profileDatabasePath = "${databaseDirectory}/${ProfilesDatabaseInputs.profilesDatabase()}";
 
     bool profilesDatabaseExist = await databaseExists(profileDatabasePath);
 
     if (profilesDatabaseExist) {
 
       final database = openDatabase(
-        join(await getDatabasesPath(), ProfilesDatabaseInputs.profilesDatabase),
+        join(await getDatabasesPath(), ProfilesDatabaseInputs.profilesDatabase()),
       );
 
       final databaseInstance = await database;
@@ -66,14 +66,14 @@ class ProfileDatabaseQueries {
 
     String databaseDirectory = await getDatabasesPath();
 
-    String profileDatabasePath = "${databaseDirectory}/${ProfilesDatabaseInputs.profilesDatabase}";
+    String profileDatabasePath = "${databaseDirectory}/${ProfilesDatabaseInputs.profilesDatabase()}";
 
     bool profilesDatabaseExist = await databaseExists(profileDatabasePath);
 
     if (profilesDatabaseExist) {
 
       final database = openDatabase(
-        join(await getDatabasesPath(), ProfilesDatabaseInputs.profilesDatabase),
+        join(await getDatabasesPath(), ProfilesDatabaseInputs.profilesDatabase()),
       );
 
       final databaseInstance = await database;
