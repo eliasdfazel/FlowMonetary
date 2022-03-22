@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/22/22, 10:24 AM
+ * Last modified 3/22/22, 10:40 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -59,9 +59,11 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
   TextEditingController controllerBoughtFrom = TextEditingController();
 
+  ProductsData? selectedProductsData;
+
   int timeNow = DateTime.now().millisecondsSinceEpoch;
 
-  bool budgetDataUpdated = false;
+  bool buyInvoicesDataUpdated = false;
 
   String? warningNoticeNumber;
   String? warningNoticeDescription;
@@ -105,7 +107,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
   bool aInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
 
-    Navigator.pop(context, budgetDataUpdated);
+    Navigator.pop(context, buyInvoicesDataUpdated);
 
     return true;
   }
@@ -160,7 +162,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(13, 13, 13, 0),
                         child:  Text(
-                          StringsResources.featureBudgetManagementsTitle(),
+                          StringsResources.featureBuyInvoicesTitle(),
                           textDirection: TextDirection.rtl,
                           style: TextStyle(
                             fontSize: 23,
@@ -178,7 +180,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(13, 13, 13, 19),
                         child: Text(
-                          StringsResources.featureBudgetManagementsDescription(),
+                          StringsResources.featureBuyInvoicesDescription(),
                           textDirection: TextDirection.rtl,
                           style: TextStyle(
                             fontSize: 15,
@@ -261,12 +263,12 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                         errorText: warningNoticeNumber,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.budgetNameText(),
+                                        labelText: StringsResources.buyInvoiceNumber(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.budgetNameTextHint(),
+                                        hintText: StringsResources.buyInvoiceNumberHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 17.0
@@ -584,7 +586,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                     child:  InkWell(
                       onTap: () {
 
-                        Navigator.pop(context, budgetDataUpdated);
+                        Navigator.pop(context, buyInvoicesDataUpdated);
 
                       },
                       child: Container(
@@ -725,7 +727,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                   fontSize: 16.0
                               );
 
-                              budgetDataUpdated = true;
+                              buyInvoicesDataUpdated = true;
 
                             }
 
@@ -845,6 +847,34 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
     }
 
     return allProducts;
+  }
+
+  void updateProductQuantity() async {
+
+    if (selectedProductsData != null) {
+
+      String databaseDirectory = await getDatabasesPath();
+
+      String productDatabasePath = "${databaseDirectory}/${ProductsDatabaseInputs.productsDatabase}";
+
+      bool productsDatabaseExist = await databaseExists(productDatabasePath);
+
+      if (productsDatabaseExist) {
+
+        ProductsDatabaseQueries productsDatabaseQueries = ProductsDatabaseQueries();
+
+        ProductsData currentProductData = await productsDatabaseQueries.querySpecificProductById(selectedProductsData!.id.toString(), ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+        currentProductData.productQuantity = currentProductData.productQuantity + int.parse(controllerProductQuantity.text);
+
+        ProductsDatabaseInputs productsDatabaseInputs = ProductsDatabaseInputs();
+
+        productsDatabaseInputs.updateProductData(currentProductData, ProductsDatabaseInputs.productsDatabase(), UserInformation.UserId);
+
+      }
+
+    }
+
   }
 
   Future<String> getAllCreditors() async {

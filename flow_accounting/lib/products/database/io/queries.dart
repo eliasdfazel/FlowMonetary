@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/22/22, 6:11 AM
+ * Last modified 3/22/22, 10:40 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -51,6 +51,47 @@ class ProductsDatabaseQueries {
       );
     });
 
+  }
+
+  Future<ProductsData> querySpecificProductById(
+      String productId,
+      String tableName, String usernameId) async {
+
+    var databaseNameQuery = ProductsDatabaseInputs.productsDatabase();
+    var tableNameQuery = ProductsDatabaseInputs.databaseTableName;
+
+    final database = openDatabase(
+      join(await getDatabasesPath(), databaseNameQuery),
+    );
+
+    final databaseInstance = await database;
+
+    var databaseContents = await databaseInstance.query(
+      tableNameQuery,
+      where: 'id = ?',
+      whereArgs: [productId],
+    );
+
+    return ProductsData(
+      id: databaseContents[0]['id'] as int,
+
+      productImageUrl: databaseContents[0]['productImageUrl'].toString(),
+
+      productName: databaseContents[0]['productName'].toString(),
+      productDescription: databaseContents[0]['productDescription'].toString(),
+
+      productCategory: databaseContents[0]['productCategory'].toString(),
+
+      productBrand: databaseContents[0]['productBrand'].toString(),
+      productBrandLogoUrl: databaseContents[0]['productBrandLogoUrl'].toString(),
+
+      productPrice: databaseContents[0]['productPrice'].toString(),
+      productProfitPercent: databaseContents[0]['productProfitPercent'].toString(),
+
+      productQuantity: int.parse(databaseContents[0]['productQuantity'].toString()),
+
+      colorTag: int.parse(databaseContents[0]['colorTag'].toString()),
+    );
   }
 
   Future<int> queryDeleteProduct(int id,

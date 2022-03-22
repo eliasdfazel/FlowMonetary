@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/22/22, 10:24 AM
+ * Last modified 3/22/22, 10:40 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -613,6 +613,15 @@ class StringsResources {
 
 
   /* Start - Buy Invoices String Resources */
+  static String buyInvoiceNumber() {
+
+    return "شماره فاکتور";
+  }
+  static String buyInvoiceNumberHint() {
+
+    return "شماره فاکتور خرید را وارد کنید";
+  }
+
   static String buyInvoiceProduct() {
 
     return "نام محصول";
