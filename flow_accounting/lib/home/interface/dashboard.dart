@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/22/22, 4:28 AM
+ * Last modified 3/22/22, 5:29 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -234,24 +234,16 @@ class DashboardViewState extends State<DashboardView> {
                       shape: BoxShape.circle,
                       boxShadow: [
                         BoxShadow(
-                            color: ColorsResources.black,
-                            blurRadius: 5,
-                            offset: Offset(1.7, 1.7)
+                            color: ColorsResources.blue.withOpacity(0.79),
+                            spreadRadius: 0.9,
+                            blurRadius: 7,
+                            offset: Offset(0, 1.9)
                         ),
                         BoxShadow(
-                            color: ColorsResources.white,
-                            blurRadius: 5,
-                            offset: Offset(-1.7, -1.7)
-                        ),
-                        BoxShadow(
-                            color: ColorsResources.lightBlue.withOpacity(0.59),
-                            blurRadius: 9,
-                            offset: Offset(1, -1)
-                        ),
-                        BoxShadow(
-                            color: ColorsResources.blue.withOpacity(0.59),
-                            blurRadius: 9,
-                            offset: Offset(-1, 1)
+                            color: ColorsResources.blue,
+                            spreadRadius: 0.3,
+                            blurRadius: 0.3,
+                            offset: Offset(0, 1.5)
                         ),
                       ]
                     ),
