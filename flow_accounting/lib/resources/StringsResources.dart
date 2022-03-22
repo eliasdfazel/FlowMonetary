@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/21/22, 7:20 AM
+ * Last modified 3/22/22, 10:24 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -611,37 +611,17 @@ class StringsResources {
   }
   /* End - Product String Resources */
 
-  static String sortHint() {
 
-    return "مرتب سازی";
+  /* Start - Buy Invoices String Resources */
+  static String buyInvoiceProduct() {
+
+    return "نام محصول";
   }
-  static String sortTimeNew() {
+  static String buyInvoiceProductHint() {
 
-    return "بر اساس: زمان جدید";
+    return "نام محصول خریداری شده";
   }
-  static String sortTimeOld() {
-
-    return "بر اساس: زمان گذشته";
-  }
-
-  static String sortMoneyAmountLow() {
-
-    return "مرتب سازی: تراکنش کمک";
-  }
-  static String sortTransactionAmountHigh() {
-
-    return "مرتب سازی: تراکنش زیاد";
-  }
-
-  static String sortCustomerAge() {
-
-    return "مرتب سازی: سن مشتری";
-  }
-
-  static String colorSelectorHint() {
-
-    return "برای تمایز و دسته بندی رنگ مورد نظر خود را انتخاب کنید";
-  }
+  /* End - Buy Invoices String Resources */
 
   /* Start - Features Descriptions */
   static String featureCreditCardTitle() {
@@ -743,6 +723,38 @@ class StringsResources {
     return "شما میتوانید تمام اطلاعات مرتبط با وام گرفته شده خود را اعم از مبلغ وام/ تاریخ و ... را کادر زیر در ردیف/ستون خواسته شده وارد کنید.";
   }
   /* End - Features Descriptions */
+
+  static String sortHint() {
+
+    return "مرتب سازی";
+  }
+  static String sortTimeNew() {
+
+    return "بر اساس: زمان جدید";
+  }
+  static String sortTimeOld() {
+
+    return "بر اساس: زمان گذشته";
+  }
+
+  static String sortMoneyAmountLow() {
+
+    return "مرتب سازی: تراکنش کمک";
+  }
+  static String sortTransactionAmountHigh() {
+
+    return "مرتب سازی: تراکنش زیاد";
+  }
+
+  static String sortCustomerAge() {
+
+    return "مرتب سازی: سن مشتری";
+  }
+
+  static String colorSelectorHint() {
+
+    return "برای تمایز و دسته بندی رنگ مورد نظر خود را انتخاب کنید";
+  }
 
   static String mySelfText() {
 
