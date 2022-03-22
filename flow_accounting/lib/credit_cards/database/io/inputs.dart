@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/22/22, 6:07 AM
+ * Last modified 3/22/22, 6:44 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -31,6 +31,8 @@ class CreditCardsDatabaseInputs {
 
     var databaseNameQuery = CreditCardsDatabaseInputs.creditCardDatabase();
     var tableNameQuery = CreditCardsDatabaseInputs.databaseTableName;
+
+    print(">>>>>>> ${usernameId} >>>> ${databaseNameQuery}");
 
     final database = openDatabase(
       join(await getDatabasesPath(), databaseNameQuery),
