@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/22/22, 8:25 AM
+ * Last modified 3/22/22, 8:56 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -19,8 +19,10 @@ class BuyInvoicesData {
 
   final String buyInvoiceNumber;
 
+  final String buyInvoiceDescription;
+
   final String buyInvoiceDateText;
-  final String buyInvoiceDateMillisecond;
+  final int buyInvoiceDateMillisecond;
 
   final String boughtProductName;
   final String boughtProductQuantity;
@@ -41,6 +43,8 @@ class BuyInvoicesData {
     required this.id,
 
     required this.buyInvoiceNumber,
+
+    required this.buyInvoiceDescription,
 
     required this.buyInvoiceDateText,
     required this.buyInvoiceDateMillisecond,
@@ -66,6 +70,8 @@ class BuyInvoicesData {
       'id': id,
 
       'buyInvoiceNumber': buyInvoiceNumber,
+
+      'buyInvoiceDescription': buyInvoiceDescription,
 
       'buyInvoiceDateText': buyInvoiceDateText,
       'buyInvoiceDateMillisecond': buyInvoiceDateMillisecond,
@@ -93,6 +99,8 @@ class BuyInvoicesData {
         'id: $id,'
 
         'buyInvoiceNumber: $buyInvoiceNumber,'
+
+        'buyInvoiceDescription: $buyInvoiceDescription,'
 
         'buyInvoiceDateText: $buyInvoiceDateText,'
         'buyInvoiceDateMillisecond: $buyInvoiceDateMillisecond,'

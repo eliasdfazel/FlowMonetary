@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/21/22, 7:38 AM
+ * Last modified 3/22/22, 8:52 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -1754,7 +1754,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                             amountMoney: controllerMoneyAmount.text,
                             transactionType: transactionType,
 
-                            transactionTimeMillisecond: calendarView.pickedDateTime.millisecond,
+                            transactionTimeMillisecond: calendarView.pickedDateTime.millisecondsSinceEpoch,
                             transactionTime: calendarView.pickedDataTimeText ?? "",
                             transactionTimeYear: calendarView.pickedDataTimeYear,
                             transactionTimeMonth: calendarView.pickedDataTimeMonth,

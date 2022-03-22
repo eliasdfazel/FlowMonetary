@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/22/22, 8:25 AM
+ * Last modified 3/22/22, 8:46 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -38,6 +38,7 @@ class BuyInvoicesDatabaseInputs {
         return databaseInstance.execute(
           'CREATE TABLE IF NOT EXISTS $tableNameQuery(id INTEGER PRIMARY KEY, '
               'buyInvoiceNumber TEXT, '
+              'buyInvoiceDescription TEXT, '
               'buyInvoiceDateText TEXT, '
               'buyInvoiceDateMillisecond TEXT, '
               'boughtProductName TEXT, '
