@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/22/22, 10:09 AM
+ * Last modified 3/22/22, 11:04 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -625,7 +625,7 @@ class FeatureDescriptionViewState extends State<FeatureDescriptionView> with Sin
   void initState() {
     super.initState();
 
-    descriptionVisibility = (UserInformation.UserId == StringsResources.unknownText) ? false : true;
+    descriptionVisibility = (UserInformation.UserId == StringsResources.unknownText()) ? true : false;
 
   }
 
@@ -647,7 +647,7 @@ class FeatureDescriptionViewState extends State<FeatureDescriptionView> with Sin
             splashFactory: InkRipple.splashFactory,
             onTap: () {
 
-              if (UserInformation.UserId != StringsResources.unknownText) {
+              if (UserInformation.UserId != StringsResources.unknownText()) {
 
                 setState(() {
 

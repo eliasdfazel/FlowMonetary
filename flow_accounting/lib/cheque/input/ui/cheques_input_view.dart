@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/21/22, 7:30 AM
+ * Last modified 3/22/22, 11:04 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -2787,7 +2787,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
     List<CustomersData> listOfCustomers = [];
 
-    if (UserInformation.UserId != StringsResources.unknownText) {
+    if (UserInformation.UserId != StringsResources.unknownText()) {
 
       ProfileDatabaseQueries profileDatabaseQueries = ProfileDatabaseQueries();
 

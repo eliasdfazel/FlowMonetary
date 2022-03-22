@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/22/22, 5:57 AM
+ * Last modified 3/22/22, 11:04 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -22,7 +22,7 @@ class BudgetsDatabaseInputs {
 
   static String budgetsDatabase() {
 
-    return (UserInformation.UserId == StringsResources.unknownText) ? "budgets_database.db" : "${UserInformation.UserId}_budgets_database.db";;
+    return (UserInformation.UserId == StringsResources.unknownText()) ? "budgets_database.db" : "${UserInformation.UserId}_budgets_database.db";;
   }
 
   Future<void> insertBudgetData(BudgetsData budgetsData, String tableName,

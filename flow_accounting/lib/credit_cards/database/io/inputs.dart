@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/22/22, 6:44 AM
+ * Last modified 3/22/22, 11:04 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -23,7 +23,7 @@ class CreditCardsDatabaseInputs {
 
   static String creditCardDatabase() {
 
-    return (UserInformation.UserId == StringsResources.unknownText) ? "credit_cards_database.db" : "${UserInformation.UserId}_credit_cards_database.db";
+    return (UserInformation.UserId == StringsResources.unknownText()) ? "credit_cards_database.db" : "${UserInformation.UserId}_credit_cards_database.db";
   }
 
   Future<void> insertCreditCardsData(CreditCardsData creditCardsData,

@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/22/22, 6:07 AM
+ * Last modified 3/22/22, 11:04 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -22,7 +22,7 @@ class ChequesDatabaseInputs {
 
   static String chequesDatabase() {
 
-    return (UserInformation.UserId == StringsResources.unknownText) ? "cheques_database.db" : "${UserInformation.UserId}_cheques_database.db";
+    return (UserInformation.UserId == StringsResources.unknownText()) ? "cheques_database.db" : "${UserInformation.UserId}_cheques_database.db";
   }
 
   Future<void> insertChequeData(ChequesData chequesData, String tableName,

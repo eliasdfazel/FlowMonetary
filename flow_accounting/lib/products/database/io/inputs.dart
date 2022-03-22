@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/22/22, 6:11 AM
+ * Last modified 3/22/22, 11:04 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -20,7 +20,7 @@ class ProductsDatabaseInputs {
 
   static String productsDatabase() {
 
-    return (UserInformation.UserId == StringsResources.unknownText) ? "products_database.db" : "${UserInformation.UserId}_products_database.db";
+    return (UserInformation.UserId == StringsResources.unknownText()) ? "products_database.db" : "${UserInformation.UserId}_products_database.db";
   }
 
   Future<void> insertProductData(ProductsData productsData, String tableName,
