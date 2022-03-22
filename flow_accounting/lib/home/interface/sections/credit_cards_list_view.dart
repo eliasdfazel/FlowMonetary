@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/22/22, 6:07 AM
+ * Last modified 3/22/22, 6:55 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -576,7 +576,7 @@ class _CreditCardFrontLayout extends State<CreditCardFrontLayout> {
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: dominantColorForFrontLayout.withOpacity(0.37),
+            color: dominantColorForFrontLayout.withOpacity(0.51),
             blurRadius: 13.0,
             spreadRadius: 0.3,
             offset: const Offset(3.9, 3.9),
@@ -1017,7 +1017,7 @@ class _CreditCardBackLayout extends State<CreditCardBackLayout> {
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: dominantColorForBackLayout.withOpacity(0.5),
+            color: dominantColorForBackLayout.withOpacity(0.51),
             blurRadius: 13.0,
             spreadRadius: 0.3,
             offset: const Offset(3.9, 3.9),
