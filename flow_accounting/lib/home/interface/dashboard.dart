@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/22/22, 10:52 AM
+ * Last modified 3/22/22, 10:56 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -282,10 +282,16 @@ class DashboardViewState extends State<DashboardView> {
                                     },
                                     child: Align(
                                         alignment: AlignmentDirectional.center,
-                                        child: Image(
-                                          image: AssetImage("support_icon.png"),
+                                        child: SizedBox(
                                           height: 51,
                                           width: 51,
+                                          child: Padding(
+                                            padding: EdgeInsets.fromLTRB(3, 3, 3, 3),
+                                            child: Image(
+                                              image: AssetImage("support_icon.png"),
+                                              color: ColorsResources.lightestBlue,
+                                            ),
+                                          )
                                         )
                                     )
                                 )
