@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/22/22, 7:28 AM
+ * Last modified 3/22/22, 8:25 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -11,6 +11,9 @@
 import 'package:flow_accounting/resources/ColorsResources.dart';
 
 class BuyInvoicesData {
+
+  static const String BuyInvoice_Pre = "0";
+  static const String BuyInvoice_Final = "1";
 
   final int id;
 
@@ -30,7 +33,7 @@ class BuyInvoicesData {
 
   final String boughtFrom;
 
-  final String buyPreInvoice;
+  String buyPreInvoice = BuyInvoicesData.BuyInvoice_Final;
 
   int colorTag = ColorsResources.dark.value;
 
