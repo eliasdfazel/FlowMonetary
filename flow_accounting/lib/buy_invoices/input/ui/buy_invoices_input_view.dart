@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/22/22, 10:51 AM
+ * Last modified 3/22/22, 11:19 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -209,14 +209,14 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                     textDirection: TextDirection.rtl,
                                     child: TextField(
                                       controller: controllerInvoiceNumber,
-                                      textAlign: TextAlign.right,
+                                      textAlign: TextAlign.center,
                                       textDirection: TextDirection.ltr,
                                       textAlignVertical: TextAlignVertical.bottom,
                                       maxLines: 1,
                                       cursorColor: ColorsResources.primaryColor,
                                       autocorrect: true,
                                       autofocus: false,
-                                      keyboardType: TextInputType.text,
+                                      keyboardType: TextInputType.number,
                                       textInputAction: TextInputAction.next,
                                       decoration: InputDecoration(
                                         alignLabelWithHint: true,
