@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/22/22, 11:19 AM
+ * Last modified 3/22/22, 11:23 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -449,6 +449,8 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                           controllerProductId.text = suggestion.id.toString();
                                           controllerProductName.text = suggestion.productName.toString();
 
+                                          selectedProductsData = suggestion;
+
                                         },
                                         errorBuilder: (context, suggestion) {
 
@@ -714,6 +716,8 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                               } else {
 
                                 databaseInputs.insertBuyInvoiceData(transactionData, BuyInvoicesDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+                                updateProductQuantity();
 
                               }
 
