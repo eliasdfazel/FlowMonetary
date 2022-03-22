@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/22/22, 11:04 AM
+ * Last modified 3/22/22, 11:32 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -584,7 +584,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                                   fillColor: ColorsResources.lightTransparent,
                                                   focusColor: ColorsResources.dark
                                               ),
-                                              value: StringsResources.transactionTypeSend,
+                                              value: StringsResources.transactionTypeSend(),
                                               items: <String> [
                                                 StringsResources.transactionTypeSend(),
                                                 StringsResources.transactionTypeReceive()
@@ -612,11 +612,11 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                               }).toList(),
                                               onChanged: (value) {
 
-                                                if (value.toString() == StringsResources.transactionTypeReceive) {
+                                                if (value.toString() == StringsResources.transactionTypeReceive()) {
 
                                                   transactionType = TransactionsData.TransactionType_Receive;
 
-                                                } else if (value.toString() == StringsResources.transactionTypeSend) {
+                                                } else if (value.toString() == StringsResources.transactionTypeSend()) {
 
                                                   transactionType = TransactionsData.TransactionType_Send;
 
