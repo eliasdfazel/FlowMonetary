@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/22/22, 10:40 AM
+ * Last modified 3/22/22, 10:51 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -357,12 +357,12 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                         errorText: warningNoticeDescription,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.budgetDescriptionText(),
+                                        labelText: StringsResources.buyInvoiceDescription(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 13.0
                                         ),
-                                        hintText: StringsResources.budgetDescriptionTextHint(),
+                                        hintText: StringsResources.buyInvoiceDescriptionHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 13.0

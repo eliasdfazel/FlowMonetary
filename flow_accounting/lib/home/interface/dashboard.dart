@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/22/22, 6:07 AM
+ * Last modified 3/22/22, 10:52 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -231,8 +231,12 @@ class DashboardViewState extends State<DashboardView> {
                   bottom: 19,
                   child: Container(
                     decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      boxShadow: [
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(51),
+                            topRight: Radius.circular(51),
+                            bottomLeft: Radius.circular(19),
+                            bottomRight: Radius.circular(51)),
+                        boxShadow: [
                         BoxShadow(
                             color: ColorsResources.blue.withOpacity(0.79),
                             spreadRadius: 0.9,
@@ -248,7 +252,12 @@ class DashboardViewState extends State<DashboardView> {
                       ]
                     ),
                     child: ClipRRect(
-                        borderRadius: BorderRadius.circular(51),
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(51),
+                          topRight: Radius.circular(51),
+                          bottomLeft: Radius.circular(19),
+                          bottomRight: Radius.circular(51)
+                        ),
                         child: Container(
                             decoration: BoxDecoration(
                               gradient: LinearGradient(
