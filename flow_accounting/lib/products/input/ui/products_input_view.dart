@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/21/22, 10:08 AM
+ * Last modified 3/23/22, 10:57 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -1277,23 +1277,51 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                         SizedBox(
                                             width: double.infinity,
                                             height: 53,
-                                            child: Align(
-                                              alignment: AlignmentDirectional.center,
-                                              child: Text(
-                                                StringsResources.submitText(),
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                    fontSize: 19,
-                                                    color: ColorsResources.darkTransparent,
-                                                    shadows: [
-                                                      Shadow(
-                                                          color: ColorsResources.primaryColorDark,
-                                                          blurRadius: 7.0,
-                                                          offset: Offset(1, 1)
-                                                      )
-                                                    ]
+                                            child: Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                              children: [
+                                                Expanded(
+                                                  flex: 3,
+                                                  child: Spacer(flex: 1),
                                                 ),
-                                              ),
+                                                Expanded(
+                                                  flex: 5,
+                                                  child: Align(
+                                                    alignment: AlignmentDirectional.center,
+                                                    child: Image(
+                                                      image: AssetImage("submit_icon.png"),
+                                                      height: 39,
+                                                      width: 39,
+                                                      color: ColorsResources.light,
+                                                    ),
+                                                  ),
+                                                ),
+                                                Expanded(
+                                                    flex: 5,
+                                                    child: Align(
+                                                      alignment: AlignmentDirectional.center,
+                                                      child: Text(
+                                                        StringsResources.submitText(),
+                                                        textAlign: TextAlign.center,
+                                                        style: TextStyle(
+                                                            fontSize: 19,
+                                                            color: ColorsResources.darkTransparent,
+                                                            shadows: [
+                                                              Shadow(
+                                                                  color: ColorsResources.primaryColorDark,
+                                                                  blurRadius: 7.0,
+                                                                  offset: Offset(1, 1)
+                                                              )
+                                                            ]
+                                                        ),
+                                                      ),
+                                                    )
+                                                ),
+                                                Expanded(
+                                                  flex: 3,
+                                                  child: Spacer(flex: 1),
+                                                ),
+                                              ],
                                             )
                                         )
                                       ],

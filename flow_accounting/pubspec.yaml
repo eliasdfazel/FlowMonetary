@@ -83,6 +83,7 @@ flutter:
     - unknown_products.png
     - quick_save.png
     - support_icon.png
+    - submit_icon.png
 
   fonts:
     - family: Sans
