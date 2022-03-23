@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/23/22, 9:05 AM
+ * Last modified 3/23/22, 9:22 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -678,6 +678,25 @@ class StringsResources {
   static String buyInvoiceEachPriceHint() {
 
     return "قیمت هر محصول را وارد کنید";
+  }
+
+  static String buyInvoicePaidBy() {
+
+    return "پرداخت از";
+  }
+  static String buyInvoicePaidByHint() {
+
+    return "فاکتور از چه کارت یا حسابی پرداخت شده است؟";
+  }
+
+  static String buyInvoiceBoughtFrom() {
+
+    return "خرید از";
+  }
+
+  static String buyInvoiceBoughtFromHint() {
+
+    return "محصولات این فاکتور از چه کسی خریداری شده است؟";
   }
   /* End - Buy Invoices String Resources */
 
