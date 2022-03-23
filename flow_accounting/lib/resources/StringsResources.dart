@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/23/22, 8:35 AM
+ * Last modified 3/23/22, 9:05 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -660,6 +660,24 @@ class StringsResources {
   static String buyQuantityHint() {
 
     return "تعداد خرید محصول";
+  }
+
+  static String buyInvoiceDiscount() {
+
+    return "تخفیف";
+  }
+  static String buyInvoiceDiscountHint() {
+
+    return "تخفیف روی فاکتور خرید";
+  }
+
+  static String buyInvoiceEachPrice() {
+
+    return "قیمت واحد";
+  }
+  static String buyInvoiceEachPriceHint() {
+
+    return "قیمت هر محصول را وارد کنید";
   }
   /* End - Buy Invoices String Resources */
 
