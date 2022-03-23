@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/22/22, 11:36 AM
+ * Last modified 3/23/22, 8:50 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -69,6 +69,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
   String? warningNoticeDescription;
 
   String? warningNoticeProductName;
+  String? warningNoticeProductQuantity;
 
   @override
   void dispose() {
@@ -386,9 +387,86 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Expanded(
-                              flex: 1,
+                              flex: 5,
                               child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                  padding: const EdgeInsets.fromLTRB(13, 0, 0, 0),
+                                  child: Directionality(
+                                    textDirection: TextDirection.rtl,
+                                    child: TextField(
+                                      controller: controllerProductQuantity,
+                                      textAlign: TextAlign.center,
+                                      textDirection: TextDirection.rtl,
+                                      textAlignVertical: TextAlignVertical.bottom,
+                                      maxLines: 1,
+                                      cursorColor: ColorsResources.primaryColor,
+                                      autocorrect: true,
+                                      autofocus: false,
+                                      keyboardType: TextInputType.number,
+                                      textInputAction: TextInputAction.next,
+                                      decoration: InputDecoration(
+                                        alignLabelWithHint: true,
+                                        border: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        enabledBorder: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        focusedBorder: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        errorBorder: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.red, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        errorText: warningNoticeProductQuantity,
+                                        filled: true,
+                                        fillColor: ColorsResources.lightTransparent,
+                                        labelText: StringsResources.buyQuantity(),
+                                        labelStyle: const TextStyle(
+                                            color: ColorsResources.dark,
+                                            fontSize: 17.0
+                                        ),
+                                        hintText: StringsResources.buyQuantityHint(),
+                                        hintStyle: const TextStyle(
+                                            color: ColorsResources.darkTransparent,
+                                            fontSize: 17.0
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                              ),
+                            ),
+                            Expanded(
+                              flex: 13,
+                              child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(7, 0, 13, 0),
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: TypeAheadField<ProductsData>(
