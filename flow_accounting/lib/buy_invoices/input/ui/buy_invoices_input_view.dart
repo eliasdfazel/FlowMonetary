@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/23/22, 9:12 AM
+ * Last modified 3/23/22, 9:18 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -17,6 +17,7 @@ import 'package:flow_accounting/buy_invoices/database/structures/tables_structur
 import 'package:flow_accounting/credit_cards/database/io/inputs.dart';
 import 'package:flow_accounting/credit_cards/database/io/queries.dart';
 import 'package:flow_accounting/credit_cards/database/structures/tables_structure.dart';
+import 'package:flow_accounting/creditors/database/structures/tables_structure.dart';
 import 'package:flow_accounting/products/database/io/inputs.dart';
 import 'package:flow_accounting/products/database/io/queries.dart';
 import 'package:flow_accounting/products/database/structures/tables_structure.dart';
@@ -1115,6 +1116,164 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                       ),
                       SizedBox(
                         width: double.infinity,
+                        height: 73,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(7, 0, 13, 0),
+                                  child: Directionality(
+                                    textDirection: TextDirection.rtl,
+                                    child: TypeAheadField<CreditorsData>(
+                                        suggestionsCallback: (pattern) async {
+
+                                          return await getAllCreditors();
+                                        },
+                                        itemBuilder: (context, suggestion) {
+
+                                          return ListTile(
+                                              title: Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                children: [
+                                                  Expanded(
+                                                    flex: 11,
+                                                    child: Padding(
+                                                      padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
+                                                      child: Directionality(
+                                                        textDirection: TextDirection.rtl,
+                                                        child: Text(
+                                                          "suggestion.creditorName",
+                                                          style: const TextStyle(
+                                                              color: ColorsResources.darkTransparent,
+                                                              fontSize: 15
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                      flex: 5,
+                                                      child:  AspectRatio(
+                                                        aspectRatio: 1,
+                                                        child: Container(
+                                                          decoration: const BoxDecoration(
+                                                              shape: BoxShape.circle,
+                                                              color: ColorsResources.light
+                                                          ),
+                                                          child: Padding(
+                                                            padding: const EdgeInsets.fromLTRB(3, 3, 3, 3),
+                                                            child: ClipRRect(
+                                                              borderRadius: BorderRadius.circular(51),
+                                                              child: Image.network(
+                                                                generateBankLogoUrl("suggestion.creditorImageUrl"),
+                                                                fit: BoxFit.cover,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      )
+                                                  ),
+                                                ],
+                                              )
+                                          );
+                                        },
+                                        onSuggestionSelected: (suggestion) {
+
+                                          controllerBoughtFrom.text = "suggestion.creditorName";
+
+                                        },
+                                        errorBuilder: (context, suggestion) {
+
+                                          return Padding(
+                                              padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
+                                              child: Text(StringsResources.nothingText())
+                                          );
+                                        },
+                                        suggestionsBoxDecoration: SuggestionsBoxDecoration(
+                                            elevation: 7,
+                                            color: ColorsResources.light,
+                                            shadowColor: ColorsResources.darkTransparent,
+                                            borderRadius: BorderRadius.circular(17)
+                                        ),
+                                        textFieldConfiguration: TextFieldConfiguration(
+                                          controller: controllerProductName,
+                                          autofocus: false,
+                                          maxLines: 1,
+                                          cursorColor: ColorsResources.primaryColor,
+                                          keyboardType: TextInputType.name,
+                                          textInputAction: TextInputAction.next,
+                                          decoration: InputDecoration(
+                                            alignLabelWithHint: true,
+                                            border: const OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
+                                                    bottomRight: Radius.circular(13)
+                                                ),
+                                                gapPadding: 5
+                                            ),
+                                            enabledBorder: const OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
+                                                    bottomRight: Radius.circular(13)
+                                                ),
+                                                gapPadding: 5
+                                            ),
+                                            focusedBorder: const OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
+                                                    bottomRight: Radius.circular(13)
+                                                ),
+                                                gapPadding: 5
+                                            ),
+                                            errorBorder: const OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.red, width: 1.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
+                                                    bottomRight: Radius.circular(13)
+                                                ),
+                                                gapPadding: 5
+                                            ),
+                                            errorText: warningNoticeProductName,
+                                            filled: true,
+                                            fillColor: ColorsResources.lightTransparent,
+                                            labelText: StringsResources.buyInvoiceProduct(),
+                                            labelStyle: const TextStyle(
+                                                color: ColorsResources.dark,
+                                                fontSize: 17.0
+                                            ),
+                                            hintText: StringsResources.buyInvoiceProductHint(),
+                                            hintStyle: const TextStyle(
+                                                color: ColorsResources.darkTransparent,
+                                                fontSize: 17.0
+                                            ),
+                                          ),
+                                        )
+                                    ),
+                                  )
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Divider(
+                        height: 13,
+                        color: Colors.transparent,
+                      ),
+                      SizedBox(
+                        width: double.infinity,
                         height: 37,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -1481,9 +1640,11 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
   }
 
-  Future<String> getAllCreditors() async {
+  Future<List<CreditorsData>> getAllCreditors() async {
 
-    return "";
+    List<CreditorsData> allCreditors = [];
+
+    return allCreditors;
   }
 
 }
