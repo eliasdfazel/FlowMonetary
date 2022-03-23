@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/22/22, 6:55 AM
+ * Last modified 3/23/22, 8:58 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -493,6 +493,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                       autocorrect: true,
                                       autofocus: false,
                                       keyboardType: TextInputType.name,
+                                      textInputAction: TextInputAction.next,
                                       decoration: InputDecoration(
                                         alignLabelWithHint: true,
                                         border: const OutlineInputBorder(
@@ -582,6 +583,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                       autocorrect: true,
                                       autofocus: false,
                                       keyboardType: TextInputType.number,
+                                      textInputAction: TextInputAction.next,
                                       inputFormatters: [
                                         LengthLimitingTextInputFormatter(16)
                                       ],
@@ -675,6 +677,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                       autocorrect: true,
                                       autofocus: false,
                                       keyboardType: TextInputType.number,
+                                      textInputAction: TextInputAction.next,
                                       inputFormatters: [
                                         LengthLimitingTextInputFormatter(4)
                                       ],
@@ -754,6 +757,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                       autocorrect: true,
                                       autofocus: false,
                                       keyboardType: TextInputType.number,
+                                      textInputAction: TextInputAction.next,
                                       inputFormatters: [
                                         LengthLimitingTextInputFormatter(2)
                                       ],
@@ -833,6 +837,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                       autocorrect: true,
                                       autofocus: false,
                                       keyboardType: TextInputType.number,
+                                      textInputAction: TextInputAction.next,
                                       inputFormatters: [
                                         LengthLimitingTextInputFormatter(2)
                                       ],
@@ -925,6 +930,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                       autocorrect: true,
                                       autofocus: false,
                                       keyboardType: TextInputType.number,
+                                      textInputAction: TextInputAction.next,
                                       decoration: InputDecoration(
                                         alignLabelWithHint: true,
                                         border: const OutlineInputBorder(
@@ -1964,8 +1970,10 @@ class _CreditCardFrontLayout extends State<CreditCardFrontLayout> {
                                     alignment: Alignment.centerRight,
                                     child: TextField(
                                       controller: creditCardBankNameController,
-                                      textAlign: TextAlign.right,
                                       enabled: false,
+                                      textAlign: TextAlign.right,
+                                      textInputAction: TextInputAction.next,
+                                      keyboardType: TextInputType.text,
                                       decoration: const InputDecoration(
                                           disabledBorder: InputBorder.none
                                       ),
@@ -2090,6 +2098,11 @@ class _CreditCardFrontLayout extends State<CreditCardFrontLayout> {
                                       controller: creditCardYearController,
                                       textAlign: TextAlign.center,
                                       enabled: false,
+                                      textInputAction: TextInputAction.next,
+                                      keyboardType: TextInputType.number,
+                                      inputFormatters: [
+                                        LengthLimitingTextInputFormatter(2)
+                                      ],
                                       decoration: const InputDecoration(
                                           disabledBorder: InputBorder.none
                                       ),
@@ -2142,6 +2155,11 @@ class _CreditCardFrontLayout extends State<CreditCardFrontLayout> {
                                       controller: creditCardMonthController,
                                       textAlign: TextAlign.center,
                                       enabled: false,
+                                      textInputAction: TextInputAction.next,
+                                      keyboardType: TextInputType.number,
+                                      inputFormatters: [
+                                        LengthLimitingTextInputFormatter(2)
+                                      ],
                                       decoration: const InputDecoration(
                                           disabledBorder: InputBorder.none
                                       ),
@@ -2300,6 +2318,11 @@ class _CreditCardBackLayout extends State<CreditCardBackLayout> {
                                       controller: creditCardCvvController,
                                       textAlign: TextAlign.center,
                                       enabled: false,
+                                      textInputAction: TextInputAction.next,
+                                      keyboardType: TextInputType.number,
+                                      inputFormatters: [
+                                        LengthLimitingTextInputFormatter(4)
+                                      ],
                                       decoration: const InputDecoration(
                                           disabledBorder: InputBorder.none
                                       ),

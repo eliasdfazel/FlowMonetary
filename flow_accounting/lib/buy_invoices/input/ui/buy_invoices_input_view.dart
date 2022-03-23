@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/23/22, 8:50 AM
+ * Last modified 3/23/22, 8:52 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -382,6 +382,172 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                       ),
                       SizedBox(
                         width: double.infinity,
+                        height: 91,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: Padding(
+                                padding: const EdgeInsets.fromLTRB(13, 0, 0, 0),
+                                child: Align(
+                                  alignment: AlignmentDirectional.topCenter,
+                                  child: Container(
+                                    decoration: const BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(13),
+                                          topRight: Radius.circular(13),
+                                          bottomLeft: Radius.circular(13),
+                                          bottomRight: Radius.circular(13)
+                                      ),
+                                      border: Border(
+                                          top: BorderSide(
+                                            color: ColorsResources.darkTransparent,
+                                            width: 1,
+                                          ),
+                                          bottom: BorderSide(
+                                            color: ColorsResources.darkTransparent,
+                                            width: 1,
+                                          ),
+                                          left: BorderSide(
+                                            color: ColorsResources.darkTransparent,
+                                            width: 1,
+                                          ),
+                                          right: BorderSide(
+                                            color: ColorsResources.darkTransparent,
+                                            width: 1,
+                                          )
+                                      ),
+                                      color: ColorsResources.lightTransparent,
+                                    ),
+                                    child: SizedBox(
+                                      height: 62,
+                                      width: double.infinity,
+                                      child: calendarView,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(7, 0, 13, 0),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Align(
+                                          alignment: AlignmentDirectional.topCenter,
+                                          child: Directionality(
+                                            textDirection: TextDirection.rtl,
+                                            child: DropdownButtonFormField(
+                                              isDense: true,
+                                              elevation: 7,
+                                              focusColor: ColorsResources.applicationDarkGeeksEmpire,
+                                              dropdownColor: ColorsResources.light,
+                                              decoration: InputDecoration(
+                                                  border: OutlineInputBorder(
+                                                    borderSide: const BorderSide(
+                                                        color: ColorsResources.applicationDarkGeeksEmpire,
+                                                        width: 1
+                                                    ),
+                                                    borderRadius: BorderRadius.circular(13),
+                                                  ),
+                                                  enabledBorder: OutlineInputBorder(
+                                                    borderSide: const BorderSide(
+                                                        color: ColorsResources.applicationDarkGeeksEmpire,
+                                                        width: 1
+                                                    ),
+                                                    borderRadius: BorderRadius.circular(13),
+                                                  ),
+                                                  focusedBorder: OutlineInputBorder(
+                                                    borderSide: const BorderSide(
+                                                        color: ColorsResources.applicationDarkGeeksEmpire,
+                                                        width: 1
+                                                    ),
+                                                    borderRadius: BorderRadius.circular(13),
+                                                  ),
+                                                  errorBorder: OutlineInputBorder(
+                                                    borderSide: const BorderSide(
+                                                        color: ColorsResources.applicationDarkGeeksEmpire,
+                                                        width: 1
+                                                    ),
+                                                    borderRadius: BorderRadius.circular(13),
+                                                  ),
+                                                  filled: true,
+                                                  fillColor: ColorsResources.lightTransparent,
+                                                  focusColor: ColorsResources.dark
+                                              ),
+                                              value: StringsResources.buyInvoiceFinal(),
+                                              items: <String> [
+                                                StringsResources.buyInvoiceFinal(),
+                                                StringsResources.buyInvoicePre()
+                                              ].map<DropdownMenuItem<String>>((String value) {
+
+                                                return DropdownMenuItem<String>(
+                                                  value: value,
+                                                  child: SizedBox(
+                                                    height: 27,
+                                                    child: Padding(
+                                                      padding: const EdgeInsets.fromLTRB(0, 0, 11, 0),
+                                                      child: Align(
+                                                        alignment:
+                                                        AlignmentDirectional.center,
+                                                        child: Text(
+                                                          value,
+                                                          style: const TextStyle(
+                                                            color: ColorsResources.darkTransparent,
+                                                            fontSize: 15,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                );
+                                              }).toList(),
+                                              onChanged: (value) {
+
+                                                if (value.toString() == StringsResources.buyInvoiceFinal()) {
+
+                                                  controllerPreInvoice.text = BuyInvoicesData.BuyInvoice_Final;
+
+                                                } else if (value.toString() == StringsResources.buyInvoicePre()) {
+
+                                                  controllerPreInvoice.text = BuyInvoicesData.BuyInvoice_Pre;
+
+                                                }
+
+                                              },
+                                            ),
+                                          )
+                                      ),
+                                      Padding(
+                                          padding: EdgeInsets.fromLTRB(0, 5, 7, 0),
+                                          child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: Text(
+                                              StringsResources.buyInvoiceType(),
+                                              textAlign: TextAlign.right,
+                                              style: TextStyle(
+                                                  color: ColorsResources.applicationGeeksEmpire,
+                                                  fontSize: 12
+                                              ),
+                                            ),
+                                          )
+                                      ),
+                                    ],
+                                  )
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Divider(
+                        height: 13,
+                        color: Colors.transparent,
+                      ),
+                      SizedBox(
+                        width: double.infinity,
                         height: 73,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -608,172 +774,6 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                           ),
                                         )
                                     ),
-                                  )
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const Divider(
-                        height: 13,
-                        color: Colors.transparent,
-                      ),
-                      SizedBox(
-                        width: double.infinity,
-                        height: 91,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Expanded(
-                              flex: 1,
-                              child: Padding(
-                                padding: const EdgeInsets.fromLTRB(13, 0, 0, 0),
-                                child: Align(
-                                  alignment: AlignmentDirectional.topCenter,
-                                  child: Container(
-                                    decoration: const BoxDecoration(
-                                      borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(13),
-                                          topRight: Radius.circular(13),
-                                          bottomLeft: Radius.circular(13),
-                                          bottomRight: Radius.circular(13)
-                                      ),
-                                      border: Border(
-                                          top: BorderSide(
-                                            color: ColorsResources.darkTransparent,
-                                            width: 1,
-                                          ),
-                                          bottom: BorderSide(
-                                            color: ColorsResources.darkTransparent,
-                                            width: 1,
-                                          ),
-                                          left: BorderSide(
-                                            color: ColorsResources.darkTransparent,
-                                            width: 1,
-                                          ),
-                                          right: BorderSide(
-                                            color: ColorsResources.darkTransparent,
-                                            width: 1,
-                                          )
-                                      ),
-                                      color: ColorsResources.lightTransparent,
-                                    ),
-                                    child: SizedBox(
-                                      height: 62,
-                                      width: double.infinity,
-                                      child: calendarView,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(7, 0, 13, 0),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Align(
-                                          alignment: AlignmentDirectional.topCenter,
-                                          child: Directionality(
-                                            textDirection: TextDirection.rtl,
-                                            child: DropdownButtonFormField(
-                                              isDense: true,
-                                              elevation: 7,
-                                              focusColor: ColorsResources.applicationDarkGeeksEmpire,
-                                              dropdownColor: ColorsResources.light,
-                                              decoration: InputDecoration(
-                                                  border: OutlineInputBorder(
-                                                    borderSide: const BorderSide(
-                                                        color: ColorsResources.applicationDarkGeeksEmpire,
-                                                        width: 1
-                                                    ),
-                                                    borderRadius: BorderRadius.circular(13),
-                                                  ),
-                                                  enabledBorder: OutlineInputBorder(
-                                                    borderSide: const BorderSide(
-                                                        color: ColorsResources.applicationDarkGeeksEmpire,
-                                                        width: 1
-                                                    ),
-                                                    borderRadius: BorderRadius.circular(13),
-                                                  ),
-                                                  focusedBorder: OutlineInputBorder(
-                                                    borderSide: const BorderSide(
-                                                        color: ColorsResources.applicationDarkGeeksEmpire,
-                                                        width: 1
-                                                    ),
-                                                    borderRadius: BorderRadius.circular(13),
-                                                  ),
-                                                  errorBorder: OutlineInputBorder(
-                                                    borderSide: const BorderSide(
-                                                        color: ColorsResources.applicationDarkGeeksEmpire,
-                                                        width: 1
-                                                    ),
-                                                    borderRadius: BorderRadius.circular(13),
-                                                  ),
-                                                  filled: true,
-                                                  fillColor: ColorsResources.lightTransparent,
-                                                  focusColor: ColorsResources.dark
-                                              ),
-                                              value: StringsResources.buyInvoiceFinal(),
-                                              items: <String> [
-                                                StringsResources.buyInvoiceFinal(),
-                                                StringsResources.buyInvoicePre()
-                                              ].map<DropdownMenuItem<String>>((String value) {
-
-                                                return DropdownMenuItem<String>(
-                                                  value: value,
-                                                  child: SizedBox(
-                                                    height: 27,
-                                                    child: Padding(
-                                                      padding: const EdgeInsets.fromLTRB(0, 0, 11, 0),
-                                                      child: Align(
-                                                        alignment:
-                                                        AlignmentDirectional.center,
-                                                        child: Text(
-                                                          value,
-                                                          style: const TextStyle(
-                                                            color: ColorsResources.darkTransparent,
-                                                            fontSize: 15,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                );
-                                              }).toList(),
-                                              onChanged: (value) {
-
-                                                if (value.toString() == StringsResources.buyInvoiceFinal()) {
-
-                                                  controllerPreInvoice.text = BuyInvoicesData.BuyInvoice_Final;
-
-                                                } else if (value.toString() == StringsResources.buyInvoicePre()) {
-
-                                                  controllerPreInvoice.text = BuyInvoicesData.BuyInvoice_Pre;
-
-                                                }
-
-                                              },
-                                            ),
-                                          )
-                                      ),
-                                      Padding(
-                                          padding: EdgeInsets.fromLTRB(0, 5, 7, 0),
-                                          child: Align(
-                                            alignment: Alignment.centerRight,
-                                            child: Text(
-                                              StringsResources.buyInvoiceType(),
-                                              textAlign: TextAlign.right,
-                                              style: TextStyle(
-                                                  color: ColorsResources.applicationGeeksEmpire,
-                                                  fontSize: 12
-                                              ),
-                                            ),
-                                          )
-                                      ),
-                                    ],
                                   )
                               ),
                             ),
