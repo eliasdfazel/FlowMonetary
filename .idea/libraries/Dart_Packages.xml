@@ -156,6 +156,13 @@
             </list>
           </value>
         </entry>
+        <entry key="flow_accounting">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="flutter">
           <value>
             <list>
@@ -805,6 +812,7 @@
       <root url="file://$USER_HOME$/flutter/packages/flutter/lib" />
       <root url="file://$USER_HOME$/flutter/packages/flutter_test/lib" />
       <root url="file://$USER_HOME$/flutter/packages/flutter_web_plugins/lib" />
+      <root url="file://$PROJECT_DIR$/lib" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
