@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/23/22, 9:25 AM
+ * Last modified 3/23/22, 9:29 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -99,9 +99,9 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
     controllerProductEachPrice.text = widget.buyInvoicesData?.boughtProductEachPrice == null ? "0" : (widget.buyInvoicesData?.boughtProductEachPrice)!;
     controllerProductDiscount.text = widget.buyInvoicesData?.boughtProductPriceDiscount == null ? "0" : (widget.buyInvoicesData?.boughtProductPriceDiscount)!;
 
-    controllerPaidBy.text = widget.buyInvoicesData?.paidBy == null ? "0" : (widget.buyInvoicesData?.paidBy)!;
+    controllerPaidBy.text = widget.buyInvoicesData?.paidBy == null ? "" : (widget.buyInvoicesData?.paidBy)!;
 
-    controllerBoughtFrom.text = widget.buyInvoicesData?.boughtFrom == null ? "0" : (widget.buyInvoicesData?.boughtFrom)!;
+    controllerBoughtFrom.text = widget.buyInvoicesData?.boughtFrom == null ? "" : (widget.buyInvoicesData?.boughtFrom)!;
 
     colorSelectorView.inputColor = Color(widget.buyInvoicesData?.colorTag ?? Colors.white.value);
 
