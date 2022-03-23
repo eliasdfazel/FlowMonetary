@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/23/22, 9:23 AM
+ * Last modified 3/23/22, 9:25 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -1040,7 +1040,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                             borderRadius: BorderRadius.circular(17)
                                         ),
                                         textFieldConfiguration: TextFieldConfiguration(
-                                          controller: controllerProductName,
+                                          controller: controllerPaidBy,
                                           autofocus: false,
                                           maxLines: 1,
                                           cursorColor: ColorsResources.primaryColor,
@@ -1198,7 +1198,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                             borderRadius: BorderRadius.circular(17)
                                         ),
                                         textFieldConfiguration: TextFieldConfiguration(
-                                          controller: controllerProductName,
+                                          controller: controllerBoughtFrom,
                                           autofocus: false,
                                           maxLines: 1,
                                           cursorColor: ColorsResources.primaryColor,
