@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/24/22, 10:58 AM
+ * Last modified 3/24/22, 11:04 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -1337,221 +1337,240 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                         ),
                         Expanded(
                             flex: 3,
-                            child: AspectRatio(
-                              aspectRatio: 1,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(51.0),
-                                child: Material(
-                                  shadowColor: Colors.transparent,
-                                  color: Colors.transparent,
-                                  child: InkWell(
-                                    splashColor: ColorsResources.applicationGeeksEmpire.withOpacity(0.5),
-                                    splashFactory: InkRipple.splashFactory,
-                                    onTap: () {
+                            child: Tooltip(
+                              triggerMode: TooltipTriggerMode.longPress,
+                              message: StringsResources.quickSaveHint(),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(51),
+                                gradient: const LinearGradient(
+                                  colors: [
+                                    ColorsResources.black,
+                                    ColorsResources.primaryColorDark
+                                  ],
+                                  transform: const GradientRotation(45),
+                                ),
+                              ),
+                              height: 31,
+                              padding: const EdgeInsets.fromLTRB(13, 3, 13, 3),
+                              margin: const EdgeInsets.fromLTRB(0, 0, 0, 7),
+                              preferBelow: false,
+                              textStyle: const TextStyle(
+                                color: ColorsResources.light,
+                                fontSize: 13,
+                              ),
+                              showDuration: const Duration(seconds: 3),
+                              waitDuration: const Duration(seconds: 5),
+                              child: AspectRatio(
+                                aspectRatio: 1,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(51.0),
+                                  child: Material(
+                                    shadowColor: Colors.transparent,
+                                    color: Colors.transparent,
+                                    child: InkWell(
+                                      splashColor: ColorsResources.applicationGeeksEmpire.withOpacity(0.5),
+                                      splashFactory: InkRipple.splashFactory,
+                                      onTap: () {
 
-                                      bool noError = true;
+                                        bool noError = true;
 
-                                      if (controllerProductName.text.isEmpty) {
+                                        if (controllerProductName.text.isEmpty) {
 
-                                        setState(() {
+                                          setState(() {
 
-                                          warningNoticeName= StringsResources.errorText();
+                                            warningNoticeName= StringsResources.errorText();
 
-                                        });
+                                          });
 
-                                        noError = false;
-
-                                      }
-
-                                      if (controllerProductDescription.text.isEmpty) {
-
-                                        setState(() {
-
-                                          warningNoticeDescription = StringsResources.errorText();
-
-                                        });
-
-                                        noError = false;
-
-                                      }
-
-                                      if (controllerProductCategory.text.isEmpty) {
-
-                                        setState(() {
-
-                                          warningNoticeCategory = StringsResources.errorText();
-
-                                        });
-
-                                        noError = false;
-
-                                      }
-
-                                      if (controllerProductBuyingPrice.text.isEmpty) {
-
-                                        setState(() {
-
-                                          warningNoticeBuyingPrice = StringsResources.errorText();
-
-                                        });
-
-                                        noError = false;
-
-                                      }
-
-                                      if (controllerProductProfitPercent.text.isEmpty) {
-
-                                        setState(() {
-
-                                          warningNoticeProfitPercent = StringsResources.errorText();
-
-                                        });
-
-                                        noError = false;
-
-                                      }
-
-                                      if (controllerProductBrand.text.isEmpty) {
-
-                                        setState(() {
-
-                                          warningNoticeBrand = StringsResources.errorText();
-
-                                        });
-
-                                        noError = false;
-
-                                      }
-
-                                      if (noError) {
-
-                                        if (widget.productsData != null) {
-
-                                          if ((widget.productsData?.id)! != 0) {
-
-                                            timeNow = (widget.productsData?.id)!;
-
-                                          }
+                                          noError = false;
 
                                         }
 
-                                        var databaseInputs = ProductsDatabaseInputs();
+                                        if (controllerProductDescription.text.isEmpty) {
 
-                                        ProductsData productData = ProductsData(
-                                            id: DateTime.now().millisecondsSinceEpoch,
+                                          setState(() {
 
-                                            productImageUrl: productImageUrl,
+                                            warningNoticeDescription = StringsResources.errorText();
 
-                                            productName: controllerProductName.text,
-                                            productDescription: controllerProductDescription.text,
+                                          });
 
-                                            productCategory: controllerProductCategory.text,
+                                          noError = false;
 
-                                            productBrand: controllerProductBrand.text,
-                                            productBrandLogoUrl: productBrandLogoUrl,
+                                        }
 
-                                            productPrice: controllerProductBuyingPrice.text,
-                                            productProfitPercent: "${controllerProductProfitPercent.text}%",
+                                        if (controllerProductCategory.text.isEmpty) {
 
-                                            productQuantity: int.parse(controllerProductQuantity.text),
+                                          setState(() {
 
-                                            colorTag: colorSelectorView.selectedColor.value
-                                        );
+                                            warningNoticeCategory = StringsResources.errorText();
 
-                                        databaseInputs.insertProductData(productData, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+                                          });
 
-                                        Fluttertoast.showToast(
-                                            msg: StringsResources.updatedText(),
-                                            toastLength: Toast.LENGTH_SHORT,
-                                            gravity: ToastGravity.CENTER,
-                                            timeInSecForIosWeb: 1,
-                                            backgroundColor: ColorsResources.lightTransparent,
-                                            textColor: ColorsResources.dark,
-                                            fontSize: 16.0
-                                        );
+                                          noError = false;
 
-                                        productDataUpdated = true;
+                                        }
 
-                                      }
+                                        if (controllerProductBuyingPrice.text.isEmpty) {
 
-                                    },
-                                    onLongPress: () {
+                                          setState(() {
 
+                                            warningNoticeBuyingPrice = StringsResources.errorText();
 
+                                          });
 
-                                    },
-                                    child: Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius: const BorderRadius.only(
-                                              topLeft: Radius.circular(51),
-                                              topRight: Radius.circular(51),
-                                              bottomLeft: Radius.circular(51),
-                                              bottomRight: Radius.circular(51)
-                                          ),
-                                          border: const Border(
-                                              top: BorderSide(
-                                                color: ColorsResources.primaryColorLight,
-                                                width: 1,
-                                              ),
-                                              bottom: BorderSide(
-                                                color: ColorsResources.primaryColorLight,
-                                                width: 1,
-                                              ),
-                                              left: BorderSide(
-                                                color: ColorsResources.primaryColorLight,
-                                                width: 1,
-                                              ),
-                                              right: BorderSide(
-                                                color: ColorsResources.primaryColorLight,
-                                                width: 1,
-                                              )
-                                          ),
-                                          gradient: LinearGradient(
-                                              colors: [
-                                                ColorsResources.primaryColor.withOpacity(0.3),
-                                                ColorsResources.primaryColorLight.withOpacity(0.3),
-                                              ],
-                                              begin: const FractionalOffset(0.0, 0.0),
-                                              end: const FractionalOffset(1.0, 0.0),
-                                              stops: const [0.0, 1.0],
-                                              transform: const GradientRotation(45),
-                                              tileMode: TileMode.clamp
-                                          ),
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color: ColorsResources.dark.withOpacity(0.179),
-                                              blurRadius: 13.0,
-                                              spreadRadius: 0.3,
-                                              offset: const Offset(3.0, 3.0),
+                                          noError = false;
+
+                                        }
+
+                                        if (controllerProductProfitPercent.text.isEmpty) {
+
+                                          setState(() {
+
+                                            warningNoticeProfitPercent = StringsResources.errorText();
+
+                                          });
+
+                                          noError = false;
+
+                                        }
+
+                                        if (controllerProductBrand.text.isEmpty) {
+
+                                          setState(() {
+
+                                            warningNoticeBrand = StringsResources.errorText();
+
+                                          });
+
+                                          noError = false;
+
+                                        }
+
+                                        if (noError) {
+
+                                          if (widget.productsData != null) {
+
+                                            if ((widget.productsData?.id)! != 0) {
+
+                                              timeNow = (widget.productsData?.id)!;
+
+                                            }
+
+                                          }
+
+                                          var databaseInputs = ProductsDatabaseInputs();
+
+                                          ProductsData productData = ProductsData(
+                                              id: DateTime.now().millisecondsSinceEpoch,
+
+                                              productImageUrl: productImageUrl,
+
+                                              productName: controllerProductName.text,
+                                              productDescription: controllerProductDescription.text,
+
+                                              productCategory: controllerProductCategory.text,
+
+                                              productBrand: controllerProductBrand.text,
+                                              productBrandLogoUrl: productBrandLogoUrl,
+
+                                              productPrice: controllerProductBuyingPrice.text,
+                                              productProfitPercent: "${controllerProductProfitPercent.text}%",
+
+                                              productQuantity: int.parse(controllerProductQuantity.text),
+
+                                              colorTag: colorSelectorView.selectedColor.value
+                                          );
+
+                                          databaseInputs.insertProductData(productData, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+                                          Fluttertoast.showToast(
+                                              msg: StringsResources.updatedText(),
+                                              toastLength: Toast.LENGTH_SHORT,
+                                              gravity: ToastGravity.CENTER,
+                                              timeInSecForIosWeb: 1,
+                                              backgroundColor: ColorsResources.lightTransparent,
+                                              textColor: ColorsResources.dark,
+                                              fontSize: 16.0
+                                          );
+
+                                          productDataUpdated = true;
+
+                                        }
+
+                                      },
+                                      child: Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius: const BorderRadius.only(
+                                                topLeft: Radius.circular(51),
+                                                topRight: Radius.circular(51),
+                                                bottomLeft: Radius.circular(51),
+                                                bottomRight: Radius.circular(51)
                                             ),
-                                          ],
-                                        ),
-                                        child: Stack(
-                                          children: [
-                                            Blur(
-                                              blur: 3.0,
-                                              borderRadius: BorderRadius.circular(51),
-                                              alignment: AlignmentDirectional.center,
-                                              blurColor: Colors.blue,
-                                              colorOpacity: 0.0,
-                                              child: const SizedBox(
-                                                width: double.infinity,
-                                                height: 53,
-                                              ),
-                                            ),
-                                            const SizedBox(
-                                                width: 53,
-                                                height: 53,
-                                                child: Align(
-                                                    alignment: AlignmentDirectional.center,
-                                                    child: Image(
-                                                      image: AssetImage("quick_save.png"),
-                                                      color: ColorsResources.lightestOrange,
-                                                    )
+                                            border: const Border(
+                                                top: BorderSide(
+                                                  color: ColorsResources.primaryColorLight,
+                                                  width: 1,
+                                                ),
+                                                bottom: BorderSide(
+                                                  color: ColorsResources.primaryColorLight,
+                                                  width: 1,
+                                                ),
+                                                left: BorderSide(
+                                                  color: ColorsResources.primaryColorLight,
+                                                  width: 1,
+                                                ),
+                                                right: BorderSide(
+                                                  color: ColorsResources.primaryColorLight,
+                                                  width: 1,
                                                 )
-                                            )
-                                          ],
-                                        )
+                                            ),
+                                            gradient: LinearGradient(
+                                                colors: [
+                                                  ColorsResources.primaryColor.withOpacity(0.3),
+                                                  ColorsResources.primaryColorLight.withOpacity(0.3),
+                                                ],
+                                                begin: const FractionalOffset(0.0, 0.0),
+                                                end: const FractionalOffset(1.0, 0.0),
+                                                stops: const [0.0, 1.0],
+                                                transform: const GradientRotation(45),
+                                                tileMode: TileMode.clamp
+                                            ),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: ColorsResources.dark.withOpacity(0.179),
+                                                blurRadius: 13.0,
+                                                spreadRadius: 0.3,
+                                                offset: const Offset(3.0, 3.0),
+                                              ),
+                                            ],
+                                          ),
+                                          child: Stack(
+                                            children: [
+                                              Blur(
+                                                blur: 3.0,
+                                                borderRadius: BorderRadius.circular(51),
+                                                alignment: AlignmentDirectional.center,
+                                                blurColor: Colors.blue,
+                                                colorOpacity: 0.0,
+                                                child: const SizedBox(
+                                                  width: double.infinity,
+                                                  height: 53,
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                  width: 53,
+                                                  height: 53,
+                                                  child: Align(
+                                                      alignment: AlignmentDirectional.center,
+                                                      child: Image(
+                                                        image: AssetImage("quick_save.png"),
+                                                        color: ColorsResources.lightestOrange,
+                                                      )
+                                                  )
+                                              )
+                                            ],
+                                          )
+                                      ),
                                     ),
                                   ),
                                 ),

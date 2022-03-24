@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/24/22, 10:56 AM
+ * Last modified 3/24/22, 11:03 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -2040,23 +2040,23 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                         child: ColoredBox(color: Colors.transparent),
                       ),
                       Expanded(
-                        flex: 3,
+                          flex: 3,
                           child: Tooltip(
-                            triggerMode: TooltipTriggerMode.longPress,
-
+                              triggerMode: TooltipTriggerMode.longPress,
                               message: StringsResources.quickSaveHint(),
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(23),
+                                borderRadius: BorderRadius.circular(51),
                                 gradient: const LinearGradient(
-                                    colors: [
-                                      ColorsResources.black,
-                                      ColorsResources.dark
-                                    ]
+                                  colors: [
+                                    ColorsResources.black,
+                                    ColorsResources.primaryColorDark
+                                  ],
+                                  transform: const GradientRotation(45),
                                 ),
                               ),
                               height: 31,
-                              padding: const EdgeInsets.fromLTRB(9, 3, 9, 3),
-                              margin: const EdgeInsets.fromLTRB(0, 0, 17, 3),
+                              padding: const EdgeInsets.fromLTRB(13, 3, 13, 3),
+                              margin: const EdgeInsets.fromLTRB(0, 0, 0, 7),
                               preferBelow: false,
                               textStyle: const TextStyle(
                                 color: ColorsResources.light,
