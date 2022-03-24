@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/24/22, 10:17 AM
+ * Last modified 3/24/22, 10:57 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -1535,7 +1535,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                         children: [
                                           Expanded(
                                             flex: 3,
-                                            child: Spacer(flex: 1),
+                                            child: ColoredBox(color: Colors.transparent)
                                           ),
                                           Expanded(
                                             flex: 3,
@@ -1572,7 +1572,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                           ),
                                           Expanded(
                                             flex: 3,
-                                            child: Spacer(flex: 1),
+                                            child: ColoredBox(color: Colors.transparent)
                                           ),
                                         ],
                                       )

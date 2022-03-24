@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/24/22, 10:17 AM
+ * Last modified 3/24/22, 10:58 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -2754,7 +2754,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                       children: [
                                         Expanded(
                                           flex: 3,
-                                          child: Spacer(flex: 1),
+                                          child: ColoredBox(color: Colors.transparent)
                                         ),
                                         Expanded(
                                           flex: 3,
@@ -2791,7 +2791,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                         ),
                                         Expanded(
                                           flex: 3,
-                                          child: Spacer(flex: 1),
+                                          child: ColoredBox(color: Colors.transparent)
                                         ),
                                       ],
                                     )

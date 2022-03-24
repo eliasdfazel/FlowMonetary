@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/23/22, 9:22 AM
+ * Last modified 3/24/22, 10:34 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -800,6 +800,11 @@ class StringsResources {
     return "شما میتوانید تمام اطلاعات مرتبط با وام گرفته شده خود را اعم از مبلغ وام/ تاریخ و ... را کادر زیر در ردیف/ستون خواسته شده وارد کنید.";
   }
   /* End - Features Descriptions */
+
+  static String quickSaveHint() {
+
+    return "ثبت سریع";
+  }
 
   static String sortHint() {
 
