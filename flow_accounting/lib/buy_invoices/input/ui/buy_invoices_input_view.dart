@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/23/22, 10:57 AM
+ * Last modified 3/24/22, 10:17 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -1538,13 +1538,13 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                             child: Spacer(flex: 1),
                                           ),
                                           Expanded(
-                                            flex: 5,
+                                            flex: 3,
                                             child: Align(
                                               alignment: AlignmentDirectional.center,
                                               child: Image(
                                                 image: AssetImage("submit_icon.png"),
-                                                height: 39,
-                                                width: 39,
+                                                height: 37,
+                                                width: 37,
                                                 color: ColorsResources.light,
                                               ),
                                             ),
