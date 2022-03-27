@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/27/22, 7:49 AM
+ * Last modified 3/27/22, 8:00 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,10 +15,10 @@ import 'package:path_provider/path_provider.dart';
 
 class BarcodeGenerator {
 
-  void buildBarcode(Barcode barcode, String data, String filename,
+  Future<File> buildBarcode(Barcode barcode, String data, String filename,
       {double? width, double? height, double? fontHeight}) async {
 
-    final svg = barcode.toSvg(
+    final barcodeSVG = barcode.toSvg(
       data,
       width: width ?? 173,
       height: height ?? 173,
@@ -31,7 +31,7 @@ class BarcodeGenerator {
 
     String filePath = '$appDocumentsPath/${'$filename.svg'}';
 
-    File(filePath).writeAsStringSync(svg);
+    return File(filePath).writeAsString(barcodeSVG);
   }
 
 }

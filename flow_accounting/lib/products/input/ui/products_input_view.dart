@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/27/22, 7:56 AM
+ * Last modified 3/27/22, 8:24 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -22,6 +22,7 @@ import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/utils/barcode/barcode_generator.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
+import 'package:flow_accounting/utils/io/FileIO.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -79,6 +80,17 @@ class _ProductsInputViewState extends State<ProductsInputView> {
       )
   );
 
+  Widget barcodeView = Opacity(
+      opacity: 0.7,
+      child: ColoredBox(
+          color: ColorsResources.lightestBlue.withOpacity(0.73),
+          child: Image(
+            image: AssetImage("qr_code_icon.png"),
+            fit: BoxFit.cover,
+          )
+      )
+  );
+
   int timeNow = DateTime.now().millisecondsSinceEpoch;
 
   bool productDataUpdated = false;
@@ -105,6 +117,8 @@ class _ProductsInputViewState extends State<ProductsInputView> {
   void initState(){
 
     getAllProducts();
+
+    allImagesCheckpoint();
 
     controllerProductName.text = widget.productsData?.productName == null ? "" : (widget.productsData?.productName)!;
     controllerProductDescription.text = widget.productsData?.productDescription == null ? "" : (widget.productsData?.productDescription)!;
@@ -1693,6 +1707,65 @@ class _ProductsInputViewState extends State<ProductsInputView> {
     File file = File(imageFilePath);
 
     file.writeAsBytes(imageBytes);
+
+  }
+
+  void allImagesCheckpoint() async {
+
+    if (widget.productsData != null) {
+
+      /* Product Image */
+      imagePickerProductImage = ColoredBox(
+        color: ColorsResources.lightestBlue.withOpacity(0.73),
+        child: Image.file(
+          File(widget.productsData!.productImageUrl),
+          fit: BoxFit.cover,
+        ),
+      );
+
+      /* Brand Image */
+      imagePickerProductBrand = ColoredBox(
+        color: ColorsResources.lightestBlue.withOpacity(0.73),
+        child: Image.file(
+          File(widget.productsData!.productBrandLogoUrl),
+          fit: BoxFit.cover,
+        ),
+      );
+
+      /* Barcode Image */
+      Directory appDocumentsDirectory = await getApplicationSupportDirectory();
+
+      String appDocumentsPath = appDocumentsDirectory.path;
+
+      String qrCodeImagePath = '$appDocumentsPath/"Product_${widget.productsData!.id.toString()}.svg"';
+
+      bool fileCheckpoint = await fileExist("Product_${widget.productsData!.id.toString()}.svg");
+
+      if (fileCheckpoint) {
+
+        barcodeView = ColoredBox(
+          color: ColorsResources.lightestBlue.withOpacity(0.73),
+          child:  Image.file(
+            File(qrCodeImagePath),
+            fit: BoxFit.cover,
+            height: 173,
+            width: 173,
+          ),
+        );
+
+      }
+
+      setState(() {
+
+        imagePickerProductImage;
+
+        imagePickerProductBrand;
+
+        barcodeView;
+
+      });
+
+    }
 
   }
 
