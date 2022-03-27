@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/24/22, 11:04 AM
+ * Last modified 3/27/22, 5:46 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -12,6 +12,7 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:back_button_interceptor/back_button_interceptor.dart';
+import 'package:barcode/barcode.dart';
 import 'package:blur/blur.dart';
 import 'package:flow_accounting/products/database/io/inputs.dart';
 import 'package:flow_accounting/products/database/io/queries.dart';
@@ -19,6 +20,7 @@ import 'package:flow_accounting/products/database/structures/tables_structure.da
 import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
+import 'package:flow_accounting/utils/barcode/barcode_generator.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
@@ -1197,6 +1199,12 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                     } else {
 
                                       databaseInputs.insertProductData(productData, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+                                      /* Generate Barcode */
+                                      BarcodeGenerator().buildBarcode(
+                                        Barcode.qrCode(),
+                                        productData.id.toString(),
+                                      );
 
                                     }
 

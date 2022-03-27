@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/22/22, 11:04 AM
+ * Last modified 3/27/22, 5:46 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -66,6 +66,7 @@ class ProductsDatabaseInputs {
       await databaseInstance.close();
 
     }
+
   }
 
   Future<void> updateProductData(ProductsData productsData, String tableName, String usernameId) async {

@@ -45,6 +45,8 @@ dependencies:
   add_2_calendar: ^2.1.3
   flutter_phoenix: ^1.0.0
   quick_actions: ^0.6.0+10
+  barcode: ^2.2.0
+  flutter_barcode_scanner: ^2.0.0
 
 dev_dependencies:
   flutter_test:
