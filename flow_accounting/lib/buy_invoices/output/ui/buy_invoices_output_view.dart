@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/28/22, 9:09 AM
+ * Last modified 3/28/22, 9:56 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -612,10 +612,10 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
                       )
                     ],
                   )
-              ),
-            ),
-          ),
-        ),
+              )
+            )
+          )
+        )
       )
     );
 
@@ -669,11 +669,11 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
 
     String databaseDirectory = await getDatabasesPath();
 
-    String budgetDatabasePath = "${databaseDirectory}/${BuyInvoicesDatabaseInputs.buyInvoicesDatabase()}";
+    String buyInvoicesDatabasePath = "${databaseDirectory}/${BuyInvoicesDatabaseInputs.buyInvoicesDatabase()}";
 
-    bool budgetDatabaseExist = await databaseExists(budgetDatabasePath);
+    bool buyInvoiceDatabaseExist = await databaseExists(buyInvoicesDatabasePath);
 
-    if (budgetDatabaseExist) {
+    if (buyInvoiceDatabaseExist) {
 
       List<Widget> preparedAllBuyInvoicesItem = [];
 

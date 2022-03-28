@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/28/22, 8:53 AM
+ * Last modified 3/28/22, 9:55 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -38,7 +38,7 @@ class BuyInvoicesDatabaseQueries {
         buyInvoiceDescription: maps[i]['buyInvoiceDescription'],
 
         buyInvoiceDateText: maps[i]['buyInvoiceDateText'],
-        buyInvoiceDateMillisecond: maps[i]['buyInvoiceDateMillisecond'],
+        buyInvoiceDateMillisecond: int.parse(maps[i]['buyInvoiceDateMillisecond'].toString()),
 
         boughtProductId: maps[i]['boughtProductId'],
         boughtProductName: maps[i]['boughtProductName'],

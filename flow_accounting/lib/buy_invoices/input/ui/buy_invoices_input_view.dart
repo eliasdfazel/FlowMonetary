@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/24/22, 10:57 AM
+ * Last modified 3/28/22, 9:58 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -1410,7 +1410,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
                               var databaseInputs = BuyInvoicesDatabaseInputs();
 
-                              BuyInvoicesData transactionData = BuyInvoicesData(
+                              BuyInvoicesData buyInvoicesData = BuyInvoicesData(
                                   id: timeNow,
 
                                   buyInvoiceNumber: controllerInvoiceNumber.text,
@@ -1441,13 +1441,13 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
                                 if ((widget.buyInvoicesData?.id)! != 0) {
 
-                                  databaseInputs.updateInvoiceData(transactionData, BuyInvoicesDatabaseInputs.databaseTableName, UserInformation.UserId);
+                                  databaseInputs.updateInvoiceData(buyInvoicesData, BuyInvoicesDatabaseInputs.databaseTableName, UserInformation.UserId);
 
                                 }
 
                               } else {
 
-                                databaseInputs.insertBuyInvoiceData(transactionData, BuyInvoicesDatabaseInputs.databaseTableName, UserInformation.UserId);
+                                databaseInputs.insertBuyInvoiceData(buyInvoicesData, BuyInvoicesDatabaseInputs.databaseTableName, UserInformation.UserId);
 
                                 updateProductQuantity();
 

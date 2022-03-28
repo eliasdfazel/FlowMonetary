@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/22/22, 11:04 AM
+ * Last modified 3/28/22, 9:58 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -18,7 +18,7 @@ import 'package:sqflite/sqflite.dart';
 
 class BuyInvoicesDatabaseInputs {
 
-  static const String databaseTableName = "all_budgets";
+  static const String databaseTableName = "all_buy_invoices";
 
   static String buyInvoicesDatabase() {
 
