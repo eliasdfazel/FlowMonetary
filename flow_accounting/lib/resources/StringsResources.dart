@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/28/22, 8:22 AM
+ * Last modified 3/28/22, 9:09 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -445,6 +445,13 @@ class StringsResources {
     return "تاهل";
   }
   /* End - Customer String Resources */
+
+  /* Start - Buy Invoices String Resources */
+  static String buyInvoicesAmountHigh() {
+
+    return "مرتب سازی: مبلغ فاکتور";
+  }
+  /* End - Buy Invoices String Resources */
 
   /* Start - Cheque String Resources */
   static String chequeNumber() {

@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/28/22, 8:55 AM
+ * Last modified 3/28/22, 9:09 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -209,7 +209,7 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
                                         child: Align(
                                           alignment: Alignment.center,
                                           child: Text(
-                                            StringsResources.sortBudgetAmountHigh(),
+                                            StringsResources.buyInvoicesAmountHigh(),
                                             style: TextStyle(
                                               fontSize: 13,
                                               color: ColorsResources.applicationGeeksEmpire,
