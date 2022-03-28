@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/22/22, 11:04 AM
+ * Last modified 3/28/22, 8:36 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -12,6 +12,7 @@ import 'package:collection/collection.dart';
 import 'package:flow_accounting/budgets/input/ui/budgets_input_view.dart';
 import 'package:flow_accounting/budgets/output/ui/budgets_output_view.dart';
 import 'package:flow_accounting/buy_invoices/input/ui/buy_invoices_input_view.dart';
+import 'package:flow_accounting/buy_invoices/output/ui/buy_invoices_output_view.dart';
 import 'package:flow_accounting/cheque/input/ui/cheques_input_view.dart';
 import 'package:flow_accounting/cheque/output/ui/cheques_output_view.dart';
 import 'package:flow_accounting/customers/input/ui/customers_input_view.dart';
@@ -145,7 +146,7 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
         featuresTitle: StringsResources.featureBuyInvoicesTitle(),
         featuresDescription: StringsResources.featureBuyInvoicesDescription(),
         featureViewToSubmitData: BuyInvoicesInputView(),
-        featureToPresentData: null));
+        featureToPresentData: BuyInvoicesOutputView()));
 
     allFeaturesStructure.add(FeaturesStructure(
         featureColor: ColorsResources.lightestOrange,
