@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/22/22, 10:56 AM
+ * Last modified 3/28/22, 8:08 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -22,6 +22,7 @@ import 'package:flow_accounting/transactions/database/structures/tables_structur
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:wave/config.dart';
@@ -299,6 +300,99 @@ class DashboardViewState extends State<DashboardView> {
                         )
                     )
                   )
+                ),
+                // Barcode
+                Positioned(
+                    right: 19,
+                    bottom: 19,
+                    child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(51),
+                                topRight: Radius.circular(51),
+                                bottomLeft: Radius.circular(51),
+                                bottomRight: Radius.circular(19)),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: ColorsResources.blue.withOpacity(0.79),
+                                  spreadRadius: 0.9,
+                                  blurRadius: 7,
+                                  offset: Offset(0, 1.9)
+                              ),
+                              BoxShadow(
+                                  color: ColorsResources.blue,
+                                  spreadRadius: 0.3,
+                                  blurRadius: 0.3,
+                                  offset: Offset(0, 1.5)
+                              ),
+                            ]
+                        ),
+                        child: ClipRRect(
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(51),
+                                topRight: Radius.circular(51),
+                                bottomLeft: Radius.circular(51),
+                                bottomRight: Radius.circular(19)
+                            ),
+                            child: Container(
+                                decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                      colors: [
+                                        Colors.black,
+                                        ColorsResources.dark,
+                                      ],
+                                      tileMode: TileMode.clamp,
+                                      transform: GradientRotation(45),
+                                    )
+                                ),
+                                child: Material(
+                                    shadowColor: Colors.transparent,
+                                    color: Colors.transparent,
+                                    child: InkWell(
+                                        splashColor: ColorsResources.lightBlue,
+                                        splashFactory: InkRipple.splashFactory,
+                                        onTap: () async {
+
+                                          String barcodeScanResult = await FlutterBarcodeScanner.scanBarcode(
+                                              "#0095ff",
+                                              StringsResources.cancelText(),
+                                              true,
+                                              ScanMode.QR
+                                          );
+
+                                          if (barcodeScanResult.contains("Product_")) {
+
+                                            int productId = int.parse(barcodeScanResult.replaceAll("Product_", ""));
+
+                                            //Get Specific Product Data then Pass It to Edit
+
+                                            debugPrint("Product Id Detected ${productId}");
+                                          }
+
+                                        },
+                                        child: Align(
+                                            alignment: AlignmentDirectional.center,
+                                            child: SizedBox(
+                                                height: 51,
+                                                width: 51,
+                                                child: Padding(
+                                                  padding: EdgeInsets.fromLTRB(3, 3, 3, 3),
+                                                  child: Padding(
+                                                    padding: EdgeInsets.fromLTRB(7, 7, 7, 7),
+                                                    child: Image(
+                                                      image: AssetImage("qr_scan_icon.png"),
+                                                      color: ColorsResources.lightestBlue,
+                                                      fit: BoxFit.cover,
+                                                    )
+                                                  )
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
                 )
               ],
             ),

@@ -86,6 +86,7 @@ flutter:
     - support_icon.png
     - submit_icon.png
     - qr_code_icon.png
+    - qr_scan_icon.png
 
   fonts:
     - family: Sans
