@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/24/22, 10:34 AM
+ * Last modified 3/28/22, 8:22 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -23,6 +23,11 @@ class StringsResources {
         "https://instagram.com/flowaccounting";
   }
   static String instagramLink() {
+
+    return "https://instagram.com/flowaccounting";
+  }
+
+  static String supportLink() {
 
     return "https://instagram.com/flowaccounting";
   }
