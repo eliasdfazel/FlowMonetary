@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/28/22, 10:07 AM
+ * Last modified 3/28/22, 10:34 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -451,6 +451,11 @@ class StringsResources {
 
     return "مرتب سازی: مبلغ فاکتور";
   }
+
+  static String buyInvoicesProduct() {
+
+    return "نمایش محصول";
+  }
   /* End - Buy Invoices String Resources */
 
   /* Start - Cheque String Resources */
@@ -622,7 +627,6 @@ class StringsResources {
     return "تعداد موجودی اولیه را وارد کنید";
   }
   /* End - Product String Resources */
-
 
   /* Start - Buy Invoices String Resources */
   static String buyInvoiceNumber() {
