@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/28/22, 9:56 AM
+ * Last modified 3/28/22, 10:20 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -524,8 +524,8 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
                                     decelerationDuration: const Duration(milliseconds: 500),
                                     decelerationCurve: Curves.easeOut,
                                   )
-                              ),
-                            ),
+                              )
+                            )
                           ),
                           SizedBox(
                               height: 39,
