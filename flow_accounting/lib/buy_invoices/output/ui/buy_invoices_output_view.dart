@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/28/22, 10:36 AM
+ * Last modified 3/28/22, 10:59 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -531,21 +531,39 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
                               height: 39,
                               width: double.infinity,
                               child: Padding(
-                                padding: const EdgeInsets.fromLTRB(19, 11, 19, 0),
+                                padding: const EdgeInsets.fromLTRB(31, 11, 19, 0),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   children: [
                                     Expanded(
-                                      flex: 1,
+                                      flex: 7,
                                       child: Directionality(
                                         textDirection: TextDirection.rtl,
                                         child: Align(
                                           alignment: Alignment.centerRight,
                                           child: Text(
                                             buyInvoicesData.buyInvoiceNumber,
+                                            textAlign: TextAlign.center,
                                             style: const TextStyle(
                                               color: ColorsResources.dark,
                                               fontSize: 19,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      flex: 19,
+                                      child: Directionality(
+                                        textDirection: TextDirection.rtl,
+                                        child: Align(
+                                          alignment: Alignment.centerRight,
+                                          child: Text(
+                                            buyInvoicesData.buyInvoiceDateText,
+                                            textAlign: TextAlign.right,
+                                            style: const TextStyle(
+                                              color: ColorsResources.darkTransparent,
+                                              fontSize: 15,
                                             ),
                                           ),
                                         ),
@@ -560,21 +578,40 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
                             width: double.infinity,
                             child: Padding(
                               padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
-                              child: Container(
-                                color: Colors.transparent,
-                                child: Align(
-                                  alignment: Alignment.centerRight,
-                                  child: Text(
-                                    buyInvoicesData.boughtProductName,
-                                    textAlign: TextAlign.right,
-                                    style: TextStyle(
-                                        color: ColorsResources.dark.withOpacity(0.537),
-                                        fontSize: 15
-                                    ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Expanded(
+                                    flex: 1,
+                                    child: Align(
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          buyInvoicesData.boughtProductName,
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              color: ColorsResources.dark.withOpacity(0.537),
+                                              fontSize: 15
+                                          ),
+                                        )
+                                    )
                                   ),
-                                ),
-                              ),
-                            ),
+                                  Expanded(
+                                      flex: 1,
+                                      child: Align(
+                                          alignment: Alignment.center,
+                                          child: Text(
+                                            buyInvoicesData.boughtProductQuantity,
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                                color: ColorsResources.dark.withOpacity(0.537),
+                                                fontSize: 15
+                                            ),
+                                          )
+                                      )
+                                  ),
+                                ],
+                              )
+                            )
                           )
                         ],
                       ),
