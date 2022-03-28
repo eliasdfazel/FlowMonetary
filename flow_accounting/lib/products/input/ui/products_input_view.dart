@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/27/22, 8:24 AM
+ * Last modified 3/28/22, 7:19 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -12,7 +12,6 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:back_button_interceptor/back_button_interceptor.dart';
-import 'package:barcode/barcode.dart';
 import 'package:blur/blur.dart';
 import 'package:flow_accounting/products/database/io/inputs.dart';
 import 'package:flow_accounting/products/database/io/queries.dart';
@@ -20,7 +19,6 @@ import 'package:flow_accounting/products/database/structures/tables_structure.da
 import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
-import 'package:flow_accounting/utils/barcode/barcode_generator.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
 import 'package:flow_accounting/utils/io/FileIO.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +26,9 @@ import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:screenshot/screenshot.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:syncfusion_flutter_barcodes/barcodes.dart';
 
 class ProductsInputView extends StatefulWidget {
 
@@ -80,14 +80,24 @@ class _ProductsInputViewState extends State<ProductsInputView> {
       )
   );
 
+  ScreenshotController barcodeSnapshotController = ScreenshotController();
+
   Widget barcodeView = Opacity(
-      opacity: 0.7,
-      child: ColoredBox(
-          color: ColorsResources.lightestBlue.withOpacity(0.73),
-          child: Image(
-            image: AssetImage("qr_code_icon.png"),
-            fit: BoxFit.cover,
-          )
+      opacity: 0.37,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(19),
+        child: ColoredBox(
+            color: ColorsResources.lightestBlue.withOpacity(0.73),
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(7, 7, 7, 7),
+              child: Image(
+                image: AssetImage("qr_code_icon.png"),
+                fit: BoxFit.cover,
+                height: 131,
+                width: 131,
+              )
+            )
+        )
       )
   );
 
@@ -238,29 +248,37 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                         height: 1,
                         color: Colors.transparent,
                       ),
-                      SizedBox(
-                        height: 279,
-                        width: double.infinity,
-                        child: Padding(
-                          padding: EdgeInsets.fromLTRB(13, 0, 13, 0),
-                          child: InkWell(
-                            onTap: () {
+                      Stack(
+                        children: [
+                          SizedBox(
+                            height: 313,
+                            width: double.infinity,
+                            child: Padding(
+                              padding: EdgeInsets.fromLTRB(13, 57, 13, 0),
+                              child: InkWell(
+                                  onTap: () {
 
-                              invokeImagePickerProductImage();
+                                    invokeImagePickerProductImage();
 
-                            },
-                            child: Align(
-                              alignment: AlignmentDirectional.center,
-                              child: AspectRatio(
-                                aspectRatio: 1,
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(13),
-                                  child: imagePickerProductImage,
-                                ),
+                                  },
+                                  child: Align(
+                                    alignment: AlignmentDirectional.center,
+                                    child: AspectRatio(
+                                      aspectRatio: 1,
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(13),
+                                        child: imagePickerProductImage,
+                                      ),
+                                    ),
+                                  )
                               ),
-                            )
+                            ),
                           ),
-                        ),
+                          Positioned(
+                            left: 19,
+                            child: barcodeView
+                          )
+                        ],
                       ),
                       const Divider(
                         height: 17,
@@ -1214,13 +1232,6 @@ class _ProductsInputViewState extends State<ProductsInputView> {
 
                                       databaseInputs.insertProductData(productData, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
-                                      /* Generate Barcode */
-                                      BarcodeGenerator().buildBarcode(
-                                        /* Barcode Type */Barcode.qrCode(),
-                                        /* Barcode Data */ "Product_${productData.id.toString()}",
-                                        /* Barcode Filename */ "Product_${productData.id.toString()}"
-                                      );
-
                                     }
 
                                     Fluttertoast.showToast(
@@ -1733,35 +1744,58 @@ class _ProductsInputViewState extends State<ProductsInputView> {
       );
 
       /* Barcode Image */
-      Directory appDocumentsDirectory = await getApplicationSupportDirectory();
-
-      String appDocumentsPath = appDocumentsDirectory.path;
-
-      String qrCodeImagePath = '$appDocumentsPath/"Product_${widget.productsData!.id.toString()}.svg"';
-
-      bool fileCheckpoint = await fileExist("Product_${widget.productsData!.id.toString()}.svg");
-
-      if (fileCheckpoint) {
-
-        barcodeView = ColoredBox(
-          color: ColorsResources.lightestBlue.withOpacity(0.73),
-          child:  Image.file(
-            File(qrCodeImagePath),
-            fit: BoxFit.cover,
-            height: 173,
-            width: 173,
+      Widget barcodeGenerator = Screenshot(
+          controller: barcodeSnapshotController,
+          child: SfBarcodeGenerator(
+            value: "Product_${widget.productsData!.id.toString()}",
+            symbology: QRCode(),
+            barColor: ColorsResources.primaryColor,
           ),
-        );
+      );
 
-      }
+      barcodeView = ClipRRect(
+          borderRadius: BorderRadius.circular(13),
+          child: ColoredBox(
+              color: ColorsResources.lightestBlue.withOpacity(0.91),
+              child: Padding(
+                  padding: EdgeInsets.fromLTRB(9, 9, 9, 9),
+                  child:  SizedBox(
+                      height: 131,
+                      width: 131,
+                      child: barcodeGenerator
+                  )
+              )
+          )
+      );
 
-      setState(() {
+      bool barcodeFileCheckpoint = await fileExist("Product_${widget.productsData!.id}.PNG");
 
-        imagePickerProductImage;
+      Future.delayed(Duration(milliseconds: 333), () {
 
-        imagePickerProductBrand;
+        if (!barcodeFileCheckpoint) {
 
-        barcodeView;
+          barcodeSnapshotController.capture().then((Uint8List? imageBytes) {
+            debugPrint("Barcode Captured");
+
+            if (imageBytes != null) {
+
+              createFileOfBytes("Product_${widget.productsData!.id}", "PNG", imageBytes);
+
+            }
+
+          });
+
+        }
+
+        setState(() {
+
+          imagePickerProductImage;
+
+          imagePickerProductBrand;
+
+          barcodeView;
+
+        });
 
       });
 

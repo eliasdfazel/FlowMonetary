@@ -18,8 +18,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-
   cupertino_icons: ^1.0.2
   sqflite: ^2.0.2
   path:
@@ -45,8 +43,9 @@ dependencies:
   add_2_calendar: ^2.1.3
   flutter_phoenix: ^1.0.0
   quick_actions: ^0.6.0+10
-  barcode: ^2.2.0
+  syncfusion_flutter_barcodes: ^19.4.56
   flutter_barcode_scanner: ^2.0.0
+  screenshot: ^1.2.3
 
 dev_dependencies:
   flutter_test:
