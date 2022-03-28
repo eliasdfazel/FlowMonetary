@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/28/22, 8:53 AM
+ * Last modified 3/28/22, 8:55 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -21,7 +21,6 @@ import 'package:flow_accounting/products/input/ui/products_input_view.dart';
 import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
-import 'package:flow_accounting/transactions/output/ui/transactions_output_view.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
 import 'package:flow_accounting/utils/navigations/navigations.dart';
 import 'package:flutter/material.dart';
@@ -503,7 +502,7 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
                               child: Align(
                                   alignment: Alignment.center,
                                   child: Marquee(
-                                    text: budgetBalance,
+                                    text: buyInvoicesData.boughtProductPrice,
                                     style: const TextStyle(
                                       color: ColorsResources.dark,
                                       fontSize: 31,
@@ -543,7 +542,7 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
                                         child: Align(
                                           alignment: Alignment.centerRight,
                                           child: Text(
-                                            budgetName,
+                                            buyInvoicesData.buyInvoiceNumber,
                                             style: const TextStyle(
                                               color: ColorsResources.dark,
                                               fontSize: 19,
@@ -566,7 +565,7 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
                                 child: Align(
                                   alignment: Alignment.centerRight,
                                   child: Text(
-                                    budgetDescription,
+                                    buyInvoicesData.boughtProductName,
                                     textAlign: TextAlign.right,
                                     style: TextStyle(
                                         color: ColorsResources.dark.withOpacity(0.537),
