@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/28/22, 8:08 AM
+ * Last modified 3/28/22, 8:19 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -13,12 +13,17 @@ import 'package:flow_accounting/credit_cards/database/io/inputs.dart';
 import 'package:flow_accounting/credit_cards/database/io/queries.dart';
 import 'package:flow_accounting/credit_cards/database/structures/tables_structure.dart';
 import 'package:flow_accounting/home/interface/sections/latest_transactions_view.dart';
+import 'package:flow_accounting/products/database/io/inputs.dart';
+import 'package:flow_accounting/products/database/io/queries.dart';
+import 'package:flow_accounting/products/database/structures/tables_structure.dart';
+import 'package:flow_accounting/products/input/ui/products_input_view.dart';
 import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/database/io/inputs.dart';
 import 'package:flow_accounting/transactions/database/io/queries.dart';
 import 'package:flow_accounting/transactions/database/structures/tables_structure.dart';
+import 'package:flow_accounting/utils/navigations/navigations.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -362,9 +367,18 @@ class DashboardViewState extends State<DashboardView> {
 
                                           if (barcodeScanResult.contains("Product_")) {
 
-                                            int productId = int.parse(barcodeScanResult.replaceAll("Product_", ""));
+                                            String productId = barcodeScanResult.replaceAll("Product_", "");
 
                                             //Get Specific Product Data then Pass It to Edit
+                                            ProductsDatabaseQueries productsDatabaseQueries = ProductsDatabaseQueries();
+
+                                            ProductsData scannedProductData = await productsDatabaseQueries.querySpecificProductById(productId, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+                                            Future.delayed(Duration(milliseconds: 753), () {
+
+                                              NavigationProcess().goTo(context, ProductsInputView(productsData: scannedProductData,));
+
+                                            });
 
                                             debugPrint("Product Id Detected ${productId}");
                                           }
