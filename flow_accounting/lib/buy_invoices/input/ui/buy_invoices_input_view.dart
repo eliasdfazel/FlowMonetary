@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/28/22, 10:15 AM
+ * Last modified 3/28/22, 10:50 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -75,6 +75,14 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
   String? warningNoticeProductName;
   String? warningNoticeProductQuantity;
+
+  String? warningProductPrice;
+  String? warningProductEachPrice;
+  String? warningProductDiscount;
+
+  String? warningPaidBy;
+
+  String? warningBoughtFrom;
 
   @override
   void dispose() {
@@ -854,7 +862,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorText: warningNoticeProductQuantity,
+                                        errorText: warningProductDiscount,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.buyInvoiceDiscount(),
@@ -931,7 +939,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                           ),
                                           gapPadding: 5
                                       ),
-                                      errorText: warningNoticeProductQuantity,
+                                      errorText: warningProductEachPrice,
                                       filled: true,
                                       fillColor: ColorsResources.lightTransparent,
                                       labelText: StringsResources.buyInvoiceEachPrice(),
@@ -1030,7 +1038,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorText: warningNoticeProductQuantity,
+                                        errorText: warningProductPrice,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.buyInvoicePrice(),
@@ -1187,7 +1195,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                                 ),
                                                 gapPadding: 5
                                             ),
-                                            errorText: warningNoticeProductName,
+                                            errorText: warningPaidBy,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
                                             labelText: StringsResources.buyInvoicePaidBy(),
@@ -1345,7 +1353,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                                 ),
                                                 gapPadding: 5
                                             ),
-                                            errorText: warningNoticeProductName,
+                                            errorText: warningBoughtFrom,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
                                             labelText: StringsResources.buyInvoiceBoughtFrom(),
@@ -1488,6 +1496,78 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                               setState(() {
 
                                 warningNoticeProductName = StringsResources.errorText();
+
+                              });
+
+                              noError = false;
+
+                            }
+
+                            if (controllerProductQuantity.text.isEmpty) {
+
+                              setState(() {
+
+                                warningNoticeProductQuantity = StringsResources.errorText();
+
+                              });
+
+                              noError = false;
+
+                            }
+
+                            if (controllerProductPrice.text.isEmpty) {
+
+                              setState(() {
+
+                                warningProductPrice = StringsResources.errorText();
+
+                              });
+
+                              noError = false;
+
+                            }
+
+                            if (controllerProductEachPrice.text.isEmpty) {
+
+                              setState(() {
+
+                                warningProductEachPrice = StringsResources.errorText();
+
+                              });
+
+                              noError = false;
+
+                            }
+
+                            if (controllerProductDiscount.text.isEmpty) {
+
+                              setState(() {
+
+                                warningProductDiscount = StringsResources.errorText();
+
+                              });
+
+                              noError = false;
+
+                            }
+
+                            if (controllerPaidBy.text.isEmpty) {
+
+                              setState(() {
+
+                                warningPaidBy = StringsResources.errorText();
+
+                              });
+
+                              noError = false;
+
+                            }
+
+                            if (controllerBoughtFrom.text.isEmpty) {
+
+                              setState(() {
+
+                                warningBoughtFrom = StringsResources.errorText();
 
                               });
 
