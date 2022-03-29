@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/29/22, 9:11 AM
+ * Last modified 3/29/22, 10:13 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -839,6 +839,11 @@ class StringsResources {
   static String barcodeScannerHint() {
 
     return "سکن بارکد محصول و ...";
+  }
+
+  static String printingHint() {
+
+    return "چاپ این سند";
   }
 
   static String sortHint() {
