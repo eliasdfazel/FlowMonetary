@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/28/22, 10:50 AM
+ * Last modified 3/29/22, 9:15 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -101,11 +101,11 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
     controllerPreInvoice.text = widget.buyInvoicesData?.buyPreInvoice == null ? BuyInvoicesData.BuyInvoice_Final : (widget.buyInvoicesData?.buyPreInvoice)!;
 
     controllerProductName.text = widget.buyInvoicesData?.boughtProductName == null ? "" : (widget.buyInvoicesData?.boughtProductName)!;
-    controllerProductQuantity.text = widget.buyInvoicesData?.boughtProductQuantity == null ? "0" : (widget.buyInvoicesData?.boughtProductQuantity)!;
+    controllerProductQuantity.text = widget.buyInvoicesData?.boughtProductQuantity == null ? "" : (widget.buyInvoicesData?.boughtProductQuantity)!;
 
-    controllerProductPrice.text = widget.buyInvoicesData?.boughtProductPrice == null ? "0" : (widget.buyInvoicesData?.boughtProductPrice)!;
-    controllerProductEachPrice.text = widget.buyInvoicesData?.boughtProductEachPrice == null ? "0" : (widget.buyInvoicesData?.boughtProductEachPrice)!;
-    controllerProductDiscount.text = widget.buyInvoicesData?.boughtProductPriceDiscount == null ? "0" : (widget.buyInvoicesData?.boughtProductPriceDiscount)!;
+    controllerProductPrice.text = widget.buyInvoicesData?.boughtProductPrice == null ? "" : (widget.buyInvoicesData?.boughtProductPrice)!;
+    controllerProductEachPrice.text = widget.buyInvoicesData?.boughtProductEachPrice == null ? "" : (widget.buyInvoicesData?.boughtProductEachPrice)!;
+    controllerProductDiscount.text = widget.buyInvoicesData?.boughtProductPriceDiscount == null ? "" : (widget.buyInvoicesData?.boughtProductPriceDiscount)!;
 
     controllerPaidBy.text = widget.buyInvoicesData?.paidBy == null ? "" : (widget.buyInvoicesData?.paidBy)!;
 
@@ -1601,11 +1601,11 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
                                   boughtProductId: controllerProductId.text,
                                   boughtProductName: controllerProductName.text,
-                                  boughtProductQuantity: controllerProductQuantity.text,
+                                  boughtProductQuantity: controllerProductQuantity.text.isEmpty ? "0" : controllerProductQuantity.text,
 
-                                  boughtProductPrice: controllerProductPrice.text,
-                                  boughtProductEachPrice: controllerProductEachPrice.text,
-                                  boughtProductPriceDiscount: controllerProductDiscount.text,
+                                  boughtProductPrice: controllerProductPrice.text.isEmpty ? "0" : controllerProductPrice.text,
+                                  boughtProductEachPrice: controllerProductEachPrice.text.isEmpty ? "0" : controllerProductEachPrice.text,
+                                  boughtProductPriceDiscount: controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text,
 
                                   paidBy: controllerPaidBy.text,
 
