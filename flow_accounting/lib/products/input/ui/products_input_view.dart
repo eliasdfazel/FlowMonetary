@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/28/22, 7:19 AM
+ * Last modified 3/29/22, 9:19 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -137,10 +137,10 @@ class _ProductsInputViewState extends State<ProductsInputView> {
 
     controllerProductBrand.text = widget.productsData?.productBrand == null ? "" : (widget.productsData?.productBrand)!;
 
-    controllerProductBuyingPrice.text = widget.productsData?.productPrice == null ? "0" : (widget.productsData?.productPrice)!;
-    controllerProductProfitPercent.text = widget.productsData?.productProfitPercent.replaceAll("%", "") == null ? "0" : (widget.productsData?.productProfitPercent)!.replaceAll("%", "");
+    controllerProductBuyingPrice.text = widget.productsData?.productPrice == null ? "" : (widget.productsData?.productPrice)!;
+    controllerProductProfitPercent.text = widget.productsData?.productProfitPercent.replaceAll("%", "") == null ? "" : (widget.productsData?.productProfitPercent)!.replaceAll("%", "");
 
-    controllerProductQuantity.text = widget.productsData?.productQuantity == null ? "0" : (widget.productsData?.productQuantity.toString())!;
+    controllerProductQuantity.text = widget.productsData?.productQuantity == null ? "" : (widget.productsData?.productQuantity.toString())!;
 
     colorSelectorView.inputColor = Color(widget.productsData?.colorTag ?? Colors.white.value);
 
@@ -1507,10 +1507,10 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                               productBrand: controllerProductBrand.text,
                                               productBrandLogoUrl: productBrandLogoUrl,
 
-                                              productPrice: controllerProductBuyingPrice.text,
-                                              productProfitPercent: "${controllerProductProfitPercent.text}%",
+                                              productPrice: controllerProductBuyingPrice.text.isEmpty ? "0" : controllerProductBuyingPrice.text,
+                                              productProfitPercent: controllerProductProfitPercent.text.isEmpty ? "0%" : "${controllerProductProfitPercent.text}%",
 
-                                              productQuantity: int.parse(controllerProductQuantity.text),
+                                              productQuantity: controllerProductQuantity.text.isEmpty ? 0 : int.parse(controllerProductQuantity.text),
 
                                               colorTag: colorSelectorView.selectedColor.value
                                           );
