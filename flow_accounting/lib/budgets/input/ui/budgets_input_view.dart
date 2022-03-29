@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/24/22, 10:57 AM
+ * Last modified 3/29/22, 9:24 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -55,12 +55,12 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
   }
 
   @override
-  void initState(){
+  void initState() {
 
     controllerBudgetName.text = widget.budgetsData?.budgetName == null ? "" : (widget.budgetsData?.budgetName)!;
     controllerBudgetDescription.text = widget.budgetsData?.budgetDescription == null ? "" : (widget.budgetsData?.budgetDescription)!;
 
-    controllerBudgetBalance.text = widget.budgetsData?.budgetBalance == null ? "0" : (widget.budgetsData?.budgetBalance)!;
+    controllerBudgetBalance.text = widget.budgetsData?.budgetBalance == null ? "" : (widget.budgetsData?.budgetBalance)!;
 
     colorSelectorView.inputColor = Color(widget.budgetsData?.colorTag ?? Colors.white.value);
 
@@ -578,7 +578,7 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
                                   budgetName: controllerBudgetName.text,
                                   budgetDescription: controllerBudgetDescription.text,
 
-                                  budgetBalance: controllerBudgetBalance.text,
+                                  budgetBalance: controllerBudgetBalance.text.isEmpty ? "0" : controllerBudgetBalance.text,
 
                                   colorTag: colorSelectorView.selectedColor.value
                               );

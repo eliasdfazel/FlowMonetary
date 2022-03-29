@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/24/22, 10:58 AM
+ * Last modified 3/29/22, 9:21 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -97,7 +97,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
   }
 
   @override
-  void initState(){
+  void initState() {
 
     controllerCustomerName.text = widget.customersData?.customerName == null ? "" : (widget.customersData?.customerName)!;
     controllerCustomerDescription.text = widget.customersData?.customerDescription == null ? "" : (widget.customersData?.customerDescription)!;
