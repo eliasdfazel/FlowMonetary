@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/28/22, 8:22 AM
+ * Last modified 3/29/22, 9:11 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -275,29 +275,53 @@ class DashboardViewState extends State<DashboardView> {
                                 transform: GradientRotation(45),
                               )
                             ),
-                            child: Material(
-                                shadowColor: Colors.transparent,
-                                color: Colors.transparent,
-                                child: InkWell(
-                                    splashColor: ColorsResources.lightBlue,
-                                    splashFactory: InkRipple.splashFactory,
-                                    onTap: () async {
+                            child: Tooltip(
+                                triggerMode: TooltipTriggerMode.longPress,
+                                message: StringsResources.supportHint(),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(51),
+                                  gradient: const LinearGradient(
+                                    colors: [
+                                      ColorsResources.black,
+                                      ColorsResources.primaryColorDark
+                                    ],
+                                    transform: const GradientRotation(45),
+                                  ),
+                                ),
+                                height: 31,
+                                padding: const EdgeInsets.fromLTRB(13, 3, 13, 3),
+                                margin: const EdgeInsets.fromLTRB(0, 0, 0, 7),
+                                preferBelow: false,
+                                textStyle: const TextStyle(
+                                  color: ColorsResources.light,
+                                  fontSize: 13,
+                                ),
+                                showDuration: const Duration(seconds: 3),
+                                waitDuration: const Duration(seconds: 5),
+                                child: Material(
+                                    shadowColor: Colors.transparent,
+                                    color: Colors.transparent,
+                                    child: InkWell(
+                                        splashColor: ColorsResources.lightBlue,
+                                        splashFactory: InkRipple.splashFactory,
+                                        onTap: () async {
 
-                                      await launch(StringsResources.supportLink());
+                                          await launch(StringsResources.supportLink());
 
-                                    },
-                                    child: Align(
-                                        alignment: AlignmentDirectional.center,
-                                        child: SizedBox(
-                                          height: 51,
-                                          width: 51,
-                                          child: Padding(
-                                            padding: EdgeInsets.fromLTRB(3, 3, 3, 3),
-                                            child: Image(
-                                              image: AssetImage("support_icon.png"),
-                                              color: ColorsResources.lightestBlue,
-                                            ),
-                                          )
+                                        },
+                                        child: Align(
+                                            alignment: AlignmentDirectional.center,
+                                            child: SizedBox(
+                                                height: 51,
+                                                width: 51,
+                                                child: Padding(
+                                                  padding: EdgeInsets.fromLTRB(3, 3, 3, 3),
+                                                  child: Image(
+                                                    image: AssetImage("support_icon.png"),
+                                                    color: ColorsResources.lightestBlue,
+                                                  ),
+                                                )
+                                            )
                                         )
                                     )
                                 )
@@ -350,55 +374,79 @@ class DashboardViewState extends State<DashboardView> {
                                       transform: GradientRotation(45),
                                     )
                                 ),
-                                child: Material(
-                                    shadowColor: Colors.transparent,
-                                    color: Colors.transparent,
-                                    child: InkWell(
-                                        splashColor: ColorsResources.lightBlue,
-                                        splashFactory: InkRipple.splashFactory,
-                                        onTap: () async {
+                                child: Tooltip(
+                                    triggerMode: TooltipTriggerMode.longPress,
+                                    message: StringsResources.barcodeScannerHint(),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(51),
+                                      gradient: const LinearGradient(
+                                        colors: [
+                                          ColorsResources.black,
+                                          ColorsResources.primaryColorDark
+                                        ],
+                                        transform: const GradientRotation(45),
+                                      ),
+                                    ),
+                                    height: 31,
+                                    padding: const EdgeInsets.fromLTRB(13, 3, 13, 3),
+                                    margin: const EdgeInsets.fromLTRB(0, 0, 0, 7),
+                                    preferBelow: false,
+                                    textStyle: const TextStyle(
+                                      color: ColorsResources.light,
+                                      fontSize: 13,
+                                    ),
+                                    showDuration: const Duration(seconds: 3),
+                                    waitDuration: const Duration(seconds: 5),
+                                    child: Material(
+                                        shadowColor: Colors.transparent,
+                                        color: Colors.transparent,
+                                        child: InkWell(
+                                            splashColor: ColorsResources.lightBlue,
+                                            splashFactory: InkRipple.splashFactory,
+                                            onTap: () async {
 
-                                          String barcodeScanResult = await FlutterBarcodeScanner.scanBarcode(
-                                              "#0095ff",
-                                              StringsResources.cancelText(),
-                                              true,
-                                              ScanMode.QR
-                                          );
+                                              String barcodeScanResult = await FlutterBarcodeScanner.scanBarcode(
+                                                  "#0095ff",
+                                                  StringsResources.cancelText(),
+                                                  true,
+                                                  ScanMode.QR
+                                              );
 
-                                          if (barcodeScanResult.contains("Product_")) {
+                                              if (barcodeScanResult.contains("Product_")) {
 
-                                            String productId = barcodeScanResult.replaceAll("Product_", "");
+                                                String productId = barcodeScanResult.replaceAll("Product_", "");
 
-                                            //Get Specific Product Data then Pass It to Edit
-                                            ProductsDatabaseQueries productsDatabaseQueries = ProductsDatabaseQueries();
+                                                //Get Specific Product Data then Pass It to Edit
+                                                ProductsDatabaseQueries productsDatabaseQueries = ProductsDatabaseQueries();
 
-                                            ProductsData scannedProductData = await productsDatabaseQueries.querySpecificProductById(productId, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+                                                ProductsData scannedProductData = await productsDatabaseQueries.querySpecificProductById(productId, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
-                                            Future.delayed(Duration(milliseconds: 753), () {
+                                                Future.delayed(Duration(milliseconds: 753), () {
 
-                                              NavigationProcess().goTo(context, ProductsInputView(productsData: scannedProductData,));
+                                                  NavigationProcess().goTo(context, ProductsInputView(productsData: scannedProductData,));
 
-                                            });
+                                                });
 
-                                            debugPrint("Product Id Detected ${productId}");
-                                          }
+                                                debugPrint("Product Id Detected ${productId}");
+                                              }
 
-                                        },
-                                        child: Align(
-                                            alignment: AlignmentDirectional.center,
-                                            child: SizedBox(
-                                                height: 51,
-                                                width: 51,
-                                                child: Padding(
-                                                  padding: EdgeInsets.fromLTRB(3, 3, 3, 3),
-                                                  child: Padding(
-                                                    padding: EdgeInsets.fromLTRB(7, 7, 7, 7),
-                                                    child: Image(
-                                                      image: AssetImage("qr_scan_icon.png"),
-                                                      color: ColorsResources.lightestBlue,
-                                                      fit: BoxFit.cover,
+                                            },
+                                            child: Align(
+                                                alignment: AlignmentDirectional.center,
+                                                child: SizedBox(
+                                                    height: 51,
+                                                    width: 51,
+                                                    child: Padding(
+                                                        padding: EdgeInsets.fromLTRB(3, 3, 3, 3),
+                                                        child: Padding(
+                                                            padding: EdgeInsets.fromLTRB(7, 7, 7, 7),
+                                                            child: Image(
+                                                              image: AssetImage("qr_scan_icon.png"),
+                                                              color: ColorsResources.lightestBlue,
+                                                              fit: BoxFit.cover,
+                                                            )
+                                                        )
                                                     )
-                                                  )
                                                 )
                                             )
                                         )

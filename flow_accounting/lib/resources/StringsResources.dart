@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/28/22, 10:34 AM
+ * Last modified 3/29/22, 9:11 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -829,6 +829,16 @@ class StringsResources {
   static String quickSaveHint() {
 
     return "ثبت سریع";
+  }
+
+  static String supportHint() {
+
+    return "ارتباط با پشتیبانی";
+  }
+
+  static String barcodeScannerHint() {
+
+    return "سکن بارکد محصول و ...";
   }
 
   static String sortHint() {
