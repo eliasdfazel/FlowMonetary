@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/29/22, 9:25 AM
+ * Last modified 3/29/22, 9:33 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -27,6 +27,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:syncfusion_flutter_barcodes/barcodes.dart';
 
@@ -128,7 +129,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
 
     getAllProducts();
 
-    allImagesCheckpoint();
+    prepareAllImagesCheckpoint();
 
     controllerProductName.text = widget.productsData?.productName == null ? "" : (widget.productsData?.productName)!;
     controllerProductDescription.text = widget.productsData?.productDescription == null ? "" : (widget.productsData?.productDescription)!;
@@ -1721,7 +1722,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
 
   }
 
-  void allImagesCheckpoint() async {
+  void prepareAllImagesCheckpoint() async {
 
     if (widget.productsData != null) {
 
@@ -1744,6 +1745,8 @@ class _ProductsInputViewState extends State<ProductsInputView> {
       );
 
       /* Barcode Image */
+      bool barcodeFileCheckpoint = await fileExist("Product_${widget.productsData!.id}.PNG");
+
       Widget barcodeGenerator = Screenshot(
           controller: barcodeSnapshotController,
           child: SfBarcodeGenerator(
@@ -1762,13 +1765,30 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                   child:  SizedBox(
                       height: 131,
                       width: 131,
-                      child: barcodeGenerator
+                      child: InkWell(
+                        onTap: () async {
+
+                          if (barcodeFileCheckpoint) {
+
+                            Directory appDocumentsDirectory = await getApplicationSupportDirectory();
+
+                            String appDocumentsPath = appDocumentsDirectory.path;
+
+                            String filePath = '$appDocumentsPath/Product_${widget.productsData!.id}.PNG';
+
+                            Share.shareFiles([filePath],
+                                text: "${widget.productsData!.productName}");
+
+                          }
+
+                        },
+                        child: barcodeGenerator
+                      )
                   )
               )
           )
       );
 
-      bool barcodeFileCheckpoint = await fileExist("Product_${widget.productsData!.id}.PNG");
 
       Future.delayed(Duration(milliseconds: 333), () {
 
