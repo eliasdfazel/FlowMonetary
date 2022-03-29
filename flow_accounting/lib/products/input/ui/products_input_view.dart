@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/29/22, 10:13 AM
+ * Last modified 3/29/22, 10:15 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -21,6 +21,7 @@ import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
 import 'package:flow_accounting/utils/io/FileIO.dart';
+import 'package:flow_accounting/utils/print/printing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -194,7 +195,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                   splashFactory: InkRipple.splashFactory,
                   onTap: () {
 
-
+                    PrintingProcess().start();
 
                   },
                   child: Container(
