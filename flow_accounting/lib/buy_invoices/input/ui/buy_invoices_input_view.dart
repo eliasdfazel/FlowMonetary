@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/29/22, 9:15 AM
+ * Last modified 3/29/22, 9:25 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -93,7 +93,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
   }
 
   @override
-  void initState(){
+  void initState() {
 
     controllerInvoiceNumber.text = widget.buyInvoicesData?.buyInvoiceNumber == null ? "" : (widget.buyInvoicesData?.buyInvoiceNumber)!;
     controllerInvoiceDescription.text = widget.buyInvoicesData?.buyInvoiceDescription == null ? "" : (widget.buyInvoicesData?.buyInvoiceDescription)!;

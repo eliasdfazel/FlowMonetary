@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/29/22, 9:19 AM
+ * Last modified 3/29/22, 9:25 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -124,7 +124,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
   }
 
   @override
-  void initState(){
+  void initState() {
 
     getAllProducts();
 

@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/22/22, 6:07 AM
+ * Last modified 3/29/22, 9:25 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -327,7 +327,7 @@ class _GeneralDataView extends State<GeneralDataView> {
                                     splashFactory: InkRipple.splashFactory,
                                     onTap: () {
 
-                                      Future.delayed(const Duration(milliseconds: 777), (){
+                                      Future.delayed(const Duration(milliseconds: 777), () {
 
                                         NavigationProcess().goTo(context, const GeneralFinancialCharts());
 

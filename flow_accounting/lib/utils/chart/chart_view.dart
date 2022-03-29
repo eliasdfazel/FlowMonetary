@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/13/22, 6:44 AM
+ * Last modified 3/29/22, 9:25 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -36,7 +36,7 @@ class LineChartViewState extends State<LineChartView> {
   double maximumY = 1000000000000;
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
 
     minimumY = widget.listOfSpotY.reduce((current, next) => (current < next) ? current : next);
