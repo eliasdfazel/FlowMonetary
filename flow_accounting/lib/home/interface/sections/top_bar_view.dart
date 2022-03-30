@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/30/22, 4:01 AM
+ * Last modified 3/30/22, 4:03 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -324,7 +324,7 @@ class _TopBarViewState extends State<TopBarView> {
 
                         if (element.id != profilesData.id) {
 
-                          element.userSignedIn = ProfilesData.Profile_Singed_In;
+                          element.userSignedIn = ProfilesData.Profile_Not_Singed_In;
                           profilesDatabaseInputs.updateProfileData(element);
 
                         }
