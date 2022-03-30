@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/21/22, 10:01 AM
+ * Last modified 3/30/22, 4:01 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -32,6 +32,7 @@ class _TopBarViewState extends State<TopBarView> {
 
   ProfilesData? profilesData;
 
+  List<ProfilesData> allProfilesData = [];
   List<Widget> allAccountsViews = [];
 
   Widget profileImageView = Image(
@@ -249,13 +250,13 @@ class _TopBarViewState extends State<TopBarView> {
 
       ProfileDatabaseQueries profileDatabaseQueries = ProfileDatabaseQueries();
 
-      List<ProfilesData> allAccountsProfiles = await profileDatabaseQueries.getAllProfileAccounts();
+      allProfilesData = await profileDatabaseQueries.getAllProfileAccounts();
 
-      if (allAccountsProfiles.isNotEmpty) {
+      if (allProfilesData.isNotEmpty) {
 
         allAccountsViews.clear();
 
-        for(var element in allAccountsProfiles) {
+        for(var element in allProfilesData) {
 
           allAccountsViews.add(profilesItemView(element));
 
@@ -317,9 +318,20 @@ class _TopBarViewState extends State<TopBarView> {
                     splashFactory: InkRipple.splashFactory,
                     onTap: () async {
 
-                      profilesData.userSignedIn = ProfilesData.Profile_Singed_In;
-
                       ProfilesDatabaseInputs profilesDatabaseInputs = ProfilesDatabaseInputs();
+
+                      for (var element in allProfilesData) {
+
+                        if (element.id != profilesData.id) {
+
+                          element.userSignedIn = ProfilesData.Profile_Singed_In;
+                          profilesDatabaseInputs.updateProfileData(element);
+
+                        }
+
+                      }
+
+                      profilesData.userSignedIn = ProfilesData.Profile_Singed_In;
                       await profilesDatabaseInputs.updateProfileData(profilesData);
 
                       Future.delayed(Duration(milliseconds: 357), () {
