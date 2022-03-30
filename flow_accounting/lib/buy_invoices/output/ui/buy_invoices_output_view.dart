@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/28/22, 10:59 AM
+ * Last modified 3/30/22, 3:50 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -531,7 +531,7 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
                               height: 39,
                               width: double.infinity,
                               child: Padding(
-                                padding: const EdgeInsets.fromLTRB(31, 11, 19, 0),
+                                padding: const EdgeInsets.fromLTRB(37, 11, 19, 0),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   children: [
@@ -561,9 +561,10 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
                                           child: Text(
                                             buyInvoicesData.buyInvoiceDateText,
                                             textAlign: TextAlign.right,
+                                            maxLines: 1,
                                             style: const TextStyle(
                                               color: ColorsResources.darkTransparent,
-                                              fontSize: 15,
+                                              fontSize: 14,
                                             ),
                                           ),
                                         ),
