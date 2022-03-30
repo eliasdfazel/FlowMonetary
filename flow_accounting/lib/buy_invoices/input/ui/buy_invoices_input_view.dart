@@ -2,13 +2,14 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/30/22, 5:39 AM
+ * Last modified 3/30/22, 5:48 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:blur/blur.dart';
@@ -31,6 +32,8 @@ import 'package:flow_accounting/utils/print/printing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
 class BuyInvoicesInputView extends StatefulWidget {
@@ -94,6 +97,22 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
   String? warningBoughtFrom;
 
   Widget printingView = Container();
+
+  Widget imageLogoPickerWidget = const Opacity(
+    opacity: 0.7,
+    child: Image(
+      image: AssetImage("unknown_user.png"),
+      fit: BoxFit.cover,
+    ),
+  );
+
+  Widget imageSignaturePickerWidget = const Opacity(
+    opacity: 0.7,
+    child: Image(
+      image: AssetImage("unknown_user.png"),
+      fit: BoxFit.cover,
+    ),
+  );
 
   @override
   void dispose() {
@@ -352,6 +371,116 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                             ],
                           ),
                         ),
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 73,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Expanded(
+                              flex: 13,
+                              child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                  child: Directionality(
+                                    textDirection: TextDirection.rtl,
+                                    child: TextField(
+                                      controller: controllerCompanyName,
+                                      textAlign: TextAlign.right,
+                                      textDirection: TextDirection.ltr,
+                                      textAlignVertical: TextAlignVertical.bottom,
+                                      maxLines: 1,
+                                      cursorColor: ColorsResources.primaryColor,
+                                      autocorrect: true,
+                                      autofocus: false,
+                                      keyboardType: TextInputType.text,
+                                      textInputAction: TextInputAction.next,
+                                      decoration: InputDecoration(
+                                        alignLabelWithHint: true,
+                                        border: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        enabledBorder: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        focusedBorder: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        errorBorder: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.red, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        errorText: warningNoticeCompanyName,
+                                        filled: true,
+                                        fillColor: ColorsResources.lightTransparent,
+                                        labelText: StringsResources.profileUserFullName(),
+                                        labelStyle: const TextStyle(
+                                            color: ColorsResources.dark,
+                                            fontSize: 17.0
+                                        ),
+                                        hintText: StringsResources.profileUserFullNameHint(),
+                                        hintStyle: const TextStyle(
+                                            color: ColorsResources.darkTransparent,
+                                            fontSize: 17.0
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                              ),
+                            ),
+                            Expanded(
+                              flex: 3,
+                              child: Padding(
+                                padding: EdgeInsets.fromLTRB(0, 0, 13, 0),
+                                child: InkWell(
+                                  onTap: () {
+
+                                    invokeLogoImagePicker();
+
+                                  },
+                                  child: AspectRatio(
+                                    aspectRatio: 1,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(51),
+                                      child: imagePickerWidget,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      const Divider(
+                        height: 13,
+                        color: Colors.transparent,
                       ),
                       SizedBox(
                         width: double.infinity,
@@ -2026,6 +2155,87 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
     List<CreditorsData> allCreditors = [];
 
     return allCreditors;
+  }
+
+  void invokeLogoImagePicker() async {
+
+    final ImagePicker imagePicker = ImagePicker();
+
+    final XFile? selectedImage = await imagePicker.pickImage(source: ImageSource.gallery);
+
+    if (selectedImage != null) {
+
+      String fileName = "${UserInformation.UserId}_LOGO.PNG";
+
+      companyLogoUrl = await getFilePath(fileName);
+
+      var imageFileByte = await selectedImage.readAsBytes();
+
+      savePickedImageFile(companyLogoUrl, imageFileByte);
+
+      setState(() {
+
+        imageLogoPickerWidget = Image.file(
+          File(selectedImage.path),
+          fit: BoxFit.cover,
+        );
+
+      });
+
+    }
+
+    debugPrint("Picked Image Path: $companyLogoUrl");
+
+  }
+
+  void invokeSignatureImagePicker() async {
+
+    final ImagePicker imagePicker = ImagePicker();
+
+    final XFile? selectedImage = await imagePicker.pickImage(source: ImageSource.gallery);
+
+    if (selectedImage != null) {
+
+      String fileName = "${UserInformation.UserId}_SIGNATURE.PNG";
+
+      companyDigitalSignature = await getFilePath(fileName);
+
+      var imageFileByte = await selectedImage.readAsBytes();
+
+      savePickedImageFile(companyDigitalSignature, imageFileByte);
+
+      setState(() {
+
+        imageSignaturePickerWidget = Image.file(
+          File(selectedImage.path),
+          fit: BoxFit.cover,
+        );
+
+      });
+
+    }
+
+    debugPrint("Picked Image Path: $companyDigitalSignature");
+
+  }
+
+  Future<String> getFilePath(String fileName) async {
+
+    Directory appDocumentsDirectory = await getApplicationSupportDirectory();
+
+    String appDocumentsPath = appDocumentsDirectory.path;
+
+    String filePath = '$appDocumentsPath/$fileName';
+
+    return filePath;
+  }
+
+  void savePickedImageFile(String imageFilePath, Uint8List imageBytes) async {
+
+    File file = File(imageFilePath);
+
+    file.writeAsBytes(imageBytes);
+
   }
 
 }
