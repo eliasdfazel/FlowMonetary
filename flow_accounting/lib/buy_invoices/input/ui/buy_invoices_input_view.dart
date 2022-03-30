@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/30/22, 5:55 AM
+ * Last modified 3/30/22, 6:14 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -107,10 +107,10 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
   );
 
   Widget imageSignaturePickerWidget = const Opacity(
-    opacity: 0.7,
+    opacity: 0.3,
     child: Image(
-      image: AssetImage("unknown_user.png"),
-      fit: BoxFit.cover,
+      image: AssetImage("signature_icon.png"),
+      fit: BoxFit.contain,
     ),
   );
 
@@ -1685,7 +1685,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                             Expanded(
                               flex: 1,
                               child: Padding(
-                                padding: EdgeInsets.fromLTRB(0, 0, 13, 0),
+                                padding: EdgeInsets.fromLTRB(13, 0, 13, 0),
                                 child: InkWell(
                                   onTap: () {
 
@@ -1696,20 +1696,31 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                     aspectRatio: 1,
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(19),
-                                      child: ColoredBox(
-                                        color: ColorsResources.lightestBlue,
-                                        child: imageSignaturePickerWidget,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            )
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          gradient: LinearGradient(
+                                            colors: [
+                                              ColorsResources.lightestBlue,
+                                              ColorsResources.white.withOpacity(0.3)
+                                            ],
+                                            transform: const GradientRotation(45),
+                                          )
+                                        ),
+                                        child: Padding(
+                                          padding: EdgeInsets.all(7),
+                                          child: imageSignaturePickerWidget
+                                        )
+                                      )
+                                    )
+                                  )
+                                )
+                              )
+                            ),
                           ],
                         ),
                       ),
                       const Divider(
-                        height: 13,
+                        height: 17,
                         color: Colors.transparent,
                       ),
                       SizedBox(
@@ -2268,7 +2279,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
         imageSignaturePickerWidget = Image.file(
           File(selectedImage.path),
-          fit: BoxFit.cover,
+          fit: BoxFit.contain,
         );
 
       });
