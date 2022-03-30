@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/30/22, 3:50 AM
+ * Last modified 3/30/22, 3:53 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -170,7 +170,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
                           File invoiceSnapshotFile = await createFileOfBytes("BuyInvoice_${widget.buyInvoicesData!.buyInvoiceNumber}", "PNG", snapshotBytes);
 
-                          PrintingProcess().start(invoiceSnapshotFile.path,
+                          PrintingProcess().startBuyInvoicePrint(widget.buyInvoicesData!, invoiceSnapshotFile.path,
                               sharingLabel: "${widget.buyInvoicesData!.buyInvoiceNumber}");
 
                         }
