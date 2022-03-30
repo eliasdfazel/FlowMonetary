@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/30/22, 6:14 AM
+ * Last modified 3/30/22, 6:21 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -129,7 +129,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
     companyDigitalSignature = widget.buyInvoicesData?.companyDigitalSignature ?? "";
 
-    controllerCompanyName.text = widget.buyInvoicesData?.companyName ?? UserInformation.UserId;
+    controllerCompanyName.text = widget.buyInvoicesData?.companyName ?? "";
 
     controllerInvoiceNumber.text = widget.buyInvoicesData?.buyInvoiceNumber == null ? "" : (widget.buyInvoicesData?.buyInvoiceNumber)!;
     controllerInvoiceDescription.text = widget.buyInvoicesData?.buyInvoiceDescription == null ? "" : (widget.buyInvoicesData?.buyInvoiceDescription)!;
@@ -1958,7 +1958,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                     BuyInvoicesData buyInvoicesData = BuyInvoicesData(
                                         id: timeNow,
 
-                                        companyName: controllerCompanyName.text,
+                                        companyName: controllerCompanyName.text.isEmpty ? UserInformation.UserId : controllerCompanyName.text,
                                         companyLogoUrl: companyLogoUrl,
 
                                         buyInvoiceNumber: controllerInvoiceNumber.text,
