@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/29/22, 10:15 AM
+ * Last modified 3/30/22, 3:32 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -21,7 +21,6 @@ import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
 import 'package:flow_accounting/utils/io/FileIO.dart';
-import 'package:flow_accounting/utils/print/printing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -82,6 +81,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
       )
   );
 
+  ScreenshotController invoiceSnapshotController = ScreenshotController();
   ScreenshotController barcodeSnapshotController = ScreenshotController();
 
   Widget barcodeView = Opacity(
@@ -116,8 +116,6 @@ class _ProductsInputViewState extends State<ProductsInputView> {
 
   String? warningNoticeBuyingPrice;
   String? warningNoticeProfitPercent;
-
-  Widget printingView = Container();
 
   @override
   void dispose() {
@@ -155,133 +153,6 @@ class _ProductsInputViewState extends State<ProductsInputView> {
     super.initState();
 
     BackButtonInterceptor.add(aInterceptor);
-
-    if (widget.productsData != null) {
-
-      printingView = Expanded(
-        flex: 3,
-        child: Tooltip(
-          triggerMode: TooltipTriggerMode.longPress,
-          message: StringsResources.printingHint(),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(51),
-            gradient: const LinearGradient(
-              colors: [
-                ColorsResources.black,
-                ColorsResources.primaryColorDark
-              ],
-              transform: const GradientRotation(45),
-            ),
-          ),
-          height: 31,
-          padding: const EdgeInsets.fromLTRB(13, 3, 13, 3),
-          margin: const EdgeInsets.fromLTRB(0, 0, 0, 7),
-          preferBelow: false,
-          textStyle: const TextStyle(
-            color: ColorsResources.light,
-            fontSize: 13,
-          ),
-          showDuration: const Duration(seconds: 3),
-          waitDuration: const Duration(seconds: 5),
-          child: AspectRatio(
-            aspectRatio: 1,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(51.0),
-              child: Material(
-                shadowColor: Colors.transparent,
-                color: Colors.transparent,
-                child: InkWell(
-                  splashColor: ColorsResources.applicationGeeksEmpire.withOpacity(0.5),
-                  splashFactory: InkRipple.splashFactory,
-                  onTap: () {
-
-                    PrintingProcess().start();
-
-                  },
-                  child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(51),
-                            topRight: Radius.circular(51),
-                            bottomLeft: Radius.circular(51),
-                            bottomRight: Radius.circular(51)
-                        ),
-                        border: const Border(
-                            top: BorderSide(
-                              color: ColorsResources.primaryColorLight,
-                              width: 1,
-                            ),
-                            bottom: BorderSide(
-                              color: ColorsResources.primaryColorLight,
-                              width: 1,
-                            ),
-                            left: BorderSide(
-                              color: ColorsResources.primaryColorLight,
-                              width: 1,
-                            ),
-                            right: BorderSide(
-                              color: ColorsResources.primaryColorLight,
-                              width: 1,
-                            )
-                        ),
-                        gradient: LinearGradient(
-                            colors: [
-                              ColorsResources.primaryColor.withOpacity(0.3),
-                              ColorsResources.primaryColorLight.withOpacity(0.3),
-                            ],
-                            begin: const FractionalOffset(0.0, 0.0),
-                            end: const FractionalOffset(1.0, 0.0),
-                            stops: const [0.0, 1.0],
-                            transform: const GradientRotation(45),
-                            tileMode: TileMode.clamp
-                        ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: ColorsResources.dark.withOpacity(0.179),
-                            blurRadius: 13.0,
-                            spreadRadius: 0.3,
-                            offset: const Offset(3.0, 3.0),
-                          ),
-                        ],
-                      ),
-                      child: Stack(
-                        children: [
-                          Blur(
-                            blur: 3.0,
-                            borderRadius: BorderRadius.circular(51),
-                            alignment: AlignmentDirectional.center,
-                            blurColor: Colors.blue,
-                            colorOpacity: 0.0,
-                            child: const SizedBox(
-                              width: double.infinity,
-                              height: 53,
-                            ),
-                          ),
-                          const SizedBox(
-                              width: 53,
-                              height: 53,
-                              child: Align(
-                                  alignment: AlignmentDirectional.center,
-                                  child: Padding(
-                                      padding: EdgeInsets.fromLTRB(7, 7, 7, 7),
-                                      child: Image(
-                                        image: AssetImage("print_icon.png"),
-                                        color: ColorsResources.lightestOrange,
-                                      )
-                                  )
-                              )
-                          )
-                        ],
-                      )
-                  ),
-                ),
-              ),
-            ),
-          ),
-        )
-      );
-
-    }
 
   }
 
@@ -334,864 +205,867 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                     height: double.infinity,
                   ),
                 ),
-                ListView(
-                    padding: const EdgeInsets.fromLTRB(0, 7, 0, 93),
-                    scrollDirection: Axis.vertical,
-                    physics: const BouncingScrollPhysics(),
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(13, 13, 13, 0),
-                        child:  Text(
-                          StringsResources.featureProductsTitle(),
-                          textDirection: TextDirection.rtl,
-                          style: TextStyle(
-                            fontSize: 23,
-                            color: ColorsResources.dark,
-                            shadows: [
-                              Shadow(
-                                blurRadius: 13,
-                                color: Colors.black.withOpacity(0.3),
-                                offset: const Offset(3, 3),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(13, 13, 13, 19),
-                        child: Text(
-                          StringsResources.featureProductsDescription(),
-                          textDirection: TextDirection.rtl,
-                          style: TextStyle(
-                            fontSize: 15,
-                            color: ColorsResources.blueGreen,
-                            shadows: [
-                              Shadow(
-                                blurRadius: 7,
-                                color: Colors.black.withOpacity(0.3),
-                                offset: const Offset(1.3, 1.3),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      const Divider(
-                        height: 1,
-                        color: Colors.transparent,
-                      ),
-                      Stack(
-                        children: [
-                          SizedBox(
-                            height: 313,
-                            width: double.infinity,
-                            child: Padding(
-                              padding: EdgeInsets.fromLTRB(13, 57, 13, 0),
-                              child: InkWell(
-                                  onTap: () {
-
-                                    invokeImagePickerProductImage();
-
-                                  },
-                                  child: Align(
-                                    alignment: AlignmentDirectional.center,
-                                    child: AspectRatio(
-                                      aspectRatio: 1,
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(13),
-                                        child: imagePickerProductImage,
-                                      ),
-                                    ),
-                                  )
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                            left: 19,
-                            child: barcodeView
-                          )
-                        ],
-                      ),
-                      const Divider(
-                        height: 17,
-                        color: Colors.transparent,
-                      ),
-                      SizedBox(
-                        width: double.infinity,
-                        height: 73,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Expanded(
-                              flex: 1,
-                              child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
-                                  child: Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: TextField(
-                                      controller: controllerProductName,
-                                      textAlign: TextAlign.right,
-                                      textDirection: TextDirection.ltr,
-                                      textAlignVertical: TextAlignVertical.bottom,
-                                      maxLines: 1,
-                                      cursorColor: ColorsResources.primaryColor,
-                                      autocorrect: true,
-                                      autofocus: false,
-                                      keyboardType: TextInputType.text,
-                                      textInputAction: TextInputAction.next,
-                                      decoration: InputDecoration(
-                                        alignLabelWithHint: true,
-                                        border: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        enabledBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        focusedBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        errorBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.red, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        errorText: warningNoticeName,
-                                        filled: true,
-                                        fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.productName(),
-                                        labelStyle: const TextStyle(
-                                            color: ColorsResources.dark,
-                                            fontSize: 17.0
-                                        ),
-                                        hintText: StringsResources.productNameHint(),
-                                        hintStyle: const TextStyle(
-                                            color: ColorsResources.darkTransparent,
-                                            fontSize: 17.0
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const Divider(
-                        height: 13,
-                        color: Colors.transparent,
-                      ),
-                      SizedBox(
-                        width: double.infinity,
-                        height: 133,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Expanded(
-                              flex: 1,
-                              child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
-                                  child: Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: TextField(
-                                      controller: controllerProductDescription,
-                                      textAlign: TextAlign.right,
-                                      textDirection: TextDirection.ltr,
-                                      textAlignVertical: TextAlignVertical.top,
-                                      maxLines: 5,
-                                      cursorColor: ColorsResources.primaryColor,
-                                      autocorrect: true,
-                                      autofocus: false,
-                                      keyboardType: TextInputType.text,
-                                      textInputAction: TextInputAction.next,
-                                      style: const TextStyle(
-                                          fontSize: 12,
-                                          color: ColorsResources.applicationDarkGeeksEmpire
-                                      ),
-                                      decoration: InputDecoration(
-                                        alignLabelWithHint: true,
-                                        border: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        enabledBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        focusedBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        errorBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.red, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        errorText: warningNoticeDescription,
-                                        filled: true,
-                                        fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.productDescription(),
-                                        labelStyle: const TextStyle(
-                                            color: ColorsResources.dark,
-                                            fontSize: 13.0
-                                        ),
-                                        hintText: StringsResources.productDescriptionHint(),
-                                        hintStyle: const TextStyle(
-                                            color: ColorsResources.darkTransparent,
-                                            fontSize: 13.0
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const Divider(
-                        height: 13,
-                        color: Colors.transparent,
-                      ),
-                      SizedBox(
-                        width: double.infinity,
-                        height: 73,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Expanded(
-                              flex: 1,
-                              child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
-                                  child: Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: TextField(
-                                      controller: controllerProductQuantity,
-                                      textAlign: TextAlign.right,
-                                      textDirection: TextDirection.ltr,
-                                      textAlignVertical: TextAlignVertical.bottom,
-                                      maxLines: 1,
-                                      cursorColor: ColorsResources.primaryColor,
-                                      autocorrect: true,
-                                      autofocus: false,
-                                      keyboardType: TextInputType.number,
-                                      textInputAction: TextInputAction.next,
-                                      decoration: InputDecoration(
-                                        alignLabelWithHint: true,
-                                        border: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        enabledBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        focusedBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        errorBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.red, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        errorText: warningNoticeName,
-                                        filled: true,
-                                        fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.productQuantity(),
-                                        labelStyle: const TextStyle(
-                                            color: ColorsResources.dark,
-                                            fontSize: 17.0
-                                        ),
-                                        hintText: StringsResources.productQuantityHint(),
-                                        hintStyle: const TextStyle(
-                                            color: ColorsResources.darkTransparent,
-                                            fontSize: 17.0
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                              ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
-                                  child: Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: TypeAheadField<ProductsData>(
-                                        suggestionsCallback: (pattern) async {
-
-                                          return await getProductsCategories();
-                                        },
-                                        itemBuilder: (context, suggestion) {
-
-                                          return ListTile(
-                                              title: Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                children: [
-                                                  Expanded(
-                                                      flex: 11,
-                                                      child:  Padding(
-                                                        padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
-                                                        child: Directionality(
-                                                          textDirection: TextDirection.rtl,
-                                                          child: Text(
-                                                            suggestion.productCategory,
-                                                            style: const TextStyle(
-                                                                color: ColorsResources.darkTransparent,
-                                                                fontSize: 15
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      )
-                                                  ),
-                                                ],
-                                              )
-                                          );
-                                        },
-                                        onSuggestionSelected: (suggestion) {
-
-                                          controllerProductCategory.text = suggestion.productCategory.toString();
-
-                                        },
-                                        errorBuilder: (context, suggestion) {
-
-                                          return Padding(
-                                              padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
-                                              child: Text(StringsResources.nothingText())
-                                          );
-                                        },
-                                        suggestionsBoxDecoration: SuggestionsBoxDecoration(
-                                            elevation: 7,
-                                            color: ColorsResources.light,
-                                            shadowColor: ColorsResources.darkTransparent,
-                                            borderRadius: BorderRadius.circular(17)
-                                        ),
-                                        textFieldConfiguration: TextFieldConfiguration(
-                                          controller: controllerProductCategory,
-                                          autofocus: false,
-                                          maxLines: 1,
-                                          cursorColor: ColorsResources.primaryColor,
-                                          keyboardType: TextInputType.name,
-                                          textInputAction: TextInputAction.next,
-                                          decoration: InputDecoration(
-                                            alignLabelWithHint: true,
-                                            border: const OutlineInputBorder(
-                                                borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                                borderRadius: BorderRadius.only(
-                                                    topLeft: Radius.circular(13),
-                                                    topRight: Radius.circular(13),
-                                                    bottomLeft: Radius.circular(13),
-                                                    bottomRight: Radius.circular(13)
-                                                ),
-                                                gapPadding: 5
-                                            ),
-                                            enabledBorder: const OutlineInputBorder(
-                                                borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                                borderRadius: BorderRadius.only(
-                                                    topLeft: Radius.circular(13),
-                                                    topRight: Radius.circular(13),
-                                                    bottomLeft: Radius.circular(13),
-                                                    bottomRight: Radius.circular(13)
-                                                ),
-                                                gapPadding: 5
-                                            ),
-                                            focusedBorder: const OutlineInputBorder(
-                                                borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
-                                                borderRadius: BorderRadius.only(
-                                                    topLeft: Radius.circular(13),
-                                                    topRight: Radius.circular(13),
-                                                    bottomLeft: Radius.circular(13),
-                                                    bottomRight: Radius.circular(13)
-                                                ),
-                                                gapPadding: 5
-                                            ),
-                                            errorBorder: const OutlineInputBorder(
-                                                borderSide: BorderSide(color: Colors.red, width: 1.0),
-                                                borderRadius: BorderRadius.only(
-                                                    topLeft: Radius.circular(13),
-                                                    topRight: Radius.circular(13),
-                                                    bottomLeft: Radius.circular(13),
-                                                    bottomRight: Radius.circular(13)
-                                                ),
-                                                gapPadding: 5
-                                            ),
-                                            errorText: warningNoticeCategory,
-                                            filled: true,
-                                            fillColor: ColorsResources.lightTransparent,
-                                            labelText: StringsResources.productCategory(),
-                                            labelStyle: const TextStyle(
-                                                color: ColorsResources.dark,
-                                                fontSize: 17.0
-                                            ),
-                                            hintText: StringsResources.productCategoryHint(),
-                                            hintStyle: const TextStyle(
-                                                color: ColorsResources.darkTransparent,
-                                                fontSize: 17.0
-                                            ),
-                                          ),
-                                        )
-                                    ),
-                                  )
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const Divider(
-                        height: 13,
-                        color: Colors.transparent,
-                      ),
-                      SizedBox(
-                        width: double.infinity,
-                        height: 73,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Expanded(
-                              flex: 1,
-                              child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
-                                  child: Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: TextField(
-                                      controller: controllerProductBuyingPrice,
-                                      textAlign: TextAlign.center,
-                                      textDirection: TextDirection.ltr,
-                                      textAlignVertical: TextAlignVertical.bottom,
-                                      maxLines: 1,
-                                      cursorColor: ColorsResources.primaryColor,
-                                      autocorrect: true,
-                                      autofocus: false,
-                                      keyboardType: TextInputType.number,
-                                      textInputAction: TextInputAction.done,
-                                      decoration: InputDecoration(
-                                        alignLabelWithHint: true,
-                                        border: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        enabledBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        focusedBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        errorBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.red, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        errorText: warningNoticeBuyingPrice,
-                                        filled: true,
-                                        fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.productBuyingPrice(),
-                                        labelStyle: const TextStyle(
-                                            color: ColorsResources.dark,
-                                            fontSize: 17.0
-                                        ),
-                                        hintText: StringsResources.productBuyingPriceHint(),
-                                        hintStyle: const TextStyle(
-                                            color: ColorsResources.darkTransparent,
-                                            fontSize: 17.0
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const Divider(
-                        height: 13,
-                        color: Colors.transparent,
-                      ),
-                      SizedBox(
-                        width: double.infinity,
-                        height: 73,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Expanded(
-                              flex: 1,
-                              child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
-                                  child: Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: TextField(
-                                      controller: controllerProductProfitPercent,
-                                      textAlign: TextAlign.center,
-                                      textDirection: TextDirection.ltr,
-                                      textAlignVertical: TextAlignVertical.bottom,
-                                      maxLines: 1,
-                                      cursorColor: ColorsResources.primaryColor,
-                                      autocorrect: true,
-                                      autofocus: false,
-                                      keyboardType: TextInputType.number,
-                                      textInputAction: TextInputAction.done,
-                                      decoration: InputDecoration(
-                                        alignLabelWithHint: true,
-                                        border: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        enabledBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        focusedBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        errorBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.red, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        errorText: warningNoticeProfitPercent,
-                                        filled: true,
-                                        fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.productProfitPercent(),
-                                        labelStyle: const TextStyle(
-                                            color: ColorsResources.dark,
-                                            fontSize: 17.0
-                                        ),
-                                        hintText: StringsResources.productProfitPercentHint(),
-                                        hintStyle: const TextStyle(
-                                            color: ColorsResources.darkTransparent,
-                                            fontSize: 17.0
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const Divider(
-                        height: 13,
-                        color: Colors.transparent,
-                      ),
-                      SizedBox(
-                        width: double.infinity,
-                        height: 73,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Expanded(
-                              flex: 3,
-                              child: Padding(
-                                padding: EdgeInsets.fromLTRB(13, 0, 0, 0),
-                                child: InkWell(
-                                  onTap: () {
-
-                                    invokeImagePickerProductBrand();
-
-                                  },
-                                  child: AspectRatio(
-                                    aspectRatio: 1,
-                                    child: Padding(
-                                      padding: EdgeInsets.fromLTRB(3, 3, 3, 3),
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(51),
-                                        child: imagePickerProductBrand,
-                                      ),
-                                    ),
-                                  ),
+                Screenshot(
+                  controller: invoiceSnapshotController,
+                  child: ListView(
+                      padding: const EdgeInsets.fromLTRB(0, 7, 0, 93),
+                      scrollDirection: Axis.vertical,
+                      physics: const BouncingScrollPhysics(),
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(13, 13, 13, 0),
+                          child:  Text(
+                            StringsResources.featureProductsTitle(),
+                            textDirection: TextDirection.rtl,
+                            style: TextStyle(
+                              fontSize: 23,
+                              color: ColorsResources.dark,
+                              shadows: [
+                                Shadow(
+                                  blurRadius: 13,
+                                  color: Colors.black.withOpacity(0.3),
+                                  offset: const Offset(3, 3),
                                 )
-                              )
+                              ],
                             ),
-                            Expanded(
-                              flex: 13,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(13, 13, 13, 19),
+                          child: Text(
+                            StringsResources.featureProductsDescription(),
+                            textDirection: TextDirection.rtl,
+                            style: TextStyle(
+                              fontSize: 15,
+                              color: ColorsResources.blueGreen,
+                              shadows: [
+                                Shadow(
+                                  blurRadius: 7,
+                                  color: Colors.black.withOpacity(0.3),
+                                  offset: const Offset(1.3, 1.3),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                        const Divider(
+                          height: 1,
+                          color: Colors.transparent,
+                        ),
+                        Stack(
+                          children: [
+                            SizedBox(
+                              height: 313,
+                              width: double.infinity,
                               child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
-                                  child: Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: TypeAheadField<ProductsData>(
-                                        suggestionsCallback: (pattern) async {
+                                padding: EdgeInsets.fromLTRB(13, 57, 13, 0),
+                                child: InkWell(
+                                    onTap: () {
 
-                                          return await getProductsBrands();
-                                        },
-                                        itemBuilder: (context, suggestion) {
+                                      invokeImagePickerProductImage();
 
-                                          return ListTile(
-                                              title: Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                children: [
-                                                  Expanded(
-                                                      flex: 11,
-                                                      child:  Padding(
-                                                        padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
-                                                        child: Directionality(
-                                                          textDirection: TextDirection.rtl,
-                                                          child: Text(
-                                                            suggestion.productBrand,
-                                                            style: const TextStyle(
-                                                                color: ColorsResources.darkTransparent,
-                                                                fontSize: 15
+                                    },
+                                    child: Align(
+                                      alignment: AlignmentDirectional.center,
+                                      child: AspectRatio(
+                                        aspectRatio: 1,
+                                        child: ClipRRect(
+                                          borderRadius: BorderRadius.circular(13),
+                                          child: imagePickerProductImage,
+                                        ),
+                                      ),
+                                    )
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                                left: 19,
+                                child: barcodeView
+                            )
+                          ],
+                        ),
+                        const Divider(
+                          height: 17,
+                          color: Colors.transparent,
+                        ),
+                        SizedBox(
+                          width: double.infinity,
+                          height: 73,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Expanded(
+                                flex: 1,
+                                child: Padding(
+                                    padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                    child: Directionality(
+                                      textDirection: TextDirection.rtl,
+                                      child: TextField(
+                                        controller: controllerProductName,
+                                        textAlign: TextAlign.right,
+                                        textDirection: TextDirection.ltr,
+                                        textAlignVertical: TextAlignVertical.bottom,
+                                        maxLines: 1,
+                                        cursorColor: ColorsResources.primaryColor,
+                                        autocorrect: true,
+                                        autofocus: false,
+                                        keyboardType: TextInputType.text,
+                                        textInputAction: TextInputAction.next,
+                                        decoration: InputDecoration(
+                                          alignLabelWithHint: true,
+                                          border: const OutlineInputBorder(
+                                              borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(13),
+                                                  topRight: Radius.circular(13),
+                                                  bottomLeft: Radius.circular(13),
+                                                  bottomRight: Radius.circular(13)
+                                              ),
+                                              gapPadding: 5
+                                          ),
+                                          enabledBorder: const OutlineInputBorder(
+                                              borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(13),
+                                                  topRight: Radius.circular(13),
+                                                  bottomLeft: Radius.circular(13),
+                                                  bottomRight: Radius.circular(13)
+                                              ),
+                                              gapPadding: 5
+                                          ),
+                                          focusedBorder: const OutlineInputBorder(
+                                              borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(13),
+                                                  topRight: Radius.circular(13),
+                                                  bottomLeft: Radius.circular(13),
+                                                  bottomRight: Radius.circular(13)
+                                              ),
+                                              gapPadding: 5
+                                          ),
+                                          errorBorder: const OutlineInputBorder(
+                                              borderSide: BorderSide(color: Colors.red, width: 1.0),
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(13),
+                                                  topRight: Radius.circular(13),
+                                                  bottomLeft: Radius.circular(13),
+                                                  bottomRight: Radius.circular(13)
+                                              ),
+                                              gapPadding: 5
+                                          ),
+                                          errorText: warningNoticeName,
+                                          filled: true,
+                                          fillColor: ColorsResources.lightTransparent,
+                                          labelText: StringsResources.productName(),
+                                          labelStyle: const TextStyle(
+                                              color: ColorsResources.dark,
+                                              fontSize: 17.0
+                                          ),
+                                          hintText: StringsResources.productNameHint(),
+                                          hintStyle: const TextStyle(
+                                              color: ColorsResources.darkTransparent,
+                                              fontSize: 17.0
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Divider(
+                          height: 13,
+                          color: Colors.transparent,
+                        ),
+                        SizedBox(
+                          width: double.infinity,
+                          height: 133,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Expanded(
+                                flex: 1,
+                                child: Padding(
+                                    padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                    child: Directionality(
+                                      textDirection: TextDirection.rtl,
+                                      child: TextField(
+                                        controller: controllerProductDescription,
+                                        textAlign: TextAlign.right,
+                                        textDirection: TextDirection.ltr,
+                                        textAlignVertical: TextAlignVertical.top,
+                                        maxLines: 5,
+                                        cursorColor: ColorsResources.primaryColor,
+                                        autocorrect: true,
+                                        autofocus: false,
+                                        keyboardType: TextInputType.text,
+                                        textInputAction: TextInputAction.next,
+                                        style: const TextStyle(
+                                            fontSize: 12,
+                                            color: ColorsResources.applicationDarkGeeksEmpire
+                                        ),
+                                        decoration: InputDecoration(
+                                          alignLabelWithHint: true,
+                                          border: const OutlineInputBorder(
+                                              borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(13),
+                                                  topRight: Radius.circular(13),
+                                                  bottomLeft: Radius.circular(13),
+                                                  bottomRight: Radius.circular(13)
+                                              ),
+                                              gapPadding: 5
+                                          ),
+                                          enabledBorder: const OutlineInputBorder(
+                                              borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(13),
+                                                  topRight: Radius.circular(13),
+                                                  bottomLeft: Radius.circular(13),
+                                                  bottomRight: Radius.circular(13)
+                                              ),
+                                              gapPadding: 5
+                                          ),
+                                          focusedBorder: const OutlineInputBorder(
+                                              borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(13),
+                                                  topRight: Radius.circular(13),
+                                                  bottomLeft: Radius.circular(13),
+                                                  bottomRight: Radius.circular(13)
+                                              ),
+                                              gapPadding: 5
+                                          ),
+                                          errorBorder: const OutlineInputBorder(
+                                              borderSide: BorderSide(color: Colors.red, width: 1.0),
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(13),
+                                                  topRight: Radius.circular(13),
+                                                  bottomLeft: Radius.circular(13),
+                                                  bottomRight: Radius.circular(13)
+                                              ),
+                                              gapPadding: 5
+                                          ),
+                                          errorText: warningNoticeDescription,
+                                          filled: true,
+                                          fillColor: ColorsResources.lightTransparent,
+                                          labelText: StringsResources.productDescription(),
+                                          labelStyle: const TextStyle(
+                                              color: ColorsResources.dark,
+                                              fontSize: 13.0
+                                          ),
+                                          hintText: StringsResources.productDescriptionHint(),
+                                          hintStyle: const TextStyle(
+                                              color: ColorsResources.darkTransparent,
+                                              fontSize: 13.0
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Divider(
+                          height: 13,
+                          color: Colors.transparent,
+                        ),
+                        SizedBox(
+                          width: double.infinity,
+                          height: 73,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Expanded(
+                                flex: 1,
+                                child: Padding(
+                                    padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                    child: Directionality(
+                                      textDirection: TextDirection.rtl,
+                                      child: TextField(
+                                        controller: controllerProductQuantity,
+                                        textAlign: TextAlign.right,
+                                        textDirection: TextDirection.ltr,
+                                        textAlignVertical: TextAlignVertical.bottom,
+                                        maxLines: 1,
+                                        cursorColor: ColorsResources.primaryColor,
+                                        autocorrect: true,
+                                        autofocus: false,
+                                        keyboardType: TextInputType.number,
+                                        textInputAction: TextInputAction.next,
+                                        decoration: InputDecoration(
+                                          alignLabelWithHint: true,
+                                          border: const OutlineInputBorder(
+                                              borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(13),
+                                                  topRight: Radius.circular(13),
+                                                  bottomLeft: Radius.circular(13),
+                                                  bottomRight: Radius.circular(13)
+                                              ),
+                                              gapPadding: 5
+                                          ),
+                                          enabledBorder: const OutlineInputBorder(
+                                              borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(13),
+                                                  topRight: Radius.circular(13),
+                                                  bottomLeft: Radius.circular(13),
+                                                  bottomRight: Radius.circular(13)
+                                              ),
+                                              gapPadding: 5
+                                          ),
+                                          focusedBorder: const OutlineInputBorder(
+                                              borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(13),
+                                                  topRight: Radius.circular(13),
+                                                  bottomLeft: Radius.circular(13),
+                                                  bottomRight: Radius.circular(13)
+                                              ),
+                                              gapPadding: 5
+                                          ),
+                                          errorBorder: const OutlineInputBorder(
+                                              borderSide: BorderSide(color: Colors.red, width: 1.0),
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(13),
+                                                  topRight: Radius.circular(13),
+                                                  bottomLeft: Radius.circular(13),
+                                                  bottomRight: Radius.circular(13)
+                                              ),
+                                              gapPadding: 5
+                                          ),
+                                          errorText: warningNoticeName,
+                                          filled: true,
+                                          fillColor: ColorsResources.lightTransparent,
+                                          labelText: StringsResources.productQuantity(),
+                                          labelStyle: const TextStyle(
+                                              color: ColorsResources.dark,
+                                              fontSize: 17.0
+                                          ),
+                                          hintText: StringsResources.productQuantityHint(),
+                                          hintStyle: const TextStyle(
+                                              color: ColorsResources.darkTransparent,
+                                              fontSize: 17.0
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                ),
+                              ),
+                              Expanded(
+                                flex: 1,
+                                child: Padding(
+                                    padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                    child: Directionality(
+                                      textDirection: TextDirection.rtl,
+                                      child: TypeAheadField<ProductsData>(
+                                          suggestionsCallback: (pattern) async {
+
+                                            return await getProductsCategories();
+                                          },
+                                          itemBuilder: (context, suggestion) {
+
+                                            return ListTile(
+                                                title: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                  children: [
+                                                    Expanded(
+                                                        flex: 11,
+                                                        child:  Padding(
+                                                          padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
+                                                          child: Directionality(
+                                                            textDirection: TextDirection.rtl,
+                                                            child: Text(
+                                                              suggestion.productCategory,
+                                                              style: const TextStyle(
+                                                                  color: ColorsResources.darkTransparent,
+                                                                  fontSize: 15
+                                                              ),
                                                             ),
                                                           ),
-                                                        ),
-                                                      )
+                                                        )
+                                                    ),
+                                                  ],
+                                                )
+                                            );
+                                          },
+                                          onSuggestionSelected: (suggestion) {
+
+                                            controllerProductCategory.text = suggestion.productCategory.toString();
+
+                                          },
+                                          errorBuilder: (context, suggestion) {
+
+                                            return Padding(
+                                                padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
+                                                child: Text(StringsResources.nothingText())
+                                            );
+                                          },
+                                          suggestionsBoxDecoration: SuggestionsBoxDecoration(
+                                              elevation: 7,
+                                              color: ColorsResources.light,
+                                              shadowColor: ColorsResources.darkTransparent,
+                                              borderRadius: BorderRadius.circular(17)
+                                          ),
+                                          textFieldConfiguration: TextFieldConfiguration(
+                                            controller: controllerProductCategory,
+                                            autofocus: false,
+                                            maxLines: 1,
+                                            cursorColor: ColorsResources.primaryColor,
+                                            keyboardType: TextInputType.name,
+                                            textInputAction: TextInputAction.next,
+                                            decoration: InputDecoration(
+                                              alignLabelWithHint: true,
+                                              border: const OutlineInputBorder(
+                                                  borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                                  borderRadius: BorderRadius.only(
+                                                      topLeft: Radius.circular(13),
+                                                      topRight: Radius.circular(13),
+                                                      bottomLeft: Radius.circular(13),
+                                                      bottomRight: Radius.circular(13)
                                                   ),
-                                                ],
-                                              )
-                                          );
-                                        },
-                                        onSuggestionSelected: (suggestion) {
-
-                                          controllerProductBrand.text = suggestion.productBrand.toString();
-
-                                        },
-                                        errorBuilder: (context, suggestion) {
-
-                                          return Padding(
-                                              padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
-                                              child: Text(StringsResources.nothingText())
-                                          );
-                                        },
-                                        suggestionsBoxDecoration: SuggestionsBoxDecoration(
-                                            elevation: 7,
-                                            color: ColorsResources.light,
-                                            shadowColor: ColorsResources.darkTransparent,
-                                            borderRadius: BorderRadius.circular(17)
+                                                  gapPadding: 5
+                                              ),
+                                              enabledBorder: const OutlineInputBorder(
+                                                  borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                                  borderRadius: BorderRadius.only(
+                                                      topLeft: Radius.circular(13),
+                                                      topRight: Radius.circular(13),
+                                                      bottomLeft: Radius.circular(13),
+                                                      bottomRight: Radius.circular(13)
+                                                  ),
+                                                  gapPadding: 5
+                                              ),
+                                              focusedBorder: const OutlineInputBorder(
+                                                  borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                                                  borderRadius: BorderRadius.only(
+                                                      topLeft: Radius.circular(13),
+                                                      topRight: Radius.circular(13),
+                                                      bottomLeft: Radius.circular(13),
+                                                      bottomRight: Radius.circular(13)
+                                                  ),
+                                                  gapPadding: 5
+                                              ),
+                                              errorBorder: const OutlineInputBorder(
+                                                  borderSide: BorderSide(color: Colors.red, width: 1.0),
+                                                  borderRadius: BorderRadius.only(
+                                                      topLeft: Radius.circular(13),
+                                                      topRight: Radius.circular(13),
+                                                      bottomLeft: Radius.circular(13),
+                                                      bottomRight: Radius.circular(13)
+                                                  ),
+                                                  gapPadding: 5
+                                              ),
+                                              errorText: warningNoticeCategory,
+                                              filled: true,
+                                              fillColor: ColorsResources.lightTransparent,
+                                              labelText: StringsResources.productCategory(),
+                                              labelStyle: const TextStyle(
+                                                  color: ColorsResources.dark,
+                                                  fontSize: 17.0
+                                              ),
+                                              hintText: StringsResources.productCategoryHint(),
+                                              hintStyle: const TextStyle(
+                                                  color: ColorsResources.darkTransparent,
+                                                  fontSize: 17.0
+                                              ),
+                                            ),
+                                          )
+                                      ),
+                                    )
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Divider(
+                          height: 13,
+                          color: Colors.transparent,
+                        ),
+                        SizedBox(
+                          width: double.infinity,
+                          height: 73,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Expanded(
+                                flex: 1,
+                                child: Padding(
+                                    padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                    child: Directionality(
+                                      textDirection: TextDirection.rtl,
+                                      child: TextField(
+                                        controller: controllerProductBuyingPrice,
+                                        textAlign: TextAlign.center,
+                                        textDirection: TextDirection.ltr,
+                                        textAlignVertical: TextAlignVertical.bottom,
+                                        maxLines: 1,
+                                        cursorColor: ColorsResources.primaryColor,
+                                        autocorrect: true,
+                                        autofocus: false,
+                                        keyboardType: TextInputType.number,
+                                        textInputAction: TextInputAction.done,
+                                        decoration: InputDecoration(
+                                          alignLabelWithHint: true,
+                                          border: const OutlineInputBorder(
+                                              borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(13),
+                                                  topRight: Radius.circular(13),
+                                                  bottomLeft: Radius.circular(13),
+                                                  bottomRight: Radius.circular(13)
+                                              ),
+                                              gapPadding: 5
+                                          ),
+                                          enabledBorder: const OutlineInputBorder(
+                                              borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(13),
+                                                  topRight: Radius.circular(13),
+                                                  bottomLeft: Radius.circular(13),
+                                                  bottomRight: Radius.circular(13)
+                                              ),
+                                              gapPadding: 5
+                                          ),
+                                          focusedBorder: const OutlineInputBorder(
+                                              borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(13),
+                                                  topRight: Radius.circular(13),
+                                                  bottomLeft: Radius.circular(13),
+                                                  bottomRight: Radius.circular(13)
+                                              ),
+                                              gapPadding: 5
+                                          ),
+                                          errorBorder: const OutlineInputBorder(
+                                              borderSide: BorderSide(color: Colors.red, width: 1.0),
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(13),
+                                                  topRight: Radius.circular(13),
+                                                  bottomLeft: Radius.circular(13),
+                                                  bottomRight: Radius.circular(13)
+                                              ),
+                                              gapPadding: 5
+                                          ),
+                                          errorText: warningNoticeBuyingPrice,
+                                          filled: true,
+                                          fillColor: ColorsResources.lightTransparent,
+                                          labelText: StringsResources.productBuyingPrice(),
+                                          labelStyle: const TextStyle(
+                                              color: ColorsResources.dark,
+                                              fontSize: 17.0
+                                          ),
+                                          hintText: StringsResources.productBuyingPriceHint(),
+                                          hintStyle: const TextStyle(
+                                              color: ColorsResources.darkTransparent,
+                                              fontSize: 17.0
+                                          ),
                                         ),
-                                        textFieldConfiguration: TextFieldConfiguration(
-                                          controller: controllerProductBrand,
-                                          autofocus: false,
-                                          maxLines: 1,
-                                          cursorColor: ColorsResources.primaryColor,
-                                          keyboardType: TextInputType.name,
-                                          textInputAction: TextInputAction.done,
-                                          decoration: InputDecoration(
-                                            alignLabelWithHint: true,
-                                            border: const OutlineInputBorder(
-                                                borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                                borderRadius: BorderRadius.only(
-                                                    topLeft: Radius.circular(13),
-                                                    topRight: Radius.circular(13),
-                                                    bottomLeft: Radius.circular(13),
-                                                    bottomRight: Radius.circular(13)
-                                                ),
-                                                gapPadding: 5
-                                            ),
-                                            enabledBorder: const OutlineInputBorder(
-                                                borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                                borderRadius: BorderRadius.only(
-                                                    topLeft: Radius.circular(13),
-                                                    topRight: Radius.circular(13),
-                                                    bottomLeft: Radius.circular(13),
-                                                    bottomRight: Radius.circular(13)
-                                                ),
-                                                gapPadding: 5
-                                            ),
-                                            focusedBorder: const OutlineInputBorder(
-                                                borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
-                                                borderRadius: BorderRadius.only(
-                                                    topLeft: Radius.circular(13),
-                                                    topRight: Radius.circular(13),
-                                                    bottomLeft: Radius.circular(13),
-                                                    bottomRight: Radius.circular(13)
-                                                ),
-                                                gapPadding: 5
-                                            ),
-                                            errorBorder: const OutlineInputBorder(
-                                                borderSide: BorderSide(color: Colors.red, width: 1.0),
-                                                borderRadius: BorderRadius.only(
-                                                    topLeft: Radius.circular(13),
-                                                    topRight: Radius.circular(13),
-                                                    bottomLeft: Radius.circular(13),
-                                                    bottomRight: Radius.circular(13)
-                                                ),
-                                                gapPadding: 5
-                                            ),
-                                            errorText: warningNoticeBrand,
-                                            filled: true,
-                                            fillColor: ColorsResources.lightTransparent,
-                                            labelText: StringsResources.productBrand(),
-                                            labelStyle: const TextStyle(
-                                                color: ColorsResources.dark,
-                                                fontSize: 17.0
-                                            ),
-                                            hintText: StringsResources.productBrandHint(),
-                                            hintStyle: const TextStyle(
-                                                color: ColorsResources.darkTransparent,
-                                                fontSize: 17.0
+                                      ),
+                                    )
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Divider(
+                          height: 13,
+                          color: Colors.transparent,
+                        ),
+                        SizedBox(
+                          width: double.infinity,
+                          height: 73,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Expanded(
+                                flex: 1,
+                                child: Padding(
+                                    padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                    child: Directionality(
+                                      textDirection: TextDirection.rtl,
+                                      child: TextField(
+                                        controller: controllerProductProfitPercent,
+                                        textAlign: TextAlign.center,
+                                        textDirection: TextDirection.ltr,
+                                        textAlignVertical: TextAlignVertical.bottom,
+                                        maxLines: 1,
+                                        cursorColor: ColorsResources.primaryColor,
+                                        autocorrect: true,
+                                        autofocus: false,
+                                        keyboardType: TextInputType.number,
+                                        textInputAction: TextInputAction.done,
+                                        decoration: InputDecoration(
+                                          alignLabelWithHint: true,
+                                          border: const OutlineInputBorder(
+                                              borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(13),
+                                                  topRight: Radius.circular(13),
+                                                  bottomLeft: Radius.circular(13),
+                                                  bottomRight: Radius.circular(13)
+                                              ),
+                                              gapPadding: 5
+                                          ),
+                                          enabledBorder: const OutlineInputBorder(
+                                              borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(13),
+                                                  topRight: Radius.circular(13),
+                                                  bottomLeft: Radius.circular(13),
+                                                  bottomRight: Radius.circular(13)
+                                              ),
+                                              gapPadding: 5
+                                          ),
+                                          focusedBorder: const OutlineInputBorder(
+                                              borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(13),
+                                                  topRight: Radius.circular(13),
+                                                  bottomLeft: Radius.circular(13),
+                                                  bottomRight: Radius.circular(13)
+                                              ),
+                                              gapPadding: 5
+                                          ),
+                                          errorBorder: const OutlineInputBorder(
+                                              borderSide: BorderSide(color: Colors.red, width: 1.0),
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(13),
+                                                  topRight: Radius.circular(13),
+                                                  bottomLeft: Radius.circular(13),
+                                                  bottomRight: Radius.circular(13)
+                                              ),
+                                              gapPadding: 5
+                                          ),
+                                          errorText: warningNoticeProfitPercent,
+                                          filled: true,
+                                          fillColor: ColorsResources.lightTransparent,
+                                          labelText: StringsResources.productProfitPercent(),
+                                          labelStyle: const TextStyle(
+                                              color: ColorsResources.dark,
+                                              fontSize: 17.0
+                                          ),
+                                          hintText: StringsResources.productProfitPercentHint(),
+                                          hintStyle: const TextStyle(
+                                              color: ColorsResources.darkTransparent,
+                                              fontSize: 17.0
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Divider(
+                          height: 13,
+                          color: Colors.transparent,
+                        ),
+                        SizedBox(
+                          width: double.infinity,
+                          height: 73,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Expanded(
+                                  flex: 3,
+                                  child: Padding(
+                                      padding: EdgeInsets.fromLTRB(13, 0, 0, 0),
+                                      child: InkWell(
+                                        onTap: () {
+
+                                          invokeImagePickerProductBrand();
+
+                                        },
+                                        child: AspectRatio(
+                                          aspectRatio: 1,
+                                          child: Padding(
+                                            padding: EdgeInsets.fromLTRB(3, 3, 3, 3),
+                                            child: ClipRRect(
+                                              borderRadius: BorderRadius.circular(51),
+                                              child: imagePickerProductBrand,
                                             ),
                                           ),
-                                        )
-                                    ),
+                                        ),
+                                      )
                                   )
                               ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const Divider(
-                        height: 13,
-                        color: Colors.transparent,
-                      ),
-                      SizedBox(
-                        width: double.infinity,
-                        height: 37,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Expanded(
-                              flex: 1,
-                              child: Padding(
-                                  padding: EdgeInsets.fromLTRB(13, 0, 13, 0),
-                                  child: Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: Text(
-                                      StringsResources.colorSelectorHint(),
-                                      style: TextStyle(
-                                          fontSize: 15
+                              Expanded(
+                                flex: 13,
+                                child: Padding(
+                                    padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                    child: Directionality(
+                                      textDirection: TextDirection.rtl,
+                                      child: TypeAheadField<ProductsData>(
+                                          suggestionsCallback: (pattern) async {
+
+                                            return await getProductsBrands();
+                                          },
+                                          itemBuilder: (context, suggestion) {
+
+                                            return ListTile(
+                                                title: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                  children: [
+                                                    Expanded(
+                                                        flex: 11,
+                                                        child:  Padding(
+                                                          padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
+                                                          child: Directionality(
+                                                            textDirection: TextDirection.rtl,
+                                                            child: Text(
+                                                              suggestion.productBrand,
+                                                              style: const TextStyle(
+                                                                  color: ColorsResources.darkTransparent,
+                                                                  fontSize: 15
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        )
+                                                    ),
+                                                  ],
+                                                )
+                                            );
+                                          },
+                                          onSuggestionSelected: (suggestion) {
+
+                                            controllerProductBrand.text = suggestion.productBrand.toString();
+
+                                          },
+                                          errorBuilder: (context, suggestion) {
+
+                                            return Padding(
+                                                padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
+                                                child: Text(StringsResources.nothingText())
+                                            );
+                                          },
+                                          suggestionsBoxDecoration: SuggestionsBoxDecoration(
+                                              elevation: 7,
+                                              color: ColorsResources.light,
+                                              shadowColor: ColorsResources.darkTransparent,
+                                              borderRadius: BorderRadius.circular(17)
+                                          ),
+                                          textFieldConfiguration: TextFieldConfiguration(
+                                            controller: controllerProductBrand,
+                                            autofocus: false,
+                                            maxLines: 1,
+                                            cursorColor: ColorsResources.primaryColor,
+                                            keyboardType: TextInputType.name,
+                                            textInputAction: TextInputAction.done,
+                                            decoration: InputDecoration(
+                                              alignLabelWithHint: true,
+                                              border: const OutlineInputBorder(
+                                                  borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                                  borderRadius: BorderRadius.only(
+                                                      topLeft: Radius.circular(13),
+                                                      topRight: Radius.circular(13),
+                                                      bottomLeft: Radius.circular(13),
+                                                      bottomRight: Radius.circular(13)
+                                                  ),
+                                                  gapPadding: 5
+                                              ),
+                                              enabledBorder: const OutlineInputBorder(
+                                                  borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                                  borderRadius: BorderRadius.only(
+                                                      topLeft: Radius.circular(13),
+                                                      topRight: Radius.circular(13),
+                                                      bottomLeft: Radius.circular(13),
+                                                      bottomRight: Radius.circular(13)
+                                                  ),
+                                                  gapPadding: 5
+                                              ),
+                                              focusedBorder: const OutlineInputBorder(
+                                                  borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                                                  borderRadius: BorderRadius.only(
+                                                      topLeft: Radius.circular(13),
+                                                      topRight: Radius.circular(13),
+                                                      bottomLeft: Radius.circular(13),
+                                                      bottomRight: Radius.circular(13)
+                                                  ),
+                                                  gapPadding: 5
+                                              ),
+                                              errorBorder: const OutlineInputBorder(
+                                                  borderSide: BorderSide(color: Colors.red, width: 1.0),
+                                                  borderRadius: BorderRadius.only(
+                                                      topLeft: Radius.circular(13),
+                                                      topRight: Radius.circular(13),
+                                                      bottomLeft: Radius.circular(13),
+                                                      bottomRight: Radius.circular(13)
+                                                  ),
+                                                  gapPadding: 5
+                                              ),
+                                              errorText: warningNoticeBrand,
+                                              filled: true,
+                                              fillColor: ColorsResources.lightTransparent,
+                                              labelText: StringsResources.productBrand(),
+                                              labelStyle: const TextStyle(
+                                                  color: ColorsResources.dark,
+                                                  fontSize: 17.0
+                                              ),
+                                              hintText: StringsResources.productBrandHint(),
+                                              hintStyle: const TextStyle(
+                                                  color: ColorsResources.darkTransparent,
+                                                  fontSize: 17.0
+                                              ),
+                                            ),
+                                          )
                                       ),
-                                    ),
-                                  )
+                                    )
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        width: double.infinity,
-                        height: 103,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Expanded(
-                              flex: 1,
-                              child: Padding(
-                                padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
-                                child: colorSelectorView,
+                        const Divider(
+                          height: 13,
+                          color: Colors.transparent,
+                        ),
+                        SizedBox(
+                          width: double.infinity,
+                          height: 37,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Expanded(
+                                flex: 1,
+                                child: Padding(
+                                    padding: EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                    child: Directionality(
+                                      textDirection: TextDirection.rtl,
+                                      child: Text(
+                                        StringsResources.colorSelectorHint(),
+                                        style: TextStyle(
+                                            fontSize: 15
+                                        ),
+                                      ),
+                                    )
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                    ]
+                        SizedBox(
+                          width: double.infinity,
+                          height: 103,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Expanded(
+                                flex: 1,
+                                child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                  child: colorSelectorView,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ]
+                  ),
                 ),
                 Positioned(
                     top: 19,
@@ -1225,16 +1099,11 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                 ),
                 Positioned(
                     bottom: 19,
-                    left: 47,
-                    right: 47,
+                    left: 71,
+                    right: 71,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        printingView,
-                        Expanded(
-                          flex: 1,
-                          child: ColoredBox(color: Colors.transparent),
-                        ),
                         Expanded(
                           flex: 13,
                           child: ClipRRect(
@@ -1923,7 +1792,6 @@ class _ProductsInputViewState extends State<ProductsInputView> {
               )
           )
       );
-
 
       Future.delayed(Duration(milliseconds: 333), () {
 

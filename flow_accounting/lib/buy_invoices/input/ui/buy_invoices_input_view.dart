@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/29/22, 9:25 AM
+ * Last modified 3/30/22, 3:32 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -84,6 +84,8 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
   String? warningBoughtFrom;
 
+  Widget printingView = Container();
+
   @override
   void dispose() {
 
@@ -116,6 +118,143 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
     super.initState();
 
     BackButtonInterceptor.add(aInterceptor);
+
+    if (widget.productsData != null) {
+
+      printingView = Expanded(
+          flex: 3,
+          child: Tooltip(
+            triggerMode: TooltipTriggerMode.longPress,
+            message: StringsResources.printingHint(),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(51),
+              gradient: const LinearGradient(
+                colors: [
+                  ColorsResources.black,
+                  ColorsResources.primaryColorDark
+                ],
+                transform: const GradientRotation(45),
+              ),
+            ),
+            height: 31,
+            padding: const EdgeInsets.fromLTRB(13, 3, 13, 3),
+            margin: const EdgeInsets.fromLTRB(0, 0, 0, 7),
+            preferBelow: false,
+            textStyle: const TextStyle(
+              color: ColorsResources.light,
+              fontSize: 13,
+            ),
+            showDuration: const Duration(seconds: 3),
+            waitDuration: const Duration(seconds: 5),
+            child: AspectRatio(
+              aspectRatio: 1,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(51.0),
+                child: Material(
+                  shadowColor: Colors.transparent,
+                  color: Colors.transparent,
+                  child: InkWell(
+                    splashColor: ColorsResources.applicationGeeksEmpire.withOpacity(0.5),
+                    splashFactory: InkRipple.splashFactory,
+                    onTap: () async {
+
+                      invoiceSnapshotController.capture().then((Uint8List? snapshotBytes) {
+
+                        if (snapshotBytes != null) {
+
+                          createFileOfBytes("Product_${widget.}", "PNG", snapshotBytes);
+
+                          PrintingProcess().start("", "");
+
+                        }
+
+                      });
+
+                    },
+                    child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(51),
+                              topRight: Radius.circular(51),
+                              bottomLeft: Radius.circular(51),
+                              bottomRight: Radius.circular(51)
+                          ),
+                          border: const Border(
+                              top: BorderSide(
+                                color: ColorsResources.primaryColorLight,
+                                width: 1,
+                              ),
+                              bottom: BorderSide(
+                                color: ColorsResources.primaryColorLight,
+                                width: 1,
+                              ),
+                              left: BorderSide(
+                                color: ColorsResources.primaryColorLight,
+                                width: 1,
+                              ),
+                              right: BorderSide(
+                                color: ColorsResources.primaryColorLight,
+                                width: 1,
+                              )
+                          ),
+                          gradient: LinearGradient(
+                              colors: [
+                                ColorsResources.primaryColor.withOpacity(0.3),
+                                ColorsResources.primaryColorLight.withOpacity(0.3),
+                              ],
+                              begin: const FractionalOffset(0.0, 0.0),
+                              end: const FractionalOffset(1.0, 0.0),
+                              stops: const [0.0, 1.0],
+                              transform: const GradientRotation(45),
+                              tileMode: TileMode.clamp
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: ColorsResources.dark.withOpacity(0.179),
+                              blurRadius: 13.0,
+                              spreadRadius: 0.3,
+                              offset: const Offset(3.0, 3.0),
+                            ),
+                          ],
+                        ),
+                        child: Stack(
+                          children: [
+                            Blur(
+                              blur: 3.0,
+                              borderRadius: BorderRadius.circular(51),
+                              alignment: AlignmentDirectional.center,
+                              blurColor: Colors.blue,
+                              colorOpacity: 0.0,
+                              child: const SizedBox(
+                                width: double.infinity,
+                                height: 53,
+                              ),
+                            ),
+                            const SizedBox(
+                                width: 53,
+                                height: 53,
+                                child: Align(
+                                    alignment: AlignmentDirectional.center,
+                                    child: Padding(
+                                        padding: EdgeInsets.fromLTRB(7, 7, 7, 7),
+                                        child: Image(
+                                          image: AssetImage("print_icon.png"),
+                                          color: ColorsResources.lightestOrange,
+                                        )
+                                    )
+                                )
+                            )
+                          ],
+                        )
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          )
+      );
+
+    }
 
   }
 
