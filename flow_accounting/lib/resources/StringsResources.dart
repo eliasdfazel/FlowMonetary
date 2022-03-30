@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/29/22, 10:13 AM
+ * Last modified 3/30/22, 5:52 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -844,6 +844,11 @@ class StringsResources {
   static String printingHint() {
 
     return "چاپ این سند";
+  }
+
+  static String digitalSignatureHint() {
+
+    return "محل قرار دادن امضا دیجیتالی";
   }
 
   static String sortHint() {

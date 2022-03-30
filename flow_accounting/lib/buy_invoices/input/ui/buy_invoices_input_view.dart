@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/30/22, 5:48 AM
+ * Last modified 3/30/22, 5:55 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -448,7 +448,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                         hintText: StringsResources.profileUserFullNameHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
-                                            fontSize: 17.0
+                                            fontSize: 13.0
                                         ),
                                       ),
                                     ),
@@ -469,7 +469,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                     aspectRatio: 1,
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(51),
-                                      child: imagePickerWidget,
+                                      child: imageLogoPickerWidget,
                                     ),
                                   ),
                                 ),
@@ -1645,6 +1645,66 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                   )
                               ),
                             ),
+                          ],
+                        ),
+                      ),
+                      const Divider(
+                        height: 13,
+                        color: Colors.transparent,
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 37,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: Padding(
+                                  padding: EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                  child: Directionality(
+                                    textDirection: TextDirection.rtl,
+                                    child: Text(
+                                      StringsResources.digitalSignatureHint(),
+                                      style: TextStyle(
+                                          fontSize: 15
+                                      ),
+                                    ),
+                                  )
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 179,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: Padding(
+                                padding: EdgeInsets.fromLTRB(0, 0, 13, 0),
+                                child: InkWell(
+                                  onTap: () {
+
+                                    invokeSignatureImagePicker();
+
+                                  },
+                                  child: AspectRatio(
+                                    aspectRatio: 1,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(19),
+                                      child: ColoredBox(
+                                        color: ColorsResources.lightestBlue,
+                                        child: imageSignaturePickerWidget,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
                           ],
                         ),
                       ),
