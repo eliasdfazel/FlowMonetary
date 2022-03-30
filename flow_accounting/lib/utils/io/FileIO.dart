@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/28/22, 7:00 AM
+ * Last modified 3/30/22, 3:36 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -26,7 +26,7 @@ Future<bool> fileExist(String fileName) async {
   return file.exists();
 }
 
-void createFileOfBytes(String fileName, String fileFormat, Uint8List contentBytes) async {
+Future<File> createFileOfBytes(String fileName, String fileFormat, Uint8List contentBytes) async {
 
   Directory appDocumentsDirectory = await getApplicationSupportDirectory();
 
@@ -34,6 +34,5 @@ void createFileOfBytes(String fileName, String fileFormat, Uint8List contentByte
 
   String filePath = '$appDocumentsPath/${fileName}.${fileFormat}';
 
-  File(filePath).writeAsBytes(contentBytes);
-
+  return File(filePath).writeAsBytes(contentBytes);
 }
