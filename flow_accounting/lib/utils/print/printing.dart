@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/30/22, 5:27 AM
+ * Last modified 3/30/22, 6:17 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -28,7 +28,7 @@ class PrintingProcess {
 
       if (snapshotBytes != null) {
 
-        File invoiceSnapshotFile = await createFileOfBytes("BuyInvoice_${buyInvoicesData!.buyInvoiceNumber}", "PNG", snapshotBytes);
+        File invoiceSnapshotFile = await createFileOfBytes("BuyInvoice_${buyInvoicesData.buyInvoiceNumber}", "PNG", snapshotBytes);
 
         Share.shareFiles([invoiceSnapshotFile.path],
             text: "${sharingLabel}");
