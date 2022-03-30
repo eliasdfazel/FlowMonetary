@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/28/22, 9:55 AM
+ * Last modified 3/30/22, 5:39 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -33,6 +33,9 @@ class BuyInvoicesDatabaseQueries {
       return BuyInvoicesData(
         id: maps[i]['id'],
 
+        companyName: maps[i]['companyName'],
+        companyLogoUrl: maps[i]['companyLogoUrl'],
+
         buyInvoiceNumber: maps[i]['buyInvoiceNumber'],
 
         buyInvoiceDescription: maps[i]['buyInvoiceDescription'],
@@ -53,6 +56,8 @@ class BuyInvoicesDatabaseQueries {
         boughtFrom: maps[i]['boughtFrom'],
 
         buyPreInvoice: maps[i]['buyPreInvoice'],
+
+        companyDigitalSignature: maps[i]['companyDigitalSignature'],
 
         colorTag: int.parse(maps[i]['colorTag'].toString()),
       );

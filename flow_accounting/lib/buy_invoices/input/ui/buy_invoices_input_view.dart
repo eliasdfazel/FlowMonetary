@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/30/22, 5:27 AM
+ * Last modified 3/30/22, 5:39 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -48,6 +48,8 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
   ColorSelectorView colorSelectorView = ColorSelectorView();
 
+  TextEditingController controllerCompanyName = TextEditingController();
+
   TextEditingController controllerInvoiceNumber = TextEditingController();
   TextEditingController controllerInvoiceDescription = TextEditingController();
 
@@ -69,7 +71,13 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
   int timeNow = DateTime.now().millisecondsSinceEpoch;
 
+  String companyLogoUrl = "";
+
+  String companyDigitalSignature = "";
+
   bool buyInvoicesDataUpdated = false;
+
+  String? warningNoticeCompanyName;
 
   String? warningNoticeNumber;
   String? warningNoticeDescription;
@@ -97,6 +105,12 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
   @override
   void initState() {
+
+    companyLogoUrl = widget.buyInvoicesData?.companyLogoUrl ?? "";
+
+    companyDigitalSignature = widget.buyInvoicesData?.companyDigitalSignature ?? "";
+
+    controllerCompanyName.text = widget.buyInvoicesData?.companyName ?? UserInformation.UserId;
 
     controllerInvoiceNumber.text = widget.buyInvoicesData?.buyInvoiceNumber == null ? "" : (widget.buyInvoicesData?.buyInvoiceNumber)!;
     controllerInvoiceDescription.text = widget.buyInvoicesData?.buyInvoiceDescription == null ? "" : (widget.buyInvoicesData?.buyInvoiceDescription)!;
@@ -1607,6 +1621,18 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
                                   bool noError = true;
 
+                                  if (controllerCompanyName.text.isEmpty) {
+
+                                    setState(() {
+
+                                      warningNoticeCompanyName = StringsResources.errorText();
+
+                                    });
+
+                                    noError = false;
+
+                                  }
+
                                   if (controllerInvoiceNumber.text.isEmpty) {
 
                                     setState(() {
@@ -1732,6 +1758,9 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                     BuyInvoicesData buyInvoicesData = BuyInvoicesData(
                                         id: timeNow,
 
+                                        companyName: controllerCompanyName.text,
+                                        companyLogoUrl: companyLogoUrl,
+
                                         buyInvoiceNumber: controllerInvoiceNumber.text,
 
                                         buyInvoiceDescription: controllerInvoiceDescription.text,
@@ -1752,6 +1781,8 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                         boughtFrom: controllerBoughtFrom.text,
 
                                         buyPreInvoice: controllerPreInvoice.text,
+
+                                        companyDigitalSignature: companyDigitalSignature,
 
                                         colorTag: colorSelectorView.selectedColor.value
                                     );

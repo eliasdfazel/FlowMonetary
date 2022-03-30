@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/22/22, 10:24 AM
+ * Last modified 3/30/22, 5:39 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -16,6 +16,9 @@ class BuyInvoicesData {
   static const String BuyInvoice_Final = "1";
 
   final int id;
+
+  final String companyName;
+  final String companyLogoUrl;
 
   final String buyInvoiceNumber;
 
@@ -38,10 +41,15 @@ class BuyInvoicesData {
 
   String buyPreInvoice = BuyInvoicesData.BuyInvoice_Final;
 
+  final String companyDigitalSignature;
+
   int colorTag = ColorsResources.dark.value;
 
   BuyInvoicesData({
     required this.id,
+
+    required this.companyName,
+    required this.companyLogoUrl,
 
     required this.buyInvoiceNumber,
 
@@ -64,12 +72,17 @@ class BuyInvoicesData {
 
     required this.buyPreInvoice,
 
+    required this.companyDigitalSignature,
+
     required this.colorTag,
   });
 
   Map<String, dynamic> toMap() {
     return {
       'id': id,
+
+      'companyName': companyName,
+      'companyLogoUrl': companyLogoUrl,
 
       'buyInvoiceNumber': buyInvoiceNumber,
 
@@ -92,6 +105,8 @@ class BuyInvoicesData {
 
       'buyPreInvoice': buyPreInvoice,
 
+      'companyDigitalSignature': companyDigitalSignature,
+
       'colorTag': colorTag,
     };
   }
@@ -100,6 +115,9 @@ class BuyInvoicesData {
   String toString() {
     return 'BuyInvoicesData{'
         'id: $id,'
+
+        'companyName: $companyName,'
+        'companyLogoUrl: $companyLogoUrl,'
 
         'buyInvoiceNumber: $buyInvoiceNumber,'
 
@@ -121,6 +139,8 @@ class BuyInvoicesData {
         'boughtFrom: $boughtFrom,'
 
         'buyPreInvoice: $buyPreInvoice,'
+
+        'companyDigitalSignature: $companyDigitalSignature,'
 
         'colorTag: $colorTag,'
         '}';
