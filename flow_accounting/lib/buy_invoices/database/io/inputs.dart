@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/4/22, 9:51 AM
+ * Last modified 4/4/22, 9:59 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -52,6 +52,7 @@ class BuyInvoicesDatabaseInputs {
               'paidBy TEXT, '
               'boughtFrom TEXT, '
               'buyPreInvoice TEXT, '
+              'companyDigitalSignature TEXT, '
               'colorTag TEXT'
               ')',
         );
