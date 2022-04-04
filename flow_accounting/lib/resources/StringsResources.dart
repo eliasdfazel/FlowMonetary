@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/4/22, 5:29 AM
+ * Last modified 4/4/22, 9:43 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -856,6 +856,10 @@ class StringsResources {
     return "چاپ این سند";
   }
 
+  static String digitalSignature() {
+
+    return "امضا دیجیتالی";
+  }
   static String digitalSignatureHint() {
 
     return "محل بارگذاری امضا دیجیتالی";

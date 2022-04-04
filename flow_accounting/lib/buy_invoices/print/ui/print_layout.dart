@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/4/22, 9:31 AM
+ * Last modified 4/4/22, 9:43 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -49,6 +49,23 @@ void main() async {
 class PrintLayout {
 
   Widget design(BuyInvoicesData buyInvoicesData) {
+
+    String invoiceType = StringsResources.buyInvoiceFinal();
+
+    switch (buyInvoicesData.buyPreInvoice) {
+      case BuyInvoicesData.BuyInvoice_Pre: {
+
+        invoiceType = StringsResources.buyInvoicePre();
+
+        break;
+      }
+      case BuyInvoicesData.BuyInvoice_Final: {
+
+        invoiceType = StringsResources.buyInvoiceFinal();
+
+        break;
+      }
+    }
 
     return SafeArea(
       child: Container(
@@ -685,6 +702,120 @@ class PrintLayout {
                                                   color: ColorsResources.black,
                                                   fontFamily: 'Sans',
                                                   fontWeight: FontWeight.bold,
+                                                  decoration: TextDecoration.none
+                                              )
+                                          )
+                                      )
+                                  )
+                              ),
+                            ),
+                          ],
+                        )
+                    ),
+
+                    Divider(
+                      height: 3,
+                      indent: 13,
+                      endIndent: 13,
+                      thickness: 1,
+                      color: ColorsResources.blue.withOpacity(0.37),
+                    ),
+
+                    Padding(
+                        padding: EdgeInsets.fromLTRB(0, 7, 0, 0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: SizedBox(
+                                  height: 31,
+                                  width: double.infinity,
+                                  child: Padding(
+                                      padding: EdgeInsets.fromLTRB(7, 0, 7, 0),
+                                      child: Align(
+                                          alignment: AlignmentDirectional.centerEnd,
+                                          child: Text(
+                                              StringsResources.digitalSignature(),
+                                              textDirection: TextDirection.rtl,
+                                              style: TextStyle(
+                                                  fontSize: 12,
+                                                  color: ColorsResources.blackTransparent,
+                                                  fontFamily: 'Sans',
+                                                  decoration: TextDecoration.none
+                                              )
+                                          )
+                                      )
+                                  )
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: SizedBox(
+                                  height: 31,
+                                  width: double.infinity,
+                                  child: Padding(
+                                      padding: EdgeInsets.fromLTRB(7, 0, 7, 0),
+                                      child: Align(
+                                          alignment: AlignmentDirectional.centerEnd,
+                                          child: Text(
+                                              StringsResources.buyInvoiceType(),
+                                              textDirection: TextDirection.rtl,
+                                              style: TextStyle(
+                                                  fontSize: 12,
+                                                  color: ColorsResources.blackTransparent,
+                                                  fontFamily: 'Sans',
+                                                  decoration: TextDecoration.none
+                                              )
+                                          )
+                                      )
+                                  )
+                              ),
+                            ),
+                          ],
+                        )
+                    ),
+                    Padding(
+                        padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: SizedBox(
+                                  height: 51,
+                                  width: double.infinity,
+                                  child: Padding(
+                                      padding: EdgeInsets.fromLTRB(7, 0, 9, 0),
+                                      child: Align(
+                                          alignment: AlignmentDirectional.center,
+                                          child: AspectRatio(
+                                            aspectRatio: 1,
+                                            child: Image.file(
+                                                File(buyInvoicesData.companyDigitalSignature)
+                                            ),
+                                          )
+                                      )
+                                  )
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: SizedBox(
+                                  height: 51,
+                                  width: double.infinity,
+                                  child: Padding(
+                                      padding: EdgeInsets.fromLTRB(7, 0, 9, 0),
+                                      child: Align(
+                                          alignment: AlignmentDirectional.centerEnd,
+                                          child: Text(
+                                              invoiceType,
+                                              textDirection: TextDirection.rtl,
+                                              maxLines: 1,
+                                              style: TextStyle(
+                                                  fontSize: 17,
+                                                  color: ColorsResources.black,
+                                                  fontFamily: 'Sans',
                                                   decoration: TextDecoration.none
                                               )
                                           )
