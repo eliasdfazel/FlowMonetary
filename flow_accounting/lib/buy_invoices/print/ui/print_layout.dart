@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/4/22, 10:19 AM
+ * Last modified 4/4/22, 10:23 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -43,7 +43,7 @@ class PrintLayout {
         body: Container(
             color: ColorsResources.black,
             child: Padding(
-                padding: EdgeInsets.fromLTRB(3, 3, 3, 1),
+                padding: EdgeInsets.fromLTRB(3, 1, 3, 1),
                 child: Container(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(13)),
@@ -58,7 +58,7 @@ class PrintLayout {
                     child: Column(
                       children: [
                         Padding(
-                          padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                          padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
                           child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
@@ -548,7 +548,7 @@ class PrintLayout {
                                             width: 3,
                                           )
                                       ),
-                                      color: ColorsResources.whiteTransparent,
+                                      color: ColorsResources.white.withOpacity(0.37),
                                     ),
                                     child: Padding(
                                         padding: EdgeInsets.fromLTRB(7, 1, 7, 1),
