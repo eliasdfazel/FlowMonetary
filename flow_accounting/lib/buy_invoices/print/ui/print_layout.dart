@@ -2,16 +2,19 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/4/22, 5:59 AM
+ * Last modified 4/4/22, 7:22 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
+import 'dart:io';
+
 import 'package:flow_accounting/buy_invoices/database/structures/tables_structure.dart';
 import 'package:flow_accounting/prototype/prototype_data.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
+import 'package:flow_accounting/utils/colors/color_modifier.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
@@ -58,7 +61,7 @@ class PrintLayout {
                     gradient: LinearGradient(
                         colors: [
                           ColorsResources.white,
-                          Color(buyInvoicesData.colorTag),
+                          Color(buyInvoicesData.colorTag).lighten(0.19),
                         ],
                         transform: GradientRotation(45)
                     )
@@ -69,12 +72,60 @@ class PrintLayout {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Expanded(
+                          flex: 9,
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(7, 0, 7, 0),
+                            child: Align(
+                              alignment: AlignmentDirectional.centerEnd,
+                              child: Text(
+                                buyInvoicesData.companyName,
+                                textDirection: TextDirection.rtl,
+                                style: TextStyle(
+                                  fontSize: 19,
+                                  color: ColorsResources.black,
+                                  fontFamily: 'Sans',
+                                  decoration: TextDecoration.none
+                                )
+                              )
+                            )
+                          )
+                        ),
+                        Expanded(
+                          flex: 3,
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(7, 0, 7, 0),
+                            child: AspectRatio(
+                                aspectRatio: 1,
+                                child: Align(
+                                    alignment: AlignmentDirectional.center,
+                                    child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(19),
+                                        child: ColoredBox(
+                                            color: Color(buyInvoicesData.colorTag),
+                                            child: Padding(
+                                              padding: EdgeInsets.fromLTRB(1, 1, 1, 1),
+                                              child: Image.file(
+                                                  File(buyInvoicesData.companyLogoUrl)
+                                              )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                          )
+                        )
+                      ]
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Expanded(
                           flex: 1,
                           child: SizedBox(
                               height: 37,
                               width: double.infinity,
                               child: Padding(
-                                padding: EdgeInsets.fromLTRB(7, 0, 7, 0),
+                                padding: EdgeInsets.fromLTRB(7, 0, 0, 0),
                                 child: Align(
                                     alignment: AlignmentDirectional.centerEnd,
                                     child: Text(
@@ -96,7 +147,7 @@ class PrintLayout {
                               height: 37,
                               width: double.infinity,
                               child: Padding(
-                                  padding: EdgeInsets.fromLTRB(7, 0, 7, 0),
+                                  padding: EdgeInsets.fromLTRB(7, 0, 0, 0),
                                   child: Align(
                                     alignment: AlignmentDirectional.centerEnd,
                                     child: Text(
@@ -123,7 +174,7 @@ class PrintLayout {
                               height: 51,
                               width: double.infinity,
                               child: Padding(
-                                  padding: EdgeInsets.fromLTRB(7, 0, 7, 0),
+                                  padding: EdgeInsets.fromLTRB(7, 0, 9, 0),
                                   child: Align(
                                     alignment: AlignmentDirectional.centerEnd,
                                     child: Text(
@@ -147,7 +198,7 @@ class PrintLayout {
                             height: 51,
                             width: double.infinity,
                             child: Padding(
-                                padding: EdgeInsets.fromLTRB(7, 0, 7, 0),
+                                padding: EdgeInsets.fromLTRB(7, 0, 9, 0),
                                 child: Align(
                                   alignment: AlignmentDirectional.centerEnd,
                                   child: Text(
