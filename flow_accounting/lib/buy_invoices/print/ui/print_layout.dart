@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/4/22, 9:43 AM
+ * Last modified 4/4/22, 9:51 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -25,7 +25,7 @@ void main() async {
       home: PrintLayout().design(BuyInvoicesData(
           id: 0,
           companyName: "فروشگاه خانه من",
-          companyLogoUrl: "",
+          companyLogoUrl: "/data/data/co.geeksempire.flow.accounting.flow_accounting/files/Unknown_LOGO.PNG",
           buyInvoiceNumber: "123456789",
           buyInvoiceDescription: "خرید محصولات wmf برای سفارش آقای راد",
           buyInvoiceDateText: "سه شنبه ۱۵ فروردین ۱۴۰۱",
@@ -39,7 +39,7 @@ void main() async {
           paidBy: "6274121345789654",
           boughtFrom: "نمایندگی wmf مشهد - احمدآباد",
           buyPreInvoice: BuyInvoicesData.BuyInvoice_Final,
-          companyDigitalSignature: "",
+          companyDigitalSignature: "/data/data/co.geeksempire.flow.accounting.flow_accounting/files/Unknown_SIGNATURE.PNG",
           colorTag: PrototypeData().listOfColors[0].value
       ))
   ));
