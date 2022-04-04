@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/13/22, 6:44 AM
+ * Last modified 4/4/22, 5:54 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -63,7 +63,9 @@ class ColorsResources {
   static const Color darkTransparent = Color.fromARGB(130, 10, 15, 24);
 
   static const Color white = Color.fromARGB(255, 255, 255, 255);
+  static const Color whiteTransparent = Color.fromARGB(201, 255, 255, 255);
   static const Color black = Color.fromARGB(255, 0, 0, 0);
+  static const Color blackTransparent = Color.fromARGB(201, 0, 0, 0);
 
   static const Color applicationGeeksEmpire = Color.fromARGB(255, 35, 125, 174);
   static const Color applicationLightGeeksEmpire = Color.fromARGB(255, 36, 176, 255);
