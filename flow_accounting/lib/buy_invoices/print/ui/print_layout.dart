@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/4/22, 9:12 AM
+ * Last modified 4/4/22, 9:21 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -333,6 +333,189 @@ class PrintLayout {
                                           alignment: AlignmentDirectional.centerEnd,
                                           child: Text(
                                               buyInvoicesData.boughtProductName,
+                                              textDirection: TextDirection.rtl,
+                                              maxLines: 2,
+                                              style: TextStyle(
+                                                  fontSize: 17,
+                                                  color: ColorsResources.black,
+                                                  fontFamily: 'Sans',
+                                                  decoration: TextDecoration.none
+                                              )
+                                          )
+                                      )
+                                  )
+                              ),
+                            ),
+                          ],
+                        )
+                    ),
+
+                    Divider(
+                      height: 1,
+                      indent: 13,
+                      endIndent: 13,
+                      thickness: 1,
+                      color: ColorsResources.darkTransparent,
+                    ),
+
+                    Padding(
+                        padding: EdgeInsets.fromLTRB(0, 7, 0, 0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Expanded(
+                              flex: 5,
+                              child: SizedBox(
+                                  height: 31,
+                                  width: double.infinity,
+                                  child: Padding(
+                                      padding: EdgeInsets.fromLTRB(7, 0, 7, 0),
+                                      child: Align(
+                                          alignment: AlignmentDirectional.centerEnd,
+                                          child: Text(
+                                              StringsResources.buyInvoiceDiscount(),
+                                              textDirection: TextDirection.rtl,
+                                              style: TextStyle(
+                                                  fontSize: 12,
+                                                  color: ColorsResources.blackTransparent,
+                                                  fontFamily: 'Sans',
+                                                  decoration: TextDecoration.none
+                                              )
+                                          )
+                                      )
+                                  )
+                              ),
+                            ),
+                            Expanded(
+                              flex: 9,
+                              child: SizedBox(
+                                  height: 31,
+                                  width: double.infinity,
+                                  child: Padding(
+                                      padding: EdgeInsets.fromLTRB(7, 0, 7, 0),
+                                      child: Align(
+                                          alignment: AlignmentDirectional.centerEnd,
+                                          child: Text(
+                                              StringsResources.buyInvoiceEachPrice(),
+                                              textDirection: TextDirection.rtl,
+                                              style: TextStyle(
+                                                  fontSize: 12,
+                                                  color: ColorsResources.blackTransparent,
+                                                  fontFamily: 'Sans',
+                                                  decoration: TextDecoration.none
+                                              )
+                                          )
+                                      )
+                                  )
+                              ),
+                            ),
+                          ],
+                        )
+                    ),
+                    Padding(
+                        padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Expanded(
+                              flex: 5,
+                              child: SizedBox(
+                                  height: 51,
+                                  width: double.infinity,
+                                  child: Padding(
+                                      padding: EdgeInsets.fromLTRB(7, 0, 9, 0),
+                                      child: Align(
+                                          alignment: AlignmentDirectional.centerEnd,
+                                          child: Text(
+                                              buyInvoicesData.boughtProductPriceDiscount,
+                                              textAlign: TextAlign.center,
+                                              maxLines: 1,
+                                              style: TextStyle(
+                                                  fontSize: 17,
+                                                  color: ColorsResources.black,
+                                                  fontFamily: 'Sans',
+                                                  decoration: TextDecoration.none
+                                              )
+                                          )
+                                      )
+                                  )
+                              ),
+                            ),
+                            Expanded(
+                              flex: 9,
+                              child: SizedBox(
+                                  height: 51,
+                                  width: double.infinity,
+                                  child: Padding(
+                                      padding: EdgeInsets.fromLTRB(7, 0, 9, 0),
+                                      child: Align(
+                                          alignment: AlignmentDirectional.centerEnd,
+                                          child: Text(
+                                              buyInvoicesData.boughtProductEachPrice,
+                                              textDirection: TextDirection.rtl,
+                                              maxLines: 2,
+                                              style: TextStyle(
+                                                  fontSize: 17,
+                                                  color: ColorsResources.black,
+                                                  fontFamily: 'Sans',
+                                                  decoration: TextDecoration.none
+                                              )
+                                          )
+                                      )
+                                  )
+                              ),
+                            ),
+                          ],
+                        )
+                    ),
+
+                    Padding(
+                        padding: EdgeInsets.fromLTRB(0, 7, 0, 0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: SizedBox(
+                                  height: 31,
+                                  width: double.infinity,
+                                  child: Padding(
+                                      padding: EdgeInsets.fromLTRB(7, 0, 7, 0),
+                                      child: Align(
+                                          alignment: AlignmentDirectional.centerEnd,
+                                          child: Text(
+                                              StringsResources.buyInvoicePrice(),
+                                              textDirection: TextDirection.rtl,
+                                              style: TextStyle(
+                                                  fontSize: 12,
+                                                  color: ColorsResources.blackTransparent,
+                                                  fontFamily: 'Sans',
+                                                  decoration: TextDecoration.none
+                                              )
+                                          )
+                                      )
+                                  )
+                              ),
+                            ),
+                          ],
+                        )
+                    ),
+                    Padding(
+                        padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: SizedBox(
+                                  height: 51,
+                                  width: double.infinity,
+                                  child: Padding(
+                                      padding: EdgeInsets.fromLTRB(7, 0, 9, 0),
+                                      child: Align(
+                                          alignment: AlignmentDirectional.centerEnd,
+                                          child: Text(
+                                              buyInvoicesData.boughtProductPrice,
                                               textDirection: TextDirection.rtl,
                                               maxLines: 2,
                                               style: TextStyle(
