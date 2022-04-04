@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/24/22, 10:58 AM
+ * Last modified 4/4/22, 4:45 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -469,7 +469,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                             hintText: StringsResources.creditCardsBankNameHint(),
                                             hintStyle: const TextStyle(
                                                 color: ColorsResources.darkTransparent,
-                                                fontSize: 17.0
+                                                fontSize: 13.0
                                             ),
                                           ),
                                         )
@@ -547,7 +547,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                         hintText: StringsResources.creditCardsNameHolderHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
-                                            fontSize: 17.0
+                                            fontSize: 13.0
                                         ),
                                       ),
                                     ),
@@ -640,7 +640,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                         hintText: StringsResources.creditCardNumberHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
-                                            fontSize: 17.0
+                                            fontSize: 13.0
                                         ),
                                       ),
                                     ),
@@ -734,7 +734,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                         hintText: StringsResources.creditCardCvvHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
-                                            fontSize: 17.0
+                                            fontSize: 13.0
                                         ),
                                       ),
                                     ),
@@ -814,7 +814,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                         hintText: StringsResources.creditCardExpiryYearHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
-                                            fontSize: 17.0
+                                            fontSize: 13.0
                                         ),
                                       ),
                                     ),
@@ -894,7 +894,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                         hintText: StringsResources.creditCardExpiryMonthHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
-                                            fontSize: 17.0
+                                            fontSize: 13.0
                                         ),
                                       ),
                                     ),
@@ -984,7 +984,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                         hintText: StringsResources.creditCardBalanceHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
-                                            fontSize: 17.0
+                                            fontSize: 13.0
                                         ),
                                       ),
                                     ),

@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/24/22, 10:58 AM
+ * Last modified 4/4/22, 4:45 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -496,7 +496,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                         hintText: StringsResources.titleText(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
-                                            fontSize: 17.0
+                                            fontSize: 13.0
                                         ),
                                       ),
                                     ),
@@ -680,7 +680,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                         hintText: StringsResources.chequeNumberHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
-                                            fontSize: 17.0
+                                            fontSize: 13.0
                                         ),
                                       ),
                                     ),
@@ -770,7 +770,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                         hintText: StringsResources.chequeAmountHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
-                                            fontSize: 17.0
+                                            fontSize: 13.0
                                         ),
                                       ),
                                     ),
@@ -959,7 +959,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                         hintText: StringsResources.chequeSourceAccountHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
-                                            fontSize: 17.0
+                                            fontSize: 13.0
                                         ),
                                       ),
                                     ),
@@ -1049,7 +1049,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                         hintText: StringsResources.chequeTargetAccountHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
-                                            fontSize: 17.0
+                                            fontSize: 13.0
                                         ),
                                       ),
                                     ),
@@ -1139,7 +1139,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                         hintText: StringsResources.chequeTargetIdHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
-                                            fontSize: 17.0
+                                            fontSize: 13.0
                                         ),
                                       ),
                                     ),
@@ -1216,7 +1216,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                         hintText: StringsResources.chequeSourceIdHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
-                                            fontSize: 17.0
+                                            fontSize: 13.0
                                         ),
                                       ),
                                     ),
@@ -1373,7 +1373,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                             hintText: StringsResources.transactionTargetNameHint(),
                                             hintStyle: const TextStyle(
                                                 color: ColorsResources.darkTransparent,
-                                                fontSize: 17.0
+                                                fontSize: 13.0
                                             ),
                                           ),
                                         )
@@ -1518,7 +1518,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                             hintText: StringsResources.transactionSourceNameHint(),
                                             hintStyle: const TextStyle(
                                                 color: ColorsResources.darkTransparent,
-                                                fontSize: 17.0
+                                                fontSize: 13.0
                                             ),
                                           ),
                                         )
@@ -1676,7 +1676,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                             hintText: StringsResources.transactionTargetBankHint(),
                                             hintStyle: const TextStyle(
                                                 color: ColorsResources.darkTransparent,
-                                                fontSize: 17.0
+                                                fontSize: 13.0
                                             ),
                                           ),
                                         )
@@ -1821,7 +1821,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                             hintText: StringsResources.transactionSourceBankHint(),
                                             hintStyle: const TextStyle(
                                                 color: ColorsResources.darkTransparent,
-                                                fontSize: 17.0
+                                                fontSize: 13.0
                                             ),
                                           ),
                                         )
@@ -1914,7 +1914,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                           hintText: StringsResources.chequeBankBranch(),
                                           hintStyle: const TextStyle(
                                               color: ColorsResources.darkTransparent,
-                                              fontSize: 17.0
+                                              fontSize: 13.0
                                           ),
                                         ),
                                       ),
@@ -2150,7 +2150,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                             hintText: StringsResources.chequeCardHint(),
                                             hintStyle: const TextStyle(
                                                 color: ColorsResources.darkTransparent,
-                                                fontSize: 17.0
+                                                fontSize: 13.0
                                             ),
                                           ),
                                         )
@@ -2304,7 +2304,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                     hintText: StringsResources.transactionBudgetNameHint(),
                                     hintStyle: const TextStyle(
                                         color: ColorsResources.darkTransparent,
-                                        fontSize: 17.0
+                                        fontSize: 13.0
                                     ),
                                   ),
                                 )

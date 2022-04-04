@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/29/22, 9:21 AM
+ * Last modified 4/4/22, 4:45 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -348,7 +348,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                             hintText: StringsResources.customerNameTextHint(),
                                             hintStyle: const TextStyle(
                                                 color: ColorsResources.darkTransparent,
-                                                fontSize: 17.0
+                                                fontSize: 13.0
                                             ),
                                           ),
                                         ),
@@ -534,7 +534,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                         hintText: StringsResources.customerCityText(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
-                                            fontSize: 17.0
+                                            fontSize: 13.0
                                         ),
                                       ),
                                     ),
@@ -615,7 +615,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                         hintText: StringsResources.customerCountryText(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
-                                            fontSize: 17.0
+                                            fontSize: 13.0
                                         ),
                                       ),
                                     ),
@@ -844,7 +844,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                           hintText: StringsResources.customerAgeText(),
                                           hintStyle: const TextStyle(
                                               color: ColorsResources.darkTransparent,
-                                              fontSize: 17.0
+                                              fontSize: 13.0
                                           ),
                                         ),
                                       ),
@@ -935,7 +935,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                         hintText: StringsResources.customerPhoneNumberTextHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
-                                            fontSize: 17.0
+                                            fontSize: 13.0
                                         ),
                                       ),
                                     ),
@@ -1025,7 +1025,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                         hintText: StringsResources.customerEmailAddressTextHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
-                                            fontSize: 17.0
+                                            fontSize: 13.0
                                         ),
                                       ),
                                     ),
@@ -1115,7 +1115,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                         hintText: StringsResources.customerJobText(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
-                                            fontSize: 17.0
+                                            fontSize: 13.0
                                         ),
                                       ),
                                     ),
@@ -1192,7 +1192,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                         hintText: StringsResources.customerMaritalStatusText(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
-                                            fontSize: 17.0
+                                            fontSize: 13.0
                                         ),
                                       ),
                                     ),

@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/21/22, 10:01 AM
+ * Last modified 4/4/22, 4:45 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -245,7 +245,7 @@ class _SearchBarView extends State<SearchBarView> {
                                   hintText: StringsResources.searchFeaturesText(),
                                   hintStyle: TextStyle(
                                       color: ColorsResources.darkTransparent,
-                                      fontSize: 17.0
+                                      fontSize: 13.0
                                   ),
                                   labelText: StringsResources.searchText(),
                                   labelStyle: TextStyle(

@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/30/22, 6:21 AM
+ * Last modified 4/4/22, 4:45 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -558,7 +558,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                         hintText: StringsResources.buyInvoiceNumberHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
-                                            fontSize: 17.0
+                                            fontSize: 13.0
                                         ),
                                       ),
                                     ),
@@ -908,7 +908,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                         hintText: StringsResources.buyQuantityHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
-                                            fontSize: 17.0
+                                            fontSize: 13.0
                                         ),
                                       ),
                                     ),
@@ -1055,7 +1055,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                             hintText: StringsResources.buyInvoiceProductHint(),
                                             hintStyle: const TextStyle(
                                                 color: ColorsResources.darkTransparent,
-                                                fontSize: 17.0
+                                                fontSize: 13.0
                                             ),
                                           ),
                                         )
@@ -1146,7 +1146,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                         hintText: StringsResources.buyInvoiceDiscountHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
-                                            fontSize: 17.0
+                                            fontSize: 13.0
                                         ),
                                       ),
                                     ),
@@ -1223,7 +1223,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                         hintText: StringsResources.buyInvoiceEachPriceHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
-                                            fontSize: 17.0
+                                            fontSize: 13.0
                                         ),
                                       ),
                                     ),
@@ -1322,7 +1322,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                         hintText: StringsResources.buyInvoicePriceHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
-                                            fontSize: 17.0
+                                            fontSize: 13.0
                                         ),
                                       ),
                                     ),
@@ -1479,7 +1479,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                             hintText: StringsResources.buyInvoicePaidByHint(),
                                             hintStyle: const TextStyle(
                                                 color: ColorsResources.darkTransparent,
-                                                fontSize: 17.0
+                                                fontSize: 13.0
                                             ),
                                           ),
                                         )
@@ -1637,7 +1637,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                             hintText: StringsResources.buyInvoiceBoughtFromHint(),
                                             hintStyle: const TextStyle(
                                                 color: ColorsResources.darkTransparent,
-                                                fontSize: 15.0
+                                                fontSize: 13.0
                                             ),
                                           ),
                                         )

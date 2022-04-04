@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/30/22, 5:55 AM
+ * Last modified 4/4/22, 4:45 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -365,7 +365,7 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                                       hintText: StringsResources.profileUserPhoneNumberHint(),
                                       hintStyle: const TextStyle(
                                           color: ColorsResources.darkTransparent,
-                                          fontSize: 17.0
+                                          fontSize: 13.0
                                       ),
                                     ),
                                   )
@@ -478,7 +478,7 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                                         hintText: StringsResources.profileUserEmailHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
-                                            fontSize: 17.0
+                                            fontSize: 13.0
                                         ),
                                       ),
                                     )
@@ -591,7 +591,7 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                                         hintText: StringsResources.profileUserInstagramHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
-                                            fontSize: 17.0
+                                            fontSize: 13.0
                                         ),
                                       ),
                                     )
@@ -704,7 +704,7 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
                                         hintText: StringsResources.profileUserLocationAddressHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
-                                            fontSize: 17.0
+                                            fontSize: 13.0
                                         ),
                                       ),
                                     )

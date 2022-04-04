@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/24/22, 11:03 AM
+ * Last modified 4/4/22, 4:45 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -271,7 +271,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                         hintText: StringsResources.titleText(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
-                                            fontSize: 17.0
+                                            fontSize: 13.0
                                         ),
                                       ),
                                     ),
@@ -455,7 +455,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                         hintText: StringsResources.transactionAmountHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
-                                            fontSize: 17.0
+                                            fontSize: 13.0
                                         ),
                                       ),
                                     ),
@@ -778,7 +778,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                             hintText: StringsResources.transactionTargetNameHint(),
                                             hintStyle: const TextStyle(
                                                 color: ColorsResources.darkTransparent,
-                                                fontSize: 17.0
+                                                fontSize: 13.0
                                             ),
                                           ),
                                         )
@@ -923,7 +923,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                             hintText: StringsResources.transactionSourceNameHint(),
                                             hintStyle: const TextStyle(
                                                 color: ColorsResources.darkTransparent,
-                                                fontSize: 17.0
+                                                fontSize: 13.0
                                             ),
                                           ),
                                         )
@@ -1081,7 +1081,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                             hintText: StringsResources.transactionTargetBankHint(),
                                             hintStyle: const TextStyle(
                                                 color: ColorsResources.darkTransparent,
-                                                fontSize: 17.0
+                                                fontSize: 13.0
                                             ),
                                           ),
                                         )
@@ -1226,7 +1226,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                             hintText: StringsResources.transactionSourceBankHint(),
                                             hintStyle: const TextStyle(
                                                 color: ColorsResources.darkTransparent,
-                                                fontSize: 17.0
+                                                fontSize: 13.0
                                             ),
                                           ),
                                         )
@@ -1352,7 +1352,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                             hintText: StringsResources.transactionSourceCardHint(),
                                             hintStyle: const TextStyle(
                                                 color: ColorsResources.darkTransparent,
-                                                fontSize: 17.0
+                                                fontSize: 13.0
                                             ),
                                           ),
                                         )
@@ -1478,7 +1478,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                             hintText: StringsResources.transactionTargetCardHint(),
                                             hintStyle: const TextStyle(
                                                 color: ColorsResources.darkTransparent,
-                                                fontSize: 17.0
+                                                fontSize: 13.0
                                             ),
                                           ),
                                         )
@@ -1637,7 +1637,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                             hintText: StringsResources.transactionBudgetNameHint(),
                                             hintStyle: const TextStyle(
                                                 color: ColorsResources.darkTransparent,
-                                                fontSize: 17.0
+                                                fontSize: 13.0
                                             ),
                                           ),
                                         )

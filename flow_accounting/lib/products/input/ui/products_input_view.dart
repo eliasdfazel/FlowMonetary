@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/30/22, 3:36 AM
+ * Last modified 4/4/22, 4:45 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -361,7 +361,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                         hintText: StringsResources.productNameHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
-                                            fontSize: 17.0
+                                            fontSize: 13.0
                                         ),
                                       ),
                                     ),
@@ -545,7 +545,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                         hintText: StringsResources.productQuantityHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
-                                            fontSize: 17.0
+                                            fontSize: 13.0
                                         ),
                                       ),
                                     ),
@@ -667,7 +667,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                             hintText: StringsResources.productCategoryHint(),
                                             hintStyle: const TextStyle(
                                                 color: ColorsResources.darkTransparent,
-                                                fontSize: 17.0
+                                                fontSize: 13.0
                                             ),
                                           ),
                                         )
@@ -758,7 +758,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                         hintText: StringsResources.productBuyingPriceHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
-                                            fontSize: 17.0
+                                            fontSize: 13.0
                                         ),
                                       ),
                                     ),
@@ -848,7 +848,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                         hintText: StringsResources.productProfitPercentHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
-                                            fontSize: 17.0
+                                            fontSize: 13.0
                                         ),
                                       ),
                                     ),
@@ -1006,7 +1006,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                             hintText: StringsResources.productBrandHint(),
                                             hintStyle: const TextStyle(
                                                 color: ColorsResources.darkTransparent,
-                                                fontSize: 17.0
+                                                fontSize: 13.0
                                             ),
                                           ),
                                         )
