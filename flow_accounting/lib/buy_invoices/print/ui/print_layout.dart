@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/4/22, 9:06 AM
+ * Last modified 4/4/22, 9:12 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -388,6 +388,7 @@ class PrintLayout {
                                     fontSize: 12,
                                     color: ColorsResources.dark,
                                     fontFamily: 'Sans',
+                                    fontWeight: FontWeight.w300,
                                     decoration: TextDecoration.none
                                 )
                             )
