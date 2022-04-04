@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/4/22, 10:11 AM
+ * Last modified 4/4/22, 10:19 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -43,7 +43,7 @@ class PrintLayout {
         body: Container(
             color: ColorsResources.black,
             child: Padding(
-                padding: EdgeInsets.fromLTRB(3, 1, 3, 1),
+                padding: EdgeInsets.fromLTRB(3, 3, 3, 1),
                 child: Container(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(13)),
@@ -90,7 +90,7 @@ class PrintLayout {
                                             child: Align(
                                                 alignment: AlignmentDirectional.center,
                                                 child: ClipRRect(
-                                                    borderRadius: BorderRadius.circular(19),
+                                                    borderRadius: BorderRadius.circular(11),
                                                     child: ColoredBox(
                                                         color: Color(buyInvoicesData.colorTag),
                                                         child: Padding(
@@ -699,7 +699,7 @@ class PrintLayout {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Expanded(
-                                  flex: 3,
+                                  flex: 5,
                                   child: SizedBox(
                                       height: 31,
                                       width: double.infinity,
@@ -722,7 +722,7 @@ class PrintLayout {
                                   ),
                                 ),
                                 Expanded(
-                                  flex: 1,
+                                  flex: 3,
                                   child: SizedBox(
                                       height: 31,
                                       width: double.infinity,
@@ -753,7 +753,7 @@ class PrintLayout {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Expanded(
-                                  flex: 3,
+                                  flex: 5,
                                   child: SizedBox(
                                       height: 51,
                                       width: double.infinity,
@@ -762,14 +762,15 @@ class PrintLayout {
                                           child: Align(
                                               alignment: AlignmentDirectional.center,
                                               child: Image.file(
-                                                  File(buyInvoicesData.companyDigitalSignature)
+                                                File(buyInvoicesData.companyDigitalSignature),
+                                                fit: BoxFit.contain,
                                               )
                                           )
                                       )
                                   ),
                                 ),
                                 Expanded(
-                                  flex: 1,
+                                  flex: 3,
                                   child: SizedBox(
                                       height: 51,
                                       width: double.infinity,
