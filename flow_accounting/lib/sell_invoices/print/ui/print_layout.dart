@@ -10,26 +10,26 @@
 
 import 'dart:io';
 
-import 'package:flow_accounting/buy_invoices/database/structures/tables_structure.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
+import 'package:flow_accounting/sell_invoices/database/structures/tables_structure.dart';
 import 'package:flow_accounting/utils/colors/color_modifier.dart';
 import 'package:flutter/material.dart';
 
-class BuyPrintLayout {
+class SellPrintLayout {
 
-  Widget design(BuyInvoicesData buyInvoicesData) {
+  Widget design(SellInvoicesData sellInvoicesData) {
 
     String invoiceType = StringsResources.buyInvoiceFinal();
 
-    switch (buyInvoicesData.buyPreInvoice) {
-      case BuyInvoicesData.BuyInvoice_Pre: {
+    switch (sellInvoicesData.sellPreInvoice) {
+      case SellInvoicesData.SellInvoice_Pre: {
 
         invoiceType = StringsResources.buyInvoicePre();
 
         break;
       }
-      case BuyInvoicesData.BuyInvoice_Final: {
+      case SellInvoicesData.SellInvoice_Final: {
 
         invoiceType = StringsResources.buyInvoiceFinal();
 
@@ -50,7 +50,7 @@ class BuyPrintLayout {
                         gradient: LinearGradient(
                             colors: [
                               ColorsResources.white,
-                              Color(buyInvoicesData.colorTag).lighten(0.19),
+                              Color(sellInvoicesData.colorTag).lighten(0.19),
                             ],
                             transform: GradientRotation(45)
                         )
@@ -69,7 +69,7 @@ class BuyPrintLayout {
                                         child: Align(
                                             alignment: AlignmentDirectional.centerEnd,
                                             child: Text(
-                                                buyInvoicesData.companyName,
+                                                sellInvoicesData.companyName,
                                                 textDirection: TextDirection.rtl,
                                                 style: TextStyle(
                                                     fontSize: 19,
@@ -92,11 +92,11 @@ class BuyPrintLayout {
                                                 child: ClipRRect(
                                                     borderRadius: BorderRadius.circular(11),
                                                     child: ColoredBox(
-                                                        color: Color(buyInvoicesData.colorTag),
+                                                        color: Color(sellInvoicesData.colorTag),
                                                         child: Padding(
                                                             padding: EdgeInsets.fromLTRB(1, 1, 1, 1),
                                                             child: Image.file(
-                                                                File(buyInvoicesData.companyLogoUrl)
+                                                                File(sellInvoicesData.companyLogoUrl)
                                                             )
                                                         )
                                                     )
@@ -178,7 +178,7 @@ class BuyPrintLayout {
                                           child: Align(
                                               alignment: AlignmentDirectional.centerEnd,
                                               child: Text(
-                                                  buyInvoicesData.buyInvoiceNumber,
+                                                  sellInvoicesData.sellInvoiceNumber,
                                                   textDirection: TextDirection.rtl,
                                                   maxLines: 1,
                                                   style: TextStyle(
@@ -202,7 +202,7 @@ class BuyPrintLayout {
                                           child: Align(
                                               alignment: AlignmentDirectional.centerEnd,
                                               child: Text(
-                                                  buyInvoicesData.buyInvoiceDateText,
+                                                  sellInvoicesData.sellInvoiceDateText,
                                                   textDirection: TextDirection.rtl,
                                                   maxLines: 2,
                                                   style: TextStyle(
@@ -297,7 +297,7 @@ class BuyPrintLayout {
                                           child: Align(
                                               alignment: AlignmentDirectional.centerEnd,
                                               child: Text(
-                                                  buyInvoicesData.boughtProductQuantity,
+                                                  sellInvoicesData.soldProductQuantity,
                                                   textAlign: TextAlign.center,
                                                   maxLines: 1,
                                                   style: TextStyle(
@@ -321,7 +321,7 @@ class BuyPrintLayout {
                                           child: Align(
                                               alignment: AlignmentDirectional.centerEnd,
                                               child: Text(
-                                                  buyInvoicesData.boughtProductName,
+                                                  sellInvoicesData.soldProductName,
                                                   textDirection: TextDirection.rtl,
                                                   maxLines: 2,
                                                   style: TextStyle(
@@ -416,7 +416,7 @@ class BuyPrintLayout {
                                           child: Align(
                                               alignment: AlignmentDirectional.centerEnd,
                                               child: Text(
-                                                  buyInvoicesData.boughtProductPriceDiscount,
+                                                  sellInvoicesData.soldProductPriceDiscount,
                                                   textAlign: TextAlign.center,
                                                   maxLines: 1,
                                                   style: TextStyle(
@@ -440,7 +440,7 @@ class BuyPrintLayout {
                                           child: Align(
                                               alignment: AlignmentDirectional.centerEnd,
                                               child: Text(
-                                                  buyInvoicesData.boughtProductEachPrice,
+                                                  sellInvoicesData.soldProductEachPrice,
                                                   textDirection: TextDirection.rtl,
                                                   maxLines: 2,
                                                   style: TextStyle(
@@ -504,7 +504,7 @@ class BuyPrintLayout {
                                           child: Align(
                                               alignment: AlignmentDirectional.centerEnd,
                                               child: Text(
-                                                  buyInvoicesData.boughtProductPrice,
+                                                  sellInvoicesData.soldProductPrice,
                                                   textDirection: TextDirection.rtl,
                                                   maxLines: 2,
                                                   style: TextStyle(
@@ -641,7 +641,7 @@ class BuyPrintLayout {
                                           child: Align(
                                               alignment: AlignmentDirectional.centerEnd,
                                               child: Text(
-                                                  buyInvoicesData.paidBy,
+                                                  sellInvoicesData.paidTo,
                                                   textAlign: TextAlign.center,
                                                   maxLines: 2,
                                                   style: TextStyle(
@@ -666,7 +666,7 @@ class BuyPrintLayout {
                                           child: Align(
                                               alignment: AlignmentDirectional.centerEnd,
                                               child: Text(
-                                                  buyInvoicesData.boughtFrom,
+                                                  sellInvoicesData.soldTo,
                                                   textDirection: TextDirection.rtl,
                                                   maxLines: 2,
                                                   style: TextStyle(
@@ -762,7 +762,7 @@ class BuyPrintLayout {
                                           child: Align(
                                               alignment: AlignmentDirectional.center,
                                               child: Image.file(
-                                                File(buyInvoicesData.companyDigitalSignature),
+                                                File(sellInvoicesData.companyDigitalSignature),
                                                 fit: BoxFit.contain,
                                               )
                                           )

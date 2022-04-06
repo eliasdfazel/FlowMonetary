@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/6/22, 6:13 AM
+ * Last modified 4/6/22, 6:25 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -13,8 +13,6 @@ import 'dart:typed_data';
 
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:blur/blur.dart';
-import 'package:flow_accounting/buy_invoices/database/io/inputs.dart';
-import 'package:flow_accounting/buy_invoices/database/structures/tables_structure.dart';
 import 'package:flow_accounting/credit_cards/database/io/inputs.dart';
 import 'package:flow_accounting/credit_cards/database/io/queries.dart';
 import 'package:flow_accounting/credit_cards/database/structures/tables_structure.dart';
@@ -25,6 +23,8 @@ import 'package:flow_accounting/products/database/structures/tables_structure.da
 import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
+import 'package:flow_accounting/sell_invoices/database/io/inputs.dart';
+import 'package:flow_accounting/sell_invoices/database/structures/tables_structure.dart';
 import 'package:flow_accounting/utils/calendar/ui/calendar_view.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
 import 'package:flow_accounting/utils/extensions/BankLogos.dart';
@@ -38,9 +38,9 @@ import 'package:sqflite/sqflite.dart';
 
 class SellInvoicesInputView extends StatefulWidget {
 
-  BuyInvoicesData? buyInvoicesData;
+  SellInvoicesData? sellInvoicesData;
 
-  SellInvoicesInputView({Key? key, this.buyInvoicesData}) : super(key: key);
+  SellInvoicesInputView({Key? key, this.sellInvoicesData}) : super(key: key);
 
   @override
   _SellInvoicesInputViewState createState() => _SellInvoicesInputViewState();
@@ -66,9 +66,9 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
   TextEditingController controllerProductEachPrice = TextEditingController();
   TextEditingController controllerProductDiscount = TextEditingController();
 
-  TextEditingController controllerPaidBy = TextEditingController();
+  TextEditingController controllerPaidTo = TextEditingController();
 
-  TextEditingController controllerBoughtFrom = TextEditingController();
+  TextEditingController controllerSoldTo = TextEditingController();
 
   ProductsData? selectedProductsData;
 
@@ -78,7 +78,7 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
   String companyDigitalSignature = "";
 
-  bool buyInvoicesDataUpdated = false;
+  bool sellInvoicesDataUpdated = false;
 
   String? warningNoticeCompanyName;
 
@@ -92,9 +92,9 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
   String? warningProductEachPrice;
   String? warningProductDiscount;
 
-  String? warningPaidBy;
+  String? warningPaidTo;
 
-  String? warningBoughtFrom;
+  String? warningSoldTo;
 
   Widget printingView = Container();
 
@@ -125,35 +125,35 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
   @override
   void initState() {
 
-    companyLogoUrl = widget.buyInvoicesData?.companyLogoUrl ?? "";
+    companyLogoUrl = widget.sellInvoicesData?.companyLogoUrl ?? "";
 
-    companyDigitalSignature = widget.buyInvoicesData?.companyDigitalSignature ?? "";
+    companyDigitalSignature = widget.sellInvoicesData?.companyDigitalSignature ?? "";
 
-    controllerCompanyName.text = widget.buyInvoicesData?.companyName ?? "";
+    controllerCompanyName.text = widget.sellInvoicesData?.companyName ?? "";
 
-    controllerInvoiceNumber.text = widget.buyInvoicesData?.buyInvoiceNumber == null ? "" : (widget.buyInvoicesData?.buyInvoiceNumber)!;
-    controllerInvoiceDescription.text = widget.buyInvoicesData?.buyInvoiceDescription == null ? "" : (widget.buyInvoicesData?.buyInvoiceDescription)!;
+    controllerInvoiceNumber.text = widget.sellInvoicesData?.sellInvoiceNumber == null ? "" : (widget.sellInvoicesData?.sellInvoiceNumber)!;
+    controllerInvoiceDescription.text = widget.sellInvoicesData?.sellInvoiceDescription == null ? "" : (widget.sellInvoicesData?.sellInvoiceDescription)!;
 
-    controllerPreInvoice.text = widget.buyInvoicesData?.buyPreInvoice == null ? BuyInvoicesData.BuyInvoice_Final : (widget.buyInvoicesData?.buyPreInvoice)!;
+    controllerPreInvoice.text = widget.sellInvoicesData?.sellPreInvoice == null ? SellInvoicesData.SellInvoice_Final : (widget.sellInvoicesData?.sellPreInvoice)!;
 
-    controllerProductName.text = widget.buyInvoicesData?.boughtProductName == null ? "" : (widget.buyInvoicesData?.boughtProductName)!;
-    controllerProductQuantity.text = widget.buyInvoicesData?.boughtProductQuantity == null ? "" : (widget.buyInvoicesData?.boughtProductQuantity)!;
+    controllerProductName.text = widget.sellInvoicesData?.soldProductName == null ? "" : (widget.sellInvoicesData?.soldProductName)!;
+    controllerProductQuantity.text = widget.sellInvoicesData?.soldProductQuantity == null ? "" : (widget.sellInvoicesData?.soldProductQuantity)!;
 
-    controllerProductPrice.text = widget.buyInvoicesData?.boughtProductPrice == null ? "" : (widget.buyInvoicesData?.boughtProductPrice)!;
-    controllerProductEachPrice.text = widget.buyInvoicesData?.boughtProductEachPrice == null ? "" : (widget.buyInvoicesData?.boughtProductEachPrice)!;
-    controllerProductDiscount.text = widget.buyInvoicesData?.boughtProductPriceDiscount == null ? "" : (widget.buyInvoicesData?.boughtProductPriceDiscount)!;
+    controllerProductPrice.text = widget.sellInvoicesData?.soldProductPrice == null ? "" : (widget.sellInvoicesData?.soldProductPrice)!;
+    controllerProductEachPrice.text = widget.sellInvoicesData?.soldProductEachPrice == null ? "" : (widget.sellInvoicesData?.soldProductEachPrice)!;
+    controllerProductDiscount.text = widget.sellInvoicesData?.soldProductPriceDiscount == null ? "" : (widget.sellInvoicesData?.soldProductPriceDiscount)!;
 
-    controllerPaidBy.text = widget.buyInvoicesData?.paidBy == null ? "" : (widget.buyInvoicesData?.paidBy)!;
+    controllerPaidTo.text = widget.sellInvoicesData?.paidTo == null ? "" : (widget.sellInvoicesData?.paidTo)!;
 
-    controllerBoughtFrom.text = widget.buyInvoicesData?.boughtFrom == null ? "" : (widget.buyInvoicesData?.boughtFrom)!;
+    controllerSoldTo.text = widget.sellInvoicesData?.soldTo == null ? "" : (widget.sellInvoicesData?.soldTo)!;
 
-    colorSelectorView.inputColor = Color(widget.buyInvoicesData?.colorTag ?? Colors.white.value);
+    colorSelectorView.inputColor = Color(widget.sellInvoicesData?.colorTag ?? Colors.white.value);
 
     super.initState();
 
     BackButtonInterceptor.add(aInterceptor);
 
-    if (widget.buyInvoicesData != null) {
+    if (widget.sellInvoicesData != null) {
 
       printingView = Expanded(
           flex: 3,
@@ -192,7 +192,7 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                     splashFactory: InkRipple.splashFactory,
                     onTap: () async {
 
-                      PrintingProcess().startBuyInvoicePrint(widget.buyInvoicesData!);
+                      PrintingProcess().startSellInvoicePrint(widget.sellInvoicesData!);
 
                     },
                     child: Container(
@@ -284,7 +284,7 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
   bool aInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
 
-    Navigator.pop(context, buyInvoicesDataUpdated);
+    Navigator.pop(context, sellInvoicesDataUpdated);
 
     return true;
   }
@@ -795,11 +795,11 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
                                                 if (value.toString() == StringsResources.buyInvoiceFinal()) {
 
-                                                  controllerPreInvoice.text = BuyInvoicesData.BuyInvoice_Final;
+                                                  controllerPreInvoice.text = SellInvoicesData.SellInvoice_Final;
 
                                                 } else if (value.toString() == StringsResources.buyInvoicePre()) {
 
-                                                  controllerPreInvoice.text = BuyInvoicesData.BuyInvoice_Pre;
+                                                  controllerPreInvoice.text = SellInvoicesData.SellInvoice_Pre;
 
                                                 }
 
@@ -1448,7 +1448,7 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                                         },
                                         onSuggestionSelected: (suggestion) {
 
-                                          controllerPaidBy.text = suggestion.cardNumber;
+                                          controllerPaidTo.text = suggestion.cardNumber;
 
                                         },
                                         errorBuilder: (context, suggestion) {
@@ -1465,7 +1465,7 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                                             borderRadius: BorderRadius.circular(17)
                                         ),
                                         textFieldConfiguration: TextFieldConfiguration(
-                                          controller: controllerPaidBy,
+                                          controller: controllerPaidTo,
                                           autofocus: false,
                                           maxLines: 1,
                                           cursorColor: ColorsResources.primaryColor,
@@ -1513,7 +1513,7 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                                                 ),
                                                 gapPadding: 5
                                             ),
-                                            errorText: warningPaidBy,
+                                            errorText: warningPaidTo,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
                                             labelText: StringsResources.buyInvoicePaidBy(),
@@ -1606,7 +1606,7 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                                         },
                                         onSuggestionSelected: (suggestion) {
 
-                                          controllerBoughtFrom.text = "suggestion.creditorName";
+                                          controllerSoldTo.text = "suggestion.creditorName";
 
                                         },
                                         errorBuilder: (context, suggestion) {
@@ -1623,7 +1623,7 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                                             borderRadius: BorderRadius.circular(17)
                                         ),
                                         textFieldConfiguration: TextFieldConfiguration(
-                                          controller: controllerBoughtFrom,
+                                          controller: controllerSoldTo,
                                           autofocus: false,
                                           maxLines: 1,
                                           cursorColor: ColorsResources.primaryColor,
@@ -1671,7 +1671,7 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                                                 ),
                                                 gapPadding: 5
                                             ),
-                                            errorText: warningBoughtFrom,
+                                            errorText: warningSoldTo,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
                                             labelText: StringsResources.buyInvoiceBoughtFrom(),
@@ -1816,7 +1816,7 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                     child:  InkWell(
                       onTap: () {
 
-                        Navigator.pop(context, buyInvoicesDataUpdated);
+                        Navigator.pop(context, sellInvoicesDataUpdated);
 
                       },
                       child: Container(
@@ -1962,11 +1962,11 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
                                   }
 
-                                  if (controllerPaidBy.text.isEmpty) {
+                                  if (controllerPaidTo.text.isEmpty) {
 
                                     setState(() {
 
-                                      warningPaidBy = StringsResources.errorText();
+                                      warningPaidTo = StringsResources.errorText();
 
                                     });
 
@@ -1974,11 +1974,11 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
                                   }
 
-                                  if (controllerBoughtFrom.text.isEmpty) {
+                                  if (controllerSoldTo.text.isEmpty) {
 
                                     setState(() {
 
-                                      warningBoughtFrom = StringsResources.errorText();
+                                      warningSoldTo = StringsResources.errorText();
 
                                     });
 
@@ -1988,61 +1988,61 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
                                   if (noError) {
 
-                                    if (widget.buyInvoicesData != null) {
+                                    if (widget.sellInvoicesData != null) {
 
-                                      if ((widget.buyInvoicesData?.id)! != 0) {
+                                      if ((widget.sellInvoicesData?.id)! != 0) {
 
-                                        timeNow = (widget.buyInvoicesData?.id)!;
+                                        timeNow = (widget.sellInvoicesData?.id)!;
 
                                       }
 
                                     }
 
-                                    var databaseInputs = BuyInvoicesDatabaseInputs();
+                                    var databaseInputs = SellInvoicesDatabaseInputs();
 
-                                    BuyInvoicesData buyInvoicesData = BuyInvoicesData(
+                                    SellInvoicesData buyInvoicesData = SellInvoicesData(
                                         id: timeNow,
 
                                         companyName: controllerCompanyName.text.isEmpty ? UserInformation.UserId : controllerCompanyName.text,
                                         companyLogoUrl: companyLogoUrl,
 
-                                        buyInvoiceNumber: controllerInvoiceNumber.text,
+                                        sellInvoiceNumber: controllerInvoiceNumber.text,
 
-                                        buyInvoiceDescription: controllerInvoiceDescription.text,
+                                        sellInvoiceDescription: controllerInvoiceDescription.text,
 
-                                        buyInvoiceDateText: calendarView.pickedDataTimeText ?? "",
-                                        buyInvoiceDateMillisecond: calendarView.pickedDateTime.millisecondsSinceEpoch,
+                                        sellInvoiceDateText: calendarView.pickedDataTimeText ?? "",
+                                        sellInvoiceDateMillisecond: calendarView.pickedDateTime.millisecondsSinceEpoch,
 
-                                        boughtProductId: controllerProductId.text,
-                                        boughtProductName: controllerProductName.text,
-                                        boughtProductQuantity: controllerProductQuantity.text.isEmpty ? "0" : controllerProductQuantity.text,
+                                        soldProductId: controllerProductId.text,
+                                        soldProductName: controllerProductName.text,
+                                        soldProductQuantity: controllerProductQuantity.text.isEmpty ? "0" : controllerProductQuantity.text,
 
-                                        boughtProductPrice: controllerProductPrice.text.isEmpty ? "0" : controllerProductPrice.text,
-                                        boughtProductEachPrice: controllerProductEachPrice.text.isEmpty ? "0" : controllerProductEachPrice.text,
-                                        boughtProductPriceDiscount: controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text,
+                                        soldProductPrice: controllerProductPrice.text.isEmpty ? "0" : controllerProductPrice.text,
+                                        soldProductEachPrice: controllerProductEachPrice.text.isEmpty ? "0" : controllerProductEachPrice.text,
+                                        soldProductPriceDiscount: controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text,
 
-                                        paidBy: controllerPaidBy.text,
+                                        paidTo: controllerPaidTo.text,
 
-                                        boughtFrom: controllerBoughtFrom.text,
+                                        soldTo: controllerSoldTo.text,
 
-                                        buyPreInvoice: controllerPreInvoice.text,
+                                        sellPreInvoice: controllerPreInvoice.text,
 
                                         companyDigitalSignature: companyDigitalSignature,
 
                                         colorTag: colorSelectorView.selectedColor.value
                                     );
 
-                                    if (widget.buyInvoicesData != null) {
+                                    if (widget.sellInvoicesData != null) {
 
-                                      if ((widget.buyInvoicesData?.id)! != 0) {
+                                      if ((widget.sellInvoicesData?.id)! != 0) {
 
-                                        databaseInputs.updateInvoiceData(buyInvoicesData, BuyInvoicesDatabaseInputs.databaseTableName, UserInformation.UserId);
+                                        databaseInputs.updateInvoiceData(buyInvoicesData, SellInvoicesDatabaseInputs.databaseTableName, UserInformation.UserId);
 
                                       }
 
                                     } else {
 
-                                      databaseInputs.insertBuyInvoiceData(buyInvoicesData, BuyInvoicesDatabaseInputs.databaseTableName, UserInformation.UserId);
+                                      databaseInputs.insertSellInvoiceData(buyInvoicesData, SellInvoicesDatabaseInputs.databaseTableName, UserInformation.UserId);
 
                                       updateProductQuantity();
 
@@ -2058,7 +2058,7 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                                         fontSize: 16.0
                                     );
 
-                                    buyInvoicesDataUpdated = true;
+                                    sellInvoicesDataUpdated = true;
 
                                   }
 

@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/30/22, 6:17 AM
+ * Last modified 4/6/22, 6:25 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -13,6 +13,8 @@ import 'dart:typed_data';
 
 import 'package:flow_accounting/buy_invoices/database/structures/tables_structure.dart';
 import 'package:flow_accounting/buy_invoices/print/ui/print_layout.dart';
+import 'package:flow_accounting/sell_invoices/database/structures/tables_structure.dart';
+import 'package:flow_accounting/sell_invoices/print/ui/print_layout.dart';
 import 'package:flow_accounting/utils/io/FileIO.dart';
 import 'package:flutter/material.dart';
 import 'package:screenshot/screenshot.dart';
@@ -22,7 +24,7 @@ class PrintingProcess {
 
   void startBuyInvoicePrint(BuyInvoicesData buyInvoicesData, {String? sharingLabel}) {
 
-    Widget invoiceLayout = PrintLayout().design(buyInvoicesData);
+    Widget invoiceLayout = BuyPrintLayout().design(buyInvoicesData);
 
     ScreenshotController().captureFromWidget(invoiceLayout).then((Uint8List? snapshotBytes) async {
 
@@ -38,5 +40,25 @@ class PrintingProcess {
     });
 
   }
+
+  void startSellInvoicePrint(SellInvoicesData sellInvoicesData, {String? sharingLabel}) {
+
+    Widget invoiceLayout = SellPrintLayout().design(sellInvoicesData);
+
+    ScreenshotController().captureFromWidget(invoiceLayout).then((Uint8List? snapshotBytes) async {
+
+      if (snapshotBytes != null) {
+
+        File invoiceSnapshotFile = await createFileOfBytes("SellInvoice_${sellInvoicesData.sellInvoiceNumber}", "PNG", snapshotBytes);
+
+        Share.shareFiles([invoiceSnapshotFile.path],
+            text: "${sharingLabel}");
+
+      }
+
+    });
+
+  }
+
 
 }
