@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/30/22, 4:03 AM
+ * Last modified 4/6/22, 5:35 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -96,7 +96,37 @@ class _TopBarViewState extends State<TopBarView> {
                     )
                 ),
                 Expanded(
-                    flex: 9,
+                    flex: 3,
+                    child: GestureDetector(
+                      onTap: () async {
+
+                        synchronizeWithServer();
+
+                      },
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: SizedBox(
+                          height: 43,
+                          width: 43,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: ColorsResources.blueGray,
+                              borderRadius: BorderRadius.circular(9)
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                              child: Image(
+                                image: AssetImage("sync_icon.png"),
+                                color: ColorsResources.lightBlue,
+                              )
+                            )
+                          )
+                        ),
+                      ),
+                    )
+                ),
+                Expanded(
+                    flex: 7,
                     child: Container(
                       color: Colors.transparent,
                     )
@@ -530,6 +560,13 @@ class _TopBarViewState extends State<TopBarView> {
         ),
       ),
     );
+  }
+
+  void synchronizeWithServer() async {
+
+    // Replace Data of Server with Local Database
+    // If Date (epoch millis) on Server is Lower than CurrentMillis
+
   }
 
 }
