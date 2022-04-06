@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/28/22, 8:36 AM
+ * Last modified 4/6/22, 6:13 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -23,6 +23,7 @@ import 'package:flow_accounting/products/output/ui/products_output_view.dart';
 import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
+import 'package:flow_accounting/sell_invoices/input/ui/sell_invoices_input_view.dart';
 import 'package:flow_accounting/transactions/input/ui/transactions_input_view.dart';
 import 'package:flow_accounting/transactions/output/ui/transactions_output_view.dart';
 import 'package:flow_accounting/utils/colors/color_modifier.dart';
@@ -137,7 +138,7 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
         importantFeature: false,
         featuresTitle: StringsResources.featureSellInvoicesTitle(),
         featuresDescription: StringsResources.featureSellInvoicesDescription(),
-        featureViewToSubmitData: null,
+        featureViewToSubmitData: SellInvoicesInputView(),
         featureToPresentData: null));
     allFeaturesStructure.add(FeaturesStructure(
         featureColor: ColorsResources.lightestBlue,
