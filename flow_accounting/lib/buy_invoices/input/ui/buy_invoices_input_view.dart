@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/4/22, 4:45 AM
+ * Last modified 4/6/22, 4:10 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -855,6 +855,21 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                       autofocus: false,
                                       keyboardType: TextInputType.number,
                                       textInputAction: TextInputAction.next,
+                                      onChanged: (quantity) {
+
+                                        try {
+
+                                          int completePrice = int.parse(controllerProductEachPrice.text.isEmpty ? "1" : controllerProductEachPrice.text) * int.parse(quantity.isEmpty ? "1" : quantity);
+
+                                          double discountPrice = (completePrice * int.parse(controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text)) / 100;
+
+                                          controllerProductPrice.text = (completePrice - discountPrice).toString();
+
+                                        } on Exception {
+
+                                        }
+
+                                      },
                                       decoration: InputDecoration(
                                         alignLabelWithHint: true,
                                         border: const OutlineInputBorder(
@@ -1093,6 +1108,21 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                       autofocus: false,
                                       keyboardType: TextInputType.number,
                                       textInputAction: TextInputAction.next,
+                                      onChanged: (discountPercentage) {
+
+                                        try {
+
+                                          int completePrice = int.parse(controllerProductEachPrice.text.isEmpty ? "1" : controllerProductEachPrice.text) * int.parse(controllerProductQuantity.text.isEmpty ? "1" : controllerProductQuantity.text);
+
+                                          double discountPrice = (completePrice * int.parse(discountPercentage.isEmpty ? "0" : discountPercentage)) / 100;
+
+                                          controllerProductPrice.text = (completePrice - discountPrice).toString();
+
+                                        } on Exception {
+
+                                        }
+
+                                      },
                                       decoration: InputDecoration(
                                         alignLabelWithHint: true,
                                         border: const OutlineInputBorder(
@@ -1170,6 +1200,21 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                       autofocus: false,
                                       keyboardType: TextInputType.number,
                                       textInputAction: TextInputAction.next,
+                                      onChanged: (eachPrice) {
+
+                                        try {
+
+                                          int completePrice = int.parse(eachPrice.isEmpty ? "1" : eachPrice) * int.parse(controllerProductQuantity.text.isEmpty ? "1" : controllerProductQuantity.text);
+
+                                          double discountPrice = (completePrice * int.parse(controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text)) / 100;
+
+                                          controllerProductPrice.text = (completePrice - discountPrice).toString();
+
+                                        } on Exception {
+
+                                        }
+
+                                      },
                                       decoration: InputDecoration(
                                         alignLabelWithHint: true,
                                         border: const OutlineInputBorder(
@@ -1262,9 +1307,9 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                       textInputAction: TextInputAction.next,
                                       onTap: () {
 
-                                        int completePrice = int.parse(controllerProductEachPrice.text) * int.parse(controllerProductQuantity.text);
+                                        int completePrice = int.parse(controllerProductEachPrice.text.isEmpty ? "1" : controllerProductEachPrice.text) * int.parse(controllerProductQuantity.text.isEmpty ? "1" : controllerProductQuantity.text);
 
-                                        double discountPrice = (completePrice * int.parse(controllerProductDiscount.text)) / 100;
+                                        double discountPrice = (completePrice * int.parse(controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text)) / 100;
 
                                         controllerProductPrice.text = (completePrice - discountPrice).toString();
 
