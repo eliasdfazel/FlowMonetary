@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/7/22, 3:11 AM
+ * Last modified 4/7/22, 3:33 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -20,18 +20,18 @@ class SellPrintLayout {
 
   Widget design(SellInvoicesData sellInvoicesData) {
 
-    String invoiceType = StringsResources.buyInvoiceFinal();
+    String invoiceType = StringsResources.invoiceFinal();
 
     switch (sellInvoicesData.sellPreInvoice) {
       case SellInvoicesData.SellInvoice_Pre: {
 
-        invoiceType = StringsResources.buyInvoicePre();
+        invoiceType = StringsResources.invoicePre();
 
         break;
       }
       case SellInvoicesData.SellInvoice_Final: {
 
-        invoiceType = StringsResources.buyInvoiceFinal();
+        invoiceType = StringsResources.invoiceFinal();
 
         break;
       }
@@ -587,7 +587,7 @@ class SellPrintLayout {
                                           child: Align(
                                               alignment: AlignmentDirectional.centerEnd,
                                               child: Text(
-                                                  StringsResources.invoicePaidBy(),
+                                                  StringsResources.buyInvoicePaidBy(),
                                                   textDirection: TextDirection.rtl,
                                                   style: TextStyle(
                                                       fontSize: 12,
@@ -731,7 +731,7 @@ class SellPrintLayout {
                                           child: Align(
                                               alignment: AlignmentDirectional.centerEnd,
                                               child: Text(
-                                                  StringsResources.buyInvoiceType(),
+                                                  StringsResources.invoiceType(),
                                                   textDirection: TextDirection.rtl,
                                                   style: TextStyle(
                                                       fontSize: 12,

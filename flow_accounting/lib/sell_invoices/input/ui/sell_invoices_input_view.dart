@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/7/22, 3:11 AM
+ * Last modified 4/7/22, 3:35 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -45,7 +45,7 @@ class SellInvoicesInputView extends StatefulWidget {
   @override
   _SellInvoicesInputViewState createState() => _SellInvoicesInputViewState();
 }
-class _SellInvoicesInputViewState extends State<SellInvoicesInputView>  {
+class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
   CalendarView calendarView = CalendarView();
 
@@ -764,10 +764,10 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView>  {
                                                   fillColor: ColorsResources.lightTransparent,
                                                   focusColor: ColorsResources.dark
                                               ),
-                                              value: StringsResources.buyInvoiceFinal(),
+                                              value: StringsResources.invoiceFinal(),
                                               items: <String> [
-                                                StringsResources.buyInvoiceFinal(),
-                                                StringsResources.buyInvoicePre()
+                                                StringsResources.invoiceFinal(),
+                                                StringsResources.invoicePre()
                                               ].map<DropdownMenuItem<String>>((String value) {
 
                                                 return DropdownMenuItem<String>(
@@ -793,11 +793,11 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView>  {
                                               }).toList(),
                                               onChanged: (value) {
 
-                                                if (value.toString() == StringsResources.buyInvoiceFinal()) {
+                                                if (value.toString() == StringsResources.invoiceFinal()) {
 
                                                   controllerPreInvoice.text = SellInvoicesData.SellInvoice_Final;
 
-                                                } else if (value.toString() == StringsResources.buyInvoicePre()) {
+                                                } else if (value.toString() == StringsResources.invoicePre()) {
 
                                                   controllerPreInvoice.text = SellInvoicesData.SellInvoice_Pre;
 
@@ -812,7 +812,7 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView>  {
                                           child: Align(
                                             alignment: Alignment.centerRight,
                                             child: Text(
-                                              StringsResources.buyInvoiceType(),
+                                              StringsResources.invoiceType(),
                                               textAlign: TextAlign.right,
                                               style: TextStyle(
                                                   color: ColorsResources.applicationGeeksEmpire,
@@ -1516,12 +1516,12 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView>  {
                                             errorText: warningPaidTo,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
-                                            labelText: StringsResources.invoicePaidBy(),
+                                            labelText: StringsResources.sellInvoicePaidBy(),
                                             labelStyle: const TextStyle(
                                                 color: ColorsResources.dark,
                                                 fontSize: 17.0
                                             ),
-                                            hintText: StringsResources.invoicePaidByHint(),
+                                            hintText: StringsResources.sellInvoicePaidByHint(),
                                             hintStyle: const TextStyle(
                                                 color: ColorsResources.darkTransparent,
                                                 fontSize: 13.0
@@ -1674,12 +1674,12 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView>  {
                                             errorText: warningSoldTo,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
-                                            labelText: StringsResources.sellInvoiceBoughtFrom(),
+                                            labelText: StringsResources.sellInvoiceSoldTo(),
                                             labelStyle: const TextStyle(
                                                 color: ColorsResources.dark,
                                                 fontSize: 17.0
                                             ),
-                                            hintText: StringsResources.sellInvoiceBoughtFromHint(),
+                                            hintText: StringsResources.sellInvoiceSoldToHint(),
                                             hintStyle: const TextStyle(
                                                 color: ColorsResources.darkTransparent,
                                                 fontSize: 13.0
@@ -2000,7 +2000,7 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView>  {
 
                                     var databaseInputs = SellInvoicesDatabaseInputs();
 
-                                    SellInvoicesData buyInvoicesData = SellInvoicesData(
+                                    SellInvoicesData sellInvoicesData = SellInvoicesData(
                                         id: timeNow,
 
                                         companyName: controllerCompanyName.text.isEmpty ? UserInformation.UserId : controllerCompanyName.text,
@@ -2036,13 +2036,13 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView>  {
 
                                       if ((widget.sellInvoicesData?.id)! != 0) {
 
-                                        databaseInputs.updateInvoiceData(buyInvoicesData, SellInvoicesDatabaseInputs.databaseTableName, UserInformation.UserId);
+                                        databaseInputs.updateInvoiceData(sellInvoicesData, SellInvoicesDatabaseInputs.databaseTableName, UserInformation.UserId);
 
                                       }
 
                                     } else {
 
-                                      databaseInputs.insertSellInvoiceData(buyInvoicesData, SellInvoicesDatabaseInputs.databaseTableName, UserInformation.UserId);
+                                      databaseInputs.insertSellInvoiceData(sellInvoicesData, SellInvoicesDatabaseInputs.databaseTableName, UserInformation.UserId);
 
                                       updateProductQuantity();
 
@@ -2254,7 +2254,7 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView>  {
 
         ProductsData currentProductData = await productsDatabaseQueries.querySpecificProductById(selectedProductsData!.id.toString(), ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
-        currentProductData.productQuantity = currentProductData.productQuantity + int.parse(controllerProductQuantity.text);
+        currentProductData.productQuantity = currentProductData.productQuantity - int.parse(controllerProductQuantity.text);
 
         ProductsDatabaseInputs productsDatabaseInputs = ProductsDatabaseInputs();
 

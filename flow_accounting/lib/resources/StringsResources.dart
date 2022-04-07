@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/7/22, 3:11 AM
+ * Last modified 4/7/22, 3:33 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -678,15 +678,15 @@ class StringsResources {
     return "نام محصول فروخته شده";
   }
 
-  static String buyInvoiceFinal() {
+  static String invoiceFinal() {
 
     return "فاکتور پایانی";
   }
-  static String buyInvoicePre() {
+  static String invoicePre() {
 
     return "پیش فاکتور";
   }
-  static String buyInvoiceType() {
+  static String invoiceType() {
 
     return "نوع فاکتور";
   }
@@ -735,11 +735,11 @@ class StringsResources {
     return "قیمت کل فاکتور";
   }
 
-  static String invoicePaidBy() {
+  static String buyInvoicePaidBy() {
 
     return "پرداخت از";
   }
-  static String invoicePaidByHint() {
+  static String buyInvoicePaidByHint() {
 
     return "فاکتور از چه کارت یا حسابی پرداخت شده است؟";
   }
@@ -762,11 +762,11 @@ class StringsResources {
     return "محصولات این فاکتور از چه کسی خریداری شده است؟";
   }
 
-  static String sellInvoiceBoughtFrom() {
+  static String sellInvoiceSoldTo() {
 
     return "فروش به";
   }
-  static String sellInvoiceBoughtFromHint() {
+  static String sellInvoiceSoldToHint() {
 
     return "محصولات این فاکتور به چه کسی فروخته شده است؟";
   }

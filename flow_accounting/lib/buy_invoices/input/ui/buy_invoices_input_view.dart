@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/7/22, 3:11 AM
+ * Last modified 4/7/22, 3:33 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -764,10 +764,10 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                                   fillColor: ColorsResources.lightTransparent,
                                                   focusColor: ColorsResources.dark
                                               ),
-                                              value: StringsResources.buyInvoiceFinal(),
+                                              value: StringsResources.invoiceFinal(),
                                               items: <String> [
-                                                StringsResources.buyInvoiceFinal(),
-                                                StringsResources.buyInvoicePre()
+                                                StringsResources.invoiceFinal(),
+                                                StringsResources.invoicePre()
                                               ].map<DropdownMenuItem<String>>((String value) {
 
                                                 return DropdownMenuItem<String>(
@@ -793,11 +793,11 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                               }).toList(),
                                               onChanged: (value) {
 
-                                                if (value.toString() == StringsResources.buyInvoiceFinal()) {
+                                                if (value.toString() == StringsResources.invoiceFinal()) {
 
                                                   controllerPreInvoice.text = BuyInvoicesData.BuyInvoice_Final;
 
-                                                } else if (value.toString() == StringsResources.buyInvoicePre()) {
+                                                } else if (value.toString() == StringsResources.invoicePre()) {
 
                                                   controllerPreInvoice.text = BuyInvoicesData.BuyInvoice_Pre;
 
@@ -812,7 +812,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                           child: Align(
                                             alignment: Alignment.centerRight,
                                             child: Text(
-                                              StringsResources.buyInvoiceType(),
+                                              StringsResources.invoiceType(),
                                               textAlign: TextAlign.right,
                                               style: TextStyle(
                                                   color: ColorsResources.applicationGeeksEmpire,
@@ -1516,12 +1516,12 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                             errorText: warningPaidBy,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
-                                            labelText: StringsResources.invoicePaidBy(),
+                                            labelText: StringsResources.buyInvoicePaidBy(),
                                             labelStyle: const TextStyle(
                                                 color: ColorsResources.dark,
                                                 fontSize: 17.0
                                             ),
-                                            hintText: StringsResources.invoicePaidByHint(),
+                                            hintText: StringsResources.buyInvoicePaidByHint(),
                                             hintStyle: const TextStyle(
                                                 color: ColorsResources.darkTransparent,
                                                 fontSize: 13.0
