@@ -2,16 +2,17 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/7/22, 7:16 AM
+ * Last modified 4/7/22, 7:24 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
-import 'package:flow_accounting/home/home.dart';
+import 'package:flow_accounting/home/interface/dashboard.dart';
 import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/profile/database/structures/tables_structure.dart';
 import 'package:flow_accounting/utils/navigations/navigations.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:local_auth/auth_strings.dart';
@@ -43,6 +44,8 @@ class WelcomePage extends StatefulWidget {
 }
 class _WelcomePageViewState extends State<WelcomePage> {
 
+  Widget contentView = Container(color: ColorsResources.primaryColor);
+
   LocalAuthentication localAuthentication = LocalAuthentication();
 
   String signedInUser = "";
@@ -50,6 +53,8 @@ class _WelcomePageViewState extends State<WelcomePage> {
   @override
   void initState() {
     super.initState();
+
+    contentView = getStartedView();
 
     getSignedInUserId();
 
@@ -65,7 +70,11 @@ class _WelcomePageViewState extends State<WelcomePage> {
         if (WelcomePage.Authenticated) {
           debugPrint("Authenticated Successfully");
 
-          NavigationProcess().goTo(context, const FlowDashboard());
+          setState(() {
+
+            contentView = FlowDashboard();
+
+          });
 
         } else {
           debugPrint("Authentication Failed");
@@ -78,7 +87,7 @@ class _WelcomePageViewState extends State<WelcomePage> {
 
     });
 
-    return getStartedView();
+    return contentView;
   }
 
   Widget getStartedView() {
@@ -234,21 +243,29 @@ class _WelcomePageViewState extends State<WelcomePage> {
 
       debugPrint("Signed In User: ${signedInUser}");
 
-      WelcomePage.Authenticated = await localAuthentication.authenticate(
-          localizedReason: StringsResources.securityNotice(),
-          stickyAuth: false,
-          useErrorDialogs: false,
-          androidAuthStrings: AndroidAuthMessages(
-              cancelButton: StringsResources.cancelText(),
-              goToSettingsButton: StringsResources.settingText(),
-              goToSettingsDescription: StringsResources.securityWarning()
-          ),
-          iOSAuthStrings: IOSAuthMessages(
-              cancelButton: StringsResources.cancelText(),
-              goToSettingsButton: StringsResources.settingText(),
-              goToSettingsDescription: StringsResources.securityWarning()
-          ));
-      debugPrint("Authentication Process Started");
+      if (kDebugMode) {
+
+        WelcomePage.Authenticated = true;
+
+      } else {
+
+        WelcomePage.Authenticated = await localAuthentication.authenticate(
+            localizedReason: StringsResources.securityNotice(),
+            stickyAuth: false,
+            useErrorDialogs: false,
+            androidAuthStrings: AndroidAuthMessages(
+                cancelButton: StringsResources.cancelText(),
+                goToSettingsButton: StringsResources.settingText(),
+                goToSettingsDescription: StringsResources.securityWarning()
+            ),
+            iOSAuthStrings: IOSAuthMessages(
+                cancelButton: StringsResources.cancelText(),
+                goToSettingsButton: StringsResources.settingText(),
+                goToSettingsDescription: StringsResources.securityWarning()
+            ));
+        debugPrint("Authentication Process Started");
+
+      }
 
     } on Exception {
 

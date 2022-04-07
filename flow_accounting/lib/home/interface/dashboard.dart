@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/7/22, 7:12 AM
+ * Last modified 4/7/22, 7:21 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -42,14 +42,14 @@ import 'sections/features_view.dart';
 import 'sections/general_data_view.dart';
 import 'sections/top_bar_view.dart';
 
-class DashboardView extends StatefulWidget {
+class FlowDashboard extends StatefulWidget {
 
-  const DashboardView({Key? key}) : super(key: key);
+  const FlowDashboard({Key? key}) : super(key: key);
 
   @override
-  State<DashboardView> createState() => DashboardViewState();
+  State<FlowDashboard> createState() => FlowDashboardState();
 }
-class DashboardViewState extends State<DashboardView> {
+class FlowDashboardState extends State<FlowDashboard> {
 
   LocalAuthentication localAuthentication = LocalAuthentication();
 

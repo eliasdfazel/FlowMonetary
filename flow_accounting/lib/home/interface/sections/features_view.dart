@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/7/22, 4:07 AM
+ * Last modified 4/7/22, 7:21 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -47,7 +47,7 @@ class FeaturesOptionsData {
 }
 
 class FeaturesOptionsView extends StatefulWidget {
-  DashboardViewState dashboardView;
+  FlowDashboardState dashboardView;
 
   FeaturesOptionsView({Key? key, required this.dashboardView})
       : super(key: key);
