@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/7/22, 3:41 AM
+ * Last modified 4/7/22, 4:16 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -13,7 +13,7 @@ import 'package:flow_accounting/sell_invoices/database/structures/tables_structu
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-class sellInvoicesDatabaseQueries {
+class SellInvoicesDatabaseQueries {
 
   Future<List<SellInvoicesData>> getAllSellInvoices(String tableName,
       String usernameId) async {

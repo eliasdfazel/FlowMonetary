@@ -10,10 +10,6 @@
  */
 
 import 'package:blur/blur.dart';
-import 'package:flow_accounting/buy_invoices/database/io/inputs.dart';
-import 'package:flow_accounting/buy_invoices/database/io/queries.dart';
-import 'package:flow_accounting/buy_invoices/database/structures/tables_structure.dart';
-import 'package:flow_accounting/buy_invoices/input/ui/buy_invoices_input_view.dart';
 import 'package:flow_accounting/products/database/io/inputs.dart';
 import 'package:flow_accounting/products/database/io/queries.dart';
 import 'package:flow_accounting/products/database/structures/tables_structure.dart';
@@ -21,6 +17,10 @@ import 'package:flow_accounting/products/input/ui/products_input_view.dart';
 import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
+import 'package:flow_accounting/sell_invoices/database/io/inputs.dart';
+import 'package:flow_accounting/sell_invoices/database/io/queries.dart';
+import 'package:flow_accounting/sell_invoices/database/structures/tables_structure.dart';
+import 'package:flow_accounting/sell_invoices/input/ui/sell_invoices_input_view.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
 import 'package:flow_accounting/utils/navigations/navigations.dart';
 import 'package:flutter/material.dart';
@@ -28,18 +28,18 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:marquee/marquee.dart';
 import 'package:sqflite/sqflite.dart';
 
-class BuyInvoicesOutputView extends StatefulWidget {
-  const BuyInvoicesOutputView({Key? key}) : super(key: key);
+class SellInvoicesOutputView extends StatefulWidget {
+  const SellInvoicesOutputView({Key? key}) : super(key: key);
 
   @override
-  _BuyInvoiceViewState createState() => _BuyInvoiceViewState();
+  _SellInvoicesOutputViewState createState() => _SellInvoicesOutputViewState();
 }
-class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
+class _SellInvoicesOutputViewState extends State<SellInvoicesOutputView> {
 
   ColorSelectorView colorSelectorView = ColorSelectorView();
 
-  List<BuyInvoicesData> allBuyInvoices = [];
-  List<Widget> allBuyInvoicesItems = [];
+  List<SellInvoicesData> allSellInvoices = [];
+  List<Widget> allSellInvoicesItems = [];
 
   TextEditingController textEditorControllerQuery = TextEditingController();
 
@@ -53,7 +53,7 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
   @override
   void initState() {
 
-    retrieveAllBuyInvoices(context);
+    retrieveAllSellInvoices(context);
 
     super.initState();
   }
@@ -63,7 +63,7 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
 
     colorSelectorView.selectedColorNotifier.addListener(() {
 
-      filterByColorTag(context, allBuyInvoices, colorSelectorView.selectedColorNotifier.value);
+      filterByColorTag(context, allSellInvoices, colorSelectorView.selectedColorNotifier.value);
 
     });
 
@@ -72,7 +72,7 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
       padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
       child: colorSelectorView,
     ));
-    allListContentWidgets.addAll(allBuyInvoicesItems);
+    allListContentWidgets.addAll(allSellInvoicesItems);
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -200,7 +200,7 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
                                     InkWell(
                                       onTap: () {
 
-                                        sortBuyInvoicesByAmount(context, allBuyInvoices);
+                                        sortSellInvoicesByAmount(context, allSellInvoices);
 
                                       },
                                       child: SizedBox(
@@ -254,7 +254,7 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
                                     child: InkWell(
                                       onTap: () {
 
-                                        retrieveAllBuyInvoices(context);
+                                        retrieveAllSellInvoices(context);
 
                                       },
                                       child: const Icon(
@@ -297,7 +297,7 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
 
                                       String searchQuery = textEditorControllerQuery.text;
 
-                                      searchBuyInvoices(context, allBuyInvoices, searchQuery);
+                                      searchSellInvoices(context, allSellInvoices, searchQuery);
 
                                     },
                                     child: const SizedBox(
@@ -331,7 +331,7 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
                                           textInputAction: TextInputAction.search,
                                           onSubmitted: (searchQuery) {
 
-                                            searchBuyInvoices(context, allBuyInvoices, searchQuery);
+                                            searchSellInvoices(context, allSellInvoices, searchQuery);
 
                                           },
                                           decoration: InputDecoration(
@@ -394,9 +394,9 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
     );
   }
 
-  Widget outputItem(BuildContext context, BuyInvoicesData buyInvoicesData) {
+  Widget outputItem(BuildContext context, SellInvoicesData sellInvoicesData) {
 
-    Color budgetColorTag = Color(buyInvoicesData.colorTag);
+    Color budgetColorTag = Color(sellInvoicesData.colorTag);
 
     return Slidable(
       closeOnScroll: true,
@@ -407,7 +407,7 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
             flex: 1,
             onPressed: (BuildContext context) {
 
-              deleteBuyInvoices(context, buyInvoicesData);
+              deleteSellInvoices(context, sellInvoicesData);
 
             },
             backgroundColor: Colors.transparent,
@@ -420,7 +420,7 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
             flex: 1,
             onPressed: (BuildContext context) {
 
-              editBuyInvoices(context, buyInvoicesData);
+              editSellInvoices(context, sellInvoicesData);
 
             },
             backgroundColor: Colors.transparent,
@@ -440,7 +440,7 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
 
               ProductsDatabaseQueries productsDatabaseQueries = ProductsDatabaseQueries();
 
-              ProductsData productsData = await productsDatabaseQueries.querySpecificProductById(buyInvoicesData.boughtProductId, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+              ProductsData productsData = await productsDatabaseQueries.querySpecificProductById(sellInvoicesData.soldProductId, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
               NavigationProcess().goTo(context, ProductsInputView(productsData: productsData));
 
@@ -464,7 +464,7 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
           child: InkWell(
             onTap: () {
 
-              editBuyInvoices(context, buyInvoicesData);
+              editSellInvoices(context, sellInvoicesData);
 
             },
             child: Container(
@@ -502,7 +502,7 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
                               child: Align(
                                   alignment: Alignment.center,
                                   child: Marquee(
-                                    text: buyInvoicesData.boughtProductPrice,
+                                    text: sellInvoicesData.soldProductPrice,
                                     style: const TextStyle(
                                       color: ColorsResources.dark,
                                       fontSize: 31,
@@ -542,7 +542,7 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
                                         child: Align(
                                           alignment: Alignment.centerRight,
                                           child: Text(
-                                            buyInvoicesData.buyInvoiceNumber,
+                                            sellInvoicesData.sellInvoiceNumber,
                                             textAlign: TextAlign.center,
                                             style: const TextStyle(
                                               color: ColorsResources.dark,
@@ -559,7 +559,7 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
                                         child: Align(
                                           alignment: Alignment.centerRight,
                                           child: Text(
-                                            buyInvoicesData.buyInvoiceDateText,
+                                            sellInvoicesData.sellInvoiceDateText,
                                             textAlign: TextAlign.right,
                                             maxLines: 1,
                                             style: const TextStyle(
@@ -587,7 +587,7 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
                                     child: Align(
                                         alignment: Alignment.center,
                                         child: Text(
-                                          buyInvoicesData.boughtProductName,
+                                          sellInvoicesData.soldProductName,
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                               color: ColorsResources.dark.withOpacity(0.537),
@@ -601,7 +601,7 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
                                       child: Align(
                                           alignment: Alignment.center,
                                           child: Text(
-                                            buyInvoicesData.boughtProductQuantity,
+                                            sellInvoicesData.soldProductQuantity,
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                                 color: ColorsResources.dark.withOpacity(0.537),
@@ -659,69 +659,69 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
 
   }
 
-  void deleteBuyInvoices(BuildContext context, BuyInvoicesData buyInvoicesData) async {
+  void deleteSellInvoices(BuildContext context, SellInvoicesData sellInvoicesData) async {
 
     String databaseDirectory = await getDatabasesPath();
 
-    String buyInvoiceDatabasePath = "${databaseDirectory}/${BuyInvoicesDatabaseInputs.buyInvoicesDatabase()}";
+    String sellInvoiceDatabasePath = "${databaseDirectory}/${SellInvoicesDatabaseInputs.sellInvoicesDatabase()}";
 
-    bool buyInvoicesDatabaseExist = await databaseExists(buyInvoiceDatabasePath);
+    bool sellInvoicesDatabaseExist = await databaseExists(sellInvoiceDatabasePath);
 
-    if (buyInvoicesDatabaseExist) {
+    if (sellInvoicesDatabaseExist) {
 
-      var databaseQueries = BuyInvoicesDatabaseQueries();
+      var databaseQueries = SellInvoicesDatabaseQueries();
 
-      databaseQueries.queryDeleteBuyInvoice(
-          buyInvoicesData.id, BuyInvoicesDatabaseInputs.databaseTableName,
+      databaseQueries.queryDeleteSellInvoice(
+          sellInvoicesData.id, SellInvoicesDatabaseInputs.databaseTableName,
           UserInformation.UserId);
 
-      retrieveAllBuyInvoices(context);
+      retrieveAllSellInvoices(context);
 
     }
 
   }
 
-  void editBuyInvoices(BuildContext context, BuyInvoicesData buyInvoicesData) async {
+  void editSellInvoices(BuildContext context, SellInvoicesData sellInvoicesData) async {
 
-    bool buyInvoiceDataUpdated = await Navigator.push(
+    bool sellInvoiceDataUpdated = await Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => BuyInvoicesInputView(buyInvoicesData: buyInvoicesData)),
+      MaterialPageRoute(builder: (context) => SellInvoicesInputView(sellInvoicesData: sellInvoicesData)),
     );
 
-    debugPrint("Buy Invoices Data Update => ${buyInvoiceDataUpdated}");
-    if (buyInvoiceDataUpdated) {
+    debugPrint("Sell Invoices Data Update => ${sellInvoiceDataUpdated}");
+    if (sellInvoiceDataUpdated) {
 
-      retrieveAllBuyInvoices(context);
+      retrieveAllSellInvoices(context);
 
     }
 
   }
 
-  void retrieveAllBuyInvoices(BuildContext context) async {
+  void retrieveAllSellInvoices(BuildContext context) async {
 
-    if (allBuyInvoicesItems.isNotEmpty) {
+    if (allSellInvoicesItems.isNotEmpty) {
 
-      allBuyInvoicesItems.clear();
+      allSellInvoicesItems.clear();
 
     }
 
     String databaseDirectory = await getDatabasesPath();
 
-    String buyInvoicesDatabasePath = "${databaseDirectory}/${BuyInvoicesDatabaseInputs.buyInvoicesDatabase()}";
+    String sellInvoicesDatabasePath = "${databaseDirectory}/${SellInvoicesDatabaseInputs.sellInvoicesDatabase()}";
 
-    bool buyInvoiceDatabaseExist = await databaseExists(buyInvoicesDatabasePath);
+    bool sellInvoiceDatabaseExist = await databaseExists(sellInvoicesDatabasePath);
 
-    if (buyInvoiceDatabaseExist) {
+    if (sellInvoiceDatabaseExist) {
 
-      List<Widget> preparedAllBuyInvoicesItem = [];
+      List<Widget> preparedAllSellInvoicesItem = [];
 
-      var databaseQueries = BuyInvoicesDatabaseQueries();
+      var databaseQueries = SellInvoicesDatabaseQueries();
 
-      allBuyInvoices = await databaseQueries.getAllBuyInvoices(BuyInvoicesDatabaseInputs.databaseTableName, UserInformation.UserId);
+      allSellInvoices = await databaseQueries.getAllSellInvoices(SellInvoicesDatabaseInputs.databaseTableName, UserInformation.UserId);
 
-      for (var element in allBuyInvoices) {
+      for (var element in allSellInvoices) {
 
-        preparedAllBuyInvoicesItem.add(outputItem(context, element));
+        preparedAllSellInvoicesItem.add(outputItem(context, element));
 
       }
 
@@ -729,7 +729,7 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
 
       setState(() {
 
-        allBuyInvoicesItems = preparedAllBuyInvoicesItem;
+        allSellInvoicesItems = preparedAllSellInvoicesItem;
 
       });
 
@@ -737,37 +737,37 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
 
   }
 
-  void sortBuyInvoicesByAmount(BuildContext context, List<BuyInvoicesData> inputBuyInvoicesDataList) {
+  void sortSellInvoicesByAmount(BuildContext context, List<SellInvoicesData> inputSellInvoicesDataList) {
 
-    if (allBuyInvoicesItems.isNotEmpty) {
+    if (allSellInvoicesItems.isNotEmpty) {
 
-      allBuyInvoicesItems.clear();
+      allSellInvoicesItems.clear();
 
     }
-    inputBuyInvoicesDataList.sort((a, b) => (a.boughtProductPrice).compareTo(b.boughtProductPrice));
+    inputSellInvoicesDataList.sort((a, b) => (a.soldProductPrice).compareTo(b.soldProductPrice));
 
-    List<Widget> preparedAllBuyInvoicesItem = [];
+    List<Widget> preparedAllSellInvoicesItem = [];
 
-    for (var element in inputBuyInvoicesDataList) {
+    for (var element in inputSellInvoicesDataList) {
 
-      preparedAllBuyInvoicesItem.add(outputItem(context, element));
+      preparedAllSellInvoicesItem.add(outputItem(context, element));
 
     }
 
     setState(() {
 
-      allBuyInvoicesItems = preparedAllBuyInvoicesItem;
+      allSellInvoicesItems = preparedAllSellInvoicesItem;
 
     });
 
   }
 
   void filterByColorTag(BuildContext context,
-      List<BuyInvoicesData> inputBuyInvoicesList, Color colorQuery) {
+      List<SellInvoicesData> inputSellInvoicesList, Color colorQuery) {
 
-    List<BuyInvoicesData> searchResult = [];
+    List<SellInvoicesData> searchResult = [];
 
-    for (var element in inputBuyInvoicesList) {
+    for (var element in inputSellInvoicesList) {
 
       if (element.colorTag == colorQuery.value) {
 
@@ -775,17 +775,17 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
 
       }
 
-      List<Widget> preparedAllBuyInvoicesItem = [];
+      List<Widget> preparedAllSellInvoicesItem = [];
 
       for (var element in searchResult) {
 
-        preparedAllBuyInvoicesItem.add(outputItem(context, element));
+        preparedAllSellInvoicesItem.add(outputItem(context, element));
 
       }
 
       setState(() {
 
-        allBuyInvoicesItems = preparedAllBuyInvoicesItem;
+        allSellInvoicesItems = preparedAllSellInvoicesItem;
 
       });
 
@@ -793,42 +793,42 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
 
   }
 
-  void searchBuyInvoices(BuildContext context,
-      List<BuyInvoicesData> inputBuyInvoicesList, String searchQuery) {
+  void searchSellInvoices(BuildContext context,
+      List<SellInvoicesData> inputSellInvoicesList, String searchQuery) {
 
-    List<BuyInvoicesData> searchResult = [];
+    List<SellInvoicesData> searchResult = [];
 
-    for (var element in inputBuyInvoicesList) {
+    for (var element in inputSellInvoicesList) {
 
-      if (element.buyInvoiceNumber.contains(searchQuery) ||
-          element.buyInvoiceDateText.contains(searchQuery) ||
-          element.buyInvoiceDescription.contains(searchQuery) ||
-          element.boughtProductId.contains(searchQuery) ||
-          element.boughtProductName.contains(searchQuery) ||
-          element.boughtProductQuantity.contains(searchQuery) ||
-          element.boughtProductPrice.contains(searchQuery) ||
-          element.boughtProductEachPrice.contains(searchQuery) ||
-          element.boughtProductPriceDiscount.contains(searchQuery) ||
-          element.paidBy.contains(searchQuery) ||
-          element.boughtFrom.contains(searchQuery) ||
-          element.buyPreInvoice.contains(searchQuery)
+      if (element.sellInvoiceNumber.contains(searchQuery) ||
+          element.sellInvoiceDateText.contains(searchQuery) ||
+          element.sellInvoiceDescription.contains(searchQuery) ||
+          element.soldProductId.contains(searchQuery) ||
+          element.soldProductName.contains(searchQuery) ||
+          element.soldProductQuantity.contains(searchQuery) ||
+          element.soldProductPrice.contains(searchQuery) ||
+          element.soldProductEachPrice.contains(searchQuery) ||
+          element.soldProductPriceDiscount.contains(searchQuery) ||
+          element.paidTo.contains(searchQuery) ||
+          element.soldTo.contains(searchQuery) ||
+          element.sellPreInvoice.contains(searchQuery)
       ) {
 
         searchResult.add(element);
 
       }
 
-      List<Widget> preparedAllBuyInvoicesItem = [];
+      List<Widget> preparedAllSellInvoicesItem = [];
 
       for (var element in searchResult) {
 
-        preparedAllBuyInvoicesItem.add(outputItem(context, element));
+        preparedAllSellInvoicesItem.add(outputItem(context, element));
 
       }
 
       setState(() {
 
-        allBuyInvoicesItems = preparedAllBuyInvoicesItem;
+        allSellInvoicesItems = preparedAllSellInvoicesItem;
 
       });
 
