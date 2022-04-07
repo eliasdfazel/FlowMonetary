@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/7/22, 7:34 AM
+ * Last modified 4/7/22, 7:43 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -60,69 +60,23 @@ class FlowDashboardState extends State<FlowDashboard> {
 
     retrieveLatestTransactions();
 
+    authenticationCheckpoint();
+
     super.initState();
-
-    WidgetsBinding.instance?.addObserver(
-        LifecycleEventHandler(
-            resumeCallBack: () async => setState(() async {
-              debugPrint("Dashboard Resumed");
-
-              if (!kDebugMode) {
-
-                if (!WelcomePage.Authenticated) {
-
-                  WelcomePage.Authenticated = await localAuthentication.authenticate(
-                      localizedReason: StringsResources.securityNotice(),
-                      stickyAuth: false,
-                      useErrorDialogs: false,
-                      androidAuthStrings: AndroidAuthMessages(
-                          cancelButton: StringsResources.cancelText(),
-                          goToSettingsButton: StringsResources.settingText(),
-                          goToSettingsDescription: StringsResources.securityWarning()
-                      ),
-                      iOSAuthStrings: IOSAuthMessages(
-                          cancelButton: StringsResources.cancelText(),
-                          goToSettingsButton: StringsResources.settingText(),
-                          goToSettingsDescription: StringsResources.securityWarning()
-                      ));
-                  debugPrint("Authentication Process Started");
-
-                  if (WelcomePage.Authenticated) {
-                    debugPrint("Authenticated Successfully");
-
-                  } else {
-                    debugPrint("Authentication Failed");
-
-                    Phoenix.rebirth(context);
-
-                  }
-
-                }
-
-              }
-
-            }),
-            pauseCallBack: () async => setState(() {
-              debugPrint("Dashboard Paused");
-
-              if (!kDebugMode) {
-
-                Future.delayed(Duration(seconds: 1), () {
-
-                  WelcomePage.Authenticated = false;
-
-                });
-
-              }
-
-            })
-        )
-    );
-
   }
 
   @override
   void dispose() {
+
+    if (!kDebugMode) {
+
+      Future.delayed(Duration(seconds: 1), () {
+
+        WelcomePage.Authenticated = false;
+
+      });
+
+    }
 
     super.dispose();
   }
@@ -563,33 +517,44 @@ class FlowDashboardState extends State<FlowDashboard> {
 
   }
 
-}
+  void authenticationCheckpoint() async {
 
-class LifecycleEventHandler extends WidgetsBindingObserver {
+    if (!kDebugMode) {
 
-  final AsyncCallback resumeCallBack;
-  final AsyncCallback pauseCallBack;
+      if (!WelcomePage.Authenticated) {
 
-  LifecycleEventHandler({
-    required this.resumeCallBack,
-    required this.pauseCallBack,
-  });
+        WelcomePage.Authenticated = await localAuthentication.authenticate(
+            localizedReason: StringsResources.securityNotice(),
+            stickyAuth: false,
+            useErrorDialogs: false,
+            androidAuthStrings: AndroidAuthMessages(
+                cancelButton: StringsResources.cancelText(),
+                goToSettingsButton: StringsResources.settingText(),
+                goToSettingsDescription: StringsResources.securityWarning()
+            ),
+            iOSAuthStrings: IOSAuthMessages(
+                cancelButton: StringsResources.cancelText(),
+                goToSettingsButton: StringsResources.settingText(),
+                goToSettingsDescription: StringsResources.securityWarning()
+            ));
+        debugPrint("Authentication Process Started");
 
-  @override
-  Future<void> didChangeAppLifecycleState(AppLifecycleState state) async {
-    switch (state) {
-      case AppLifecycleState.resumed:
-        await resumeCallBack();
-        break;
-      case AppLifecycleState.inactive:
-      case AppLifecycleState.paused:
-        await pauseCallBack();
-        break;
-      case AppLifecycleState.detached:
+        if (WelcomePage.Authenticated) {
+          debugPrint("Authenticated Successfully");
 
-        break;
+        } else {
+          debugPrint("Authentication Failed");
+
+          Phoenix.rebirth(context);
+
+        }
+
+      }
+
     }
+
   }
+
 }
 
 class UpdatedData {
