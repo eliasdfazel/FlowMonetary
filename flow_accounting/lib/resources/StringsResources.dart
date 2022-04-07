@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/7/22, 4:16 AM
+ * Last modified 4/7/22, 4:34 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -446,28 +446,6 @@ class StringsResources {
   }
   /* End - Customer String Resources */
 
-  /* Start - Buy Invoices String Resources */
-  static String invoicesAmountHigh() {
-
-    return "مرتب سازی: مبلغ فاکتور";
-  }
-
-  static String invoicesProduct() {
-
-    return "نمایش محصول";
-  }
-
-  static String buyInvoicesDate() {
-
-    return "تاریخ فاکتور خرید";
-  }
-
-  static String buyInvoicesNumber() {
-
-    return "شماره فاکتور خرید";
-  }
-  /* End - Buy Invoices String Resources */
-
   /* Start - Cheque String Resources */
   static String chequeNumber() {
 
@@ -650,6 +628,21 @@ class StringsResources {
   static String sellInvoiceNumberHint() {
 
     return "شماره فاکتور فروش را وارد کنید";
+  }
+
+  static String invoicesAmountHigh() {
+
+    return "مرتب سازی: مبلغ فاکتور";
+  }
+
+  static String invoicesProduct() {
+
+    return "نمایش محصول";
+  }
+
+  static String invoicesDate() {
+
+    return "تاریخ فاکتور خرید";
   }
 
   static String invoiceDescription() {

@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/7/22, 3:33 AM
+ * Last modified 4/7/22, 4:34 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -124,7 +124,7 @@ class SellPrintLayout {
                                           child: Align(
                                               alignment: AlignmentDirectional.centerEnd,
                                               child: Text(
-                                                  StringsResources.buyInvoicesNumber(),
+                                                  StringsResources.invoiceNumber(),
                                                   textDirection: TextDirection.rtl,
                                                   style: TextStyle(
                                                       fontSize: 12,
@@ -147,7 +147,7 @@ class SellPrintLayout {
                                           child: Align(
                                               alignment: AlignmentDirectional.centerEnd,
                                               child: Text(
-                                                  StringsResources.buyInvoicesDate(),
+                                                  StringsResources.invoicesDate(),
                                                   textDirection: TextDirection.rtl,
                                                   style: TextStyle(
                                                       fontSize: 12,
@@ -266,7 +266,7 @@ class SellPrintLayout {
                                           child: Align(
                                               alignment: AlignmentDirectional.centerEnd,
                                               child: Text(
-                                                  StringsResources.buyInvoiceProductHint(),
+                                                  StringsResources.sellInvoiceProductHint(),
                                                   textDirection: TextDirection.rtl,
                                                   style: TextStyle(
                                                       fontSize: 12,
@@ -555,7 +555,7 @@ class SellPrintLayout {
                                         child: Align(
                                             alignment: AlignmentDirectional.centerEnd,
                                             child: Text(
-                                                "buy\nInv\noice\nsDa\nta.buyInvo\niceDescription",
+                                                sellInvoicesData.sellInvoiceDescription,
                                                 maxLines: 3,
                                                 textDirection: TextDirection.rtl,
                                                 style: TextStyle(
@@ -587,7 +587,7 @@ class SellPrintLayout {
                                           child: Align(
                                               alignment: AlignmentDirectional.centerEnd,
                                               child: Text(
-                                                  StringsResources.buyInvoicePaidBy(),
+                                                  StringsResources.sellInvoicePaidBy(),
                                                   textDirection: TextDirection.rtl,
                                                   style: TextStyle(
                                                       fontSize: 12,
@@ -610,7 +610,7 @@ class SellPrintLayout {
                                           child: Align(
                                               alignment: AlignmentDirectional.centerEnd,
                                               child: Text(
-                                                  StringsResources.buyInvoiceBoughtFrom(),
+                                                  StringsResources.sellInvoiceSoldTo(),
                                                   textDirection: TextDirection.rtl,
                                                   style: TextStyle(
                                                       fontSize: 12,

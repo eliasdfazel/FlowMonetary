@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/7/22, 3:33 AM
+ * Last modified 4/7/22, 4:34 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -124,7 +124,7 @@ class BuyPrintLayout {
                                           child: Align(
                                               alignment: AlignmentDirectional.centerEnd,
                                               child: Text(
-                                                  StringsResources.buyInvoicesNumber(),
+                                                  StringsResources.invoiceNumber(),
                                                   textDirection: TextDirection.rtl,
                                                   style: TextStyle(
                                                       fontSize: 12,
@@ -147,7 +147,7 @@ class BuyPrintLayout {
                                           child: Align(
                                               alignment: AlignmentDirectional.centerEnd,
                                               child: Text(
-                                                  StringsResources.buyInvoicesDate(),
+                                                  StringsResources.invoicesDate(),
                                                   textDirection: TextDirection.rtl,
                                                   style: TextStyle(
                                                       fontSize: 12,
@@ -555,7 +555,7 @@ class BuyPrintLayout {
                                         child: Align(
                                             alignment: AlignmentDirectional.centerEnd,
                                             child: Text(
-                                                "buy\nInv\noice\nsDa\nta.buyInvo\niceDescription",
+                                                buyInvoicesData.buyInvoiceDescription,
                                                 maxLines: 3,
                                                 textDirection: TextDirection.rtl,
                                                 style: TextStyle(
