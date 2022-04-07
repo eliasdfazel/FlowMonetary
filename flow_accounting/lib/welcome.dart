@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/7/22, 4:45 AM
+ * Last modified 4/7/22, 7:14 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -14,6 +14,8 @@ import 'package:flow_accounting/profile/database/structures/tables_structure.dar
 import 'package:flow_accounting/utils/navigations/navigations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
+import 'package:local_auth/auth_strings.dart';
+import 'package:local_auth/local_auth.dart';
 
 import 'resources/ColorsResources.dart';
 import 'resources/StringsResources.dart';
@@ -33,11 +35,15 @@ void main() async {
 class WelcomePage extends StatefulWidget {
   const WelcomePage({Key? key}) : super(key: key);
 
+  static bool Authenticated = false;
+
   @override
   State<WelcomePage> createState() => _WelcomePageViewState();
 
 }
 class _WelcomePageViewState extends State<WelcomePage> {
+
+  LocalAuthentication localAuthentication = LocalAuthentication();
 
   String signedInUser = "";
 
@@ -52,16 +58,25 @@ class _WelcomePageViewState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
 
-    Future.delayed(const Duration(milliseconds: 199), () {
+    Future.delayed(const Duration(milliseconds: 199), () async {
 
       if (signedInUser.isNotEmpty) {
 
-        NavigationProcess().goTo(context, const FlowDashboard());
+        if (WelcomePage.Authenticated) {
+          debugPrint("Authenticated Successfully");
+
+          NavigationProcess().goTo(context, const FlowDashboard());
+
+        } else {
+          debugPrint("Authentication Failed");
+
+          Phoenix.rebirth(context);
+
+        }
 
       }
 
     });
-
 
     return SafeArea(
         child: MaterialApp(
@@ -218,6 +233,22 @@ class _WelcomePageViewState extends State<WelcomePage> {
       }
 
       debugPrint("Signed In User: ${signedInUser}");
+
+      WelcomePage.Authenticated = await localAuthentication.authenticate(
+          localizedReason: StringsResources.securityNotice(),
+          stickyAuth: false,
+          useErrorDialogs: false,
+          androidAuthStrings: AndroidAuthMessages(
+              cancelButton: StringsResources.cancelText(),
+              goToSettingsButton: StringsResources.settingText(),
+              goToSettingsDescription: StringsResources.securityWarning()
+          ),
+          iOSAuthStrings: IOSAuthMessages(
+              cancelButton: StringsResources.cancelText(),
+              goToSettingsButton: StringsResources.settingText(),
+              goToSettingsDescription: StringsResources.securityWarning()
+          ));
+      debugPrint("Authentication Process Started");
 
     } on Exception {
 

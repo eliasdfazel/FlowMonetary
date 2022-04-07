@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/7/22, 4:34 AM
+ * Last modified 4/7/22, 6:27 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -111,6 +111,19 @@ class StringsResources {
   static String cancelText() {
 
     return "لغو";
+  }
+  static String settingText() {
+
+    return "تنضیمات";
+  }
+
+  static String securityWarning() {
+
+    return "امنیت موبایل تنظیم نشده است";
+  }
+  static String securityNotice() {
+
+    return "لطفا اعتبار سنجی هویتی را انجام دهید";
   }
 
   static String totalBalanceText() {

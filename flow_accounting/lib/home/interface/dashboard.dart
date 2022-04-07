@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/29/22, 9:25 AM
+ * Last modified 4/7/22, 7:12 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -24,10 +24,14 @@ import 'package:flow_accounting/transactions/database/io/inputs.dart';
 import 'package:flow_accounting/transactions/database/io/queries.dart';
 import 'package:flow_accounting/transactions/database/structures/tables_structure.dart';
 import 'package:flow_accounting/utils/navigations/navigations.dart';
+import 'package:flow_accounting/welcome.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
+import 'package:local_auth/auth_strings.dart';
+import 'package:local_auth/local_auth.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:wave/config.dart';
@@ -47,6 +51,8 @@ class DashboardView extends StatefulWidget {
 }
 class DashboardViewState extends State<DashboardView> {
 
+  LocalAuthentication localAuthentication = LocalAuthentication();
+
   List<TransactionsData> someLatestTransactions = [];
 
   List<CreditCardsData> allCreditCards = [];
@@ -59,11 +65,52 @@ class DashboardViewState extends State<DashboardView> {
     super.initState();
 
     WidgetsBinding.instance?.addObserver(
-        LifecycleEventHandler(resumeCallBack: () async => setState(() {
-          debugPrint("Dashboard Resumed");
+        LifecycleEventHandler(
+            resumeCallBack: () async => setState(() async {
+              debugPrint("Dashboard Resumed");
 
+              if (!WelcomePage.Authenticated) {
 
-        }))
+                WelcomePage.Authenticated = await localAuthentication.authenticate(
+                    localizedReason: StringsResources.securityNotice(),
+                    stickyAuth: false,
+                    useErrorDialogs: false,
+                    androidAuthStrings: AndroidAuthMessages(
+                        cancelButton: StringsResources.cancelText(),
+                        goToSettingsButton: StringsResources.settingText(),
+                        goToSettingsDescription: StringsResources.securityWarning()
+                    ),
+                    iOSAuthStrings: IOSAuthMessages(
+                        cancelButton: StringsResources.cancelText(),
+                        goToSettingsButton: StringsResources.settingText(),
+                        goToSettingsDescription: StringsResources.securityWarning()
+                    ));
+                debugPrint("Authentication Process Started");
+
+                if (WelcomePage.Authenticated) {
+                  debugPrint("Authenticated Successfully");
+
+                } else {
+                  debugPrint("Authentication Failed");
+
+                  Phoenix.rebirth(context);
+
+                }
+
+              }
+
+            }),
+            pauseCallBack: () async => setState(() {
+              debugPrint("Dashboard Paused");
+
+              Future.delayed(Duration(seconds: 1), () {
+
+                WelcomePage.Authenticated = false;
+
+              });
+
+            })
+        )
     );
 
     BackButtonInterceptor.add(aInterceptor);
@@ -524,10 +571,13 @@ class DashboardViewState extends State<DashboardView> {
 }
 
 class LifecycleEventHandler extends WidgetsBindingObserver {
+
   final AsyncCallback resumeCallBack;
+  final AsyncCallback pauseCallBack;
 
   LifecycleEventHandler({
     required this.resumeCallBack,
+    required this.pauseCallBack,
   });
 
   @override
@@ -538,6 +588,8 @@ class LifecycleEventHandler extends WidgetsBindingObserver {
         break;
       case AppLifecycleState.inactive:
       case AppLifecycleState.paused:
+        await pauseCallBack();
+        break;
       case AppLifecycleState.detached:
 
         break;
