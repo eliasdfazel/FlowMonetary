@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/21/22, 7:38 AM
+ * Last modified 4/7/22, 4:45 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -34,11 +34,10 @@ class WelcomePage extends StatefulWidget {
   const WelcomePage({Key? key}) : super(key: key);
 
   @override
-  State<WelcomePage> createState() => _WelcomePage();
+  State<WelcomePage> createState() => _WelcomePageViewState();
 
 }
-
-class _WelcomePage extends State<WelcomePage> {
+class _WelcomePageViewState extends State<WelcomePage> {
 
   String signedInUser = "";
 

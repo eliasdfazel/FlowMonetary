@@ -48,5 +48,7 @@
           		<string>en</string>
           		<string>fa</string>
           	</array>
+        <key>NSFaceIDUsageDescription</key>
+        <string>This Uses Face Id to Secure Entrance and Protect Private Data</string>
 </dict>
 </plist>
