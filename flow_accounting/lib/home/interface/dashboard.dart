@@ -2,13 +2,12 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/7/22, 7:21 AM
+ * Last modified 4/7/22, 7:34 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
-import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flow_accounting/credit_cards/database/io/inputs.dart';
 import 'package:flow_accounting/credit_cards/database/io/queries.dart';
 import 'package:flow_accounting/credit_cards/database/structures/tables_structure.dart';
@@ -27,7 +26,6 @@ import 'package:flow_accounting/utils/navigations/navigations.dart';
 import 'package:flow_accounting/welcome.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:local_auth/auth_strings.dart';
@@ -69,31 +67,35 @@ class FlowDashboardState extends State<FlowDashboard> {
             resumeCallBack: () async => setState(() async {
               debugPrint("Dashboard Resumed");
 
-              if (!WelcomePage.Authenticated) {
+              if (!kDebugMode) {
 
-                WelcomePage.Authenticated = await localAuthentication.authenticate(
-                    localizedReason: StringsResources.securityNotice(),
-                    stickyAuth: false,
-                    useErrorDialogs: false,
-                    androidAuthStrings: AndroidAuthMessages(
-                        cancelButton: StringsResources.cancelText(),
-                        goToSettingsButton: StringsResources.settingText(),
-                        goToSettingsDescription: StringsResources.securityWarning()
-                    ),
-                    iOSAuthStrings: IOSAuthMessages(
-                        cancelButton: StringsResources.cancelText(),
-                        goToSettingsButton: StringsResources.settingText(),
-                        goToSettingsDescription: StringsResources.securityWarning()
-                    ));
-                debugPrint("Authentication Process Started");
+                if (!WelcomePage.Authenticated) {
 
-                if (WelcomePage.Authenticated) {
-                  debugPrint("Authenticated Successfully");
+                  WelcomePage.Authenticated = await localAuthentication.authenticate(
+                      localizedReason: StringsResources.securityNotice(),
+                      stickyAuth: false,
+                      useErrorDialogs: false,
+                      androidAuthStrings: AndroidAuthMessages(
+                          cancelButton: StringsResources.cancelText(),
+                          goToSettingsButton: StringsResources.settingText(),
+                          goToSettingsDescription: StringsResources.securityWarning()
+                      ),
+                      iOSAuthStrings: IOSAuthMessages(
+                          cancelButton: StringsResources.cancelText(),
+                          goToSettingsButton: StringsResources.settingText(),
+                          goToSettingsDescription: StringsResources.securityWarning()
+                      ));
+                  debugPrint("Authentication Process Started");
 
-                } else {
-                  debugPrint("Authentication Failed");
+                  if (WelcomePage.Authenticated) {
+                    debugPrint("Authenticated Successfully");
 
-                  Phoenix.rebirth(context);
+                  } else {
+                    debugPrint("Authentication Failed");
+
+                    Phoenix.rebirth(context);
+
+                  }
 
                 }
 
@@ -103,33 +105,26 @@ class FlowDashboardState extends State<FlowDashboard> {
             pauseCallBack: () async => setState(() {
               debugPrint("Dashboard Paused");
 
-              Future.delayed(Duration(seconds: 1), () {
+              if (!kDebugMode) {
 
-                WelcomePage.Authenticated = false;
+                Future.delayed(Duration(seconds: 1), () {
 
-              });
+                  WelcomePage.Authenticated = false;
+
+                });
+
+              }
 
             })
         )
     );
-
-    BackButtonInterceptor.add(aInterceptor);
 
   }
 
   @override
   void dispose() {
 
-    BackButtonInterceptor.remove(aInterceptor);
-
     super.dispose();
-  }
-
-  bool aInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
-
-    SystemChannels.platform.invokeMethod<void>('SystemNavigator.pop');
-
-    return true;
   }
 
   @override
