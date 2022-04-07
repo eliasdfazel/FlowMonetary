@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/6/22, 4:10 AM
+ * Last modified 4/7/22, 3:11 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -550,7 +550,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                         errorText: warningNoticeNumber,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.buyInvoiceNumber(),
+                                        labelText: StringsResources.invoiceNumber(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
@@ -644,7 +644,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                         errorText: warningNoticeDescription,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.buyInvoiceDescription(),
+                                        labelText: StringsResources.invoiceDescription(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 13.0
@@ -915,7 +915,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                         errorText: warningNoticeProductQuantity,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.buyQuantity(),
+                                        labelText: StringsResources.quantity(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
@@ -1062,7 +1062,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                             errorText: warningNoticeProductName,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
-                                            labelText: StringsResources.buyInvoiceProduct(),
+                                            labelText: StringsResources.invoiceProduct(),
                                             labelStyle: const TextStyle(
                                                 color: ColorsResources.dark,
                                                 fontSize: 17.0
@@ -1168,7 +1168,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                         errorText: warningProductDiscount,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.buyInvoiceDiscount(),
+                                        labelText: StringsResources.invoiceDiscount(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
@@ -1260,12 +1260,12 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                         errorText: warningProductEachPrice,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.buyInvoiceEachPrice(),
+                                        labelText: StringsResources.invoiceEachPrice(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.buyInvoiceEachPriceHint(),
+                                        hintText: StringsResources.invoiceEachPriceHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 13.0
@@ -1359,12 +1359,12 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                         errorText: warningProductPrice,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.buyInvoicePrice(),
+                                        labelText: StringsResources.invoicePrice(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.buyInvoicePriceHint(),
+                                        hintText: StringsResources.invoicePriceHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 13.0
@@ -1516,12 +1516,12 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                             errorText: warningPaidBy,
                                             filled: true,
                                             fillColor: ColorsResources.lightTransparent,
-                                            labelText: StringsResources.buyInvoicePaidBy(),
+                                            labelText: StringsResources.invoicePaidBy(),
                                             labelStyle: const TextStyle(
                                                 color: ColorsResources.dark,
                                                 fontSize: 17.0
                                             ),
-                                            hintText: StringsResources.buyInvoicePaidByHint(),
+                                            hintText: StringsResources.invoicePaidByHint(),
                                             hintStyle: const TextStyle(
                                                 color: ColorsResources.darkTransparent,
                                                 fontSize: 13.0

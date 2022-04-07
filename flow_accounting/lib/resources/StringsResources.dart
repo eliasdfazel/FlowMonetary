@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/4/22, 9:43 AM
+ * Last modified 4/7/22, 3:11 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -638,8 +638,8 @@ class StringsResources {
   }
   /* End - Product String Resources */
 
-  /* Start - Buy Invoices String Resources */
-  static String buyInvoiceNumber() {
+  /* Start - Invoices String Resources */
+  static String invoiceNumber() {
 
     return "شماره فاکتور";
   }
@@ -647,23 +647,35 @@ class StringsResources {
 
     return "شماره فاکتور خرید را وارد کنید";
   }
+  static String sellInvoiceNumberHint() {
 
-  static String buyInvoiceDescription() {
+    return "شماره فاکتور فروش را وارد کنید";
+  }
 
-    return "توضیحات فاکتور خرید";
+  static String invoiceDescription() {
+
+    return "توضیحات فاکتور";
   }
   static String buyInvoiceDescriptionHint() {
 
     return "توضیحات تکمیلی فاکتور خرید را وارد کنید";
   }
+  static String sellInvoiceDescriptionHint() {
 
-  static String buyInvoiceProduct() {
+    return "توضیحات تکمیلی فاکتور فروش را وارد کنید";
+  }
+
+  static String invoiceProduct() {
 
     return "نام محصول";
   }
   static String buyInvoiceProductHint() {
 
     return "نام محصول خریداری شده";
+  }
+  static String sellInvoiceProductHint() {
+
+    return "نام محصول فروخته شده";
   }
 
   static String buyInvoiceFinal() {
@@ -679,7 +691,7 @@ class StringsResources {
     return "نوع فاکتور";
   }
 
-  static String buyQuantity() {
+  static String quantity() {
 
     return "تعداد";
   }
@@ -687,8 +699,12 @@ class StringsResources {
 
     return "تعداد خرید محصول";
   }
+  static String sellQuantityHint() {
 
-  static String buyInvoiceDiscount() {
+    return "تعداد فروش محصول";
+  }
+
+  static String invoiceDiscount() {
 
     return "تخفیف";
   }
@@ -696,44 +712,65 @@ class StringsResources {
 
     return "تخفیف روی فاکتور خرید";
   }
+  static String sellInvoiceDiscountHint() {
 
-  static String buyInvoiceEachPrice() {
+    return "تخفیف روی فاکتور فروش";
+  }
+
+  static String invoiceEachPrice() {
 
     return "قیمت واحد";
   }
-  static String buyInvoiceEachPriceHint() {
+  static String invoiceEachPriceHint() {
 
     return "قیمت هر محصول را وارد کنید";
   }
 
-  static String buyInvoicePrice() {
+  static String invoicePrice() {
 
     return "قیمت کل";
   }
-  static String buyInvoicePriceHint() {
+  static String invoicePriceHint() {
 
     return "قیمت کل فاکتور";
   }
 
-  static String buyInvoicePaidBy() {
+  static String invoicePaidBy() {
 
     return "پرداخت از";
   }
-  static String buyInvoicePaidByHint() {
+  static String invoicePaidByHint() {
 
     return "فاکتور از چه کارت یا حسابی پرداخت شده است؟";
+  }
+
+  static String sellInvoicePaidBy() {
+
+    return "واریز به";
+  }
+  static String sellInvoicePaidByHint() {
+
+    return "فاکتور به چه کارت یا حسابی واریز شده است؟";
   }
 
   static String buyInvoiceBoughtFrom() {
 
     return "خرید از";
   }
-
   static String buyInvoiceBoughtFromHint() {
 
     return "محصولات این فاکتور از چه کسی خریداری شده است؟";
   }
-  /* End - Buy Invoices String Resources */
+
+  static String sellInvoiceBoughtFrom() {
+
+    return "فروش به";
+  }
+  static String sellInvoiceBoughtFromHint() {
+
+    return "محصولات این فاکتور به چه کسی فروخته شده است؟";
+  }
+  /* End - Invoices String Resources */
 
   /* Start - Features Descriptions */
   static String featureCreditCardTitle() {

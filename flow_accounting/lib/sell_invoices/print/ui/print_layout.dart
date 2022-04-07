@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/6/22, 6:25 AM
+ * Last modified 4/7/22, 3:11 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -362,7 +362,7 @@ class SellPrintLayout {
                                           child: Align(
                                               alignment: AlignmentDirectional.centerEnd,
                                               child: Text(
-                                                  StringsResources.buyInvoiceDiscount(),
+                                                  StringsResources.invoiceDiscount(),
                                                   textDirection: TextDirection.rtl,
                                                   style: TextStyle(
                                                       fontSize: 12,
@@ -385,7 +385,7 @@ class SellPrintLayout {
                                           child: Align(
                                               alignment: AlignmentDirectional.centerEnd,
                                               child: Text(
-                                                  StringsResources.buyInvoiceEachPrice(),
+                                                  StringsResources.invoiceEachPrice(),
                                                   textDirection: TextDirection.rtl,
                                                   style: TextStyle(
                                                       fontSize: 12,
@@ -473,7 +473,7 @@ class SellPrintLayout {
                                           child: Align(
                                               alignment: AlignmentDirectional.centerEnd,
                                               child: Text(
-                                                  StringsResources.buyInvoicePrice(),
+                                                  StringsResources.invoicePrice(),
                                                   textDirection: TextDirection.rtl,
                                                   style: TextStyle(
                                                       fontSize: 12,
@@ -587,7 +587,7 @@ class SellPrintLayout {
                                           child: Align(
                                               alignment: AlignmentDirectional.centerEnd,
                                               child: Text(
-                                                  StringsResources.buyInvoicePaidBy(),
+                                                  StringsResources.invoicePaidBy(),
                                                   textDirection: TextDirection.rtl,
                                                   style: TextStyle(
                                                       fontSize: 12,
