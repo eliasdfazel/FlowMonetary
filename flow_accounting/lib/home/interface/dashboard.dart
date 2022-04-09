@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/9/22, 6:49 AM
+ * Last modified 4/9/22, 6:52 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -63,12 +63,20 @@ class FlowDashboardState extends State<FlowDashboard> {
     super.initState();
 
     WidgetsBinding.instance?.addObserver(
-        LifecycleEventHandler(resumeCallBack: () async => setState(() {
-          debugPrint("Dashboard Resumed");
+      LifecycleEventHandler(
+          resumeCallBack: () async => (() {
+            debugPrint("Dashboard Resumed");
 
-          authenticationCheckpoint();
+            authenticationCheckpoint();
 
-        }))
+          }),
+          pauseCallBack: ()  async => (() {
+            debugPrint("Dashboard Paused");
+
+
+
+          })
+      ),
     );
 
     if (!kDebugMode) {
@@ -568,9 +576,11 @@ class FlowDashboardState extends State<FlowDashboard> {
 class LifecycleEventHandler extends WidgetsBindingObserver {
 
   final AsyncCallback resumeCallBack;
+  final AsyncCallback pauseCallBack;
 
   LifecycleEventHandler({
     required this.resumeCallBack,
+    required this.pauseCallBack,
   });
 
   @override
@@ -581,6 +591,8 @@ class LifecycleEventHandler extends WidgetsBindingObserver {
         break;
       case AppLifecycleState.inactive:
       case AppLifecycleState.paused:
+        await pauseCallBack();
+        break;
       case AppLifecycleState.detached:
 
         break;
