@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/7/22, 7:21 AM
+ * Last modified 4/9/22, 8:41 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -17,6 +17,7 @@ import 'package:flow_accounting/cheque/input/ui/cheques_input_view.dart';
 import 'package:flow_accounting/cheque/output/ui/cheques_output_view.dart';
 import 'package:flow_accounting/customers/input/ui/customers_input_view.dart';
 import 'package:flow_accounting/customers/output/ui/customers_output_view.dart';
+import 'package:flow_accounting/debtors/input/ui/debtors_input_view.dart';
 import 'package:flow_accounting/home/interface/dashboard.dart';
 import 'package:flow_accounting/products/input/ui/products_input_view.dart';
 import 'package:flow_accounting/products/output/ui/products_output_view.dart';
@@ -174,7 +175,7 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
         importantFeature: false,
         featuresTitle: StringsResources.featureDebtorsTitle(),
         featuresDescription: StringsResources.featureDebtorsDescription(),
-        featureViewToSubmitData: null,
+        featureViewToSubmitData: DebtorsInputView(),
         featureToPresentData: null));
     allFeaturesStructure.add(FeaturesStructure(
         featureColor: ColorsResources.lightestRed,
