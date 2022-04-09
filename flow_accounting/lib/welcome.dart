@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/7/22, 7:24 AM
+ * Last modified 4/9/22, 7:39 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -11,7 +11,6 @@
 import 'package:flow_accounting/home/interface/dashboard.dart';
 import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/profile/database/structures/tables_structure.dart';
-import 'package:flow_accounting/utils/navigations/navigations.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
@@ -104,119 +103,53 @@ class _WelcomePageViewState extends State<WelcomePage> {
                 TargetPlatform.iOS: ZoomPageTransitionsBuilder(),
               }),
             ),
-            home: Scaffold(
-                backgroundColor: ColorsResources.black,
-                body: Padding (
-                    padding: const EdgeInsets.fromLTRB(1.1, 3, 1.1, 3),
-                    child: Container (
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(topLeft: Radius.circular(17), topRight: Radius.circular(17), bottomLeft: Radius.circular(17), bottomRight: Radius.circular(17)),
-                          gradient: LinearGradient(
-                              colors: [
-                                ColorsResources.primaryColor,
-                                ColorsResources.primaryColorLight,
-                              ],
-                              begin: FractionalOffset(0.0, 0.0),
-                              end: FractionalOffset(1.0, 0.0),
-                              stops: [0.0, 1.0],
-                              transform: GradientRotation(45),
-                              tileMode: TileMode.clamp),
-                        ),
-                        child: SizedBox (
-                          width: double.infinity,
-                          height: double.infinity,
-                          child: Stack(
-                            children: [
-                              Positioned(
-                                  top: 39,
-                                  left: 13,
-                                  right: 13,
-                                  child: Center(
-                                    child: Text(
-                                      StringsResources.welcomeText(),
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 23
-                                      ),
-                                    ),
-                                  )
-                              ),
-                              Positioned(
-                                  bottom: 39,
-                                  left: 13,
-                                  right: 13,
-                                  child: SizedBox(
-                                    width: double.infinity,
-                                    child: Row(
-                                      children: [
-                                        Expanded(
-                                          flex: 3,
-                                          child: Container(),
-                                        ),
-                                        Expanded(
-                                          flex: 11,
-                                          child: Container(
-                                            height: 79,
-                                            decoration: const BoxDecoration(
-                                              borderRadius: BorderRadius.only(topLeft: Radius.circular(17), topRight: Radius.circular(17), bottomLeft: Radius.circular(17), bottomRight: Radius.circular(17)),
-                                              gradient: LinearGradient(
-                                                  colors: [
-                                                    ColorsResources.dark,
-                                                    ColorsResources.primaryColor,
-                                                  ],
-                                                  begin: FractionalOffset(0.0, 0.0),
-                                                  end: FractionalOffset(1.0, 0.0),
-                                                  stops: [0.0, 1.0],
-                                                  transform: GradientRotation(45),
-                                                  tileMode: TileMode.clamp),
-                                            ),
-                                            child: Center(
-                                                child: MaterialButton(
-                                                  onPressed: () {
-
-                                                    Future.delayed(const Duration(milliseconds: 199), () {
-
-                                                      NavigationProcess().goTo(context, const FlowDashboard());
-
-                                                    });
-
-                                                  },
-                                                  child: Text(
-                                                    StringsResources.getStartedText(),
-                                                    style: TextStyle(fontSize: 29,shadows: [
-                                                      Shadow(
-                                                          color: ColorsResources.light,
-                                                          offset: Offset(0, 0),
-                                                          blurRadius: 7
-                                                      )
-                                                    ]),
-                                                  ),
-                                                  height: 79,
-                                                  minWidth: double.infinity,
-                                                  color: Colors.white.withOpacity(0.3),
-                                                  splashColor: ColorsResources.primaryColor,
-                                                  textColor: ColorsResources.light,
-                                                  shape: const RoundedRectangleBorder(
-                                                    borderRadius: BorderRadius.all(Radius.circular(17),),
-                                                  ),
-                                                )
-                                            ),
-                                          ),
-                                        ),
-                                        Expanded(
-                                          flex: 3,
-                                          child: Container(),
-                                        ),
-                                      ],
-                                    ),
-                                  )
-                              )
-                            ],
+            home: Stack(
+              children: [
+                // Gradient Background
+                Container(
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(topLeft: Radius.circular(17), topRight: Radius.circular(17), bottomLeft: Radius.circular(17), bottomRight: Radius.circular(17)),
+                    gradient: LinearGradient(
+                        colors: [
+                          ColorsResources.light,
+                          ColorsResources.lightestBlue,
+                        ],
+                        begin: FractionalOffset(0.0, 0.0),
+                        end: FractionalOffset(1.0, 0.0),
+                        stops: [0.0, 1.0],
+                        transform: GradientRotation(45),
+                        tileMode: TileMode.clamp
+                    ),
+                  ),
+                ),
+                // Rounded Borders
+                Container(
+                  decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.only(topLeft: Radius.circular(17), topRight: Radius.circular(17), bottomLeft: Radius.circular(17), bottomRight: Radius.circular(17)),
+                      border: Border(
+                          top: BorderSide(
+                            color: Colors.black,
+                            width: 7,
                           ),
-                        )
-                    )
-                )
-            )
+                          bottom: BorderSide(
+                            color: Colors.black,
+                            width: 7,
+                          ),
+                          left: BorderSide(
+                            color: Colors.black,
+                            width: 7,
+                          ),
+                          right: BorderSide(
+                            color: Colors.black,
+                            width: 7,
+                          )
+                      ),
+                      color: Colors.transparent
+                  ),
+                ),
+
+              ],
+            ),
         )
     );
   }

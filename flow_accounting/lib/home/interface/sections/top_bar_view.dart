@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/6/22, 5:35 AM
+ * Last modified 4/9/22, 7:38 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -50,7 +50,8 @@ class _TopBarViewState extends State<TopBarView> {
   @override
   Widget build(BuildContext context) {
 
-    return Padding(padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+    return Padding(
+        padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
         child: SizedBox(
           width: double.infinity,
           height: 51,
@@ -106,21 +107,21 @@ class _TopBarViewState extends State<TopBarView> {
                       child: Align(
                         alignment: Alignment.center,
                         child: SizedBox(
-                          height: 43,
-                          width: 43,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: ColorsResources.blueGray,
-                              borderRadius: BorderRadius.circular(9)
-                            ),
-                            child: Padding(
-                              padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
-                              child: Image(
-                                image: AssetImage("sync_icon.png"),
-                                color: ColorsResources.lightBlue,
-                              )
+                            height: 43,
+                            width: 43,
+                            child: Container(
+                                decoration: BoxDecoration(
+                                    color: ColorsResources.blueGray,
+                                    borderRadius: BorderRadius.circular(9)
+                                ),
+                                child: Padding(
+                                    padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                                    child: Image(
+                                      image: AssetImage("sync_icon.png"),
+                                      color: ColorsResources.lightBlue,
+                                    )
+                                )
                             )
-                          )
                         ),
                       ),
                     )
@@ -139,9 +140,9 @@ class _TopBarViewState extends State<TopBarView> {
                         if (profilesData?.id != 0) {
 
                           bool dataUpdated = await Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ProfilesInputView(profilesData: profilesData))
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ProfilesInputView(profilesData: profilesData))
                           );
 
                           if (dataUpdated) {
@@ -153,9 +154,9 @@ class _TopBarViewState extends State<TopBarView> {
                         } else {
 
                           bool dataUpdated = await Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ProfilesInputView())
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ProfilesInputView())
                           );
 
                           debugPrint("Profile Database Updated");
