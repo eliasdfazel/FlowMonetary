@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/7/22, 7:47 AM
+ * Last modified 4/9/22, 6:49 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -60,17 +60,20 @@ class FlowDashboardState extends State<FlowDashboard> {
 
     retrieveLatestTransactions();
 
-    authenticationCheckpoint();
-
     super.initState();
-  }
 
-  @override
-  void dispose() {
+    WidgetsBinding.instance?.addObserver(
+        LifecycleEventHandler(resumeCallBack: () async => setState(() {
+          debugPrint("Dashboard Resumed");
+
+          authenticationCheckpoint();
+
+        }))
+    );
 
     if (!kDebugMode) {
 
-      Future.delayed(Duration(seconds: 1), () {
+      Future.delayed(Duration(seconds: 73), () {
         debugPrint("Authentication Reset");
 
         WelcomePage.Authenticated = false;
@@ -79,6 +82,10 @@ class FlowDashboardState extends State<FlowDashboard> {
 
     }
 
+  }
+
+  @override
+  void dispose() {
     super.dispose();
   }
 
@@ -556,6 +563,29 @@ class FlowDashboardState extends State<FlowDashboard> {
 
   }
 
+}
+
+class LifecycleEventHandler extends WidgetsBindingObserver {
+
+  final AsyncCallback resumeCallBack;
+
+  LifecycleEventHandler({
+    required this.resumeCallBack,
+  });
+
+  @override
+  Future<void> didChangeAppLifecycleState(AppLifecycleState state) async {
+    switch (state) {
+      case AppLifecycleState.resumed:
+        await resumeCallBack();
+        break;
+      case AppLifecycleState.inactive:
+      case AppLifecycleState.paused:
+      case AppLifecycleState.detached:
+
+        break;
+    }
+  }
 }
 
 class UpdatedData {
