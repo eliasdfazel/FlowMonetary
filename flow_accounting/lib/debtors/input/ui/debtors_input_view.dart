@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/10/22, 4:06 AM
+ * Last modified 4/10/22, 4:48 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -43,9 +43,6 @@ class _DebtorsInputViewState extends State<DebtorsInputView> {
   TextEditingController controllerPaidDebt = TextEditingController();
   TextEditingController controllerRemainingDebt = TextEditingController();
 
-  TextEditingController controllerDeadline = TextEditingController();
-  TextEditingController controllerDeadlineText = TextEditingController();
-
   int timeNow = DateTime.now().millisecondsSinceEpoch;
 
   bool debtorDataUpdated = false;
@@ -84,9 +81,6 @@ class _DebtorsInputViewState extends State<DebtorsInputView> {
 
     controllerPaidDebt.text = widget.debtorsData?.debtorsPaidDebt == null ? "" : (widget.debtorsData?.debtorsPaidDebt)!;
     controllerRemainingDebt.text = widget.debtorsData?.debtorsRemainingDebt == null ? "" : (widget.debtorsData?.debtorsRemainingDebt)!;
-
-    controllerDeadline.text = widget.debtorsData?.debtorsDeadline == null ? "" : (widget.debtorsData?.debtorsDeadline)!;
-    controllerDeadlineText.text = widget.debtorsData?.debtorsDeadlineText == null ? "" : (widget.debtorsData?.debtorsDeadlineText)!;
 
     colorSelectorView.inputColor = Color(widget.debtorsData?.colorTag ?? Colors.white.value);
 
@@ -870,8 +864,8 @@ class _DebtorsInputViewState extends State<DebtorsInputView> {
                                   debtorsPaidDebt: controllerPaidDebt.text.isEmpty ? "0" : controllerPaidDebt.text,
                                   debtorsRemainingDebt: controllerRemainingDebt.text.isEmpty ? "0" : controllerRemainingDebt.text,
 
-                                  debtorsDeadline: controllerDeadline.text.isEmpty ? "0" : controllerDeadline.text,
-                                  debtorsDeadlineText: controllerDeadlineText.text.isEmpty ? "0" : controllerDeadlineText.text,
+                                  debtorsDeadline: calendarView.pickedDateTime.millisecondsSinceEpoch.toString(),
+                                  debtorsDeadlineText: calendarView.pickedDataTimeText.toString(),
 
                                   colorTag: colorSelectorView.selectedColor.value
                               );
