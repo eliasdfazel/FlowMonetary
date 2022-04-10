@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/9/22, 8:44 AM
+ * Last modified 4/10/22, 3:25 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,6 +10,7 @@
 
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:blur/blur.dart';
+import 'package:flow_accounting/debtors/database/io/inputs.dart';
 import 'package:flow_accounting/debtors/database/structures/tables_structure.dart';
 import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
@@ -39,6 +40,12 @@ class _DebtorsInputViewState extends State<DebtorsInputView> {
 
   TextEditingController controllerCompleteDebt = TextEditingController();
 
+  TextEditingController controllerPaidDebt = TextEditingController();
+  TextEditingController controllerRemainingDebt = TextEditingController();
+
+  TextEditingController controllerDeadline = TextEditingController();
+  TextEditingController controllerDeadlineText = TextEditingController();
+
   int timeNow = DateTime.now().millisecondsSinceEpoch;
 
   bool debtorDataUpdated = false;
@@ -63,6 +70,12 @@ class _DebtorsInputViewState extends State<DebtorsInputView> {
     controllerDebtorsDescription.text = widget.debtorsData?.debtorsDescription == null ? "" : (widget.debtorsData?.debtorsDescription)!;
 
     controllerCompleteDebt.text = widget.debtorsData?.debtorsCompleteDebt == null ? "" : (widget.debtorsData?.debtorsCompleteDebt)!;
+
+    controllerPaidDebt.text = widget.debtorsData?.debtorsPaidDebt == null ? "" : (widget.debtorsData?.debtorsPaidDebt)!;
+    controllerRemainingDebt.text = widget.debtorsData?.debtorsRemainingDebt == null ? "" : (widget.debtorsData?.debtorsRemainingDebt)!;
+
+    controllerDeadline.text = widget.debtorsData?.debtorsDeadline == null ? "" : (widget.debtorsData?.debtorsDeadline)!;
+    controllerDeadlineText.text = widget.debtorsData?.debtorsDeadlineText == null ? "" : (widget.debtorsData?.debtorsDeadlineText)!;
 
     colorSelectorView.inputColor = Color(widget.debtorsData?.colorTag ?? Colors.white.value);
 
@@ -129,7 +142,7 @@ class _DebtorsInputViewState extends State<DebtorsInputView> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(13, 13, 13, 0),
                         child:  Text(
-                          StringsResources.featureBudgetManagementsTitle(),
+                          StringsResources.featureDebtorsTitle(),
                           textDirection: TextDirection.rtl,
                           style: TextStyle(
                             fontSize: 23,
@@ -147,7 +160,7 @@ class _DebtorsInputViewState extends State<DebtorsInputView> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(13, 13, 13, 19),
                         child: Text(
-                          StringsResources.featureBudgetManagementsDescription(),
+                          StringsResources.featureDebtorsDescription(),
                           textDirection: TextDirection.rtl,
                           style: TextStyle(
                             fontSize: 15,
@@ -230,12 +243,12 @@ class _DebtorsInputViewState extends State<DebtorsInputView> {
                                         errorText: warningNoticeName,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.budgetNameText(),
+                                        labelText: StringsResources.debtorsNameText(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.budgetNameTextHint(),
+                                        hintText: StringsResources.debtorsNameTextHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 13.0
@@ -324,12 +337,12 @@ class _DebtorsInputViewState extends State<DebtorsInputView> {
                                         errorText: warningNoticeDescription,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.budgetDescriptionText(),
+                                        labelText: StringsResources.debtorsDescriptionText(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 13.0
                                         ),
-                                        hintText: StringsResources.budgetDescriptionTextHint(),
+                                        hintText: StringsResources.debtorsDescriptionTextHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 13.0
@@ -414,12 +427,12 @@ class _DebtorsInputViewState extends State<DebtorsInputView> {
                                         errorText: warningNoticeCompleteDebt,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.budgetInitialTextHint(),
+                                        labelText: StringsResources.debtorsCompleteDebtText(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.budgetInitialTextHint(),
+                                        hintText: StringsResources.debtorsCompleteDebtTextHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 13.0
@@ -572,15 +585,21 @@ class _DebtorsInputViewState extends State<DebtorsInputView> {
 
                               }
 
-                              var databaseInputs = BudgetsDatabaseInputs();
+                              var databaseInputs = DebtorsDatabaseInputs();
 
-                              BudgetsData transactionData = BudgetsData(
+                              DebtorsData transactionData = DebtorsData(
                                   id: timeNow,
 
-                                  budgetName: controllerDebtorsName.text,
-                                  budgetDescription: controllerDebtorsDescription.text,
+                                  debtorsName: controllerDebtorsName.text,
+                                  debtorsDescription: controllerDebtorsDescription.text,
 
-                                  budgetBalance: controllerCompleteDebt.text.isEmpty ? "0" : controllerCompleteDebt.text,
+                                  debtorsCompleteDebt: controllerCompleteDebt.text.isEmpty ? "0" : controllerCompleteDebt.text,
+
+                                  debtorsPaidDebt: controllerPaidDebt.text.isEmpty ? "0" : controllerPaidDebt.text,
+                                  debtorsRemainingDebt: controllerRemainingDebt.text.isEmpty ? "0" : controllerRemainingDebt.text,
+
+                                  debtorsDeadline: controllerDeadline.text.isEmpty ? "0" : controllerDeadline.text,
+                                  debtorsDeadlineText: controllerDeadlineText.text.isEmpty ? "0" : controllerDeadlineText.text,
 
                                   colorTag: colorSelectorView.selectedColor.value
                               );
@@ -589,13 +608,13 @@ class _DebtorsInputViewState extends State<DebtorsInputView> {
 
                                 if ((widget.debtorsData?.id)! != 0) {
 
-                                  databaseInputs.updateBudgetData(transactionData, BudgetsDatabaseInputs.databaseTableName, UserInformation.UserId);
+                                  databaseInputs.updateDebtorData(transactionData, DebtorsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
                                 }
 
                               } else {
 
-                                databaseInputs.insertBudgetData(transactionData, BudgetsDatabaseInputs.databaseTableName, UserInformation.UserId);
+                                databaseInputs.insertDebtorData(transactionData, DebtorsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
                               }
 

@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/9/22, 8:03 AM
+ * Last modified 4/10/22, 2:44 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -67,7 +67,7 @@ class DebtorsDatabaseInputs {
 
   }
 
-  Future<void> updateBudgetData(DebtorsData debtorsData, String tableName, String usernameId) async {
+  Future<void> updateDebtorData(DebtorsData debtorsData, String tableName, String usernameId) async {
 
     var databaseNameQuery = DebtorsDatabaseInputs.debtorsDatabase();
     var tableNameQuery = DebtorsDatabaseInputs.databaseTableName;

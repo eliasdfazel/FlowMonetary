@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/7/22, 6:27 AM
+ * Last modified 4/10/22, 3:25 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -777,6 +777,35 @@ class StringsResources {
     return "محصولات این فاکتور به چه کسی فروخته شده است؟";
   }
   /* End - Invoices String Resources */
+
+  /* Start - Debtors String Resources */
+  static String debtorsNameText() {
+
+    return "نام بدهکار";
+  }
+  static String debtorsNameTextHint() {
+
+    return "نام کامل بدهکار را وارد کنید";
+  }
+
+  static String debtorsDescriptionText() {
+
+    return "توضیحات";
+  }
+  static String debtorsDescriptionTextHint() {
+
+    return "توضیحات بدهی را وارد کنید";
+  }
+
+  static String debtorsCompleteDebtText() {
+
+    return "مبلغ کل بدهی";
+  }
+  static String debtorsCompleteDebtTextHint() {
+
+    return "مبلغ کل بدهی را وارد کنید";
+  }
+  /* End - Debtors String Resources */
 
   /* Start - Features Descriptions */
   static String featureCreditCardTitle() {
