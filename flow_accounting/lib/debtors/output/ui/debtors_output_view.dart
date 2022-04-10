@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/10/22, 4:48 AM
+ * Last modified 4/10/22, 5:03 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -481,7 +481,7 @@ class _DebtorsOutputViewState extends State<DebtorsOutputView> {
                                     ),
                                     scrollAxis: Axis.horizontal,
                                     crossAxisAlignment: CrossAxisAlignment.start,
-                                    blankSpace: 199.0,
+                                    blankSpace: 293.0,
                                     velocity: 37.0,
                                     fadingEdgeStartFraction: 0.13,
                                     fadingEdgeEndFraction: 0.13,
@@ -560,7 +560,7 @@ class _DebtorsOutputViewState extends State<DebtorsOutputView> {
                                     debtorsData.debtorsDeadlineText,
                                     textAlign: TextAlign.right,
                                     style: TextStyle(
-                                        color: ColorsResources.blue,
+                                        color: ColorsResources.blueGreen,
                                         fontSize: 13
                                     ),
                                   ),

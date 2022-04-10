@@ -3,7 +3,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 3/22/22, 6:07 AM
+ * Last modified 4/10/22, 5:03 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -607,7 +607,7 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
                                     ),
                                     scrollAxis: Axis.horizontal,
                                     crossAxisAlignment: CrossAxisAlignment.start,
-                                    blankSpace: 199.0,
+                                    blankSpace: 293.0,
                                     velocity: 37.0,
                                     fadingEdgeStartFraction: 0.15,
                                     fadingEdgeEndFraction: 0.15,
