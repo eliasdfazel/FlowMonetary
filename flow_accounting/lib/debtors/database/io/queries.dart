@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/10/22, 4:12 AM
+ * Last modified 4/10/22, 4:22 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -48,6 +48,27 @@ class DebtorsDatabaseQueries {
       );
     });
 
+  }
+
+  Future<int> queryDeleteDebtor(int id,
+      String tableName, String usernameId) async {
+
+    var databaseNameQuery = DebtorsDatabaseInputs.debtorsDatabase();
+    var tableNameQuery = DebtorsDatabaseInputs.databaseTableName;
+
+    final database = openDatabase(
+      join(await getDatabasesPath(), databaseNameQuery),
+    );
+
+    final databaseInstance = await database;
+
+    var queryResult = await databaseInstance.delete(
+      tableNameQuery,
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+
+    return queryResult;
   }
 
 }

@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/10/22, 4:06 AM
+ * Last modified 4/10/22, 4:28 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -831,6 +831,11 @@ class StringsResources {
   static String debtorsDeadlineHint() {
 
     return "آخرین مهلت تسویه حساب بدهی";
+  }
+
+  static String sortDebtorAmountHigh() {
+
+    return "مرتب سازی: مبلغ بدهی";
   }
   /* End - Debtors String Resources */
 
