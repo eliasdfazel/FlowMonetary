@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/10/22, 4:48 AM
+ * Last modified 4/10/22, 4:53 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -387,6 +387,21 @@ class _DebtorsInputViewState extends State<DebtorsInputView> {
                                       autofocus: false,
                                       keyboardType: TextInputType.number,
                                       textInputAction: TextInputAction.done,
+                                      onChanged: (completeDebt) {
+
+                                        try {
+
+                                          int debtorCompleteDebt = int.parse(completeDebt.isEmpty ? "0" : completeDebt);
+
+                                          int debtorPaidDebt = int.parse(controllerPaidDebt.text.isEmpty ? "0" : controllerPaidDebt.text);
+
+                                          controllerRemainingDebt.text = (debtorCompleteDebt - debtorPaidDebt).toString();
+
+                                        } on Exception {
+
+                                        }
+
+                                      },
                                       decoration: InputDecoration(
                                         alignLabelWithHint: true,
                                         border: const OutlineInputBorder(
@@ -477,6 +492,21 @@ class _DebtorsInputViewState extends State<DebtorsInputView> {
                                       autofocus: false,
                                       keyboardType: TextInputType.number,
                                       textInputAction: TextInputAction.done,
+                                      onChanged: (paidDebt) {
+
+                                        try {
+
+                                          int debtorCompleteDebt = int.parse(controllerCompleteDebt.text.isEmpty ? "0" : controllerCompleteDebt.text);
+
+                                          int debtorPaidDebt = int.parse(paidDebt.isEmpty ? "0" : paidDebt);
+
+                                          controllerRemainingDebt.text = (debtorCompleteDebt - debtorPaidDebt).toString();
+
+                                        } on Exception {
+
+                                        }
+
+                                      },
                                       decoration: InputDecoration(
                                         alignLabelWithHint: true,
                                         border: const OutlineInputBorder(
