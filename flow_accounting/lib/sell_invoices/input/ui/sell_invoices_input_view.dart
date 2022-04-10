@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/10/22, 4:07 AM
+ * Last modified 4/10/22, 4:12 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -16,6 +16,8 @@ import 'package:blur/blur.dart';
 import 'package:flow_accounting/credit_cards/database/io/inputs.dart';
 import 'package:flow_accounting/credit_cards/database/io/queries.dart';
 import 'package:flow_accounting/credit_cards/database/structures/tables_structure.dart';
+import 'package:flow_accounting/debtors/database/io/inputs.dart';
+import 'package:flow_accounting/debtors/database/io/queries.dart';
 import 'package:flow_accounting/debtors/database/structures/tables_structure.dart';
 import 'package:flow_accounting/products/database/io/inputs.dart';
 import 'package:flow_accounting/products/database/io/queries.dart';
@@ -2269,6 +2271,26 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
   Future<List<DebtorsData>> getAllDebtors() async {
 
     List<DebtorsData> allDebtors = [];
+
+    String databaseDirectory = await getDatabasesPath();
+
+    String creditCardDatabasePath = "${databaseDirectory}/${DebtorsDatabaseInputs.debtorsDatabase()}";
+
+    bool creditCardDatabaseExist = await databaseExists(creditCardDatabasePath);
+
+    if (creditCardDatabaseExist) {
+
+      DebtorsDatabaseQueries databaseQueries = DebtorsDatabaseQueries();
+
+      List<DebtorsData> listOfAllDebtors = await databaseQueries.getAllDebtors(DebtorsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+      setState(() {
+
+        allDebtors = listOfAllDebtors;
+
+      });
+
+    }
 
     return allDebtors;
   }
