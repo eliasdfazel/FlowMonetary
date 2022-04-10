@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/10/22, 6:40 AM
+ * Last modified 4/10/22, 8:22 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -842,11 +842,11 @@ class StringsResources {
   /* Start - Debtors String Resources */
   static String creditorsNameText() {
 
-    return "نام طلبکار";
+    return "نام بستانکار";
   }
   static String creditorsNameTextHint() {
 
-    return "نام کامل طلبکار را وارد کنید";
+    return "نام کامل بستانکار را وارد کنید";
   }
 
   static String creditorsDescriptionText() {
