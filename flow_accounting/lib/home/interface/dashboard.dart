@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/9/22, 7:15 AM
+ * Last modified 4/10/22, 4:01 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -223,23 +223,21 @@ class FlowDashboardState extends State<FlowDashboard> {
                     decoration: const BoxDecoration(
                       borderRadius: BorderRadius.only(topLeft: Radius.circular(17), topRight: Radius.circular(17), bottomLeft: Radius.circular(17), bottomRight: Radius.circular(17)),
                     ),
-                    child: Expanded(
-                      child: ListView(
-                          physics: const BouncingScrollPhysics(),
-                          padding: const EdgeInsets.fromLTRB(7, 3, 7, 73),
-                          scrollDirection: Axis.vertical,
-                          children: [ // List Of All Contents
-                            const TopBarView(),
-                            const GeneralDataView(),
-                            CreditCardsListView(
-                              allCreditCardsData: allCreditCards,
-                            ),
-                            LatestTransactionsView(
-                                latestTransactionsData: someLatestTransactions
-                            ),
-                            FeaturesOptionsView(dashboardView: this),
-                          ]
-                      ),
+                    child: ListView(
+                        physics: const BouncingScrollPhysics(),
+                        padding: const EdgeInsets.fromLTRB(7, 3, 7, 73),
+                        scrollDirection: Axis.vertical,
+                        children: [ // List Of All Contents
+                          const TopBarView(),
+                          const GeneralDataView(),
+                          CreditCardsListView(
+                            allCreditCardsData: allCreditCards,
+                          ),
+                          LatestTransactionsView(
+                              latestTransactionsData: someLatestTransactions
+                          ),
+                          FeaturesOptionsView(dashboardView: this),
+                        ]
                     ),
                   ),
                 ),

@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/7/22, 3:35 AM
+ * Last modified 4/10/22, 4:07 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -16,7 +16,7 @@ import 'package:blur/blur.dart';
 import 'package:flow_accounting/credit_cards/database/io/inputs.dart';
 import 'package:flow_accounting/credit_cards/database/io/queries.dart';
 import 'package:flow_accounting/credit_cards/database/structures/tables_structure.dart';
-import 'package:flow_accounting/creditors/database/structures/tables_structure.dart';
+import 'package:flow_accounting/debtors/database/structures/tables_structure.dart';
 import 'package:flow_accounting/products/database/io/inputs.dart';
 import 'package:flow_accounting/products/database/io/queries.dart';
 import 'package:flow_accounting/products/database/structures/tables_structure.dart';
@@ -1551,10 +1551,10 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                                   padding: const EdgeInsets.fromLTRB(7, 0, 13, 0),
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
-                                    child: TypeAheadField<CreditorsData>(
+                                    child: TypeAheadField<DebtorsData>(
                                         suggestionsCallback: (pattern) async {
 
-                                          return await getAllCreditors();
+                                          return await getAllDebtors();
                                         },
                                         itemBuilder: (context, suggestion) {
 
@@ -2266,11 +2266,11 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
   }
 
-  Future<List<CreditorsData>> getAllCreditors() async {
+  Future<List<DebtorsData>> getAllDebtors() async {
 
-    List<CreditorsData> allCreditors = [];
+    List<DebtorsData> allDebtors = [];
 
-    return allCreditors;
+    return allDebtors;
   }
 
   void invokeLogoImagePicker() async {
