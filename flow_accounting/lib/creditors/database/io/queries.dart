@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/10/22, 6:26 AM
+ * Last modified 4/10/22, 6:39 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -36,10 +36,10 @@ class CreditorsDatabaseQueries {
         creditorsName: maps[i]['creditorName'],
         creditorsDescription: maps[i]['creditorDescription'],
 
-        creditorsCompleteDebt: maps[i]['creditorCompleteDebt'],
+        creditorsCompleteCredit: maps[i]['creditorCompleteDebt'],
 
-        creditorsPaidDebt: maps[i]['creditorPaidDebt'],
-        creditorsRemainingDebt: maps[i]['creditorRemainingDebt'],
+        creditorsPaidCredit: maps[i]['creditorPaidDebt'],
+        creditorsRemainingCredit: maps[i]['creditorRemainingDebt'],
 
         creditorsDeadline: maps[i]['creditorDeadline'],
         creditorsDeadlineText: maps[i]['creditorDeadlineText'],

@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/10/22, 4:28 AM
+ * Last modified 4/10/22, 6:40 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -836,6 +836,67 @@ class StringsResources {
   static String sortDebtorAmountHigh() {
 
     return "مرتب سازی: مبلغ بدهی";
+  }
+  /* End - Debtors String Resources */
+
+  /* Start - Debtors String Resources */
+  static String creditorsNameText() {
+
+    return "نام طلبکار";
+  }
+  static String creditorsNameTextHint() {
+
+    return "نام کامل طلبکار را وارد کنید";
+  }
+
+  static String creditorsDescriptionText() {
+
+    return "توضیحات";
+  }
+  static String creditorsDescriptionTextHint() {
+
+    return "توضیحات طلب را وارد کنید";
+  }
+
+  static String creditorsCompleteCreditText() {
+
+    return "مبلغ کل طلب";
+  }
+  static String creditorsCompleteCreditTextHint() {
+
+    return "مبلغ کل طلب را وارد کنید";
+  }
+
+  static String creditorsPaidCreditText() {
+
+    return "مبلغ پرداخت شده";
+  }
+  static String creditorsPaidCreditTextHint() {
+
+    return "مبلغ پرداخت شده از طلب";
+  }
+
+  static String creditorsRemainingCreditText() {
+
+    return "مبلغ باقی مانده";
+  }
+  static String creditorsRemainingCreditTextHint() {
+
+    return "مبلغ باقی مانده از طلب";
+  }
+
+  static String creditorsDeadline() {
+
+    return "تاریخ تسویه";
+  }
+  static String creditorsDeadlineHint() {
+
+    return "آخرین مهلت تسویه حساب طلب";
+  }
+
+  static String sortCreditorAmountHigh() {
+
+    return "مرتب سازی: مبلغ طلب";
   }
   /* End - Debtors String Resources */
 

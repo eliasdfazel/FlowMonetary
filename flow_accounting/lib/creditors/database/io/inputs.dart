@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/10/22, 6:26 AM
+ * Last modified 4/10/22, 6:39 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -37,9 +37,9 @@ class CreditorsDatabaseInputs {
             'CREATE TABLE IF NOT EXISTS $tableNameQuery(id INTEGER PRIMARY KEY, '
                 'creditorsName TEXT, '
                 'creditorsDescription TEXT, '
-                'creditorsCompleteDebt TEXT, '
-                'creditorsPaidDebt TEXT, '
-                'creditorsRemainingDebt TEXT, '
+                'creditorsCompleteCredit TEXT, '
+                'creditorsPaidCredit TEXT, '
+                'creditorsRemainingCredit TEXT, '
                 'creditorsDeadline TEXT, '
                 'creditorsDeadlineText TEXT, '
                 'colorTag TEXT'

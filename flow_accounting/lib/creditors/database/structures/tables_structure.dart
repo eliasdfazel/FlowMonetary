@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/10/22, 6:20 AM
+ * Last modified 4/10/22, 6:39 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -17,10 +17,10 @@ class CreditorsData {
   final String creditorsName;
   final String creditorsDescription;
 
-  final String creditorsCompleteDebt;
+  final String creditorsCompleteCredit;
 
-  final String creditorsPaidDebt;
-  final String creditorsRemainingDebt;
+  final String creditorsPaidCredit;
+  final String creditorsRemainingCredit;
 
   final String creditorsDeadline;
   final String creditorsDeadlineText;
@@ -33,10 +33,10 @@ class CreditorsData {
     required this.creditorsName,
     required this.creditorsDescription,
 
-    required this.creditorsCompleteDebt,
+    required this.creditorsCompleteCredit,
 
-    required this.creditorsPaidDebt,
-    required this.creditorsRemainingDebt,
+    required this.creditorsPaidCredit,
+    required this.creditorsRemainingCredit,
 
     required this.creditorsDeadline,
     required this.creditorsDeadlineText,
@@ -51,10 +51,10 @@ class CreditorsData {
       'creditorsName': creditorsName,
       'creditorsDescription': creditorsDescription,
 
-      'creditorsCompleteDebt': creditorsCompleteDebt,
+      'creditorsCompleteCredit': creditorsCompleteCredit,
 
-      'creditorsPaidDebt': creditorsPaidDebt,
-      'creditorsRemainingDebt': creditorsRemainingDebt,
+      'creditorsPaidCredit': creditorsPaidCredit,
+      'creditorsRemainingCredit': creditorsRemainingCredit,
 
       'creditorsDeadline': creditorsDeadline,
       'creditorsDeadlineText': creditorsDeadlineText,
@@ -71,10 +71,10 @@ class CreditorsData {
         'creditorsName: $creditorsName,'
         'creditorsDescription: $creditorsDescription,'
 
-        'creditorsCompleteDebt: $creditorsCompleteDebt,'
+        'creditorsCompleteCredit: $creditorsCompleteCredit,'
 
-        'creditorsPaidDebt: $creditorsPaidDebt,'
-        'creditorsRemainingDebt: $creditorsRemainingDebt,'
+        'creditorsPaidCredit: $creditorsPaidCredit,'
+        'creditorsRemainingCredit: $creditorsRemainingCredit,'
 
         'creditorsDeadline: $creditorsDeadline,'
         'creditorsDeadlineText: $creditorsDeadlineText,'
