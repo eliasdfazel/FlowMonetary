@@ -278,6 +278,7 @@ class _LoansInputViewState extends State<LoansInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
+                                        errorText: warningNoticeTitle,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.loansTitle(),
@@ -371,7 +372,6 @@ class _LoansInputViewState extends State<LoansInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorText: warningNoticeTitle,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.loansDescription(),
