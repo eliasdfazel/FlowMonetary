@@ -49,8 +49,12 @@ class _LoansInputViewState extends State<LoansInputView> {
 
   bool loanDataUpdated = false;
 
-  int loanPeriodType = LoansData.LoanPeriodType_Month;
   String loanPeriod = StringsResources.loansPeriodOneMonth();
+  int loanPeriodType = LoansData.LoanPeriodType_Month;
+  Color loanPeriodOne = ColorsResources.lightestBlue;
+  Color loanPeriodThree = ColorsResources.lightestBlue;
+  Color loanPeriodSix = ColorsResources.lightestBlue;
+  Color loanPeriodTwelve = ColorsResources.lightestBlue;
 
   String? warningNoticeTitle;
 
@@ -67,7 +71,7 @@ class _LoansInputViewState extends State<LoansInputView> {
   @override
   void initState() {
 
-    loanCalendarView.pickedDataTimeText = StringsResources.chequeIssueDate();
+    loanCalendarView.pickedDataTimeText = StringsResources.loansPeriodHint();
 
     controllerLoanTitle.text = widget.loansData?.loanTitle == null ? "" : (widget.loansData?.loanTitle)!;
     controllerLoanDescription.text = widget.loansData?.loanDescription == null ? "" : (widget.loansData?.loanDescription)!;
@@ -77,6 +81,36 @@ class _LoansInputViewState extends State<LoansInputView> {
     controllerLoanComplete.text = widget.loansData?.loanComplete == null ? "" : (widget.loansData?.loanComplete)!;
     controllerLoanPaid.text = widget.loansData?.loanPaid == null ? "" : (widget.loansData?.loanPaid)!;
     controllerLoanRemaining.text = widget.loansData?.loanRemaining == null ? "" : (widget.loansData?.loanRemaining)!;
+
+    loanPeriodType = int.parse((widget.loansData?.loanDuePeriodType ?? "1"));
+    print(">>> >>> >> ${loanPeriodType}");
+
+    switch (loanPeriodType) {
+      case LoansData.LoanPeriodType_Month: {
+
+        loanPeriodOne = ColorsResources.primaryColorTransparent;
+
+        break;
+      }
+      case LoansData.LoanPeriodType_ThreeMonth: {
+
+        loanPeriodThree = ColorsResources.primaryColorTransparent;
+
+        break;
+      }
+      case LoansData.LoanPeriodType_SixMonth: {
+
+        loanPeriodSix = ColorsResources.primaryColorTransparent;
+
+        break;
+      }
+      case LoansData.LoanPeriodType_Year: {
+
+        loanPeriodTwelve = ColorsResources.primaryColorTransparent;
+
+        break;
+      }
+    }
 
     colorSelectorView.inputColor = Color(widget.loansData?.colorTag ?? Colors.white.value);
 
@@ -190,7 +224,7 @@ class _LoansInputViewState extends State<LoansInputView> {
                                     textDirection: TextDirection.rtl,
                                     child: TextField(
                                       controller: controllerLoanTitle,
-                                      textAlign: TextAlign.center,
+                                      textAlign: TextAlign.right,
                                       textDirection: TextDirection.ltr,
                                       textAlignVertical: TextAlignVertical.bottom,
                                       maxLines: 1,
@@ -374,7 +408,7 @@ class _LoansInputViewState extends State<LoansInputView> {
                                     textDirection: TextDirection.rtl,
                                     child: TextField(
                                       controller: controllerLoanPayer,
-                                      textAlign: TextAlign.center,
+                                      textAlign: TextAlign.right,
                                       textDirection: TextDirection.ltr,
                                       textAlignVertical: TextAlignVertical.bottom,
                                       maxLines: 1,
@@ -826,7 +860,7 @@ class _LoansInputViewState extends State<LoansInputView> {
                                     height: 37,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(51),
-                                      color: ColorsResources.lightestBlue
+                                      color: loanPeriodTwelve
                                     ),
                                     child: Directionality(
                                         textDirection: TextDirection.rtl,
@@ -854,7 +888,7 @@ class _LoansInputViewState extends State<LoansInputView> {
                                       height: 37,
                                       decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(51),
-                                          color: ColorsResources.lightestBlue
+                                          color: loanPeriodSix
                                       ),
                                       child: Directionality(
                                           textDirection: TextDirection.rtl,
@@ -882,7 +916,7 @@ class _LoansInputViewState extends State<LoansInputView> {
                                       height: 37,
                                       decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(51),
-                                          color: ColorsResources.lightestBlue
+                                          color: loanPeriodThree
                                       ),
                                       child: Directionality(
                                           textDirection: TextDirection.rtl,
@@ -910,7 +944,7 @@ class _LoansInputViewState extends State<LoansInputView> {
                                       height: 37,
                                       decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(51),
-                                          color: ColorsResources.lightestBlue
+                                          color: loanPeriodOne
                                       ),
                                       child: Directionality(
                                           textDirection: TextDirection.rtl,

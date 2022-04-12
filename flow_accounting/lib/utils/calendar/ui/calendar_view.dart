@@ -9,7 +9,6 @@
  */
 
 import 'package:flow_accounting/resources/ColorsResources.dart';
-import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -39,8 +38,6 @@ class _CalendarView extends State<CalendarView> {
     initializeDateFormatting();
 
     super.initState();
-
-    widget.pickedDataTimeText = StringsResources.transactionTime();
 
     if (widget.inputDateTime != null) {
 
