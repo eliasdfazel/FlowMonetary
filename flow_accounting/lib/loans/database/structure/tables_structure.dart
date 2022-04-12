@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/12/22, 5:37 AM
+ * Last modified 4/12/22, 5:42 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -11,6 +11,11 @@
 import 'package:flow_accounting/resources/ColorsResources.dart';
 
 class LoansData {
+
+  static const LoanPeriodType_Month = 1;
+  static const LoanPeriodType_ThreeMonth = 2;
+  static const LoanPeriodType_SixMonth = 3;
+  static const LoanPeriodType_Year = 4;
 
   final int id;
 

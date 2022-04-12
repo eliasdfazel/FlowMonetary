@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/12/22, 5:32 AM
+ * Last modified 4/12/22, 5:42 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -19,16 +19,16 @@ import 'package:flow_accounting/utils/colors/color_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-class BudgetsInputView extends StatefulWidget {
+class LoansInputView extends StatefulWidget {
 
   LoansData? loansData;
 
-  BudgetsInputView({Key? key, this.loansData}) : super(key: key);
+  LoansInputView({Key? key, this.loansData}) : super(key: key);
 
   @override
-  _BudgetsInputViewState createState() => _BudgetsInputViewState();
+  _LoansInputViewState createState() => _LoansInputViewState();
 }
-class _BudgetsInputViewState extends State<BudgetsInputView> {
+class _LoansInputViewState extends State<LoansInputView> {
 
   CalendarView loanCalendarView = CalendarView();
 
@@ -37,10 +37,14 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
   TextEditingController controllerLoanDescription = TextEditingController();
 
   TextEditingController controllerLoanComplete = TextEditingController();
+  TextEditingController controllerLoanPaid = TextEditingController();
+  TextEditingController controllerLoanRemaining = TextEditingController();
 
   int timeNow = DateTime.now().millisecondsSinceEpoch;
 
   bool loanDataUpdated = false;
+
+  int loanPeriodType = LoansData.LoanPeriodType_Month;
 
   String? warningNoticeDescription;
 
@@ -63,6 +67,8 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
     controllerLoanDescription.text = widget.loansData?.loanDescription == null ? "" : (widget.loansData?.loanDescription)!;
 
     controllerLoanComplete.text = widget.loansData?.loanComplete == null ? "" : (widget.loansData?.loanComplete)!;
+    controllerLoanPaid.text = widget.loansData?.loanPaid == null ? "" : (widget.loansData?.loanPaid)!;
+    controllerLoanRemaining.text = widget.loansData?.loanRemaining == null ? "" : (widget.loansData?.loanRemaining)!;
 
     colorSelectorView.inputColor = Color(widget.loansData?.colorTag ?? Colors.white.value);
 
