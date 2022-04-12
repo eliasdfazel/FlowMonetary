@@ -50,7 +50,7 @@ class _LoansInputViewState extends State<LoansInputView> {
 
   String? warningNoticeDescription;
 
-  String? warningNoticeBalance;
+  String? warningNoticeComplete;
 
   @override
   void dispose() {
@@ -329,7 +329,7 @@ class _LoansInputViewState extends State<LoansInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorText: warningNoticeBalance,
+                                        errorText: warningNoticeComplete,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.loansComplete(),
@@ -434,7 +434,7 @@ class _LoansInputViewState extends State<LoansInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorText: warningNoticeBalance,
+                                        errorText: warningNoticeComplete,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.loansPaid(),
@@ -524,7 +524,7 @@ class _LoansInputViewState extends State<LoansInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorText: warningNoticeBalance,
+                                        errorText: warningNoticeComplete,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.loansRemaining(),
@@ -539,6 +539,207 @@ class _LoansInputViewState extends State<LoansInputView> {
                                         ),
                                       ),
                                     ),
+                                  )
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Divider(
+                        height: 13,
+                        color: Colors.transparent,
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 91,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: Padding(
+                                padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                child: Align(
+                                  alignment: AlignmentDirectional.topCenter,
+                                  child: Container(
+                                    decoration: const BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(13),
+                                          topRight: Radius.circular(13),
+                                          bottomLeft: Radius.circular(13),
+                                          bottomRight: Radius.circular(13)
+                                      ),
+                                      border: Border(
+                                          top: BorderSide(
+                                            color: ColorsResources.darkTransparent,
+                                            width: 1,
+                                          ),
+                                          bottom: BorderSide(
+                                            color: ColorsResources.darkTransparent,
+                                            width: 1,
+                                          ),
+                                          left: BorderSide(
+                                            color: ColorsResources.darkTransparent,
+                                            width: 1,
+                                          ),
+                                          right: BorderSide(
+                                            color: ColorsResources.darkTransparent,
+                                            width: 1,
+                                          )
+                                      ),
+                                      color: ColorsResources.lightTransparent,
+                                    ),
+                                    child: SizedBox(
+                                      height: 62,
+                                      width: double.infinity,
+                                      child: loanCalendarView,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 31,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: Padding(
+                                  padding: EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                  child: Directionality(
+                                    textDirection: TextDirection.rtl,
+                                    child: Text(
+                                      StringsResources.loansPeriod(),
+                                      style: TextStyle(
+                                          fontSize: 15
+                                      ),
+                                    ),
+                                  )
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 37,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(13, 0, 3, 0),
+                                  child: Container(
+                                    width: double.infinity,
+                                    height: 37,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(51),
+                                      color: ColorsResources.lightestBlue
+                                    ),
+                                    child: Directionality(
+                                        textDirection: TextDirection.rtl,
+                                        child: Align(
+                                          alignment: AlignmentDirectional.center,
+                                          child: Text(
+                                            StringsResources.loansPeriodOneYear(),
+                                            style: TextStyle(
+                                                fontSize: 13,
+                                                color: ColorsResources.dark,
+                                                decoration: TextDecoration.none
+                                            ),
+                                          )
+                                        )
+                                    )
+                                  )
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(3, 0, 3, 0),
+                                  child: Container(
+                                      width: double.infinity,
+                                      height: 37,
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(51),
+                                          color: ColorsResources.lightestBlue
+                                      ),
+                                      child: Directionality(
+                                          textDirection: TextDirection.rtl,
+                                          child: Align(
+                                              alignment: AlignmentDirectional.center,
+                                              child: Text(
+                                                StringsResources.loansPeriodSixMonth(),
+                                                style: TextStyle(
+                                                    fontSize: 13,
+                                                    color: ColorsResources.dark,
+                                                    decoration: TextDecoration.none
+                                                ),
+                                              )
+                                          )
+                                      )
+                                  )
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(3, 0, 3, 0),
+                                  child: Container(
+                                      width: double.infinity,
+                                      height: 37,
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(51),
+                                          color: ColorsResources.lightestBlue
+                                      ),
+                                      child: Directionality(
+                                          textDirection: TextDirection.rtl,
+                                          child: Align(
+                                              alignment: AlignmentDirectional.center,
+                                              child: Text(
+                                                StringsResources.loansPeriodThreeMonth(),
+                                                style: TextStyle(
+                                                    fontSize: 13,
+                                                    color: ColorsResources.dark,
+                                                    decoration: TextDecoration.none
+                                                ),
+                                              )
+                                          )
+                                      )
+                                  )
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(3, 0, 13, 0),
+                                  child: Container(
+                                      width: double.infinity,
+                                      height: 37,
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(51),
+                                          color: ColorsResources.lightestBlue
+                                      ),
+                                      child: Directionality(
+                                          textDirection: TextDirection.rtl,
+                                          child: Align(
+                                              alignment: AlignmentDirectional.center,
+                                              child: Text(
+                                                StringsResources.loansPeriodOneMonth(),
+                                                style: TextStyle(
+                                                    fontSize: 13,
+                                                    color: ColorsResources.dark,
+                                                    decoration: TextDecoration.none
+                                                ),
+                                              )
+                                          )
+                                      )
                                   )
                               ),
                             ),
@@ -653,7 +854,7 @@ class _LoansInputViewState extends State<LoansInputView> {
 
                               setState(() {
 
-                                warningNoticeBalance = StringsResources.errorText();
+                                warningNoticeComplete = StringsResources.errorText();
 
                               });
 
