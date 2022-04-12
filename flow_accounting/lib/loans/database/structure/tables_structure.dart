@@ -29,6 +29,8 @@ class LoansData {
   final String loanDuePeriod;
   final String loanDuePeriodMillisecond;
 
+  final String loanCount;
+
   final String loanComplete;
   final String loanPaid;
   final String loanRemaining;
@@ -47,6 +49,8 @@ class LoansData {
 
     required this.loanDuePeriod,
     required this.loanDuePeriodMillisecond,
+
+    required this.loanCount,
 
     required this.loanComplete,
     required this.loanPaid,
@@ -68,6 +72,8 @@ class LoansData {
 
       'loanDuePeriod': loanDuePeriod,
       'loanDuePeriodMillisecond': loanDuePeriodMillisecond,
+
+      'loanCount': loanCount,
 
       'loanComplete': loanComplete,
       'loanPaid': loanPaid,
@@ -91,6 +97,8 @@ class LoansData {
 
       'loanDuePeriod: $loanDuePeriod,'
       'loanDuePeriodMillisecond: $loanDuePeriodMillisecond,'
+
+      'loanCount: $loanCount,'
 
       'loanComplete: $loanComplete,'
       'loanPaid: $loanPaid,'

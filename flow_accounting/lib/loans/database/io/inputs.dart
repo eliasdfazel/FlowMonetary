@@ -41,6 +41,7 @@ class LoansDatabaseInputs {
                 'loanDuePeriodType TEXT, '
                 'loanDuePeriod TEXT, '
                 'loanDuePeriodMillisecond TEXT, '
+                'loanCount TEXT, '
                 'loanComplete TEXT, '
                 'loanPaid TEXT, '
                 'loanRemaining TEXT, '

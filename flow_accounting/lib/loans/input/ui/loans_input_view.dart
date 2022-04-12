@@ -45,6 +45,8 @@ class _LoansInputViewState extends State<LoansInputView> {
   TextEditingController controllerLoanPaid = TextEditingController();
   TextEditingController controllerLoanRemaining = TextEditingController();
 
+  TextEditingController controllerLoanCount = TextEditingController();
+
   int timeNow = DateTime.now().millisecondsSinceEpoch;
 
   bool loanDataUpdated = false;
@@ -81,6 +83,8 @@ class _LoansInputViewState extends State<LoansInputView> {
     controllerLoanComplete.text = widget.loansData?.loanComplete == null ? "" : (widget.loansData?.loanComplete)!;
     controllerLoanPaid.text = widget.loansData?.loanPaid == null ? "" : (widget.loansData?.loanPaid)!;
     controllerLoanRemaining.text = widget.loansData?.loanRemaining == null ? "" : (widget.loansData?.loanRemaining)!;
+
+    controllerLoanCount.text = widget.loansData?.loanCount == null ? "" : (widget.loansData?.loanCount)!;
 
     loanPeriodType = int.parse((widget.loansData?.loanDuePeriodType ?? "1"));
 
@@ -771,7 +775,86 @@ class _LoansInputViewState extends State<LoansInputView> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Expanded(
-                              flex: 1,
+                              flex: 3,
+                              child: Padding(
+                                padding: const EdgeInsets.fromLTRB(13, 0, 3, 0),
+                                child: Align(
+                                    alignment: AlignmentDirectional.topCenter,
+                                    child: Directionality(
+                                      textDirection: TextDirection.rtl,
+                                      child: TextField(
+                                        controller: controllerLoanCount,
+                                        textAlign: TextAlign.center,
+                                        textDirection: TextDirection.ltr,
+                                        textAlignVertical: TextAlignVertical.bottom,
+                                        maxLines: 1,
+                                        cursorColor: ColorsResources.primaryColor,
+                                        autocorrect: true,
+                                        autofocus: false,
+                                        keyboardType: TextInputType.number,
+                                        textInputAction: TextInputAction.done,
+                                        decoration: InputDecoration(
+                                          alignLabelWithHint: true,
+                                          border: const OutlineInputBorder(
+                                              borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(13),
+                                                  topRight: Radius.circular(13),
+                                                  bottomLeft: Radius.circular(13),
+                                                  bottomRight: Radius.circular(13)
+                                              ),
+                                              gapPadding: 5
+                                          ),
+                                          enabledBorder: const OutlineInputBorder(
+                                              borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(13),
+                                                  topRight: Radius.circular(13),
+                                                  bottomLeft: Radius.circular(13),
+                                                  bottomRight: Radius.circular(13)
+                                              ),
+                                              gapPadding: 5
+                                          ),
+                                          focusedBorder: const OutlineInputBorder(
+                                              borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(13),
+                                                  topRight: Radius.circular(13),
+                                                  bottomLeft: Radius.circular(13),
+                                                  bottomRight: Radius.circular(13)
+                                              ),
+                                              gapPadding: 5
+                                          ),
+                                          errorBorder: const OutlineInputBorder(
+                                              borderSide: BorderSide(color: Colors.red, width: 1.0),
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(13),
+                                                  topRight: Radius.circular(13),
+                                                  bottomLeft: Radius.circular(13),
+                                                  bottomRight: Radius.circular(13)
+                                              ),
+                                              gapPadding: 5
+                                          ),
+                                          filled: true,
+                                          fillColor: ColorsResources.lightTransparent,
+                                          labelText: StringsResources.loansCount(),
+                                          labelStyle: const TextStyle(
+                                              color: ColorsResources.dark,
+                                              fontSize: 17.0
+                                          ),
+                                          hintText: StringsResources.loansCountHint(),
+                                          hintStyle: const TextStyle(
+                                              color: ColorsResources.darkTransparent,
+                                              fontSize: 13.0
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              flex: 7,
                               child: Padding(
                                 padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
                                 child: Align(
@@ -812,7 +895,7 @@ class _LoansInputViewState extends State<LoansInputView> {
                                   ),
                                 ),
                               ),
-                            )
+                            ),
                           ],
                         ),
                       ),
@@ -1171,6 +1254,8 @@ class _LoansInputViewState extends State<LoansInputView> {
                                   loanDuePeriod: loanCalendarView.pickedDataTimeText.toString(),
                                   loanDuePeriodMillisecond: loanCalendarView.pickedDateTime.millisecondsSinceEpoch.toString(),
 
+                                  loanCount: controllerLoanCount.text.isEmpty ? "1" : controllerLoanCount.text,
+
                                   loanComplete: controllerLoanComplete.text.isEmpty ? "0" : controllerLoanComplete.text,
                                   loanPaid: controllerLoanPaid.text.isEmpty ? "0" : controllerLoanPaid.text,
                                   loanRemaining: controllerLoanRemaining.text.isEmpty ? "0" : controllerLoanRemaining.text,
@@ -1203,7 +1288,7 @@ class _LoansInputViewState extends State<LoansInputView> {
                               );
 
                               addLoansReminder(loanCalendarView.pickedDateTime,
-                                  loanPeriodType,
+                                  loanPeriodType, int.parse(controllerLoanCount.text),
                                   controllerLoanTitle.text, controllerLoanDescription.text,
                                   controllerLoanPayer.text);
 
@@ -1337,15 +1422,14 @@ class _LoansInputViewState extends State<LoansInputView> {
   }
 
   Future addLoansReminder(DateTime reminderTime,
-      int loanPeriodType,
+      int loanPeriodType, int eventOcurrences,
       String loanTitle, String loanDescription, String loanPayer) async {
 
     Frequency eventFrequency = Frequency.monthly;
-
     var eventRecurrence = Recurrence(
       frequency: eventFrequency,
       interval: 1,
-      ocurrences: 1,
+      ocurrences: eventOcurrences,
     );
 
     switch (loanPeriodType) {
@@ -1355,7 +1439,7 @@ class _LoansInputViewState extends State<LoansInputView> {
         eventRecurrence = Recurrence(
           frequency: eventFrequency,
           interval: 1,
-          ocurrences: 1,
+          ocurrences: eventOcurrences,
         );
 
         break;
@@ -1366,7 +1450,7 @@ class _LoansInputViewState extends State<LoansInputView> {
         eventRecurrence = Recurrence(
           frequency: eventFrequency,
           interval: 3,
-          ocurrences: 1,
+          ocurrences: eventOcurrences,
         );
 
         break;
@@ -1377,7 +1461,7 @@ class _LoansInputViewState extends State<LoansInputView> {
         eventRecurrence = Recurrence(
           frequency: eventFrequency,
           interval: 6,
-          ocurrences: 1,
+          ocurrences: eventOcurrences,
         );
 
         break;
@@ -1388,7 +1472,7 @@ class _LoansInputViewState extends State<LoansInputView> {
         eventRecurrence = Recurrence(
           frequency: eventFrequency,
           interval: 1,
-          ocurrences: 1,
+          ocurrences: eventOcurrences,
         );
 
         break;

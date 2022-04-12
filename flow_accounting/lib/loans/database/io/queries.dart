@@ -42,6 +42,8 @@ class LoansDatabaseQueries {
         loanDuePeriod: maps[i]['loanDuePeriod'],
         loanDuePeriodMillisecond: maps[i]['loanDuePeriodMillisecond'],
 
+        loanCount: maps[i]['loanCount'],
+
         loanComplete: maps[i]['loanComplete'],
         loanPaid: maps[i]['loanPaid'],
         loanRemaining: maps[i]['loanRemaining'],

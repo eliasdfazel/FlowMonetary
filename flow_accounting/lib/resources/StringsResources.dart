@@ -960,6 +960,15 @@ class StringsResources {
     return "مبلغ باقی مانده از وام را وارد کنید";
   }
 
+  static String loansCount() {
+
+    return "تعداد";
+  }
+  static String loansCountHint() {
+
+    return "تعداد اقساط";
+  }
+
   static String loansPeriod() {
 
     return "دوره پرداخت اقساط";
