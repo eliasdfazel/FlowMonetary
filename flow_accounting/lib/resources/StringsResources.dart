@@ -906,6 +906,15 @@ class StringsResources {
     return "تاریخ پرداخت اقساط";
   }
 
+  static String loansTitle() {
+
+    return "عنوان";
+  }
+  static String loansTitleHint() {
+
+    return "عنوان وام را وارد کنید";
+  }
+
   static String loansDescription() {
 
     return "توضیحات";
@@ -913,6 +922,15 @@ class StringsResources {
   static String loansDescriptionHint() {
 
     return "توضیحات وام";
+  }
+
+  static String loansPayer() {
+
+    return "پرداخت کننده";
+  }
+  static String loansPayerHint() {
+
+    return "وام از چه شخص یا بانکی گرفته شده است";
   }
 
   static String loansComplete() {

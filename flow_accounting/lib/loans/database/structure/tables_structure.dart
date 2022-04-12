@@ -19,7 +19,10 @@ class LoansData {
 
   final int id;
 
+  final String loanTitle;
   final String loanDescription;
+
+  final String loanPayer;
 
   final String loanDuePeriodType;
 
@@ -35,7 +38,10 @@ class LoansData {
   LoansData({
     required this.id,
 
+    required this.loanTitle,
     required this.loanDescription,
+
+    required this.loanPayer,
 
     required this.loanDuePeriodType,
 
@@ -53,7 +59,10 @@ class LoansData {
     return {
       'id': id,
 
+      'loanTitle': loanTitle,
       'loanDescription': loanDescription,
+
+      'loanPayer': loanPayer,
 
       'loanDuePeriodType': loanDuePeriodType,
 
@@ -73,7 +82,10 @@ class LoansData {
     return 'LoansData{'
       'id: $id,'
 
+      'loanTitle: $loanTitle,'
       'loanDescription: $loanDescription,'
+
+      'loanPayer: $loanPayer,'
 
       'loanDuePeriodType: $loanDuePeriodType,'
 

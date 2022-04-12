@@ -33,7 +33,10 @@ class LoansDatabaseQueries {
       return LoansData(
         id: maps[i]['id'],
 
+        loanTitle: maps[i]['loanTitle'],
         loanDescription: maps[i]['loanDescription'],
+
+        loanPayer: maps[i]['loanPayer'],
 
         loanDuePeriodType: maps[i]['loanDuePeriodType'],
         loanDuePeriod: maps[i]['loanDuePeriod'],

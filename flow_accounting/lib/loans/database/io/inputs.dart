@@ -35,7 +35,9 @@ class LoansDatabaseInputs {
 
           return databaseInstance.execute(
             'CREATE TABLE IF NOT EXISTS $tableNameQuery(id INTEGER PRIMARY KEY, '
+                'loanTitle TEXT, '
                 'loanDescription TEXT, '
+                'loanPayer TEXT, '
                 'loanDuePeriodType TEXT, '
                 'loanDuePeriod TEXT, '
                 'loanDuePeriodMillisecond TEXT, '
