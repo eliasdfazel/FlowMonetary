@@ -83,7 +83,6 @@ class _LoansInputViewState extends State<LoansInputView> {
     controllerLoanRemaining.text = widget.loansData?.loanRemaining == null ? "" : (widget.loansData?.loanRemaining)!;
 
     loanPeriodType = int.parse((widget.loansData?.loanDuePeriodType ?? "1"));
-    print(">>> >>> >> ${loanPeriodType}");
 
     switch (loanPeriodType) {
       case LoansData.LoanPeriodType_Month: {
@@ -275,7 +274,6 @@ class _LoansInputViewState extends State<LoansInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorText: warningNoticeComplete,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.loansTitle(),
@@ -459,7 +457,6 @@ class _LoansInputViewState extends State<LoansInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorText: warningNoticeComplete,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.loansPayer(),
@@ -654,7 +651,6 @@ class _LoansInputViewState extends State<LoansInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorText: warningNoticeComplete,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.loansPaid(),
@@ -744,7 +740,6 @@ class _LoansInputViewState extends State<LoansInputView> {
                                             ),
                                             gapPadding: 5
                                         ),
-                                        errorText: warningNoticeComplete,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
                                         labelText: StringsResources.loansRemaining(),
@@ -855,25 +850,42 @@ class _LoansInputViewState extends State<LoansInputView> {
                               flex: 1,
                               child: Padding(
                                   padding: const EdgeInsets.fromLTRB(13, 0, 3, 0),
-                                  child: Container(
-                                    width: double.infinity,
-                                    height: 37,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(51),
-                                      color: loanPeriodTwelve
-                                    ),
-                                    child: Directionality(
-                                        textDirection: TextDirection.rtl,
-                                        child: Align(
-                                          alignment: AlignmentDirectional.center,
-                                          child: Text(
-                                            StringsResources.loansPeriodOneYear(),
-                                            style: TextStyle(
-                                                fontSize: 13,
-                                                color: ColorsResources.dark,
-                                                decoration: TextDecoration.none
-                                            ),
-                                          )
+                                  child: InkWell(
+                                      onTap: () {
+
+                                        loanPeriod = StringsResources.loansPeriodOneYear();
+                                        loanPeriodType = LoansData.LoanPeriodType_Year;
+
+                                        setState(() {
+
+                                          loanPeriodOne = ColorsResources.lightestBlue;
+                                          loanPeriodThree = ColorsResources.lightestBlue;
+                                          loanPeriodSix = ColorsResources.lightestBlue;
+                                          loanPeriodTwelve = ColorsResources.primaryColorTransparent;
+
+                                        });
+
+                                      },
+                                      child: Container(
+                                        width: double.infinity,
+                                        height: 37,
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(51),
+                                            color: loanPeriodTwelve
+                                        ),
+                                        child: Directionality(
+                                            textDirection: TextDirection.rtl,
+                                            child: Align(
+                                                alignment: AlignmentDirectional.center,
+                                                child: Text(
+                                                  StringsResources.loansPeriodOneYear(),
+                                                  style: TextStyle(
+                                                      fontSize: 13,
+                                                      color: ColorsResources.dark,
+                                                      decoration: TextDecoration.none
+                                                  ),
+                                                )
+                                            )
                                         )
                                     )
                                   )
@@ -883,27 +895,44 @@ class _LoansInputViewState extends State<LoansInputView> {
                               flex: 1,
                               child: Padding(
                                   padding: const EdgeInsets.fromLTRB(3, 0, 3, 0),
-                                  child: Container(
-                                      width: double.infinity,
-                                      height: 37,
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(51),
-                                          color: loanPeriodSix
-                                      ),
-                                      child: Directionality(
-                                          textDirection: TextDirection.rtl,
-                                          child: Align(
-                                              alignment: AlignmentDirectional.center,
-                                              child: Text(
-                                                StringsResources.loansPeriodSixMonth(),
-                                                style: TextStyle(
-                                                    fontSize: 13,
-                                                    color: ColorsResources.dark,
-                                                    decoration: TextDecoration.none
-                                                ),
-                                              )
-                                          )
-                                      )
+                                  child: InkWell(
+                                      onTap: () {
+
+                                        loanPeriod = StringsResources.loansPeriodSixMonth();
+                                        loanPeriodType = LoansData.LoanPeriodType_SixMonth;
+
+                                        setState(() {
+
+                                          loanPeriodOne = ColorsResources.lightestBlue;
+                                          loanPeriodThree = ColorsResources.lightestBlue;
+                                          loanPeriodSix = ColorsResources.primaryColorTransparent;
+                                          loanPeriodTwelve = ColorsResources.lightestBlue;
+
+                                        });
+
+                                      },
+                                      child: Container(
+                                        width: double.infinity,
+                                        height: 37,
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(51),
+                                            color: loanPeriodSix
+                                        ),
+                                        child: Directionality(
+                                            textDirection: TextDirection.rtl,
+                                            child: Align(
+                                                alignment: AlignmentDirectional.center,
+                                                child: Text(
+                                                  StringsResources.loansPeriodSixMonth(),
+                                                  style: TextStyle(
+                                                      fontSize: 13,
+                                                      color: ColorsResources.dark,
+                                                      decoration: TextDecoration.none
+                                                  ),
+                                                )
+                                            )
+                                        )
+                                    )
                                   )
                               ),
                             ),
@@ -911,27 +940,44 @@ class _LoansInputViewState extends State<LoansInputView> {
                               flex: 1,
                               child: Padding(
                                   padding: const EdgeInsets.fromLTRB(3, 0, 3, 0),
-                                  child: Container(
-                                      width: double.infinity,
-                                      height: 37,
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(51),
-                                          color: loanPeriodThree
-                                      ),
-                                      child: Directionality(
-                                          textDirection: TextDirection.rtl,
-                                          child: Align(
-                                              alignment: AlignmentDirectional.center,
-                                              child: Text(
-                                                StringsResources.loansPeriodThreeMonth(),
-                                                style: TextStyle(
-                                                    fontSize: 13,
-                                                    color: ColorsResources.dark,
-                                                    decoration: TextDecoration.none
-                                                ),
-                                              )
-                                          )
-                                      )
+                                  child: InkWell(
+                                      onTap: () {
+
+                                        loanPeriod = StringsResources.loansPeriodThreeMonth();
+                                        loanPeriodType = LoansData.LoanPeriodType_ThreeMonth;
+
+                                        setState(() {
+
+                                          loanPeriodOne = ColorsResources.lightestBlue;
+                                          loanPeriodThree = ColorsResources.primaryColorTransparent;
+                                          loanPeriodSix = ColorsResources.lightestBlue;
+                                          loanPeriodTwelve = ColorsResources.lightestBlue;
+
+                                        });
+
+                                      },
+                                      child: Container(
+                                        width: double.infinity,
+                                        height: 37,
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(51),
+                                            color: loanPeriodThree
+                                        ),
+                                        child: Directionality(
+                                            textDirection: TextDirection.rtl,
+                                            child: Align(
+                                                alignment: AlignmentDirectional.center,
+                                                child: Text(
+                                                  StringsResources.loansPeriodThreeMonth(),
+                                                  style: TextStyle(
+                                                      fontSize: 13,
+                                                      color: ColorsResources.dark,
+                                                      decoration: TextDecoration.none
+                                                  ),
+                                                )
+                                            )
+                                        )
+                                    )
                                   )
                               ),
                             ),
@@ -939,27 +985,44 @@ class _LoansInputViewState extends State<LoansInputView> {
                               flex: 1,
                               child: Padding(
                                   padding: const EdgeInsets.fromLTRB(3, 0, 13, 0),
-                                  child: Container(
-                                      width: double.infinity,
-                                      height: 37,
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(51),
-                                          color: loanPeriodOne
-                                      ),
-                                      child: Directionality(
-                                          textDirection: TextDirection.rtl,
-                                          child: Align(
-                                              alignment: AlignmentDirectional.center,
-                                              child: Text(
-                                                StringsResources.loansPeriodOneMonth(),
-                                                style: TextStyle(
-                                                    fontSize: 13,
-                                                    color: ColorsResources.dark,
-                                                    decoration: TextDecoration.none
-                                                ),
-                                              )
-                                          )
-                                      )
+                                  child: InkWell(
+                                      onTap: () {
+
+                                        loanPeriod = StringsResources.loansPeriodOneMonth();
+                                        loanPeriodType = LoansData.LoanPeriodType_Month;
+
+                                        setState(() {
+
+                                          loanPeriodOne = ColorsResources.primaryColorTransparent;
+                                          loanPeriodThree = ColorsResources.lightestBlue;
+                                          loanPeriodSix = ColorsResources.lightestBlue;
+                                          loanPeriodTwelve = ColorsResources.lightestBlue;
+
+                                        });
+
+                                      },
+                                      child: Container(
+                                        width: double.infinity,
+                                        height: 37,
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(51),
+                                            color: loanPeriodOne
+                                        ),
+                                        child: Directionality(
+                                            textDirection: TextDirection.rtl,
+                                            child: Align(
+                                                alignment: AlignmentDirectional.center,
+                                                child: Text(
+                                                  StringsResources.loansPeriodOneMonth(),
+                                                  style: TextStyle(
+                                                      fontSize: 13,
+                                                      color: ColorsResources.dark,
+                                                      decoration: TextDecoration.none
+                                                  ),
+                                                )
+                                            )
+                                        )
+                                    )
                                   )
                               ),
                             ),
@@ -1139,6 +1202,11 @@ class _LoansInputViewState extends State<LoansInputView> {
                                   fontSize: 16.0
                               );
 
+                              addLoansReminder(loanCalendarView.pickedDateTime,
+                                  loanPeriodType,
+                                  controllerLoanTitle.text, controllerLoanDescription.text,
+                                  controllerLoanPayer.text);
+
                               loanDataUpdated = true;
 
                             }
@@ -1268,7 +1336,64 @@ class _LoansInputViewState extends State<LoansInputView> {
     );
   }
 
-  Future addLoansReminder(DateTime reminderTime, String loanTitle, String loanDescription, String loanPayer) async {
+  Future addLoansReminder(DateTime reminderTime,
+      int loanPeriodType,
+      String loanTitle, String loanDescription, String loanPayer) async {
+
+    Frequency eventFrequency = Frequency.monthly;
+
+    var eventRecurrence = Recurrence(
+      frequency: eventFrequency,
+      interval: 1,
+      ocurrences: 1,
+    );
+
+    switch (loanPeriodType) {
+      case LoansData.LoanPeriodType_Month: {
+
+        eventFrequency = Frequency.monthly;
+        eventRecurrence = Recurrence(
+          frequency: eventFrequency,
+          interval: 1,
+          ocurrences: 1,
+        );
+
+        break;
+      }
+      case LoansData.LoanPeriodType_ThreeMonth: {
+
+        eventFrequency = Frequency.monthly;
+        eventRecurrence = Recurrence(
+          frequency: eventFrequency,
+          interval: 3,
+          ocurrences: 1,
+        );
+
+        break;
+      }
+      case LoansData.LoanPeriodType_SixMonth: {
+
+        eventFrequency = Frequency.monthly;
+        eventRecurrence = Recurrence(
+          frequency: eventFrequency,
+          interval: 6,
+          ocurrences: 1,
+        );
+
+        break;
+      }
+      case LoansData.LoanPeriodType_Year: {
+
+        eventFrequency = Frequency.yearly;
+        eventRecurrence = Recurrence(
+          frequency: eventFrequency,
+          interval: 1,
+          ocurrences: 1,
+        );
+
+        break;
+      }
+    }
 
     bool eventAdded = await Add2Calendar.addEvent2Cal(Event(
         title: loanTitle,
@@ -1283,11 +1408,7 @@ class _LoansInputViewState extends State<LoansInputView> {
         androidParams: AndroidParams(
 
         ),
-        recurrence: Recurrence(
-          frequency: Frequency.monthly,
-          interval: 1,
-          ocurrences: 3,
-        )
+        recurrence: eventRecurrence
     ));
 
     debugPrint("Event Added: ${eventAdded}");
