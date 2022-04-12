@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/12/22, 5:21 AM
+ * Last modified 4/12/22, 5:34 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -35,8 +35,8 @@ class LoansDatabaseQueries {
 
         loanDescription: maps[i]['loanDescription'],
 
-        loanIssueMonthly: maps[i]['loanIssueMonthly'],
-        loanIssueMonthlyMillisecond: maps[i]['loanIssueMonthlyMillisecond'],
+        loanDuePeriod: maps[i]['loanIssueMonthly'],
+        loanDuePeriodMillisecond: maps[i]['loanIssueMonthlyMillisecond'],
 
         loanComplete: maps[i]['loanComplete'],
         loanPaid: maps[i]['loanPaid'],

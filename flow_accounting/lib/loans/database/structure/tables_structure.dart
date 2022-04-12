@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/12/22, 5:13 AM
+ * Last modified 4/12/22, 5:37 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -16,8 +16,10 @@ class LoansData {
 
   final String loanDescription;
 
-  final String loanIssueMonthly;
-  final String loanIssueMonthlyMillisecond;
+  final String loanDuePeriodType;
+
+  final String loanDuePeriod;
+  final String loanDuePeriodMillisecond;
 
   final String loanComplete;
   final String loanPaid;
@@ -30,8 +32,10 @@ class LoansData {
 
     required this.loanDescription,
 
-    required this.loanIssueMonthly,
-    required this.loanIssueMonthlyMillisecond,
+    required this.loanDuePeriodType,
+
+    required this.loanDuePeriod,
+    required this.loanDuePeriodMillisecond,
 
     required this.loanComplete,
     required this.loanPaid,
@@ -46,8 +50,10 @@ class LoansData {
 
       'loanDescription': loanDescription,
 
-      'loanIssueMonthly': loanIssueMonthly,
-      'loanIssueMonthlyMillisecond': loanIssueMonthlyMillisecond,
+      'loanDuePeriodType': loanDuePeriodType,
+
+      'loanDuePeriod': loanDuePeriod,
+      'loanDuePeriodMillisecond': loanDuePeriodMillisecond,
 
       'loanComplete': loanComplete,
       'loanPaid': loanPaid,
@@ -64,8 +70,10 @@ class LoansData {
 
       'loanDescription: $loanDescription,'
 
-      'loanIssueMonthly: $loanIssueMonthly,'
-      'loanIssueMonthlyMillisecond: $loanIssueMonthlyMillisecond,'
+      'loanDuePeriodType: $loanDuePeriodType,'
+
+      'loanDuePeriod: $loanDuePeriod,'
+      'loanDuePeriodMillisecond: $loanDuePeriodMillisecond,'
 
       'loanComplete: $loanComplete,'
       'loanPaid: $loanPaid,'

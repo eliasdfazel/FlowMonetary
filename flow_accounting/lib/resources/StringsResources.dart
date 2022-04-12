@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/10/22, 8:22 AM
+ * Last modified 4/12/22, 5:37 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -899,6 +899,34 @@ class StringsResources {
     return "مرتب سازی: مبلغ طلب";
   }
   /* End - Debtors String Resources */
+
+  /* Start - Loans String Resources */
+  static String loansDueDate() {
+
+    return "تاریخ پرداخت اقساط";
+  }
+
+  static String loansPeriod() {
+
+    return "دوره پرداخت اقساط";
+  }
+  static String loansPeriodOneMonth() {
+
+    return "ماهیانه";
+  }
+  static String loansPeriodThreeMonth() {
+
+    return "سه ماهه";
+  }
+  static String loansPeriodSixMonth() {
+
+    return "شش ماهه";
+  }
+  static String loansPeriodOneYear() {
+
+    return "سالیانه";
+  }
+  /* End - Loans String Resources */
 
   /* Start - Features Descriptions */
   static String featureCreditCardTitle() {
