@@ -137,7 +137,7 @@ class _LoansInputViewState extends State<LoansInputView> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(13, 13, 13, 0),
                         child:  Text(
-                          StringsResources.featureBudgetManagementsTitle(),
+                          StringsResources.featureLoansTitle(),
                           textDirection: TextDirection.rtl,
                           style: TextStyle(
                             fontSize: 23,
@@ -155,7 +155,7 @@ class _LoansInputViewState extends State<LoansInputView> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(13, 13, 13, 19),
                         child: Text(
-                          StringsResources.featureBudgetManagementsDescription(),
+                          StringsResources.featureLoansDescription(),
                           textDirection: TextDirection.rtl,
                           style: TextStyle(
                             fontSize: 15,
@@ -338,6 +338,201 @@ class _LoansInputViewState extends State<LoansInputView> {
                                             fontSize: 17.0
                                         ),
                                         hintText: StringsResources.loansCompleteHint(),
+                                        hintStyle: const TextStyle(
+                                            color: ColorsResources.darkTransparent,
+                                            fontSize: 13.0
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Divider(
+                        height: 13,
+                        color: Colors.transparent,
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 73,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                  child: Directionality(
+                                    textDirection: TextDirection.rtl,
+                                    child: TextField(
+                                      controller: controllerLoanPaid,
+                                      textAlign: TextAlign.center,
+                                      textDirection: TextDirection.ltr,
+                                      textAlignVertical: TextAlignVertical.bottom,
+                                      maxLines: 1,
+                                      cursorColor: ColorsResources.primaryColor,
+                                      autocorrect: true,
+                                      autofocus: false,
+                                      keyboardType: TextInputType.number,
+                                      textInputAction: TextInputAction.done,
+                                      onChanged: (loanPaid) {
+
+                                        try {
+
+                                          int debtorCompleteDebt = int.parse(controllerLoanComplete.text.isEmpty ? "0" : controllerLoanComplete.text);
+
+                                          int debtorPaidDebt = int.parse(loanPaid.isEmpty ? "0" : loanPaid);
+
+                                          controllerLoanRemaining.text = (debtorCompleteDebt - debtorPaidDebt).toString();
+
+                                        } on Exception {
+
+                                        }
+
+                                      },
+                                      decoration: InputDecoration(
+                                        alignLabelWithHint: true,
+                                        border: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        enabledBorder: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        focusedBorder: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        errorBorder: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.red, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        errorText: warningNoticeBalance,
+                                        filled: true,
+                                        fillColor: ColorsResources.lightTransparent,
+                                        labelText: StringsResources.loansPaid(),
+                                        labelStyle: const TextStyle(
+                                            color: ColorsResources.dark,
+                                            fontSize: 17.0
+                                        ),
+                                        hintText: StringsResources.loansPaidHint(),
+                                        hintStyle: const TextStyle(
+                                            color: ColorsResources.darkTransparent,
+                                            fontSize: 13.0
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Divider(
+                        height: 13,
+                        color: Colors.transparent,
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 73,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                  child: Directionality(
+                                    textDirection: TextDirection.rtl,
+                                    child: TextField(
+                                      controller: controllerLoanRemaining,
+                                      textAlign: TextAlign.center,
+                                      textDirection: TextDirection.ltr,
+                                      textAlignVertical: TextAlignVertical.bottom,
+                                      maxLines: 1,
+                                      cursorColor: ColorsResources.primaryColor,
+                                      autocorrect: true,
+                                      autofocus: false,
+                                      keyboardType: TextInputType.number,
+                                      textInputAction: TextInputAction.done,
+                                      decoration: InputDecoration(
+                                        alignLabelWithHint: true,
+                                        border: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        enabledBorder: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        focusedBorder: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        errorBorder: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.red, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        errorText: warningNoticeBalance,
+                                        filled: true,
+                                        fillColor: ColorsResources.lightTransparent,
+                                        labelText: StringsResources.loansRemaining(),
+                                        labelStyle: const TextStyle(
+                                            color: ColorsResources.dark,
+                                            fontSize: 17.0
+                                        ),
+                                        hintText: StringsResources.loansRemainingHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 13.0
@@ -648,7 +843,5 @@ class _LoansInputViewState extends State<LoansInputView> {
       ),
     );
   }
-
-
 
 }

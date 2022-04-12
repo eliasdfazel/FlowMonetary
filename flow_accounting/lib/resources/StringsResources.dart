@@ -924,6 +924,24 @@ class StringsResources {
     return "مبلغ کلی وام را وارد کنید";
   }
 
+  static String loansPaid() {
+
+    return "مبلغ پرداخت شده";
+  }
+  static String loansPaidHint() {
+
+    return "مبلغ پرداختی از وام را وارد کنید";
+  }
+
+  static String loansRemaining() {
+
+    return "مبلغ باقی مانده";
+  }
+  static String loansRemainingHint() {
+
+    return "مبلغ باقی مانده از وام را وارد کنید";
+  }
+
   static String loansPeriod() {
 
     return "دوره پرداخت اقساط";
