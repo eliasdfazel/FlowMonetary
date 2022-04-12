@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/12/22, 5:42 AM
+ * Last modified 4/12/22, 5:53 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,6 +10,7 @@
 
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:blur/blur.dart';
+import 'package:flow_accounting/loans/database/io/inputs.dart';
 import 'package:flow_accounting/loans/database/structure/tables_structure.dart';
 import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
@@ -45,6 +46,7 @@ class _LoansInputViewState extends State<LoansInputView> {
   bool loanDataUpdated = false;
 
   int loanPeriodType = LoansData.LoanPeriodType_Month;
+  String loanPeriod = StringsResources.loansPeriodOneMonth();
 
   String? warningNoticeDescription;
 
@@ -170,96 +172,6 @@ class _LoansInputViewState extends State<LoansInputView> {
                       ),
                       SizedBox(
                         width: double.infinity,
-                        height: 73,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Expanded(
-                              flex: 1,
-                              child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
-                                  child: Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: TextField(
-                                      controller: controllerBudgetName,
-                                      textAlign: TextAlign.right,
-                                      textDirection: TextDirection.ltr,
-                                      textAlignVertical: TextAlignVertical.bottom,
-                                      maxLines: 1,
-                                      cursorColor: ColorsResources.primaryColor,
-                                      autocorrect: true,
-                                      autofocus: false,
-                                      keyboardType: TextInputType.text,
-                                      textInputAction: TextInputAction.next,
-                                      decoration: InputDecoration(
-                                        alignLabelWithHint: true,
-                                        border: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        enabledBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        focusedBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        errorBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.red, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        errorText: warningNoticeName,
-                                        filled: true,
-                                        fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.budgetNameText(),
-                                        labelStyle: const TextStyle(
-                                            color: ColorsResources.dark,
-                                            fontSize: 17.0
-                                        ),
-                                        hintText: StringsResources.budgetNameTextHint(),
-                                        hintStyle: const TextStyle(
-                                            color: ColorsResources.darkTransparent,
-                                            fontSize: 13.0
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const Divider(
-                        height: 13,
-                        color: Colors.transparent,
-                      ),
-                      SizedBox(
-                        width: double.infinity,
                         height: 133,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -271,7 +183,7 @@ class _LoansInputViewState extends State<LoansInputView> {
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: TextField(
-                                      controller: controllerBudgetDescription,
+                                      controller: controllerLoanDescription,
                                       textAlign: TextAlign.right,
                                       textDirection: TextDirection.ltr,
                                       textAlignVertical: TextAlignVertical.top,
@@ -330,12 +242,12 @@ class _LoansInputViewState extends State<LoansInputView> {
                                         errorText: warningNoticeDescription,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.budgetDescriptionText(),
+                                        labelText: StringsResources.loansDescription(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 13.0
                                         ),
-                                        hintText: StringsResources.budgetDescriptionTextHint(),
+                                        hintText: StringsResources.loansDescriptionHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 13.0
@@ -420,12 +332,12 @@ class _LoansInputViewState extends State<LoansInputView> {
                                         errorText: warningNoticeBalance,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.budgetInitialTextHint(),
+                                        labelText: StringsResources.loansComplete(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.budgetInitialTextHint(),
+                                        hintText: StringsResources.loansCompleteHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 13.0
@@ -530,19 +442,7 @@ class _LoansInputViewState extends State<LoansInputView> {
 
                             bool noError = true;
 
-                            if (controllerBudgetName.text.isEmpty) {
-
-                              setState(() {
-
-                                warningNoticeName = StringsResources.errorText();
-
-                              });
-
-                              noError = false;
-
-                            }
-
-                            if (controllerBudgetDescription.text.isEmpty) {
+                            if (controllerLoanDescription.text.isEmpty) {
 
                               setState(() {
 
@@ -568,40 +468,45 @@ class _LoansInputViewState extends State<LoansInputView> {
 
                             if (noError) {
 
-                              if (widget.budgetsData != null) {
+                              if (widget.loansData != null) {
 
-                                if ((widget.budgetsData?.id)! != 0) {
+                                if ((widget.loansData?.id)! != 0) {
 
-                                  timeNow = (widget.budgetsData?.id)!;
+                                  timeNow = (widget.loansData?.id)!;
 
                                 }
 
                               }
 
-                              var databaseInputs = BudgetsDatabaseInputs();
+                              var databaseInputs = LoansDatabaseInputs();
 
-                              BudgetsData transactionData = BudgetsData(
+                              LoansData transactionData = LoansData(
                                   id: timeNow,
 
-                                  budgetName: controllerBudgetName.text,
-                                  budgetDescription: controllerBudgetDescription.text,
+                                  loanDescription: controllerLoanDescription.text,
 
-                                  budgetBalance: controllerLoanComplete.text.isEmpty ? "0" : controllerLoanComplete.text,
+                                  loanDuePeriodType: loanPeriodType.toString(),
+                                  loanDuePeriod: loanCalendarView.pickedDataTimeText.toString(),
+                                  loanDuePeriodMillisecond: loanCalendarView.pickedDateTime.millisecondsSinceEpoch.toString(),
+
+                                  loanComplete: controllerLoanComplete.text.isEmpty ? "0" : controllerLoanComplete.text,
+                                  loanPaid: controllerLoanPaid.text.isEmpty ? "0" : controllerLoanPaid.text,
+                                  loanRemaining: controllerLoanRemaining.text.isEmpty ? "0" : controllerLoanRemaining.text,
 
                                   colorTag: colorSelectorView.selectedColor.value
                               );
 
-                              if (widget.budgetsData != null) {
+                              if (widget.loansData != null) {
 
-                                if ((widget.budgetsData?.id)! != 0) {
+                                if ((widget.loansData?.id)! != 0) {
 
-                                  databaseInputs.updateBudgetData(transactionData, BudgetsDatabaseInputs.databaseTableName, UserInformation.UserId);
+                                  databaseInputs.updateChequeData(transactionData, LoansDatabaseInputs.databaseTableName, UserInformation.UserId);
 
                                 }
 
                               } else {
 
-                                databaseInputs.insertBudgetData(transactionData, BudgetsDatabaseInputs.databaseTableName, UserInformation.UserId);
+                                databaseInputs.insertLoanData(transactionData, LoansDatabaseInputs.databaseTableName, UserInformation.UserId);
 
                               }
 
@@ -743,5 +648,7 @@ class _LoansInputViewState extends State<LoansInputView> {
       ),
     );
   }
+
+
 
 }

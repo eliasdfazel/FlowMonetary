@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/12/22, 5:37 AM
+ * Last modified 4/12/22, 5:46 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -904,6 +904,24 @@ class StringsResources {
   static String loansDueDate() {
 
     return "تاریخ پرداخت اقساط";
+  }
+
+  static String loansDescription() {
+
+    return "توضیحات";
+  }
+  static String loansDescriptionHint() {
+
+    return "توضیحات وام";
+  }
+
+  static String loansComplete() {
+
+    return "مبلغ کلی وام";
+  }
+  static String loansCompleteHint() {
+
+    return "مبلغ کلی وام را وارد کنید";
   }
 
   static String loansPeriod() {
