@@ -66,7 +66,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
   int timeNow = DateTime.now().millisecondsSinceEpoch;
 
-  Color customerColorTag = Colors.blueGrey;
+  Color customerColorTag = Colors.white;
 
   String customerImage = "";
 
@@ -115,11 +115,11 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
     controllerCustomerMaritalStatus.text = widget.customersData?.customerMaritalStatus == null ? "" : (widget.customersData?.customerMaritalStatus)!;
 
-    colorSelectorView.inputColor = Color(widget.customersData?.colorTag ?? Colors.blueGrey.value);
+    colorSelectorView.inputColor = Color(widget.customersData?.colorTag ?? Colors.white.value);
 
     customerImage = widget.customersData?.customerImagePath ?? "";
 
-    customerColorTag = Color(widget.customersData?.colorTag ?? Colors.blueGrey.value);
+    customerColorTag = Color(widget.customersData?.colorTag ?? Colors.white.value);
 
     calendarView.inputDateTime = widget.customersData?.customerBirthday ?? StringsResources.customerBirthdayText();
 
@@ -782,14 +782,14 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                       textDirection: TextDirection.rtl,
                                       child: TextField(
                                         controller: controllerCustomerAge,
-                                        textAlign: TextAlign.right,
+                                        textAlign: TextAlign.center,
                                         textDirection: TextDirection.ltr,
                                         textAlignVertical: TextAlignVertical.bottom,
                                         maxLines: 1,
                                         cursorColor: ColorsResources.primaryColor,
                                         autocorrect: true,
                                         autofocus: false,
-                                        keyboardType: TextInputType.text,
+                                        keyboardType: TextInputType.number,
                                         textInputAction: TextInputAction.next,
                                         decoration: InputDecoration(
                                           alignLabelWithHint: true,
@@ -873,7 +873,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                     textDirection: TextDirection.rtl,
                                     child: TextField(
                                       controller: controllerCustomerPhoneNumber,
-                                      textAlign: TextAlign.left,
+                                      textAlign: TextAlign.center,
                                       textDirection: TextDirection.ltr,
                                       textAlignVertical: TextAlignVertical.bottom,
                                       maxLines: 1,
