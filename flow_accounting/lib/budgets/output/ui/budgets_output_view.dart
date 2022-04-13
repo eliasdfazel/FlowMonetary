@@ -393,13 +393,6 @@ class _BudgetOutputViewState extends State<BudgetsOutputView> {
 
   Widget outputItem(BuildContext context, BudgetsData budgetsData) {
 
-    String budgetName = budgetsData.budgetName;
-    String budgetDescription = budgetsData.budgetDescription;
-
-    String budgetBalance = budgetsData.budgetBalance;
-
-    Color budgetColorTag = Color(budgetsData.colorTag);
-
     return Slidable(
       closeOnScroll: true,
       endActionPane: ActionPane(
@@ -440,7 +433,7 @@ class _BudgetOutputViewState extends State<BudgetsOutputView> {
             flex: 1,
             onPressed: (BuildContext context) {
 
-              NavigationProcess().goTo(context, TransactionsOutputView(initialSearchQuery: budgetName));
+              NavigationProcess().goTo(context, TransactionsOutputView(initialSearchQuery: budgetsData.budgetName));
 
             },
             backgroundColor: Colors.transparent,
@@ -456,7 +449,7 @@ class _BudgetOutputViewState extends State<BudgetsOutputView> {
         child: PhysicalModel(
           color: ColorsResources.light,
           elevation: 7,
-          shadowColor: budgetColorTag.withOpacity(0.79),
+          shadowColor: Color(budgetsData.colorTag).withOpacity(0.79),
           shape: BoxShape.rectangle,
           borderRadius: const BorderRadius.all(Radius.circular(17)),
           child: InkWell(
@@ -500,7 +493,7 @@ class _BudgetOutputViewState extends State<BudgetsOutputView> {
                               child: Align(
                                   alignment: Alignment.center,
                                   child: Marquee(
-                                    text: budgetBalance,
+                                    text: budgetsData.budgetBalance,
                                     style: const TextStyle(
                                       color: ColorsResources.dark,
                                       fontSize: 31,
@@ -540,7 +533,7 @@ class _BudgetOutputViewState extends State<BudgetsOutputView> {
                                         child: Align(
                                           alignment: Alignment.centerRight,
                                           child: Text(
-                                            budgetName,
+                                            budgetsData.budgetName,
                                             style: const TextStyle(
                                               color: ColorsResources.dark,
                                               fontSize: 19,
@@ -563,7 +556,7 @@ class _BudgetOutputViewState extends State<BudgetsOutputView> {
                                 child: Align(
                                   alignment: Alignment.centerRight,
                                   child: Text(
-                                    budgetDescription,
+                                    budgetsData.budgetDescription,
                                     textAlign: TextAlign.right,
                                     style: TextStyle(
                                         color: ColorsResources.dark.withOpacity(0.537),
@@ -594,7 +587,7 @@ class _BudgetOutputViewState extends State<BudgetsOutputView> {
                                 ),
                                 gradient: LinearGradient(
                                     colors: [
-                                      budgetColorTag.withOpacity(0.7),
+                                      Color(budgetsData.colorTag).withOpacity(0.7),
                                       ColorsResources.light,
                                     ],
                                     begin: const FractionalOffset(0.0, 0.0),
