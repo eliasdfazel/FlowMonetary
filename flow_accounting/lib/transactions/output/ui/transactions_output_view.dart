@@ -820,7 +820,6 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> {
                             ),
                             filled: true,
                             fillColor: ColorsResources.lightTransparent,
-
                             labelText: StringsResources.descriptionText(),
                             labelStyle: TextStyle(
                               color: ColorsResources.dark,

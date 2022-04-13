@@ -542,7 +542,7 @@ class _LoansOutputViewState extends State<LoansOutputView> {
                             height: 51,
                             width: double.infinity,
                             child: Padding(
-                              padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
+                              padding: const EdgeInsets.fromLTRB(31, 0, 19, 0),
                               child: Container(
                                 color: Colors.transparent,
                                 child: Align(

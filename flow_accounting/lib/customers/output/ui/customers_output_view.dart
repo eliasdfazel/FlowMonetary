@@ -529,7 +529,7 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
                                               height: 91,
                                               width: double.infinity,
                                               child: Padding(
-                                                padding: const EdgeInsets.fromLTRB(11, 3, 13, 0),
+                                                padding: const EdgeInsets.fromLTRB(13, 3, 13, 0),
                                                 child: Directionality(
                                                   textDirection: TextDirection.rtl,
                                                   child: Align(
