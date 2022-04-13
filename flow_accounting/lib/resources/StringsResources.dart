@@ -993,6 +993,11 @@ class StringsResources {
 
     return "سالیانه";
   }
+
+  static String sortLoanAmountHigh() {
+
+    return "مرتب سازی: مبلغ وام";
+  }
   /* End - Loans String Resources */
 
   /* Start - Features Descriptions */

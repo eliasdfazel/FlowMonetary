@@ -23,6 +23,7 @@ import 'package:flow_accounting/debtors/input/ui/debtors_input_view.dart';
 import 'package:flow_accounting/debtors/output/ui/debtors_output_view.dart';
 import 'package:flow_accounting/home/interface/dashboard.dart';
 import 'package:flow_accounting/loans/input/ui/loans_input_view.dart';
+import 'package:flow_accounting/loans/output/ui/loans_output_view.dart';
 import 'package:flow_accounting/products/input/ui/products_input_view.dart';
 import 'package:flow_accounting/products/output/ui/products_output_view.dart';
 import 'package:flow_accounting/profile/database/io/queries.dart';
@@ -214,7 +215,7 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
         featuresTitle: StringsResources.featureLoansTitle(),
         featuresDescription: StringsResources.featureLoansDescription(),
         featureViewToSubmitData: LoansInputView(),
-        featureToPresentData: null));
+        featureToPresentData: LoansOutputView()));
 
     return allFeaturesStructure;
   }
