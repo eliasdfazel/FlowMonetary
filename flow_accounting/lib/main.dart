@@ -77,7 +77,7 @@ class _WelcomePageViewState extends State<WelcomePage> {
 
           });
 
-          Future.delayed(Duration(microseconds: 7357), () {
+          Future.delayed(Duration(microseconds: 135), () {
 
             FlutterNativeSplash.remove();
 
