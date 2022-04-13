@@ -13,6 +13,7 @@ import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/profile/database/structures/tables_structure.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:local_auth/auth_strings.dart';
 import 'package:local_auth/local_auth.dart';
@@ -22,7 +23,8 @@ import 'resources/StringsResources.dart';
 
 void main() async {
 
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   runApp(
       Phoenix(
@@ -72,6 +74,12 @@ class _WelcomePageViewState extends State<WelcomePage> {
           setState(() {
 
             contentView = FlowDashboard();
+
+          });
+
+          Future.delayed(Duration(microseconds: 357), () {
+
+            FlutterNativeSplash.remove();
 
           });
 

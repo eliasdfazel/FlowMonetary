@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Xlutter/FlowAccounting/flow_accounting/android/app/src/main/res/drawable-v21/launch_background.xml" value="0.24537037037037038" />
+        <entry key="..\:/Xlutter/FlowAccounting/flow_accounting/android/app/src/main/res/drawable/launch_background.xml" value="0.25" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_17" project-jdk-name="Android Platform" project-jdk-type="Android SDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
