@@ -395,10 +395,54 @@ class _LoansOutputViewState extends State<LoansOutputView> {
 
     if (loansData.loanComplete == loansData.loanPaid) {
 
-      loanFinished = Container(
-        decoration: BoxDecoration(
-          color: ColorsResources.applicationGeeksEmpire
-        ),
+      loanFinished = Positioned(
+          top: 0,
+          bottom: 0,
+          left: 0,
+          right: 0,
+          child: SizedBox(
+              height: 27,
+              width: double.infinity,
+              child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(17),
+                        topRight: Radius.circular(17),
+                        bottomLeft: Radius.circular(17),
+                        bottomRight: Radius.circular(17)
+                    ),
+                    gradient: LinearGradient(
+                        colors: [
+                          ColorsResources.lightBlue.withOpacity(0.73),
+                          ColorsResources.light.withOpacity(0.73),
+                        ],
+                        begin: const FractionalOffset(0.0, 0.0),
+                        end: const FractionalOffset(1.0, 0.0),
+                        stops: const [0.0, 1.0],
+                        transform: const GradientRotation(45),
+                        tileMode: TileMode.clamp
+                    ),
+                  ),
+                  child: Align(
+                      alignment: AlignmentDirectional.center,
+                      child: Text(
+                        StringsResources.loansFinished(),
+                        style: TextStyle(
+                            fontSize: 15,
+                            color: ColorsResources.applicationGeeksEmpire,
+                            fontWeight: FontWeight.bold,
+                            shadows: [
+                              Shadow(
+                                  color: ColorsResources.primaryColorTransparent,
+                                  blurRadius: 9,
+                                  offset: Offset(5.0, 3.0)
+                              )
+                            ]
+                        ),
+                      )
+                  )
+              )
+          )
       );
 
     }
@@ -592,7 +636,8 @@ class _LoansOutputViewState extends State<LoansOutputView> {
                             ),
                           ),
                         ),
-                      )
+                      ),
+                      loanFinished
                     ],
                   )
               ),

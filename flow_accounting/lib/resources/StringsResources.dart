@@ -901,6 +901,11 @@ class StringsResources {
   /* End - Debtors String Resources */
 
   /* Start - Loans String Resources */
+  static String loansFinished() {
+
+    return "اقساط به پایان رسیده است";
+  }
+
   static String loansDueDate() {
 
     return "تاریخ پرداخت اقساط";
