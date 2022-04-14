@@ -9,15 +9,24 @@
  */
 
 import 'package:flow_accounting/home/interface/dashboard.dart';
+import 'package:flow_accounting/products/database/io/inputs.dart';
+import 'package:flow_accounting/products/database/io/queries.dart';
+import 'package:flow_accounting/products/database/structures/tables_structure.dart';
+import 'package:flow_accounting/products/input/ui/products_input_view.dart';
 import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/profile/database/structures/tables_structure.dart';
+import 'package:flow_accounting/utils/navigations/navigations.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:local_auth/auth_strings.dart';
 import 'package:local_auth/local_auth.dart';
+import 'package:quick_actions/quick_actions.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:status_bar_control/status_bar_control.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'resources/ColorsResources.dart';
 import 'resources/StringsResources.dart';
@@ -49,6 +58,12 @@ class WelcomePage extends StatefulWidget {
 }
 class _WelcomePageViewState extends State<WelcomePage> {
 
+  final QuickActions quickActions = const QuickActions();
+
+  static const  String BarcodeScanner_Action = "barcode_scanner";
+  static const String SocialMedia_Action = "social_media";
+  static const String ShareIt_Action = "share_it";
+
   Widget contentView = Container(color: ColorsResources.primaryColor);
 
   LocalAuthentication localAuthentication = LocalAuthentication();
@@ -63,7 +78,42 @@ class _WelcomePageViewState extends State<WelcomePage> {
 
     contentView = getStartedView();
 
+    quickActions.initialize((shortcutType) {
+
+      if (shortcutType == 'action_main') {
+        debugPrint("Opening Flow Dashboard");
+
+      } else if (shortcutType == BarcodeScanner_Action) {
+        debugPrint("Barcode Scanner");
+
+        invokeBarcodeScanner();
+
+      } else if (shortcutType == SocialMedia_Action) {
+        debugPrint("Social Media");
+
+        invokeSocialMedia();
+
+      } else if (shortcutType == ShareIt_Action) {
+        debugPrint("Share It");
+
+        invokeSharingProcess();
+
+      } else {
+        debugPrint("Opening Flow Dashboard");
+
+        getSignedInUserId();
+
+      }
+
+    });
+
     getSignedInUserId();
+
+    quickActions.setShortcutItems(<ShortcutItem>[
+      const ShortcutItem(type: BarcodeScanner_Action, localizedTitle: 'بارکد خوان', icon: 'qr_scan_icon'),
+      const ShortcutItem(type: SocialMedia_Action, localizedTitle: 'اینستاگرام', icon: 'instagram_icon'),
+      const ShortcutItem(type: ShareIt_Action, localizedTitle: 'به اشتراک بگذارید', icon: 'share_icon')
+    ]);
 
   }
 
@@ -227,6 +277,47 @@ class _WelcomePageViewState extends State<WelcomePage> {
       signedInUser;
 
     });
+
+  }
+
+  void invokeBarcodeScanner() async {
+
+    String barcodeScanResult = await FlutterBarcodeScanner.scanBarcode(
+        "#0095ff",
+        StringsResources.cancelText(),
+        true,
+        ScanMode.QR
+    );
+
+    if (barcodeScanResult.contains("Product_")) {
+
+      String productId = barcodeScanResult.replaceAll("Product_", "");
+
+      //Get Specific Product Data then Pass It to Edit
+      ProductsDatabaseQueries productsDatabaseQueries = ProductsDatabaseQueries();
+
+      ProductsData scannedProductData = await productsDatabaseQueries.querySpecificProductById(productId, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+      Future.delayed(Duration(milliseconds: 753), () {
+
+        NavigationProcess().goTo(context, ProductsInputView(productsData: scannedProductData,));
+
+      });
+
+      debugPrint("Product Id Detected ${productId}");
+    }
+
+  }
+
+  void invokeSocialMedia() async {
+
+    await launch(StringsResources.instagramLink());
+
+  }
+
+  void invokeSharingProcess() {
+
+    Share.share(StringsResources.sharingText());
 
   }
 

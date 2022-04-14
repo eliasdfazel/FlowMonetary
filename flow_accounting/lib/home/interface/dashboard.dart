@@ -413,32 +413,9 @@ class FlowDashboardState extends State<FlowDashboard> {
                                         child: InkWell(
                                             splashColor: ColorsResources.lightBlue,
                                             splashFactory: InkRipple.splashFactory,
-                                            onTap: () async {
+                                            onTap: () {
 
-                                              String barcodeScanResult = await FlutterBarcodeScanner.scanBarcode(
-                                                  "#0095ff",
-                                                  StringsResources.cancelText(),
-                                                  true,
-                                                  ScanMode.QR
-                                              );
-
-                                              if (barcodeScanResult.contains("Product_")) {
-
-                                                String productId = barcodeScanResult.replaceAll("Product_", "");
-
-                                                //Get Specific Product Data then Pass It to Edit
-                                                ProductsDatabaseQueries productsDatabaseQueries = ProductsDatabaseQueries();
-
-                                                ProductsData scannedProductData = await productsDatabaseQueries.querySpecificProductById(productId, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
-
-                                                Future.delayed(Duration(milliseconds: 753), () {
-
-                                                  NavigationProcess().goTo(context, ProductsInputView(productsData: scannedProductData,));
-
-                                                });
-
-                                                debugPrint("Product Id Detected ${productId}");
-                                              }
+                                              invokeBarcodeScanner();
 
                                             },
                                             child: Align(
@@ -565,6 +542,35 @@ class FlowDashboardState extends State<FlowDashboard> {
 
       }
 
+    }
+
+  }
+
+  void invokeBarcodeScanner() async {
+
+    String barcodeScanResult = await FlutterBarcodeScanner.scanBarcode(
+        "#0095ff",
+        StringsResources.cancelText(),
+        true,
+        ScanMode.QR
+    );
+
+    if (barcodeScanResult.contains("Product_")) {
+
+      String productId = barcodeScanResult.replaceAll("Product_", "");
+
+      //Get Specific Product Data then Pass It to Edit
+      ProductsDatabaseQueries productsDatabaseQueries = ProductsDatabaseQueries();
+
+      ProductsData scannedProductData = await productsDatabaseQueries.querySpecificProductById(productId, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+      Future.delayed(Duration(milliseconds: 753), () {
+
+        NavigationProcess().goTo(context, ProductsInputView(productsData: scannedProductData,));
+
+      });
+
+      debugPrint("Product Id Detected ${productId}");
     }
 
   }
