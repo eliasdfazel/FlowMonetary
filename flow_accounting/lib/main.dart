@@ -55,7 +55,7 @@ class _WelcomePageViewState extends State<WelcomePage> {
 
   String signedInUser = "";
 
-  bool securityCheckpoint = true;
+  bool securityCheckpoint = false;
 
   @override
   void initState() {
