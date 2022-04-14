@@ -55,6 +55,8 @@ class _WelcomePageViewState extends State<WelcomePage> {
 
   String signedInUser = "";
 
+  bool securityCheckpoint = true;
+
   @override
   void initState() {
     super.initState();
@@ -188,11 +190,7 @@ class _WelcomePageViewState extends State<WelcomePage> {
 
       debugPrint("Signed In User: ${signedInUser}");
 
-      if (kDebugMode) {
-
-        WelcomePage.Authenticated = true;
-
-      } else {
+      if (securityCheckpoint) {
 
         WelcomePage.Authenticated = await localAuthentication.authenticate(
             localizedReason: StringsResources.securityNotice(),
@@ -209,6 +207,10 @@ class _WelcomePageViewState extends State<WelcomePage> {
                 goToSettingsDescription: StringsResources.securityWarning()
             ));
         debugPrint("Authentication Process Started");
+
+      } else {
+
+        WelcomePage.Authenticated = true;
 
       }
 
