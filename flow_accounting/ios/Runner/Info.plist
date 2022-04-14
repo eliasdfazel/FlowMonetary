@@ -51,6 +51,6 @@
 		<key>NSFaceIDUsageDescription</key>
 		<string>This Uses Face Id to Secure Entrance and Protect Private Data</string>
 		<key>UIStatusBarHidden</key>
-		<true/>
+		<false/>
 	</dict>
 </plist>

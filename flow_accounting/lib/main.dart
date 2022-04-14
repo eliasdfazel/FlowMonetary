@@ -27,8 +27,8 @@ void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
-  await StatusBarControl.setColor(ColorsResources.primaryColor, animated: false);
-  await StatusBarControl.setNavigationBarColor(ColorsResources.primaryColor, animated: false);
+  await StatusBarControl.setColor(ColorsResources.black, animated: true);
+  await StatusBarControl.setNavigationBarColor(ColorsResources.black, animated: true);
 
   runApp(
       Phoenix(
