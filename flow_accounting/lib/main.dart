@@ -17,6 +17,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:local_auth/auth_strings.dart';
 import 'package:local_auth/local_auth.dart';
+import 'package:status_bar_control/status_bar_control.dart';
 
 import 'resources/ColorsResources.dart';
 import 'resources/StringsResources.dart';
@@ -25,6 +26,9 @@ void main() async {
 
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
+  await StatusBarControl.setColor(ColorsResources.primaryColor, animated: false);
+  await StatusBarControl.setNavigationBarColor(ColorsResources.primaryColor, animated: false);
 
   runApp(
       Phoenix(

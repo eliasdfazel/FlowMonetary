@@ -72,6 +72,12 @@
 @import sqflite;
 #endif
 
+#if __has_include(<status_bar_control/StatusBarControlPlugin.h>)
+#import <status_bar_control/StatusBarControlPlugin.h>
+#else
+@import status_bar_control;
+#endif
+
 #if __has_include(<url_launcher_ios/FLTURLLauncherPlugin.h>)
 #import <url_launcher_ios/FLTURLLauncherPlugin.h>
 #else
@@ -92,6 +98,7 @@
   [FLTQuickActionsPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTQuickActionsPlugin"]];
   [FLTSharePlusPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTSharePlusPlugin"]];
   [SqflitePlugin registerWithRegistrar:[registry registrarForPlugin:@"SqflitePlugin"]];
+  [StatusBarControlPlugin registerWithRegistrar:[registry registrarForPlugin:@"StatusBarControlPlugin"]];
   [FLTURLLauncherPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTURLLauncherPlugin"]];
 }
 
