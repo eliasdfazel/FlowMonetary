@@ -531,6 +531,8 @@ class _CreditCardFrontLayout extends State<CreditCardFrontLayout> {
 
   bool frontLayoutDecorated = false;
 
+  String backgroundPattern = generateBackgroundPattern();
+
   @override
   void initState() {
     super.initState();
@@ -605,7 +607,7 @@ class _CreditCardFrontLayout extends State<CreditCardFrontLayout> {
               ),
             ),
             Image(
-              image: AssetImage(generateBackgroundPattern()),
+              image: AssetImage(backgroundPattern),
               fit: BoxFit.cover,
               width: double.infinity,
               height: double.infinity,
@@ -971,6 +973,8 @@ class _CreditCardBackLayout extends State<CreditCardBackLayout> {
 
   bool backLayoutDecorated = false;
 
+  String backgroundPattern = generateBackgroundPattern();
+
   @override
   void initState() {
     super.initState();
@@ -1050,7 +1054,7 @@ class _CreditCardBackLayout extends State<CreditCardBackLayout> {
               ),
             ),
             Image(
-              image: AssetImage(generateBackgroundPattern()),
+              image: AssetImage(backgroundPattern),
               fit: BoxFit.cover,
               width: double.infinity,
               height: double.infinity,
