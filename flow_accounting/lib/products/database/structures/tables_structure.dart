@@ -27,7 +27,10 @@ class ProductsData {
   final String productPrice;
   final String productProfitPercent;
 
+  final String productTax;
+
   int productQuantity = 0;
+  final String productQuantityType;
 
   int colorTag = ColorsResources.dark.value;
 
@@ -47,7 +50,10 @@ class ProductsData {
     required this.productPrice,
     required this.productProfitPercent,
 
+    required this.productTax,
+
     required this.productQuantity,
+    required this.productQuantityType,
 
     required this.colorTag,
   });
@@ -69,7 +75,10 @@ class ProductsData {
       'productPrice': productPrice,
       'productProfitPercent': productProfitPercent,
 
+      'productTax': productTax,
+
       'productQuantity': productQuantity,
+      'productQuantityType': productQuantityType,
 
       'colorTag': colorTag,
     };
@@ -93,7 +102,10 @@ class ProductsData {
       'productPrice: $productPrice,'
       'productProfitPercent: $productProfitPercent,'
 
+      'productTax: $productTax,'
+
       'productQuantity: $productQuantity,'
+      'productQuantityType: $productQuantityType,'
 
       'colorTag: $colorTag,'
     '}';

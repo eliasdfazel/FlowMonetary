@@ -45,7 +45,10 @@ class ProductsDatabaseQueries {
         productPrice: maps[i]['productPrice'],
         productProfitPercent: maps[i]['productProfitPercent'],
 
+        productTax: maps[i]['productTax'],
+
         productQuantity: int.parse(maps[i]['productQuantity'].toString()),
+        productQuantityType: maps[i]['productQuantityType'],
 
         colorTag: int.parse(maps[i]['colorTag'].toString()),
       );
@@ -88,7 +91,10 @@ class ProductsDatabaseQueries {
       productPrice: databaseContents[0]['productPrice'].toString(),
       productProfitPercent: databaseContents[0]['productProfitPercent'].toString(),
 
+      productTax: databaseContents[0]['productTax'].toString(),
+
       productQuantity: int.parse(databaseContents[0]['productQuantity'].toString()),
+      productQuantityType: databaseContents[0]['productQuantityType'].toString(),
 
       colorTag: int.parse(databaseContents[0]['colorTag'].toString()),
     );

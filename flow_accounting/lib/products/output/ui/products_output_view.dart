@@ -489,7 +489,13 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
 
     String percentProfit = productsData.productProfitPercent.replaceAll("%", "");
     double profitMargin = (int.parse(productsData.productPrice) * int.parse(percentProfit)) / 100;
-    double sellingPrice = int.parse(productsData.productPrice) + profitMargin;
+
+    double sellingPriceWithProfit = int.parse(productsData.productPrice) + profitMargin;
+
+    String percentTax = productsData.productTax.replaceAll("%", "");
+    double taxMargin = (sellingPriceWithProfit * int.parse(percentTax)) / 100;
+
+    double sellingPrice = sellingPriceWithProfit + taxMargin;
 
     return Slidable(
       closeOnScroll: true,
@@ -724,7 +730,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
                         child: Padding(
                             padding: EdgeInsets.fromLTRB(7, 9, 7, 0),
                             child: Marquee(
-                              text: "${sellingPrice}",
+                              text: "${sellingPrice.round()}",
                               style: const TextStyle(
                                 color: ColorsResources.dark,
                                 fontSize: 17,

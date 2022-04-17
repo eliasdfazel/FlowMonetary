@@ -592,6 +592,15 @@ class StringsResources {
     return "مقدار درصد سود برای قیمت فروش را وارد کنید";
   }
 
+  static String productProfitTax() {
+
+    return "درصد مالیت %";
+  }
+  static String productProfitTaxHint() {
+
+    return "درصد مالیات را وارد کنید";
+  }
+
   static String productCategory() {
 
     return "دسته بندی محصول";
@@ -626,6 +635,15 @@ class StringsResources {
   static String productQuantityHint() {
 
     return "تعداد موجودی اولیه را وارد کنید";
+  }
+
+  static String productQuantityType() {
+
+    return "واحد";
+  }
+  static String productQuantityTypeHint() {
+
+    return "واحد محصول را وارد کنید";
   }
   /* End - Product String Resources */
 
@@ -1253,6 +1271,18 @@ class StringsResources {
       "توسعه تعاون": "Tosee_Taavon_Icon.png",
       "سایر": "Other_Banks.png",
     };
+  }
+
+  static List<String> quantityTypesList() {
+
+    return [
+      "عدد",
+      "جفت",
+      "کیلو",
+      "گرم",
+      "متر",
+      "یارد",
+    ];
   }
 
 }

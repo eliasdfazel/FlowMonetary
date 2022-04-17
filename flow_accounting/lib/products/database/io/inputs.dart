@@ -43,7 +43,9 @@ class ProductsDatabaseInputs {
                 'productBrandLogoUrl TEXT, '
                 'productPrice TEXT, '
                 'productProfitPercent TEXT, '
+                'productTax TEXT, '
                 'productQuantity TEXT, '
+                'productQuantityType TEXT, '
                 'colorTag TEXT'
                 ')',
           );
