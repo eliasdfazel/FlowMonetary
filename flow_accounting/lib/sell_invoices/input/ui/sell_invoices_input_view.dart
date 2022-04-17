@@ -30,6 +30,7 @@ import 'package:flow_accounting/sell_invoices/database/structures/tables_structu
 import 'package:flow_accounting/utils/calendar/ui/calendar_view.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
 import 'package:flow_accounting/utils/extensions/BankLogos.dart';
+import 'package:flow_accounting/utils/io/FileIO.dart';
 import 'package:flow_accounting/utils/print/printing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
@@ -158,6 +159,8 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
     controllerSoldTo.text = widget.sellInvoicesData?.soldTo == null ? "" : (widget.sellInvoicesData?.soldTo)!;
 
     colorSelectorView.inputColor = Color(widget.sellInvoicesData?.colorTag ?? Colors.white.value);
+
+    prepareAllImagesCheckpoint();
 
     super.initState();
 
@@ -2604,6 +2607,45 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
     File file = File(imageFilePath);
 
     file.writeAsBytes(imageBytes);
+
+  }
+
+  void prepareAllImagesCheckpoint() async {
+
+    /* Company Logo */
+    if (widget.sellInvoicesData != null) {
+
+      imageLogoPickerWidget = Image.file(
+        File(widget.sellInvoicesData!.companyLogoUrl),
+        fit: BoxFit.cover,
+      );
+
+    }
+
+    bool signatureCheckpoint = await fileExist("${UserInformation.UserId}_SIGNATURE.PNG");
+
+    if (signatureCheckpoint) {
+
+      Directory appDocumentsDirectory = await getApplicationSupportDirectory();
+
+      String appDocumentsPath = appDocumentsDirectory.path;
+
+      String filePath = '$appDocumentsPath/${UserInformation.UserId}_SIGNATURE.PNG';
+
+      imageSignaturePickerWidget = Image.file(
+        File(filePath),
+        fit: BoxFit.contain,
+      );
+
+    }
+
+    setState(() {
+
+      imageLogoPickerWidget;
+
+      imageSignaturePickerWidget;
+
+    });
 
   }
 
