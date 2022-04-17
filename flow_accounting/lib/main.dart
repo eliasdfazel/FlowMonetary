@@ -15,6 +15,7 @@ import 'package:flow_accounting/products/database/structures/tables_structure.da
 import 'package:flow_accounting/products/input/ui/products_input_view.dart';
 import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/profile/database/structures/tables_structure.dart';
+import 'package:flow_accounting/transactions/input/ui/remote_transactions_input_view.dart';
 import 'package:flow_accounting/utils/navigations/navigations.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -60,10 +61,6 @@ class _WelcomePageViewState extends State<WelcomePage> {
 
   final QuickActions quickActions = const QuickActions();
 
-  static const  String BarcodeScanner_Action = "barcode_scanner";
-  static const String SocialMedia_Action = "social_media";
-  static const String ShareIt_Action = "share_it";
-
   Widget contentView = Container(color: ColorsResources.primaryColor);
 
   LocalAuthentication localAuthentication = LocalAuthentication();
@@ -83,17 +80,23 @@ class _WelcomePageViewState extends State<WelcomePage> {
       if (shortcutType == 'action_main') {
         debugPrint("Opening Flow Dashboard");
 
-      } else if (shortcutType == BarcodeScanner_Action) {
+      } else if (shortcutType == QuickActionsType.BarcodeScanner_Action) {
         debugPrint("Barcode Scanner");
 
         invokeBarcodeScanner();
 
-      } else if (shortcutType == SocialMedia_Action) {
+      }
+      else if(shortcutType == QuickActionsType.SubmitTrans_Action) {
+        debugPrint("Submit Transaction");
+
+        NavigationProcess().goTo(context, RemoteTransactionsInputView());
+
+      } else if (shortcutType == QuickActionsType.SocialMedia_Action) {
         debugPrint("Social Media");
 
         invokeSocialMedia();
 
-      } else if (shortcutType == ShareIt_Action) {
+      } else if (shortcutType == QuickActionsType.ShareIt_Action) {
         debugPrint("Share It");
 
         invokeSharingProcess();
@@ -110,9 +113,10 @@ class _WelcomePageViewState extends State<WelcomePage> {
     getSignedInUserId();
 
     quickActions.setShortcutItems(<ShortcutItem>[
-      const ShortcutItem(type: BarcodeScanner_Action, localizedTitle: 'بارکد خوان', icon: 'qr_scan_icon'),
-      const ShortcutItem(type: SocialMedia_Action, localizedTitle: 'اینستاگرام', icon: 'instagram_icon'),
-      const ShortcutItem(type: ShareIt_Action, localizedTitle: 'به اشتراک بگذارید', icon: 'share_icon')
+      const ShortcutItem(type: QuickActionsType.BarcodeScanner_Action, localizedTitle: 'بارکد خوان', icon: 'qr_scan_icon'),
+      const ShortcutItem(type: QuickActionsType.SubmitTrans_Action, localizedTitle: 'ثبت تراکنش', icon: 'transactions_icon'),
+      const ShortcutItem(type: QuickActionsType.SocialMedia_Action, localizedTitle: 'اینستاگرام', icon: 'instagram_icon'),
+      const ShortcutItem(type: QuickActionsType.ShareIt_Action, localizedTitle: 'به اشتراک بگذارید', icon: 'share_icon')
     ]);
 
   }
@@ -133,12 +137,6 @@ class _WelcomePageViewState extends State<WelcomePage> {
 
           });
 
-          Future.delayed(Duration(microseconds: 135), () {
-
-            FlutterNativeSplash.remove();
-
-          });
-
         } else {
           debugPrint("Authentication Failed");
 
@@ -154,6 +152,12 @@ class _WelcomePageViewState extends State<WelcomePage> {
   }
 
   Widget getStartedView() {
+
+    Future.delayed(Duration(microseconds: 135), () {
+
+      FlutterNativeSplash.remove();
+
+    });
 
     return SafeArea(
         child: MaterialApp(
@@ -320,5 +324,14 @@ class _WelcomePageViewState extends State<WelcomePage> {
     Share.share(StringsResources.sharingText());
 
   }
+
+}
+
+class QuickActionsType {
+
+  static const  String BarcodeScanner_Action = "barcode_scanner";
+  static const  String SubmitTrans_Action = "submit_transactions";
+  static const String SocialMedia_Action = "social_media";
+  static const String ShareIt_Action = "share_it";
 
 }
