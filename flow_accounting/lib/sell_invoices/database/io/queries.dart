@@ -45,7 +45,8 @@ class SellInvoicesDatabaseQueries {
 
         soldProductId: maps[i]['soldProductId'],
         soldProductName: maps[i]['soldProductName'],
-        soldProductQuantity: maps[i]['soldProductName'],
+        soldProductQuantity: maps[i]['soldProductQuantity'],
+        productQuantityType: maps[i]['productQuantityType'],
 
         soldProductPrice: maps[i]['soldProductPrice'],
         soldProductEachPrice: maps[i]['soldProductEachPrice'],

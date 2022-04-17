@@ -30,6 +30,7 @@ class SellInvoicesData {
   final String soldProductId;
   final String soldProductName;
   final String soldProductQuantity;
+  final String productQuantityType;
 
   String soldProductPrice = "0";
   String soldProductEachPrice = "0";
@@ -61,6 +62,7 @@ class SellInvoicesData {
     required this.soldProductId,
     required this.soldProductName,
     required this.soldProductQuantity,
+    required this.productQuantityType,
 
     required this.soldProductPrice,
     required this.soldProductEachPrice,
@@ -94,6 +96,7 @@ class SellInvoicesData {
       'soldProductId': soldProductId,
       'soldProductName': soldProductName,
       'soldProductQuantity': soldProductQuantity,
+      'productQuantityType': productQuantityType,
 
       'soldProductPrice': soldProductPrice,
       'soldProductEachPrice': soldProductEachPrice,
@@ -129,6 +132,7 @@ class SellInvoicesData {
         'soldProductId: $soldProductId,'
         'soldProductName: $soldProductName,'
         'soldProductQuantity: $soldProductQuantity,'
+        'productQuantityType: $productQuantityType,'
 
         'soldProductPrice: $soldProductPrice,'
         'soldProductEachPrice: $soldProductEachPrice,'

@@ -63,6 +63,7 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
   TextEditingController controllerProductId = TextEditingController();
   TextEditingController controllerProductName = TextEditingController();
   TextEditingController controllerProductQuantity = TextEditingController();
+  TextEditingController controllerProductQuantityType = TextEditingController();
 
   TextEditingController controllerProductPrice = TextEditingController();
   TextEditingController controllerProductEachPrice = TextEditingController();
@@ -142,6 +143,7 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
     controllerProductName.text = widget.sellInvoicesData?.soldProductName == null ? "" : (widget.sellInvoicesData?.soldProductName)!;
     controllerProductQuantity.text = widget.sellInvoicesData?.soldProductQuantity == null ? "" : (widget.sellInvoicesData?.soldProductQuantity)!;
+    controllerProductQuantityType.text = widget.sellInvoicesData?.productQuantityType == null ? "" : (widget.sellInvoicesData?.productQuantityType.toString())!;
 
     controllerProductPrice.text = widget.sellInvoicesData?.soldProductPrice == null ? "" : (widget.sellInvoicesData?.soldProductPrice)!;
     controllerProductEachPrice.text = widget.sellInvoicesData?.soldProductEachPrice == null ? "" : (widget.sellInvoicesData?.soldProductEachPrice)!;
@@ -844,8 +846,128 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                           children: [
                             Expanded(
                               flex: 5,
+                              child:  Padding(
+                                  padding: const EdgeInsets.fromLTRB(13, 0, 3, 0),
+                                  child: Directionality(
+                                      textDirection: TextDirection.rtl,
+                                      child: TypeAheadField<String>(
+                                          suggestionsCallback: (pattern) async {
+
+                                            return await getQuantityTypes();
+                                          },
+                                          itemBuilder: (context, suggestion) {
+
+                                            return ListTile(
+                                                title: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                  children: [
+                                                    Padding(
+                                                      padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
+                                                      child: Directionality(
+                                                        textDirection: TextDirection.rtl,
+                                                        child: Text(
+                                                          suggestion.toString(),
+                                                          style: const TextStyle(
+                                                              color: ColorsResources.darkTransparent,
+                                                              fontSize: 15
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                )
+                                            );
+                                          },
+                                          onSuggestionSelected: (suggestion) {
+
+                                            controllerProductQuantityType.text = suggestion.toString();
+
+                                          },
+                                          errorBuilder: (context, suggestion) {
+
+                                            return Padding(
+                                                padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
+                                                child: Text(StringsResources.nothingText())
+                                            );
+                                          },
+                                          suggestionsBoxDecoration: SuggestionsBoxDecoration(
+                                              elevation: 7,
+                                              color: ColorsResources.light,
+                                              shadowColor: ColorsResources.darkTransparent,
+                                              borderRadius: BorderRadius.circular(17)
+                                          ),
+                                          textFieldConfiguration: TextFieldConfiguration(
+                                            controller: controllerProductQuantityType,
+                                            autofocus: false,
+                                            textAlignVertical: TextAlignVertical.bottom,
+                                            maxLines: 1,
+                                            cursorColor: ColorsResources.primaryColor,
+                                            keyboardType: TextInputType.text,
+                                            textInputAction: TextInputAction.next,
+                                            decoration: InputDecoration(
+                                              alignLabelWithHint: true,
+                                              border: const OutlineInputBorder(
+                                                  borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                                  borderRadius: BorderRadius.only(
+                                                      topLeft: Radius.circular(13),
+                                                      topRight: Radius.circular(13),
+                                                      bottomLeft: Radius.circular(13),
+                                                      bottomRight: Radius.circular(13)
+                                                  ),
+                                                  gapPadding: 5
+                                              ),
+                                              enabledBorder: const OutlineInputBorder(
+                                                  borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                                  borderRadius: BorderRadius.only(
+                                                      topLeft: Radius.circular(13),
+                                                      topRight: Radius.circular(13),
+                                                      bottomLeft: Radius.circular(13),
+                                                      bottomRight: Radius.circular(13)
+                                                  ),
+                                                  gapPadding: 5
+                                              ),
+                                              focusedBorder: const OutlineInputBorder(
+                                                  borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                                                  borderRadius: BorderRadius.only(
+                                                      topLeft: Radius.circular(13),
+                                                      topRight: Radius.circular(13),
+                                                      bottomLeft: Radius.circular(13),
+                                                      bottomRight: Radius.circular(13)
+                                                  ),
+                                                  gapPadding: 5
+                                              ),
+                                              errorBorder: const OutlineInputBorder(
+                                                  borderSide: BorderSide(color: Colors.red, width: 1.0),
+                                                  borderRadius: BorderRadius.only(
+                                                      topLeft: Radius.circular(13),
+                                                      topRight: Radius.circular(13),
+                                                      bottomLeft: Radius.circular(13),
+                                                      bottomRight: Radius.circular(13)
+                                                  ),
+                                                  gapPadding: 5
+                                              ),
+                                              filled: true,
+                                              fillColor: ColorsResources.lightTransparent,
+                                              labelText: StringsResources.productQuantityType(),
+                                              labelStyle: const TextStyle(
+                                                  color: ColorsResources.dark,
+                                                  fontSize: 17.0
+                                              ),
+                                              hintText: StringsResources.productQuantityTypeHint(),
+                                              hintStyle: const TextStyle(
+                                                  color: ColorsResources.darkTransparent,
+                                                  fontSize: 13.0
+                                              ),
+                                            ),
+                                          )
+                                      )
+                                  )
+                              )
+                            ),
+                            Expanded(
+                              flex: 5,
                               child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(13, 0, 0, 0),
+                                  padding: const EdgeInsets.fromLTRB(3, 0, 3, 0),
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: TextField(
@@ -937,7 +1059,7 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                             Expanded(
                               flex: 13,
                               child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(7, 0, 13, 0),
+                                  padding: const EdgeInsets.fromLTRB(3, 0, 13, 0),
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: TypeAheadField<ProductsData>(
@@ -2020,6 +2142,7 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                                         soldProductId: controllerProductId.text,
                                         soldProductName: controllerProductName.text,
                                         soldProductQuantity: controllerProductQuantity.text.isEmpty ? "0" : controllerProductQuantity.text,
+                                        productQuantityType: controllerProductQuantityType.text.isEmpty ? "" : controllerProductQuantityType.text,
 
                                         soldProductPrice: controllerProductPrice.text.isEmpty ? "0" : controllerProductPrice.text,
                                         soldProductEachPrice: controllerProductEachPrice.text.isEmpty ? "0" : controllerProductEachPrice.text,
@@ -2376,6 +2499,11 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
     file.writeAsBytes(imageBytes);
 
+  }
+
+  Future<List<String>> getQuantityTypes() async {
+
+    return StringsResources.quantityTypesList();
   }
 
 }
