@@ -69,6 +69,8 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
   TextEditingController controllerProductEachPrice = TextEditingController();
   TextEditingController controllerProductDiscount = TextEditingController();
 
+  TextEditingController controllerProductTax = TextEditingController();
+
   TextEditingController controllerPaidTo = TextEditingController();
 
   TextEditingController controllerSoldTo = TextEditingController();
@@ -148,6 +150,8 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
     controllerProductPrice.text = widget.sellInvoicesData?.soldProductPrice == null ? "" : (widget.sellInvoicesData?.soldProductPrice)!;
     controllerProductEachPrice.text = widget.sellInvoicesData?.soldProductEachPrice == null ? "" : (widget.sellInvoicesData?.soldProductEachPrice)!;
     controllerProductDiscount.text = widget.sellInvoicesData?.soldProductPriceDiscount == null ? "" : (widget.sellInvoicesData?.soldProductPriceDiscount)!;
+
+    controllerProductTax.text = widget.sellInvoicesData?.productTax.replaceAll("%", "") == null ? "" : (widget.sellInvoicesData?.productTax)!.replaceAll("%", "");
 
     controllerPaidTo.text = widget.sellInvoicesData?.paidTo == null ? "" : (widget.sellInvoicesData?.paidTo)!;
 
@@ -985,11 +989,15 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
                                         try {
 
-                                          int completePrice = int.parse(controllerProductEachPrice.text.isEmpty ? "1" : controllerProductEachPrice.text) * int.parse(quantity.isEmpty ? "1" : quantity);
+                                          int completePrice = int.parse(controllerProductEachPrice.text.isEmpty ? "0" : controllerProductEachPrice.text) * int.parse(controllerProductQuantity.text.isEmpty ? "0" : controllerProductQuantity.text);
 
-                                          double discountPrice = (completePrice * int.parse(controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text)) / 100;
+                                          int taxAmount = ((completePrice * int.parse(controllerProductTax.text.isEmpty ? "0" : controllerProductTax.text)) / 100).round();
 
-                                          controllerProductPrice.text = (completePrice - discountPrice).toString();
+                                          int discountPrice = ((completePrice * int.parse(controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text)) / 100).round();
+
+                                          int finalPrice = (completePrice + taxAmount) - discountPrice;
+
+                                          controllerProductPrice.text = finalPrice.toString();
 
                                         } on Exception {
 
@@ -1222,7 +1230,7 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                             Expanded(
                               flex: 1,
                               child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(13, 0, 0, 0),
+                                  padding: const EdgeInsets.fromLTRB(13, 0, 3, 0),
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: TextField(
@@ -1240,11 +1248,15 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
                                         try {
 
-                                          int completePrice = int.parse(controllerProductEachPrice.text.isEmpty ? "1" : controllerProductEachPrice.text) * int.parse(controllerProductQuantity.text.isEmpty ? "1" : controllerProductQuantity.text);
+                                          int completePrice = int.parse(controllerProductEachPrice.text.isEmpty ? "0" : controllerProductEachPrice.text) * int.parse(controllerProductQuantity.text.isEmpty ? "0" : controllerProductQuantity.text);
 
-                                          double discountPrice = (completePrice * int.parse(discountPercentage.isEmpty ? "0" : discountPercentage)) / 100;
+                                          int taxAmount = ((completePrice * int.parse(controllerProductTax.text.isEmpty ? "0" : controllerProductTax.text)) / 100).round();
 
-                                          controllerProductPrice.text = (completePrice - discountPrice).toString();
+                                          int discountPrice = ((completePrice * int.parse(controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text)) / 100).round();
+
+                                          int finalPrice = (completePrice + taxAmount) - discountPrice;
+
+                                          controllerProductPrice.text = finalPrice.toString();
 
                                         } on Exception {
 
@@ -1314,7 +1326,102 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                             Expanded(
                               flex: 1,
                               child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(7, 0, 13, 0),
+                                  padding: const EdgeInsets.fromLTRB(3, 0, 3, 0),
+                                  child: Directionality(
+                                    textDirection: TextDirection.rtl,
+                                    child: TextField(
+                                      controller: controllerProductTax,
+                                      textAlign: TextAlign.center,
+                                      textDirection: TextDirection.ltr,
+                                      textAlignVertical: TextAlignVertical.bottom,
+                                      maxLines: 1,
+                                      cursorColor: ColorsResources.primaryColor,
+                                      autocorrect: true,
+                                      autofocus: false,
+                                      keyboardType: TextInputType.number,
+                                      textInputAction: TextInputAction.next,
+                                      onChanged: (taxAmount) {
+
+                                        try {
+
+                                          int completePrice = int.parse(controllerProductEachPrice.text.isEmpty ? "0" : controllerProductEachPrice.text) * int.parse(controllerProductQuantity.text.isEmpty ? "0" : controllerProductQuantity.text);
+
+                                          int taxAmount = ((completePrice * int.parse(controllerProductTax.text.isEmpty ? "0" : controllerProductTax.text)) / 100).round();
+
+                                          int discountPrice = ((completePrice * int.parse(controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text)) / 100).round();
+
+                                          int finalPrice = (completePrice + taxAmount) - discountPrice;
+
+                                          controllerProductPrice.text = finalPrice.toString();
+
+                                        } on Exception {
+
+                                        }
+
+                                      },
+                                      decoration: InputDecoration(
+                                        alignLabelWithHint: true,
+                                        border: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        enabledBorder: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        focusedBorder: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        errorBorder: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.red, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        filled: true,
+                                        fillColor: ColorsResources.lightTransparent,
+                                        labelText: StringsResources.productProfitTax(),
+                                        labelStyle: const TextStyle(
+                                            color: ColorsResources.dark,
+                                            fontSize: 17.0
+                                        ),
+                                        hintText: StringsResources.productProfitTaxHint(),
+                                        hintStyle: const TextStyle(
+                                            color: ColorsResources.darkTransparent,
+                                            fontSize: 13.0
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(3, 0, 13, 0),
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: TextField(
@@ -1332,11 +1439,15 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
                                         try {
 
-                                          int completePrice = int.parse(eachPrice.isEmpty ? "1" : eachPrice) * int.parse(controllerProductQuantity.text.isEmpty ? "1" : controllerProductQuantity.text);
+                                          int completePrice = int.parse(controllerProductEachPrice.text.isEmpty ? "0" : controllerProductEachPrice.text) * int.parse(controllerProductQuantity.text.isEmpty ? "0" : controllerProductQuantity.text);
 
-                                          double discountPrice = (completePrice * int.parse(controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text)) / 100;
+                                          int taxAmount = ((completePrice * int.parse(controllerProductTax.text.isEmpty ? "0" : controllerProductTax.text)) / 100).round();
 
-                                          controllerProductPrice.text = (completePrice - discountPrice).toString();
+                                          int discountPrice = ((completePrice * int.parse(controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text)) / 100).round();
+
+                                          int finalPrice = (completePrice + taxAmount) - discountPrice;
+
+                                          controllerProductPrice.text = finalPrice.toString();
 
                                         } on Exception {
 
@@ -1433,15 +1544,6 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                                       autofocus: false,
                                       keyboardType: TextInputType.number,
                                       textInputAction: TextInputAction.next,
-                                      onTap: () {
-
-                                        int completePrice = int.parse(controllerProductEachPrice.text.isEmpty ? "1" : controllerProductEachPrice.text) * int.parse(controllerProductQuantity.text.isEmpty ? "1" : controllerProductQuantity.text);
-
-                                        double discountPrice = (completePrice * int.parse(controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text)) / 100;
-
-                                        controllerProductPrice.text = (completePrice - discountPrice).toString();
-
-                                      },
                                       decoration: InputDecoration(
                                         alignLabelWithHint: true,
                                         border: const OutlineInputBorder(
@@ -2149,6 +2251,8 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                                         soldProductPrice: controllerProductPrice.text.isEmpty ? "0" : controllerProductPrice.text,
                                         soldProductEachPrice: controllerProductEachPrice.text.isEmpty ? "0" : controllerProductEachPrice.text,
                                         soldProductPriceDiscount: controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text,
+
+                                        productTax: controllerProductTax.text.isEmpty ? "0%" : "${controllerProductTax.text}%",
 
                                         paidTo: controllerPaidTo.text,
 
