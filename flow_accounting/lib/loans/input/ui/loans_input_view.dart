@@ -73,7 +73,7 @@ class _LoansInputViewState extends State<LoansInputView> {
   @override
   void initState() {
 
-    loanCalendarView.pickedDataTimeText = StringsResources.loansPeriodHint();
+    loanCalendarView.inputDateTime = StringsResources.loansPeriodHint();
 
     controllerLoanTitle.text = widget.loansData?.loanTitle == null ? "" : (widget.loansData?.loanTitle)!;
     controllerLoanDescription.text = widget.loansData?.loanDescription == null ? "" : (widget.loansData?.loanDescription)!;
@@ -1251,7 +1251,7 @@ class _LoansInputViewState extends State<LoansInputView> {
                                   loanPayer: controllerLoanPayer.text,
 
                                   loanDuePeriodType: loanPeriodType.toString(),
-                                  loanDuePeriod: loanCalendarView.pickedDataTimeText.toString(),
+                                  loanDuePeriod: loanCalendarView.inputDateTime.toString(),
                                   loanDuePeriodMillisecond: loanCalendarView.pickedDateTime.millisecondsSinceEpoch.toString(),
 
                                   loanCount: controllerLoanCount.text.isEmpty ? "1" : controllerLoanCount.text,

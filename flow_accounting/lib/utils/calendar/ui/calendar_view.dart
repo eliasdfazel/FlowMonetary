@@ -16,11 +16,9 @@ import 'package:shamsi_date/shamsi_date.dart';
 
 class CalendarView extends StatefulWidget {
 
-  String? pickedDataTimeText;
-
-  CalendarView({Key? key, this.pickedDataTimeText}) : super(key: key);
-
   String? inputDateTime;
+
+  CalendarView({Key? key, this.inputDateTime}) : super(key: key);
 
   DateTime pickedDateTime = DateTime.now();
 
@@ -41,7 +39,11 @@ class _CalendarView extends State<CalendarView> {
 
     if (widget.inputDateTime != null) {
 
-      widget.pickedDataTimeText = widget.inputDateTime!;
+      widget.inputDateTime = widget.inputDateTime!;
+
+    } else {
+
+
 
     }
 
@@ -148,7 +150,7 @@ class _CalendarView extends State<CalendarView> {
 
                       setState(() {
 
-                        widget.pickedDataTimeText = "" +
+                        widget.inputDateTime = "" +
                             weekdayName + " " +
                             dayNumber + " " +
                             monthName + " " +
@@ -164,7 +166,7 @@ class _CalendarView extends State<CalendarView> {
 
                       setState(() {
 
-                        widget.pickedDataTimeText = "" +
+                        widget.inputDateTime = "" +
                             weekdayName + " " +
                             dayNumber + " " +
                             monthName + " " +
@@ -192,7 +194,7 @@ class _CalendarView extends State<CalendarView> {
               child: Directionality(
                 textDirection: TextDirection.rtl,
                 child: Text(
-                  "${widget.pickedDataTimeText}",
+                  "${widget.inputDateTime}",
                   style: const TextStyle(
                     color: ColorsResources.dark,
                   ),

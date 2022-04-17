@@ -1755,7 +1755,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                             transactionType: transactionType,
 
                             transactionTimeMillisecond: calendarView.pickedDateTime.millisecondsSinceEpoch,
-                            transactionTime: calendarView.pickedDataTimeText ?? "",
+                            transactionTime: calendarView.inputDateTime ?? "",
                             transactionTimeYear: calendarView.pickedDataTimeYear,
                             transactionTimeMonth: calendarView.pickedDataTimeMonth,
 

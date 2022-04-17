@@ -46,6 +46,7 @@ class BuyInvoicesDatabaseQueries {
         boughtProductId: maps[i]['boughtProductId'],
         boughtProductName: maps[i]['boughtProductName'],
         boughtProductQuantity: maps[i]['boughtProductQuantity'],
+        productQuantityType: maps[i]['productQuantityType'],
 
         boughtProductPrice: maps[i]['boughtProductPrice'],
         boughtProductEachPrice: maps[i]['boughtProductEachPrice'],

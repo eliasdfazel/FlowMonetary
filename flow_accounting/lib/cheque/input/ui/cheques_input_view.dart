@@ -114,8 +114,8 @@ class _ChequeInputViewState extends State<ChequesInputView> {
   @override
   void initState() {
 
-    calendarIssueDateView.pickedDataTimeText = StringsResources.chequeIssueDate();
-    calendarDueDateView.pickedDataTimeText = StringsResources.chequeDueDate();
+    calendarIssueDateView.inputDateTime = StringsResources.chequeIssueDate();
+    calendarDueDateView.inputDateTime = StringsResources.chequeDueDate();
 
     if (widget.chequesData != null) {
 
@@ -2641,8 +2641,8 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                               chequeTargetBankName: controllerChequeTargetBank.text,
 
-                              chequeIssueDate: calendarIssueDateView.pickedDataTimeText ?? "",
-                              chequeDueDate: calendarDueDateView.pickedDataTimeText ?? "",
+                              chequeIssueDate: calendarIssueDateView.inputDateTime ?? "",
+                              chequeDueDate: calendarDueDateView.inputDateTime ?? "",
 
                               chequeIssueMillisecond: calendarIssueDateView.pickedDateTime.millisecondsSinceEpoch.toString(),
                               chequeDueMillisecond: calendarDueDateView.pickedDateTime.millisecondsSinceEpoch.toString(),

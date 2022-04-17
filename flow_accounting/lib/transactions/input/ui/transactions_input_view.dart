@@ -1881,7 +1881,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                     transactionType: transactionType,
 
                                     transactionTimeMillisecond: calendarView.pickedDateTime.millisecondsSinceEpoch,
-                                    transactionTime: calendarView.pickedDataTimeText ?? "",
+                                    transactionTime: calendarView.inputDateTime ?? "",
                                     transactionTimeYear: calendarView.pickedDataTimeYear,
                                     transactionTimeMonth: calendarView.pickedDataTimeMonth,
 
@@ -2212,7 +2212,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                             transactionType: transactionType,
 
                                             transactionTimeMillisecond: calendarView.pickedDateTime.millisecondsSinceEpoch,
-                                            transactionTime: calendarView.pickedDataTimeText ?? "",
+                                            transactionTime: calendarView.inputDateTime ?? "",
                                             transactionTimeYear: calendarView.pickedDataTimeYear,
                                             transactionTimeMonth: calendarView.pickedDataTimeMonth,
 

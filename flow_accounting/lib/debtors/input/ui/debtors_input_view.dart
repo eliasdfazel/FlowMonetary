@@ -895,7 +895,7 @@ class _DebtorsInputViewState extends State<DebtorsInputView> {
                                   debtorsRemainingDebt: controllerRemainingDebt.text.isEmpty ? "0" : controllerRemainingDebt.text,
 
                                   debtorsDeadline: calendarView.pickedDateTime.millisecondsSinceEpoch.toString(),
-                                  debtorsDeadlineText: calendarView.pickedDataTimeText.toString(),
+                                  debtorsDeadlineText: calendarView.inputDateTime.toString(),
 
                                   colorTag: colorSelectorView.selectedColor.value
                               );

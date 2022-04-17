@@ -597,9 +597,9 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                             ),
                                           ),
                                         )
-                                    ),
+                                    )
                                   )
-                              ),
+                              )
                             ),
                             Expanded(
                               flex: 5,
@@ -1435,7 +1435,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                         productTax: controllerProductTax.text.isEmpty ? "0%" : "${controllerProductTax.text}%",
 
                                         productQuantity: int.parse(controllerProductQuantity.text),
-                                        productQuantityType: controllerProductQuantityType.text,
+                                        productQuantityType: controllerProductQuantityType.text.isEmpty ? "" : controllerProductQuantityType.text,
 
                                         colorTag: colorSelectorView.selectedColor.value
                                     );

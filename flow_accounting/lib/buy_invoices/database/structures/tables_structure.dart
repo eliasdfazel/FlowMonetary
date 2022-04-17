@@ -30,6 +30,7 @@ class BuyInvoicesData {
   final String boughtProductId;
   final String boughtProductName;
   final String boughtProductQuantity;
+  final String productQuantityType;
 
   String boughtProductPrice = "0";
   String boughtProductEachPrice = "0";
@@ -61,6 +62,7 @@ class BuyInvoicesData {
     required this.boughtProductId,
     required this.boughtProductName,
     required this.boughtProductQuantity,
+    required this.productQuantityType,
 
     required this.boughtProductPrice,
     required this.boughtProductEachPrice,
@@ -94,6 +96,7 @@ class BuyInvoicesData {
       'boughtProductId': boughtProductId,
       'boughtProductName': boughtProductName,
       'boughtProductQuantity': boughtProductQuantity,
+      'productQuantityType': productQuantityType,
 
       'boughtProductPrice': boughtProductPrice,
       'boughtProductEachPrice': boughtProductEachPrice,
@@ -129,6 +132,7 @@ class BuyInvoicesData {
         'boughtProductId: $boughtProductId,'
         'boughtProductName: $boughtProductName,'
         'boughtProductQuantity: $boughtProductQuantity,'
+        'productQuantityType: $productQuantityType,'
 
         'boughtProductPrice: $boughtProductPrice,'
         'boughtProductEachPrice: $boughtProductEachPrice,'

@@ -1883,7 +1883,7 @@ class _RemoteTransactionsInputViewState extends State<RemoteTransactionsInputVie
                                           transactionType: transactionType,
 
                                           transactionTimeMillisecond: calendarView.pickedDateTime.millisecondsSinceEpoch,
-                                          transactionTime: calendarView.pickedDataTimeText ?? "",
+                                          transactionTime: calendarView.inputDateTime ?? "",
                                           transactionTimeYear: calendarView.pickedDataTimeYear,
                                           transactionTimeMonth: calendarView.pickedDataTimeMonth,
 
@@ -2214,7 +2214,7 @@ class _RemoteTransactionsInputViewState extends State<RemoteTransactionsInputVie
                                                 transactionType: transactionType,
 
                                                 transactionTimeMillisecond: calendarView.pickedDateTime.millisecondsSinceEpoch,
-                                                transactionTime: calendarView.pickedDataTimeText ?? "",
+                                                transactionTime: calendarView.inputDateTime ?? "",
                                                 transactionTimeYear: calendarView.pickedDataTimeYear,
                                                 transactionTimeMonth: calendarView.pickedDataTimeMonth,
 

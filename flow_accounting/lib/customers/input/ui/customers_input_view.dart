@@ -38,7 +38,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
   ColorSelectorView colorSelectorView = ColorSelectorView();
 
-  CalendarView calendarView = CalendarView(pickedDataTimeText: StringsResources.customerBirthdayText());
+  CalendarView calendarView = CalendarView(inputDateTime: StringsResources.customerBirthdayText());
 
   TextEditingController controllerCustomerName = TextEditingController();
   TextEditingController controllerCustomerDescription = TextEditingController();
@@ -1442,7 +1442,7 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                   customerEmailAddress: controllerCustomerEmailAddress.text,
 
                                   customerAge: controllerCustomerAge.text,
-                                  customerBirthday: calendarView.pickedDataTimeText ?? "",
+                                  customerBirthday: calendarView.inputDateTime ?? "",
 
                                   customerJob: controllerCustomerJob.text,
 

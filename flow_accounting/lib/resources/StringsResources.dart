@@ -673,7 +673,7 @@ class StringsResources {
 
   static String invoicesDate() {
 
-    return "تاریخ فاکتور خرید";
+    return "تاریخ فاکتور";
   }
 
   static String invoiceDescription() {

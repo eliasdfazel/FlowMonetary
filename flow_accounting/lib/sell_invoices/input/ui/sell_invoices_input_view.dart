@@ -127,6 +127,8 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
   @override
   void initState() {
 
+    calendarView.inputDateTime = widget.sellInvoicesData?.sellInvoiceDateText ?? StringsResources.invoicesDate();
+
     companyLogoUrl = widget.sellInvoicesData?.companyLogoUrl ?? "";
 
     companyDigitalSignature = widget.sellInvoicesData?.companyDigitalSignature ?? "";
@@ -2012,7 +2014,7 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
                                         sellInvoiceDescription: controllerInvoiceDescription.text,
 
-                                        sellInvoiceDateText: calendarView.pickedDataTimeText ?? "",
+                                        sellInvoiceDateText: calendarView.inputDateTime ?? "",
                                         sellInvoiceDateMillisecond: calendarView.pickedDateTime.millisecondsSinceEpoch,
 
                                         soldProductId: controllerProductId.text,
