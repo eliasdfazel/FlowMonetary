@@ -53,7 +53,7 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
 
-        ndkVersion "23.0.7599858"
+        ndkVersion "24.0.8215888"
     }
 
     buildTypes {
