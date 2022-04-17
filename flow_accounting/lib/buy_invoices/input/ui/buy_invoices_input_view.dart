@@ -67,6 +67,8 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
   TextEditingController controllerProductEachPrice = TextEditingController();
   TextEditingController controllerProductDiscount = TextEditingController();
 
+  TextEditingController controllerProductTax = TextEditingController();
+
   TextEditingController controllerPaidBy = TextEditingController();
 
   TextEditingController controllerBoughtFrom = TextEditingController();
@@ -146,6 +148,8 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
     controllerProductPrice.text = widget.buyInvoicesData?.boughtProductPrice == null ? "" : (widget.buyInvoicesData?.boughtProductPrice)!;
     controllerProductEachPrice.text = widget.buyInvoicesData?.boughtProductEachPrice == null ? "" : (widget.buyInvoicesData?.boughtProductEachPrice)!;
     controllerProductDiscount.text = widget.buyInvoicesData?.boughtProductPriceDiscount == null ? "" : (widget.buyInvoicesData?.boughtProductPriceDiscount)!;
+
+    controllerProductTax.text = widget.buyInvoicesData?.productTax.replaceAll("%", "") == null ? "" : (widget.buyInvoicesData?.productTax)!.replaceAll("%", "");
 
     controllerPaidBy.text = widget.buyInvoicesData?.paidBy == null ? "" : (widget.buyInvoicesData?.paidBy)!;
 
@@ -1117,6 +1121,8 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
                                           controllerProductId.text = suggestion.id.toString();
                                           controllerProductName.text = suggestion.productName.toString();
+
+                                          controllerProductEachPrice.text = suggestion.productPrice.toString();
 
                                           selectedProductsData = suggestion;
 
@@ -2145,6 +2151,8 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                         boughtProductPrice: controllerProductPrice.text.isEmpty ? "0" : controllerProductPrice.text,
                                         boughtProductEachPrice: controllerProductEachPrice.text.isEmpty ? "0" : controllerProductEachPrice.text,
                                         boughtProductPriceDiscount: controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text,
+
+                                        productTax: controllerProductTax.text.isEmpty ? "0%" : "${controllerProductTax.text}%",
 
                                         paidBy: controllerPaidBy.text,
 

@@ -1120,6 +1120,8 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                                           controllerProductId.text = suggestion.id.toString();
                                           controllerProductName.text = suggestion.productName.toString();
 
+                                          controllerProductEachPrice.text = suggestion.productPrice.toString();
+
                                           selectedProductsData = suggestion;
 
                                         },
