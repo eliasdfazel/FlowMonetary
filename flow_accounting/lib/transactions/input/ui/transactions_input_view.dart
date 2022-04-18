@@ -91,6 +91,8 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
   void initState() {
     super.initState();
 
+    calendarView.inputDateTime = StringsResources.transactionTime();
+
     BackButtonInterceptor.add(aInterceptor);
 
   }
@@ -402,6 +404,9 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                       autofocus: false,
                                       keyboardType: TextInputType.number,
                                       textInputAction: TextInputAction.next,
+                                      inputFormatters: [
+
+                                      ],
                                       decoration: InputDecoration(
                                         alignLabelWithHint: true,
                                         border: const OutlineInputBorder(
