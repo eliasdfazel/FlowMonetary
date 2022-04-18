@@ -8,6 +8,9 @@
  * https://opensource.org/licenses/MIT
  */
 
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
 double betweenZeroHundred(double maximumNumber, double inputNumber) {
 
   int length = maximumNumber.toString().split(".")[0].length;
@@ -27,4 +30,17 @@ double betweenZeroHundred(double maximumNumber, double inputNumber) {
   double result = inputNumber / divideNumber;
 
   return result;
+}
+
+String formatNumberToCurrency(int inputNumber) {
+
+  var numberFormatter = NumberFormat.currency(
+    decimalDigits: 0,
+    symbol: "",
+    locale: "en_US"
+  );
+
+  debugPrint("Formatted Currency Number: ${numberFormatter.format(inputNumber)}");
+
+  return numberFormatter.format(inputNumber);
 }
