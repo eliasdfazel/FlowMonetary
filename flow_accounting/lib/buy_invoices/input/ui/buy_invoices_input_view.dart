@@ -13,6 +13,7 @@ import 'dart:typed_data';
 
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:blur/blur.dart';
+import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flow_accounting/buy_invoices/database/io/inputs.dart';
 import 'package:flow_accounting/buy_invoices/database/structures/tables_structure.dart';
 import 'package:flow_accounting/credit_cards/database/io/inputs.dart';
@@ -1436,6 +1437,9 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                       autofocus: false,
                                       keyboardType: TextInputType.number,
                                       textInputAction: TextInputAction.next,
+                                      inputFormatters: [
+                                        CurrencyTextInputFormatter(decimalDigits: 0, symbol: "")
+                                      ],
                                       onChanged: (eachPrice) {
 
                                         try {
@@ -1545,6 +1549,9 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                       autofocus: false,
                                       keyboardType: TextInputType.number,
                                       textInputAction: TextInputAction.next,
+                                      inputFormatters: [
+                                        CurrencyTextInputFormatter(decimalDigits: 0, symbol: "")
+                                      ],
                                       decoration: InputDecoration(
                                         alignLabelWithHint: true,
                                         border: const OutlineInputBorder(

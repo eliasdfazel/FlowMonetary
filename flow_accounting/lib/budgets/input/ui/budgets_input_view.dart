@@ -10,6 +10,7 @@
 
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:blur/blur.dart';
+import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flow_accounting/budgets/database/io/inputs.dart';
 import 'package:flow_accounting/budgets/database/structures/tables_structure.dart';
 import 'package:flow_accounting/profile/database/io/queries.dart';
@@ -367,6 +368,9 @@ class _BudgetsInputViewState extends State<BudgetsInputView> {
                                       autofocus: false,
                                       keyboardType: TextInputType.number,
                                       textInputAction: TextInputAction.done,
+                                      inputFormatters: [
+                                        CurrencyTextInputFormatter(decimalDigits: 0, symbol: "")
+                                      ],
                                       decoration: InputDecoration(
                                         alignLabelWithHint: true,
                                         border: const OutlineInputBorder(
