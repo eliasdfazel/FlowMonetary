@@ -12,6 +12,7 @@ import 'dart:io';
 
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:blur/blur.dart';
+import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flow_accounting/budgets/database/io/inputs.dart';
 import 'package:flow_accounting/budgets/database/io/queries.dart';
 import 'package:flow_accounting/budgets/database/structures/tables_structure.dart';
@@ -420,6 +421,9 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                       autocorrect: true,
                                       autofocus: false,
                                       keyboardType: TextInputType.number,
+                                      inputFormatters: [
+                                        CurrencyTextInputFormatter(decimalDigits: 0, symbol: "")
+                                      ],
                                       decoration: InputDecoration(
                                         alignLabelWithHint: true,
                                         border: OutlineInputBorder(

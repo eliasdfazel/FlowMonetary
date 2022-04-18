@@ -10,6 +10,7 @@
 
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:blur/blur.dart';
+import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flow_accounting/debtors/database/io/inputs.dart';
 import 'package:flow_accounting/debtors/database/structures/tables_structure.dart';
 import 'package:flow_accounting/profile/database/io/queries.dart';
@@ -387,6 +388,9 @@ class _DebtorsInputViewState extends State<DebtorsInputView> {
                                       autofocus: false,
                                       keyboardType: TextInputType.number,
                                       textInputAction: TextInputAction.done,
+                                      inputFormatters: [
+                                        CurrencyTextInputFormatter(decimalDigits: 0, symbol: "")
+                                      ],
                                       onChanged: (completeDebt) {
 
                                         try {
@@ -492,6 +496,9 @@ class _DebtorsInputViewState extends State<DebtorsInputView> {
                                       autofocus: false,
                                       keyboardType: TextInputType.number,
                                       textInputAction: TextInputAction.done,
+                                      inputFormatters: [
+                                        CurrencyTextInputFormatter(decimalDigits: 0, symbol: "")
+                                      ],
                                       onChanged: (paidDebt) {
 
                                         try {
@@ -597,6 +604,9 @@ class _DebtorsInputViewState extends State<DebtorsInputView> {
                                       autofocus: false,
                                       keyboardType: TextInputType.number,
                                       textInputAction: TextInputAction.done,
+                                      inputFormatters: [
+                                        CurrencyTextInputFormatter(decimalDigits: 0, symbol: "")
+                                      ],
                                       decoration: InputDecoration(
                                         alignLabelWithHint: true,
                                         border: const OutlineInputBorder(

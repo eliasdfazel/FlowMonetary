@@ -13,6 +13,7 @@ import 'dart:typed_data';
 
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:blur/blur.dart';
+import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flow_accounting/products/database/io/inputs.dart';
 import 'package:flow_accounting/products/database/io/queries.dart';
 import 'package:flow_accounting/products/database/structures/tables_structure.dart';
@@ -831,6 +832,9 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                       autofocus: false,
                                       keyboardType: TextInputType.number,
                                       textInputAction: TextInputAction.done,
+                                      inputFormatters: [
+                                        CurrencyTextInputFormatter(decimalDigits: 0, symbol: "")
+                                      ],
                                       decoration: InputDecoration(
                                         alignLabelWithHint: true,
                                         border: const OutlineInputBorder(

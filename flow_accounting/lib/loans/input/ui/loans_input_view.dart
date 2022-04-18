@@ -11,6 +11,7 @@
 import 'package:add_2_calendar/add_2_calendar.dart';
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:blur/blur.dart';
+import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flow_accounting/loans/database/io/inputs.dart';
 import 'package:flow_accounting/loans/database/structure/tables_structure.dart';
 import 'package:flow_accounting/profile/database/io/queries.dart';
@@ -508,6 +509,9 @@ class _LoansInputViewState extends State<LoansInputView> {
                                       autofocus: false,
                                       keyboardType: TextInputType.number,
                                       textInputAction: TextInputAction.next,
+                                      inputFormatters: [
+                                        CurrencyTextInputFormatter(decimalDigits: 0, symbol: "")
+                                      ],
                                       decoration: InputDecoration(
                                         alignLabelWithHint: true,
                                         border: const OutlineInputBorder(
@@ -598,6 +602,9 @@ class _LoansInputViewState extends State<LoansInputView> {
                                       autofocus: false,
                                       keyboardType: TextInputType.number,
                                       textInputAction: TextInputAction.next,
+                                      inputFormatters: [
+                                        CurrencyTextInputFormatter(decimalDigits: 0, symbol: "")
+                                      ],
                                       onChanged: (loanPaid) {
 
                                         try {
@@ -702,6 +709,9 @@ class _LoansInputViewState extends State<LoansInputView> {
                                       autofocus: false,
                                       keyboardType: TextInputType.number,
                                       textInputAction: TextInputAction.done,
+                                      inputFormatters: [
+                                        CurrencyTextInputFormatter(decimalDigits: 0, symbol: "")
+                                      ],
                                       decoration: InputDecoration(
                                         alignLabelWithHint: true,
                                         border: const OutlineInputBorder(
