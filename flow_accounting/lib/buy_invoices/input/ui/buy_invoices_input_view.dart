@@ -2801,9 +2801,11 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
     String databaseDirectory = await getDatabasesPath();
 
-    String productDatabasePath = "${databaseDirectory}/${ProductsDatabaseInputs.productsDatabase}";
+    String productDatabasePath = "${databaseDirectory}/${ProductsDatabaseInputs.productsDatabase()}";
 
     bool productsDatabaseExist = await databaseExists(productDatabasePath);
+
+    print(">>>>>>>>>>>>>>>>>>>> ${productsDatabaseExist}");
 
     if (productsDatabaseExist) {
 
