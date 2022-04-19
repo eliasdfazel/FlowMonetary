@@ -441,7 +441,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
     String percentProfit = productsData.productProfitPercent.replaceAll("%", "");
     double profitMargin = (int.parse(productsData.productPrice.replaceAll(",", "")) * int.parse(percentProfit)) / 100;
 
-    double sellingPriceWithProfit = int.parse(productsData.productPrice) + profitMargin;
+    double sellingPriceWithProfit = int.parse(productsData.productPrice.replaceAll(",", "")) + profitMargin;
 
     String percentTax = productsData.productTax.replaceAll("%", "");
     double taxMargin = (sellingPriceWithProfit * int.parse(percentTax)) / 100;
