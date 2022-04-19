@@ -65,6 +65,12 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
   TextEditingController controllerProductQuantity = TextEditingController();
   TextEditingController controllerProductQuantityType = TextEditingController();
 
+  TextEditingController controllerAllProductId = TextEditingController();
+  TextEditingController controllerAllProductName = TextEditingController();
+  TextEditingController controllerAllProductQuantity = TextEditingController();
+  TextEditingController controllerAllProductQuantityType = TextEditingController();
+  TextEditingController controllerAllProductEachPrice = TextEditingController();
+
   TextEditingController controllerInvoicePrice = TextEditingController();
 
   TextEditingController controllerProductEachPrice = TextEditingController();
@@ -97,6 +103,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
   String? warningNoticeProductName;
   String? warningNoticeProductQuantity;
+  String? warningNoticeProductQuantityType;
 
   String? warningProductPrice;
   String? warningProductEachPrice;
@@ -106,7 +113,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
   String? warningBoughtFrom;
 
-  List<Widget> selectedProduct = [];
+  List<Widget> selectedProductItem = [];
 
   Widget printingView = Container();
 
@@ -847,8 +854,6 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                         height: 13,
                         color: Colors.transparent,
                       ),
-                      
-                      
                       SizedBox(
                         width: double.infinity,
                         height: 151,
@@ -872,10 +877,103 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                       child: InkWell(
                                         splashColor: ColorsResources.primaryColor.withOpacity(0.3),
                                         splashFactory: InkRipple.splashFactory,
-                                        onTap: () {
+                                        onTap: () async {
 
-                                          // Prepare CSV String
-                                          // Update Selected List
+                                          bool noError = false;
+
+                                          if (controllerProductName.text.isEmpty) {
+
+                                            setState(() {
+
+                                              warningNoticeProductName = StringsResources.errorText();
+
+                                            });
+
+                                            noError = false;
+
+                                          }
+
+                                          if (controllerProductQuantity.text.isEmpty) {
+
+                                            setState(() {
+
+                                              warningNoticeProductQuantity = StringsResources.errorText();
+
+                                            });
+
+                                            noError = false;
+
+                                          }
+
+                                          if (controllerProductQuantityType.text.isEmpty) {
+
+                                            setState(() {
+
+                                              warningNoticeProductQuantityType = StringsResources.errorText();
+
+                                            });
+
+                                            noError = false;
+
+                                          }
+
+                                          if (controllerProductEachPrice.text.isEmpty) {
+
+                                            setState(() {
+
+                                              warningProductEachPrice = StringsResources.errorText();
+
+                                            });
+
+                                            noError = false;
+
+                                          }
+
+                                          if (noError) {
+
+                                            ProductsData productData = ProductsData(
+                                                id: DateTime.now().millisecondsSinceEpoch,
+
+                                                productImageUrl: "",
+
+                                                productName: controllerProductName.text,
+                                                productDescription: "",
+
+                                                productCategory: "",
+
+                                                productBrand: "",
+                                                productBrandLogoUrl: "",
+
+                                                productPrice: controllerProductEachPrice.text,
+                                                productProfitPercent: "0%",
+
+                                                productTax: "0%",
+
+                                                productQuantity: int.parse(controllerProductQuantity.text),
+                                                productQuantityType: controllerProductQuantityType.text.isEmpty ? "" : controllerProductQuantityType.text,
+
+                                                colorTag: ColorsResources.white.value
+                                            );
+
+                                            var databaseInputs = ProductsDatabaseInputs();
+                                            await databaseInputs.insertProductData(productData, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+                                            selectedProductsData.add(productData);
+
+                                            controllerAllProductId.text += productData.id.toString() + ",";
+                                            controllerAllProductName.text += controllerProductName.text + ",";
+                                            controllerAllProductQuantity.text += controllerProductQuantity.text + ",";
+                                            controllerAllProductQuantityType.text += controllerProductQuantityType.text + ",";
+                                            controllerAllProductEachPrice.text += controllerProductEachPrice.text + ",";
+
+                                            controllerProductName.text = "";
+                                            controllerProductQuantity.text = "";
+                                            controllerProductQuantityType.text = "";
+                                            controllerProductEachPrice.text = "";
+
+                                            updateSelectedProductsList();
+
+                                          }
 
                                         },
                                         child: SizedBox(
@@ -1182,6 +1280,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                                     },
                                                     onSuggestionSelected: (suggestion) {
 
+                                                      controllerProductId.text = suggestion.id.toString();
                                                       controllerProductName.text = suggestion.productName.toString();
                                                       controllerProductEachPrice.text = suggestion.productPrice.toString();
                                                       controllerProductQuantityType.text = suggestion.productQuantityType.toString();
@@ -1582,9 +1681,6 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                           ],
                         ),
                       ),
-                      
-                      
-                 
                       const Divider(
                         height: 3,
                         color: Colors.transparent,
@@ -1596,7 +1692,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                             physics: const BouncingScrollPhysics(),
                             padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
                             scrollDirection: Axis.horizontal,
-                            children: selectedProduct,
+                            children: selectedProductItem,
                           )
                       ),
                       const Divider(
@@ -2511,11 +2607,11 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                         buyInvoiceDateText: calendarView.inputDateTime ?? "",
                                         buyInvoiceDateMillisecond: calendarView.pickedDateTime.millisecondsSinceEpoch,
 
-                                        boughtProductId: controllerProductId.text, // CSV
-                                        boughtProductName: controllerProductName.text, // CSV
-                                        boughtProductQuantity: controllerProductQuantity.text.isEmpty ? "0" : controllerProductQuantity.text, // CSV
-                                        productQuantityType: controllerProductQuantityType.text, // CSV
-                                        boughtProductEachPrice: controllerProductEachPrice.text.isEmpty ? "0" : controllerProductEachPrice.text, // CSV
+                                        boughtProductId: controllerAllProductId.text, // CSV
+                                        boughtProductName: controllerAllProductName.text, // CSV
+                                        boughtProductQuantity: controllerAllProductQuantity.text.isEmpty ? "0" : controllerProductQuantity.text, // CSV
+                                        productQuantityType: controllerAllProductQuantityType.text, // CSV
+                                        boughtProductEachPrice: controllerAllProductEachPrice.text.isEmpty ? "0" : controllerProductEachPrice.text, // CSV
 
                                         boughtProductPrice: controllerInvoicePrice.text.isEmpty ? "0" : controllerInvoicePrice.text,
                                         boughtProductPriceDiscount: controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text,
@@ -2540,6 +2636,10 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                     if (widget.buyInvoicesData != null) {
 
                                       if ((widget.buyInvoicesData?.id)! != 0) {
+
+                                        // Compare Remaining Ids CSV with Input Ids
+                                        // If Not Equal - Bigger -> with Replace Get New Added Product Then Run Stock Process
+                                        // If Not Equal - Smaller -> with Replace Get Removed Product Then Run Partial Return Process
 
                                         databaseInputs.updateInvoiceData(buyInvoicesData, BuyInvoicesDatabaseInputs.databaseTableName, UserInformation.UserId);
 
@@ -2716,13 +2816,23 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
     return allProducts;
   }
 
-  void addSelectedProduct() async {
+  void updateSelectedProductsList() async {
 
+    for(var aProduct in selectedProductsData) {
 
+      selectedProductItem.add(selectedProductView(aProduct));
+
+    }
+
+    setState(() {
+
+      selectedProductItem;
+
+    });
 
   }
 
-  Widget selectedProductView() {
+  Widget selectedProductView(ProductsData productsData) {
 
     return Container(
         width: double.infinity,
@@ -2736,12 +2846,27 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
           children: [
             Expanded(
               flex: 1,
-              child: Align(
-                alignment: AlignmentDirectional.center,
-                child: Icon(
-                  Icons.delete_rounded,
-                  size: 19,
-                  color: ColorsResources.darkTransparent,
+              child: InkWell(
+                onTap: () {
+
+                  selectedProductsData.remove(productsData);
+
+                  controllerAllProductId.text.replaceAll((productsData.id.toString() + ","), "");
+                  controllerAllProductName.text.replaceAll((productsData.productName + ","), "");
+                  controllerAllProductQuantity.text.replaceAll((productsData.productQuantity.toString() + ","), "");
+                  controllerAllProductQuantityType.text.replaceAll((productsData.productQuantityType + ","), "");
+                  controllerAllProductEachPrice.text.replaceAll((productsData.productPrice + ","), "");
+
+                  updateSelectedProductsList();
+
+                },
+                child: Align(
+                    alignment: AlignmentDirectional.center,
+                    child: Icon(
+                      Icons.delete_rounded,
+                      size: 19,
+                      color: ColorsResources.darkTransparent,
+                    )
                 )
               )
             ),
