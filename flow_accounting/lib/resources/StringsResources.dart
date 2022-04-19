@@ -715,6 +715,15 @@ class StringsResources {
     return "نوع فاکتور";
   }
 
+  static String shippingExpenses() {
+
+    return "هزینه حمل و نقل";
+  }
+  static String shippingExpensesHint() {
+
+    return "هزینه حمل و نقل کالاها را وارد کنید";
+  }
+
   static String quantity() {
 
     return "تعداد";
