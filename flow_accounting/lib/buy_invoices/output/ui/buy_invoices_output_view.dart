@@ -851,7 +851,8 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
 
   void returningInvoicesProcess() {
 
-
+    // Change Product Stock
+    // Change Relevant Credit Card Balance
 
   }
 
