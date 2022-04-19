@@ -1532,13 +1532,13 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
         switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {
           case TransactionsData.TransactionType_Receive: {
 
-            monthSumOne += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+            monthSumOne += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney.replaceAll(",", ""));
 
             break;
           }
           case TransactionsData.TransactionType_Send: {
 
-            monthSumOne -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+            monthSumOne -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney.replaceAll(",", ""));
 
             break;
           }
@@ -1556,13 +1556,13 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
         switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {
           case TransactionsData.TransactionType_Receive: {
 
-            monthSumTwo += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+            monthSumTwo += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney.replaceAll(",", ""));
 
             break;
           }
           case TransactionsData.TransactionType_Send: {
 
-            monthSumTwo -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+            monthSumTwo -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney.replaceAll(",", ""));
 
             break;
           }
@@ -1580,13 +1580,13 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
         switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {
           case TransactionsData.TransactionType_Receive: {
 
-            monthSumThree += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+            monthSumThree += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney.replaceAll(",", ""));
 
             break;
           }
           case TransactionsData.TransactionType_Send: {
 
-            monthSumThree -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+            monthSumThree -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney.replaceAll(",", ""));
 
             break;
           }
@@ -1604,13 +1604,13 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
         switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {
           case TransactionsData.TransactionType_Receive: {
 
-            monthSumFour += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+            monthSumFour += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney.replaceAll(",", ""));
 
             break;
           }
           case TransactionsData.TransactionType_Send: {
 
-            monthSumFour -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+            monthSumFour -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney.replaceAll(",", ""));
 
             break;
           }
@@ -1628,13 +1628,13 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
         switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {
           case TransactionsData.TransactionType_Receive: {
 
-            monthSumFive += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+            monthSumFive += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney.replaceAll(",", ""));
 
             break;
           }
           case TransactionsData.TransactionType_Send: {
 
-            monthSumFive -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+            monthSumFive -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney.replaceAll(",", ""));
 
             break;
           }
@@ -1652,13 +1652,13 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
         switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {
           case TransactionsData.TransactionType_Receive: {
 
-            monthSumSix += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+            monthSumSix += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney.replaceAll(",", ""));
 
             break;
           }
           case TransactionsData.TransactionType_Send: {
 
-            monthSumSix -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+            monthSumSix -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney.replaceAll(",", ""));
 
             break;
           }
@@ -1676,13 +1676,13 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
         switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {
           case TransactionsData.TransactionType_Receive: {
 
-            monthSumSeven += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+            monthSumSeven += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney.replaceAll(",", ""));
 
             break;
           }
           case TransactionsData.TransactionType_Send: {
 
-            monthSumSeven -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+            monthSumSeven -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney.replaceAll(",", ""));
 
             break;
           }
@@ -1700,13 +1700,13 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
         switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {
           case TransactionsData.TransactionType_Receive: {
 
-            monthSumEight += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+            monthSumEight += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney.replaceAll(",", ""));
 
             break;
           }
           case TransactionsData.TransactionType_Send: {
 
-            monthSumEight -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+            monthSumEight -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney.replaceAll(",", ""));
 
             break;
           }
@@ -1724,13 +1724,13 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
         switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {
           case TransactionsData.TransactionType_Receive: {
 
-            monthSumNine += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+            monthSumNine += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney.replaceAll(",", ""));
 
             break;
           }
           case TransactionsData.TransactionType_Send: {
 
-            monthSumNine -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+            monthSumNine -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney.replaceAll(",", ""));
 
             break;
           }
@@ -1748,13 +1748,13 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
         switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {
           case TransactionsData.TransactionType_Receive: {
 
-            monthSumTen += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+            monthSumTen += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney.replaceAll(",", ""));
 
             break;
           }
           case TransactionsData.TransactionType_Send: {
 
-            monthSumTen -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+            monthSumTen -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney.replaceAll(",", ""));
 
             break;
           }
@@ -1772,13 +1772,13 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
         switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {
           case TransactionsData.TransactionType_Receive: {
 
-            monthSumEleven += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+            monthSumEleven += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney.replaceAll(",", ""));
 
             break;
           }
           case TransactionsData.TransactionType_Send: {
 
-            monthSumEleven -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+            monthSumEleven -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney.replaceAll(",", ""));
 
             break;
           }
@@ -1796,13 +1796,13 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
         switch(transactionsDatabaseQueries.extractTransactionsQuery(element).transactionType) {
           case TransactionsData.TransactionType_Receive: {
 
-            monthSumTwelve += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+            monthSumTwelve += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney.replaceAll(",", ""));
 
             break;
           }
           case TransactionsData.TransactionType_Send: {
 
-            monthSumTwelve -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+            monthSumTwelve -= int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney.replaceAll(",", ""));
 
             break;
           }

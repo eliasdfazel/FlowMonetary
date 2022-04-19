@@ -609,7 +609,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: TextField(
-                                      controller: controllerProductQuantityType,
+                                      controller: controllerProductQuantity,
                                       textAlign: TextAlign.right,
                                       textDirection: TextDirection.ltr,
                                       textAlignVertical: TextAlignVertical.bottom,

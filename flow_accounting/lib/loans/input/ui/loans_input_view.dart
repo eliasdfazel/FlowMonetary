@@ -618,9 +618,9 @@ class _LoansInputViewState extends State<LoansInputView> {
 
                                         try {
 
-                                          int debtorCompleteDebt = int.parse(controllerLoanComplete.text.isEmpty ? "0" : controllerLoanComplete.text);
+                                          int debtorCompleteDebt = int.parse(controllerLoanComplete.text.isEmpty ? "0" : controllerLoanComplete.text.replaceAll(",", ""));
 
-                                          int debtorPaidDebt = int.parse(loanPaid.isEmpty ? "0" : loanPaid);
+                                          int debtorPaidDebt = int.parse(loanPaid.isEmpty ? "0" : loanPaid.replaceAll(",", ""));
 
                                           controllerLoanRemaining.text = (debtorCompleteDebt - debtorPaidDebt).toString();
 

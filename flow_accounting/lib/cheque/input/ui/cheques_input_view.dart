@@ -2943,7 +2943,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
             await creditCardsDatabaseQueries.querySpecificCreditCardByCardNumber(controllerChequeSourceAccount.text, CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId)
         );
 
-        var newCardBalance = (int.parse(sourceCreditCardData.cardBalance) - int.parse(chequesData.chequeMoneyAmount)).toString();
+        var newCardBalance = (int.parse(sourceCreditCardData.cardBalance.replaceAll(",", "")) - int.parse(chequesData.chequeMoneyAmount.replaceAll(",", ""))).toString();
 
         var creditCardsDatabaseInputs = CreditCardsDatabaseInputs();
 

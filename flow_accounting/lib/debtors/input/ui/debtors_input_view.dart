@@ -395,9 +395,9 @@ class _DebtorsInputViewState extends State<DebtorsInputView> {
 
                                         try {
 
-                                          int debtorCompleteDebt = int.parse(completeDebt.isEmpty ? "0" : completeDebt);
+                                          int debtorCompleteDebt = int.parse(completeDebt.isEmpty ? "0" : completeDebt.replaceAll(",", ""));
 
-                                          int debtorPaidDebt = int.parse(controllerPaidDebt.text.isEmpty ? "0" : controllerPaidDebt.text);
+                                          int debtorPaidDebt = int.parse(controllerPaidDebt.text.isEmpty ? "0" : controllerPaidDebt.text.replaceAll(",", ""));
 
                                           controllerRemainingDebt.text = (debtorCompleteDebt - debtorPaidDebt).toString();
 
@@ -503,9 +503,9 @@ class _DebtorsInputViewState extends State<DebtorsInputView> {
 
                                         try {
 
-                                          int debtorCompleteDebt = int.parse(controllerCompleteDebt.text.isEmpty ? "0" : controllerCompleteDebt.text);
+                                          int debtorCompleteDebt = int.parse(controllerCompleteDebt.text.isEmpty ? "0" : controllerCompleteDebt.text.replaceAll(",", ""));
 
-                                          int debtorPaidDebt = int.parse(paidDebt.isEmpty ? "0" : paidDebt);
+                                          int debtorPaidDebt = int.parse(paidDebt.isEmpty ? "0" : paidDebt.replaceAll(",", ""));
 
                                           controllerRemainingDebt.text = (debtorCompleteDebt - debtorPaidDebt).toString();
 

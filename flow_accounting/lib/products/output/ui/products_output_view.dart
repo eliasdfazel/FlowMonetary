@@ -196,8 +196,14 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Expanded(
+                            const Expanded(
                               flex: 11,
+                              child: Padding(
+                                padding: EdgeInsets.fromLTRB(3, 0, 0, 0),
+                              ),
+                            ),
+                            Expanded(
+                              flex: 15,
                               child: Padding(
                                 padding: const EdgeInsets.fromLTRB(3, 0, 0, 0),
                                 child: Stack(
@@ -239,61 +245,6 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
                                           alignment: Alignment.center,
                                           child: Text(
                                             StringsResources.productSortByPrice(),
-                                            style: TextStyle(
-                                              fontSize: 13,
-                                              color: ColorsResources.applicationGeeksEmpire,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              flex: 11,
-                              child: Padding(
-                                padding: const EdgeInsets.fromLTRB(0, 0, 3, 0),
-                                child: Stack(
-                                  children: [
-                                    SizedBox(
-                                      height: 43,
-                                      width: double.infinity,
-                                      child: Blur(
-                                        blur: 5,
-                                        borderRadius: BorderRadius.circular(51),
-                                        blurColor: Colors.white.withOpacity(0.3),
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                              gradient: LinearGradient(
-                                                  colors: [
-                                                    ColorsResources.white.withOpacity(0.3),
-                                                    ColorsResources.primaryColorLighter.withOpacity(0.3),
-                                                  ],
-                                                  begin: const FractionalOffset(0.0, 0.0),
-                                                  end: const FractionalOffset(1.0, 0.0),
-                                                  stops: const [0.0, 1.0],
-                                                  transform: const GradientRotation(45),
-                                                  tileMode: TileMode.clamp
-                                              )
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {
-
-                                        sortProductsByProfit(context, allProducts);
-
-                                      },
-                                      child: SizedBox(
-                                        height: 43,
-                                        width: double.infinity,
-                                        child: Align(
-                                          alignment: Alignment.center,
-                                          child: Text(
-                                            StringsResources.productSortByProfit(),
                                             style: TextStyle(
                                               fontSize: 13,
                                               color: ColorsResources.applicationGeeksEmpire,
@@ -488,7 +439,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
   Widget outputItem(BuildContext context, ProductsData productsData) {
 
     String percentProfit = productsData.productProfitPercent.replaceAll("%", "");
-    double profitMargin = (int.parse(productsData.productPrice) * int.parse(percentProfit)) / 100;
+    double profitMargin = (int.parse(productsData.productPrice.replaceAll(",", "")) * int.parse(percentProfit)) / 100;
 
     double sellingPriceWithProfit = int.parse(productsData.productPrice) + profitMargin;
 
@@ -840,33 +791,6 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
       });
 
     }
-
-  }
-
-  void sortProductsByProfit(BuildContext context,
-      List<ProductsData> inputTransactionsList) {
-
-    if (allProductsItems.isNotEmpty) {
-
-      allProductsItems.clear();
-
-    }
-
-    inputTransactionsList.sort((a, b) => (a.productProfitPercent).compareTo(b.productProfitPercent));
-
-    List<Widget> preparedAllProductsItem = [];
-
-    for (var element in inputTransactionsList) {
-
-      preparedAllProductsItem.add(outputItem(context, element));
-
-    }
-
-    setState(() {
-
-      allProductsItems = preparedAllProductsItem;
-
-    });
 
   }
 

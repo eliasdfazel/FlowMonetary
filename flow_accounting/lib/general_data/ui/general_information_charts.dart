@@ -368,7 +368,7 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
       var monthOne = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 1, TransactionsData.TransactionType_Receive, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
       for (var element in monthOne) {
 
-        monthSumOne += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+        monthSumOne += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney.replaceAll(",", ""));
 
       }
       debugPrint("1: $monthSumOne");
@@ -377,7 +377,7 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
       var monthTwo = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 2, TransactionsData.TransactionType_Receive, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
       for (var element in monthTwo) {
 
-        monthSumTwo += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+        monthSumTwo += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney.replaceAll(",", ""));
 
       }
       debugPrint("2: $monthSumTwo");
@@ -386,7 +386,7 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
       var monthThree = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 3, TransactionsData.TransactionType_Receive, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
       for (var element in monthThree) {
 
-        monthSumThree += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+        monthSumThree += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney.replaceAll(",", ""));
 
       }
       debugPrint("3: $monthSumThree");
@@ -395,7 +395,7 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
       var monthFour = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 4, TransactionsData.TransactionType_Receive, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
       for (var element in monthFour) {
 
-        monthSumFour += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+        monthSumFour += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney.replaceAll(",", ""));
 
       }
       debugPrint("4: $monthSumFour");
@@ -404,7 +404,7 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
       var monthFive = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 5, TransactionsData.TransactionType_Receive, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
       for (var element in monthFive) {
 
-        monthSumFive += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+        monthSumFive += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney.replaceAll(",", ""));
 
       }
       debugPrint("5: $monthSumFive");
@@ -413,7 +413,7 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
       var monthSix = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 6, TransactionsData.TransactionType_Receive, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
       for (var element in monthSix) {
 
-        monthSumSix += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+        monthSumSix += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney.replaceAll(",", ""));
 
       }
       debugPrint("6: $monthSumSix");
@@ -422,7 +422,7 @@ class _GeneralFinancialChartsState extends State<GeneralFinancialCharts> {
       var monthSeven = await transactionsDatabaseQueries.queryTransactionByMonths(selectedYear, 7, TransactionsData.TransactionType_Receive, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
       for (var element in monthSeven) {
 
-        monthSumSeven += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney);
+        monthSumSeven += int.parse(transactionsDatabaseQueries.extractTransactionsQuery(element).amountMoney.replaceAll(",", ""));
 
       }
       debugPrint("7: $monthSumSeven");

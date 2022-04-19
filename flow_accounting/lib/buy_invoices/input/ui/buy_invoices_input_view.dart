@@ -1144,7 +1144,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
                                                     try {
 
-                                                      int completePrice = int.parse(controllerProductEachPrice.text.isEmpty ? "0" : controllerProductEachPrice.text) * int.parse(controllerProductQuantity.text.isEmpty ? "0" : controllerProductQuantity.text);
+                                                      int completePrice = int.parse(controllerProductEachPrice.text.isEmpty ? "0" : controllerProductEachPrice.text.replaceAll(",", "")) * int.parse(controllerProductQuantity.text.isEmpty ? "0" : controllerProductQuantity.text);
 
                                                       int taxAmount = ((completePrice * int.parse(controllerProductTax.text.isEmpty ? "0" : controllerProductTax.text)) / 100).round();
 
@@ -1403,11 +1403,11 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
                                                     try {
 
-                                                      int completePrice = int.parse(controllerProductEachPrice.text.isEmpty ? "0" : controllerProductEachPrice.text) * int.parse(controllerProductQuantity.text.isEmpty ? "0" : controllerProductQuantity.text);
+                                                      int completePrice = int.parse(controllerProductEachPrice.text.isEmpty ? "0" : controllerProductEachPrice.text.replaceAll(",", "")) * int.parse(controllerProductQuantity.text.isEmpty ? "0" : controllerProductQuantity.text);
 
                                                       int taxAmount = ((completePrice * int.parse(controllerProductTax.text.isEmpty ? "0" : controllerProductTax.text)) / 100).round();
 
-                                                      int discountPrice = ((completePrice * int.parse(controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text)) / 100).round();
+                                                      int discountPrice = ((completePrice * int.parse(controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text.replaceAll(",", ""))) / 100).round();
 
                                                       int finalPrice = (completePrice + taxAmount) - discountPrice;
 
@@ -1499,11 +1499,11 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
                                                     try {
 
-                                                      int completePrice = int.parse(controllerProductEachPrice.text.isEmpty ? "0" : controllerProductEachPrice.text) * int.parse(controllerProductQuantity.text.isEmpty ? "0" : controllerProductQuantity.text);
+                                                      int completePrice = int.parse(controllerProductEachPrice.text.isEmpty ? "0" : controllerProductEachPrice.text.replaceAll(",", "")) * int.parse(controllerProductQuantity.text.isEmpty ? "0" : controllerProductQuantity.text);
 
                                                       int taxAmount = ((completePrice * int.parse(controllerProductTax.text.isEmpty ? "0" : controllerProductTax.text)) / 100).round();
 
-                                                      int discountPrice = ((completePrice * int.parse(controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text)) / 100).round();
+                                                      int discountPrice = ((completePrice * int.parse(controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text.replaceAll(",", ""))) / 100).round();
 
                                                       int finalPrice = (completePrice + taxAmount) - discountPrice;
 

@@ -395,9 +395,9 @@ class _CreditorsInputViewState extends State<CreditorsInputView> {
 
                                         try {
 
-                                          int creditorCompleteCredit = int.parse(completeCredit.isEmpty ? "0" : completeCredit);
+                                          int creditorCompleteCredit = int.parse(completeCredit.isEmpty ? "0" : completeCredit.replaceAll(",", ""));
 
-                                          int creditorPaidCredit = int.parse(controllerPaidCredit.text.isEmpty ? "0" : controllerPaidCredit.text);
+                                          int creditorPaidCredit = int.parse(controllerPaidCredit.text.isEmpty ? "0" : controllerPaidCredit.text.replaceAll(",", ""));
 
                                           controllerRemainingCredit.text = (creditorCompleteCredit - creditorPaidCredit).toString();
 
@@ -503,9 +503,9 @@ class _CreditorsInputViewState extends State<CreditorsInputView> {
 
                                         try {
 
-                                          int creditorCompleteCredit = int.parse(controllerCompleteCredit.text.isEmpty ? "0" : controllerCompleteCredit.text);
+                                          int creditorCompleteCredit = int.parse(controllerCompleteCredit.text.isEmpty ? "0" : controllerCompleteCredit.text.replaceAll(",", ""));
 
-                                          int creditorPaidCredit = int.parse(paidCredit.isEmpty ? "0" : paidCredit);
+                                          int creditorPaidCredit = int.parse(paidCredit.isEmpty ? "0" : paidCredit.replaceAll(",", ""));
 
                                           controllerRemainingCredit.text = (creditorCompleteCredit - creditorPaidCredit).toString();
 
