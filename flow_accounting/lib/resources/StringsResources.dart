@@ -755,6 +755,15 @@ class StringsResources {
     return "تخفیف روی فاکتور فروش";
   }
 
+  static String buyFullDiscount() {
+
+    return "تخفیف کل %";
+  }
+  static String buyFullDiscountHint() {
+
+    return "تخفیف روی کل فاکتور";
+  }
+
   static String invoiceEachPrice() {
 
     return "قیمت واحد";

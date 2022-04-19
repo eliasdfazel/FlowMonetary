@@ -69,6 +69,8 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
   TextEditingController controllerProductEachPrice = TextEditingController();
   TextEditingController controllerProductDiscount = TextEditingController();
 
+  TextEditingController controllerDiscount = TextEditingController();
+
   TextEditingController controllerShippingExpenses = TextEditingController();
 
   TextEditingController controllerProductTax = TextEditingController();
@@ -102,6 +104,8 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
   String? warningPaidBy;
 
   String? warningBoughtFrom;
+
+  List<Widget> selectedProduct = [];
 
   Widget printingView = Container();
 
@@ -872,14 +876,14 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                   children: [
                                                     Padding(
-                                                      padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
+                                                      padding: const EdgeInsets.fromLTRB(3, 0, 3, 0),
                                                       child: Directionality(
                                                         textDirection: TextDirection.rtl,
                                                         child: Text(
                                                           suggestion.toString(),
                                                           style: const TextStyle(
                                                               color: ColorsResources.darkTransparent,
-                                                              fontSize: 15
+                                                              fontSize: 13
                                                           ),
                                                         ),
                                                       ),
@@ -1136,6 +1140,8 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
                                           controllerProductEachPrice.text = suggestion.productPrice.toString();
 
+                                          controllerProductQuantityType.text = suggestion.productQuantityType.toString();
+
                                           selectedProductsData = suggestion;
 
                                         },
@@ -1222,17 +1228,6 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                             ),
                           ],
                         ),
-                      ),
-                      const Divider(
-                        height: 13,
-                        color: Colors.transparent,
-                      ),
-                      SizedBox(
-                        width: double.infinity,
-                        height: 73,
-                        child: ListView(
-
-                        )
                       ),
                       const Divider(
                         height: 13,
@@ -1538,6 +1533,20 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                         ),
                       ),
                       const Divider(
+                        height: 7,
+                        color: Colors.transparent,
+                      ),
+                      SizedBox(
+                          width: double.infinity,
+                          height: 57,
+                          child: ListView(
+                            physics: const BouncingScrollPhysics(),
+                            padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                            scrollDirection: Axis.horizontal,
+                            children: selectedProduct,
+                          )
+                      ),
+                      const Divider(
                         height: 13,
                         color: Colors.transparent,
                       ),
@@ -1550,7 +1559,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                             Expanded(
                               flex: 1,
                               child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(7, 0, 13, 0),
+                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: TextField(
@@ -1643,7 +1652,97 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                             Expanded(
                               flex: 1,
                               child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(7, 0, 13, 0),
+                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                  child: Directionality(
+                                    textDirection: TextDirection.rtl,
+                                    child: TextField(
+                                      controller: controllerDiscount,
+                                      textAlign: TextAlign.center,
+                                      textDirection: TextDirection.rtl,
+                                      textAlignVertical: TextAlignVertical.bottom,
+                                      maxLines: 1,
+                                      cursorColor: ColorsResources.primaryColor,
+                                      autocorrect: true,
+                                      autofocus: false,
+                                      keyboardType: TextInputType.number,
+                                      textInputAction: TextInputAction.next,
+                                      decoration: InputDecoration(
+                                        alignLabelWithHint: true,
+                                        border: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        enabledBorder: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        focusedBorder: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        errorBorder: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.red, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        errorText: warningProductDiscount,
+                                        filled: true,
+                                        fillColor: ColorsResources.lightTransparent,
+                                        labelText: StringsResources.buyFullDiscount(),
+                                        labelStyle: const TextStyle(
+                                            color: ColorsResources.dark,
+                                            fontSize: 17.0
+                                        ),
+                                        hintText: StringsResources.buyFullDiscountHint(),
+                                        hintStyle: const TextStyle(
+                                            color: ColorsResources.darkTransparent,
+                                            fontSize: 13.0
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Divider(
+                        height: 13,
+                        color: Colors.transparent,
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 73,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: TextField(
@@ -1736,7 +1835,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                             Expanded(
                               flex: 1,
                               child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(7, 0, 13, 0),
+                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: TypeAheadField<CreditCardsData>(
@@ -1894,7 +1993,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                             Expanded(
                               flex: 1,
                               child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(7, 0, 13, 0),
+                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: TypeAheadField<CreditorsData>(
@@ -2560,6 +2659,57 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
     }
 
     return allProducts;
+  }
+
+  void addSelectedProduct() async {
+
+
+
+  }
+
+  Widget selectedProductView() {
+
+    return Container(
+        width: double.infinity,
+        height: 37,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(51),
+            color: ColorsResources.light
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Expanded(
+              flex: 1,
+              child: Align(
+                alignment: AlignmentDirectional.center,
+                child: Icon(
+                  Icons.delete_rounded,
+                  size: 19,
+                  color: ColorsResources.darkTransparent,
+                )
+              )
+            ),
+            Expanded(
+              flex: 7,
+              child: Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: Align(
+                      alignment: AlignmentDirectional.center,
+                      child: Text(
+                        StringsResources.loansPeriodOneYear(),
+                        style: TextStyle(
+                            fontSize: 13,
+                            color: ColorsResources.dark,
+                            decoration: TextDecoration.none
+                        ),
+                      )
+                  )
+              )
+            )
+          ],
+        )
+    );
   }
 
   Future<List<CreditCardsData>> getAllCreditCards() async {

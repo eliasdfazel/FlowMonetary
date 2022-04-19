@@ -1138,6 +1138,8 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
                                           controllerProductEachPrice.text = suggestion.productPrice.toString();
 
+                                          controllerProductQuantityType.text = suggestion.productQuantityType.toString();
+
                                           selectedProductsData = suggestion;
 
                                         },
@@ -1541,7 +1543,7 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                             Expanded(
                               flex: 1,
                               child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(7, 0, 13, 0),
+                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: TextField(
@@ -1634,7 +1636,7 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                             Expanded(
                               flex: 1,
                               child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(7, 0, 13, 0),
+                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: TextField(
@@ -1727,7 +1729,7 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                             Expanded(
                               flex: 1,
                               child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(7, 0, 13, 0),
+                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: TypeAheadField<CreditCardsData>(
@@ -1885,7 +1887,7 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                             Expanded(
                               flex: 1,
                               child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(7, 0, 13, 0),
+                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: TypeAheadField<DebtorsData>(
