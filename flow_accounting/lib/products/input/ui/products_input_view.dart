@@ -2052,7 +2052,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
 
     String databaseDirectory = await getDatabasesPath();
 
-    String productDatabasePath = "${databaseDirectory}/${ProductsDatabaseInputs.productsDatabase}";
+    String productDatabasePath = "${databaseDirectory}/${ProductsDatabaseInputs.productsDatabase()}";
 
     bool productsDatabaseExist = await databaseExists(productDatabasePath);
 

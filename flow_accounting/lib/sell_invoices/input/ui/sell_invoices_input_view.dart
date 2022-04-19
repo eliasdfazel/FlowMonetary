@@ -2540,7 +2540,7 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
     String databaseDirectory = await getDatabasesPath();
 
-    String productDatabasePath = "${databaseDirectory}/${ProductsDatabaseInputs.productsDatabase}";
+    String productDatabasePath = "${databaseDirectory}/${ProductsDatabaseInputs.productsDatabase()}";
 
     bool productsDatabaseExist = await databaseExists(productDatabasePath);
 
@@ -2588,7 +2588,7 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
       String databaseDirectory = await getDatabasesPath();
 
-      String productDatabasePath = "${databaseDirectory}/${ProductsDatabaseInputs.productsDatabase}";
+      String productDatabasePath = "${databaseDirectory}/${ProductsDatabaseInputs.productsDatabase()}";
 
       bool productsDatabaseExist = await databaseExists(productDatabasePath);
 
