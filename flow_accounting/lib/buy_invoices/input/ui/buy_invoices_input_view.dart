@@ -2871,22 +2871,43 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
               )
             ),
             Expanded(
-              flex: 7,
-              child: Directionality(
+              flex: 11,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
+                child: Directionality(
                   textDirection: TextDirection.rtl,
-                  child: Align(
-                      alignment: AlignmentDirectional.center,
-                      child: Text(
-                        StringsResources.loansPeriodOneYear(),
-                        style: TextStyle(
-                            fontSize: 13,
-                            color: ColorsResources.dark,
-                            decoration: TextDecoration.none
-                        ),
-                      )
-                  )
-              )
-            )
+                  child: Text(
+                    productsData.productName,
+                    style: const TextStyle(
+                        color: ColorsResources.darkTransparent,
+                        fontSize: 15
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+                flex: 5,
+                child:  AspectRatio(
+                  aspectRatio: 1,
+                  child: Container(
+                    decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: ColorsResources.light
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(3, 3, 3, 3),
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.circular(51),
+                          child: Image.file(
+                            File(productsData.productImageUrl),
+                            fit: BoxFit.cover,
+                          )
+                      ),
+                    ),
+                  ),
+                )
+            ),
           ],
         )
     );
