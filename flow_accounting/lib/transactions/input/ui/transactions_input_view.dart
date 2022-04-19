@@ -2408,7 +2408,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
     String databaseDirectory = await getDatabasesPath();
 
-    String budgetDatabasePath = "${databaseDirectory}/${BudgetsDatabaseInputs.budgetsDatabase}";
+    String budgetDatabasePath = "${databaseDirectory}/${BudgetsDatabaseInputs.budgetsDatabase()}";
 
     bool budgetDatabaseExist = await databaseExists(budgetDatabasePath);
 
@@ -2540,7 +2540,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
       String databaseDirectory = await getDatabasesPath();
 
-      String budgetDatabasePath = "${databaseDirectory}/${BudgetsDatabaseInputs.budgetsDatabase}";
+      String budgetDatabasePath = "${databaseDirectory}/${BudgetsDatabaseInputs.budgetsDatabase()}";
 
       bool budgetDatabaseExist = await databaseExists(budgetDatabasePath);
 
@@ -2573,7 +2573,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
       String databaseDirectory = await getDatabasesPath();
 
-      String budgetDatabasePath = "${databaseDirectory}/${BudgetsDatabaseInputs.budgetsDatabase}";
+      String budgetDatabasePath = "${databaseDirectory}/${BudgetsDatabaseInputs.budgetsDatabase()}";
 
       bool budgetDatabaseExist = await databaseExists(budgetDatabasePath);
 

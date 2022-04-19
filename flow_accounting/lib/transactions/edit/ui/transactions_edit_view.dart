@@ -1949,7 +1949,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
 
     String databaseDirectory = await getDatabasesPath();
 
-    String budgetDatabasePath = "${databaseDirectory}/${BudgetsDatabaseInputs.budgetsDatabase}";
+    String budgetDatabasePath = "${databaseDirectory}/${BudgetsDatabaseInputs.budgetsDatabase()}";
 
     bool budgetDatabaseExist = await databaseExists(budgetDatabasePath);
 

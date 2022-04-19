@@ -2411,7 +2411,7 @@ class _RemoteTransactionsInputViewState extends State<RemoteTransactionsInputVie
 
     String databaseDirectory = await getDatabasesPath();
 
-    String budgetDatabasePath = "${databaseDirectory}/${BudgetsDatabaseInputs.budgetsDatabase}";
+    String budgetDatabasePath = "${databaseDirectory}/${BudgetsDatabaseInputs.budgetsDatabase()}";
 
     bool budgetDatabaseExist = await databaseExists(budgetDatabasePath);
 
@@ -2543,7 +2543,7 @@ class _RemoteTransactionsInputViewState extends State<RemoteTransactionsInputVie
 
       String databaseDirectory = await getDatabasesPath();
 
-      String budgetDatabasePath = "${databaseDirectory}/${BudgetsDatabaseInputs.budgetsDatabase}";
+      String budgetDatabasePath = "${databaseDirectory}/${BudgetsDatabaseInputs.budgetsDatabase()}";
 
       bool budgetDatabaseExist = await databaseExists(budgetDatabasePath);
 
@@ -2576,7 +2576,7 @@ class _RemoteTransactionsInputViewState extends State<RemoteTransactionsInputVie
 
       String databaseDirectory = await getDatabasesPath();
 
-      String budgetDatabasePath = "${databaseDirectory}/${BudgetsDatabaseInputs.budgetsDatabase}";
+      String budgetDatabasePath = "${databaseDirectory}/${BudgetsDatabaseInputs.budgetsDatabase()}";
 
       bool budgetDatabaseExist = await databaseExists(budgetDatabasePath);
 
