@@ -65,7 +65,8 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
   TextEditingController controllerProductQuantity = TextEditingController();
   TextEditingController controllerProductQuantityType = TextEditingController();
 
-  TextEditingController controllerProductPrice = TextEditingController();
+  TextEditingController controllerInvoicePrice = TextEditingController();
+
   TextEditingController controllerProductEachPrice = TextEditingController();
   TextEditingController controllerProductDiscount = TextEditingController();
 
@@ -79,7 +80,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
   TextEditingController controllerBoughtFrom = TextEditingController();
 
-  ProductsData? selectedProductsData;
+  List<ProductsData> selectedProductsData = [];
 
   int timeNow = DateTime.now().millisecondsSinceEpoch;
 
@@ -149,13 +150,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
     controllerPreInvoice.text = widget.buyInvoicesData?.buyPreInvoice == null ? BuyInvoicesData.BuyInvoice_Final : (widget.buyInvoicesData?.buyPreInvoice)!;
 
-    controllerProductName.text = widget.buyInvoicesData?.boughtProductName == null ? "" : (widget.buyInvoicesData?.boughtProductName)!;
-    controllerProductQuantity.text = widget.buyInvoicesData?.boughtProductQuantity == null ? "" : (widget.buyInvoicesData?.boughtProductQuantity)!;
-    controllerProductQuantityType.text = widget.buyInvoicesData?.productQuantityType == null ? "" : (widget.buyInvoicesData?.productQuantityType.toString())!;
-
-    controllerProductPrice.text = widget.buyInvoicesData?.boughtProductPrice == null ? "" : (widget.buyInvoicesData?.boughtProductPrice)!;
-    controllerProductEachPrice.text = widget.buyInvoicesData?.boughtProductEachPrice == null ? "" : (widget.buyInvoicesData?.boughtProductEachPrice)!;
-    controllerProductDiscount.text = widget.buyInvoicesData?.boughtProductPriceDiscount == null ? "" : (widget.buyInvoicesData?.boughtProductPriceDiscount)!;
+    controllerInvoicePrice.text = widget.buyInvoicesData?.boughtProductPrice == null ? "" : (widget.buyInvoicesData?.boughtProductPrice)!;
 
     controllerShippingExpenses.text = widget.buyInvoicesData?.productShippingExpenses == null ? "" : (widget.buyInvoicesData?.productShippingExpenses)!;
 
@@ -1007,7 +1002,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
                                           int finalPrice = (completePrice + taxAmount) - discountPrice;
 
-                                          controllerProductPrice.text = finalPrice.toString();
+                                          controllerInvoicePrice.text = finalPrice.toString();
 
                                         } on Exception {
 
@@ -1135,14 +1130,14 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                         },
                                         onSuggestionSelected: (suggestion) {
 
-                                          controllerProductId.text = suggestion.id.toString();
-                                          controllerProductName.text = suggestion.productName.toString();
+                                          // controllerProductId.text = suggestion.id.toString();
+                                          // controllerProductName.text = suggestion.productName.toString();
+                                          //
+                                          // controllerProductEachPrice.text = suggestion.productPrice.toString();
+                                          //
+                                          // controllerProductQuantityType.text = suggestion.productQuantityType.toString();
 
-                                          controllerProductEachPrice.text = suggestion.productPrice.toString();
-
-                                          controllerProductQuantityType.text = suggestion.productQuantityType.toString();
-
-                                          selectedProductsData = suggestion;
+                                          selectedProductsData.add(suggestion);
 
                                         },
                                         errorBuilder: (context, suggestion) {
@@ -1268,7 +1263,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
                                           int finalPrice = (completePrice + taxAmount) - discountPrice;
 
-                                          controllerProductPrice.text = finalPrice.toString();
+                                          controllerInvoicePrice.text = finalPrice.toString();
 
                                         } on Exception {
 
@@ -1364,7 +1359,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
                                           int finalPrice = (completePrice + taxAmount) - discountPrice;
 
-                                          controllerProductPrice.text = finalPrice.toString();
+                                          controllerInvoicePrice.text = finalPrice.toString();
 
                                         } on Exception {
 
@@ -1462,7 +1457,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
                                           int finalPrice = (completePrice + taxAmount) - discountPrice;
 
-                                          controllerProductPrice.text = finalPrice.toString();
+                                          controllerInvoicePrice.text = finalPrice.toString();
 
                                         } on Exception {
 
@@ -1746,7 +1741,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: TextField(
-                                      controller: controllerProductPrice,
+                                      controller: controllerInvoicePrice,
                                       textAlign: TextAlign.center,
                                       textDirection: TextDirection.rtl,
                                       textAlignVertical: TextAlignVertical.bottom,
@@ -2371,7 +2366,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
                                   }
 
-                                  if (controllerProductPrice.text.isEmpty) {
+                                  if (controllerInvoicePrice.text.isEmpty) {
 
                                     setState(() {
 
@@ -2458,14 +2453,16 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                         buyInvoiceDateText: calendarView.inputDateTime ?? "",
                                         buyInvoiceDateMillisecond: calendarView.pickedDateTime.millisecondsSinceEpoch,
 
-                                        boughtProductId: controllerProductId.text,
-                                        boughtProductName: controllerProductName.text,
-                                        boughtProductQuantity: controllerProductQuantity.text.isEmpty ? "0" : controllerProductQuantity.text,
-                                        productQuantityType: controllerProductQuantityType.text.isEmpty ? "" : controllerProductQuantityType.text,
+                                        boughtProductId: controllerProductId.text, // CSV
+                                        boughtProductName: controllerProductName.text, // CSV
+                                        boughtProductQuantity: controllerProductQuantity.text.isEmpty ? "0" : controllerProductQuantity.text, // CSV
+                                        productQuantityType: controllerProductQuantityType.text, // CSV
+                                        boughtProductEachPrice: controllerProductEachPrice.text.isEmpty ? "0" : controllerProductEachPrice.text, // CSV
 
-                                        boughtProductPrice: controllerProductPrice.text.isEmpty ? "0" : controllerProductPrice.text,
-                                        boughtProductEachPrice: controllerProductEachPrice.text.isEmpty ? "0" : controllerProductEachPrice.text,
+                                        boughtProductPrice: controllerInvoicePrice.text.isEmpty ? "0" : controllerInvoicePrice.text,
                                         boughtProductPriceDiscount: controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text,
+
+                                        invoiceDiscount: controllerDiscount.text.isEmpty ? "0" : controllerDiscount.text,
 
                                         productShippingExpenses: controllerShippingExpenses.text.isEmpty ? "0" : controllerShippingExpenses.text,
 
@@ -2741,7 +2738,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
   void updateProductQuantity() async {
 
-    if (selectedProductsData != null) {
+    if (selectedProductsData.isNotEmpty) {
 
       String databaseDirectory = await getDatabasesPath();
 
@@ -2753,13 +2750,17 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
         ProductsDatabaseQueries productsDatabaseQueries = ProductsDatabaseQueries();
 
-        ProductsData currentProductData = await productsDatabaseQueries.querySpecificProductById(selectedProductsData!.id.toString(), ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+        for (var aProduct in selectedProductsData) {
 
-        currentProductData.productQuantity = currentProductData.productQuantity + int.parse(controllerProductQuantity.text);
+          ProductsData currentProductData = await productsDatabaseQueries.querySpecificProductById(aProduct.id.toString(), ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
-        ProductsDatabaseInputs productsDatabaseInputs = ProductsDatabaseInputs();
+          currentProductData.productQuantity = currentProductData.productQuantity + int.parse(controllerProductQuantity.text);
 
-        productsDatabaseInputs.updateProductData(currentProductData, ProductsDatabaseInputs.productsDatabase(), UserInformation.UserId);
+          ProductsDatabaseInputs productsDatabaseInputs = ProductsDatabaseInputs();
+
+          productsDatabaseInputs.updateProductData(currentProductData, ProductsDatabaseInputs.productsDatabase(), UserInformation.UserId);
+
+        }
 
       }
 

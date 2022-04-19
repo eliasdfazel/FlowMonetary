@@ -50,6 +50,7 @@ class BuyInvoicesDatabaseInputs {
               'boughtProductPrice TEXT, '
               'boughtProductEachPrice TEXT, '
               'boughtProductPriceDiscount TEXT, '
+              'invoiceDiscount TEXT, '
               'productShippingExpenses TEXT, '
               'productTax TEXT, '
               'paidBy TEXT, '
