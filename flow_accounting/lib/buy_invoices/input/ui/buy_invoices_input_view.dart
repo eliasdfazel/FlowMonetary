@@ -847,688 +847,746 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                         height: 13,
                         color: Colors.transparent,
                       ),
+                      
+                      
                       SizedBox(
                         width: double.infinity,
-                        height: 73,
+                        height: 151,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Expanded(
-                              flex: 5,
+                              flex: 3,
                               child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(13, 0, 3, 0),
-                                  child: Directionality(
-                                      textDirection: TextDirection.rtl,
-                                      child: TypeAheadField<String>(
-                                          suggestionsCallback: (pattern) async {
+                                padding: const EdgeInsets.fromLTRB(9, 0, 3, 0),
+                                child: ClipRRect(
+                                    borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(23),
+                                        bottomLeft: Radius.circular(23),
+                                        topRight: Radius.circular(23),
+                                        bottomRight: Radius.circular(23)
+                                    ),
+                                    child: Material(
+                                      shadowColor: Colors.transparent,
+                                      color: Colors.transparent,
+                                      child: InkWell(
+                                        splashColor: ColorsResources.primaryColor.withOpacity(0.3),
+                                        splashFactory: InkRipple.splashFactory,
+                                        onTap: () {
 
-                                            return await getQuantityTypes();
-                                          },
-                                          itemBuilder: (context, suggestion) {
+                                          // Prepare CSV String
+                                          // Update Selected List
 
-                                            return ListTile(
-                                                title: Row(
-                                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                  children: [
-                                                    Padding(
-                                                      padding: const EdgeInsets.fromLTRB(3, 0, 3, 0),
-                                                      child: Directionality(
-                                                        textDirection: TextDirection.rtl,
-                                                        child: Text(
-                                                          suggestion.toString(),
-                                                          style: const TextStyle(
-                                                              color: ColorsResources.darkTransparent,
-                                                              fontSize: 13
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
+                                        },
+                                        child: SizedBox(
+                                            width: double.infinity,
+                                            height: 151,
+                                            child: Align(
+                                                alignment: AlignmentDirectional.center,
+                                                child: Icon(
+                                                  Icons.playlist_add_rounded,
+                                                  size: 31,
+                                                  color: ColorsResources.primaryColor,
                                                 )
-                                            );
-                                          },
-                                          onSuggestionSelected: (suggestion) {
-
-                                            controllerProductQuantityType.text = suggestion.toString();
-
-                                          },
-                                          errorBuilder: (context, suggestion) {
-
-                                            return Padding(
-                                                padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
-                                                child: Text(StringsResources.nothingText())
-                                            );
-                                          },
-                                          suggestionsBoxDecoration: SuggestionsBoxDecoration(
-                                              elevation: 7,
-                                              color: ColorsResources.light,
-                                              shadowColor: ColorsResources.darkTransparent,
-                                              borderRadius: BorderRadius.circular(17)
-                                          ),
-                                          textFieldConfiguration: TextFieldConfiguration(
-                                            controller: controllerProductQuantityType,
-                                            autofocus: false,
-                                            textAlignVertical: TextAlignVertical.bottom,
-                                            maxLines: 1,
-                                            cursorColor: ColorsResources.primaryColor,
-                                            keyboardType: TextInputType.text,
-                                            textInputAction: TextInputAction.next,
-                                            decoration: InputDecoration(
-                                              alignLabelWithHint: true,
-                                              border: const OutlineInputBorder(
-                                                  borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                                  borderRadius: BorderRadius.only(
-                                                      topLeft: Radius.circular(13),
-                                                      topRight: Radius.circular(13),
-                                                      bottomLeft: Radius.circular(13),
-                                                      bottomRight: Radius.circular(13)
-                                                  ),
-                                                  gapPadding: 5
-                                              ),
-                                              enabledBorder: const OutlineInputBorder(
-                                                  borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                                  borderRadius: BorderRadius.only(
-                                                      topLeft: Radius.circular(13),
-                                                      topRight: Radius.circular(13),
-                                                      bottomLeft: Radius.circular(13),
-                                                      bottomRight: Radius.circular(13)
-                                                  ),
-                                                  gapPadding: 5
-                                              ),
-                                              focusedBorder: const OutlineInputBorder(
-                                                  borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
-                                                  borderRadius: BorderRadius.only(
-                                                      topLeft: Radius.circular(13),
-                                                      topRight: Radius.circular(13),
-                                                      bottomLeft: Radius.circular(13),
-                                                      bottomRight: Radius.circular(13)
-                                                  ),
-                                                  gapPadding: 5
-                                              ),
-                                              errorBorder: const OutlineInputBorder(
-                                                  borderSide: BorderSide(color: Colors.red, width: 1.0),
-                                                  borderRadius: BorderRadius.only(
-                                                      topLeft: Radius.circular(13),
-                                                      topRight: Radius.circular(13),
-                                                      bottomLeft: Radius.circular(13),
-                                                      bottomRight: Radius.circular(13)
-                                                  ),
-                                                  gapPadding: 5
-                                              ),
-                                              filled: true,
-                                              fillColor: ColorsResources.lightTransparent,
-                                              labelText: StringsResources.productQuantityType(),
-                                              labelStyle: const TextStyle(
-                                                  color: ColorsResources.dark,
-                                                  fontSize: 17.0
-                                              ),
-                                              hintText: StringsResources.productQuantityTypeHint(),
-                                              hintStyle: const TextStyle(
-                                                  color: ColorsResources.darkTransparent,
-                                                  fontSize: 13.0
-                                              ),
-                                            ),
-                                          )
+                                            )
+                                        )
                                       )
-                                  )
+                                    )
+                                )
                               )
                             ),
                             Expanded(
-                              flex: 5,
-                              child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(3, 0, 3, 0),
-                                  child: Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: TextField(
-                                      controller: controllerProductQuantity,
-                                      textAlign: TextAlign.center,
-                                      textDirection: TextDirection.rtl,
-                                      textAlignVertical: TextAlignVertical.bottom,
-                                      maxLines: 1,
-                                      cursorColor: ColorsResources.primaryColor,
-                                      autocorrect: true,
-                                      autofocus: false,
-                                      keyboardType: TextInputType.number,
-                                      textInputAction: TextInputAction.next,
-                                      onChanged: (quantity) {
+                              flex: 19,
+                              child: Column(
+                                children: [
+                                  SizedBox(
+                                    width: double.infinity,
+                                    height: 73,
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Expanded(
+                                            flex: 5,
+                                            child: Padding(
+                                                padding: const EdgeInsets.fromLTRB(3, 0, 3, 0),
+                                                child: Directionality(
+                                                    textDirection: TextDirection.rtl,
+                                                    child: TypeAheadField<String>(
+                                                        suggestionsCallback: (pattern) async {
 
-                                        try {
+                                                          return await getQuantityTypes();
+                                                        },
+                                                        itemBuilder: (context, suggestion) {
 
-                                          int completePrice = int.parse(controllerProductEachPrice.text.isEmpty ? "0" : controllerProductEachPrice.text) * int.parse(controllerProductQuantity.text.isEmpty ? "0" : controllerProductQuantity.text);
+                                                          return ListTile(
+                                                              title: Row(
+                                                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                                children: [
+                                                                  Padding(
+                                                                    padding: const EdgeInsets.fromLTRB(3, 0, 3, 0),
+                                                                    child: Directionality(
+                                                                      textDirection: TextDirection.rtl,
+                                                                      child: Text(
+                                                                        suggestion.toString(),
+                                                                        style: const TextStyle(
+                                                                            color: ColorsResources.darkTransparent,
+                                                                            fontSize: 13
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              )
+                                                          );
+                                                        },
+                                                        onSuggestionSelected: (suggestion) {
 
-                                          int taxAmount = ((completePrice * int.parse(controllerProductTax.text.isEmpty ? "0" : controllerProductTax.text)) / 100).round();
+                                                          controllerProductQuantityType.text = suggestion.toString();
 
-                                          int discountPrice = ((completePrice * int.parse(controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text)) / 100).round();
+                                                        },
+                                                        errorBuilder: (context, suggestion) {
 
-                                          int finalPrice = (completePrice + taxAmount) - discountPrice;
-
-                                          controllerInvoicePrice.text = finalPrice.toString();
-
-                                        } on Exception {
-
-                                        }
-
-                                      },
-                                      decoration: InputDecoration(
-                                        alignLabelWithHint: true,
-                                        border: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        enabledBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        focusedBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        errorBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.red, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        errorText: warningNoticeProductQuantity,
-                                        filled: true,
-                                        fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.quantity(),
-                                        labelStyle: const TextStyle(
-                                            color: ColorsResources.dark,
-                                            fontSize: 17.0
-                                        ),
-                                        hintText: StringsResources.buyQuantityHint(),
-                                        hintStyle: const TextStyle(
-                                            color: ColorsResources.darkTransparent,
-                                            fontSize: 13.0
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                              ),
-                            ),
-                            Expanded(
-                              flex: 13,
-                              child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(3, 0, 13, 0),
-                                  child: Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: TypeAheadField<ProductsData>(
-                                        suggestionsCallback: (pattern) async {
-
-                                          return await getAllProducts();
-                                        },
-                                        itemBuilder: (context, suggestion) {
-
-                                          return ListTile(
-                                              title: Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                children: [
-                                                  Expanded(
-                                                    flex: 11,
-                                                    child: Padding(
-                                                      padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
-                                                      child: Directionality(
-                                                        textDirection: TextDirection.rtl,
-                                                        child: Text(
-                                                          suggestion.productName,
-                                                          style: const TextStyle(
-                                                              color: ColorsResources.darkTransparent,
-                                                              fontSize: 15
-                                                          ),
+                                                          return Padding(
+                                                              padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
+                                                              child: Text(StringsResources.nothingText())
+                                                          );
+                                                        },
+                                                        suggestionsBoxDecoration: SuggestionsBoxDecoration(
+                                                            elevation: 7,
+                                                            color: ColorsResources.light,
+                                                            shadowColor: ColorsResources.darkTransparent,
+                                                            borderRadius: BorderRadius.circular(17)
                                                         ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Expanded(
-                                                      flex: 5,
-                                                      child:  AspectRatio(
-                                                        aspectRatio: 1,
-                                                        child: Container(
-                                                          decoration: const BoxDecoration(
-                                                              shape: BoxShape.circle,
-                                                              color: ColorsResources.light
-                                                          ),
-                                                          child: Padding(
-                                                            padding: const EdgeInsets.fromLTRB(3, 3, 3, 3),
-                                                            child: ClipRRect(
-                                                                borderRadius: BorderRadius.circular(51),
-                                                                child: Image.file(
-                                                                  File(suggestion.productImageUrl),
-                                                                  fit: BoxFit.cover,
-                                                                )
+                                                        textFieldConfiguration: TextFieldConfiguration(
+                                                          controller: controllerProductQuantityType,
+                                                          autofocus: false,
+                                                          textAlignVertical: TextAlignVertical.bottom,
+                                                          maxLines: 1,
+                                                          cursorColor: ColorsResources.primaryColor,
+                                                          keyboardType: TextInputType.text,
+                                                          textInputAction: TextInputAction.next,
+                                                          decoration: InputDecoration(
+                                                            alignLabelWithHint: true,
+                                                            border: const OutlineInputBorder(
+                                                                borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                                                borderRadius: BorderRadius.only(
+                                                                    topLeft: Radius.circular(13),
+                                                                    topRight: Radius.circular(13),
+                                                                    bottomLeft: Radius.circular(13),
+                                                                    bottomRight: Radius.circular(13)
+                                                                ),
+                                                                gapPadding: 5
+                                                            ),
+                                                            enabledBorder: const OutlineInputBorder(
+                                                                borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                                                borderRadius: BorderRadius.only(
+                                                                    topLeft: Radius.circular(13),
+                                                                    topRight: Radius.circular(13),
+                                                                    bottomLeft: Radius.circular(13),
+                                                                    bottomRight: Radius.circular(13)
+                                                                ),
+                                                                gapPadding: 5
+                                                            ),
+                                                            focusedBorder: const OutlineInputBorder(
+                                                                borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                                                                borderRadius: BorderRadius.only(
+                                                                    topLeft: Radius.circular(13),
+                                                                    topRight: Radius.circular(13),
+                                                                    bottomLeft: Radius.circular(13),
+                                                                    bottomRight: Radius.circular(13)
+                                                                ),
+                                                                gapPadding: 5
+                                                            ),
+                                                            errorBorder: const OutlineInputBorder(
+                                                                borderSide: BorderSide(color: Colors.red, width: 1.0),
+                                                                borderRadius: BorderRadius.only(
+                                                                    topLeft: Radius.circular(13),
+                                                                    topRight: Radius.circular(13),
+                                                                    bottomLeft: Radius.circular(13),
+                                                                    bottomRight: Radius.circular(13)
+                                                                ),
+                                                                gapPadding: 5
+                                                            ),
+                                                            filled: true,
+                                                            fillColor: ColorsResources.lightTransparent,
+                                                            labelText: StringsResources.productQuantityType(),
+                                                            labelStyle: const TextStyle(
+                                                                color: ColorsResources.dark,
+                                                                fontSize: 17.0
+                                                            ),
+                                                            hintText: StringsResources.productQuantityTypeHint(),
+                                                            hintStyle: const TextStyle(
+                                                                color: ColorsResources.darkTransparent,
+                                                                fontSize: 13.0
                                                             ),
                                                           ),
+                                                        )
+                                                    )
+                                                )
+                                            )
+                                        ),
+                                        Expanded(
+                                          flex: 5,
+                                          child: Padding(
+                                              padding: const EdgeInsets.fromLTRB(3, 0, 3, 0),
+                                              child: Directionality(
+                                                textDirection: TextDirection.rtl,
+                                                child: TextField(
+                                                  controller: controllerProductQuantity,
+                                                  textAlign: TextAlign.center,
+                                                  textDirection: TextDirection.rtl,
+                                                  textAlignVertical: TextAlignVertical.bottom,
+                                                  maxLines: 1,
+                                                  cursorColor: ColorsResources.primaryColor,
+                                                  autocorrect: true,
+                                                  autofocus: false,
+                                                  keyboardType: TextInputType.number,
+                                                  textInputAction: TextInputAction.next,
+                                                  onChanged: (quantity) {
+
+                                                    try {
+
+                                                      int completePrice = int.parse(controllerProductEachPrice.text.isEmpty ? "0" : controllerProductEachPrice.text) * int.parse(controllerProductQuantity.text.isEmpty ? "0" : controllerProductQuantity.text);
+
+                                                      int taxAmount = ((completePrice * int.parse(controllerProductTax.text.isEmpty ? "0" : controllerProductTax.text)) / 100).round();
+
+                                                      int discountPrice = ((completePrice * int.parse(controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text)) / 100).round();
+
+                                                      int finalPrice = (completePrice + taxAmount) - discountPrice;
+
+                                                      controllerInvoicePrice.text = finalPrice.toString();
+
+                                                    } on Exception {
+
+                                                    }
+
+                                                  },
+                                                  decoration: InputDecoration(
+                                                    alignLabelWithHint: true,
+                                                    border: const OutlineInputBorder(
+                                                        borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                                        borderRadius: BorderRadius.only(
+                                                            topLeft: Radius.circular(13),
+                                                            topRight: Radius.circular(13),
+                                                            bottomLeft: Radius.circular(13),
+                                                            bottomRight: Radius.circular(13)
                                                         ),
-                                                      )
+                                                        gapPadding: 5
+                                                    ),
+                                                    enabledBorder: const OutlineInputBorder(
+                                                        borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                                        borderRadius: BorderRadius.only(
+                                                            topLeft: Radius.circular(13),
+                                                            topRight: Radius.circular(13),
+                                                            bottomLeft: Radius.circular(13),
+                                                            bottomRight: Radius.circular(13)
+                                                        ),
+                                                        gapPadding: 5
+                                                    ),
+                                                    focusedBorder: const OutlineInputBorder(
+                                                        borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                                                        borderRadius: BorderRadius.only(
+                                                            topLeft: Radius.circular(13),
+                                                            topRight: Radius.circular(13),
+                                                            bottomLeft: Radius.circular(13),
+                                                            bottomRight: Radius.circular(13)
+                                                        ),
+                                                        gapPadding: 5
+                                                    ),
+                                                    errorBorder: const OutlineInputBorder(
+                                                        borderSide: BorderSide(color: Colors.red, width: 1.0),
+                                                        borderRadius: BorderRadius.only(
+                                                            topLeft: Radius.circular(13),
+                                                            topRight: Radius.circular(13),
+                                                            bottomLeft: Radius.circular(13),
+                                                            bottomRight: Radius.circular(13)
+                                                        ),
+                                                        gapPadding: 5
+                                                    ),
+                                                    errorText: warningNoticeProductQuantity,
+                                                    filled: true,
+                                                    fillColor: ColorsResources.lightTransparent,
+                                                    labelText: StringsResources.quantity(),
+                                                    labelStyle: const TextStyle(
+                                                        color: ColorsResources.dark,
+                                                        fontSize: 17.0
+                                                    ),
+                                                    hintText: StringsResources.buyQuantityHint(),
+                                                    hintStyle: const TextStyle(
+                                                        color: ColorsResources.darkTransparent,
+                                                        fontSize: 13.0
+                                                    ),
                                                   ),
-                                                ],
+                                                ),
                                               )
-                                          );
-                                        },
-                                        onSuggestionSelected: (suggestion) {
-
-                                          // controllerProductId.text = suggestion.id.toString();
-                                          // controllerProductName.text = suggestion.productName.toString();
-                                          //
-                                          // controllerProductEachPrice.text = suggestion.productPrice.toString();
-                                          //
-                                          // controllerProductQuantityType.text = suggestion.productQuantityType.toString();
-
-                                          selectedProductsData.add(suggestion);
-
-                                        },
-                                        errorBuilder: (context, suggestion) {
-
-                                          return Padding(
-                                              padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
-                                              child: Text(StringsResources.nothingText())
-                                          );
-                                        },
-                                        suggestionsBoxDecoration: SuggestionsBoxDecoration(
-                                            elevation: 7,
-                                            color: ColorsResources.light,
-                                            shadowColor: ColorsResources.darkTransparent,
-                                            borderRadius: BorderRadius.circular(17)
-                                        ),
-                                        textFieldConfiguration: TextFieldConfiguration(
-                                          controller: controllerProductName,
-                                          autofocus: false,
-                                          maxLines: 1,
-                                          cursorColor: ColorsResources.primaryColor,
-                                          keyboardType: TextInputType.name,
-                                          textInputAction: TextInputAction.next,
-                                          decoration: InputDecoration(
-                                            alignLabelWithHint: true,
-                                            border: const OutlineInputBorder(
-                                                borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                                borderRadius: BorderRadius.only(
-                                                    topLeft: Radius.circular(13),
-                                                    topRight: Radius.circular(13),
-                                                    bottomLeft: Radius.circular(13),
-                                                    bottomRight: Radius.circular(13)
-                                                ),
-                                                gapPadding: 5
-                                            ),
-                                            enabledBorder: const OutlineInputBorder(
-                                                borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                                borderRadius: BorderRadius.only(
-                                                    topLeft: Radius.circular(13),
-                                                    topRight: Radius.circular(13),
-                                                    bottomLeft: Radius.circular(13),
-                                                    bottomRight: Radius.circular(13)
-                                                ),
-                                                gapPadding: 5
-                                            ),
-                                            focusedBorder: const OutlineInputBorder(
-                                                borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
-                                                borderRadius: BorderRadius.only(
-                                                    topLeft: Radius.circular(13),
-                                                    topRight: Radius.circular(13),
-                                                    bottomLeft: Radius.circular(13),
-                                                    bottomRight: Radius.circular(13)
-                                                ),
-                                                gapPadding: 5
-                                            ),
-                                            errorBorder: const OutlineInputBorder(
-                                                borderSide: BorderSide(color: Colors.red, width: 1.0),
-                                                borderRadius: BorderRadius.only(
-                                                    topLeft: Radius.circular(13),
-                                                    topRight: Radius.circular(13),
-                                                    bottomLeft: Radius.circular(13),
-                                                    bottomRight: Radius.circular(13)
-                                                ),
-                                                gapPadding: 5
-                                            ),
-                                            errorText: warningNoticeProductName,
-                                            filled: true,
-                                            fillColor: ColorsResources.lightTransparent,
-                                            labelText: StringsResources.invoiceProduct(),
-                                            labelStyle: const TextStyle(
-                                                color: ColorsResources.dark,
-                                                fontSize: 17.0
-                                            ),
-                                            hintText: StringsResources.buyInvoiceProductHint(),
-                                            hintStyle: const TextStyle(
-                                                color: ColorsResources.darkTransparent,
-                                                fontSize: 13.0
-                                            ),
                                           ),
-                                        )
-                                    ),
-                                  )
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const Divider(
-                        height: 13,
-                        color: Colors.transparent,
-                      ),
-                      SizedBox(
-                        width: double.infinity,
-                        height: 73,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Expanded(
-                              flex: 1,
-                              child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(13, 0, 3, 0),
-                                  child: Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: TextField(
-                                      controller: controllerProductDiscount,
-                                      textAlign: TextAlign.center,
-                                      textDirection: TextDirection.rtl,
-                                      textAlignVertical: TextAlignVertical.bottom,
-                                      maxLines: 1,
-                                      cursorColor: ColorsResources.primaryColor,
-                                      autocorrect: true,
-                                      autofocus: false,
-                                      keyboardType: TextInputType.number,
-                                      textInputAction: TextInputAction.next,
-                                      onChanged: (discountPercentage) {
-
-                                        try {
-
-                                          int completePrice = int.parse(controllerProductEachPrice.text.isEmpty ? "0" : controllerProductEachPrice.text) * int.parse(controllerProductQuantity.text.isEmpty ? "0" : controllerProductQuantity.text);
-
-                                          int taxAmount = ((completePrice * int.parse(controllerProductTax.text.isEmpty ? "0" : controllerProductTax.text)) / 100).round();
-
-                                          int discountPrice = ((completePrice * int.parse(controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text)) / 100).round();
-
-                                          int finalPrice = (completePrice + taxAmount) - discountPrice;
-
-                                          controllerInvoicePrice.text = finalPrice.toString();
-
-                                        } on Exception {
-
-                                        }
-
-                                      },
-                                      decoration: InputDecoration(
-                                        alignLabelWithHint: true,
-                                        border: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
                                         ),
-                                        enabledBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        focusedBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        errorBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.red, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        errorText: warningProductDiscount,
-                                        filled: true,
-                                        fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.invoiceDiscount(),
-                                        labelStyle: const TextStyle(
-                                            color: ColorsResources.dark,
-                                            fontSize: 17.0
-                                        ),
-                                        hintText: StringsResources.buyInvoiceDiscountHint(),
-                                        hintStyle: const TextStyle(
-                                            color: ColorsResources.darkTransparent,
-                                            fontSize: 13.0
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                              ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(3, 0, 3, 0),
-                                  child: Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: TextField(
-                                      controller: controllerProductTax,
-                                      textAlign: TextAlign.center,
-                                      textDirection: TextDirection.ltr,
-                                      textAlignVertical: TextAlignVertical.bottom,
-                                      maxLines: 1,
-                                      cursorColor: ColorsResources.primaryColor,
-                                      autocorrect: true,
-                                      autofocus: false,
-                                      keyboardType: TextInputType.number,
-                                      textInputAction: TextInputAction.next,
-                                      onChanged: (taxAmount) {
+                                        Expanded(
+                                          flex: 13,
+                                          child: Padding(
+                                              padding: const EdgeInsets.fromLTRB(3, 0, 13, 0),
+                                              child: Directionality(
+                                                textDirection: TextDirection.rtl,
+                                                child: TypeAheadField<ProductsData>(
+                                                    suggestionsCallback: (pattern) async {
 
-                                        try {
+                                                      return await getAllProducts();
+                                                    },
+                                                    itemBuilder: (context, suggestion) {
 
-                                          int completePrice = int.parse(controllerProductEachPrice.text.isEmpty ? "0" : controllerProductEachPrice.text) * int.parse(controllerProductQuantity.text.isEmpty ? "0" : controllerProductQuantity.text);
+                                                      return ListTile(
+                                                          title: Row(
+                                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                            children: [
+                                                              Expanded(
+                                                                flex: 11,
+                                                                child: Padding(
+                                                                  padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
+                                                                  child: Directionality(
+                                                                    textDirection: TextDirection.rtl,
+                                                                    child: Text(
+                                                                      suggestion.productName,
+                                                                      style: const TextStyle(
+                                                                          color: ColorsResources.darkTransparent,
+                                                                          fontSize: 15
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              Expanded(
+                                                                  flex: 5,
+                                                                  child:  AspectRatio(
+                                                                    aspectRatio: 1,
+                                                                    child: Container(
+                                                                      decoration: const BoxDecoration(
+                                                                          shape: BoxShape.circle,
+                                                                          color: ColorsResources.light
+                                                                      ),
+                                                                      child: Padding(
+                                                                        padding: const EdgeInsets.fromLTRB(3, 3, 3, 3),
+                                                                        child: ClipRRect(
+                                                                            borderRadius: BorderRadius.circular(51),
+                                                                            child: Image.file(
+                                                                              File(suggestion.productImageUrl),
+                                                                              fit: BoxFit.cover,
+                                                                            )
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  )
+                                                              ),
+                                                            ],
+                                                          )
+                                                      );
+                                                    },
+                                                    onSuggestionSelected: (suggestion) {
 
-                                          int taxAmount = ((completePrice * int.parse(controllerProductTax.text.isEmpty ? "0" : controllerProductTax.text)) / 100).round();
+                                                      controllerProductName.text = suggestion.productName.toString();
+                                                      controllerProductEachPrice.text = suggestion.productPrice.toString();
+                                                      controllerProductQuantityType.text = suggestion.productQuantityType.toString();
 
-                                          int discountPrice = ((completePrice * int.parse(controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text)) / 100).round();
+                                                      selectedProductsData.add(suggestion);
 
-                                          int finalPrice = (completePrice + taxAmount) - discountPrice;
+                                                    },
+                                                    errorBuilder: (context, suggestion) {
 
-                                          controllerInvoicePrice.text = finalPrice.toString();
-
-                                        } on Exception {
-
-                                        }
-
-                                      },
-                                      decoration: InputDecoration(
-                                        alignLabelWithHint: true,
-                                        border: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
+                                                      return Padding(
+                                                          padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
+                                                          child: Text(StringsResources.nothingText())
+                                                      );
+                                                    },
+                                                    suggestionsBoxDecoration: SuggestionsBoxDecoration(
+                                                        elevation: 7,
+                                                        color: ColorsResources.light,
+                                                        shadowColor: ColorsResources.darkTransparent,
+                                                        borderRadius: BorderRadius.circular(17)
+                                                    ),
+                                                    textFieldConfiguration: TextFieldConfiguration(
+                                                      controller: controllerProductName,
+                                                      autofocus: false,
+                                                      maxLines: 1,
+                                                      cursorColor: ColorsResources.primaryColor,
+                                                      keyboardType: TextInputType.name,
+                                                      textInputAction: TextInputAction.next,
+                                                      decoration: InputDecoration(
+                                                        alignLabelWithHint: true,
+                                                        border: const OutlineInputBorder(
+                                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                                            borderRadius: BorderRadius.only(
+                                                                topLeft: Radius.circular(13),
+                                                                topRight: Radius.circular(13),
+                                                                bottomLeft: Radius.circular(13),
+                                                                bottomRight: Radius.circular(13)
+                                                            ),
+                                                            gapPadding: 5
+                                                        ),
+                                                        enabledBorder: const OutlineInputBorder(
+                                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                                            borderRadius: BorderRadius.only(
+                                                                topLeft: Radius.circular(13),
+                                                                topRight: Radius.circular(13),
+                                                                bottomLeft: Radius.circular(13),
+                                                                bottomRight: Radius.circular(13)
+                                                            ),
+                                                            gapPadding: 5
+                                                        ),
+                                                        focusedBorder: const OutlineInputBorder(
+                                                            borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                                                            borderRadius: BorderRadius.only(
+                                                                topLeft: Radius.circular(13),
+                                                                topRight: Radius.circular(13),
+                                                                bottomLeft: Radius.circular(13),
+                                                                bottomRight: Radius.circular(13)
+                                                            ),
+                                                            gapPadding: 5
+                                                        ),
+                                                        errorBorder: const OutlineInputBorder(
+                                                            borderSide: BorderSide(color: Colors.red, width: 1.0),
+                                                            borderRadius: BorderRadius.only(
+                                                                topLeft: Radius.circular(13),
+                                                                topRight: Radius.circular(13),
+                                                                bottomLeft: Radius.circular(13),
+                                                                bottomRight: Radius.circular(13)
+                                                            ),
+                                                            gapPadding: 5
+                                                        ),
+                                                        errorText: warningNoticeProductName,
+                                                        filled: true,
+                                                        fillColor: ColorsResources.lightTransparent,
+                                                        labelText: StringsResources.invoiceProduct(),
+                                                        labelStyle: const TextStyle(
+                                                            color: ColorsResources.dark,
+                                                            fontSize: 17.0
+                                                        ),
+                                                        hintText: StringsResources.buyInvoiceProductHint(),
+                                                        hintStyle: const TextStyle(
+                                                            color: ColorsResources.darkTransparent,
+                                                            fontSize: 13.0
+                                                        ),
+                                                      ),
+                                                    )
+                                                ),
+                                              )
+                                          ),
                                         ),
-                                        enabledBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        focusedBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        errorBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.red, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        filled: true,
-                                        fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.productProfitTax(),
-                                        labelStyle: const TextStyle(
-                                            color: ColorsResources.dark,
-                                            fontSize: 17.0
-                                        ),
-                                        hintText: StringsResources.productProfitTaxHint(),
-                                        hintStyle: const TextStyle(
-                                            color: ColorsResources.darkTransparent,
-                                            fontSize: 13.0
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                              ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(3, 0, 13, 0),
-                                  child: Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: TextField(
-                                      controller: controllerProductEachPrice,
-                                      textAlign: TextAlign.center,
-                                      textDirection: TextDirection.rtl,
-                                      textAlignVertical: TextAlignVertical.bottom,
-                                      maxLines: 1,
-                                      cursorColor: ColorsResources.primaryColor,
-                                      autocorrect: true,
-                                      autofocus: false,
-                                      keyboardType: TextInputType.number,
-                                      textInputAction: TextInputAction.next,
-                                      inputFormatters: [
-                                        CurrencyTextInputFormatter(decimalDigits: 0, symbol: "")
                                       ],
-                                      onChanged: (eachPrice) {
-
-                                        try {
-
-                                          int completePrice = int.parse(controllerProductEachPrice.text.isEmpty ? "0" : controllerProductEachPrice.text) * int.parse(controllerProductQuantity.text.isEmpty ? "0" : controllerProductQuantity.text);
-
-                                          int taxAmount = ((completePrice * int.parse(controllerProductTax.text.isEmpty ? "0" : controllerProductTax.text)) / 100).round();
-
-                                          int discountPrice = ((completePrice * int.parse(controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text)) / 100).round();
-
-                                          int finalPrice = (completePrice + taxAmount) - discountPrice;
-
-                                          controllerInvoicePrice.text = finalPrice.toString();
-
-                                        } on Exception {
-
-                                        }
-
-                                      },
-                                      decoration: InputDecoration(
-                                        alignLabelWithHint: true,
-                                        border: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        enabledBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        focusedBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        errorBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.red, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
-                                            ),
-                                            gapPadding: 5
-                                        ),
-                                        errorText: warningProductEachPrice,
-                                        filled: true,
-                                        fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.invoiceEachPrice(),
-                                        labelStyle: const TextStyle(
-                                            color: ColorsResources.dark,
-                                            fontSize: 17.0
-                                        ),
-                                        hintText: StringsResources.invoiceEachPriceHint(),
-                                        hintStyle: const TextStyle(
-                                            color: ColorsResources.darkTransparent,
-                                            fontSize: 13.0
-                                        ),
-                                      ),
                                     ),
-                                  )
-                              ),
+                                  ),
+                                  const Divider(
+                                    height: 3,
+                                    color: Colors.transparent,
+                                  ),
+                                  SizedBox(
+                                    width: double.infinity,
+                                    height: 73,
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Expanded(
+                                          flex: 1,
+                                          child: Padding(
+                                              padding: const EdgeInsets.fromLTRB(3, 0, 3, 0),
+                                              child: Directionality(
+                                                textDirection: TextDirection.rtl,
+                                                child: TextField(
+                                                  controller: controllerProductDiscount,
+                                                  textAlign: TextAlign.center,
+                                                  textDirection: TextDirection.rtl,
+                                                  textAlignVertical: TextAlignVertical.bottom,
+                                                  maxLines: 1,
+                                                  cursorColor: ColorsResources.primaryColor,
+                                                  autocorrect: true,
+                                                  autofocus: false,
+                                                  keyboardType: TextInputType.number,
+                                                  textInputAction: TextInputAction.next,
+                                                  onChanged: (discountPercentage) {
+
+                                                    try {
+
+                                                      int completePrice = int.parse(controllerProductEachPrice.text.isEmpty ? "0" : controllerProductEachPrice.text) * int.parse(controllerProductQuantity.text.isEmpty ? "0" : controllerProductQuantity.text);
+
+                                                      int taxAmount = ((completePrice * int.parse(controllerProductTax.text.isEmpty ? "0" : controllerProductTax.text)) / 100).round();
+
+                                                      int discountPrice = ((completePrice * int.parse(controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text)) / 100).round();
+
+                                                      int finalPrice = (completePrice + taxAmount) - discountPrice;
+
+                                                      controllerInvoicePrice.text = finalPrice.toString();
+
+                                                    } on Exception {
+
+                                                    }
+
+                                                  },
+                                                  decoration: InputDecoration(
+                                                    alignLabelWithHint: true,
+                                                    border: const OutlineInputBorder(
+                                                        borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                                        borderRadius: BorderRadius.only(
+                                                            topLeft: Radius.circular(13),
+                                                            topRight: Radius.circular(13),
+                                                            bottomLeft: Radius.circular(13),
+                                                            bottomRight: Radius.circular(13)
+                                                        ),
+                                                        gapPadding: 5
+                                                    ),
+                                                    enabledBorder: const OutlineInputBorder(
+                                                        borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                                        borderRadius: BorderRadius.only(
+                                                            topLeft: Radius.circular(13),
+                                                            topRight: Radius.circular(13),
+                                                            bottomLeft: Radius.circular(13),
+                                                            bottomRight: Radius.circular(13)
+                                                        ),
+                                                        gapPadding: 5
+                                                    ),
+                                                    focusedBorder: const OutlineInputBorder(
+                                                        borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                                                        borderRadius: BorderRadius.only(
+                                                            topLeft: Radius.circular(13),
+                                                            topRight: Radius.circular(13),
+                                                            bottomLeft: Radius.circular(13),
+                                                            bottomRight: Radius.circular(13)
+                                                        ),
+                                                        gapPadding: 5
+                                                    ),
+                                                    errorBorder: const OutlineInputBorder(
+                                                        borderSide: BorderSide(color: Colors.red, width: 1.0),
+                                                        borderRadius: BorderRadius.only(
+                                                            topLeft: Radius.circular(13),
+                                                            topRight: Radius.circular(13),
+                                                            bottomLeft: Radius.circular(13),
+                                                            bottomRight: Radius.circular(13)
+                                                        ),
+                                                        gapPadding: 5
+                                                    ),
+                                                    errorText: warningProductDiscount,
+                                                    filled: true,
+                                                    fillColor: ColorsResources.lightTransparent,
+                                                    labelText: StringsResources.invoiceDiscount(),
+                                                    labelStyle: const TextStyle(
+                                                        color: ColorsResources.dark,
+                                                        fontSize: 17.0
+                                                    ),
+                                                    hintText: StringsResources.buyInvoiceDiscountHint(),
+                                                    hintStyle: const TextStyle(
+                                                        color: ColorsResources.darkTransparent,
+                                                        fontSize: 13.0
+                                                    ),
+                                                  ),
+                                                ),
+                                              )
+                                          ),
+                                        ),
+                                        Expanded(
+                                          flex: 1,
+                                          child: Padding(
+                                              padding: const EdgeInsets.fromLTRB(3, 0, 3, 0),
+                                              child: Directionality(
+                                                textDirection: TextDirection.rtl,
+                                                child: TextField(
+                                                  controller: controllerProductTax,
+                                                  textAlign: TextAlign.center,
+                                                  textDirection: TextDirection.ltr,
+                                                  textAlignVertical: TextAlignVertical.bottom,
+                                                  maxLines: 1,
+                                                  cursorColor: ColorsResources.primaryColor,
+                                                  autocorrect: true,
+                                                  autofocus: false,
+                                                  keyboardType: TextInputType.number,
+                                                  textInputAction: TextInputAction.next,
+                                                  onChanged: (taxAmount) {
+
+                                                    try {
+
+                                                      int completePrice = int.parse(controllerProductEachPrice.text.isEmpty ? "0" : controllerProductEachPrice.text) * int.parse(controllerProductQuantity.text.isEmpty ? "0" : controllerProductQuantity.text);
+
+                                                      int taxAmount = ((completePrice * int.parse(controllerProductTax.text.isEmpty ? "0" : controllerProductTax.text)) / 100).round();
+
+                                                      int discountPrice = ((completePrice * int.parse(controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text)) / 100).round();
+
+                                                      int finalPrice = (completePrice + taxAmount) - discountPrice;
+
+                                                      controllerInvoicePrice.text = finalPrice.toString();
+
+                                                    } on Exception {
+
+                                                    }
+
+                                                  },
+                                                  decoration: InputDecoration(
+                                                    alignLabelWithHint: true,
+                                                    border: const OutlineInputBorder(
+                                                        borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                                        borderRadius: BorderRadius.only(
+                                                            topLeft: Radius.circular(13),
+                                                            topRight: Radius.circular(13),
+                                                            bottomLeft: Radius.circular(13),
+                                                            bottomRight: Radius.circular(13)
+                                                        ),
+                                                        gapPadding: 5
+                                                    ),
+                                                    enabledBorder: const OutlineInputBorder(
+                                                        borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                                        borderRadius: BorderRadius.only(
+                                                            topLeft: Radius.circular(13),
+                                                            topRight: Radius.circular(13),
+                                                            bottomLeft: Radius.circular(13),
+                                                            bottomRight: Radius.circular(13)
+                                                        ),
+                                                        gapPadding: 5
+                                                    ),
+                                                    focusedBorder: const OutlineInputBorder(
+                                                        borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                                                        borderRadius: BorderRadius.only(
+                                                            topLeft: Radius.circular(13),
+                                                            topRight: Radius.circular(13),
+                                                            bottomLeft: Radius.circular(13),
+                                                            bottomRight: Radius.circular(13)
+                                                        ),
+                                                        gapPadding: 5
+                                                    ),
+                                                    errorBorder: const OutlineInputBorder(
+                                                        borderSide: BorderSide(color: Colors.red, width: 1.0),
+                                                        borderRadius: BorderRadius.only(
+                                                            topLeft: Radius.circular(13),
+                                                            topRight: Radius.circular(13),
+                                                            bottomLeft: Radius.circular(13),
+                                                            bottomRight: Radius.circular(13)
+                                                        ),
+                                                        gapPadding: 5
+                                                    ),
+                                                    filled: true,
+                                                    fillColor: ColorsResources.lightTransparent,
+                                                    labelText: StringsResources.productProfitTax(),
+                                                    labelStyle: const TextStyle(
+                                                        color: ColorsResources.dark,
+                                                        fontSize: 17.0
+                                                    ),
+                                                    hintText: StringsResources.productProfitTaxHint(),
+                                                    hintStyle: const TextStyle(
+                                                        color: ColorsResources.darkTransparent,
+                                                        fontSize: 13.0
+                                                    ),
+                                                  ),
+                                                ),
+                                              )
+                                          ),
+                                        ),
+                                        Expanded(
+                                          flex: 1,
+                                          child: Padding(
+                                              padding: const EdgeInsets.fromLTRB(3, 0, 13, 0),
+                                              child: Directionality(
+                                                textDirection: TextDirection.rtl,
+                                                child: TextField(
+                                                  controller: controllerProductEachPrice,
+                                                  textAlign: TextAlign.center,
+                                                  textDirection: TextDirection.rtl,
+                                                  textAlignVertical: TextAlignVertical.bottom,
+                                                  maxLines: 1,
+                                                  cursorColor: ColorsResources.primaryColor,
+                                                  autocorrect: true,
+                                                  autofocus: false,
+                                                  keyboardType: TextInputType.number,
+                                                  textInputAction: TextInputAction.next,
+                                                  inputFormatters: [
+                                                    CurrencyTextInputFormatter(decimalDigits: 0, symbol: "")
+                                                  ],
+                                                  onChanged: (eachPrice) {
+
+                                                    try {
+
+                                                      int completePrice = int.parse(controllerProductEachPrice.text.isEmpty ? "0" : controllerProductEachPrice.text) * int.parse(controllerProductQuantity.text.isEmpty ? "0" : controllerProductQuantity.text);
+
+                                                      int taxAmount = ((completePrice * int.parse(controllerProductTax.text.isEmpty ? "0" : controllerProductTax.text)) / 100).round();
+
+                                                      int discountPrice = ((completePrice * int.parse(controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text)) / 100).round();
+
+                                                      int finalPrice = (completePrice + taxAmount) - discountPrice;
+
+                                                      controllerInvoicePrice.text = finalPrice.toString();
+
+                                                    } on Exception {
+
+                                                    }
+
+                                                  },
+                                                  decoration: InputDecoration(
+                                                    alignLabelWithHint: true,
+                                                    border: const OutlineInputBorder(
+                                                        borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                                        borderRadius: BorderRadius.only(
+                                                            topLeft: Radius.circular(13),
+                                                            topRight: Radius.circular(13),
+                                                            bottomLeft: Radius.circular(13),
+                                                            bottomRight: Radius.circular(13)
+                                                        ),
+                                                        gapPadding: 5
+                                                    ),
+                                                    enabledBorder: const OutlineInputBorder(
+                                                        borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                                        borderRadius: BorderRadius.only(
+                                                            topLeft: Radius.circular(13),
+                                                            topRight: Radius.circular(13),
+                                                            bottomLeft: Radius.circular(13),
+                                                            bottomRight: Radius.circular(13)
+                                                        ),
+                                                        gapPadding: 5
+                                                    ),
+                                                    focusedBorder: const OutlineInputBorder(
+                                                        borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                                                        borderRadius: BorderRadius.only(
+                                                            topLeft: Radius.circular(13),
+                                                            topRight: Radius.circular(13),
+                                                            bottomLeft: Radius.circular(13),
+                                                            bottomRight: Radius.circular(13)
+                                                        ),
+                                                        gapPadding: 5
+                                                    ),
+                                                    errorBorder: const OutlineInputBorder(
+                                                        borderSide: BorderSide(color: Colors.red, width: 1.0),
+                                                        borderRadius: BorderRadius.only(
+                                                            topLeft: Radius.circular(13),
+                                                            topRight: Radius.circular(13),
+                                                            bottomLeft: Radius.circular(13),
+                                                            bottomRight: Radius.circular(13)
+                                                        ),
+                                                        gapPadding: 5
+                                                    ),
+                                                    errorText: warningProductEachPrice,
+                                                    filled: true,
+                                                    fillColor: ColorsResources.lightTransparent,
+                                                    labelText: StringsResources.invoiceEachPrice(),
+                                                    labelStyle: const TextStyle(
+                                                        color: ColorsResources.dark,
+                                                        fontSize: 17.0
+                                                    ),
+                                                    hintText: StringsResources.invoiceEachPriceHint(),
+                                                    hintStyle: const TextStyle(
+                                                        color: ColorsResources.darkTransparent,
+                                                        fontSize: 13.0
+                                                    ),
+                                                  ),
+                                                ),
+                                              )
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              )
                             ),
                           ],
                         ),
                       ),
+                      
+                      
+                 
                       const Divider(
-                        height: 7,
+                        height: 3,
                         color: Colors.transparent,
                       ),
                       SizedBox(
