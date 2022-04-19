@@ -92,6 +92,8 @@ class _RemoteTransactionsInputViewState extends State<RemoteTransactionsInputVie
   void initState() {
     super.initState();
 
+    calendarView.inputDateTime = StringsResources.transactionTime();
+
     BackButtonInterceptor.add(aInterceptor);
 
   }
