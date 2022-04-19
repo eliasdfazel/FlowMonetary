@@ -902,7 +902,7 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> {
 
     String databaseDirectory = await getDatabasesPath();
 
-    String transactionDatabasePath = "${databaseDirectory}/${TransactionsDatabaseInputs.transactionsDatabase}";
+    String transactionDatabasePath = "${databaseDirectory}/${TransactionsDatabaseInputs.transactionsDatabase()}";
 
     bool transactionDatabaseExist = await databaseExists(transactionDatabasePath);
 
@@ -950,7 +950,7 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> {
 
     String databaseDirectory = await getDatabasesPath();
 
-    String transactionDatabasePath = "${databaseDirectory}/${TransactionsDatabaseInputs.transactionsDatabase}";
+    String transactionDatabasePath = "${databaseDirectory}/${TransactionsDatabaseInputs.transactionsDatabase()}";
 
     bool transactionDatabaseExist = await databaseExists(transactionDatabasePath);
 
@@ -1106,7 +1106,7 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> {
 
     String databaseDirectory = await getDatabasesPath();
 
-    String transactionDatabasePath = "${databaseDirectory}/${TransactionsDatabaseInputs.transactionsDatabase}";
+    String transactionDatabasePath = "${databaseDirectory}/${TransactionsDatabaseInputs.transactionsDatabase()}";
 
     bool transactionDatabaseExist = await databaseExists(transactionDatabasePath);
 

@@ -2376,7 +2376,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
     String databaseDirectory = await getDatabasesPath();
 
-    String customerDatabasePath = "${databaseDirectory}/${CustomersDatabaseInputs.customersDatabase}";
+    String customerDatabasePath = "${databaseDirectory}/${CustomersDatabaseInputs.customersDatabase()}";
 
     bool customerDatabaseExist = await databaseExists(customerDatabasePath);
 
@@ -2435,7 +2435,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
     String databaseDirectory = await getDatabasesPath();
 
-    String creditCardDatabasePath = "${databaseDirectory}/${CreditCardsDatabaseInputs.creditCardDatabase}";
+    String creditCardDatabasePath = "${databaseDirectory}/${CreditCardsDatabaseInputs.creditCardDatabase()}";
 
     bool creditCardDatabaseExist = await databaseExists(creditCardDatabasePath);
 
@@ -2462,7 +2462,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
       String databaseDirectory = await getDatabasesPath();
 
-      String creditCardDatabasePath = "${databaseDirectory}/${CreditCardsDatabaseInputs.creditCardDatabase}";
+      String creditCardDatabasePath = "${databaseDirectory}/${CreditCardsDatabaseInputs.creditCardDatabase()}";
 
       bool creditCardDatabaseExist = await databaseExists(creditCardDatabasePath);
 
@@ -2498,7 +2498,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
       String databaseDirectory = await getDatabasesPath();
 
-      String creditCardDatabasePath = "${databaseDirectory}/${CreditCardsDatabaseInputs.creditCardDatabase}";
+      String creditCardDatabasePath = "${databaseDirectory}/${CreditCardsDatabaseInputs.creditCardDatabase()}";
 
       bool creditCardDatabaseExist = await databaseExists(creditCardDatabasePath);
 

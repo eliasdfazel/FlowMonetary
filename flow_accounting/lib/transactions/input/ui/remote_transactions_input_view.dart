@@ -2379,7 +2379,7 @@ class _RemoteTransactionsInputViewState extends State<RemoteTransactionsInputVie
 
     String databaseDirectory = await getDatabasesPath();
 
-    String customerDatabasePath = "${databaseDirectory}/${CustomersDatabaseInputs.customersDatabase}";
+    String customerDatabasePath = "${databaseDirectory}/${CustomersDatabaseInputs.customersDatabase()}";
 
     bool customerDatabaseExist = await databaseExists(customerDatabasePath);
 
@@ -2438,7 +2438,7 @@ class _RemoteTransactionsInputViewState extends State<RemoteTransactionsInputVie
 
     String databaseDirectory = await getDatabasesPath();
 
-    String creditCardDatabasePath = "${databaseDirectory}/${CreditCardsDatabaseInputs.creditCardDatabase}";
+    String creditCardDatabasePath = "${databaseDirectory}/${CreditCardsDatabaseInputs.creditCardDatabase()}";
 
     bool creditCardDatabaseExist = await databaseExists(creditCardDatabasePath);
 
@@ -2465,7 +2465,7 @@ class _RemoteTransactionsInputViewState extends State<RemoteTransactionsInputVie
 
       String databaseDirectory = await getDatabasesPath();
 
-      String creditCardDatabasePath = "${databaseDirectory}/${CreditCardsDatabaseInputs.creditCardDatabase}";
+      String creditCardDatabasePath = "${databaseDirectory}/${CreditCardsDatabaseInputs.creditCardDatabase()}";
 
       bool creditCardDatabaseExist = await databaseExists(creditCardDatabasePath);
 
@@ -2501,7 +2501,7 @@ class _RemoteTransactionsInputViewState extends State<RemoteTransactionsInputVie
 
       String databaseDirectory = await getDatabasesPath();
 
-      String creditCardDatabasePath = "${databaseDirectory}/${CreditCardsDatabaseInputs.creditCardDatabase}";
+      String creditCardDatabasePath = "${databaseDirectory}/${CreditCardsDatabaseInputs.creditCardDatabase()}";
 
       bool creditCardDatabaseExist = await databaseExists(creditCardDatabasePath);
 

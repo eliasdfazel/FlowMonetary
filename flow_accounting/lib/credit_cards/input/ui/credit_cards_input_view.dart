@@ -1428,7 +1428,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
 
     String databaseDirectory = await getDatabasesPath();
 
-    String creditCardDatabasePath = "${databaseDirectory}/${CreditCardsDatabaseInputs.creditCardDatabase}";
+    String creditCardDatabasePath = "${databaseDirectory}/${CreditCardsDatabaseInputs.creditCardDatabase()}";
 
     bool creditCardDatabaseExist = await databaseExists(creditCardDatabasePath);
 
@@ -1515,7 +1515,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
 
     String databaseDirectory = await getDatabasesPath();
 
-    String transactionDatabasePath = "${databaseDirectory}/${TransactionsDatabaseInputs.transactionsDatabase}";
+    String transactionDatabasePath = "${databaseDirectory}/${TransactionsDatabaseInputs.transactionsDatabase()}";
 
     bool transactionDatabaseExist = await databaseExists(transactionDatabasePath);
 
