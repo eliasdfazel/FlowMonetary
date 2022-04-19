@@ -69,6 +69,8 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
   TextEditingController controllerProductEachPrice = TextEditingController();
   TextEditingController controllerProductDiscount = TextEditingController();
 
+  TextEditingController controllerShippingExpenses = TextEditingController();
+
   TextEditingController controllerProductTax = TextEditingController();
 
   TextEditingController controllerPaidBy = TextEditingController();
@@ -150,6 +152,8 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
     controllerProductPrice.text = widget.buyInvoicesData?.boughtProductPrice == null ? "" : (widget.buyInvoicesData?.boughtProductPrice)!;
     controllerProductEachPrice.text = widget.buyInvoicesData?.boughtProductEachPrice == null ? "" : (widget.buyInvoicesData?.boughtProductEachPrice)!;
     controllerProductDiscount.text = widget.buyInvoicesData?.boughtProductPriceDiscount == null ? "" : (widget.buyInvoicesData?.boughtProductPriceDiscount)!;
+
+    controllerShippingExpenses.text = widget.buyInvoicesData?.productShippingExpenses == null ? "" : (widget.buyInvoicesData?.productShippingExpenses)!;
 
     controllerProductTax.text = widget.buyInvoicesData?.productTax.replaceAll("%", "") == null ? "" : (widget.buyInvoicesData?.productTax)!.replaceAll("%", "");
 
@@ -2259,6 +2263,8 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                         boughtProductPrice: controllerProductPrice.text.isEmpty ? "0" : controllerProductPrice.text,
                                         boughtProductEachPrice: controllerProductEachPrice.text.isEmpty ? "0" : controllerProductEachPrice.text,
                                         boughtProductPriceDiscount: controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text,
+
+                                        productShippingExpenses: controllerShippingExpenses.text.isEmpty ? "0" : controllerShippingExpenses.text,
 
                                         productTax: controllerProductTax.text.isEmpty ? "0%" : "${controllerProductTax.text}%",
 
