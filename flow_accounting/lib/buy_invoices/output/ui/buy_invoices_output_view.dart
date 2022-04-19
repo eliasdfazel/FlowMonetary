@@ -451,6 +451,19 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
             label: StringsResources.invoicesProduct(),
             autoClose: true,
           ),
+          SlidableAction(
+            flex: 1,
+            onPressed: (BuildContext context) async {
+
+              returningInvoicesProcess();
+
+            },
+            backgroundColor: Colors.transparent,
+            foregroundColor: ColorsResources.greenGray,
+            icon: Icons.shopping_bag_rounded,
+            label: StringsResources.returnInvoice(),
+            autoClose: true,
+          ),
         ],
       ),
       child: Padding(
@@ -833,6 +846,12 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
       });
 
     }
+
+  }
+
+  void returningInvoicesProcess() {
+
+
 
   }
 

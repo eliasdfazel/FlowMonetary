@@ -715,6 +715,11 @@ class StringsResources {
     return "نوع فاکتور";
   }
 
+  static String returnInvoice() {
+
+    return "مرجوع کردن";
+  }
+
   static String shippingExpenses() {
 
     return "هزینه حمل و نقل";
