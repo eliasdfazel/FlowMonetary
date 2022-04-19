@@ -36,6 +36,8 @@ class SellInvoicesData {
   String soldProductEachPrice = "0";
   String soldProductPriceDiscount = "0";
 
+  final String productShippingExpenses;
+
   final String productTax;
 
   final String paidTo;
@@ -69,6 +71,8 @@ class SellInvoicesData {
     required this.soldProductPrice,
     required this.soldProductEachPrice,
     required this.soldProductPriceDiscount,
+
+    required this.productShippingExpenses,
 
     required this.productTax,
 
@@ -105,6 +109,8 @@ class SellInvoicesData {
       'soldProductPrice': soldProductPrice,
       'soldProductEachPrice': soldProductEachPrice,
       'soldProductPriceDiscount': soldProductPriceDiscount,
+
+      'productShippingExpenses': productShippingExpenses,
 
       'productTax': productTax,
 
@@ -143,6 +149,8 @@ class SellInvoicesData {
         'soldProductPrice: $soldProductPrice,'
         'soldProductEachPrice: $soldProductEachPrice,'
         'soldProductPriceDiscount: $soldProductPriceDiscount,'
+
+        'productShippingExpenses: $productShippingExpenses,'
 
         'productTax: $productTax,'
 

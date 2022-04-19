@@ -52,6 +52,8 @@ class BuyInvoicesDatabaseQueries {
         boughtProductEachPrice: maps[i]['boughtProductEachPrice'],
         boughtProductPriceDiscount: maps[i]['boughtProductPriceDiscount'],
 
+        productShippingExpenses: maps[i]['productShippingExpenses'],
+
         productTax: maps[i]['productTax'],
 
         paidBy: maps[i]['paidBy'],

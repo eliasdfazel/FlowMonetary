@@ -36,6 +36,8 @@ class BuyInvoicesData {
   String boughtProductEachPrice = "0";
   String boughtProductPriceDiscount = "0";
 
+  final String productShippingExpenses;
+
   final String productTax;
 
   final String paidBy;
@@ -69,6 +71,8 @@ class BuyInvoicesData {
     required this.boughtProductPrice,
     required this.boughtProductEachPrice,
     required this.boughtProductPriceDiscount,
+
+    required this.productShippingExpenses,
 
     required this.productTax,
 
@@ -105,6 +109,8 @@ class BuyInvoicesData {
       'boughtProductPrice': boughtProductPrice,
       'boughtProductEachPrice': boughtProductEachPrice,
       'boughtProductPriceDiscount': boughtProductPriceDiscount,
+
+      'productShippingExpenses': productShippingExpenses,
 
       'productTax': productTax,
 
@@ -143,6 +149,8 @@ class BuyInvoicesData {
         'boughtProductPrice: $boughtProductPrice,'
         'boughtProductEachPrice: $boughtProductEachPrice,'
         'boughtProductPriceDiscount: $boughtProductPriceDiscount,'
+
+        'productShippingExpenses: $productShippingExpenses,'
 
         'productTax: $productTax,'
 
