@@ -1230,6 +1230,17 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                       SizedBox(
                         width: double.infinity,
                         height: 73,
+                        child: ListView(
+
+                        )
+                      ),
+                      const Divider(
+                        height: 13,
+                        color: Colors.transparent,
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 73,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [

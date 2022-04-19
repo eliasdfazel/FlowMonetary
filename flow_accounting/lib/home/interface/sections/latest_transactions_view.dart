@@ -94,7 +94,7 @@ class _LatestTransactionsView extends State<LatestTransactionsView> {
                   padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                   scrollDirection: Axis.horizontal,
                   children: transactionItem,
-                ),
+                )
               ),
             )
           ],
