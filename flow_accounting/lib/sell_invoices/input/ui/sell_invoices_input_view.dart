@@ -67,6 +67,12 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
   TextEditingController controllerProductQuantity = TextEditingController();
   TextEditingController controllerProductQuantityType = TextEditingController();
 
+  TextEditingController controllerAllProductId = TextEditingController();
+  TextEditingController controllerAllProductName = TextEditingController();
+  TextEditingController controllerAllProductQuantity = TextEditingController();
+  TextEditingController controllerAllProductQuantityType = TextEditingController();
+  TextEditingController controllerAllProductEachPrice = TextEditingController();
+
   TextEditingController controllerProductPrice = TextEditingController();
   TextEditingController controllerProductEachPrice = TextEditingController();
   TextEditingController controllerProductDiscount = TextEditingController();
@@ -2373,6 +2379,8 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
                                         companyDigitalSignature: companyDigitalSignature,
 
+                                        invoiceReturned: "",
+
                                         colorTag: colorSelectorView.selectedColor.value
                                     );
 
@@ -2760,6 +2768,42 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
   Future<List<String>> getQuantityTypes() async {
 
     return StringsResources.quantityTypesList();
+  }
+
+}
+
+class SelectedInvoiceProductsView extends StatefulWidget {
+
+  List<Widget> selectedInputProductsItem;
+
+  SelectedInvoiceProductsView({Key? key, required this.selectedInputProductsItem}) : super(key: key);
+
+  @override
+  _SelectedInvoiceProductsViewState createState() => _SelectedInvoiceProductsViewState();
+}
+class _SelectedInvoiceProductsViewState extends State<SelectedInvoiceProductsView> {
+  @override
+  Widget build(BuildContext context) {
+    debugPrint("Selected Products Number -> ${widget.selectedInputProductsItem.length}");
+
+    setState(() {
+
+      widget.selectedInputProductsItem;
+
+    });
+
+    return SizedBox(
+        width: double.infinity,
+        height: 57,
+        child: Container(
+          child: ListView(
+            physics: const BouncingScrollPhysics(),
+            padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+            scrollDirection: Axis.horizontal,
+            children: widget.selectedInputProductsItem,
+          ),
+        )
+    );
   }
 
 }
