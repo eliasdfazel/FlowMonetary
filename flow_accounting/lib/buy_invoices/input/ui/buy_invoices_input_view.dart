@@ -2849,10 +2849,20 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
       ProductsDatabaseQueries productsDatabaseQueries = ProductsDatabaseQueries();
 
+      controllerAllProductId.text = widget.buyInvoicesData!.boughtProductId;
       var allIds = widget.buyInvoicesData!.boughtProductId.split(",");
+
+      controllerAllProductName.text = widget.buyInvoicesData!.boughtProductName;
       var allNames = widget.buyInvoicesData!.boughtProductName.split(",");
+
+      controllerAllProductQuantity.text = widget.buyInvoicesData!.boughtProductQuantity;
       var allQuantities = widget.buyInvoicesData!.boughtProductQuantity.split(",");
+
+
+      controllerAllProductQuantityType.text = widget.buyInvoicesData!.productQuantityType;
       var allQuantitiesTypes = widget.buyInvoicesData!.productQuantityType.split(",");
+
+      controllerAllProductEachPrice.text = widget.buyInvoicesData!.boughtProductEachPrice;
       var allEachPrice = widget.buyInvoicesData!.boughtProductEachPrice.split(",");
 
       var index = 0;
@@ -2929,13 +2939,9 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                   controllerAllProductEachPrice.text.replaceAll((productsData.productPrice + ","), "");
 
                   /* Start - Calculate Invoice Price */
+                  int previousInvoicePrice = int.parse(controllerInvoicePrice.text.replaceAll(",", ""));
 
-                  /*
-                   *
-                   *
-                   *
-                   */
-
+                  controllerInvoicePrice.text = (previousInvoicePrice - int.parse(productsData.productPrice.replaceAll(",", "replace"))).toString();
                   /* End - Calculate Invoice Price */
 
                   updateSelectedProductsList(selectedProductsData);
