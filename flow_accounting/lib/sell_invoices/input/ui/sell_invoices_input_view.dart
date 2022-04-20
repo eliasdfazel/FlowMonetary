@@ -2494,66 +2494,6 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
                                   }
 
-                                  if (controllerProductName.text.isEmpty) {
-
-                                    setState(() {
-
-                                      warningNoticeProductName = StringsResources.errorText();
-
-                                    });
-
-                                    noError = false;
-
-                                  }
-
-                                  if (controllerProductQuantity.text.isEmpty) {
-
-                                    setState(() {
-
-                                      warningNoticeProductQuantity = StringsResources.errorText();
-
-                                    });
-
-                                    noError = false;
-
-                                  }
-
-                                  if (controllerInvoicePrice.text.isEmpty) {
-
-                                    setState(() {
-
-                                      warningProductPrice = StringsResources.errorText();
-
-                                    });
-
-                                    noError = false;
-
-                                  }
-
-                                  if (controllerProductEachPrice.text.isEmpty) {
-
-                                    setState(() {
-
-                                      warningProductEachPrice = StringsResources.errorText();
-
-                                    });
-
-                                    noError = false;
-
-                                  }
-
-                                  if (controllerProductDiscount.text.isEmpty) {
-
-                                    setState(() {
-
-                                      warningProductDiscount = StringsResources.errorText();
-
-                                    });
-
-                                    noError = false;
-
-                                  }
-
                                   if (controllerPaidTo.text.isEmpty) {
 
                                     setState(() {

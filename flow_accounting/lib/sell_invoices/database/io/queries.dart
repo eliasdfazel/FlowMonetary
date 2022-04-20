@@ -56,7 +56,7 @@ class SellInvoicesDatabaseQueries {
 
         productTax: maps[i]['productTax'],
 
-        paidTo: maps[i]['paidBy'],
+        paidTo: maps[i]['paidTo'],
 
         soldTo: maps[i]['soldTo'],
 
