@@ -133,6 +133,8 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
     ),
   );
 
+  Widget selectedInvoiceProductsView = Container();
+
   @override
   void dispose() {
 
@@ -313,6 +315,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
   @override
   Widget build(BuildContext context) {
+
 
     return MaterialApp (
       debugShowCheckedModeBanner: false,
@@ -1022,14 +1025,14 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                             controllerAllProductQuantityType.text += controllerProductQuantityType.text + ",";
                                             controllerAllProductEachPrice.text += controllerProductEachPrice.text + ",";
 
-                                            controllerProductName.text = "";
-                                            controllerProductQuantity.text = "";
-                                            controllerProductQuantityType.text = "";
-                                            controllerProductEachPrice.text = "";
-                                            controllerProductTax.text = "";
-                                            controllerProductDiscount.text = "";
+                                            // controllerProductName.text = "";
+                                            // controllerProductQuantity.text = "";
+                                            // controllerProductQuantityType.text = "";
+                                            // controllerProductEachPrice.text = "";
+                                            // controllerProductTax.text = "";
+                                            // controllerProductDiscount.text = "";
 
-                                            updateSelectedProductsList();
+                                            updateSelectedProductsList(selectedProductsData);
 
                                           }
 
@@ -1688,16 +1691,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                         height: 3,
                         color: Colors.transparent,
                       ),
-                      SizedBox(
-                          width: double.infinity,
-                          height: 57,
-                          child: ListView(
-                            physics: const BouncingScrollPhysics(),
-                            padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
-                            scrollDirection: Axis.horizontal,
-                            children: selectedProductItem,
-                          )
-                      ),
+                      selectedInvoiceProductsView,
                       const Divider(
                         height: 13,
                         color: Colors.transparent,
@@ -2819,17 +2813,23 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
     return allProducts;
   }
 
-  void updateSelectedProductsList() async {
+  void updateSelectedProductsList(List<ProductsData> inputSelectedProduct) async {
 
-    for(var aProduct in selectedProductsData) {
+    selectedProductItem.clear();
+
+    for(var aProduct in inputSelectedProduct) {
+      debugPrint("Product Added To Invoice -> ${aProduct.productName}");
 
       selectedProductItem.add(selectedProductView(aProduct));
 
     }
 
-    setState(() {
+    selectedInvoiceProductsView = SelectedInvoiceProductsView(selectedInputProductsItem: selectedProductItem);
 
-      selectedProductItem;
+    setState(() {
+      debugPrint("Invoices Products Updated");
+
+      selectedInvoiceProductsView;
 
     });
 
@@ -2838,7 +2838,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
   Widget selectedProductView(ProductsData productsData) {
 
     return Container(
-        width: double.infinity,
+        width: 173,
         height: 37,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(51),
@@ -2860,7 +2860,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                   controllerAllProductQuantityType.text.replaceAll((productsData.productQuantityType + ","), "");
                   controllerAllProductEachPrice.text.replaceAll((productsData.productPrice + ","), "");
 
-                  updateSelectedProductsList();
+                  updateSelectedProductsList(selectedProductsData);
 
                 },
                 child: Align(
@@ -3105,6 +3105,37 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
   Future<List<String>> getQuantityTypes() async {
 
     return StringsResources.quantityTypesList();
+  }
+
+}
+
+class SelectedInvoiceProductsView extends StatefulWidget {
+
+  List<Widget> selectedInputProductsItem;
+
+  SelectedInvoiceProductsView({Key? key, required this.selectedInputProductsItem}) : super(key: key);
+
+  @override
+  _SelectedInvoiceProductsViewState createState() => _SelectedInvoiceProductsViewState();
+}
+
+class _SelectedInvoiceProductsViewState extends State<SelectedInvoiceProductsView> {
+  @override
+  Widget build(BuildContext context) {
+    debugPrint("Selected Products Number -> ${widget.selectedInputProductsItem.length}");
+
+    return SizedBox(
+        width: double.infinity,
+        height: 57,
+        child: Container(
+          child: ListView(
+            physics: const BouncingScrollPhysics(),
+            padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+            scrollDirection: Axis.horizontal,
+            children: widget.selectedInputProductsItem,
+          ),
+        )
+    );
   }
 
 }
