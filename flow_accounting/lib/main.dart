@@ -159,12 +159,6 @@ class _WelcomePageViewState extends State<WelcomePage> {
         if (WelcomePage.Authenticated) {
           debugPrint("Authenticated Successfully");
 
-          setState(() {
-
-            contentView = FlowDashboard();
-
-          });
-
         } else {
           debugPrint("Authentication Failed");
 
@@ -294,6 +288,7 @@ class _WelcomePageViewState extends State<WelcomePage> {
 
         WelcomePage.Authenticated = true;
 
+
       }
 
     } on Exception {
@@ -307,6 +302,12 @@ class _WelcomePageViewState extends State<WelcomePage> {
     setState(() {
 
       signedInUser;
+
+      if (WelcomePage.Authenticated) {
+
+        contentView = FlowDashboard();
+
+      }
 
     });
 

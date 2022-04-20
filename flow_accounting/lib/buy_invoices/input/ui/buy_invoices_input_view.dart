@@ -879,7 +879,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                         splashFactory: InkRipple.splashFactory,
                                         onTap: () async {
 
-                                          bool noError = false;
+                                          bool noError = true;
 
                                           if (controllerProductName.text.isEmpty) {
 
@@ -988,12 +988,17 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                                 debugPrint("Invoice | Selected Product Exists");
 
                                               } on Exception {
+                                                debugPrint("Invoice | Selected Product Not Exists");
+
+                                                print(">>>>>>> exception");
 
                                                 productExist = false;
 
                                               }
 
                                             }
+
+                                            print(">>>>>>> ${productData}");
 
                                             if (!productExist) {
                                               debugPrint("Invoice | New Product Added");
