@@ -601,37 +601,23 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
                             height: 51,
                             width: double.infinity,
                             child: Padding(
-                              padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
+                              padding: const EdgeInsets.fromLTRB(31, 0, 19, 0),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Expanded(
                                     flex: 1,
                                     child: Align(
-                                        alignment: Alignment.center,
+                                        alignment: Alignment.centerRight,
                                         child: Text(
-                                          buyInvoicesData.boughtProductName,
-                                          textAlign: TextAlign.center,
+                                          buyInvoicesData.buyInvoiceDescription,
+                                          textAlign: TextAlign.right,
                                           style: TextStyle(
                                               color: ColorsResources.dark.withOpacity(0.537),
                                               fontSize: 15
                                           ),
                                         )
                                     )
-                                  ),
-                                  Expanded(
-                                      flex: 1,
-                                      child: Align(
-                                          alignment: Alignment.center,
-                                          child: Text(
-                                            buyInvoicesData.boughtProductQuantity,
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                                color: ColorsResources.dark.withOpacity(0.537),
-                                                fontSize: 15
-                                            ),
-                                          )
-                                      )
                                   ),
                                 ],
                               )
