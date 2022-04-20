@@ -1022,12 +1022,12 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                             controllerAllProductQuantityType.text += controllerProductQuantityType.text + ",";
                                             controllerAllProductEachPrice.text += controllerProductEachPrice.text + ",";
 
-                                            // controllerProductName.text = "";
-                                            // controllerProductQuantity.text = "";
-                                            // controllerProductQuantityType.text = "";
-                                            // controllerProductEachPrice.text = "";
-                                            // controllerProductTax.text = "";
-                                            // controllerProductDiscount.text = "";
+                                            controllerProductName.text = "";
+                                            controllerProductQuantity.text = "";
+                                            controllerProductQuantityType.text = "";
+                                            controllerProductEachPrice.text = "";
+                                            controllerProductTax.text = "";
+                                            controllerProductDiscount.text = "";
 
                                             updateSelectedProductsList();
 
