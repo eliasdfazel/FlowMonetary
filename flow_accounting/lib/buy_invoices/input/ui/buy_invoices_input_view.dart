@@ -2840,6 +2840,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
     return Container(
         width: 173,
         height: 37,
+        margin: EdgeInsets.fromLTRB(0, 0, 5, 0),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(51),
             color: ColorsResources.light
@@ -2848,7 +2849,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Expanded(
-              flex: 1,
+              flex: 2,
               child: InkWell(
                 onTap: () {
 
@@ -2863,20 +2864,23 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                   updateSelectedProductsList(selectedProductsData);
 
                 },
-                child: Align(
-                    alignment: AlignmentDirectional.center,
-                    child: Icon(
-                      Icons.delete_rounded,
-                      size: 19,
-                      color: ColorsResources.darkTransparent,
-                    )
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(3, 0, 3, 0),
+                  child: Align(
+                      alignment: AlignmentDirectional.center,
+                      child: Icon(
+                        Icons.delete_rounded,
+                        size: 17,
+                        color: ColorsResources.darkTransparent,
+                      )
+                  )
                 )
               )
             ),
             Expanded(
               flex: 11,
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
+                padding: const EdgeInsets.fromLTRB(3, 0, 3, 0),
                 child: Directionality(
                   textDirection: TextDirection.rtl,
                   child: Text(
@@ -2899,7 +2903,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                         color: ColorsResources.light
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.fromLTRB(3, 3, 3, 3),
+                      padding: const EdgeInsets.fromLTRB(0, 3, 7, 3),
                       child: ClipRRect(
                           borderRadius: BorderRadius.circular(51),
                           child: Image.file(
@@ -3123,6 +3127,12 @@ class _SelectedInvoiceProductsViewState extends State<SelectedInvoiceProductsVie
   @override
   Widget build(BuildContext context) {
     debugPrint("Selected Products Number -> ${widget.selectedInputProductsItem.length}");
+
+    setState(() {
+
+      widget.selectedInputProductsItem;
+
+    });
 
     return SizedBox(
         width: double.infinity,
