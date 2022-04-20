@@ -173,6 +173,8 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
     prepareAllImagesCheckpoint();
 
+    prepareSelectedProducts();
+
     super.initState();
 
     BackButtonInterceptor.add(aInterceptor);
@@ -2832,6 +2834,45 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
       selectedInvoiceProductsView;
 
     });
+
+  }
+
+  void prepareSelectedProducts() async {
+
+    List<ProductsData> allProducts = [];
+
+    String databaseDirectory = await getDatabasesPath();
+
+    String productDatabasePath = "${databaseDirectory}/${ProductsDatabaseInputs.productsDatabase()}";
+
+    bool productsDatabaseExist = await databaseExists(productDatabasePath);
+
+    if (productsDatabaseExist) {
+
+      ProductsDatabaseQueries productsDatabaseQueries = ProductsDatabaseQueries();
+
+      if (widget.buyInvoicesData != null) {
+
+        widget.buyInvoicesData!.boughtProductId.split(",").forEach((element) async {
+
+          var aProduct = await productsDatabaseQueries.querySpecificProductById(element, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+          allProducts.add(aProduct);
+
+        });
+
+        selectedInvoiceProductsView = SelectedInvoiceProductsView(selectedInputProductsItem: selectedProductItem);
+
+        setState(() {
+          debugPrint("Invoices Products Retrieved");
+
+          selectedInvoiceProductsView;
+
+        });
+
+      }
+
+    }
 
   }
 
