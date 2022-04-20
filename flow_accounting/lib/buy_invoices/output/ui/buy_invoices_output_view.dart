@@ -862,6 +862,11 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
 
   void returningInvoicesProcess(BuyInvoicesData buyInvoicesData) async {
 
+    var buyInvoicesDatabaseInputs = BuyInvoicesDatabaseInputs();
+
+    buyInvoicesData.invoiceReturned = BuyInvoicesData.BuyInvoice_Returned;
+
+    buyInvoicesDatabaseInputs.updateInvoiceData(buyInvoicesData, BuyInvoicesDatabaseInputs.databaseTableName, UserInformation.UserId);
 
 
     String databaseDirectory = await getDatabasesPath();
