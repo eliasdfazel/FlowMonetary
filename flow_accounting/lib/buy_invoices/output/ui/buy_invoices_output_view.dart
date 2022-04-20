@@ -463,7 +463,7 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
             flex: 1,
             onPressed: (BuildContext context) async {
 
-              returningInvoicesProcess();
+              returningInvoicesProcess(buyInvoicesData);
 
             },
             backgroundColor: Colors.transparent,
