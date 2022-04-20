@@ -100,7 +100,7 @@ class ProductsDatabaseQueries {
     );
   }
 
-  Future<ProductsData> querySpecificProductByName(
+  Future<ProductsData?> querySpecificProductByName(
       String productName,
       String tableName, String usernameId) async {
 
@@ -119,29 +119,37 @@ class ProductsDatabaseQueries {
       whereArgs: [productName],
     );
 
-    return ProductsData(
-      id: databaseContents[0]['id'] as int,
+    ProductsData? queriedProduct = null;
 
-      productImageUrl: databaseContents[0]['productImageUrl'].toString(),
+    if (databaseContents.isNotEmpty) {
 
-      productName: databaseContents[0]['productName'].toString(),
-      productDescription: databaseContents[0]['productDescription'].toString(),
+      queriedProduct = ProductsData(
+        id: databaseContents[0]['id'] as int,
 
-      productCategory: databaseContents[0]['productCategory'].toString(),
+        productImageUrl: databaseContents[0]['productImageUrl'].toString(),
 
-      productBrand: databaseContents[0]['productBrand'].toString(),
-      productBrandLogoUrl: databaseContents[0]['productBrandLogoUrl'].toString(),
+        productName: databaseContents[0]['productName'].toString(),
+        productDescription: databaseContents[0]['productDescription'].toString(),
 
-      productPrice: databaseContents[0]['productPrice'].toString(),
-      productProfitPercent: databaseContents[0]['productProfitPercent'].toString(),
+        productCategory: databaseContents[0]['productCategory'].toString(),
 
-      productTax: databaseContents[0]['productTax'].toString(),
+        productBrand: databaseContents[0]['productBrand'].toString(),
+        productBrandLogoUrl: databaseContents[0]['productBrandLogoUrl'].toString(),
 
-      productQuantity: int.parse(databaseContents[0]['productQuantity'].toString()),
-      productQuantityType: databaseContents[0]['productQuantityType'].toString(),
+        productPrice: databaseContents[0]['productPrice'].toString(),
+        productProfitPercent: databaseContents[0]['productProfitPercent'].toString(),
 
-      colorTag: int.parse(databaseContents[0]['colorTag'].toString()),
-    );
+        productTax: databaseContents[0]['productTax'].toString(),
+
+        productQuantity: int.parse(databaseContents[0]['productQuantity'].toString()),
+        productQuantityType: databaseContents[0]['productQuantityType'].toString(),
+
+        colorTag: int.parse(databaseContents[0]['colorTag'].toString()),
+      );
+
+    }
+
+    return queriedProduct;
   }
 
   Future<int> queryDeleteProduct(int id,

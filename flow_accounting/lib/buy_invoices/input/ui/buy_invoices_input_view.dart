@@ -979,18 +979,24 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
                                               try {
 
-                                                productData =  await productQueries.querySpecificProductByName(controllerProductName.text, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+                                                var queriedProduct = await productQueries.querySpecificProductByName(controllerProductName.text, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
-                                                print(">>>>>>> ${productData}");
+                                                if (queriedProduct != null) {
 
-                                                productExist = true;
+                                                  productData = queriedProduct;
 
-                                                debugPrint("Invoice | Selected Product Exists");
+                                                  productExist = true;
+
+                                                  debugPrint("Invoice | Selected Product Exists");
+
+                                                } else {
+
+                                                  productExist = false;
+
+                                                }
 
                                               } on Exception {
                                                 debugPrint("Invoice | Selected Product Not Exists");
-
-                                                print(">>>>>>> exception");
 
                                                 productExist = false;
 
@@ -998,8 +1004,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
                                             }
 
-                                            print(">>>>>>> ${productData}");
-
+                                            debugPrint("Product Exist: ${productExist}");
                                             if (!productExist) {
                                               debugPrint("Invoice | New Product Added");
 
@@ -1017,10 +1022,12 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                             controllerAllProductQuantityType.text += controllerProductQuantityType.text + ",";
                                             controllerAllProductEachPrice.text += controllerProductEachPrice.text + ",";
 
-                                            controllerProductName.text = "";
-                                            controllerProductQuantity.text = "";
-                                            controllerProductQuantityType.text = "";
-                                            controllerProductEachPrice.text = "";
+                                            // controllerProductName.text = "";
+                                            // controllerProductQuantity.text = "";
+                                            // controllerProductQuantityType.text = "";
+                                            // controllerProductEachPrice.text = "";
+                                            // controllerProductTax.text = "";
+                                            // controllerProductDiscount.text = "";
 
                                             updateSelectedProductsList();
 
