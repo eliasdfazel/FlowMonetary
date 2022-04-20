@@ -12,7 +12,6 @@ import 'package:flow_accounting/credit_cards/database/io/inputs.dart';
 import 'package:flow_accounting/credit_cards/database/io/queries.dart';
 import 'package:flow_accounting/credit_cards/database/structures/tables_structure.dart';
 import 'package:flow_accounting/home/interface/sections/latest_transactions_view.dart';
-import 'package:flow_accounting/main.dart';
 import 'package:flow_accounting/products/database/io/inputs.dart';
 import 'package:flow_accounting/products/database/io/queries.dart';
 import 'package:flow_accounting/products/database/structures/tables_structure.dart';
@@ -27,8 +26,6 @@ import 'package:flow_accounting/utils/navigations/navigations.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
-import 'package:flutter_phoenix/flutter_phoenix.dart';
-import 'package:local_auth/auth_strings.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -61,35 +58,6 @@ class FlowDashboardState extends State<FlowDashboard> {
     retrieveLatestTransactions();
 
     super.initState();
-
-    WidgetsBinding.instance?.addObserver(
-      LifecycleEventHandler(
-          resumeCallBack: () async => (() {
-            debugPrint("Dashboard Resumed");
-
-            authenticationCheckpoint();
-
-          }),
-          pauseCallBack: ()  async => (() {
-            debugPrint("Dashboard Paused");
-
-
-
-          })
-      )
-    );
-
-    if (!kDebugMode) {
-
-      Future.delayed(Duration(seconds: 73), () {
-        debugPrint("Authentication Reset");
-
-        WelcomePage.Authenticated = false;
-
-      });
-
-    }
-
   }
 
   @override
@@ -508,44 +476,6 @@ class FlowDashboardState extends State<FlowDashboard> {
 
   }
 
-  void authenticationCheckpoint() async {
-
-    if (!kDebugMode) {
-
-      if (!WelcomePage.Authenticated) {
-
-        WelcomePage.Authenticated = await localAuthentication.authenticate(
-            localizedReason: StringsResources.securityNotice(),
-            stickyAuth: false,
-            useErrorDialogs: false,
-            androidAuthStrings: AndroidAuthMessages(
-                cancelButton: StringsResources.cancelText(),
-                goToSettingsButton: StringsResources.settingText(),
-                goToSettingsDescription: StringsResources.securityWarning()
-            ),
-            iOSAuthStrings: IOSAuthMessages(
-                cancelButton: StringsResources.cancelText(),
-                goToSettingsButton: StringsResources.settingText(),
-                goToSettingsDescription: StringsResources.securityWarning()
-            ));
-        debugPrint("Authentication Process Started");
-
-        if (WelcomePage.Authenticated) {
-          debugPrint("Authenticated Successfully");
-
-        } else {
-          debugPrint("Authentication Failed");
-
-          Phoenix.rebirth(context);
-
-        }
-
-      }
-
-    }
-
-  }
-
   void invokeBarcodeScanner() async {
 
     String barcodeScanResult = await FlutterBarcodeScanner.scanBarcode(
@@ -575,33 +505,6 @@ class FlowDashboardState extends State<FlowDashboard> {
 
   }
 
-}
-
-class LifecycleEventHandler extends WidgetsBindingObserver {
-
-  final AsyncCallback resumeCallBack;
-  final AsyncCallback pauseCallBack;
-
-  LifecycleEventHandler({
-    required this.resumeCallBack,
-    required this.pauseCallBack,
-  });
-
-  @override
-  Future<void> didChangeAppLifecycleState(AppLifecycleState state) async {
-    switch (state) {
-      case AppLifecycleState.resumed:
-        await resumeCallBack();
-        break;
-      case AppLifecycleState.inactive:
-      case AppLifecycleState.paused:
-        await pauseCallBack();
-        break;
-      case AppLifecycleState.detached:
-
-        break;
-    }
-  }
 }
 
 class UpdatedData {

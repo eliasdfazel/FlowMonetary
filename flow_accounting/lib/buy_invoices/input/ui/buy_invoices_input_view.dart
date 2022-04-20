@@ -875,7 +875,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                       shadowColor: Colors.transparent,
                                       color: Colors.transparent,
                                       child: InkWell(
-                                        splashColor: ColorsResources.primaryColor.withOpacity(0.3),
+                                        splashColor: ColorsResources.blue.withOpacity(0.91),
                                         splashFactory: InkRipple.splashFactory,
                                         onTap: () async {
 
@@ -965,8 +965,44 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                                 colorTag: ColorsResources.white.value
                                             );
 
-                                            var databaseInputs = ProductsDatabaseInputs();
-                                            await databaseInputs.insertProductData(productData, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+                                            bool productExist = false;
+
+                                            var productQueries = ProductsDatabaseQueries();
+
+                                            String databaseDirectory = await getDatabasesPath();
+
+                                            String productDatabasePath = "${databaseDirectory}/${ProductsDatabaseInputs.productsDatabase()}";
+
+                                            bool productsDatabaseExist = await databaseExists(productDatabasePath);
+
+                                            if (productsDatabaseExist) {
+
+                                              try {
+
+                                                productData =  await productQueries.querySpecificProductByName(controllerProductName.text, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+                                                print(">>>>>>> ${productData}");
+
+                                                productExist = true;
+
+                                                debugPrint("Invoice | Selected Product Exists");
+
+                                              } on Exception {
+
+                                                productExist = false;
+
+                                              }
+
+                                            }
+
+                                            if (!productExist) {
+                                              debugPrint("Invoice | New Product Added");
+
+                                              var databaseInputs = ProductsDatabaseInputs();
+
+                                              databaseInputs.insertProductData(productData, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+                                            }
 
                                             selectedProductsData.add(productData);
 

@@ -22,6 +22,7 @@ import io.flutter.plugins.GeneratedPluginRegistrant
 class MainActivity: FlutterFragmentActivity/*FlutterActivity*/() {
 
     override fun onCreate(bundle: Bundle?) {
+        super.onCreate(bundle)
 
         window.addFlags(LayoutParams.FLAG_SECURE)
 
@@ -30,8 +31,6 @@ class MainActivity: FlutterFragmentActivity/*FlutterActivity*/() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             splashScreen.setOnExitAnimationListener { splashScreenView -> splashScreenView.remove() }
         }
-
-        super.onCreate(bundle)
 
     }
 

@@ -119,6 +119,34 @@ class _WelcomePageViewState extends State<WelcomePage> {
       const ShortcutItem(type: QuickActionsType.ShareIt_Action, localizedTitle: 'به اشتراک بگذارید', icon: 'share_icon')
     ]);
 
+    WidgetsBinding.instance?.addObserver(
+        LifecycleEventHandler(
+            resumeCallBack: () async => (() {
+              debugPrint("Dashboard Resumed");
+
+              authenticationCheckpoint();
+
+            }),
+            pauseCallBack: ()  async => (() {
+              debugPrint("Dashboard Paused");
+
+
+
+            })
+        )
+    );
+
+    if (!kDebugMode) {
+
+      Future.delayed(Duration(seconds: 73), () {
+        debugPrint("Authentication Reset");
+
+        WelcomePage.Authenticated = false;
+
+      });
+
+    }
+
   }
 
   @override
@@ -325,6 +353,44 @@ class _WelcomePageViewState extends State<WelcomePage> {
 
   }
 
+  void authenticationCheckpoint() async {
+
+    if (securityCheckpoint) {
+
+      if (!WelcomePage.Authenticated) {
+
+        WelcomePage.Authenticated = await localAuthentication.authenticate(
+            localizedReason: StringsResources.securityNotice(),
+            stickyAuth: false,
+            useErrorDialogs: false,
+            androidAuthStrings: AndroidAuthMessages(
+                cancelButton: StringsResources.cancelText(),
+                goToSettingsButton: StringsResources.settingText(),
+                goToSettingsDescription: StringsResources.securityWarning()
+            ),
+            iOSAuthStrings: IOSAuthMessages(
+                cancelButton: StringsResources.cancelText(),
+                goToSettingsButton: StringsResources.settingText(),
+                goToSettingsDescription: StringsResources.securityWarning()
+            ));
+        debugPrint("Authentication Process Started");
+
+        if (WelcomePage.Authenticated) {
+          debugPrint("Authenticated Successfully");
+
+        } else {
+          debugPrint("Authentication Failed");
+
+          Phoenix.rebirth(context);
+
+        }
+
+      }
+
+    }
+
+  }
+
 }
 
 class QuickActionsType {
@@ -334,4 +400,31 @@ class QuickActionsType {
   static const String SocialMedia_Action = "social_media";
   static const String ShareIt_Action = "share_it";
 
+}
+
+class LifecycleEventHandler extends WidgetsBindingObserver {
+
+  final AsyncCallback resumeCallBack;
+  final AsyncCallback pauseCallBack;
+
+  LifecycleEventHandler({
+    required this.resumeCallBack,
+    required this.pauseCallBack,
+  });
+
+  @override
+  Future<void> didChangeAppLifecycleState(AppLifecycleState state) async {
+    switch (state) {
+      case AppLifecycleState.resumed:
+        await resumeCallBack();
+        break;
+      case AppLifecycleState.inactive:
+      case AppLifecycleState.paused:
+        await pauseCallBack();
+        break;
+      case AppLifecycleState.detached:
+
+        break;
+    }
+  }
 }
