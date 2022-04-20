@@ -1308,6 +1308,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                         textFieldConfiguration: TextFieldConfiguration(
                                           controller: controllerTransactionSourceCard,
                                           autofocus: false,
+                                          textAlign: TextAlign.center,
                                           maxLines: 1,
                                           cursorColor: ColorsResources.primaryColor,
                                           keyboardType: TextInputType.number,
@@ -1431,6 +1432,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
                                           controller: controllerTransactionTargetCard,
                                           autofocus: false,
                                           maxLines: 1,
+                                          textAlign: TextAlign.center,
                                           cursorColor: ColorsResources.primaryColor,
                                           keyboardType: TextInputType.number,
                                           textInputAction: TextInputAction.next,

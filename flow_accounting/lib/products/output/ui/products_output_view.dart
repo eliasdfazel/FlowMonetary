@@ -446,7 +446,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
     String percentTax = productsData.productTax.replaceAll("%", "");
     double taxMargin = (sellingPriceWithProfit * int.parse(percentTax)) / 100;
 
-    double sellingPrice = sellingPriceWithProfit + taxMargin;
+    int sellingPrice = (sellingPriceWithProfit + taxMargin).round();
 
     return Slidable(
       closeOnScroll: true,

@@ -396,8 +396,6 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
 
   Widget outputItem(BuildContext context, BuyInvoicesData buyInvoicesData) {
 
-    Color budgetColorTag = Color(buyInvoicesData.colorTag);
-
     return Slidable(
       closeOnScroll: true,
       endActionPane: ActionPane(
@@ -471,7 +469,7 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
         child: PhysicalModel(
           color: ColorsResources.light,
           elevation: 7,
-          shadowColor: budgetColorTag.withOpacity(0.79),
+          shadowColor: Color(buyInvoicesData.colorTag).withOpacity(0.79),
           shape: BoxShape.rectangle,
           borderRadius: const BorderRadius.all(Radius.circular(17)),
           child: InkWell(
@@ -647,7 +645,7 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
                                 ),
                                 gradient: LinearGradient(
                                     colors: [
-                                      budgetColorTag.withOpacity(0.7),
+                                      Color(buyInvoicesData.colorTag).withOpacity(0.7),
                                       ColorsResources.light,
                                     ],
                                     begin: const FractionalOffset(0.0, 0.0),

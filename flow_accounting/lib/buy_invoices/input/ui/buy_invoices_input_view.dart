@@ -931,6 +931,16 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
                                           if (noError) {
 
+                                            // int completePrice = int.parse(controllerProductEachPrice.text.isEmpty ? "0" : controllerProductEachPrice.text.replaceAll(",", "")) * int.parse(controllerProductQuantity.text.isEmpty ? "0" : controllerProductQuantity.text);
+                                            //
+                                            // int taxAmount = ((completePrice * int.parse(controllerProductTax.text.isEmpty ? "0" : controllerProductTax.text)) / 100).round();
+                                            //
+                                            // int discountPrice = ((completePrice * int.parse(controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text)) / 100).round();
+                                            //
+                                            // int finalPrice = (completePrice + taxAmount) - discountPrice;
+                                            //
+                                            // controllerInvoicePrice.text = finalPrice.toString();
+
                                             ProductsData productData = ProductsData(
                                                 id: DateTime.now().millisecondsSinceEpoch,
 
@@ -1144,15 +1154,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
                                                     try {
 
-                                                      int completePrice = int.parse(controllerProductEachPrice.text.isEmpty ? "0" : controllerProductEachPrice.text.replaceAll(",", "")) * int.parse(controllerProductQuantity.text.isEmpty ? "0" : controllerProductQuantity.text);
 
-                                                      int taxAmount = ((completePrice * int.parse(controllerProductTax.text.isEmpty ? "0" : controllerProductTax.text)) / 100).round();
-
-                                                      int discountPrice = ((completePrice * int.parse(controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text)) / 100).round();
-
-                                                      int finalPrice = (completePrice + taxAmount) - discountPrice;
-
-                                                      controllerInvoicePrice.text = finalPrice.toString();
 
                                                     } on Exception {
 
@@ -1282,10 +1284,20 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
                                                       controllerProductId.text = suggestion.id.toString();
                                                       controllerProductName.text = suggestion.productName.toString();
-                                                      controllerProductEachPrice.text = suggestion.productPrice.toString();
                                                       controllerProductQuantityType.text = suggestion.productQuantityType.toString();
+                                                      controllerProductTax.text = suggestion.productTax.toString();
 
-                                                      selectedProductsData.add(suggestion);
+                                                      String percentProfit = suggestion.productProfitPercent.replaceAll("%", "");
+                                                      double profitMargin = (int.parse(suggestion.productPrice.replaceAll(",", "")) * int.parse(percentProfit)) / 100;
+
+                                                      double sellingPriceWithProfit = int.parse(suggestion.productPrice.replaceAll(",", "")) + profitMargin;
+
+                                                      String percentTax = suggestion.productTax.replaceAll("%", "");
+                                                      double taxMargin = (sellingPriceWithProfit * int.parse(percentTax)) / 100;
+
+                                                      int sellingPrice = (sellingPriceWithProfit + taxMargin).round();
+
+                                                      controllerProductEachPrice.text = sellingPrice.toString();
 
                                                     },
                                                     errorBuilder: (context, suggestion) {
@@ -1399,25 +1411,6 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                                   autofocus: false,
                                                   keyboardType: TextInputType.number,
                                                   textInputAction: TextInputAction.next,
-                                                  onChanged: (discountPercentage) {
-
-                                                    try {
-
-                                                      int completePrice = int.parse(controllerProductEachPrice.text.isEmpty ? "0" : controllerProductEachPrice.text.replaceAll(",", "")) * int.parse(controllerProductQuantity.text.isEmpty ? "0" : controllerProductQuantity.text);
-
-                                                      int taxAmount = ((completePrice * int.parse(controllerProductTax.text.isEmpty ? "0" : controllerProductTax.text)) / 100).round();
-
-                                                      int discountPrice = ((completePrice * int.parse(controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text.replaceAll(",", ""))) / 100).round();
-
-                                                      int finalPrice = (completePrice + taxAmount) - discountPrice;
-
-                                                      controllerInvoicePrice.text = finalPrice.toString();
-
-                                                    } on Exception {
-
-                                                    }
-
-                                                  },
                                                   decoration: InputDecoration(
                                                     alignLabelWithHint: true,
                                                     border: const OutlineInputBorder(
@@ -1495,25 +1488,6 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                                   autofocus: false,
                                                   keyboardType: TextInputType.number,
                                                   textInputAction: TextInputAction.next,
-                                                  onChanged: (taxAmount) {
-
-                                                    try {
-
-                                                      int completePrice = int.parse(controllerProductEachPrice.text.isEmpty ? "0" : controllerProductEachPrice.text.replaceAll(",", "")) * int.parse(controllerProductQuantity.text.isEmpty ? "0" : controllerProductQuantity.text);
-
-                                                      int taxAmount = ((completePrice * int.parse(controllerProductTax.text.isEmpty ? "0" : controllerProductTax.text)) / 100).round();
-
-                                                      int discountPrice = ((completePrice * int.parse(controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text.replaceAll(",", ""))) / 100).round();
-
-                                                      int finalPrice = (completePrice + taxAmount) - discountPrice;
-
-                                                      controllerInvoicePrice.text = finalPrice.toString();
-
-                                                    } on Exception {
-
-                                                    }
-
-                                                  },
                                                   decoration: InputDecoration(
                                                     alignLabelWithHint: true,
                                                     border: const OutlineInputBorder(
@@ -1593,25 +1567,6 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                                   inputFormatters: [
                                                     CurrencyTextInputFormatter(decimalDigits: 0, symbol: "")
                                                   ],
-                                                  onChanged: (eachPrice) {
-
-                                                    try {
-
-                                                      int completePrice = int.parse(controllerProductEachPrice.text.isEmpty ? "0" : controllerProductEachPrice.text) * int.parse(controllerProductQuantity.text.isEmpty ? "0" : controllerProductQuantity.text);
-
-                                                      int taxAmount = ((completePrice * int.parse(controllerProductTax.text.isEmpty ? "0" : controllerProductTax.text)) / 100).round();
-
-                                                      int discountPrice = ((completePrice * int.parse(controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text)) / 100).round();
-
-                                                      int finalPrice = (completePrice + taxAmount) - discountPrice;
-
-                                                      controllerInvoicePrice.text = finalPrice.toString();
-
-                                                    } on Exception {
-
-                                                    }
-
-                                                  },
                                                   decoration: InputDecoration(
                                                     alignLabelWithHint: true,
                                                     border: const OutlineInputBorder(

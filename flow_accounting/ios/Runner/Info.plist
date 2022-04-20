@@ -52,5 +52,7 @@
 		<string>This Uses Face Id to Secure Entrance and Protect Private Data</string>
 		<key>UIStatusBarHidden</key>
 		<false/>
+		<key>NSCameraUsageDescription</key>
+                <string>Using Camera to Scan Barcodes</string>
 	</dict>
 </plist>
