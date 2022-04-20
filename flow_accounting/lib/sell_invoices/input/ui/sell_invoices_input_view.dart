@@ -1211,17 +1211,6 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                                                     autofocus: false,
                                                     keyboardType: TextInputType.number,
                                                     textInputAction: TextInputAction.next,
-                                                    onChanged: (quantity) {
-
-                                                      try {
-
-
-
-                                                      } on Exception {
-
-                                                      }
-
-                                                    },
                                                     decoration: InputDecoration(
                                                       alignLabelWithHint: true,
                                                       border: const OutlineInputBorder(
@@ -2827,13 +2816,13 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                                         sellInvoiceDateText: calendarView.inputDateTime ?? "",
                                         sellInvoiceDateMillisecond: calendarView.pickedDateTime.millisecondsSinceEpoch,
 
-                                        soldProductId: controllerProductId.text,
-                                        soldProductName: controllerProductName.text,
-                                        soldProductQuantity: controllerProductQuantity.text.isEmpty ? "0" : controllerProductQuantity.text,
-                                        productQuantityType: controllerProductQuantityType.text.isEmpty ? "" : controllerProductQuantityType.text,
+                                        soldProductId: controllerAllProductId.text, // CSV
+                                        soldProductName: controllerAllProductName.text, // CSV
+                                        soldProductQuantity: controllerAllProductQuantity.text.isEmpty ? "0" : controllerAllProductQuantity.text, // CSV
+                                        productQuantityType: controllerAllProductQuantityType.text.isEmpty ? "" : controllerAllProductQuantityType.text, // CSV
+                                        soldProductEachPrice: controllerAllProductEachPrice.text.isEmpty ? "0" : controllerAllProductEachPrice.text, // CSV
 
                                         soldProductPrice: controllerInvoicePrice.text.isEmpty ? "0" : controllerInvoicePrice.text,
-                                        soldProductEachPrice: controllerProductEachPrice.text.isEmpty ? "0" : controllerProductEachPrice.text,
                                         soldProductPriceDiscount: controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text,
 
                                         productShippingExpenses: controllerShippingExpenses.text.isEmpty ? "0" : controllerShippingExpenses.text,
@@ -2856,6 +2845,8 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                                     if (widget.sellInvoicesData != null) {
 
                                       if ((widget.sellInvoicesData?.id)! != 0) {
+
+                                        partialReturnProcess();
 
                                         databaseInputs.updateInvoiceData(sellInvoicesData, SellInvoicesDatabaseInputs.databaseTableName, UserInformation.UserId);
 
@@ -3054,6 +3045,260 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
   }
 
+  void prepareSelectedProducts() async {
+
+    List<Widget> allProductsItem = [];
+
+    if (widget.sellInvoicesData != null) {
+
+      ProductsDatabaseQueries productsDatabaseQueries = ProductsDatabaseQueries();
+
+      controllerAllProductId.text = widget.sellInvoicesData!.soldProductId;
+      var allIds = widget.sellInvoicesData!.soldProductId.split(",");
+
+      controllerAllProductName.text = widget.sellInvoicesData!.soldProductName;
+      var allNames = widget.sellInvoicesData!.soldProductName.split(",");
+
+      controllerAllProductQuantity.text = widget.sellInvoicesData!.soldProductQuantity;
+      var allQuantities = widget.sellInvoicesData!.soldProductQuantity.split(",");
+
+
+      controllerAllProductQuantityType.text = widget.sellInvoicesData!.productQuantityType;
+      var allQuantitiesTypes = widget.sellInvoicesData!.productQuantityType.split(",");
+
+      controllerAllProductEachPrice.text = widget.sellInvoicesData!.soldProductEachPrice;
+      var allEachPrice = widget.sellInvoicesData!.soldProductEachPrice.split(",");
+
+      var index = 0;
+
+      allIds.forEach((element) async {
+
+        var aProduct = await productsDatabaseQueries.querySpecificProductById(element, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+        allProductsItem.add(selectedProductView(ProductsData(
+            id: int.parse(element),
+
+            productImageUrl: aProduct.productImageUrl,
+
+            productName: allNames[index],
+            productDescription: aProduct.productDescription,
+
+            productCategory: aProduct.productCategory,
+
+            productBrand: aProduct.productBrand,
+            productBrandLogoUrl: aProduct.productBrandLogoUrl,
+
+            productPrice: allEachPrice[index],
+            productProfitPercent: aProduct.productProfitPercent,
+
+            productTax: aProduct.productTax,
+
+            productQuantity: int.parse(allQuantities[index]),
+            productQuantityType: allQuantitiesTypes[index],
+
+            colorTag: aProduct.colorTag
+        )));
+
+        index++;
+
+      });
+
+      selectedInvoiceProductsView = SelectedInvoiceProductsView(selectedInputProductsItem: allProductsItem);
+
+      setState(() {
+        debugPrint("Invoices Products Retrieved");
+
+        selectedInvoiceProductsView;
+
+      });
+
+    }
+
+  }
+
+  Widget selectedProductView(ProductsData productsData) {
+
+    return Container(
+        width: 173,
+        height: 37,
+        margin: EdgeInsets.fromLTRB(0, 0, 5, 0),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(51),
+            color: ColorsResources.light
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Expanded(
+                flex: 2,
+                child: InkWell(
+                    onTap: () {
+
+                      selectedProductsData.remove(productsData);
+
+                      controllerAllProductId.text.replaceAll((productsData.id.toString() + ","), "");
+                      controllerAllProductName.text.replaceAll((productsData.productName + ","), "");
+                      controllerAllProductQuantity.text.replaceAll((productsData.productQuantity.toString() + ","), "");
+                      controllerAllProductQuantityType.text.replaceAll((productsData.productQuantityType + ","), "");
+                      controllerAllProductEachPrice.text.replaceAll((productsData.productPrice + ","), "");
+
+                      /* Start - Calculate Invoice Price */
+                      int previousInvoicePrice = int.parse(controllerInvoicePrice.text.replaceAll(",", ""));
+
+                      controllerInvoicePrice.text = (previousInvoicePrice - int.parse(productsData.productPrice.replaceAll(",", "replace"))).toString();
+                      /* End - Calculate Invoice Price */
+
+                      updateSelectedProductsList(selectedProductsData);
+
+                    },
+                    child: Padding(
+                        padding: EdgeInsets.fromLTRB(3, 0, 3, 0),
+                        child: Align(
+                            alignment: AlignmentDirectional.center,
+                            child: Icon(
+                              Icons.delete_rounded,
+                              size: 17,
+                              color: ColorsResources.darkTransparent,
+                            )
+                        )
+                    )
+                )
+            ),
+            Expanded(
+              flex: 11,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(3, 0, 3, 0),
+                child: Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: Text(
+                    productsData.productName,
+                    style: const TextStyle(
+                        color: ColorsResources.darkTransparent,
+                        fontSize: 15
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+                flex: 5,
+                child:  AspectRatio(
+                  aspectRatio: 1,
+                  child: Container(
+                    decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: ColorsResources.light
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 3, 7, 3),
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.circular(51),
+                          child: Image.file(
+                            File(productsData.productImageUrl),
+                            fit: BoxFit.cover,
+                          )
+                      ),
+                    ),
+                  ),
+                )
+            ),
+          ],
+        )
+    );
+  }
+
+  void updateProductQuantity() async {
+
+    if (selectedProductsData.isNotEmpty) {
+
+      String databaseDirectory = await getDatabasesPath();
+
+      String productDatabasePath = "${databaseDirectory}/${ProductsDatabaseInputs.productsDatabase()}";
+
+      bool productsDatabaseExist = await databaseExists(productDatabasePath);
+
+      if (productsDatabaseExist) {
+
+        ProductsDatabaseQueries productsDatabaseQueries = ProductsDatabaseQueries();
+
+        for (var aProduct in selectedProductsData) {
+
+          ProductsData currentProductData = await productsDatabaseQueries.querySpecificProductById(aProduct.id.toString(), ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+          currentProductData.productQuantity = currentProductData.productQuantity + aProduct.productQuantity;
+
+          ProductsDatabaseInputs productsDatabaseInputs = ProductsDatabaseInputs();
+
+          productsDatabaseInputs.updateProductData(currentProductData, ProductsDatabaseInputs.productsDatabase(), UserInformation.UserId);
+
+        }
+
+      }
+
+    }
+
+  }
+
+  void partialReturnProcess() async {
+
+    if (widget.sellInvoicesData != null) {
+
+      if (widget.sellInvoicesData!.soldProductId != controllerAllProductId.text) {
+
+        ProductsDatabaseInputs productsDatabaseInputs = ProductsDatabaseInputs();
+
+        ProductsDatabaseQueries productsDatabaseQueries = ProductsDatabaseQueries();
+
+        if (widget.sellInvoicesData!.soldProductId.length > controllerAllProductId.text.length) {// New Products Added
+
+          var csvNewProductIds = controllerAllProductId.text.replaceAll(widget.sellInvoicesData!.soldProductId, "");
+          var csvNewProductQuantity = controllerAllProductQuantity.text.replaceAll(widget.sellInvoicesData!.soldProductQuantity, "");
+
+          var allIds = csvNewProductIds.split(",");
+
+          var index = 0;
+
+          allIds.forEach((element) async {
+
+            var aProduct = await productsDatabaseQueries.querySpecificProductById(element, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+            aProduct.productQuantity = aProduct.productQuantity - int.parse(csvNewProductQuantity[index]);
+
+            await productsDatabaseInputs.updateProductData(aProduct, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+            index++;
+
+          });
+
+        } else { // Products Removed
+
+          var csvRemovedProductIds = widget.sellInvoicesData!.soldProductId.replaceAll(controllerAllProductId.text, "");
+          var csvRemovedProductQuantity = widget.sellInvoicesData!.soldProductQuantity.replaceAll(controllerAllProductQuantity.text, "");
+
+          var allIds = csvRemovedProductIds.split(",");
+
+          var index = 0;
+
+          allIds.forEach((element) async {
+
+            var aProduct = await productsDatabaseQueries.querySpecificProductById(element, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+            aProduct.productQuantity = aProduct.productQuantity + int.parse(csvRemovedProductQuantity[index]);
+
+            await productsDatabaseInputs.updateProductData(aProduct, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+            index++;
+
+          });
+
+        }
+
+      }
+
+    }
+
+  }
+
   Future<List<CreditCardsData>> getAllCreditCards() async {
 
     List<CreditCardsData> allCreditCards = [];
@@ -3079,34 +3324,6 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
     }
 
     return allCreditCards;
-  }
-
-  void updateProductQuantity() async {
-
-    if (selectedProductsData != null) {
-
-      String databaseDirectory = await getDatabasesPath();
-
-      String productDatabasePath = "${databaseDirectory}/${ProductsDatabaseInputs.productsDatabase()}";
-
-      bool productsDatabaseExist = await databaseExists(productDatabasePath);
-
-      if (productsDatabaseExist) {
-
-        ProductsDatabaseQueries productsDatabaseQueries = ProductsDatabaseQueries();
-
-        ProductsData currentProductData = await productsDatabaseQueries.querySpecificProductById(selectedProductsData!.id.toString(), ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
-
-        currentProductData.productQuantity = currentProductData.productQuantity - int.parse(controllerProductQuantity.text);
-
-        ProductsDatabaseInputs productsDatabaseInputs = ProductsDatabaseInputs();
-
-        productsDatabaseInputs.updateProductData(currentProductData, ProductsDatabaseInputs.productsDatabase(), UserInformation.UserId);
-
-      }
-
-    }
-
   }
 
   Future<List<DebtorsData>> getAllDebtors() async {

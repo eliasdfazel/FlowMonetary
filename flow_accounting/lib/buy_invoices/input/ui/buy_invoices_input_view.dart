@@ -1208,17 +1208,6 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                                   autofocus: false,
                                                   keyboardType: TextInputType.number,
                                                   textInputAction: TextInputAction.next,
-                                                  onChanged: (quantity) {
-
-                                                    try {
-
-
-
-                                                    } on Exception {
-
-                                                    }
-
-                                                  },
                                                   decoration: InputDecoration(
                                                     alignLabelWithHint: true,
                                                     border: const OutlineInputBorder(
@@ -2957,33 +2946,6 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
     );
   }
 
-  Future<List<CreditCardsData>> getAllCreditCards() async {
-
-    List<CreditCardsData> allCreditCards = [];
-
-    String databaseDirectory = await getDatabasesPath();
-
-    String creditCardDatabasePath = "${databaseDirectory}/${CreditCardsDatabaseInputs.creditCardDatabase()}";
-
-    bool creditCardDatabaseExist = await databaseExists(creditCardDatabasePath);
-
-    if (creditCardDatabaseExist) {
-
-      CreditCardsDatabaseQueries databaseQueries = CreditCardsDatabaseQueries();
-
-      List<CreditCardsData> listOfAllCreditCards = await databaseQueries.getAllCreditCards(CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId);
-
-      setState(() {
-
-        allCreditCards = listOfAllCreditCards;
-
-      });
-
-    }
-
-    return allCreditCards;
-  }
-
   void updateProductQuantity() async {
 
     if (selectedProductsData.isNotEmpty) {
@@ -3039,7 +3001,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
             var aProduct = await productsDatabaseQueries.querySpecificProductById(element, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
-            aProduct.productQuantity = aProduct.productQuantity - int.parse(csvNewProductQuantity[index]);
+            aProduct.productQuantity = aProduct.productQuantity + int.parse(csvNewProductQuantity[index]);
 
             await productsDatabaseInputs.updateProductData(aProduct, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
@@ -3060,7 +3022,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
             var aProduct = await productsDatabaseQueries.querySpecificProductById(element, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
-            aProduct.productQuantity = aProduct.productQuantity + int.parse(csvRemovedProductQuantity[index]);
+            aProduct.productQuantity = aProduct.productQuantity - int.parse(csvRemovedProductQuantity[index]);
 
             await productsDatabaseInputs.updateProductData(aProduct, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
@@ -3074,6 +3036,33 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
     }
 
+  }
+
+  Future<List<CreditCardsData>> getAllCreditCards() async {
+
+    List<CreditCardsData> allCreditCards = [];
+
+    String databaseDirectory = await getDatabasesPath();
+
+    String creditCardDatabasePath = "${databaseDirectory}/${CreditCardsDatabaseInputs.creditCardDatabase()}";
+
+    bool creditCardDatabaseExist = await databaseExists(creditCardDatabasePath);
+
+    if (creditCardDatabaseExist) {
+
+      CreditCardsDatabaseQueries databaseQueries = CreditCardsDatabaseQueries();
+
+      List<CreditCardsData> listOfAllCreditCards = await databaseQueries.getAllCreditCards(CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+      setState(() {
+
+        allCreditCards = listOfAllCreditCards;
+
+      });
+
+    }
+
+    return allCreditCards;
   }
 
   Future<List<CreditorsData>> getAllCreditors() async {
