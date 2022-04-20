@@ -936,16 +936,6 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
                                           if (noError) {
 
-                                            // int completePrice = int.parse(controllerProductEachPrice.text.isEmpty ? "0" : controllerProductEachPrice.text.replaceAll(",", "")) * int.parse(controllerProductQuantity.text.isEmpty ? "0" : controllerProductQuantity.text);
-                                            //
-                                            // int taxAmount = ((completePrice * int.parse(controllerProductTax.text.isEmpty ? "0" : controllerProductTax.text)) / 100).round();
-                                            //
-                                            // int discountPrice = ((completePrice * int.parse(controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text)) / 100).round();
-                                            //
-                                            // int finalPrice = (completePrice + taxAmount) - discountPrice;
-                                            //
-                                            // controllerInvoicePrice.text = finalPrice.toString();
-
                                             ProductsData productData = ProductsData(
                                                 id: DateTime.now().millisecondsSinceEpoch,
 
@@ -1027,12 +1017,26 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                             controllerAllProductQuantityType.text += controllerProductQuantityType.text + ",";
                                             controllerAllProductEachPrice.text += controllerProductEachPrice.text + ",";
 
-                                            // controllerProductName.text = "";
-                                            // controllerProductQuantity.text = "";
-                                            // controllerProductQuantityType.text = "";
-                                            // controllerProductEachPrice.text = "";
-                                            // controllerProductTax.text = "";
-                                            // controllerProductDiscount.text = "";
+                                            /* Start - Calculate Invoice Price */
+                                            int completePrice = int.parse(controllerProductEachPrice.text.isEmpty ? "0" : controllerProductEachPrice.text.replaceAll(",", "")) * int.parse(controllerProductQuantity.text.isEmpty ? "0" : controllerProductQuantity.text);
+
+                                            int taxAmount = ((completePrice * int.parse(controllerProductTax.text.isEmpty ? "0" : controllerProductTax.text)) / 100).round();
+
+                                            int discountPrice = ((completePrice * int.parse(controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text)) / 100).round();
+
+                                            int finalPrice = (completePrice + taxAmount) - discountPrice;
+
+                                            int previousInvoicePrice = int.parse(controllerInvoicePrice.text.replaceAll(",", ""));
+
+                                            controllerInvoicePrice.text = (previousInvoicePrice + finalPrice).toString();
+                                            /* End - Calculate Invoice Price */
+
+                                            controllerProductName.text = "";
+                                            controllerProductQuantity.text = "";
+                                            controllerProductQuantityType.text = "";
+                                            controllerProductEachPrice.text = "";
+                                            controllerProductTax.text = "";
+                                            controllerProductDiscount.text = "";
 
                                             updateSelectedProductsList(selectedProductsData);
 
@@ -2839,38 +2843,60 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
   void prepareSelectedProducts() async {
 
-    List<ProductsData> allProducts = [];
+    List<Widget> allProductsItem = [];
 
-    String databaseDirectory = await getDatabasesPath();
-
-    String productDatabasePath = "${databaseDirectory}/${ProductsDatabaseInputs.productsDatabase()}";
-
-    bool productsDatabaseExist = await databaseExists(productDatabasePath);
-
-    if (productsDatabaseExist) {
+    if (widget.buyInvoicesData != null) {
 
       ProductsDatabaseQueries productsDatabaseQueries = ProductsDatabaseQueries();
 
-      if (widget.buyInvoicesData != null) {
+      var allIds = widget.buyInvoicesData!.boughtProductId.split(",");
+      var allNames = widget.buyInvoicesData!.boughtProductName.split(",");
+      var allQuantities = widget.buyInvoicesData!.boughtProductQuantity.split(",");
+      var allQuantitiesTypes = widget.buyInvoicesData!.productQuantityType.split(",");
+      var allEachPrice = widget.buyInvoicesData!.boughtProductEachPrice.split(",");
 
-        widget.buyInvoicesData!.boughtProductId.split(",").forEach((element) async {
+      var index = 0;
 
-          var aProduct = await productsDatabaseQueries.querySpecificProductById(element, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+      allIds.forEach((element) async {
 
-          allProducts.add(aProduct);
+        var aProduct = await productsDatabaseQueries.querySpecificProductById(element, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
-        });
+        allProductsItem.add(selectedProductView(ProductsData(
+            id: int.parse(element),
 
-        selectedInvoiceProductsView = SelectedInvoiceProductsView(selectedInputProductsItem: selectedProductItem);
+            productImageUrl: aProduct.productImageUrl,
 
-        setState(() {
-          debugPrint("Invoices Products Retrieved");
+            productName: allNames[index],
+            productDescription: aProduct.productDescription,
 
-          selectedInvoiceProductsView;
+            productCategory: aProduct.productCategory,
 
-        });
+            productBrand: aProduct.productBrand,
+            productBrandLogoUrl: aProduct.productBrandLogoUrl,
 
-      }
+            productPrice: allEachPrice[index],
+            productProfitPercent: aProduct.productProfitPercent,
+
+            productTax: aProduct.productTax,
+
+            productQuantity: int.parse(allQuantities[index]),
+            productQuantityType: allQuantitiesTypes[index],
+
+            colorTag: aProduct.colorTag
+        )));
+
+        index++;
+
+      });
+
+      selectedInvoiceProductsView = SelectedInvoiceProductsView(selectedInputProductsItem: allProductsItem);
+
+      setState(() {
+        debugPrint("Invoices Products Retrieved");
+
+        selectedInvoiceProductsView;
+
+      });
 
     }
 
@@ -2901,6 +2927,16 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                   controllerAllProductQuantity.text.replaceAll((productsData.productQuantity.toString() + ","), "");
                   controllerAllProductQuantityType.text.replaceAll((productsData.productQuantityType + ","), "");
                   controllerAllProductEachPrice.text.replaceAll((productsData.productPrice + ","), "");
+
+                  /* Start - Calculate Invoice Price */
+
+                  /*
+                   *
+                   *
+                   *
+                   */
+
+                  /* End - Calculate Invoice Price */
 
                   updateSelectedProductsList(selectedProductsData);
 
