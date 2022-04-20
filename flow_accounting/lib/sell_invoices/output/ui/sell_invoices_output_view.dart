@@ -12,8 +12,6 @@
 import 'package:blur/blur.dart';
 import 'package:flow_accounting/products/database/io/inputs.dart';
 import 'package:flow_accounting/products/database/io/queries.dart';
-import 'package:flow_accounting/products/database/structures/tables_structure.dart';
-import 'package:flow_accounting/products/input/ui/products_input_view.dart';
 import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
@@ -22,7 +20,6 @@ import 'package:flow_accounting/sell_invoices/database/io/queries.dart';
 import 'package:flow_accounting/sell_invoices/database/structures/tables_structure.dart';
 import 'package:flow_accounting/sell_invoices/input/ui/sell_invoices_input_view.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
-import 'package:flow_accounting/utils/navigations/navigations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:marquee/marquee.dart';
@@ -40,6 +37,8 @@ class _SellInvoicesOutputViewState extends State<SellInvoicesOutputView> {
 
   List<SellInvoicesData> allSellInvoices = [];
   List<Widget> allSellInvoicesItems = [];
+
+  Widget invoiceCompleteReturned = Container();
 
   TextEditingController textEditorControllerQuery = TextEditingController();
 
@@ -396,7 +395,35 @@ class _SellInvoicesOutputViewState extends State<SellInvoicesOutputView> {
 
   Widget outputItem(BuildContext context, SellInvoicesData sellInvoicesData) {
 
-    Color budgetColorTag = Color(sellInvoicesData.colorTag);
+    if (sellInvoicesData.invoiceReturned == SellInvoicesData.SellInvoice_Returned) {
+
+      invoiceCompleteReturned = Container(
+          height: 151,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(17),
+                topRight: Radius.circular(17),
+                bottomLeft: Radius.circular(17),
+                bottomRight: Radius.circular(17)
+            ),
+            color: ColorsResources.lightRed.withOpacity(0.57),
+          ),
+          child: Align(
+              alignment: AlignmentDirectional.center,
+              child: Text(
+                StringsResources.returnedInvoice(),
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: ColorsResources.red,
+                    fontSize: 27,
+                    fontWeight: FontWeight.bold
+                ),
+              )
+          )
+      );
+
+    }
 
     return Slidable(
       closeOnScroll: true,
@@ -438,29 +465,12 @@ class _SellInvoicesOutputViewState extends State<SellInvoicesOutputView> {
             flex: 1,
             onPressed: (BuildContext context) async {
 
-              ProductsDatabaseQueries productsDatabaseQueries = ProductsDatabaseQueries();
-
-              ProductsData productsData = await productsDatabaseQueries.querySpecificProductById(sellInvoicesData.soldProductId, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
-
-              NavigationProcess().goTo(context, ProductsInputView(productsData: productsData));
+              returningInvoicesProcess(sellInvoicesData);
 
             },
             backgroundColor: Colors.transparent,
-            foregroundColor: ColorsResources.greenGray,
-            icon: Icons.shopping_bag_rounded,
-            label: StringsResources.invoicesProduct(),
-            autoClose: true,
-          ),
-          SlidableAction(
-            flex: 1,
-            onPressed: (BuildContext context) async {
-
-              returningInvoicesProcess();
-
-            },
-            backgroundColor: Colors.transparent,
-            foregroundColor: ColorsResources.greenGray,
-            icon: Icons.shopping_bag_rounded,
+            foregroundColor: ColorsResources.black,
+            icon: Icons.assignment_return_rounded,
             label: StringsResources.returnInvoice(),
             autoClose: true,
           ),
@@ -471,7 +481,7 @@ class _SellInvoicesOutputViewState extends State<SellInvoicesOutputView> {
         child: PhysicalModel(
           color: ColorsResources.light,
           elevation: 7,
-          shadowColor: budgetColorTag.withOpacity(0.79),
+          shadowColor: Color(sellInvoicesData.colorTag).withOpacity(0.79),
           shape: BoxShape.rectangle,
           borderRadius: const BorderRadius.all(Radius.circular(17)),
           child: InkWell(
@@ -647,7 +657,7 @@ class _SellInvoicesOutputViewState extends State<SellInvoicesOutputView> {
                                 ),
                                 gradient: LinearGradient(
                                     colors: [
-                                      budgetColorTag.withOpacity(0.7),
+                                      Color(sellInvoicesData.colorTag).withOpacity(0.7),
                                       ColorsResources.light,
                                     ],
                                     begin: const FractionalOffset(0.0, 0.0),
@@ -660,7 +670,8 @@ class _SellInvoicesOutputViewState extends State<SellInvoicesOutputView> {
                             ),
                           ),
                         ),
-                      )
+                      ),
+                      invoiceCompleteReturned
                     ],
                   )
               )
@@ -849,10 +860,52 @@ class _SellInvoicesOutputViewState extends State<SellInvoicesOutputView> {
 
   }
 
-  void returningInvoicesProcess() {
+  void returningInvoicesProcess(SellInvoicesData sellInvoicesData) async {
 
-    // Change Product Stock
-    // Change Relevant Credit Card Balance
+    var sellInvoicesDatabaseInputs = SellInvoicesDatabaseInputs();
+
+    sellInvoicesData.invoiceReturned = SellInvoicesData.SellInvoice_Returned;
+
+    sellInvoicesDatabaseInputs.updateInvoiceData(sellInvoicesData, SellInvoicesDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+
+    String databaseDirectory = await getDatabasesPath();
+
+    String productDatabasePath = "${databaseDirectory}/${ProductsDatabaseInputs.productsDatabase()}";
+
+    bool productsDatabaseExist = await databaseExists(productDatabasePath);
+
+    if (productsDatabaseExist) {
+
+      ProductsDatabaseInputs productsDatabaseInputs = ProductsDatabaseInputs();
+
+      ProductsDatabaseQueries productsDatabaseQueries = ProductsDatabaseQueries();
+
+      var allIds = sellInvoicesData.soldProductId.split(",");
+
+      var allNames = sellInvoicesData.soldProductName.split(",");
+
+      var allQuantities = sellInvoicesData.soldProductQuantity.split(",");
+
+      var allQuantitiesTypes = sellInvoicesData.productQuantityType.split(",");
+
+      var allEachPrice = sellInvoicesData.soldProductEachPrice.split(",");
+
+      var index = 0;
+
+      allIds.forEach((element) async {
+
+        var aProduct = await productsDatabaseQueries.querySpecificProductById(element, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+        aProduct.productQuantity = aProduct.productQuantity + int.parse(allQuantities[index]);
+
+        await productsDatabaseInputs.updateProductData(aProduct, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+        index++;
+
+      });
+
+    }
 
   }
 

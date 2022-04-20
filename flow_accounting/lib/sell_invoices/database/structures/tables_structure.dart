@@ -15,6 +15,8 @@ class SellInvoicesData {
   static const String SellInvoice_Pre = "0";
   static const String SellInvoice_Final = "1";
 
+  static const String SellInvoice_Returned = "666";
+
   final int id;
 
   final String companyName;
@@ -47,6 +49,8 @@ class SellInvoicesData {
   String sellPreInvoice = SellInvoicesData.SellInvoice_Final;
 
   final String companyDigitalSignature;
+
+  String invoiceReturned = SellInvoicesData.SellInvoice_Returned;
 
   int colorTag = ColorsResources.dark.value;
 
@@ -83,6 +87,8 @@ class SellInvoicesData {
     required this.sellPreInvoice,
 
     required this.companyDigitalSignature,
+
+    required this.invoiceReturned,
 
     required this.colorTag,
   });
@@ -121,6 +127,8 @@ class SellInvoicesData {
       'sellPreInvoice': sellPreInvoice,
 
       'companyDigitalSignature': companyDigitalSignature,
+
+      'invoiceReturned': invoiceReturned,
 
       'colorTag': colorTag,
     };
@@ -161,6 +169,8 @@ class SellInvoicesData {
         'sellPreInvoice: $sellPreInvoice,'
 
         'companyDigitalSignature: $companyDigitalSignature,'
+
+        'invoiceReturned: $invoiceReturned,'
 
         'colorTag: $colorTag,'
         '}';

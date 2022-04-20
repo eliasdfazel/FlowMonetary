@@ -883,7 +883,7 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
 
         var aProduct = await productsDatabaseQueries.querySpecificProductById(element, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
-        aProduct.productQuantity = aProduct.productQuantity + int.parse(allQuantities[index]);
+        aProduct.productQuantity = aProduct.productQuantity - int.parse(allQuantities[index]);
 
         await productsDatabaseInputs.updateProductData(aProduct, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
