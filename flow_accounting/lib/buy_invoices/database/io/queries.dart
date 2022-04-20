@@ -67,6 +67,8 @@ class BuyInvoicesDatabaseQueries {
         companyDigitalSignature: maps[i]['companyDigitalSignature'],
 
         colorTag: int.parse(maps[i]['colorTag'].toString()),
+
+        invoiceReturned: maps[i]['invoiceReturned'],
       );
     });
 

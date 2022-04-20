@@ -719,6 +719,10 @@ class StringsResources {
 
     return "مرجوع کردن";
   }
+  static String returnedInvoice() {
+
+    return "مرجوع شده";
+  }
 
   static String shippingExpenses() {
 

@@ -15,6 +15,8 @@ class BuyInvoicesData {
   static const String BuyInvoice_Pre = "0";
   static const String BuyInvoice_Final = "1";
 
+  static const String BuyInvoice_Returned = "666";
+
   final int id;
 
   final String companyName;
@@ -51,6 +53,8 @@ class BuyInvoicesData {
   final String companyDigitalSignature;
 
   int colorTag = ColorsResources.dark.value;
+
+  String invoiceReturned = BuyInvoicesData.BuyInvoice_Returned;
 
   BuyInvoicesData({
     required this.id,
@@ -89,6 +93,8 @@ class BuyInvoicesData {
     required this.companyDigitalSignature,
 
     required this.colorTag,
+
+    required this.invoiceReturned,
   });
 
   Map<String, dynamic> toMap() {
@@ -129,6 +135,8 @@ class BuyInvoicesData {
       'companyDigitalSignature': companyDigitalSignature,
 
       'colorTag': colorTag,
+
+      'invoiceReturned': invoiceReturned,
     };
   }
 
@@ -171,6 +179,8 @@ class BuyInvoicesData {
         'companyDigitalSignature: $companyDigitalSignature,'
 
         'colorTag: $colorTag,'
+
+        'invoiceReturned: $invoiceReturned,'
         '}';
   }
 }

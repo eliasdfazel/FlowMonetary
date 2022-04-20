@@ -57,6 +57,7 @@ class BuyInvoicesDatabaseInputs {
               'boughtFrom TEXT, '
               'buyPreInvoice TEXT, '
               'companyDigitalSignature TEXT, '
+              'invoiceReturned TEXT,'
               'colorTag TEXT'
               ')',
         );

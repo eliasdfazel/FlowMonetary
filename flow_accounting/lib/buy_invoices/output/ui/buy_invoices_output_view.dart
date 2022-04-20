@@ -14,15 +14,10 @@ import 'package:flow_accounting/buy_invoices/database/io/inputs.dart';
 import 'package:flow_accounting/buy_invoices/database/io/queries.dart';
 import 'package:flow_accounting/buy_invoices/database/structures/tables_structure.dart';
 import 'package:flow_accounting/buy_invoices/input/ui/buy_invoices_input_view.dart';
-import 'package:flow_accounting/products/database/io/inputs.dart';
-import 'package:flow_accounting/products/database/io/queries.dart';
-import 'package:flow_accounting/products/database/structures/tables_structure.dart';
-import 'package:flow_accounting/products/input/ui/products_input_view.dart';
 import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
-import 'package:flow_accounting/utils/navigations/navigations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:marquee/marquee.dart';
@@ -40,6 +35,8 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
 
   List<BuyInvoicesData> allBuyInvoices = [];
   List<Widget> allBuyInvoicesItems = [];
+
+  Widget invoiceCompleteReturned = Container();
 
   TextEditingController textEditorControllerQuery = TextEditingController();
 
@@ -396,6 +393,36 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
 
   Widget outputItem(BuildContext context, BuyInvoicesData buyInvoicesData) {
 
+    if (buyInvoicesData.invoiceReturned == BuyInvoicesData.BuyInvoice_Returned) {
+
+      invoiceCompleteReturned = Container(
+        height: 151,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(17),
+              topRight: Radius.circular(17),
+              bottomLeft: Radius.circular(17),
+              bottomRight: Radius.circular(17)
+          ),
+          color: ColorsResources.lightRed.withOpacity(0.57),
+        ),
+        child: Align(
+          alignment: AlignmentDirectional.center,
+          child: Text(
+            StringsResources.returnedInvoice(),
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: ColorsResources.red,
+              fontSize: 27,
+              fontWeight: FontWeight.bold
+            ),
+          )
+        )
+      );
+
+    }
+
     return Slidable(
       closeOnScroll: true,
       endActionPane: ActionPane(
@@ -436,29 +463,12 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
             flex: 1,
             onPressed: (BuildContext context) async {
 
-              ProductsDatabaseQueries productsDatabaseQueries = ProductsDatabaseQueries();
-
-              ProductsData productsData = await productsDatabaseQueries.querySpecificProductById(buyInvoicesData.boughtProductId, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
-
-              NavigationProcess().goTo(context, ProductsInputView(productsData: productsData));
-
-            },
-            backgroundColor: Colors.transparent,
-            foregroundColor: ColorsResources.greenGray,
-            icon: Icons.shopping_bag_rounded,
-            label: StringsResources.invoicesProduct(),
-            autoClose: true,
-          ),
-          SlidableAction(
-            flex: 1,
-            onPressed: (BuildContext context) async {
-
               returningInvoicesProcess();
 
             },
             backgroundColor: Colors.transparent,
-            foregroundColor: ColorsResources.greenGray,
-            icon: Icons.shopping_bag_rounded,
+            foregroundColor: ColorsResources.black,
+            icon: Icons.assignment_return_rounded,
             label: StringsResources.returnInvoice(),
             autoClose: true,
           ),
@@ -658,7 +668,8 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
                             ),
                           ),
                         ),
-                      )
+                      ),
+                      invoiceCompleteReturned
                     ],
                   )
               )

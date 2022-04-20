@@ -1009,8 +1009,6 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
                                             }
 
-                                            selectedProductsData.add(productData);
-
                                             controllerAllProductId.text += productData.id.toString() + ",";
                                             controllerAllProductName.text += controllerProductName.text + ",";
                                             controllerAllProductQuantity.text += controllerProductQuantity.text + ",";
@@ -1020,13 +1018,13 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                             /* Start - Calculate Invoice Price */
                                             int completePrice = int.parse(controllerProductEachPrice.text.isEmpty ? "0" : controllerProductEachPrice.text.replaceAll(",", "")) * int.parse(controllerProductQuantity.text.isEmpty ? "0" : controllerProductQuantity.text);
 
-                                            int taxAmount = ((completePrice * int.parse(controllerProductTax.text.isEmpty ? "0" : controllerProductTax.text)) / 100).round();
+                                            int taxAmount = ((completePrice * int.parse(controllerProductTax.text.isEmpty ? "0" : controllerProductTax.text.replaceAll("%", ""))) / 100).round();
 
                                             int discountPrice = ((completePrice * int.parse(controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text)) / 100).round();
 
                                             int finalPrice = (completePrice + taxAmount) - discountPrice;
 
-                                            int previousInvoicePrice = int.parse(controllerInvoicePrice.text.replaceAll(",", ""));
+                                            int previousInvoicePrice = int.parse(controllerInvoicePrice.text.isEmpty ? "0" : controllerInvoicePrice.text.replaceAll(",", ""));
 
                                             controllerInvoicePrice.text = (previousInvoicePrice + finalPrice).toString();
                                             /* End - Calculate Invoice Price */
@@ -1037,6 +1035,8 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                             controllerProductEachPrice.text = "";
                                             controllerProductTax.text = "";
                                             controllerProductDiscount.text = "";
+
+                                            selectedProductsData.add(productData);
 
                                             updateSelectedProductsList(selectedProductsData);
 
@@ -2065,6 +2065,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                           controller: controllerPaidBy,
                                           autofocus: false,
                                           maxLines: 1,
+                                          textAlign: TextAlign.center,
                                           cursorColor: ColorsResources.primaryColor,
                                           keyboardType: TextInputType.name,
                                           textInputAction: TextInputAction.next,
@@ -2499,59 +2500,11 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
                                   }
 
-                                  if (controllerProductName.text.isEmpty) {
-
-                                    setState(() {
-
-                                      warningNoticeProductName = StringsResources.errorText();
-
-                                    });
-
-                                    noError = false;
-
-                                  }
-
-                                  if (controllerProductQuantity.text.isEmpty) {
-
-                                    setState(() {
-
-                                      warningNoticeProductQuantity = StringsResources.errorText();
-
-                                    });
-
-                                    noError = false;
-
-                                  }
-
                                   if (controllerInvoicePrice.text.isEmpty) {
 
                                     setState(() {
 
                                       warningProductPrice = StringsResources.errorText();
-
-                                    });
-
-                                    noError = false;
-
-                                  }
-
-                                  if (controllerProductEachPrice.text.isEmpty) {
-
-                                    setState(() {
-
-                                      warningProductEachPrice = StringsResources.errorText();
-
-                                    });
-
-                                    noError = false;
-
-                                  }
-
-                                  if (controllerProductDiscount.text.isEmpty) {
-
-                                    setState(() {
-
-                                      warningProductDiscount = StringsResources.errorText();
 
                                     });
 
@@ -2612,9 +2565,9 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
                                         boughtProductId: controllerAllProductId.text, // CSV
                                         boughtProductName: controllerAllProductName.text, // CSV
-                                        boughtProductQuantity: controllerAllProductQuantity.text.isEmpty ? "0" : controllerProductQuantity.text, // CSV
+                                        boughtProductQuantity: controllerAllProductQuantity.text.isEmpty ? "0" : controllerAllProductQuantity.text, // CSV
                                         productQuantityType: controllerAllProductQuantityType.text, // CSV
-                                        boughtProductEachPrice: controllerAllProductEachPrice.text.isEmpty ? "0" : controllerProductEachPrice.text, // CSV
+                                        boughtProductEachPrice: controllerAllProductEachPrice.text.isEmpty ? "0" : controllerAllProductEachPrice.text, // CSV
 
                                         boughtProductPrice: controllerInvoicePrice.text.isEmpty ? "0" : controllerInvoicePrice.text,
                                         boughtProductPriceDiscount: controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text,
@@ -2633,16 +2586,16 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
                                         companyDigitalSignature: companyDigitalSignature,
 
-                                        colorTag: colorSelectorView.selectedColor.value
+                                        colorTag: colorSelectorView.selectedColor.value,
+
+                                        invoiceReturned: ""
                                     );
 
                                     if (widget.buyInvoicesData != null) {
 
                                       if ((widget.buyInvoicesData?.id)! != 0) {
 
-                                        // Compare Remaining Ids CSV with Input Ids
-                                        // If Not Equal - Bigger -> with Replace Get New Added Product Then Run Stock Process
-                                        // If Not Equal - Smaller -> with Replace Get Removed Product Then Run Partial Return Process
+                                        partialReturnProcess();
 
                                         databaseInputs.updateInvoiceData(buyInvoicesData, BuyInvoicesDatabaseInputs.databaseTableName, UserInformation.UserId);
 
@@ -3048,7 +3001,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
           ProductsData currentProductData = await productsDatabaseQueries.querySpecificProductById(aProduct.id.toString(), ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
-          currentProductData.productQuantity = currentProductData.productQuantity + int.parse(controllerProductQuantity.text);
+          currentProductData.productQuantity = currentProductData.productQuantity + aProduct.productQuantity;
 
           ProductsDatabaseInputs productsDatabaseInputs = ProductsDatabaseInputs();
 
@@ -3059,6 +3012,14 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
       }
 
     }
+
+  }
+
+  void partialReturnProcess() async {
+
+    // Compare Remaining Ids CSV with Input Ids
+    // If Not Equal - Bigger -> with Replace Get New Added Product Then Run Stock Process
+    // If Not Equal - Smaller -> with Replace Get Removed Product Then Run Partial Return Process
 
   }
 
@@ -3205,7 +3166,6 @@ class SelectedInvoiceProductsView extends StatefulWidget {
   @override
   _SelectedInvoiceProductsViewState createState() => _SelectedInvoiceProductsViewState();
 }
-
 class _SelectedInvoiceProductsViewState extends State<SelectedInvoiceProductsView> {
   @override
   Widget build(BuildContext context) {
