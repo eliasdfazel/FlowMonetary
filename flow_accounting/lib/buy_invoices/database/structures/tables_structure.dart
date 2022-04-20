@@ -52,9 +52,9 @@ class BuyInvoicesData {
 
   final String companyDigitalSignature;
 
-  int colorTag = ColorsResources.dark.value;
-
   String invoiceReturned = BuyInvoicesData.BuyInvoice_Returned;
+
+  int colorTag = ColorsResources.dark.value;
 
   BuyInvoicesData({
     required this.id,
@@ -92,9 +92,9 @@ class BuyInvoicesData {
 
     required this.companyDigitalSignature,
 
-    required this.colorTag,
-
     required this.invoiceReturned,
+
+    required this.colorTag,
   });
 
   Map<String, dynamic> toMap() {
@@ -134,9 +134,9 @@ class BuyInvoicesData {
 
       'companyDigitalSignature': companyDigitalSignature,
 
-      'colorTag': colorTag,
-
       'invoiceReturned': invoiceReturned,
+
+      'colorTag': colorTag,
     };
   }
 
@@ -178,9 +178,9 @@ class BuyInvoicesData {
 
         'companyDigitalSignature: $companyDigitalSignature,'
 
-        'colorTag: $colorTag,'
-
         'invoiceReturned: $invoiceReturned,'
+
+        'colorTag: $colorTag,'
         '}';
   }
 }
