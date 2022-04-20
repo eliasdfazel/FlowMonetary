@@ -1172,6 +1172,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                                                 ),
                                                                 gapPadding: 5
                                                             ),
+                                                            errorText: warningNoticeProductQuantityType,
                                                             filled: true,
                                                             fillColor: ColorsResources.lightTransparent,
                                                             labelText: StringsResources.productQuantityType(),
