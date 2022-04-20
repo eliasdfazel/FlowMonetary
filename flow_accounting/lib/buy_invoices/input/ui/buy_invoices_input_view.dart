@@ -3017,9 +3017,61 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
   void partialReturnProcess() async {
 
-    // Compare Remaining Ids CSV with Input Ids
-    // If Not Equal - Bigger -> with Replace Get New Added Product Then Run Stock Process
-    // If Not Equal - Smaller -> with Replace Get Removed Product Then Run Partial Return Process
+    if (widget.buyInvoicesData != null) {
+
+      if (widget.buyInvoicesData!.boughtProductId != controllerAllProductId.text) {
+
+        ProductsDatabaseInputs productsDatabaseInputs = ProductsDatabaseInputs();
+
+        ProductsDatabaseQueries productsDatabaseQueries = ProductsDatabaseQueries();
+
+        if (widget.buyInvoicesData!.boughtProductId.length > controllerAllProductId.text.length) {// New Products Added
+
+          var csvNewProductIds = controllerAllProductId.text.replaceAll(widget.buyInvoicesData!.boughtProductId, "");
+          var csvNewProductQuantity = controllerAllProductQuantity.text.replaceAll(widget.buyInvoicesData!.boughtProductQuantity, "");
+
+          var allIds = csvNewProductIds.split(",");
+
+          var index = 0;
+
+          allIds.forEach((element) async {
+
+            var aProduct = await productsDatabaseQueries.querySpecificProductById(element, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+            aProduct.productQuantity = aProduct.productQuantity - int.parse(csvNewProductQuantity[index]);
+
+            await productsDatabaseInputs.updateProductData(aProduct, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+            index++;
+
+          });
+
+        } else { // Products Removed
+
+          var csvRemovedProductIds = widget.buyInvoicesData!.boughtProductId.replaceAll(controllerAllProductId.text, "");
+          var csvRemovedProductQuantity = widget.buyInvoicesData!.boughtProductQuantity.replaceAll(controllerAllProductQuantity.text, "");
+
+          var allIds = csvRemovedProductIds.split(",");
+
+          var index = 0;
+
+          allIds.forEach((element) async {
+
+            var aProduct = await productsDatabaseQueries.querySpecificProductById(element, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+            aProduct.productQuantity = aProduct.productQuantity + int.parse(csvRemovedProductQuantity[index]);
+
+            await productsDatabaseInputs.updateProductData(aProduct, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+            index++;
+
+          });
+
+        }
+
+      }
+
+    }
 
   }
 

@@ -14,6 +14,8 @@ import 'package:flow_accounting/buy_invoices/database/io/inputs.dart';
 import 'package:flow_accounting/buy_invoices/database/io/queries.dart';
 import 'package:flow_accounting/buy_invoices/database/structures/tables_structure.dart';
 import 'package:flow_accounting/buy_invoices/input/ui/buy_invoices_input_view.dart';
+import 'package:flow_accounting/products/database/io/inputs.dart';
+import 'package:flow_accounting/products/database/io/queries.dart';
 import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
@@ -858,10 +860,47 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
 
   }
 
-  void returningInvoicesProcess(BuyInvoicesData buyInvoicesData) {
+  void returningInvoicesProcess(BuyInvoicesData buyInvoicesData) async {
 
-    // Change Product Stock
-    // Change Relevant Credit Card Balance
+
+
+    String databaseDirectory = await getDatabasesPath();
+
+    String productDatabasePath = "${databaseDirectory}/${ProductsDatabaseInputs.productsDatabase()}";
+
+    bool productsDatabaseExist = await databaseExists(productDatabasePath);
+
+    if (productsDatabaseExist) {
+
+      ProductsDatabaseInputs productsDatabaseInputs = ProductsDatabaseInputs();
+
+      ProductsDatabaseQueries productsDatabaseQueries = ProductsDatabaseQueries();
+
+      var allIds = buyInvoicesData.boughtProductId.split(",");
+
+      var allNames = buyInvoicesData.boughtProductName.split(",");
+
+      var allQuantities = buyInvoicesData.boughtProductQuantity.split(",");
+
+      var allQuantitiesTypes = buyInvoicesData.productQuantityType.split(",");
+
+      var allEachPrice = buyInvoicesData.boughtProductEachPrice.split(",");
+
+      var index = 0;
+
+      allIds.forEach((element) async {
+
+        var aProduct = await productsDatabaseQueries.querySpecificProductById(element, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+        aProduct.productQuantity = aProduct.productQuantity + int.parse(allQuantities[index]);
+
+        await productsDatabaseInputs.updateProductData(aProduct, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+        index++;
+
+      });
+
+    }
 
   }
 
