@@ -52,6 +52,8 @@ class SellInvoicesDatabaseQueries {
         soldProductEachPrice: maps[i]['soldProductEachPrice'],
         soldProductPriceDiscount: maps[i]['soldProductPriceDiscount'],
 
+        invoiceDiscount: maps[i]['invoiceDiscount'],
+
         productShippingExpenses: maps[i]['productShippingExpenses'],
 
         productTax: maps[i]['productTax'],

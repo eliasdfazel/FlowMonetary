@@ -1718,6 +1718,12 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                       inputFormatters: [
                                         CurrencyTextInputFormatter(decimalDigits: 0, symbol: "")
                                       ],
+                                      onChanged: (shippingExpenses) {
+
+                                        int completeDiscount = int.parse(controllerShippingExpenses.text.isEmpty ? "0" : controllerShippingExpenses.text.replaceAll(",", ""));
+
+
+                                      },
                                       decoration: InputDecoration(
                                         alignLabelWithHint: true,
                                         border: const OutlineInputBorder(
@@ -1808,6 +1814,12 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                       autofocus: false,
                                       keyboardType: TextInputType.number,
                                       textInputAction: TextInputAction.next,
+                                      onChanged: (fullDiscount) {
+
+                                        int completeDiscountPercent = int.parse(controllerDiscount.text.isEmpty ? "0" : controllerDiscount.text);
+
+
+                                      },
                                       decoration: InputDecoration(
                                         alignLabelWithHint: true,
                                         border: const OutlineInputBorder(
@@ -2562,7 +2574,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                         boughtProductPrice: controllerInvoicePrice.text.isEmpty ? "0" : controllerInvoicePrice.text,
                                         boughtProductPriceDiscount: controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text,
 
-                                        invoiceDiscount: controllerDiscount.text.isEmpty ? "0" : controllerDiscount.text,
+                                        invoiceDiscount: controllerDiscount.text.isEmpty ? "0%" : controllerDiscount.text,
 
                                         productShippingExpenses: controllerShippingExpenses.text.isEmpty ? "0" : controllerShippingExpenses.text,
 

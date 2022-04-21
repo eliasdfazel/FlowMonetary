@@ -2554,6 +2554,8 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                                         soldProductPrice: controllerInvoicePrice.text.isEmpty ? "0" : controllerInvoicePrice.text,
                                         soldProductPriceDiscount: controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text,
 
+                                        invoiceDiscount: controllerDiscount.text.isEmpty ? "0%" : controllerDiscount.text,
+
                                         productShippingExpenses: controllerShippingExpenses.text.isEmpty ? "0" : controllerShippingExpenses.text,
 
                                         productTax: controllerProductTax.text.isEmpty ? "0%" : "${controllerProductTax.text}%",

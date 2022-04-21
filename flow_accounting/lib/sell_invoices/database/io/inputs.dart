@@ -48,6 +48,7 @@ class SellInvoicesDatabaseInputs {
                 'soldProductPrice TEXT, '
                 'soldProductEachPrice TEXT, '
                 'soldProductPriceDiscount TEXT, '
+                'invoiceDiscount TEXT, '
                 'productShippingExpenses TEXT, '
                 'productTax TEXT, '
                 'paidTo TEXT, '
