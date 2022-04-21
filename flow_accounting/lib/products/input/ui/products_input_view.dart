@@ -1814,20 +1814,23 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                                 blurColor: Colors.blue,
                                                 colorOpacity: 0.0,
                                                 child: const SizedBox(
-                                                  width: double.infinity,
+                                                  width: 53,
                                                   height: 53,
                                                 ),
                                               ),
-                                              const SizedBox(
-                                                  width: 53,
-                                                  height: 53,
-                                                  child: Align(
-                                                      alignment: AlignmentDirectional.center,
-                                                      child: Image(
-                                                        image: AssetImage("quick_save.png"),
-                                                        color: ColorsResources.lightestOrange,
-                                                      )
-                                                  )
+                                              Align(
+                                                alignment: AlignmentDirectional.center,
+                                                child: const SizedBox(
+                                                    width: 53,
+                                                    height: 53,
+                                                    child: Align(
+                                                        alignment: AlignmentDirectional.center,
+                                                        child: Image(
+                                                          image: AssetImage("quick_save.png"),
+                                                          color: ColorsResources.lightestOrange,
+                                                        )
+                                                    )
+                                                )
                                               )
                                             ],
                                           )
