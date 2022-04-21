@@ -1723,6 +1723,15 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                                       inputFormatters: [
                                         CurrencyTextInputFormatter(decimalDigits: 0, symbol: "")
                                       ],
+                                      onChanged: (shippingExpenses) {
+
+                                        int completeShipping = int.parse(controllerShippingExpenses.text.isEmpty ? "0" : controllerShippingExpenses.text.replaceAll(",", ""));
+
+                                        int previousInvoicePrice = int.parse(controllerInvoicePrice.text.isEmpty ? "0" : controllerInvoicePrice.text.replaceAll(",", ""));
+
+                                        controllerInvoicePrice.text = (previousInvoicePrice + completeShipping).toString();
+
+                                      },
                                       decoration: InputDecoration(
                                         alignLabelWithHint: true,
                                         border: const OutlineInputBorder(
@@ -1813,6 +1822,17 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                                       autofocus: false,
                                       keyboardType: TextInputType.number,
                                       textInputAction: TextInputAction.next,
+                                      onChanged: (fullDiscount) {
+
+                                        String completeDiscountPercent = controllerDiscount.text.isEmpty ? "0%" : controllerDiscount.text;
+
+                                        int previousInvoicePrice = int.parse(controllerInvoicePrice.text.isEmpty ? "0" : controllerInvoicePrice.text.replaceAll(",", ""));
+
+                                        int completeDiscount = ((previousInvoicePrice * int.parse(completeDiscountPercent.replaceAll("%", ""))) / 100).round();
+
+                                        controllerInvoicePrice.text = (previousInvoicePrice - completeDiscount).toString();
+
+                                      },
                                       decoration: InputDecoration(
                                         alignLabelWithHint: true,
                                         border: const OutlineInputBorder(

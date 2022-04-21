@@ -1720,8 +1720,11 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                       ],
                                       onChanged: (shippingExpenses) {
 
-                                        int completeDiscount = int.parse(controllerShippingExpenses.text.isEmpty ? "0" : controllerShippingExpenses.text.replaceAll(",", ""));
+                                        int completeShipping = int.parse(controllerShippingExpenses.text.isEmpty ? "0" : controllerShippingExpenses.text.replaceAll(",", ""));
 
+                                        int previousInvoicePrice = int.parse(controllerInvoicePrice.text.isEmpty ? "0" : controllerInvoicePrice.text.replaceAll(",", ""));
+
+                                        controllerInvoicePrice.text = (previousInvoicePrice + completeShipping).toString();
 
                                       },
                                       decoration: InputDecoration(
@@ -1816,8 +1819,13 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                       textInputAction: TextInputAction.next,
                                       onChanged: (fullDiscount) {
 
-                                        int completeDiscountPercent = int.parse(controllerDiscount.text.isEmpty ? "0" : controllerDiscount.text);
+                                        String completeDiscountPercent = controllerDiscount.text.isEmpty ? "0%" : controllerDiscount.text;
 
+                                        int previousInvoicePrice = int.parse(controllerInvoicePrice.text.isEmpty ? "0" : controllerInvoicePrice.text.replaceAll(",", ""));
+
+                                        int completeDiscount = ((previousInvoicePrice * int.parse(completeDiscountPercent.replaceAll("%", ""))) / 100).round();
+
+                                        controllerInvoicePrice.text = (previousInvoicePrice - completeDiscount).toString();
 
                                       },
                                       decoration: InputDecoration(
