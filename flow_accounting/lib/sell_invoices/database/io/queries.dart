@@ -74,6 +74,67 @@ class SellInvoicesDatabaseQueries {
 
   }
 
+  Future<SellInvoicesData> querySpecificSellInvoiceById(
+      String buyInvoiceId,
+      String tableName, String usernameId) async {
+
+    var databaseNameQuery = SellInvoicesDatabaseInputs.sellInvoicesDatabase();
+    var tableNameQuery = SellInvoicesDatabaseInputs.databaseTableName;
+
+    final database = openDatabase(
+      join(await getDatabasesPath(), databaseNameQuery),
+    );
+
+    final databaseInstance = await database;
+
+    var databaseContents = await databaseInstance.query(
+      tableNameQuery,
+      where: 'id = ?',
+      whereArgs: [buyInvoiceId],
+    );
+
+    return SellInvoicesData(
+      id: databaseContents[0]['id'] as int,
+
+      companyName: databaseContents[0]['companyName'].toString(),
+      companyLogoUrl: databaseContents[0]['companyLogoUrl'].toString(),
+
+      sellInvoiceNumber: databaseContents[0]['sellInvoiceNumber'].toString(),
+
+      sellInvoiceDescription: databaseContents[0]['sellInvoiceDescription'].toString(),
+
+      sellInvoiceDateText: databaseContents[0]['sellInvoiceDateText'].toString(),
+      sellInvoiceDateMillisecond: int.parse(databaseContents[0]['sellInvoiceDateMillisecond'].toString()),
+
+      soldProductId: databaseContents[0]['soldProductId'].toString(),
+      soldProductName: databaseContents[0]['soldProductName'].toString(),
+      soldProductQuantity: databaseContents[0]['soldProductQuantity'].toString(),
+      productQuantityType: databaseContents[0]['productQuantityType'].toString(),
+
+      soldProductPrice: databaseContents[0]['soldProductPrice'].toString(),
+      soldProductEachPrice: databaseContents[0]['soldProductEachPrice'].toString(),
+      soldProductPriceDiscount: databaseContents[0]['soldProductPriceDiscount'].toString(),
+
+      invoiceDiscount: databaseContents[0]['invoiceDiscount'].toString(),
+
+      productShippingExpenses: databaseContents[0]['productShippingExpenses'].toString(),
+
+      productTax: databaseContents[0]['productTax'].toString(),
+
+      paidTo: databaseContents[0]['paidTo'].toString(),
+
+      soldTo: databaseContents[0]['soldTo'].toString(),
+
+      sellPreInvoice: databaseContents[0]['sellPreInvoice'].toString(),
+
+      companyDigitalSignature: databaseContents[0]['companyDigitalSignature'].toString(),
+
+      invoiceReturned: databaseContents[0]['invoiceReturned'].toString(),
+
+      colorTag: int.parse(databaseContents[0]['colorTag'].toString()),
+    );
+  }
+
   Future<int> queryDeleteSellInvoice(int id,
       String tableName, String usernameId) async {
 

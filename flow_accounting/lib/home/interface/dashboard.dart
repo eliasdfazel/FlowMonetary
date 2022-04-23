@@ -8,6 +8,10 @@
  * https://opensource.org/licenses/MIT
  */
 
+import 'package:flow_accounting/buy_invoices/database/io/inputs.dart';
+import 'package:flow_accounting/buy_invoices/database/io/queries.dart';
+import 'package:flow_accounting/buy_invoices/database/structures/tables_structure.dart';
+import 'package:flow_accounting/buy_invoices/input/ui/buy_invoices_input_view.dart';
 import 'package:flow_accounting/credit_cards/database/io/inputs.dart';
 import 'package:flow_accounting/credit_cards/database/io/queries.dart';
 import 'package:flow_accounting/credit_cards/database/structures/tables_structure.dart';
@@ -19,6 +23,9 @@ import 'package:flow_accounting/products/input/ui/products_input_view.dart';
 import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
+import 'package:flow_accounting/sell_invoices/database/io/queries.dart';
+import 'package:flow_accounting/sell_invoices/database/structures/tables_structure.dart';
+import 'package:flow_accounting/sell_invoices/input/ui/sell_invoices_input_view.dart';
 import 'package:flow_accounting/transactions/database/io/inputs.dart';
 import 'package:flow_accounting/transactions/database/io/queries.dart';
 import 'package:flow_accounting/transactions/database/structures/tables_structure.dart';
@@ -501,6 +508,40 @@ class FlowDashboardState extends State<FlowDashboard> {
       });
 
       debugPrint("Product Id Detected ${productId}");
+
+    } else if (barcodeScanResult.contains("BuyInvoices_")) {
+
+      String buyInvoiceId = barcodeScanResult.replaceAll("BuyInvoices_", "");
+
+      BuyInvoicesDatabaseQueries buyInvoicesDatabaseQueries = BuyInvoicesDatabaseQueries();
+
+      BuyInvoicesData scannedBuyInvoicesData = await buyInvoicesDatabaseQueries.querySpecificBuyInvoiceById(buyInvoiceId, BuyInvoicesDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+
+      Future.delayed(Duration(milliseconds: 753), () {
+
+        NavigationProcess().goTo(context, BuyInvoicesInputView(buyInvoicesData: scannedBuyInvoicesData));
+
+      });
+
+      debugPrint("Buy Invoice Id Detected ${buyInvoiceId}");
+
+    } else if (barcodeScanResult.contains("SellInvoices_")) {
+
+      String sellInvoiceId = barcodeScanResult.replaceAll("SellInvoices_", "");
+
+      SellInvoicesDatabaseQueries sellInvoicesDatabaseQueries = SellInvoicesDatabaseQueries();
+
+      SellInvoicesData scannedSellInvoicesData = await sellInvoicesDatabaseQueries.querySpecificSellInvoiceById(sellInvoiceId, BuyInvoicesDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+      Future.delayed(Duration(milliseconds: 753), () {
+
+        NavigationProcess().goTo(context, SellInvoicesInputView(sellInvoicesData: scannedSellInvoicesData));
+
+      });
+
+      debugPrint("Buy Invoice Id Detected ${sellInvoiceId}");
+
     }
 
   }
