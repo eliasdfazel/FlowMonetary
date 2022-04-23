@@ -12,6 +12,7 @@
 import 'package:flow_accounting/loans/database/structure/tables_structure.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
+import 'package:flow_accounting/utils/calendar/io/time_io.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:marquee/marquee.dart';
@@ -26,6 +27,8 @@ class LoansPaymentsView extends StatefulWidget {
   _LoansPaymentsViewState createState() => _LoansPaymentsViewState();
 }
 class _LoansPaymentsViewState extends State<LoansPaymentsView> {
+
+  List<DateTime> paymentsDateTime = [];
 
   List<LoansData> allLoans = [];
   List<Widget> allListContentWidgets = [];
@@ -293,7 +296,7 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
     );
   }
 
-  Widget outputItem(BuildContext context, LoansData loansData) {
+  Widget outputItem(BuildContext context, int itemIndex, LoansData loansData) {
 
     return Slidable(
       closeOnScroll: true,
@@ -304,7 +307,7 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
             flex: 1,
             onPressed: (BuildContext context) {
 
-
+              paymentProcessed(itemIndex, loansData);
 
             },
             backgroundColor: Colors.transparent,
@@ -476,6 +479,12 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
 
   }
 
+  void paymentProcessed(int itemIndex, LoansData loansData) async {
+
+
+
+  }
+
   void calculatePayments(LoansData loansData) {
 
     int loanAmount = int.parse(loansData.loanComplete);
@@ -484,12 +493,42 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
 
     double eachPaymentAmount = (loanAmount / paymentsCount);
 
-    //use Jalali Calendar
-    //from first millis add up millis
+    int firstLoanPaymentMillisecond = int.parse(loansData.loanDuePeriodMillisecond);
 
-    for (int paymentIndex = 0; paymentIndex < paymentsCount; paymentsCount++) {
+    int paymentTimeType = TimeIO.OneMonthMillisecond;
 
+    switch (int.parse(loansData.loanDuePeriodType)) {
+      case LoansData.LoanPeriodType_Month: {
 
+        paymentTimeType = TimeIO.OneMonthMillisecond;
+
+        break;
+      }
+      case LoansData.LoanPeriodType_ThreeMonth: {
+
+        paymentTimeType = TimeIO.ThreeMonthsMillisecond;
+
+        break;
+      }
+      case LoansData.LoanPeriodType_SixMonth: {
+
+        paymentTimeType = TimeIO.SixMonthsMillisecond;
+
+        break;
+      }
+      case LoansData.LoanPeriodType_Year: {
+
+        paymentTimeType = TimeIO.TwelveMonthsMillisecond;
+
+        break;
+      }
+    }
+
+    for (int paymentIndex = 1; paymentIndex < paymentsCount; paymentsCount++) {
+
+      DateTime loanPayment = DateTime(firstLoanPaymentMillisecond + (paymentIndex * paymentTimeType));
+
+      paymentsDateTime.add(loanPayment);
 
     }
 

@@ -1030,11 +1030,11 @@ class StringsResources {
 
   static String loansPeriod() {
 
-    return "دوره پرداخت اقساط";
+    return "دوره پرداخت اولین قسط";
   }
   static String loansPeriodHint() {
 
-    return "تاریخ پرداخت اقساط";
+    return "تاریخ پرداخت اولین قسط";
   }
   static String loansPeriodOneMonth() {
 

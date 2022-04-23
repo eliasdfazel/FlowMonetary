@@ -30,6 +30,8 @@ class CalendarView extends StatefulWidget {
 }
 class _CalendarView extends State<CalendarView> {
 
+  String inputDateTimeUntouched = "";
+
   @override
   void initState() {
 
@@ -39,7 +41,7 @@ class _CalendarView extends State<CalendarView> {
 
     if (widget.inputDateTime != null) {
 
-      widget.inputDateTime = widget.inputDateTime!;
+      inputDateTimeUntouched = widget.inputDateTime!;
 
     } else {
 
@@ -166,7 +168,7 @@ class _CalendarView extends State<CalendarView> {
 
                       setState(() {
 
-                        widget.inputDateTime = "" +
+                        inputDateTimeUntouched = "" +
                             weekdayName + " " +
                             dayNumber + " " +
                             monthName + " " +
