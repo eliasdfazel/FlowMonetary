@@ -79,7 +79,7 @@ class _LoansInputViewState extends State<LoansInputView> {
     if (widget.loansData != null) {
 
       loanCalendarView.inputDateTime = widget.loansData!.loanDuePeriod;
-      loanCalendarView.pickedDateTime = DateTime.fromMillisecondsSinceEpoch(int.parse(widget.loansData!.loanDuePeriod));
+      loanCalendarView.pickedDateTime = DateTime.fromMillisecondsSinceEpoch(int.parse(widget.loansData!.loanDuePeriodMillisecond));
       loanCalendarView.pickedDataTimeYear = loanCalendarView.pickedDateTime.year.toString();
       loanCalendarView.pickedDataTimeMonth = loanCalendarView.pickedDateTime.month.toString();
 
