@@ -123,7 +123,7 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
                       crossAxisSpacing: 3.0,
                       mainAxisSpacing: 7.0,
                     ),
-                    padding: const EdgeInsets.fromLTRB(0, 273, 0, 79),
+                    padding: const EdgeInsets.fromLTRB(0, 279, 0, 79),
                     physics: const BouncingScrollPhysics(),
                     children: allListContentWidgets,
                   ),
@@ -145,11 +145,11 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
                             colorOpacity: 0.1,
                             child: const SizedBox(
                               width: double.infinity,
-                              height: 173,
+                              height: 191,
                             ),
                           ),
                           Container(
-                            height: 173,
+                            height: 191,
                             width: double.infinity,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.only(
@@ -189,6 +189,39 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
                                                   style: const TextStyle(
                                                     color: ColorsResources.dark,
                                                     fontSize: 31,
+                                                    fontFamily: "Numbers",
+                                                  ),
+                                                  scrollAxis: Axis.horizontal,
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  blankSpace: 293.0,
+                                                  velocity: 37.0,
+                                                  fadingEdgeStartFraction: 0.13,
+                                                  fadingEdgeEndFraction: 0.13,
+                                                  startAfter: const Duration(milliseconds: 777),
+                                                  numberOfRounds: 3,
+                                                  pauseAfterRound: const Duration(milliseconds: 500),
+                                                  showFadingOnlyWhenScrolling: true,
+                                                  startPadding: 13.0,
+                                                  accelerationDuration: const Duration(milliseconds: 500),
+                                                  accelerationCurve: Curves.linear,
+                                                  decelerationDuration: const Duration(milliseconds: 500),
+                                                  decelerationCurve: Curves.easeOut,
+                                                )
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 39,
+                                          width: double.infinity,
+                                          child: Padding(
+                                            padding: const EdgeInsets.fromLTRB(27, 11, 13, 0),
+                                            child: Align(
+                                                alignment: Alignment.center,
+                                                child: Marquee(
+                                                  text: eachPaymentAmount.toString(),
+                                                  style: const TextStyle(
+                                                    color: ColorsResources.darkTransparent,
+                                                    fontSize: 19,
                                                     fontFamily: "Numbers",
                                                   ),
                                                   scrollAxis: Axis.horizontal,
@@ -568,7 +601,11 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
 
     paidIndexed = widget.loansData.loansPaymentsIndexes.split(",");
 
-    preparePaymentsItems();
+    Future.delayed(Duration(milliseconds: 357), () {
+
+      preparePaymentsItems();
+
+    });
 
   }
 
