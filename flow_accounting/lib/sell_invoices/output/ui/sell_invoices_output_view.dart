@@ -868,7 +868,6 @@ class _SellInvoicesOutputViewState extends State<SellInvoicesOutputView> {
 
     sellInvoicesDatabaseInputs.updateInvoiceData(sellInvoicesData, SellInvoicesDatabaseInputs.databaseTableName, UserInformation.UserId);
 
-
     String databaseDirectory = await getDatabasesPath();
 
     String productDatabasePath = "${databaseDirectory}/${ProductsDatabaseInputs.productsDatabase()}";

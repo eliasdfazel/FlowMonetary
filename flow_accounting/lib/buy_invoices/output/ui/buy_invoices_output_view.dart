@@ -854,7 +854,6 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
 
     buyInvoicesDatabaseInputs.updateInvoiceData(buyInvoicesData, BuyInvoicesDatabaseInputs.databaseTableName, UserInformation.UserId);
 
-
     String databaseDirectory = await getDatabasesPath();
 
     String productDatabasePath = "${databaseDirectory}/${ProductsDatabaseInputs.productsDatabase()}";
