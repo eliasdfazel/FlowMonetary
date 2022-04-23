@@ -115,6 +115,8 @@ class _ChequeInputViewState extends State<ChequesInputView> {
   String? warningNoticeCreditCard;
   String? warningNoticeBudget;
 
+  String? warningNoticeCategory;
+
   @override
   void initState() {
 
@@ -894,7 +896,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                         ),
                                         gapPadding: 5
                                     ),
-                                    errorText: warningNoticeBudget,
+                                    errorText: warningNoticeCategory,
                                     filled: true,
                                     fillColor: ColorsResources.lightTransparent,
                                     labelText: StringsResources.chequeCategory(),
@@ -2724,6 +2726,18 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                             setState(() {
 
                               warningNoticeBudget = StringsResources.errorText();
+
+                            });
+
+                            noError = false;
+
+                          }
+
+                          if (controllerChequeCategory.text.isEmpty) {
+
+                            setState(() {
+
+                              warningNoticeCategory = StringsResources.errorText();
 
                             });
 
