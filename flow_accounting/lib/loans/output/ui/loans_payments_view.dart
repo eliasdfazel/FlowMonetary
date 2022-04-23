@@ -33,7 +33,7 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
   List<LoansData> allLoans = [];
   List<Widget> allListContentWidgets = [];
 
-  TextEditingController textEditorControllerQuery = TextEditingController();
+  double eachPaymentAmount = 0;
 
   @override
   void dispose() {
@@ -43,6 +43,12 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
   @override
   void initState() {
     super.initState();
+
+    int loanAmount = int.parse(widget.loansData.loanComplete);
+
+    int paymentsCount = int.parse(widget.loansData.loanCount);
+
+    eachPaymentAmount = (loanAmount / paymentsCount);
 
     allListContentWidgets.add(
         Padding(
@@ -203,6 +209,8 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
           ),
         )
     );
+
+    calculatePayments(widget.loansData);
 
   }
 
@@ -487,11 +495,7 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
 
   void calculatePayments(LoansData loansData) {
 
-    int loanAmount = int.parse(loansData.loanComplete);
-
     int paymentsCount = int.parse(loansData.loanCount);
-
-    double eachPaymentAmount = (loanAmount / paymentsCount);
 
     int firstLoanPaymentMillisecond = int.parse(loansData.loanDuePeriodMillisecond);
 

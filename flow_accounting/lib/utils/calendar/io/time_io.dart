@@ -34,10 +34,7 @@ class TimeIO {
         weekdayName + " " +
         dayNumber + " " +
         monthName + " " +
-        yearNumber +
-        "\n" +
-        "ساعت" + " " +
-        "${inputDateTime.hour}:${inputDateTime.minute}";;
+        yearNumber;
   }
 
 }
