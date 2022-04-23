@@ -36,7 +36,10 @@ import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:screenshot/screenshot.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:syncfusion_flutter_barcodes/barcodes.dart';
 
 class BuyInvoicesInputView extends StatefulWidget {
 
@@ -87,6 +90,27 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
   TextEditingController controllerBoughtFrom = TextEditingController();
 
   List<ProductsData> selectedProductsData = [];
+
+  ScreenshotController barcodeSnapshotController = ScreenshotController();
+
+  Widget barcodeView = Opacity(
+      opacity: 0.37,
+      child: ClipRRect(
+          borderRadius: BorderRadius.circular(19),
+          child: ColoredBox(
+              color: ColorsResources.lightestBlue.withOpacity(0.73),
+              child: Padding(
+                  padding: EdgeInsets.fromLTRB(7, 7, 7, 7),
+                  child: Image(
+                    image: AssetImage("qr_code_icon.png"),
+                    fit: BoxFit.cover,
+                    height: 131,
+                    width: 131,
+                  )
+              )
+          )
+      )
+  );
 
   int timeNow = DateTime.now().millisecondsSinceEpoch;
 
@@ -318,7 +342,6 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
   @override
   Widget build(BuildContext context) {
 
-
     return MaterialApp (
       debugShowCheckedModeBanner: false,
       color: ColorsResources.black,
@@ -398,6 +421,10 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                             ],
                           ),
                         ),
+                      ),
+                      Align(
+                          alignment: AlignmentDirectional.center,
+                          child: barcodeView
                       ),
                       SizedBox(
                         width: double.infinity,
@@ -3175,16 +3202,83 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
   void prepareAllImagesCheckpoint() async {
 
-    /* Company Logo */
     if (widget.buyInvoicesData != null) {
 
+      /* Start - Company Logo */
       imageLogoPickerWidget = Image.file(
         File(widget.buyInvoicesData!.companyLogoUrl),
         fit: BoxFit.cover,
       );
+      /* End - Company Logo */
+
+      /* Start - Barcode Image */
+      bool barcodeFileCheckpoint = await fileExist("BuyInvoices_${widget.buyInvoicesData!.id}.PNG");
+
+      Widget barcodeGenerator = Screenshot(
+        controller: barcodeSnapshotController,
+        child: SfBarcodeGenerator(
+          value: "BuyInvoices_${widget.buyInvoicesData!.id.toString()}",
+          symbology: QRCode(),
+          barColor: ColorsResources.primaryColor,
+        ),
+      );
+
+      barcodeView = ClipRRect(
+          borderRadius: BorderRadius.circular(13),
+          child: ColoredBox(
+              color: ColorsResources.lightestBlue.withOpacity(0.91),
+              child: Padding(
+                  padding: EdgeInsets.fromLTRB(9, 9, 9, 9),
+                  child:  SizedBox(
+                      height: 131,
+                      width: 131,
+                      child: InkWell(
+                          onTap: () async {
+
+                            if (barcodeFileCheckpoint) {
+
+                              Directory appDocumentsDirectory = await getApplicationSupportDirectory();
+
+                              String appDocumentsPath = appDocumentsDirectory.path;
+
+                              String filePath = '$appDocumentsPath/BuyInvoices_${widget.buyInvoicesData!.id}.PNG';
+
+                              Share.shareFiles([filePath],
+                                  text: "${widget.buyInvoicesData!.buyInvoiceDescription}");
+
+                            }
+
+                          },
+                          child: barcodeGenerator
+                      )
+                  )
+              )
+          )
+      );
+
+      Future.delayed(Duration(milliseconds: 333), () {
+
+        if (!barcodeFileCheckpoint) {
+
+          barcodeSnapshotController.capture().then((Uint8List? imageBytes) {
+            debugPrint("Barcode Captured");
+
+            if (imageBytes != null) {
+
+              createFileOfBytes("Product_${widget.buyInvoicesData!.id}", "PNG", imageBytes);
+
+            }
+
+          });
+
+        }
+
+      });
+      /* End - Barcode Image */
 
     }
 
+    /* Start - Signature */
     bool signatureCheckpoint = await fileExist("${UserInformation.UserId}_SIGNATURE.PNG");
 
     if (signatureCheckpoint) {
@@ -3201,8 +3295,11 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
       );
 
     }
+    /* End - Signature */
 
     setState(() {
+
+      barcodeView;
 
       imageLogoPickerWidget;
 
