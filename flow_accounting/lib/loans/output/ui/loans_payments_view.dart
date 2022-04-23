@@ -9,7 +9,9 @@
  * https://opensource.org/licenses/MIT
  */
 
+import 'package:flow_accounting/loans/database/io/inputs.dart';
 import 'package:flow_accounting/loans/database/structure/tables_structure.dart';
+import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/utils/calendar/io/time_io.dart';
@@ -28,12 +30,18 @@ class LoansPaymentsView extends StatefulWidget {
 }
 class _LoansPaymentsViewState extends State<LoansPaymentsView> {
 
+  TimeIO timeIO = TimeIO();
+
   List<DateTime> paymentsDateTime = [];
 
   List<LoansData> allLoans = [];
   List<Widget> allListContentWidgets = [];
 
   double eachPaymentAmount = 0;
+
+  List<String> paidIndexed = [];
+
+  bool thisLoanPaid = false;
 
   @override
   void dispose() {
@@ -44,171 +52,17 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
   void initState() {
     super.initState();
 
-    int loanAmount = int.parse(widget.loansData.loanComplete);
+    int loanAmount = int.parse(widget.loansData.loanComplete.replaceAll(",", ""));
 
     int paymentsCount = int.parse(widget.loansData.loanCount);
 
     eachPaymentAmount = (loanAmount / paymentsCount);
 
-    allListContentWidgets.add(
-        Padding(
-          padding: const  EdgeInsets.fromLTRB(13, 7, 13, 13),
-          child: PhysicalModel(
-            color: ColorsResources.light,
-            elevation: 7,
-            shadowColor: Color(widget.loansData.colorTag).withOpacity(0.79),
-            shape: BoxShape.rectangle,
-            borderRadius: const BorderRadius.all(Radius.circular(17)),
-            child: Container(
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(17),
-                    topRight: Radius.circular(17),
-                    bottomLeft: Radius.circular(17),
-                    bottomRight: Radius.circular(17)
-                ),
-                gradient: LinearGradient(
-                    colors: [
-                      ColorsResources.white,
-                      ColorsResources.light,
-                    ],
-                    begin: FractionalOffset(0.0, 0.0),
-                    end: FractionalOffset(1.0, 0.0),
-                    stops: [0.0, 1.0],
-                    transform: GradientRotation(45),
-                    tileMode: TileMode.clamp
-                ),
-              ),
-              child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                  child: Stack(
-                    children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          SizedBox(
-                            height: 59,
-                            width: double.infinity,
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(27, 11, 13, 0),
-                              child: Align(
-                                  alignment: Alignment.center,
-                                  child: Marquee(
-                                    text: widget.loansData.loanComplete,
-                                    style: const TextStyle(
-                                      color: ColorsResources.dark,
-                                      fontSize: 31,
-                                      fontFamily: "Numbers",
-                                    ),
-                                    scrollAxis: Axis.horizontal,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    blankSpace: 293.0,
-                                    velocity: 37.0,
-                                    fadingEdgeStartFraction: 0.13,
-                                    fadingEdgeEndFraction: 0.13,
-                                    startAfter: const Duration(milliseconds: 777),
-                                    numberOfRounds: 3,
-                                    pauseAfterRound: const Duration(milliseconds: 500),
-                                    showFadingOnlyWhenScrolling: true,
-                                    startPadding: 13.0,
-                                    accelerationDuration: const Duration(milliseconds: 500),
-                                    accelerationCurve: Curves.linear,
-                                    decelerationDuration: const Duration(milliseconds: 500),
-                                    decelerationCurve: Curves.easeOut,
-                                  )
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                              height: 39,
-                              width: double.infinity,
-                              child: Padding(
-                                padding: const EdgeInsets.fromLTRB(19, 11, 19, 0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Expanded(
-                                      flex: 1,
-                                      child: Directionality(
-                                        textDirection: TextDirection.rtl,
-                                        child: Align(
-                                          alignment: Alignment.centerRight,
-                                          child: Text(
-                                            widget.loansData.loanTitle,
-                                            style: const TextStyle(
-                                              color: ColorsResources.dark,
-                                              fontSize: 19,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              )
-                          ),
-                          SizedBox(
-                            height: 51,
-                            width: double.infinity,
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(31, 0, 19, 0),
-                              child: Container(
-                                color: Colors.transparent,
-                                child: Align(
-                                  alignment: Alignment.centerRight,
-                                  child: Text(
-                                    widget.loansData.loanDescription,
-                                    textAlign: TextAlign.right,
-                                    style: TextStyle(
-                                        color: ColorsResources.dark.withOpacity(0.537),
-                                        fontSize: 15
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                      Positioned(
-                        left: 0,
-                        bottom: 0,
-                        child: RotatedBox(
-                          quarterTurns: 3,
-                          child: SizedBox(
-                            height: 27,
-                            width: 79,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(17),
-                                    topRight: Radius.circular(0),
-                                    bottomLeft: Radius.circular(0),
-                                    bottomRight: Radius.circular(17)
-                                ),
-                                gradient: LinearGradient(
-                                    colors: [
-                                      Color(widget.loansData.colorTag).withOpacity(0.7),
-                                      ColorsResources.light,
-                                    ],
-                                    begin: const FractionalOffset(0.0, 0.0),
-                                    end: const FractionalOffset(1.0, 0.0),
-                                    stops: const [0.0, 1.0],
-                                    transform: const GradientRotation(45),
-                                    tileMode: TileMode.clamp
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  )
-              ),
-            ),
-          ),
-        )
-    );
+    if (widget.loansData.loansPaymentsIndexes != "-1") {
+
+      paidIndexed = widget.loansData.loansPaymentsIndexes.split(",");
+
+    }
 
     calculatePayments(widget.loansData);
 
@@ -241,8 +95,8 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
                 ),
                 gradient: LinearGradient(
                     colors: [
+                      ColorsResources.blueGray,
                       ColorsResources.black,
-                      ColorsResources.primaryColorLighter,
                     ],
                     begin: FractionalOffset(0.0, 0.0),
                     end: FractionalOffset(1.0, 0.0),
@@ -261,10 +115,175 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
                       height: double.infinity,
                     ),
                   ),
-                  ListView(
-                    padding: const EdgeInsets.fromLTRB(0, 73, 0, 79),
+                  GridView(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 1,
+                      crossAxisSpacing: 3.0,
+                      mainAxisSpacing: 7.0,
+                    ),
+                    padding: const EdgeInsets.fromLTRB(0, 273, 0, 79),
                     physics: const BouncingScrollPhysics(),
                     children: allListContentWidgets,
+                  ),
+                  Padding(
+                    padding: const  EdgeInsets.fromLTRB(13, 79, 13, 13),
+                    child: PhysicalModel(
+                      color: ColorsResources.light,
+                      elevation: 7,
+                      shadowColor: Color(widget.loansData.colorTag).withOpacity(0.79),
+                      shape: BoxShape.rectangle,
+                      borderRadius: const BorderRadius.all(Radius.circular(17)),
+                      child: Container(
+                        height: 173,
+                        width: double.infinity,
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(17),
+                              topRight: Radius.circular(17),
+                              bottomLeft: Radius.circular(17),
+                              bottomRight: Radius.circular(17)
+                          ),
+                          gradient: LinearGradient(
+                              colors: [
+                                ColorsResources.white,
+                                ColorsResources.light,
+                              ],
+                              begin: FractionalOffset(0.0, 0.0),
+                              end: FractionalOffset(1.0, 0.0),
+                              stops: [0.0, 1.0],
+                              transform: GradientRotation(45),
+                              tileMode: TileMode.clamp
+                          ),
+                        ),
+                        child: Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                            child: Stack(
+                              children: [
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    SizedBox(
+                                      height: 59,
+                                      width: double.infinity,
+                                      child: Padding(
+                                        padding: const EdgeInsets.fromLTRB(27, 11, 13, 0),
+                                        child: Align(
+                                            alignment: Alignment.center,
+                                            child: Marquee(
+                                              text: widget.loansData.loanComplete,
+                                              style: const TextStyle(
+                                                color: ColorsResources.dark,
+                                                fontSize: 31,
+                                                fontFamily: "Numbers",
+                                              ),
+                                              scrollAxis: Axis.horizontal,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              blankSpace: 293.0,
+                                              velocity: 37.0,
+                                              fadingEdgeStartFraction: 0.13,
+                                              fadingEdgeEndFraction: 0.13,
+                                              startAfter: const Duration(milliseconds: 777),
+                                              numberOfRounds: 3,
+                                              pauseAfterRound: const Duration(milliseconds: 500),
+                                              showFadingOnlyWhenScrolling: true,
+                                              startPadding: 13.0,
+                                              accelerationDuration: const Duration(milliseconds: 500),
+                                              accelerationCurve: Curves.linear,
+                                              decelerationDuration: const Duration(milliseconds: 500),
+                                              decelerationCurve: Curves.easeOut,
+                                            )
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                        height: 39,
+                                        width: double.infinity,
+                                        child: Padding(
+                                          padding: const EdgeInsets.fromLTRB(19, 11, 19, 0),
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              Expanded(
+                                                flex: 1,
+                                                child: Directionality(
+                                                  textDirection: TextDirection.rtl,
+                                                  child: Align(
+                                                    alignment: Alignment.centerRight,
+                                                    child: Text(
+                                                      widget.loansData.loanTitle,
+                                                      style: const TextStyle(
+                                                        color: ColorsResources.dark,
+                                                        fontSize: 19,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                    ),
+                                    SizedBox(
+                                      height: 51,
+                                      width: double.infinity,
+                                      child: Padding(
+                                        padding: const EdgeInsets.fromLTRB(31, 0, 19, 0),
+                                        child: Container(
+                                          color: Colors.transparent,
+                                          child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: Text(
+                                              widget.loansData.loanDescription,
+                                              textAlign: TextAlign.right,
+                                              style: TextStyle(
+                                                  color: ColorsResources.dark.withOpacity(0.537),
+                                                  fontSize: 15
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                Positioned(
+                                  left: 0,
+                                  bottom: 0,
+                                  child: RotatedBox(
+                                    quarterTurns: 3,
+                                    child: SizedBox(
+                                      height: 27,
+                                      width: 79,
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius: const BorderRadius.only(
+                                              topLeft: Radius.circular(17),
+                                              topRight: Radius.circular(0),
+                                              bottomLeft: Radius.circular(0),
+                                              bottomRight: Radius.circular(17)
+                                          ),
+                                          gradient: LinearGradient(
+                                              colors: [
+                                                Color(widget.loansData.colorTag).withOpacity(0.7),
+                                                ColorsResources.light,
+                                              ],
+                                              begin: const FractionalOffset(0.0, 0.0),
+                                              end: const FractionalOffset(1.0, 0.0),
+                                              stops: const [0.0, 1.0],
+                                              transform: const GradientRotation(45),
+                                              tileMode: TileMode.clamp
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            )
+                        ),
+                      ),
+                    ),
                   ),
                   Positioned(
                       top: 19,
@@ -304,7 +323,21 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
     );
   }
 
-  Widget outputItem(BuildContext context, int itemIndex, LoansData loansData) {
+  Widget outputItem(BuildContext context, int itemIndex, DateTime dateTime) {
+
+    for (int i = 0; i < paidIndexed.length; i++) {
+      debugPrint(">>>${paidIndexed.length}....... ${paidIndexed[i]}  == ${itemIndex} ");
+
+      if (paidIndexed[i] == itemIndex) {
+        debugPrint("Loan Index ${itemIndex} Is Paid");
+
+        thisLoanPaid = true;
+
+        break;
+
+      }
+
+    }
 
     return Slidable(
       closeOnScroll: true,
@@ -315,12 +348,18 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
             flex: 1,
             onPressed: (BuildContext context) {
 
-              paymentProcessed(itemIndex, loansData);
+              paymentProcessed(itemIndex, true);
+
+              setState(() {
+
+                thisLoanPaid = true;
+
+              });
 
             },
             backgroundColor: Colors.transparent,
-            foregroundColor: ColorsResources.gameGeeksEmpire,
-            icon: Icons.delete_rounded,
+            foregroundColor: ColorsResources.lightBlue,
+            icon: Icons.paid_rounded,
             label: StringsResources.loansPaymentsPaid(),
             autoClose: true,
           )
@@ -330,11 +369,13 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
         padding: const  EdgeInsets.fromLTRB(13, 7, 13, 13),
         child: PhysicalModel(
           color: ColorsResources.light,
-          elevation: 7,
-          shadowColor: Color(loansData.colorTag).withOpacity(0.79),
+          elevation: 9,
+          shadowColor: Color(widget.loansData.colorTag).withOpacity(0.79),
           shape: BoxShape.rectangle,
-          borderRadius: const BorderRadius.all(Radius.circular(17)),
+          borderRadius: const BorderRadius.all(Radius.circular(19)),
           child: Container(
+            height: 173,
+            width: 173,
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(17),
@@ -358,125 +399,50 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
                 padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                 child: Stack(
                   children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        SizedBox(
-                          height: 59,
-                          width: double.infinity,
-                          child: Padding(
-                            padding: const EdgeInsets.fromLTRB(27, 11, 13, 0),
-                            child: Align(
-                                alignment: Alignment.center,
-                                child: Marquee(
-                                  text: loansData.loanComplete,
-                                  style: const TextStyle(
-                                    color: ColorsResources.dark,
-                                    fontSize: 31,
-                                    fontFamily: "Numbers",
-                                  ),
-                                  scrollAxis: Axis.horizontal,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  blankSpace: 293.0,
-                                  velocity: 37.0,
-                                  fadingEdgeStartFraction: 0.13,
-                                  fadingEdgeEndFraction: 0.13,
-                                  startAfter: const Duration(milliseconds: 777),
-                                  numberOfRounds: 3,
-                                  pauseAfterRound: const Duration(milliseconds: 500),
-                                  showFadingOnlyWhenScrolling: true,
-                                  startPadding: 13.0,
-                                  accelerationDuration: const Duration(milliseconds: 500),
-                                  accelerationCurve: Curves.linear,
-                                  decelerationDuration: const Duration(milliseconds: 500),
-                                  decelerationCurve: Curves.easeOut,
-                                )
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                            height: 39,
-                            width: double.infinity,
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(19, 11, 19, 0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Expanded(
-                                    flex: 1,
-                                    child: Directionality(
-                                      textDirection: TextDirection.rtl,
-                                      child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: Text(
-                                          loansData.loanTitle,
-                                          style: const TextStyle(
-                                            color: ColorsResources.dark,
-                                            fontSize: 19,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            )
-                        ),
-                        SizedBox(
-                          height: 51,
-                          width: double.infinity,
-                          child: Padding(
-                            padding: const EdgeInsets.fromLTRB(31, 0, 19, 0),
-                            child: Container(
-                              color: Colors.transparent,
-                              child: Align(
-                                alignment: Alignment.centerRight,
-                                child: Text(
-                                  loansData.loanDescription,
-                                  textAlign: TextAlign.right,
-                                  style: TextStyle(
-                                      color: ColorsResources.dark.withOpacity(0.537),
-                                      fontSize: 15
-                                  ),
-                                ),
-                              ),
-                            ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(0, 19, 19, 0),
+                      child: Align(
+                        alignment: AlignmentDirectional.topEnd,
+                        child: Text(
+                          timeIO.humanReadableFarsi(dateTime),
+                          textDirection: TextDirection.rtl,
+                          style: TextStyle(
+                            fontSize: 19,
+                            color: ColorsResources.dark,
+                            shadows: [
+                              Shadow(
+                                color: ColorsResources.primaryColorLight,
+                                blurRadius: 7,
+                                offset: Offset(1.0, 1.0)
+                              )
+                            ]
                           ),
                         )
-                      ],
+                      )
                     ),
-                    Positioned(
-                      left: 0,
-                      bottom: 0,
-                      child: RotatedBox(
-                        quarterTurns: 3,
-                        child: SizedBox(
-                          height: 27,
-                          width: 79,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(17),
-                                  topRight: Radius.circular(0),
-                                  bottomLeft: Radius.circular(0),
-                                  bottomRight: Radius.circular(17)
-                              ),
-                              gradient: LinearGradient(
-                                  colors: [
-                                    Color(loansData.colorTag).withOpacity(0.7),
-                                    ColorsResources.light,
-                                  ],
-                                  begin: const FractionalOffset(0.0, 0.0),
-                                  end: const FractionalOffset(1.0, 0.0),
-                                  stops: const [0.0, 1.0],
-                                  transform: const GradientRotation(45),
-                                  tileMode: TileMode.clamp
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(17, 7, 7, 17),
+                      child: Align(
+                        alignment: AlignmentDirectional.bottomStart,
+                        child: Transform.scale(
+                            scale: 2.73,
+                            child: Checkbox(
+                              tristate: true,
+                              checkColor: ColorsResources.applicationLightGeeksEmpire,
+                              fillColor: MaterialStateProperty.all(ColorsResources.dark.withOpacity(0.1)),
+                              visualDensity: VisualDensity.comfortable,
+                              shape: CircleBorder(),
+                              splashRadius: 37,
+                              onChanged: (newValue) {
+
+                                paymentProcessed(itemIndex, newValue ?? false);
+
+                              },
+                              value: thisLoanPaid,
+                            )
+                        )
+                      )
+                    )
                   ],
                 )
             ),
@@ -487,13 +453,30 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
 
   }
 
-  void paymentProcessed(int itemIndex, LoansData loansData) async {
+  void preparePaymentsItems() async {
+
+    allListContentWidgets.clear();
+
+    int itemIndex = 0;
+
+    for (var element in paymentsDateTime) {
 
 
+      allListContentWidgets.add(outputItem(context, itemIndex, element));
+
+      itemIndex++;
+    }
+
+    setState(() {
+
+      allListContentWidgets;
+
+    });
 
   }
 
-  void calculatePayments(LoansData loansData) {
+  void calculatePayments(LoansData loansData) async {
+    debugPrint("${loansData}");
 
     int paymentsCount = int.parse(loansData.loanCount);
 
@@ -528,13 +511,45 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
       }
     }
 
-    for (int paymentIndex = 1; paymentIndex < paymentsCount; paymentsCount++) {
+    for (int paymentIndex = 0; paymentIndex < paymentsCount; paymentIndex++) {
 
-      DateTime loanPayment = DateTime(firstLoanPaymentMillisecond + (paymentIndex * paymentTimeType));
+      DateTime loanPayment = DateTime.fromMillisecondsSinceEpoch(firstLoanPaymentMillisecond + (paymentIndex * paymentTimeType));
 
       paymentsDateTime.add(loanPayment);
 
     }
+
+    preparePaymentsItems();
+
+  }
+
+  void paymentProcessed(int itemIndex, bool insertIt) async {
+
+    if (widget.loansData.loansPaymentsIndexes == "-1") {
+
+      widget.loansData.loansPaymentsIndexes = "";
+
+    }
+
+    if (insertIt) {
+      debugPrint("Loan Index ${itemIndex} Paid");
+
+      widget.loansData.loansPaymentsIndexes += "${itemIndex},";
+
+    } else {
+      debugPrint("Loan Index ${itemIndex} Not Paid");
+
+      widget.loansData.loansPaymentsIndexes.replaceAll("${itemIndex},", "");
+
+    }
+
+    LoansDatabaseInputs loansDatabaseInputs = LoansDatabaseInputs();
+
+    loansDatabaseInputs.updateChequeData(widget.loansData, LoansDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+    paidIndexed = widget.loansData.loansPaymentsIndexes.split(",");
+
+    preparePaymentsItems();
 
   }
 

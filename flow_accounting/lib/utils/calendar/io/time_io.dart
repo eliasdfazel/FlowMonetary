@@ -31,9 +31,9 @@ class TimeIO {
     String monthName = iranianCalendar.formatter.mN.toString();
 
     return "" +
-        weekdayName + " " +
+        weekdayName + "\n" +
         dayNumber + " " +
-        monthName + " " +
+        monthName + "\n" +
         yearNumber;
   }
 

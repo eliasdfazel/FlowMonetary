@@ -35,7 +35,7 @@ class LoansData {
   final String loanPaid;
   final String loanRemaining;
 
-  final String loansPaymentsIndexes;
+  String loansPaymentsIndexes;
 
   int colorTag = ColorsResources.dark.value;
 
