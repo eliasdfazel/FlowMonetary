@@ -45,6 +45,7 @@ class LoansDatabaseInputs {
                 'loanComplete TEXT, '
                 'loanPaid TEXT, '
                 'loanRemaining TEXT, '
+                'loansPaymentsIndexes TEXT, '
                 'colorTag TEXT'
                 ')',
           );

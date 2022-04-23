@@ -48,6 +48,8 @@ class LoansDatabaseQueries {
         loanPaid: maps[i]['loanPaid'],
         loanRemaining: maps[i]['loanRemaining'],
 
+        loansPaymentsIndexes: maps[i]['loansPaymentsIndexes'],
+
         colorTag: int.parse(maps[i]['colorTag'].toString()),
       );
     });

@@ -35,6 +35,8 @@ class LoansData {
   final String loanPaid;
   final String loanRemaining;
 
+  final String loansPaymentsIndexes;
+
   int colorTag = ColorsResources.dark.value;
 
   LoansData({
@@ -55,6 +57,8 @@ class LoansData {
     required this.loanComplete,
     required this.loanPaid,
     required this.loanRemaining,
+
+    required this.loansPaymentsIndexes,
 
     required this.colorTag,
   });
@@ -78,6 +82,8 @@ class LoansData {
       'loanComplete': loanComplete,
       'loanPaid': loanPaid,
       'loanRemaining': loanRemaining,
+
+      'loansPaymentsIndexes': loansPaymentsIndexes,
 
       'colorTag': colorTag,
     };
@@ -103,6 +109,8 @@ class LoansData {
       'loanComplete: $loanComplete,'
       'loanPaid: $loanPaid,'
       'loanRemaining: $loanRemaining,'
+
+      'loansPaymentsIndexes: $loansPaymentsIndexes,'
 
       'colorTag: $colorTag,'
     '}';

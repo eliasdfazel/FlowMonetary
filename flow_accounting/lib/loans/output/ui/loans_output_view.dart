@@ -14,10 +14,12 @@ import 'package:flow_accounting/loans/database/io/inputs.dart';
 import 'package:flow_accounting/loans/database/io/queries.dart';
 import 'package:flow_accounting/loans/database/structure/tables_structure.dart';
 import 'package:flow_accounting/loans/input/ui/loans_input_view.dart';
+import 'package:flow_accounting/loans/output/ui/loans_payments_view.dart';
 import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
+import 'package:flow_accounting/utils/navigations/navigations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:marquee/marquee.dart';
@@ -37,8 +39,6 @@ class _LoansOutputViewState extends State<LoansOutputView> {
   List<Widget> allLoansItems = [];
 
   TextEditingController textEditorControllerQuery = TextEditingController();
-
-  bool colorSelectorInitialized = false;
 
   @override
   void dispose() {
@@ -449,6 +449,24 @@ class _LoansOutputViewState extends State<LoansOutputView> {
 
     return Slidable(
       closeOnScroll: true,
+      startActionPane: ActionPane(
+          motion: const DrawerMotion(),
+          children: [
+            SlidableAction(
+              flex: 1,
+              onPressed: (BuildContext context) {
+
+                NavigationProcess().goTo(context, LoansPaymentsView(loansData: loansData));
+
+              },
+              backgroundColor: Colors.transparent,
+              foregroundColor: ColorsResources.black,
+              icon: Icons.edit_rounded,
+              label: StringsResources.loansPayments(),
+              autoClose: true,
+            ),
+          ],
+        ),
       endActionPane: ActionPane(
         motion: const DrawerMotion(),
         children: [
@@ -714,8 +732,6 @@ class _LoansOutputViewState extends State<LoansOutputView> {
         preparedAllLoansItem.add(outputItem(context, element));
 
       }
-
-      colorSelectorInitialized = false;
 
       setState(() {
 

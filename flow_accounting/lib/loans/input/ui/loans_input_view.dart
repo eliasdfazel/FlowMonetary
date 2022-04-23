@@ -1279,6 +1279,7 @@ class _LoansInputViewState extends State<LoansInputView> {
                                   loanPaid: controllerLoanPaid.text.isEmpty ? "0" : controllerLoanPaid.text,
                                   loanRemaining: controllerLoanRemaining.text.isEmpty ? "0" : controllerLoanRemaining.text,
 
+                                  loansPaymentsIndexes: "-1",
                                   colorTag: colorSelectorView.selectedColor.value
                               );
 

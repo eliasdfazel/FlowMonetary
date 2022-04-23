@@ -39,37 +39,26 @@ class ChequesDatabaseInputs {
           'CREATE TABLE IF NOT EXISTS $tableNameQuery(id INTEGER PRIMARY KEY, '
               'chequeTitle TEXT, '
               'chequeDescription TEXT, '
-
               'chequeNumber TEXT, '
-
               'chequeMoneyAmount TEXT, '
-
               'chequeTransactionType TEXT, '
-
               'chequeSourceBankName TEXT, '
               'chequeSourceBankBranch TEXT, '
-
               'chequeTargetBankName TEXT, '
-
               'chequeIssueDate TEXT, '
               'chequeDueDate TEXT, '
-
               'chequeIssueMillisecond TEXT, '
               'chequeDueMillisecond TEXT, '
-
               'chequeSourceId TEXT, '
               'chequeSourceName TEXT, '
               'chequeSourceAccountNumber TEXT, '
-
               'chequeTargetId TEXT, '
               'chequeTargetName TEXT, '
               'chequeTargetAccountNumber TEXT, '
-
               'chequeDoneConfirmation TEXT, '
-
               'chequeRelevantCreditCard TEXT, '
               'chequeRelevantBudget TEXT, '
-
+              'chequeCategory TEXT, '
               'colorTag TEXT'
               ')',
         );

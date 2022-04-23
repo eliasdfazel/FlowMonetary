@@ -1057,6 +1057,15 @@ class StringsResources {
 
     return "مرتب سازی: مبلغ وام";
   }
+
+  static String loansPayments() {
+
+    return "لیست اقساط";
+  }
+  static String loansPaymentsPaid() {
+
+    return "پرداخت شده است";
+  }
   /* End - Loans String Resources */
 
   /* Start - Features Descriptions */
