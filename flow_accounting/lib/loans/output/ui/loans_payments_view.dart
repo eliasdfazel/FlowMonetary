@@ -9,6 +9,7 @@
  * https://opensource.org/licenses/MIT
  */
 
+import 'package:blur/blur.dart';
 import 'package:flow_accounting/loans/database/io/inputs.dart';
 import 'package:flow_accounting/loans/database/structure/tables_structure.dart';
 import 'package:flow_accounting/profile/database/io/queries.dart';
@@ -129,160 +130,175 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
                   Padding(
                     padding: const  EdgeInsets.fromLTRB(13, 79, 13, 13),
                     child: PhysicalModel(
-                      color: ColorsResources.light,
+                      color: Colors.transparent,
                       elevation: 7,
                       shadowColor: Color(widget.loansData.colorTag).withOpacity(0.79),
                       shape: BoxShape.rectangle,
                       borderRadius: const BorderRadius.all(Radius.circular(17)),
-                      child: Container(
-                        height: 173,
-                        width: double.infinity,
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(17),
-                              topRight: Radius.circular(17),
-                              bottomLeft: Radius.circular(17),
-                              bottomRight: Radius.circular(17)
+                      child: Stack(
+                        children: [
+                          Blur(
+                            blur: 3.0,
+                            borderRadius: BorderRadius.circular(17),
+                            alignment: AlignmentDirectional.center,
+                            blurColor: Color(widget.loansData.colorTag),
+                            colorOpacity: 0.1,
+                            child: const SizedBox(
+                              width: double.infinity,
+                              height: 173,
+                            ),
                           ),
-                          gradient: LinearGradient(
-                              colors: [
-                                ColorsResources.white,
-                                ColorsResources.light,
-                              ],
-                              begin: FractionalOffset(0.0, 0.0),
-                              end: FractionalOffset(1.0, 0.0),
-                              stops: [0.0, 1.0],
-                              transform: GradientRotation(45),
-                              tileMode: TileMode.clamp
-                          ),
-                        ),
-                        child: Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                            child: Stack(
-                              children: [
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          Container(
+                            height: 173,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(17),
+                                  topRight: Radius.circular(17),
+                                  bottomLeft: Radius.circular(17),
+                                  bottomRight: Radius.circular(17)
+                              ),
+                              gradient: LinearGradient(
+                                  colors: [
+                                    ColorsResources.white.withOpacity(0.51),
+                                    ColorsResources.light.withOpacity(0.51),
+                                  ],
+                                  begin: FractionalOffset(0.0, 0.0),
+                                  end: FractionalOffset(1.0, 0.0),
+                                  stops: [0.0, 1.0],
+                                  transform: GradientRotation(45),
+                                  tileMode: TileMode.clamp
+                              ),
+                            ),
+                            child: Padding(
+                                padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                child: Stack(
                                   children: [
-                                    SizedBox(
-                                      height: 59,
-                                      width: double.infinity,
-                                      child: Padding(
-                                        padding: const EdgeInsets.fromLTRB(27, 11, 13, 0),
-                                        child: Align(
-                                            alignment: Alignment.center,
-                                            child: Marquee(
-                                              text: widget.loansData.loanComplete,
-                                              style: const TextStyle(
-                                                color: ColorsResources.dark,
-                                                fontSize: 31,
-                                                fontFamily: "Numbers",
-                                              ),
-                                              scrollAxis: Axis.horizontal,
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              blankSpace: 293.0,
-                                              velocity: 37.0,
-                                              fadingEdgeStartFraction: 0.13,
-                                              fadingEdgeEndFraction: 0.13,
-                                              startAfter: const Duration(milliseconds: 777),
-                                              numberOfRounds: 3,
-                                              pauseAfterRound: const Duration(milliseconds: 500),
-                                              showFadingOnlyWhenScrolling: true,
-                                              startPadding: 13.0,
-                                              accelerationDuration: const Duration(milliseconds: 500),
-                                              accelerationCurve: Curves.linear,
-                                              decelerationDuration: const Duration(milliseconds: 500),
-                                              decelerationCurve: Curves.easeOut,
-                                            )
+                                    Column(
+                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        SizedBox(
+                                          height: 59,
+                                          width: double.infinity,
+                                          child: Padding(
+                                            padding: const EdgeInsets.fromLTRB(27, 11, 13, 0),
+                                            child: Align(
+                                                alignment: Alignment.center,
+                                                child: Marquee(
+                                                  text: widget.loansData.loanComplete,
+                                                  style: const TextStyle(
+                                                    color: ColorsResources.dark,
+                                                    fontSize: 31,
+                                                    fontFamily: "Numbers",
+                                                  ),
+                                                  scrollAxis: Axis.horizontal,
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  blankSpace: 293.0,
+                                                  velocity: 37.0,
+                                                  fadingEdgeStartFraction: 0.13,
+                                                  fadingEdgeEndFraction: 0.13,
+                                                  startAfter: const Duration(milliseconds: 777),
+                                                  numberOfRounds: 3,
+                                                  pauseAfterRound: const Duration(milliseconds: 500),
+                                                  showFadingOnlyWhenScrolling: true,
+                                                  startPadding: 13.0,
+                                                  accelerationDuration: const Duration(milliseconds: 500),
+                                                  accelerationCurve: Curves.linear,
+                                                  decelerationDuration: const Duration(milliseconds: 500),
+                                                  decelerationCurve: Curves.easeOut,
+                                                )
+                                            ),
+                                          ),
                                         ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                        height: 39,
-                                        width: double.infinity,
-                                        child: Padding(
-                                          padding: const EdgeInsets.fromLTRB(19, 11, 19, 0),
-                                          child: Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                            children: [
-                                              Expanded(
-                                                flex: 1,
-                                                child: Directionality(
-                                                  textDirection: TextDirection.rtl,
-                                                  child: Align(
-                                                    alignment: Alignment.centerRight,
-                                                    child: Text(
-                                                      widget.loansData.loanTitle,
-                                                      style: const TextStyle(
-                                                        color: ColorsResources.dark,
-                                                        fontSize: 19,
+                                        SizedBox(
+                                            height: 39,
+                                            width: double.infinity,
+                                            child: Padding(
+                                              padding: const EdgeInsets.fromLTRB(19, 11, 19, 0),
+                                              child: Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                children: [
+                                                  Expanded(
+                                                    flex: 1,
+                                                    child: Directionality(
+                                                      textDirection: TextDirection.rtl,
+                                                      child: Align(
+                                                        alignment: Alignment.centerRight,
+                                                        child: Text(
+                                                          widget.loansData.loanTitle,
+                                                          style: const TextStyle(
+                                                            color: ColorsResources.dark,
+                                                            fontSize: 19,
+                                                          ),
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
+                                                ],
+                                              ),
+                                            )
+                                        ),
+                                        SizedBox(
+                                          height: 51,
+                                          width: double.infinity,
+                                          child: Padding(
+                                            padding: const EdgeInsets.fromLTRB(31, 0, 19, 0),
+                                            child: Container(
+                                              color: Colors.transparent,
+                                              child: Align(
+                                                alignment: Alignment.centerRight,
+                                                child: Text(
+                                                  widget.loansData.loanDescription,
+                                                  textAlign: TextAlign.right,
+                                                  style: TextStyle(
+                                                      color: ColorsResources.dark.withOpacity(0.537),
+                                                      fontSize: 15
+                                                  ),
                                                 ),
                                               ),
-                                            ],
+                                            ),
                                           ),
                                         )
+                                      ],
                                     ),
-                                    SizedBox(
-                                      height: 51,
-                                      width: double.infinity,
-                                      child: Padding(
-                                        padding: const EdgeInsets.fromLTRB(31, 0, 19, 0),
-                                        child: Container(
-                                          color: Colors.transparent,
-                                          child: Align(
-                                            alignment: Alignment.centerRight,
-                                            child: Text(
-                                              widget.loansData.loanDescription,
-                                              textAlign: TextAlign.right,
-                                              style: TextStyle(
-                                                  color: ColorsResources.dark.withOpacity(0.537),
-                                                  fontSize: 15
+                                    Positioned(
+                                      left: 0,
+                                      bottom: 0,
+                                      child: RotatedBox(
+                                        quarterTurns: 3,
+                                        child: SizedBox(
+                                          height: 27,
+                                          width: 79,
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              borderRadius: const BorderRadius.only(
+                                                  topLeft: Radius.circular(17),
+                                                  topRight: Radius.circular(0),
+                                                  bottomLeft: Radius.circular(0),
+                                                  bottomRight: Radius.circular(17)
+                                              ),
+                                              gradient: LinearGradient(
+                                                  colors: [
+                                                    Color(widget.loansData.colorTag).withOpacity(0.7),
+                                                    ColorsResources.light,
+                                                  ],
+                                                  begin: const FractionalOffset(0.0, 0.0),
+                                                  end: const FractionalOffset(1.0, 0.0),
+                                                  stops: const [0.0, 1.0],
+                                                  transform: const GradientRotation(45),
+                                                  tileMode: TileMode.clamp
                                               ),
                                             ),
                                           ),
                                         ),
                                       ),
-                                    )
-                                  ],
-                                ),
-                                Positioned(
-                                  left: 0,
-                                  bottom: 0,
-                                  child: RotatedBox(
-                                    quarterTurns: 3,
-                                    child: SizedBox(
-                                      height: 27,
-                                      width: 79,
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius: const BorderRadius.only(
-                                              topLeft: Radius.circular(17),
-                                              topRight: Radius.circular(0),
-                                              bottomLeft: Radius.circular(0),
-                                              bottomRight: Radius.circular(17)
-                                          ),
-                                          gradient: LinearGradient(
-                                              colors: [
-                                                Color(widget.loansData.colorTag).withOpacity(0.7),
-                                                ColorsResources.light,
-                                              ],
-                                              begin: const FractionalOffset(0.0, 0.0),
-                                              end: const FractionalOffset(1.0, 0.0),
-                                              stops: const [0.0, 1.0],
-                                              transform: const GradientRotation(45),
-                                              tileMode: TileMode.clamp
-                                          ),
-                                        ),
-                                      ),
                                     ),
-                                  ),
-                                ),
-                              ],
-                            )
-                        ),
-                      ),
+                                  ],
+                                )
+                            ),
+                          )
+                        ],
+                      )
                     ),
                   ),
                   Positioned(
