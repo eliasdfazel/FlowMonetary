@@ -513,10 +513,10 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
 
     for (var element in paymentsDateTime) {
 
-
       allListContentWidgets.add(outputItem(context, itemIndex, element));
 
       itemIndex++;
+
     }
 
     setState(() {
