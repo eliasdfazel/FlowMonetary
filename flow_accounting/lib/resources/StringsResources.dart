@@ -478,6 +478,15 @@ class StringsResources {
     return "تاریخ سررسید";
   }
 
+  static String chequeCategory() {
+
+    return "دسته بندی چک";
+  }
+  static String chequeCategoryHint() {
+
+    return "دسته بندی چک را وارد کنید";
+  }
+
   static String chequeSourceId() {
 
     return "کد شناسایی صادر کننده";

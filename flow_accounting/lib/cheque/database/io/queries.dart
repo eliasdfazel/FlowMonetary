@@ -68,6 +68,8 @@ class ChequesDatabaseQueries {
         chequeRelevantCreditCard: maps[i]['chequeRelevantCreditCard'],
         chequeRelevantBudget: maps[i]['chequeRelevantBudget'],
 
+        chequeCategory: maps[i]['chequeCategory'],
+
         colorTag: int.parse(maps[i]['colorTag'].toString()),
       );
     });
@@ -155,6 +157,8 @@ class ChequesDatabaseQueries {
 
       chequeRelevantCreditCard: inputData['chequeRelevantCreditCard'].toString(),
       chequeRelevantBudget: inputData['chequeRelevantBudget'].toString(),
+
+      chequeCategory: inputData['chequeCategory'].toString(),
 
       colorTag: int.parse(inputData['colorTag'].toString()),
     );

@@ -18,6 +18,7 @@ import 'package:flow_accounting/budgets/database/io/inputs.dart';
 import 'package:flow_accounting/budgets/database/io/queries.dart';
 import 'package:flow_accounting/budgets/database/structures/tables_structure.dart';
 import 'package:flow_accounting/cheque/database/io/inputs.dart';
+import 'package:flow_accounting/cheque/database/io/queries.dart';
 import 'package:flow_accounting/cheque/database/structures/table_structure.dart';
 import 'package:flow_accounting/credit_cards/database/io/inputs.dart';
 import 'package:flow_accounting/credit_cards/database/io/queries.dart';
@@ -80,6 +81,8 @@ class _ChequeInputViewState extends State<ChequesInputView> {
   TextEditingController controllerCreditCard = TextEditingController();
   TextEditingController controllerBudget = TextEditingController();
 
+  TextEditingController controllerChequeCategory = TextEditingController();
+
   String transactionType = ChequesData.TransactionType_Send;
 
   String budgetName = ChequesData.TransactionBudgetName;
@@ -133,7 +136,6 @@ class _ChequeInputViewState extends State<ChequesInputView> {
       controllerChequeBankBranch.text = widget.chequesData!.chequeSourceBankBranch;
       controllerChequeSourceAccount.text = widget.chequesData!.chequeSourceAccountNumber;
 
-
       controllerChequeTargetId.text = widget.chequesData!.chequeTargetId;
       controllerChequeTargetName.text = widget.chequesData!.chequeTargetName;
       controllerChequeTargetBank.text = widget.chequesData!.chequeTargetBankName;
@@ -141,6 +143,8 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
       controllerCreditCard.text = widget.chequesData!.chequeRelevantCreditCard;
       controllerBudget.text = widget.chequesData!.chequeRelevantBudget;
+
+      controllerChequeCategory.text = widget.chequesData!.chequeCategory;
 
       calendarIssueDateView.inputDateTime = widget.chequesData!.chequeIssueDate;
       calendarIssueDateView.pickedDateTime = DateTime.fromMillisecondsSinceEpoch(int.parse(widget.chequesData!.chequeIssueMillisecond));
@@ -791,13 +795,138 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                       SizedBox(
                         width: double.infinity,
                         height: 73,
+                        child: Padding(
+                          padding: EdgeInsets.fromLTRB(13, 0, 13, 0),
+                          child: Directionality(
+                            textDirection: TextDirection.rtl,
+                            child: TypeAheadField<ChequesData>(
+                                suggestionsCallback: (pattern) async {
+
+                                  return await getChequesCategories();
+                                },
+                                itemBuilder: (context, suggestion) {
+
+                                  return ListTile(title: Directionality(
+                                      textDirection: TextDirection.rtl,
+                                      child: SizedBox(
+                                        height: 51,
+                                        width: double.infinity,
+                                        child: Expanded(
+                                          flex: 11,
+                                          child: Padding(
+                                            padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
+                                            child: Text(
+                                              suggestion.chequeCategory,
+                                              style: const TextStyle(
+                                                  color: ColorsResources.darkTransparent,
+                                                  fontSize: 15
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      )
+                                  ));
+                                },
+                                onSuggestionSelected: (suggestion) {
+
+                                  controllerChequeCategory.text = suggestion.chequeCategory.toString();
+
+                                },
+                                errorBuilder: (context, suggestion) {
+
+                                  return Padding(
+                                      padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
+                                      child: Text(StringsResources.nothingText())
+                                  );
+                                },
+                                suggestionsBoxDecoration: SuggestionsBoxDecoration(
+                                    elevation: 7,
+                                    color: ColorsResources.light,
+                                    shadowColor: ColorsResources.darkTransparent,
+                                    borderRadius: BorderRadius.circular(17)
+                                ),
+                                textFieldConfiguration: TextFieldConfiguration(
+                                  controller: controllerChequeCategory,
+                                  autofocus: false,
+                                  maxLines: 1,
+                                  cursorColor: ColorsResources.primaryColor,
+                                  keyboardType: TextInputType.text,
+                                  textInputAction: TextInputAction.done,
+                                  decoration: InputDecoration(
+                                    alignLabelWithHint: true,
+                                    border: const OutlineInputBorder(
+                                        borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                        borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(13),
+                                            topRight: Radius.circular(13),
+                                            bottomLeft: Radius.circular(13),
+                                            bottomRight: Radius.circular(13)
+                                        ),
+                                        gapPadding: 5
+                                    ),
+                                    enabledBorder: const OutlineInputBorder(
+                                        borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                        borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(13),
+                                            topRight: Radius.circular(13),
+                                            bottomLeft: Radius.circular(13),
+                                            bottomRight: Radius.circular(13)
+                                        ),
+                                        gapPadding: 5
+                                    ),
+                                    focusedBorder: const OutlineInputBorder(
+                                        borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                                        borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(13),
+                                            topRight: Radius.circular(13),
+                                            bottomLeft: Radius.circular(13),
+                                            bottomRight: Radius.circular(13)
+                                        ),
+                                        gapPadding: 5
+                                    ),
+                                    errorBorder: const OutlineInputBorder(
+                                        borderSide: BorderSide(color: Colors.red, width: 1.0),
+                                        borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(13),
+                                            topRight: Radius.circular(13),
+                                            bottomLeft: Radius.circular(13),
+                                            bottomRight: Radius.circular(13)
+                                        ),
+                                        gapPadding: 5
+                                    ),
+                                    errorText: warningNoticeBudget,
+                                    filled: true,
+                                    fillColor: ColorsResources.lightTransparent,
+                                    labelText: StringsResources.chequeCategory(),
+                                    labelStyle: const TextStyle(
+                                        color: ColorsResources.dark,
+                                        fontSize: 17.0
+                                    ),
+                                    hintText: StringsResources.chequeCategoryHint(),
+                                    hintStyle: const TextStyle(
+                                        color: ColorsResources.darkTransparent,
+                                        fontSize: 13.0
+                                    ),
+                                  ),
+                                )
+                            ),
+                          ),
+                        ),
+                      ),
+                      const Divider(
+                        height: 13,
+                        color: Colors.transparent,
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 73,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Expanded(
                               flex: 1,
                               child: Padding(
-                                padding: const EdgeInsets.fromLTRB(13, 0, 7, 0),
+                                padding: const EdgeInsets.fromLTRB(13, 0, 3, 0),
                                 child: Align(
                                   alignment: AlignmentDirectional.topCenter,
                                   child: Container(
@@ -840,7 +969,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                             Expanded(
                               flex: 1,
                               child: Padding(
-                                padding: const EdgeInsets.fromLTRB(7, 0, 13, 0),
+                                padding: const EdgeInsets.fromLTRB(3, 0, 13, 0),
                                 child: Align(
                                   alignment: AlignmentDirectional.topCenter,
                                   child: Container(
@@ -1076,7 +1205,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                             Expanded(
                               flex: 1,
                               child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(7, 0, 13, 0),
+                                  padding: const EdgeInsets.fromLTRB(13, 0, 3, 0),
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: TextField(
@@ -1153,7 +1282,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                             Expanded(
                               flex: 1,
                               child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(13, 0, 7, 0),
+                                  padding: const EdgeInsets.fromLTRB(3, 0, 13, 0),
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: TextField(
@@ -1243,7 +1372,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                             Expanded(
                               flex: 1,
                               child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                  padding: const EdgeInsets.fromLTRB(13, 0, 3, 0),
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: TypeAheadField<CustomersData>(
@@ -1388,7 +1517,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                             Expanded(
                               flex: 1,
                               child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                  padding: const EdgeInsets.fromLTRB(3, 0, 13, 0),
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: TypeAheadField<CustomersData>(
@@ -1546,7 +1675,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                             Expanded(
                               flex: 1,
                               child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                  padding: const EdgeInsets.fromLTRB(13, 0, 3, 0),
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: TypeAheadField<String>(
@@ -1691,7 +1820,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                             Expanded(
                               flex: 1,
                               child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                  padding: const EdgeInsets.fromLTRB(3, 0, 13, 0),
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: TypeAheadField<String>(
@@ -1849,7 +1978,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                             Expanded(
                               flex: 1,
                               child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 25),
+                                  padding: const EdgeInsets.fromLTRB(13, 0, 3, 25),
                                   child: Align(
                                     alignment: AlignmentDirectional.topCenter,
                                     child: Directionality(
@@ -1929,7 +2058,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                             Expanded(
                               flex: 1,
                               child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(7, 0, 13, 0),
+                                  padding: const EdgeInsets.fromLTRB(3, 0, 13, 0),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                     children: [
@@ -2664,6 +2793,8 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                               chequeRelevantCreditCard: controllerCreditCard.text,
                               chequeRelevantBudget: controllerBudget.text,
 
+                              chequeCategory: controllerChequeCategory.text,
+
                               colorTag: colorSelectorView.selectedColor.value,
                             );
 
@@ -2813,6 +2944,33 @@ class _ChequeInputViewState extends State<ChequesInputView> {
         ),
       ),
     );
+  }
+
+  Future<List<ChequesData>> getChequesCategories() async {
+
+    List<ChequesData> listOfCategories = [];
+
+    String databaseDirectory = await getDatabasesPath();
+
+    String customerDatabasePath = "${databaseDirectory}/${CustomersDatabaseInputs.customersDatabase()}";
+
+    bool customerDatabaseExist = await databaseExists(customerDatabasePath);
+
+    if (customerDatabaseExist) {
+
+      ChequesDatabaseQueries chequesDatabaseQueries = ChequesDatabaseQueries();
+
+      var retrievedCheques = await chequesDatabaseQueries.getAllCheques(ChequesDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+      if (retrievedCheques.isNotEmpty) {
+
+        listOfCategories.addAll(retrievedCheques);
+
+      }
+
+    }
+
+    return listOfCategories;
   }
 
   Future<List<CustomersData>> getCustomersNames() async {
