@@ -326,14 +326,17 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
   Widget outputItem(BuildContext context, int itemIndex, DateTime dateTime) {
 
     for (int i = 0; i < paidIndexed.length; i++) {
-      debugPrint(">>>${paidIndexed.length}....... ${paidIndexed[i]}  == ${itemIndex} ");
 
-      if (paidIndexed[i] == itemIndex) {
+      if (paidIndexed[i] == itemIndex.toString()) {
         debugPrint("Loan Index ${itemIndex} Is Paid");
 
         thisLoanPaid = true;
 
         break;
+
+      } else {
+
+        thisLoanPaid = false;
 
       }
 
@@ -539,7 +542,7 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
     } else {
       debugPrint("Loan Index ${itemIndex} Not Paid");
 
-      widget.loansData.loansPaymentsIndexes.replaceAll("${itemIndex},", "");
+      widget.loansData.loansPaymentsIndexes.replaceAll(",${itemIndex},", "");
 
     }
 
