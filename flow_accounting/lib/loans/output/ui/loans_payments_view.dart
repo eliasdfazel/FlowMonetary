@@ -61,7 +61,7 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
 
     if (widget.loansData.loansPaymentsIndexes != "-1") {
 
-      paidIndexed = widget.loansData.loansPaymentsIndexes.split(",");
+      paidIndexed = removeEmptyElementCsv(widget.loansData.loansPaymentsIndexes.split(","));
 
     }
 
@@ -591,7 +591,7 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
     } else {
       debugPrint("Loan Index ${itemIndex} Not Paid");
 
-      widget.loansData.loansPaymentsIndexes.replaceAll(",${itemIndex},", "");
+      widget.loansData.loansPaymentsIndexes.replaceAll("${itemIndex},", "");
 
     }
 
@@ -599,7 +599,7 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
 
     loansDatabaseInputs.updateChequeData(widget.loansData, LoansDatabaseInputs.databaseTableName, UserInformation.UserId);
 
-    paidIndexed = widget.loansData.loansPaymentsIndexes.split(",");
+    paidIndexed = removeEmptyElementCsv(widget.loansData.loansPaymentsIndexes.split(","));
 
     Future.delayed(Duration(milliseconds: 357), () {
 
@@ -607,6 +607,23 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
 
     });
 
+  }
+
+  List<String> removeEmptyElementCsv(List<String> inputList) {
+
+    List<String> cleanList = inputList;
+
+    inputList.forEach((element) {
+
+      if (element.isNotEmpty) {
+
+        cleanList.add(element);
+
+      }
+
+    });
+
+    return cleanList;
   }
 
 }
