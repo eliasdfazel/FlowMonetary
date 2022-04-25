@@ -595,6 +595,8 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
 
     }
 
+    widget.loansData.loansPaymentsIndexes = cleanUpCsvDatabase(widget.loansData.loansPaymentsIndexes);
+
     LoansDatabaseInputs loansDatabaseInputs = LoansDatabaseInputs();
 
     loansDatabaseInputs.updateChequeData(widget.loansData, LoansDatabaseInputs.databaseTableName, UserInformation.UserId);
@@ -611,19 +613,30 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
 
   List<String> removeEmptyElementCsv(List<String> inputList) {
 
-    List<String> cleanList = inputList;
+    List<String> cleanCsvList = inputList;
 
     inputList.forEach((element) {
 
       if (element.isNotEmpty) {
 
-        cleanList.add(element);
+        cleanCsvList.add(element);
 
       }
 
     });
 
-    return cleanList;
+    return cleanCsvList;
+  }
+
+  String cleanUpCsvDatabase(String inputCsvData) {
+
+    List<String> csvData = removeEmptyElementCsv(inputCsvData.split(","));
+
+    String clearCsvDatabase = csvData.toString();
+    clearCsvDatabase = clearCsvDatabase.replaceAll("[", "");
+    clearCsvDatabase = clearCsvDatabase.replaceAll("]", "");
+
+    return clearCsvDatabase;
   }
 
 }

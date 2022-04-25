@@ -2600,11 +2600,11 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                         buyInvoiceDateText: calendarView.inputDateTime ?? "",
                                         buyInvoiceDateMillisecond: calendarView.pickedDateTime.millisecondsSinceEpoch,
 
-                                        boughtProductId: controllerAllProductId.text, // CSV
-                                        boughtProductName: controllerAllProductName.text, // CSV
-                                        boughtProductQuantity: controllerAllProductQuantity.text.isEmpty ? "0" : controllerAllProductQuantity.text, // CSV
-                                        productQuantityType: controllerAllProductQuantityType.text, // CSV
-                                        boughtProductEachPrice: controllerAllProductEachPrice.text.isEmpty ? "0" : controllerAllProductEachPrice.text, // CSV
+                                        boughtProductId: cleanUpCsvDatabase(controllerAllProductId.text), // CSV
+                                        boughtProductName: cleanUpCsvDatabase(controllerAllProductName.text), // CSV
+                                        boughtProductQuantity: controllerAllProductQuantity.text.isEmpty ? "0" : cleanUpCsvDatabase(controllerAllProductQuantity.text), // CSV
+                                        productQuantityType: cleanUpCsvDatabase(controllerAllProductQuantityType.text), // CSV
+                                        boughtProductEachPrice: controllerAllProductEachPrice.text.isEmpty ? "0" : cleanUpCsvDatabase(controllerAllProductEachPrice.text), // CSV
 
                                         boughtProductPrice: controllerInvoicePrice.text.isEmpty ? "0" : controllerInvoicePrice.text,
                                         boughtProductPriceDiscount: controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text,
@@ -2840,20 +2840,20 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
       ProductsDatabaseQueries productsDatabaseQueries = ProductsDatabaseQueries();
 
       controllerAllProductId.text = widget.buyInvoicesData!.boughtProductId;
-      var allIds = widget.buyInvoicesData!.boughtProductId.split(",");
+      var allIds = removeEmptyElementCsv(widget.buyInvoicesData!.boughtProductId.split(","));
 
       controllerAllProductName.text = widget.buyInvoicesData!.boughtProductName;
-      var allNames = widget.buyInvoicesData!.boughtProductName.split(",");
+      var allNames = removeEmptyElementCsv(widget.buyInvoicesData!.boughtProductName.split(","));
 
       controllerAllProductQuantity.text = widget.buyInvoicesData!.boughtProductQuantity;
-      var allQuantities = widget.buyInvoicesData!.boughtProductQuantity.split(",");
+      var allQuantities = removeEmptyElementCsv(widget.buyInvoicesData!.boughtProductQuantity.split(","));
 
 
       controllerAllProductQuantityType.text = widget.buyInvoicesData!.productQuantityType;
-      var allQuantitiesTypes = widget.buyInvoicesData!.productQuantityType.split(",");
+      var allQuantitiesTypes = removeEmptyElementCsv(widget.buyInvoicesData!.productQuantityType.split(","));
 
       controllerAllProductEachPrice.text = widget.buyInvoicesData!.boughtProductEachPrice;
-      var allEachPrice = widget.buyInvoicesData!.boughtProductEachPrice.split(",");
+      var allEachPrice = removeEmptyElementCsv(widget.buyInvoicesData!.boughtProductEachPrice.split(","));
 
       var index = 0;
 
@@ -3040,7 +3040,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
           var csvNewProductIds = controllerAllProductId.text.replaceAll(widget.buyInvoicesData!.boughtProductId, "");
           var csvNewProductQuantity = controllerAllProductQuantity.text.replaceAll(widget.buyInvoicesData!.boughtProductQuantity, "");
 
-          var allIds = csvNewProductIds.split(",");
+          var allIds = removeEmptyElementCsv(csvNewProductIds.split(","));
 
           var index = 0;
 
@@ -3061,7 +3061,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
           var csvRemovedProductIds = widget.buyInvoicesData!.boughtProductId.replaceAll(controllerAllProductId.text, "");
           var csvRemovedProductQuantity = widget.buyInvoicesData!.boughtProductQuantity.replaceAll(controllerAllProductQuantity.text, "");
 
-          var allIds = csvRemovedProductIds.split(",");
+          var allIds = removeEmptyElementCsv(csvRemovedProductIds.split(","));
 
           var index = 0;
 
@@ -3312,6 +3312,34 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
   Future<List<String>> getQuantityTypes() async {
 
     return StringsResources.quantityTypesList();
+  }
+
+  List<String> removeEmptyElementCsv(List<String> inputList) {
+
+    List<String> cleanCsvList = inputList;
+
+    inputList.forEach((element) {
+
+      if (element.isNotEmpty) {
+
+        cleanCsvList.add(element);
+
+      }
+
+    });
+
+    return cleanCsvList;
+  }
+
+  String cleanUpCsvDatabase(String inputCsvData) {
+
+    List<String> csvData = removeEmptyElementCsv(inputCsvData.split(","));
+
+    String clearCsvDatabase = csvData.toString();
+    clearCsvDatabase = clearCsvDatabase.replaceAll("[", "");
+    clearCsvDatabase = clearCsvDatabase.replaceAll("]", "");
+
+    return clearCsvDatabase;
   }
 
 }

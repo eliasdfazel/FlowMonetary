@@ -2593,11 +2593,11 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                                         sellInvoiceDateText: calendarView.inputDateTime ?? "",
                                         sellInvoiceDateMillisecond: calendarView.pickedDateTime.millisecondsSinceEpoch,
 
-                                        soldProductId: controllerAllProductId.text, // CSV
-                                        soldProductName: controllerAllProductName.text, // CSV
-                                        soldProductQuantity: controllerAllProductQuantity.text.isEmpty ? "0" : controllerAllProductQuantity.text, // CSV
-                                        productQuantityType: controllerAllProductQuantityType.text.isEmpty ? "" : controllerAllProductQuantityType.text, // CSV
-                                        soldProductEachPrice: controllerAllProductEachPrice.text.isEmpty ? "0" : controllerAllProductEachPrice.text, // CSV
+                                        soldProductId: cleanUpCsvDatabase(controllerAllProductId.text), // CSV
+                                        soldProductName: cleanUpCsvDatabase(controllerAllProductName.text), // CSV
+                                        soldProductQuantity: controllerAllProductQuantity.text.isEmpty ? "0" : cleanUpCsvDatabase(controllerAllProductQuantity.text), // CSV
+                                        productQuantityType: controllerAllProductQuantityType.text.isEmpty ? "" : cleanUpCsvDatabase(controllerAllProductQuantityType.text), // CSV
+                                        soldProductEachPrice: controllerAllProductEachPrice.text.isEmpty ? "0" : cleanUpCsvDatabase(controllerAllProductEachPrice.text), // CSV
 
                                         soldProductPrice: controllerInvoicePrice.text.isEmpty ? "0" : controllerInvoicePrice.text,
                                         soldProductPriceDiscount: controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text,
@@ -2833,20 +2833,19 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
       ProductsDatabaseQueries productsDatabaseQueries = ProductsDatabaseQueries();
 
       controllerAllProductId.text = widget.sellInvoicesData!.soldProductId;
-      var allIds = widget.sellInvoicesData!.soldProductId.split(",");
+      var allIds = removeEmptyElementCsv(widget.sellInvoicesData!.soldProductId.split(","));
 
       controllerAllProductName.text = widget.sellInvoicesData!.soldProductName;
-      var allNames = widget.sellInvoicesData!.soldProductName.split(",");
+      var allNames = removeEmptyElementCsv(widget.sellInvoicesData!.soldProductName.split(","));
 
       controllerAllProductQuantity.text = widget.sellInvoicesData!.soldProductQuantity;
-      var allQuantities = widget.sellInvoicesData!.soldProductQuantity.split(",");
-
+      var allQuantities = removeEmptyElementCsv(widget.sellInvoicesData!.soldProductQuantity.split(","));
 
       controllerAllProductQuantityType.text = widget.sellInvoicesData!.productQuantityType;
-      var allQuantitiesTypes = widget.sellInvoicesData!.productQuantityType.split(",");
+      var allQuantitiesTypes = removeEmptyElementCsv(widget.sellInvoicesData!.productQuantityType.split(","));
 
       controllerAllProductEachPrice.text = widget.sellInvoicesData!.soldProductEachPrice;
-      var allEachPrice = widget.sellInvoicesData!.soldProductEachPrice.split(",");
+      var allEachPrice = removeEmptyElementCsv(widget.sellInvoicesData!.soldProductEachPrice.split(","));
 
       var index = 0;
 
@@ -3033,7 +3032,7 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
           var csvNewProductIds = controllerAllProductId.text.replaceAll(widget.sellInvoicesData!.soldProductId, "");
           var csvNewProductQuantity = controllerAllProductQuantity.text.replaceAll(widget.sellInvoicesData!.soldProductQuantity, "");
 
-          var allIds = csvNewProductIds.split(",");
+          var allIds = removeEmptyElementCsv(csvNewProductIds.split(","));
 
           var index = 0;
 
@@ -3054,7 +3053,7 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
           var csvRemovedProductIds = widget.sellInvoicesData!.soldProductId.replaceAll(controllerAllProductId.text, "");
           var csvRemovedProductQuantity = widget.sellInvoicesData!.soldProductQuantity.replaceAll(controllerAllProductQuantity.text, "");
 
-          var allIds = csvRemovedProductIds.split(",");
+          var allIds = removeEmptyElementCsv(csvRemovedProductIds.split(","));
 
           var index = 0;
 
@@ -3327,7 +3326,33 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
     return StringsResources.quantityTypesList();
   }
 
+  List<String> removeEmptyElementCsv(List<String> inputList) {
 
+    List<String> cleanCsvList = inputList;
+
+    inputList.forEach((element) {
+
+      if (element.isNotEmpty) {
+
+        cleanCsvList.add(element);
+
+      }
+
+    });
+
+    return cleanCsvList;
+  }
+
+  String cleanUpCsvDatabase(String inputCsvData) {
+
+    List<String> csvData = removeEmptyElementCsv(inputCsvData.split(","));
+
+    String clearCsvDatabase = csvData.toString();
+    clearCsvDatabase = clearCsvDatabase.replaceAll("[", "");
+    clearCsvDatabase = clearCsvDatabase.replaceAll("]", "");
+
+    return clearCsvDatabase;
+  }
 
 }
 
