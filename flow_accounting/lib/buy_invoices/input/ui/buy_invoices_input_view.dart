@@ -1070,17 +1070,21 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                           }
 
                                         },
-                                        child: SizedBox(
-                                            width: double.infinity,
-                                            height: 151,
-                                            child: Align(
-                                                alignment: AlignmentDirectional.center,
-                                                child: Icon(
-                                                  Icons.playlist_add_rounded,
-                                                  size: 31,
-                                                  color: ColorsResources.primaryColor,
-                                                )
-                                            )
+                                        child: Container(
+                                          color: ColorsResources.lightTransparent,
+                                          child: SizedBox(
+                                              width: double.infinity,
+                                              height: 151,
+                                              child: Align(
+                                                  alignment: AlignmentDirectional.center,
+                                                  child: Image(
+                                                    image: AssetImage("submit_icon.png"),
+                                                    height: 31,
+                                                    width: 31,
+                                                    color: ColorsResources.light,
+                                                  )
+                                              )
+                                          )
                                         )
                                       )
                                     )
