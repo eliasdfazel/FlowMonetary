@@ -1087,7 +1087,7 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                                                               image: AssetImage("submit_icon.png"),
                                                               height: 31,
                                                               width: 31,
-                                                              color: ColorsResources.light,
+                                                              color: ColorsResources.primaryColor,
                                                             )
                                                         )
                                                     )
