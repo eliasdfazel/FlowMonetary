@@ -377,13 +377,14 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
     for (int i = 0; i < paidIndexed.length; i++) {
 
       if (paidIndexed[i] == itemIndex.toString()) {
-        debugPrint("Loan Index ${itemIndex} Is Paid");
+        debugPrint("Payment Index ${itemIndex} Is Paid");
 
         thisLoanPaid = true;
 
         break;
 
       } else {
+        debugPrint("Payment Index ${itemIndex} Not Paid");
 
         thisLoanPaid = false;
 
@@ -505,7 +506,7 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
 
   }
 
-  void preparePaymentsItems() async {
+  void preparePaymentsItems() {
 
     allListContentWidgets.clear();
 
@@ -576,6 +577,7 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
   }
 
   void paymentProcessed(int itemIndex, bool insertIt) async {
+    debugPrint("Index ${itemIndex} Clicked");
 
     if (widget.loansData.loansPaymentsIndexes == "-1") {
 
@@ -584,34 +586,27 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
     }
 
     if (insertIt) {
-      debugPrint("Loan Index ${itemIndex} Paid");
+      debugPrint("Loan Payment Index ${itemIndex} Is Paying Paid");
 
       widget.loansData.loansPaymentsIndexes += "${itemIndex},";
 
     } else {
-      debugPrint("Loan Index ${itemIndex} Not Paid");
+      debugPrint("Loan Payment Index ${itemIndex} Is Not Paying");
 
-      widget.loansData.loansPaymentsIndexes.replaceAll("${itemIndex},", "");
+      widget.loansData.loansPaymentsIndexes = widget.loansData.loansPaymentsIndexes.replaceAll("${itemIndex},", "");
 
     }
 
     widget.loansData.loansPaymentsIndexes = cleanUpCsvDatabase(widget.loansData.loansPaymentsIndexes);
+    debugPrint("Paid Database Indexes Updated: ${widget.loansData.loansPaymentsIndexes}");
+
+    paidIndexed = removeEmptyElementCsv(widget.loansData.loansPaymentsIndexes.split(","));
+
+    preparePaymentsItems();
 
     LoansDatabaseInputs loansDatabaseInputs = LoansDatabaseInputs();
 
     loansDatabaseInputs.updateChequeData(widget.loansData, LoansDatabaseInputs.databaseTableName, UserInformation.UserId);
-
-    if (widget.loansData.loansPaymentsIndexes != "-1") {
-
-      paidIndexed = removeEmptyElementCsv(widget.loansData.loansPaymentsIndexes.split(","));
-
-    }
-
-    Future.delayed(Duration(milliseconds: 357), () {
-
-      preparePaymentsItems();
-
-    });
 
   }
 

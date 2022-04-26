@@ -2918,11 +2918,11 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
                       selectedProductsData.remove(productsData);
 
-                      controllerAllProductId.text.replaceAll((productsData.id.toString() + ","), "");
-                      controllerAllProductName.text.replaceAll((productsData.productName + ","), "");
-                      controllerAllProductQuantity.text.replaceAll((productsData.productQuantity.toString() + ","), "");
-                      controllerAllProductQuantityType.text.replaceAll((productsData.productQuantityType + ","), "");
-                      controllerAllProductEachPrice.text.replaceAll((productsData.productPrice + ","), "");
+                      controllerAllProductId.text = controllerAllProductId.text.replaceAll((productsData.id.toString() + ","), "");
+                      controllerAllProductName.text = controllerAllProductName.text.replaceAll((productsData.productName + ","), "");
+                      controllerAllProductQuantity.text = controllerAllProductQuantity.text.replaceAll((productsData.productQuantity.toString() + ","), "");
+                      controllerAllProductQuantityType.text = controllerAllProductQuantityType.text.replaceAll((productsData.productQuantityType + ","), "");
+                      controllerAllProductEachPrice.text = controllerAllProductEachPrice.text.replaceAll((productsData.productPrice + ","), "");
 
                       /* Start - Calculate Invoice Price */
                       int previousInvoicePrice = int.parse(controllerInvoicePrice.text.replaceAll(",", ""));
