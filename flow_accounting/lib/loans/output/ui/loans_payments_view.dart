@@ -160,8 +160,8 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
                               ),
                               gradient: LinearGradient(
                                   colors: [
-                                    ColorsResources.white.withOpacity(0.51),
-                                    ColorsResources.light.withOpacity(0.51),
+                                    ColorsResources.white.withOpacity(0.31),
+                                    ColorsResources.light.withOpacity(0.31),
                                   ],
                                   begin: FractionalOffset(0.0, 0.0),
                                   end: FractionalOffset(1.0, 0.0),
@@ -312,8 +312,8 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
                                               ),
                                               gradient: LinearGradient(
                                                   colors: [
-                                                    Color(widget.loansData.colorTag).withOpacity(0.7),
-                                                    ColorsResources.light,
+                                                    Color(widget.loansData.colorTag).withOpacity(0.93),
+                                                    ColorsResources.lightTransparent,
                                                   ],
                                                   begin: const FractionalOffset(0.0, 0.0),
                                                   end: const FractionalOffset(1.0, 0.0),
