@@ -410,6 +410,12 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
 
                         paymentProcessed(itemIndex, !thisLoanPaid);
 
+                        setState(() {
+
+                          thisLoanPaid = !thisLoanPaid;
+
+                        });
+
                       },
                       child: Container(
                         height: 173,
