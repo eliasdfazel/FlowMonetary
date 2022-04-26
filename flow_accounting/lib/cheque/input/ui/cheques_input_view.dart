@@ -204,13 +204,13 @@ class _ChequeInputViewState extends State<ChequesInputView> {
   @override
   Widget build(BuildContext context) {
 
-    Widget chequeConfirmationView = const Divider(height: 0, color: Colors.transparent);
+    // Widget chequeConfirmationView = const Divider(height: 0, color: Colors.transparent);
 
-    if (widget.chequesData != null) {
+    // if (widget.chequesData != null) {
+    //
+    //   if (widget.chequesData!.id > 0) {
 
-      if (widget.chequesData!.id > 0) {
-
-        chequeConfirmationView = Padding(
+    Widget  chequeConfirmationView = Padding(
           padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -294,7 +294,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                     alignment: AlignmentDirectional.centerEnd,
                     child: Container(
                       child: Transform.scale(
-                        scale: 1.93,
+                        scale: 2.3,
                         child: Checkbox(
                           tristate: true,
                           checkColor: ColorsResources.applicationLightGeeksEmpire,
@@ -342,9 +342,9 @@ class _ChequeInputViewState extends State<ChequesInputView> {
           ),
         );
 
-      }
-
-    }
+    //   }
+    //
+    // }
 
     return MaterialApp (
       debugShowCheckedModeBanner: false,

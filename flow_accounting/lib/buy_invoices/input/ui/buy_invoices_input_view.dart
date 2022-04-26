@@ -3322,7 +3322,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
   List<String> removeEmptyElementCsv(List<String> inputList) {
 
-    List<String> cleanCsvList = inputList;
+    List<String> cleanCsvList = [];
 
     inputList.forEach((element) {
 
@@ -3341,9 +3341,13 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
     List<String> csvData = removeEmptyElementCsv(inputCsvData.split(","));
 
-    String clearCsvDatabase = csvData.toString();
-    clearCsvDatabase = clearCsvDatabase.replaceAll("[", "");
-    clearCsvDatabase = clearCsvDatabase.replaceAll("]", "");
+    String clearCsvDatabase = "";
+
+    csvData.forEach((element) {
+
+      clearCsvDatabase += "${element},";
+
+    });
 
     return clearCsvDatabase;
   }

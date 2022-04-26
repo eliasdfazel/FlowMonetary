@@ -595,7 +595,11 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
 
     }
 
+    print(">>> ${widget.loansData.loansPaymentsIndexes}");
+
     widget.loansData.loansPaymentsIndexes = cleanUpCsvDatabase(widget.loansData.loansPaymentsIndexes);
+
+    print(">>> ${widget.loansData.loansPaymentsIndexes}");
 
     LoansDatabaseInputs loansDatabaseInputs = LoansDatabaseInputs();
 
@@ -613,7 +617,7 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
 
   List<String> removeEmptyElementCsv(List<String> inputList) {
 
-    List<String> cleanCsvList = inputList;
+    List<String> cleanCsvList = [];
 
     inputList.forEach((element) {
 
@@ -632,9 +636,13 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
 
     List<String> csvData = removeEmptyElementCsv(inputCsvData.split(","));
 
-    String clearCsvDatabase = csvData.toString();
-    clearCsvDatabase = clearCsvDatabase.replaceAll("[", "");
-    clearCsvDatabase = clearCsvDatabase.replaceAll("]", "");
+    String clearCsvDatabase = "";
+
+    csvData.forEach((element) {
+
+      clearCsvDatabase += "${element},";
+
+    });
 
     return clearCsvDatabase;
   }
