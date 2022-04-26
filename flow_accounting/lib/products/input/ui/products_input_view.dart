@@ -1456,6 +1456,8 @@ class _ProductsInputViewState extends State<ProductsInputView> {
 
                                       databaseInputs.insertProductData(productData, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
+                                      generateBarcode(productData.id);
+
                                     }
 
                                     Fluttertoast.showToast(
@@ -1743,6 +1745,8 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                           );
 
                                           databaseInputs.insertProductData(productData, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+                                          generateBarcode(productData.id);
 
                                           Fluttertoast.showToast(
                                               msg: StringsResources.updatedText(),
@@ -2088,6 +2092,79 @@ class _ProductsInputViewState extends State<ProductsInputView> {
   Future<List<String>> getQuantityTypes() async {
 
     return StringsResources.quantityTypesList();
+  }
+
+  void generateBarcode(int databaseId) async {
+
+    bool barcodeFileCheckpoint = await fileExist("Product_${databaseId}.PNG");
+
+    Widget barcodeGenerator = Screenshot(
+      controller: barcodeSnapshotController,
+      child: SfBarcodeGenerator(
+        value: "Product_${databaseId.toString()}",
+        symbology: QRCode(),
+        barColor: ColorsResources.primaryColor,
+      ),
+    );
+
+    barcodeView = ClipRRect(
+        borderRadius: BorderRadius.circular(13),
+        child: ColoredBox(
+            color: ColorsResources.lightestBlue.withOpacity(0.91),
+            child: Padding(
+                padding: EdgeInsets.fromLTRB(9, 9, 9, 9),
+                child:  SizedBox(
+                    height: 131,
+                    width: 131,
+                    child: InkWell(
+                        onTap: () async {
+
+                          if (barcodeFileCheckpoint) {
+
+                            Directory appDocumentsDirectory = await getApplicationSupportDirectory();
+
+                            String appDocumentsPath = appDocumentsDirectory.path;
+
+                            String filePath = '$appDocumentsPath/Product_${databaseId}.PNG';
+
+                            Share.shareFiles([filePath],
+                                text: "${databaseId}");
+
+                          }
+
+                        },
+                        child: barcodeGenerator
+                    )
+                )
+            )
+        )
+    );
+
+    Future.delayed(Duration(milliseconds: 333), () {
+
+      if (!barcodeFileCheckpoint) {
+
+        barcodeSnapshotController.capture().then((Uint8List? imageBytes) {
+          debugPrint("Barcode Captured");
+
+          if (imageBytes != null) {
+
+            createFileOfBytes("Product_${databaseId}", "PNG", imageBytes);
+
+          }
+
+        });
+
+      }
+
+      setState(() {
+
+        barcodeView;
+
+      });
+
+    });
+
   }
 
 }

@@ -3358,6 +3358,81 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
     return clearCsvDatabase;
   }
 
+  void generateBarcode(int databaseId) async {
+
+    /* Start - Barcode Image */
+    bool barcodeFileCheckpoint = await fileExist("SellInvoices_${databaseId}.PNG");
+
+    Widget barcodeGenerator = Screenshot(
+      controller: barcodeSnapshotController,
+      child: SfBarcodeGenerator(
+        value: "SellInvoices_${databaseId.toString()}",
+        symbology: EAN8(),
+        barColor: ColorsResources.primaryColor,
+      ),
+    );
+
+    barcodeView = ClipRRect(
+        borderRadius: BorderRadius.circular(13),
+        child: ColoredBox(
+            color: ColorsResources.lightestBlue.withOpacity(0.91),
+            child: Padding(
+                padding: EdgeInsets.fromLTRB(9, 9, 9, 9),
+                child:  SizedBox(
+                    height: 131,
+                    width: 131,
+                    child: InkWell(
+                        onTap: () async {
+
+                          if (barcodeFileCheckpoint) {
+
+                            Directory appDocumentsDirectory = await getApplicationSupportDirectory();
+
+                            String appDocumentsPath = appDocumentsDirectory.path;
+
+                            String filePath = '$appDocumentsPath/SellInvoices_${databaseId}.PNG';
+
+                            Share.shareFiles([filePath],
+                                text: "${widget.sellInvoicesData!.sellInvoiceDescription}");
+
+                          }
+
+                        },
+                        child: barcodeGenerator
+                    )
+                )
+            )
+        )
+    );
+
+    Future.delayed(Duration(milliseconds: 333), () {
+
+      if (!barcodeFileCheckpoint) {
+
+        barcodeSnapshotController.capture().then((Uint8List? imageBytes) {
+          debugPrint("Barcode Captured");
+
+          if (imageBytes != null) {
+
+            createFileOfBytes("Product_${databaseId}", "PNG", imageBytes);
+
+          }
+
+        });
+
+      }
+
+    });
+    /* End - Barcode Image */
+
+    setState(() {
+
+      barcodeView;
+
+    });
+
+  }
+
 }
 
 class SelectedInvoiceProductsView extends StatefulWidget {
