@@ -68,12 +68,24 @@ class _TopBarViewState extends State<TopBarView> {
                         Share.share(StringsResources.sharingText());
 
                       },
-                      child:  const Align(
+                      child: Align(
                         alignment: Alignment.center,
                         child: SizedBox(
                           height: 43,
                           width: 43,
-                          child: Image(image: AssetImage("share_icon.png")),
+                          child: Container(
+                              decoration: BoxDecoration(
+                                  color: ColorsResources.blueGray,
+                                  borderRadius: BorderRadius.circular(9)
+                              ),
+                              child: Padding(
+                                  padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                                  child: Image(
+                                    image: AssetImage("share_icon.png"),
+                                    color: ColorsResources.lightBlue,
+                                  )
+                              )
+                          )
                         ),
                       ),
                     )
@@ -86,12 +98,24 @@ class _TopBarViewState extends State<TopBarView> {
                         await launch(StringsResources.instagramLink());
 
                       },
-                      child:  const Align(
+                      child: Align(
                         alignment: Alignment.center,
                         child: SizedBox(
                           height: 43,
                           width: 43,
-                          child: Image(image: AssetImage("instagram_icon.png")),
+                          child: Container(
+                              decoration: BoxDecoration(
+                                  color: ColorsResources.blueGray,
+                                  borderRadius: BorderRadius.circular(9)
+                              ),
+                              child: Padding(
+                                  padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                                  child: Image(
+                                    image: AssetImage("instagram_icon.png"),
+                                    color: ColorsResources.lightBlue,
+                                  )
+                              )
+                          )
                         ),
                       ),
                     )
