@@ -75,14 +75,14 @@ class _TopBarViewState extends State<TopBarView> {
                           width: 43,
                           child: Container(
                               decoration: BoxDecoration(
-                                  color: ColorsResources.primaryColor,
+                                  color: ColorsResources.primaryColorLighter,
                                   borderRadius: BorderRadius.circular(9)
                               ),
                               child: Padding(
                                   padding: EdgeInsets.fromLTRB(9, 9, 9, 9),
                                   child: Image(
                                     image: AssetImage("share_icon.png"),
-                                    color: ColorsResources.white,
+                                    color: ColorsResources.primaryColorDark,
                                   )
                               )
                           )
@@ -105,14 +105,14 @@ class _TopBarViewState extends State<TopBarView> {
                           width: 43,
                           child: Container(
                               decoration: BoxDecoration(
-                                  color: ColorsResources.primaryColor,
+                                  color: ColorsResources.primaryColorLighter,
                                   borderRadius: BorderRadius.circular(9)
                               ),
                               child: Padding(
                                   padding: EdgeInsets.fromLTRB(9, 9, 9, 9),
                                   child: Image(
                                     image: AssetImage("instagram_icon.png"),
-                                    color: ColorsResources.white,
+                                    color: ColorsResources.primaryColorDark,
                                   )
                               )
                           )
@@ -135,14 +135,14 @@ class _TopBarViewState extends State<TopBarView> {
                             width: 43,
                             child: Container(
                                 decoration: BoxDecoration(
-                                    color: ColorsResources.primaryColor,
+                                    color: ColorsResources.primaryColorLighter,
                                     borderRadius: BorderRadius.circular(9)
                                 ),
                                 child: Padding(
                                     padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
                                     child: Image(
                                       image: AssetImage("sync_icon.png"),
-                                      color: ColorsResources.white,
+                                      color: ColorsResources.primaryColorDark,
                                     )
                                 )
                             )
