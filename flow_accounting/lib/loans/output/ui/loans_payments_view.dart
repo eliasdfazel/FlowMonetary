@@ -198,7 +198,7 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
                                                   fadingEdgeStartFraction: 0.13,
                                                   fadingEdgeEndFraction: 0.13,
                                                   startAfter: const Duration(milliseconds: 777),
-                                                  numberOfRounds: 3,
+                                                  numberOfRounds: 1,
                                                   pauseAfterRound: const Duration(milliseconds: 500),
                                                   showFadingOnlyWhenScrolling: true,
                                                   startPadding: 13.0,
@@ -231,7 +231,7 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
                                                   fadingEdgeStartFraction: 0.13,
                                                   fadingEdgeEndFraction: 0.13,
                                                   startAfter: const Duration(milliseconds: 777),
-                                                  numberOfRounds: 3,
+                                                  numberOfRounds: 1,
                                                   pauseAfterRound: const Duration(milliseconds: 500),
                                                   showFadingOnlyWhenScrolling: true,
                                                   startPadding: 13.0,
@@ -438,7 +438,7 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
               ),
               gradient: LinearGradient(
                   colors: [
-                    ColorsResources.white,
+                    ColorsResources.lightestBlue,
                     ColorsResources.light,
                   ],
                   begin: FractionalOffset(0.0, 0.0),
