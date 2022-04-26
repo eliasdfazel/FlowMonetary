@@ -563,6 +563,8 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
       }
     }
 
+    paymentsDateTime.clear();
+
     for (int paymentIndex = 0; paymentIndex < paymentsCount; paymentIndex++) {
 
       DateTime loanPayment = DateTime.fromMillisecondsSinceEpoch(firstLoanPaymentMillisecond + (paymentIndex * paymentTimeType));
