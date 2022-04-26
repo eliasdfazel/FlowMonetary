@@ -14,10 +14,8 @@ import 'package:flow_accounting/loans/database/io/inputs.dart';
 import 'package:flow_accounting/loans/database/structure/tables_structure.dart';
 import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
-import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/utils/calendar/io/time_io.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:marquee/marquee.dart';
 
 class LoansPaymentsView extends StatefulWidget {
@@ -42,7 +40,6 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
 
   List<String> paidIndexed = [];
 
-  bool thisLoanPaid = false;
 
   @override
   void dispose() {
@@ -374,6 +371,8 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
 
   Widget outputItem(BuildContext context, int itemIndex, DateTime dateTime) {
 
+    bool thisLoanPaid = false;
+
     for (int i = 0; i < paidIndexed.length; i++) {
 
       if (paidIndexed[i] == itemIndex.toString()) {
@@ -392,116 +391,116 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
 
     }
 
-    return Slidable(
-      closeOnScroll: true,
-      endActionPane: ActionPane(
-        motion: const DrawerMotion(),
-        children: [
-          SlidableAction(
-            flex: 1,
-            onPressed: (BuildContext context) {
-
-              paymentProcessed(itemIndex, true);
-
-              setState(() {
-
-                thisLoanPaid = true;
-
-              });
-
-            },
-            backgroundColor: Colors.transparent,
-            foregroundColor: ColorsResources.lightBlue,
-            icon: Icons.paid_rounded,
-            label: StringsResources.loansPaymentsPaid(),
-            autoClose: true,
-          )
-        ],
-      ),
-      child: Padding(
-        padding: const  EdgeInsets.fromLTRB(13, 7, 13, 13),
-        child: PhysicalModel(
+    return Padding(
+      padding: const  EdgeInsets.fromLTRB(13, 7, 13, 13),
+      child: PhysicalModel(
           color: ColorsResources.light,
           elevation: 9,
           shadowColor: Color(widget.loansData.colorTag).withOpacity(0.79),
           shape: BoxShape.rectangle,
           borderRadius: const BorderRadius.all(Radius.circular(19)),
-          child: Container(
-            height: 173,
-            width: 173,
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(17),
-                  topRight: Radius.circular(17),
-                  bottomLeft: Radius.circular(17),
-                  bottomRight: Radius.circular(17)
+          child: ClipRRect(
+              borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(19),
+                  bottomLeft: Radius.circular(19),
+                  topRight: Radius.circular(19),
+                  bottomRight: Radius.circular(19)
               ),
-              gradient: LinearGradient(
-                  colors: [
-                    ColorsResources.lightestBlue,
-                    ColorsResources.light,
-                  ],
-                  begin: FractionalOffset(0.0, 0.0),
-                  end: FractionalOffset(1.0, 0.0),
-                  stops: [0.0, 1.0],
-                  transform: GradientRotation(45),
-                  tileMode: TileMode.clamp
-              ),
-            ),
-            child: Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                child: Stack(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(0, 19, 19, 0),
-                      child: Align(
-                        alignment: AlignmentDirectional.topEnd,
-                        child: Text(
-                          timeIO.humanReadableFarsi(dateTime),
-                          textDirection: TextDirection.rtl,
-                          style: TextStyle(
-                            fontSize: 19,
-                            color: ColorsResources.dark,
-                            shadows: [
-                              Shadow(
-                                color: ColorsResources.primaryColorLight,
-                                blurRadius: 7,
-                                offset: Offset(1.0, 1.0)
-                              )
-                            ]
+              child: Material(
+                  shadowColor: Colors.transparent,
+                  color: Colors.transparent,
+                  child: InkWell(
+                      splashColor: ColorsResources.lightestBlue,
+                      splashFactory: InkRipple.splashFactory,
+                      onTap: () {
+
+                        paymentProcessed(itemIndex, !thisLoanPaid);
+
+                      },
+                      child: Container(
+                        height: 173,
+                        width: 173,
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(17),
+                              topRight: Radius.circular(17),
+                              bottomLeft: Radius.circular(17),
+                              bottomRight: Radius.circular(17)
                           ),
-                        )
-                      )
-                    ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(17, 7, 7, 17),
-                      child: Align(
-                        alignment: AlignmentDirectional.bottomStart,
-                        child: Transform.scale(
-                            scale: 2.73,
-                            child: Checkbox(
-                              tristate: true,
-                              checkColor: ColorsResources.applicationLightGeeksEmpire,
-                              fillColor: MaterialStateProperty.all(ColorsResources.dark.withOpacity(0.1)),
-                              visualDensity: VisualDensity.comfortable,
-                              shape: CircleBorder(),
-                              splashRadius: 37,
-                              onChanged: (newValue) {
+                          gradient: LinearGradient(
+                              colors: [
+                                ColorsResources.lightestBlue,
+                                ColorsResources.light,
+                              ],
+                              begin: FractionalOffset(0.0, 0.0),
+                              end: FractionalOffset(1.0, 0.0),
+                              stops: [0.0, 1.0],
+                              transform: GradientRotation(45),
+                              tileMode: TileMode.clamp
+                          ),
+                        ),
+                        child: Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                            child: Stack(
+                              children: [
+                                Padding(
+                                    padding: EdgeInsets.fromLTRB(0, 19, 19, 0),
+                                    child: Align(
+                                        alignment: AlignmentDirectional.topEnd,
+                                        child: Text(
+                                          timeIO.humanReadableFarsi(dateTime),
+                                          textDirection: TextDirection.rtl,
+                                          style: TextStyle(
+                                              fontSize: 19,
+                                              color: ColorsResources.dark,
+                                              shadows: [
+                                                Shadow(
+                                                    color: ColorsResources.primaryColorLight,
+                                                    blurRadius: 7,
+                                                    offset: Offset(1.0, 1.0)
+                                                )
+                                              ]
+                                          ),
+                                        )
+                                    )
+                                ),
+                                Padding(
+                                    padding: EdgeInsets.fromLTRB(17, 7, 7, 17),
+                                    child: Align(
+                                        alignment: AlignmentDirectional.bottomStart,
+                                        child: Transform.scale(
+                                            scale: 2.73,
+                                            child: Checkbox(
+                                              tristate: true,
+                                              checkColor: ColorsResources.applicationLightGeeksEmpire,
+                                              fillColor: MaterialStateProperty.all(ColorsResources.dark.withOpacity(0.1)),
+                                              visualDensity: VisualDensity.comfortable,
+                                              shape: CircleBorder(),
+                                              splashRadius: 37,
+                                              onChanged: (newValue) {
 
-                                paymentProcessed(itemIndex, newValue ?? false);
+                                                paymentProcessed(itemIndex, newValue ?? false);
 
-                              },
-                              value: thisLoanPaid,
+                                                setState(() {
+
+                                                  thisLoanPaid = newValue ?? false;
+
+                                                });
+
+                                              },
+                                              value: thisLoanPaid,
+                                            )
+                                        )
+                                    )
+                                )
+                              ],
                             )
-                        )
+                        ),
                       )
-                    )
-                  ],
-                )
-            ),
+                  )
+              )
           )
-        ),
-      )
+      ),
     );
 
   }
