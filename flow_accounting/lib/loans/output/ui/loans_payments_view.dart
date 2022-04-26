@@ -595,17 +595,17 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
 
     }
 
-    print(">>> ${widget.loansData.loansPaymentsIndexes}");
-
     widget.loansData.loansPaymentsIndexes = cleanUpCsvDatabase(widget.loansData.loansPaymentsIndexes);
-
-    print(">>> ${widget.loansData.loansPaymentsIndexes}");
 
     LoansDatabaseInputs loansDatabaseInputs = LoansDatabaseInputs();
 
     loansDatabaseInputs.updateChequeData(widget.loansData, LoansDatabaseInputs.databaseTableName, UserInformation.UserId);
 
-    paidIndexed = removeEmptyElementCsv(widget.loansData.loansPaymentsIndexes.split(","));
+    if (widget.loansData.loansPaymentsIndexes != "-1") {
+
+      paidIndexed = removeEmptyElementCsv(widget.loansData.loansPaymentsIndexes.split(","));
+
+    }
 
     Future.delayed(Duration(milliseconds: 357), () {
 

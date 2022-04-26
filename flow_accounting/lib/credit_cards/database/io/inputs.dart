@@ -32,8 +32,6 @@ class CreditCardsDatabaseInputs {
     var databaseNameQuery = CreditCardsDatabaseInputs.creditCardDatabase();
     var tableNameQuery = CreditCardsDatabaseInputs.databaseTableName;
 
-    print(">>>>>>> ${usernameId} >>>> ${databaseNameQuery}");
-
     final database = openDatabase(
       join(await getDatabasesPath(), databaseNameQuery),
       onCreate: (databaseInstance, version) {
