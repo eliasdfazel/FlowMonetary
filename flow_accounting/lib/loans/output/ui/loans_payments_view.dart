@@ -373,21 +373,15 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
 
     bool thisLoanPaid = false;
 
-    for (int i = 0; i < paidIndexed.length; i++) {
+    if (paidIndexed.contains(itemIndex.toString())) {
+      debugPrint("Payment Index ${itemIndex} Is Paid");
 
-      if (paidIndexed[i] == itemIndex.toString()) {
-        debugPrint("Payment Index ${itemIndex} Is Paid");
+      thisLoanPaid = true;
 
-        thisLoanPaid = true;
+    } else {
+      debugPrint("Payment Index ${itemIndex} Not Paid");
 
-        break;
-
-      } else {
-        debugPrint("Payment Index ${itemIndex} Not Paid");
-
-        thisLoanPaid = false;
-
-      }
+      thisLoanPaid = false;
 
     }
 
@@ -585,7 +579,7 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
     }
 
     if (insertIt) {
-      debugPrint("Loan Payment Index ${itemIndex} Is Paying Paid");
+      debugPrint("Loan Payment Index ${itemIndex} Is Paying");
 
       widget.loansData.loansPaymentsIndexes += "${itemIndex},";
 
@@ -599,13 +593,19 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
     widget.loansData.loansPaymentsIndexes = cleanUpCsvDatabase(widget.loansData.loansPaymentsIndexes);
     debugPrint("Paid Database Indexes Updated: ${widget.loansData.loansPaymentsIndexes}");
 
-    paidIndexed = removeEmptyElementCsv(widget.loansData.loansPaymentsIndexes.split(","));
+    paidIndexed = (widget.loansData.loansPaymentsIndexes.split(","));
 
     preparePaymentsItems();
 
     LoansDatabaseInputs loansDatabaseInputs = LoansDatabaseInputs();
 
     loansDatabaseInputs.updateChequeData(widget.loansData, LoansDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+    setState(() {
+
+      widget.loansData;
+
+    });
 
   }
 
