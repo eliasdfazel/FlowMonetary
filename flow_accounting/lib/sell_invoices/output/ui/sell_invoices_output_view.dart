@@ -20,6 +20,7 @@ import 'package:flow_accounting/sell_invoices/database/io/queries.dart';
 import 'package:flow_accounting/sell_invoices/database/structures/tables_structure.dart';
 import 'package:flow_accounting/sell_invoices/input/ui/sell_invoices_input_view.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
+import 'package:flow_accounting/utils/io/FileIO.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:marquee/marquee.dart';
@@ -702,6 +703,8 @@ class _SellInvoicesOutputViewState extends State<SellInvoicesOutputView> {
       retrieveAllSellInvoices(context);
 
     }
+
+    deletePrivateFile("SellInvoices_${sellInvoicesData.id}.PNG");
 
   }
 

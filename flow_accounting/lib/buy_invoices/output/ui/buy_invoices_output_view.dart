@@ -20,6 +20,7 @@ import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
+import 'package:flow_accounting/utils/io/FileIO.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:marquee/marquee.dart';
@@ -688,6 +689,8 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
       retrieveAllBuyInvoices(context);
 
     }
+
+    deletePrivateFile("BuyInvoices_${buyInvoicesData.id}.PNG");
 
   }
 
