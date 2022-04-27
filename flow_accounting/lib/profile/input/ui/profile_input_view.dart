@@ -1039,7 +1039,7 @@ class _ProfilesInputViewState extends State<ProfilesInputView> {
 
       if (controllerUserPhoneNumber.text.isNotEmpty) {
 
-        fileName = "${controllerUserPhoneNumber.text.replaceAll(" ", "_")}_image.png";
+        fileName = "${controllerUserPhoneNumber.text.replaceAll(" ", "_")}_Image.PNG";
 
       }
 

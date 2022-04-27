@@ -1868,7 +1868,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
 
       if (controllerProductName.text.isNotEmpty) {
 
-        fileName = "${controllerProductName.text.replaceAll(" ", "_")}_image.png";
+        fileName = "${controllerProductName.text.replaceAll(" ", "_")}_Image.PNG";
 
       }
 
@@ -1908,7 +1908,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
 
       if (controllerProductBrand.text.isNotEmpty) {
 
-        fileName = "${controllerProductBrand.text.replaceAll(" ", "_")}_logo.png";
+        fileName = "${controllerProductBrand.text.replaceAll(" ", "_")}_Logo.PNG";
 
       }
 

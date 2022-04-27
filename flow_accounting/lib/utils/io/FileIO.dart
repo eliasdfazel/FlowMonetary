@@ -36,3 +36,15 @@ Future<File> createFileOfBytes(String fileName, String fileFormat, Uint8List con
 
   return File(filePath).writeAsBytes(contentBytes);
 }
+
+void deletePrivateFile(String fileName) async {
+
+  Directory appDocumentsDirectory = await getApplicationSupportDirectory();
+
+  String appDocumentsPath = appDocumentsDirectory.path;
+
+  String filePath = '$appDocumentsPath/${fileName}';
+
+  File(filePath).delete();
+
+}

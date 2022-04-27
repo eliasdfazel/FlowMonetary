@@ -23,6 +23,7 @@ import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
+import 'package:flow_accounting/utils/io/FileIO.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:marquee/marquee.dart';
@@ -457,7 +458,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
             flex: 1,
             onPressed: (BuildContext context) {
 
-              deleteTransaction(context, productsData);
+              deleteProduct(context, productsData);
 
             },
             backgroundColor: Colors.transparent,
@@ -716,7 +717,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
 
   }
 
-  void deleteTransaction(BuildContext context, ProductsData productsData) async {
+  void deleteProduct(BuildContext context, ProductsData productsData) async {
 
     String databaseDirectory = await getDatabasesPath();
 
@@ -733,6 +734,8 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
       retrieveAllProducts(context);
 
       productDataUpdated = true;
+
+      deletePrivateFile("Product_${productsData.id}.PNG");
 
     }
 
