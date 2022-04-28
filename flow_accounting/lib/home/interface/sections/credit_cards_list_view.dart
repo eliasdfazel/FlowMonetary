@@ -53,22 +53,30 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
       height: 199,
       width: double.infinity,
       child: InkWell(
-        onTap: () {
+        onTap: () async {
 
-          NavigationProcess().goTo(context,
-              CreditCardsInputView(
+          bool creditCardDataUpdated = await Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => CreditCardsInputView(
                 creditCardsData: CreditCardsData(
-                  id: 0,
-                  bankName: "",
-                  cardNumber: "",
-                  cardHolderName: "",
-                  cvv: "",
-                  cardBalance: "",
-                  cardExpiry: "",
-                  colorTag: Colors.transparent.value
+                    id: 0,
+                    bankName: "",
+                    cardNumber: "",
+                    cardHolderName: "",
+                    cvv: "",
+                    cardBalance: "",
+                    cardExpiry: "",
+                    colorTag: Colors.transparent.value
                 )
-              )
+            )),
           );
+
+          debugPrint("New Credit Card Added => ${creditCardDataUpdated}");
+          if (creditCardDataUpdated) {
+
+            prepareCreditCardsData();
+
+          }
 
         },
         child: const Image(
