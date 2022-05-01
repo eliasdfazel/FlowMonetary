@@ -1093,9 +1093,20 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
 
   }
 
-  void startAdvancedSearch() async {
+  void startAdvancedSearch(
+      String amountMoneyFirst, String amountMoneyLast,
+      String timeFirst, String timeLast,
+      String targetName) async {
+    debugPrint("All Picked Parameters -> First Money: ${amountMoneyFirst} - Last Money: ${amountMoneyLast}");
+    debugPrint("All Picked Parameters -> First Time: ${timeFirst} - Last Time: ${timeLast}");
+    debugPrint("All Picked Parameters -> Target Username: ${targetName}");
 
+    TransactionsDatabaseQueries transactionsDatabaseQueries = TransactionsDatabaseQueries();
 
+    List<TransactionsData> advancedSearchResult = await transactionsDatabaseQueries.queryTransactionByTargetTimeMoney(amountMoneyFirst, amountMoneyLast, timeFirst, timeLast, targetName,
+        TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+    print(">>> >> > ${advancedSearchResult}");
 
   }
 
@@ -1126,6 +1137,13 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
     CalendarView calendarViewLast = CalendarView();
     calendarViewLast.inputDateTime = timeIO.humanReadableFarsi(DateTime.fromMillisecondsSinceEpoch(timeLast));
     calendarViewLast.pickedDateTime = DateTime.fromMillisecondsSinceEpoch(timeLast);
+
+    /* Start - Picked Data */
+    String pickedTargetUsername = allTargetsUsername.first;
+
+    String pickedMoneyAmountFirst = allMoneyAmount.first;
+    String pickedMoneyAmountLast = allMoneyAmount.last;
+    /* End - Picked Data */
 
     showModalBottomSheet(
       context: context,
@@ -1178,7 +1196,7 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
                             alignment: AlignmentDirectional.topCenter,
                             child: Directionality(
                               textDirection: TextDirection.rtl,
-                              child: DropdownButtonFormField(
+                              child: DropdownButtonFormField<String>(
                                 isDense: true,
                                 elevation: 7,
                                 focusColor: ColorsResources.applicationDarkGeeksEmpire,
@@ -1242,6 +1260,7 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
                                 }).toList(),
                                 onChanged: (value) {
 
+                                  pickedTargetUsername = value ?? allTargetsUsername.first;
 
                                 },
                               ),
@@ -1282,7 +1301,7 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
                                   alignment: AlignmentDirectional.topCenter,
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
-                                    child: DropdownButtonFormField(
+                                    child: DropdownButtonFormField<String>(
                                       isDense: true,
                                       elevation: 7,
                                       focusColor: ColorsResources.applicationDarkGeeksEmpire,
@@ -1346,6 +1365,7 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
                                       }).toList(),
                                       onChanged: (value) {
 
+                                        pickedMoneyAmountFirst = value ?? allMoneyAmount.first;
 
                                       },
                                     ),
@@ -1372,7 +1392,7 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
                                   alignment: AlignmentDirectional.topCenter,
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
-                                    child: DropdownButtonFormField(
+                                    child: DropdownButtonFormField<String>(
                                       isDense: true,
                                       elevation: 7,
                                       focusColor: ColorsResources.applicationDarkGeeksEmpire,
@@ -1436,6 +1456,7 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
                                       }).toList(),
                                       onChanged: (value) {
 
+                                        pickedMoneyAmountLast = value ?? allMoneyAmount.last;
 
                                       },
                                     ),
@@ -1516,7 +1537,13 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
                         splashFactory: InkRipple.splashFactory,
                         onTap: () {
 
-                          startAdvancedSearch();
+                          startAdvancedSearch(
+                            pickedMoneyAmountFirst,
+                            pickedMoneyAmountLast,
+                            calendarViewFirst.pickedDateTime.microsecondsSinceEpoch.toString(),
+                            calendarViewLast.pickedDateTime.microsecondsSinceEpoch.toString(),
+                            pickedTargetUsername
+                          );
 
                           Future.delayed(Duration(milliseconds: 379), () {
 
