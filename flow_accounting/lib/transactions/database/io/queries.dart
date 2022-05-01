@@ -76,6 +76,50 @@ class TransactionsDatabaseQueries {
     return databaseContents;
   }
 
+  Future<List<TransactionsData>> queryTransactionByTargetTimeMoney(
+      String amountMoneyFirst, String amountMoneyLast,
+      String timeFirst, String timeLast,
+      String targetName,
+      String tableName, String usernameId) async {
+
+    var databaseNameQuery = TransactionsDatabaseInputs.transactionsDatabase();
+    var tableNameQuery = TransactionsDatabaseInputs.databaseTableName;
+
+    final database = openDatabase(
+      join(await getDatabasesPath(), databaseNameQuery),
+    );
+
+    final databaseInstance = await database;
+
+    final List<Map<String, dynamic>> databaseContents = await databaseInstance.query(
+      tableNameQuery,
+      where: '(amountMoney BETWEEN ? AND ?) AND (transactionTimeMillisecond BETWEEN ? AND ?) AND (targetUsername = ?)',
+      whereArgs: [amountMoneyFirst, amountMoneyLast, timeFirst, timeLast, targetName],
+    );
+
+    return List.generate(databaseContents.length, (i) {
+      return TransactionsData(
+        id: databaseContents[i]['id'],
+        transactionTitle: databaseContents[i]['transactionTitle'],
+        transactionDescription: databaseContents[i]['transactionDescription'],
+        sourceCardNumber: databaseContents[i]['sourceCardNumber'],
+        targetCardNumber: databaseContents[i]['targetCardNumber'],
+        sourceBankName: databaseContents[i]['sourceBankName'],
+        targetBankName: databaseContents[i]['targetBankName'],
+        sourceUsername: databaseContents[i]['sourceUsername'],
+        targetUsername: databaseContents[i]['targetUsername'],
+        amountMoney: databaseContents[i]['amountMoney'],
+        transactionType: databaseContents[i]['transactionType'],
+        transactionTimeMillisecond: int.parse(databaseContents[i]['transactionTimeMillisecond'].toString()),
+        transactionTime: databaseContents[i]['transactionTime'],
+        transactionTimeYear: databaseContents[i]['transactionTimeYear'],
+        transactionTimeMonth: databaseContents[i]['transactionTimeMonth'],
+        colorTag: int.parse(databaseContents[i]['colorTag'].toString()),
+        budgetName: databaseContents[i]['budgetName'],
+      );
+    });
+  }
+
   Future<List<Map<String, Object?>>> queryTransactionByCreditCard(
       String sourceCardNumber, String targetCardNumber,
       int transactionYear, int transactionMonth,
