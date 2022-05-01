@@ -1096,12 +1096,14 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
 
     showModalBottomSheet (
       context: context,
+      enableDrag: false,
+      isDismissible: true,
       shape:  RoundedRectangleBorder(
         borderRadius: new BorderRadius.all(Radius.circular(19))
       ),
+      elevation: 13,
       transitionAnimationController: animationController,
       backgroundColor: ColorsResources.darkTransparent,
-      elevation: 7,
       builder: (BuildContext context) {
         return Container(
           height: 357,
