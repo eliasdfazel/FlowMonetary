@@ -678,6 +678,7 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
                                               alignment: Alignment.center,
                                               child: Text(
                                                 transactionsData.budgetName,
+                                                textAlign: TextAlign.center,
                                                 maxLines: 1,
                                                 style: const TextStyle(
                                                   color: ColorsResources.dark,
@@ -1100,9 +1101,20 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
     animationController.duration = const Duration(milliseconds: 159);
     animationController.reverseDuration = const Duration(milliseconds: 159);
 
-    showModalBottomSheet (
+    List<String> allTargetsUsername = [];
+
+    allTransactions.forEach((element) {
+
+      allTargetsUsername.add(element.targetUsername);
+
+    });
+
+    print(">>> >> ${allTargetsUsername.first}");
+    print(">>> >> ${allTargetsUsername}");
+
+    showModalBottomSheet(
       context: context,
-      enableDrag: false,
+      enableDrag: true,
       isDismissible: true,
       shape: RoundedRectangleBorder(
         borderRadius: new BorderRadius.all(Radius.circular(19))
@@ -1125,80 +1137,107 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
             physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.vertical,
             children: [
-              Directionality(
-                textDirection: TextDirection.rtl,
-                child: DropdownButtonFormField(
-                  isDense: true,
-                  elevation: 7,
-                  focusColor: ColorsResources.applicationDarkGeeksEmpire,
-                  dropdownColor: ColorsResources.light,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                            color: ColorsResources.applicationDarkGeeksEmpire,
-                            width: 1
-                        ),
-                        borderRadius: BorderRadius.circular(13),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                            color: ColorsResources.applicationDarkGeeksEmpire,
-                            width: 1
-                        ),
-                        borderRadius: BorderRadius.circular(13),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                            color: ColorsResources.applicationDarkGeeksEmpire,
-                            width: 1
-                        ),
-                        borderRadius: BorderRadius.circular(13),
-                      ),
-                      errorBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                            color: ColorsResources.applicationDarkGeeksEmpire,
-                            width: 1
-                        ),
-                        borderRadius: BorderRadius.circular(13),
-                      ),
-                      filled: true,
-                      fillColor: ColorsResources.lightTransparent,
-                      focusColor: ColorsResources.dark
-                  ),
-                  value: StringsResources.transactionTypeSend(),
-                  items: <String> [
-                    StringsResources.transactionTypeSend(),
-                    StringsResources.transactionTypeReceive()
-                  ].map<DropdownMenuItem<String>>((String value) {
+              SizedBox(
+                width: double.infinity,
+                height: 107,
+                child: Padding(
+                    padding: const EdgeInsets.fromLTRB(13, 19, 13, 0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Align(
+                            alignment: AlignmentDirectional.topCenter,
+                            child: Directionality(
+                              textDirection: TextDirection.rtl,
+                              child: DropdownButtonFormField(
+                                isDense: true,
+                                elevation: 7,
+                                focusColor: ColorsResources.applicationDarkGeeksEmpire,
+                                dropdownColor: ColorsResources.light,
+                                decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderSide: const BorderSide(
+                                          color: ColorsResources.applicationDarkGeeksEmpire,
+                                          width: 1
+                                      ),
+                                      borderRadius: BorderRadius.circular(13),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: const BorderSide(
+                                          color: ColorsResources.applicationDarkGeeksEmpire,
+                                          width: 1
+                                      ),
+                                      borderRadius: BorderRadius.circular(13),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: const BorderSide(
+                                          color: ColorsResources.applicationDarkGeeksEmpire,
+                                          width: 1
+                                      ),
+                                      borderRadius: BorderRadius.circular(13),
+                                    ),
+                                    errorBorder: OutlineInputBorder(
+                                      borderSide: const BorderSide(
+                                          color: ColorsResources.applicationDarkGeeksEmpire,
+                                          width: 1
+                                      ),
+                                      borderRadius: BorderRadius.circular(13),
+                                    ),
+                                    filled: true,
+                                    fillColor: ColorsResources.lightTransparent,
+                                    focusColor: ColorsResources.dark
+                                ),
+                                value: allTargetsUsername.first,
+                                items: allTargetsUsername.toSet().toList().map<DropdownMenuItem<String>>((String value) {
 
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: SizedBox(
-                        height: 27,
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 0, 11, 0),
-                          child: Align(
-                            alignment:
-                            AlignmentDirectional.center,
-                            child: Text(
-                              value,
-                              style: const TextStyle(
-                                color: ColorsResources.darkTransparent,
-                                fontSize: 15,
+                                  return DropdownMenuItem<String>(
+                                    value: value,
+                                    child: SizedBox(
+                                      height: 31,
+                                      child: Padding(
+                                        padding: const EdgeInsets.fromLTRB(0, 0, 11, 0),
+                                        child: Align(
+                                          alignment:
+                                          AlignmentDirectional.center,
+                                          child: Text(
+                                            value,
+                                            style: const TextStyle(
+                                              color: ColorsResources.dark,
+                                              fontSize: 15,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                }).toList(),
+                                onChanged: (value) {
+
+
+                                },
                               ),
-                            ),
-                          ),
+                            )
                         ),
-                      ),
-                    );
-                  }).toList(),
-                  onChanged: (value) {
-
-
-
-                  },
+                        Padding(
+                            padding: EdgeInsets.fromLTRB(0, 5, 7, 0),
+                            child: Align(
+                              alignment: Alignment.centerRight,
+                              child: Text(
+                                StringsResources.transactionTargetName(),
+                                textAlign: TextAlign.right,
+                                style: TextStyle(
+                                    color: ColorsResources.lightestBlue,
+                                    fontSize: 12
+                                ),
+                              ),
+                            )
+                        ),
+                      ],
+                    )
                 ),
               ),
+
+
               SizedBox(
                 height: 79,
                 width: double.infinity,
@@ -1210,7 +1249,7 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
                       shadowColor: Colors.transparent,
                       color: Colors.transparent,
                       child: InkWell(
-                        splashColor: ColorsResources.applicationGeeksEmpire.withOpacity(0.5),
+                        splashColor: ColorsResources.applicationGeeksEmpire.withOpacity(0.3),
                         splashFactory: InkRipple.splashFactory,
                         onTap: () {
 
@@ -1225,7 +1264,7 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
                         },
                         child: Container(
                           decoration: BoxDecoration(
-                              border: Border(
+                            border: Border(
                                   top: BorderSide(
                                     color: ColorsResources.lightBlue.withOpacity(0.3),
                                     width: 1,
@@ -1243,8 +1282,8 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
                                     width: 1,
                                   )
                               ),
-                              borderRadius: BorderRadius.circular(51),
-                              color: Colors.transparent
+                            borderRadius: BorderRadius.circular(51),
+                            color: Colors.transparent
                           ),
                           child: Align(
                             alignment: AlignmentDirectional.center,
