@@ -756,28 +756,27 @@ class _CreditorsOutputViewState extends State<CreditorsOutputView> {
 
       if (element.creditorsName.contains(searchQuery) ||
           element.creditorsDescription.contains(searchQuery) ||
-          element.creditorsCompleteCredit.contains(searchQuery)
-      ) {
+          element.creditorsCompleteCredit.contains(searchQuery)) {
 
         searchResult.add(element);
 
       }
 
-      List<Widget> preparedAllCreditorsItem = [];
+    }
 
-      for (var element in searchResult) {
+    List<Widget> preparedAllCreditorsItem = [];
 
-        preparedAllCreditorsItem.add(outputItem(context, element));
+    for (var element in searchResult) {
 
-      }
-
-      setState(() {
-
-        allCreditorsItems = preparedAllCreditorsItem;
-
-      });
+      preparedAllCreditorsItem.add(outputItem(context, element));
 
     }
+
+    setState(() {
+
+      allCreditorsItems = preparedAllCreditorsItem;
+
+    });
 
   }
 

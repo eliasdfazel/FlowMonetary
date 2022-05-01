@@ -763,21 +763,21 @@ class _DebtorsOutputViewState extends State<DebtorsOutputView> {
 
       }
 
-      List<Widget> preparedAllDebtorsItem = [];
+    }
 
-      for (var element in searchResult) {
+    List<Widget> preparedAllDebtorsItem = [];
 
-        preparedAllDebtorsItem.add(outputItem(context, element));
+    for (var element in searchResult) {
 
-      }
-
-      setState(() {
-
-        allDebtorsItems = preparedAllDebtorsItem;
-
-      });
+      preparedAllDebtorsItem.add(outputItem(context, element));
 
     }
+
+    setState(() {
+
+      allDebtorsItems = preparedAllDebtorsItem;
+
+    });
 
   }
 

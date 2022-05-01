@@ -872,21 +872,21 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
 
       }
 
-      List<Widget> preparedAllProductsItem = [];
+    }
 
-      for (var element in searchResult) {
+    List<Widget> preparedAllProductsItem = [];
 
-        preparedAllProductsItem.add(outputItem(context, element));
+    for (var element in searchResult) {
 
-      }
-
-      setState(() {
-
-        allProductsItems = preparedAllProductsItem;
-
-      });
+      preparedAllProductsItem.add(outputItem(context, element));
 
     }
+
+    setState(() {
+
+      allProductsItems = preparedAllProductsItem;
+
+    });
 
   }
 
@@ -919,21 +919,21 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
 
         }
 
-        List<Widget> preparedAllProductsItem = [];
+      }
 
-        for (var element in searchResult) {
+      List<Widget> preparedAllProductsItem = [];
 
-          preparedAllProductsItem.add(outputItem(context, element));
+      for (var element in searchResult) {
 
-        }
-
-        setState(() {
-
-          allProductsItems = preparedAllProductsItem;
-
-        });
+        preparedAllProductsItem.add(outputItem(context, element));
 
       }
+
+      setState(() {
+
+        allProductsItems = preparedAllProductsItem;
+
+      });
 
     }
 

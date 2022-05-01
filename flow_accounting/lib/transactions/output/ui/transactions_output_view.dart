@@ -1024,21 +1024,21 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
 
       }
 
-      List<Widget> preparedAllTransactionsItem = [];
+    }
 
-      for (var element in searchResult) {
+    List<Widget> preparedAllTransactionsItem = [];
 
-        preparedAllTransactionsItem.add(outputItem(context, element));
+    for (var element in searchResult) {
 
-      }
-
-      setState(() {
-
-        allTransactionsItems = preparedAllTransactionsItem;
-
-      });
+      preparedAllTransactionsItem.add(outputItem(context, element));
 
     }
+
+    setState(() {
+
+      allTransactionsItems = preparedAllTransactionsItem;
+
+    });
 
   }
 
@@ -1073,21 +1073,21 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
 
         }
 
-        List<Widget> preparedAllTransactionsItem = [];
+      }
 
-        for (var element in searchResult) {
+      List<Widget> preparedAllTransactionsItem = [];
 
-          preparedAllTransactionsItem.add(outputItem(context, element));
+      for (var element in searchResult) {
 
-        }
-
-        setState(() {
-
-          allTransactionsItems = preparedAllTransactionsItem;
-
-        });
+        preparedAllTransactionsItem.add(outputItem(context, element));
 
       }
+
+      setState(() {
+
+        allTransactionsItems = preparedAllTransactionsItem;
+
+      });
 
     }
 
@@ -1101,12 +1101,33 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
     debugPrint("All Picked Parameters -> First Time: ${timeFirst} - Last Time: ${timeLast}");
     debugPrint("All Picked Parameters -> Target Username: ${targetName}");
 
-    TransactionsDatabaseQueries transactionsDatabaseQueries = TransactionsDatabaseQueries();
+    String databaseDirectory = await getDatabasesPath();
 
-    List<TransactionsData> advancedSearchResult = await transactionsDatabaseQueries.queryTransactionByTargetTimeMoney(amountMoneyFirst, amountMoneyLast, timeFirst, timeLast, targetName,
-        TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
+    String transactionDatabasePath = "${databaseDirectory}/${TransactionsDatabaseInputs.transactionsDatabase()}";
 
-    print(">>> >> > ${advancedSearchResult}");
+    bool transactionDatabaseExist = await databaseExists(transactionDatabasePath);
+
+    if (transactionDatabaseExist) {
+
+      allTransactions.forEach((element) {
+
+        if (
+        (targetName == element.targetUsername)
+            && (int.parse(element.amountMoney) >= int.parse(amountMoneyFirst))
+            && (int.parse(element.amountMoney) <= int.parse(amountMoneyLast))
+            && (element.transactionTimeMillisecond >= int.parse(timeFirst))
+            && (element.transactionTimeMillisecond <= int.parse(timeLast))
+        ) {
+
+          preparedAllTransactionsItem.add(outputItem(context, element));
+
+        }
+
+      });
+
+
+
+    }
 
   }
 
@@ -1126,6 +1147,10 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
       allMoneyAmount.add(element.amountMoney);
 
     });
+
+    allTargetsUsername.sort();
+
+    allMoneyAmount.sort();
 
     int timeFirst = allTransactions.first.transactionTimeMillisecond;
     int timeLast = allTransactions.last.transactionTimeMillisecond;
@@ -1339,7 +1364,7 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
                                           fillColor: ColorsResources.lightTransparent,
                                           focusColor: ColorsResources.dark
                                       ),
-                                      value: allMoneyAmount.first,
+                                      value: allMoneyAmount.last,
                                       items: allMoneyAmount.toSet().toList().map<DropdownMenuItem<String>>((String value) {
 
                                         return DropdownMenuItem<String>(
@@ -1430,7 +1455,7 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
                                           fillColor: ColorsResources.lightTransparent,
                                           focusColor: ColorsResources.dark
                                       ),
-                                      value: allMoneyAmount.last,
+                                      value: allMoneyAmount.first,
                                       items: allMoneyAmount.toSet().toList().map<DropdownMenuItem<String>>((String value) {
 
                                         return DropdownMenuItem<String>(

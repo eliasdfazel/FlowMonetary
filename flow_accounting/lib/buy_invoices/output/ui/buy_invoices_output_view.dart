@@ -831,21 +831,21 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
 
       }
 
-      List<Widget> preparedAllBuyInvoicesItem = [];
+    }
 
-      for (var element in searchResult) {
+    List<Widget> preparedAllBuyInvoicesItem = [];
 
-        preparedAllBuyInvoicesItem.add(outputItem(context, element));
+    for (var element in searchResult) {
 
-      }
-
-      setState(() {
-
-        allBuyInvoicesItems = preparedAllBuyInvoicesItem;
-
-      });
+      preparedAllBuyInvoicesItem.add(outputItem(context, element));
 
     }
+
+    setState(() {
+
+      allBuyInvoicesItems = preparedAllBuyInvoicesItem;
+
+    });
 
   }
 

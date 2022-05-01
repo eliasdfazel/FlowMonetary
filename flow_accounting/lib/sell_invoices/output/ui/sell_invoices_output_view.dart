@@ -845,21 +845,21 @@ class _SellInvoicesOutputViewState extends State<SellInvoicesOutputView> {
 
       }
 
-      List<Widget> preparedAllSellInvoicesItem = [];
+    }
 
-      for (var element in searchResult) {
+    List<Widget> preparedAllSellInvoicesItem = [];
 
-        preparedAllSellInvoicesItem.add(outputItem(context, element));
+    for (var element in searchResult) {
 
-      }
-
-      setState(() {
-
-        allSellInvoicesItems = preparedAllSellInvoicesItem;
-
-      });
+      preparedAllSellInvoicesItem.add(outputItem(context, element));
 
     }
+
+    setState(() {
+
+      allSellInvoicesItems = preparedAllSellInvoicesItem;
+
+    });
 
   }
 

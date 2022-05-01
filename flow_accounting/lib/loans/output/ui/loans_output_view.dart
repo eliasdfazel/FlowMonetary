@@ -818,21 +818,21 @@ class _LoansOutputViewState extends State<LoansOutputView> {
 
       }
 
-      List<Widget> preparedAllLoansItem = [];
+    }
 
-      for (var element in searchResult) {
+    List<Widget> preparedAllLoansItem = [];
 
-        preparedAllLoansItem.add(outputItem(context, element));
+    for (var element in searchResult) {
 
-      }
-
-      setState(() {
-
-        allLoansItems = preparedAllLoansItem;
-
-      });
+      preparedAllLoansItem.add(outputItem(context, element));
 
     }
+
+    setState(() {
+
+      allLoansItems = preparedAllLoansItem;
+
+    });
 
   }
 

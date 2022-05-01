@@ -872,21 +872,21 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
 
       }
 
-      List<Widget> preparedAllTransactionsItem = [];
+    }
 
-      for (var element in searchResult) {
+    List<Widget> preparedAllTransactionsItem = [];
 
-        preparedAllTransactionsItem.add(outputItem(context, element));
+    for (var element in searchResult) {
 
-      }
-
-      setState(() {
-
-        allCustomersItems = preparedAllTransactionsItem;
-
-      });
+      preparedAllTransactionsItem.add(outputItem(context, element));
 
     }
+
+    setState(() {
+
+      allCustomersItems = preparedAllTransactionsItem;
+
+    });
 
   }
 
