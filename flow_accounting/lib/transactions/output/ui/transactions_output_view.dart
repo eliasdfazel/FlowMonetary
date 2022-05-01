@@ -1106,15 +1106,18 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
     animationController.reverseDuration = const Duration(milliseconds: 159);
 
     List<String> allTargetsUsername = [];
+    List<String> allMoneyAmount = [];
 
     allTransactions.forEach((element) {
 
       allTargetsUsername.add(element.targetUsername);
 
+      allMoneyAmount.add(element.amountMoney);
+
     });
 
-    int timeFirst = allTransactions.first.transactionTimeMillisecond + 1;
-    int timeLast = allTransactions.last.transactionTimeMillisecond + 3;
+    int timeFirst = allTransactions.first.transactionTimeMillisecond;
+    int timeLast = allTransactions.last.transactionTimeMillisecond;
 
     CalendarView calendarViewFirst = CalendarView();
     calendarViewFirst.inputDateTime = timeIO.humanReadableFarsi(DateTime.fromMillisecondsSinceEpoch(timeFirst));
@@ -1244,6 +1247,203 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
                               ),
                             )
                         ),
+                      ],
+                    )
+                ),
+              ),
+              SizedBox(
+                width: double.infinity,
+                height: 107,
+                child: Padding(
+                    padding: const EdgeInsets.fromLTRB(13, 19, 13, 0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Padding(
+                            padding: EdgeInsets.fromLTRB(0, 5, 7, 0),
+                            child: Align(
+                              alignment: Alignment.centerRight,
+                              child: Text(
+                                StringsResources.transactionAmountHint(),
+                                textAlign: TextAlign.right,
+                                style: TextStyle(
+                                    color: ColorsResources.lightestBlue,
+                                    fontSize: 12
+                                ),
+                              ),
+                            )
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Expanded(
+                              flex: 7,
+                              child: Align(
+                                  alignment: AlignmentDirectional.topCenter,
+                                  child: Directionality(
+                                    textDirection: TextDirection.rtl,
+                                    child: DropdownButtonFormField(
+                                      isDense: true,
+                                      elevation: 7,
+                                      focusColor: ColorsResources.applicationDarkGeeksEmpire,
+                                      dropdownColor: ColorsResources.light,
+                                      decoration: InputDecoration(
+                                          border: OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                                color: ColorsResources.applicationDarkGeeksEmpire,
+                                                width: 1
+                                            ),
+                                            borderRadius: BorderRadius.circular(13),
+                                          ),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                                color: ColorsResources.applicationDarkGeeksEmpire,
+                                                width: 1
+                                            ),
+                                            borderRadius: BorderRadius.circular(13),
+                                          ),
+                                          focusedBorder: OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                                color: ColorsResources.applicationDarkGeeksEmpire,
+                                                width: 1
+                                            ),
+                                            borderRadius: BorderRadius.circular(13),
+                                          ),
+                                          errorBorder: OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                                color: ColorsResources.applicationDarkGeeksEmpire,
+                                                width: 1
+                                            ),
+                                            borderRadius: BorderRadius.circular(13),
+                                          ),
+                                          filled: true,
+                                          fillColor: ColorsResources.lightTransparent,
+                                          focusColor: ColorsResources.dark
+                                      ),
+                                      value: allMoneyAmount.first,
+                                      items: allMoneyAmount.toSet().toList().map<DropdownMenuItem<String>>((String value) {
+
+                                        return DropdownMenuItem<String>(
+                                          value: value,
+                                          child: SizedBox(
+                                            height: 31,
+                                            child: Padding(
+                                              padding: const EdgeInsets.fromLTRB(0, 0, 11, 0),
+                                              child: Align(
+                                                alignment:
+                                                AlignmentDirectional.center,
+                                                child: Text(
+                                                  value,
+                                                  style: const TextStyle(
+                                                    color: ColorsResources.dark,
+                                                    fontSize: 15,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      }).toList(),
+                                      onChanged: (value) {
+
+
+                                      },
+                                    ),
+                                  )
+                              ),
+                            ),
+                            Expanded(
+                                flex: 1,
+                                child: Align(
+                                    alignment: AlignmentDirectional.center,
+                                    child: Text(
+                                      StringsResources.toText(),
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          fontSize: 12,
+                                          color: ColorsResources.light
+                                      ),
+                                    )
+                                )
+                            ),
+                            Expanded(
+                              flex: 7,
+                              child: Align(
+                                  alignment: AlignmentDirectional.topCenter,
+                                  child: Directionality(
+                                    textDirection: TextDirection.rtl,
+                                    child: DropdownButtonFormField(
+                                      isDense: true,
+                                      elevation: 7,
+                                      focusColor: ColorsResources.applicationDarkGeeksEmpire,
+                                      dropdownColor: ColorsResources.light,
+                                      decoration: InputDecoration(
+                                          border: OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                                color: ColorsResources.applicationDarkGeeksEmpire,
+                                                width: 1
+                                            ),
+                                            borderRadius: BorderRadius.circular(13),
+                                          ),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                                color: ColorsResources.applicationDarkGeeksEmpire,
+                                                width: 1
+                                            ),
+                                            borderRadius: BorderRadius.circular(13),
+                                          ),
+                                          focusedBorder: OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                                color: ColorsResources.applicationDarkGeeksEmpire,
+                                                width: 1
+                                            ),
+                                            borderRadius: BorderRadius.circular(13),
+                                          ),
+                                          errorBorder: OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                                color: ColorsResources.applicationDarkGeeksEmpire,
+                                                width: 1
+                                            ),
+                                            borderRadius: BorderRadius.circular(13),
+                                          ),
+                                          filled: true,
+                                          fillColor: ColorsResources.lightTransparent,
+                                          focusColor: ColorsResources.dark
+                                      ),
+                                      value: allMoneyAmount.last,
+                                      items: allMoneyAmount.toSet().toList().map<DropdownMenuItem<String>>((String value) {
+
+                                        return DropdownMenuItem<String>(
+                                          value: value,
+                                          child: SizedBox(
+                                            height: 31,
+                                            child: Padding(
+                                              padding: const EdgeInsets.fromLTRB(0, 0, 11, 0),
+                                              child: Align(
+                                                alignment:
+                                                AlignmentDirectional.center,
+                                                child: Text(
+                                                  value,
+                                                  style: const TextStyle(
+                                                    color: ColorsResources.dark,
+                                                    fontSize: 15,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      }).toList(),
+                                      onChanged: (value) {
+
+
+                                      },
+                                    ),
+                                  )
+                              ),
+                            ),
+                          ],
+                        )
                       ],
                     )
                 ),
