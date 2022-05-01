@@ -35,7 +35,7 @@ class TransactionsOutputView extends StatefulWidget {
   @override
   _TransactionsOutputViewState createState() => _TransactionsOutputViewState();
 }
-class _TransactionsOutputViewState extends State<TransactionsOutputView> {
+class _TransactionsOutputViewState extends State<TransactionsOutputView> with TickerProviderStateMixin {
 
   ColorSelectorView colorSelectorView = ColorSelectorView();
 
@@ -1090,25 +1090,30 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> {
 
   void setupAdvanceSearch() {
 
-    showModalBottomSheet<void>(
+    AnimationController animationController = BottomSheet.createAnimationController(this);
+    animationController.duration = const Duration(milliseconds: 159);
+    animationController.reverseDuration = const Duration(milliseconds: 159);
+
+    showModalBottomSheet (
       context: context,
+      shape:  RoundedRectangleBorder(
+        borderRadius: new BorderRadius.all(Radius.circular(19))
+      ),
+      transitionAnimationController: animationController,
+      backgroundColor: ColorsResources.darkTransparent,
+      elevation: 7,
       builder: (BuildContext context) {
         return Container(
-          height: 503,
-          color: Colors.amber,
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                const Text('Modal BottomSheet'),
-                ElevatedButton(
-                  child: const Text('Close BottomSheet'),
-                  onPressed: () => Navigator.pop(context),
-                )
-              ],
-            ),
-          ),
+          height: 357,
+          width: double.infinity,
+          child: ListView(
+            padding: EdgeInsets.fromLTRB(13, 0, 13, 0),
+            children: [
+
+
+
+            ],
+          )
         );
       },
     );
