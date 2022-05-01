@@ -954,32 +954,6 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> {
 
   }
 
-  void sortTransactionsByMoneyAmount(BuildContext context,
-      List<TransactionsData> inputTransactionsList) {
-
-    if (allTransactionsItems.isNotEmpty) {
-
-      allTransactionsItems.clear();
-
-    }
-    inputTransactionsList.sort((a, b) => (a.amountMoney).compareTo(b.amountMoney));
-
-    List<Widget> preparedAllTransactionsItem = [];
-
-    for (var element in inputTransactionsList) {
-
-      preparedAllTransactionsItem.add(outputItem(context, element));
-
-    }
-
-    setState(() {
-
-      allTransactionsItems = preparedAllTransactionsItem;
-
-    });
-
-  }
-
   void filterByColorTag(BuildContext context,
       List<TransactionsData> inputTransactionsList, Color colorQuery) {
 

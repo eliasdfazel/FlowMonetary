@@ -306,7 +306,7 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                               blurColor: Colors.blue,
                               colorOpacity: 0.0,
                               child: const SizedBox(
-                                width: double.infinity,
+                                width: 53,
                                 height: 53,
                               ),
                             ),

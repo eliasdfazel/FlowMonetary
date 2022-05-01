@@ -36,7 +36,7 @@ class _TopBarViewState extends State<TopBarView> {
   List<Widget> allAccountsViews = [];
 
   Widget profileImageView = Image(
-      image: AssetImage("add_profile_icon.png")
+    image: AssetImage("add_profile_icon.png")
   );
 
   @override
