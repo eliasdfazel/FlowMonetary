@@ -245,16 +245,18 @@ class CustomDatePicker extends CommonPickerModel {
   @override
   String? rightStringAtIndex(int day) {//Day
 
-    var iranianCalendar = Jalali.now();
+    String numberOfDay = "1";
 
     try {
 
       Gregorian gregorianCalendar = Gregorian(currentLeftIndex(), currentMiddleIndex(), day.abs());
-      iranianCalendar = gregorianCalendar.toJalali();
+      Jalali iranianCalendar = gregorianCalendar.toJalali();
+
+      numberOfDay = iranianCalendar.formatter.dd;
 
     } on Exception {}
 
-    return iranianCalendar.formatter.dd;
+    return numberOfDay;
   }
 
   @override
