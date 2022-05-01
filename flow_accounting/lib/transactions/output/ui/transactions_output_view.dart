@@ -192,59 +192,10 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Expanded(
+                            const Expanded(
                               flex: 11,
                               child: Padding(
-                                padding: const EdgeInsets.fromLTRB(3, 0, 0, 0),
-                                child: Stack(
-                                  children: [
-                                    SizedBox(
-                                      height: 43,
-                                      width: double.infinity,
-                                      child: Blur(
-                                        blur: 5,
-                                        borderRadius: BorderRadius.circular(51),
-                                        blurColor: Colors.white.withOpacity(0.3),
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                              gradient: LinearGradient(
-                                                  colors: [
-                                                    ColorsResources.white.withOpacity(0.3),
-                                                    ColorsResources.primaryColorLighter.withOpacity(0.3),
-                                                  ],
-                                                  begin: const FractionalOffset(0.0, 0.0),
-                                                  end: const FractionalOffset(1.0, 0.0),
-                                                  stops: const [0.0, 1.0],
-                                                  transform: const GradientRotation(45),
-                                                  tileMode: TileMode.clamp
-                                              )
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {
-
-                                        sortTransactionsByMoneyAmount(context, allTransactions);
-
-                                      },
-                                      child: SizedBox(
-                                        height: 43,
-                                        width: double.infinity,
-                                        child: Align(
-                                          alignment: Alignment.center,
-                                          child: Text(
-                                            StringsResources.sortTransactionAmountHigh(),
-                                            style: TextStyle(
-                                              fontSize: 13,
-                                              color: ColorsResources.applicationGeeksEmpire,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
+                                padding: EdgeInsets.fromLTRB(3, 0, 0, 0),
                               ),
                             ),
                             Expanded(
