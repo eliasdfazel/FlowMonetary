@@ -1109,6 +1109,8 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
 
     if (transactionDatabaseExist) {
 
+      List<Widget> preparedAllTransactionsItem = [];
+
       allTransactions.forEach((element) {
 
         if (
@@ -1125,7 +1127,11 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
 
       });
 
+      setState(() {
 
+        allTransactionsItems = preparedAllTransactionsItem;
+
+      });
 
     }
 
@@ -1179,7 +1185,7 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
       ),
       elevation: 0,
       transitionAnimationController: animationController,
-      barrierColor: Colors.transparent,
+      barrierColor: ColorsResources.primaryColor.withOpacity(0.1),
       backgroundColor: Colors.transparent,
       builder: (BuildContext context) {
         return Container(
