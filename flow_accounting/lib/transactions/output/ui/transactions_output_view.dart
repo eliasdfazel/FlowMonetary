@@ -1118,7 +1118,7 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
 
     CalendarView calendarViewFirst = CalendarView();
     calendarViewFirst.inputDateTime = timeIO.humanReadableFarsi(DateTime.fromMillisecondsSinceEpoch(timeFirst));
-    // calendarViewFirst.pickedDateTime = DateTime.fromMillisecondsSinceEpoch(timeFirst);
+    calendarViewFirst.pickedDateTime = DateTime.fromMillisecondsSinceEpoch(timeFirst);
 
     CalendarView calendarViewLast = CalendarView();
     calendarViewLast.inputDateTime = timeIO.humanReadableFarsi(DateTime.fromMillisecondsSinceEpoch(timeLast));
