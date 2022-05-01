@@ -329,15 +329,29 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> {
 
                                       String searchQuery = textEditorControllerQuery.text;
 
-                                      searchTransactions(context, allTransactions, searchQuery);
+                                      if (searchQuery.isEmpty) {
+
+                                        setupAdvanceSearch();
+
+                                      } else {
+
+                                        searchTransactions(context, allTransactions, searchQuery);
+
+                                      }
+
+                                    },
+                                    onLongPress: () {
+
+                                      setupAdvanceSearch();
 
                                     },
                                     child: const SizedBox(
                                       height: 71,
                                       width: 53,
-                                      child: Icon(
-                                        Icons.search_rounded,
-                                        size: 23,
+                                      child: Image(
+                                        image: AssetImage("advanced_search_icon"),
+                                        height: 53,
+                                        width: 53,
                                         color: ColorsResources.darkTransparent,
                                       ),
                                     ),
@@ -1073,6 +1087,12 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> {
       }
 
     }
+
+  }
+
+  void setupAdvanceSearch() {
+
+
 
   }
 
