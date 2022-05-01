@@ -19,6 +19,7 @@ import 'package:flow_accounting/transactions/database/io/inputs.dart';
 import 'package:flow_accounting/transactions/database/io/queries.dart';
 import 'package:flow_accounting/transactions/database/structures/tables_structure.dart';
 import 'package:flow_accounting/transactions/edit/ui/transactions_edit_view.dart';
+import 'package:flow_accounting/utils/calendar/io/time_io.dart';
 import 'package:flow_accounting/utils/calendar/ui/calendar_view.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
 import 'package:flow_accounting/utils/extensions/CreditCardNumber.dart';
@@ -38,6 +39,8 @@ class TransactionsOutputView extends StatefulWidget {
 }
 class _TransactionsOutputViewState extends State<TransactionsOutputView> with TickerProviderStateMixin {
 
+  TimeIO timeIO = TimeIO();
+  
   ColorSelectorView colorSelectorView = ColorSelectorView();
 
   List<TransactionsData> allTransactions = [];
@@ -1110,15 +1113,15 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
 
     });
 
-    int timeFirst = allTransactions.first.transactionTimeMillisecond;
-    int timeLast = allTransactions.last.transactionTimeMillisecond;
+    int timeFirst = allTransactions.first.transactionTimeMillisecond + 1;
+    int timeLast = allTransactions.last.transactionTimeMillisecond + 3;
 
     CalendarView calendarViewFirst = CalendarView();
-    calendarViewFirst.inputDateTime = StringsResources.transactionTime();
-    calendarViewFirst.pickedDateTime = DateTime.fromMillisecondsSinceEpoch(timeFirst);
+    calendarViewFirst.inputDateTime = timeIO.humanReadableFarsi(DateTime.fromMillisecondsSinceEpoch(timeFirst));
+    // calendarViewFirst.pickedDateTime = DateTime.fromMillisecondsSinceEpoch(timeFirst);
 
     CalendarView calendarViewLast = CalendarView();
-    calendarViewLast.inputDateTime = StringsResources.transactionTime();
+    calendarViewLast.inputDateTime = timeIO.humanReadableFarsi(DateTime.fromMillisecondsSinceEpoch(timeLast));
     calendarViewLast.pickedDateTime = DateTime.fromMillisecondsSinceEpoch(timeLast);
 
     showModalBottomSheet(
@@ -1246,7 +1249,7 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
                 ),
               ),
               SizedBox(
-                height: 123,
+                height: 151,
                 width: double.infinity,
                 child: Padding(
                     padding: const EdgeInsets.fromLTRB(13, 13, 13, 19),
