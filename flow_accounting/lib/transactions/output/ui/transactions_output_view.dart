@@ -19,6 +19,7 @@ import 'package:flow_accounting/transactions/database/io/inputs.dart';
 import 'package:flow_accounting/transactions/database/io/queries.dart';
 import 'package:flow_accounting/transactions/database/structures/tables_structure.dart';
 import 'package:flow_accounting/transactions/edit/ui/transactions_edit_view.dart';
+import 'package:flow_accounting/utils/calendar/ui/calendar_view.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
 import 'package:flow_accounting/utils/extensions/CreditCardNumber.dart';
 import 'package:flutter/material.dart';
@@ -1109,8 +1110,16 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
 
     });
 
-    print(">>> >> ${allTargetsUsername.first}");
-    print(">>> >> ${allTargetsUsername}");
+    int timeFirst = allTransactions.first.transactionTimeMillisecond;
+    int timeLast = allTransactions.last.transactionTimeMillisecond;
+
+    CalendarView calendarViewFirst = CalendarView();
+    calendarViewFirst.inputDateTime = StringsResources.transactionTime();
+    calendarViewFirst.pickedDateTime = DateTime.fromMillisecondsSinceEpoch(timeFirst);
+
+    CalendarView calendarViewLast = CalendarView();
+    calendarViewLast.inputDateTime = StringsResources.transactionTime();
+    calendarViewLast.pickedDateTime = DateTime.fromMillisecondsSinceEpoch(timeLast);
 
     showModalBottomSheet(
       context: context,
@@ -1145,6 +1154,20 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
+                        Padding(
+                            padding: EdgeInsets.fromLTRB(0, 5, 7, 0),
+                            child: Align(
+                              alignment: Alignment.centerRight,
+                              child: Text(
+                                StringsResources.transactionTargetName(),
+                                textAlign: TextAlign.right,
+                                style: TextStyle(
+                                    color: ColorsResources.lightestBlue,
+                                    fontSize: 12
+                                ),
+                              ),
+                            )
+                        ),
                         Align(
                             alignment: AlignmentDirectional.topCenter,
                             child: Directionality(
@@ -1218,26 +1241,63 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
                               ),
                             )
                         ),
-                        Padding(
-                            padding: EdgeInsets.fromLTRB(0, 5, 7, 0),
-                            child: Align(
-                              alignment: Alignment.centerRight,
-                              child: Text(
-                                StringsResources.transactionTargetName(),
-                                textAlign: TextAlign.right,
-                                style: TextStyle(
-                                    color: ColorsResources.lightestBlue,
-                                    fontSize: 12
-                                ),
-                              ),
-                            )
-                        ),
                       ],
                     )
                 ),
               ),
-
-
+              SizedBox(
+                height: 123,
+                width: double.infinity,
+                child: Padding(
+                    padding: const EdgeInsets.fromLTRB(13, 13, 13, 19),
+                    child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Padding(
+                          padding: EdgeInsets.fromLTRB(0, 5, 7, 0),
+                          child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Text(
+                              StringsResources.transactionPeriod(),
+                              textAlign: TextAlign.right,
+                              style: TextStyle(
+                                  color: ColorsResources.lightestBlue,
+                                  fontSize: 12
+                              ),
+                            ),
+                          )
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Expanded(
+                              flex: 7,
+                              child: calendarViewLast
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: Align(
+                              alignment: AlignmentDirectional.center,
+                              child: Text(
+                                StringsResources.toText(),
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: ColorsResources.light
+                                ),
+                              )
+                            )
+                          ),
+                          Expanded(
+                            flex: 7,
+                            child: calendarViewFirst
+                          )
+                        ],
+                      )
+                    ],
+                  )
+                )
+              ),
               SizedBox(
                 height: 79,
                 width: double.infinity,

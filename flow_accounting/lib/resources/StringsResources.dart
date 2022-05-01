@@ -50,6 +50,11 @@ class StringsResources {
     return "جزئیات";
   }
 
+  static String toText() {
+
+    return "تا";
+  }
+
   static String submitText() {
 
     return "ثبت";
@@ -287,6 +292,11 @@ class StringsResources {
   static String transactionTypeSend() {
 
     return "پرداخت";
+  }
+
+  static String transactionPeriod() {
+
+    return "بازه زمانی تراکنش";
   }
   /* End - Transaction String Resources */
 
