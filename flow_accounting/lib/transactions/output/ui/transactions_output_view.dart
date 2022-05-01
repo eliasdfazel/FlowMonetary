@@ -1097,6 +1097,7 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
       String amountMoneyFirst, String amountMoneyLast,
       String timeFirst, String timeLast,
       String targetName) async {
+
     debugPrint("All Picked Parameters -> First Money: ${amountMoneyFirst} - Last Money: ${amountMoneyLast}");
     debugPrint("All Picked Parameters -> First Time: ${timeFirst} - Last Time: ${timeLast}");
     debugPrint("All Picked Parameters -> Target Username: ${targetName}");
