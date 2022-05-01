@@ -1088,6 +1088,12 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
 
   }
 
+  void startAdvancedSearch() async {
+
+
+
+  }
+
   void setupAdvanceSearch() {
 
     AnimationController animationController = BottomSheet.createAnimationController(this);
@@ -1101,24 +1107,168 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
       shape: RoundedRectangleBorder(
         borderRadius: new BorderRadius.all(Radius.circular(19))
       ),
-      elevation: 13,
+      elevation: 0,
       transitionAnimationController: animationController,
+      barrierColor: Colors.transparent,
       backgroundColor: Colors.transparent,
       builder: (BuildContext context) {
         return Container(
           height: 357,
           width: double.infinity,
-          margin: EdgeInsets.fromLTRB(13, 0, 13, 13),
+          margin: EdgeInsets.fromLTRB(13, 0, 13, 19),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(19),
-            color: ColorsResources.darkTransparent,
+            color: ColorsResources.blueGray.withOpacity(0.95),
           ),
           child: ListView(
             padding: EdgeInsets.fromLTRB(13, 0, 13, 0),
+            physics: const BouncingScrollPhysics(),
+            scrollDirection: Axis.vertical,
             children: [
+              Directionality(
+                textDirection: TextDirection.rtl,
+                child: DropdownButtonFormField(
+                  isDense: true,
+                  elevation: 7,
+                  focusColor: ColorsResources.applicationDarkGeeksEmpire,
+                  dropdownColor: ColorsResources.light,
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderSide: const BorderSide(
+                            color: ColorsResources.applicationDarkGeeksEmpire,
+                            width: 1
+                        ),
+                        borderRadius: BorderRadius.circular(13),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(
+                            color: ColorsResources.applicationDarkGeeksEmpire,
+                            width: 1
+                        ),
+                        borderRadius: BorderRadius.circular(13),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(
+                            color: ColorsResources.applicationDarkGeeksEmpire,
+                            width: 1
+                        ),
+                        borderRadius: BorderRadius.circular(13),
+                      ),
+                      errorBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(
+                            color: ColorsResources.applicationDarkGeeksEmpire,
+                            width: 1
+                        ),
+                        borderRadius: BorderRadius.circular(13),
+                      ),
+                      filled: true,
+                      fillColor: ColorsResources.lightTransparent,
+                      focusColor: ColorsResources.dark
+                  ),
+                  value: StringsResources.transactionTypeSend(),
+                  items: <String> [
+                    StringsResources.transactionTypeSend(),
+                    StringsResources.transactionTypeReceive()
+                  ].map<DropdownMenuItem<String>>((String value) {
+
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: SizedBox(
+                        height: 27,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 0, 11, 0),
+                          child: Align(
+                            alignment:
+                            AlignmentDirectional.center,
+                            child: Text(
+                              value,
+                              style: const TextStyle(
+                                color: ColorsResources.darkTransparent,
+                                fontSize: 15,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                  onChanged: (value) {
 
 
 
+                  },
+                ),
+              ),
+              SizedBox(
+                height: 79,
+                width: double.infinity,
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(13, 13, 13, 19),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(51.0),
+                    child: Material(
+                      shadowColor: Colors.transparent,
+                      color: Colors.transparent,
+                      child: InkWell(
+                        splashColor: ColorsResources.applicationGeeksEmpire.withOpacity(0.5),
+                        splashFactory: InkRipple.splashFactory,
+                        onTap: () {
+
+                          startAdvancedSearch();
+
+                          Future.delayed(Duration(milliseconds: 379), () {
+
+                            Navigator.pop(context);
+
+                          });
+
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                              border: Border(
+                                  top: BorderSide(
+                                    color: ColorsResources.lightBlue.withOpacity(0.3),
+                                    width: 1,
+                                  ),
+                                  bottom: BorderSide(
+                                    color: ColorsResources.lightBlue.withOpacity(0.3),
+                                    width: 1,
+                                  ),
+                                  left: BorderSide(
+                                    color: ColorsResources.lightBlue.withOpacity(0.3),
+                                    width: 1,
+                                  ),
+                                  right: BorderSide(
+                                    color: ColorsResources.lightBlue.withOpacity(0.3),
+                                    width: 1,
+                                  )
+                              ),
+                              borderRadius: BorderRadius.circular(51),
+                              color: Colors.transparent
+                          ),
+                          child: Align(
+                            alignment: AlignmentDirectional.center,
+                            child: Text(
+                              StringsResources.applyAdvancedSearch(),
+                              style: TextStyle(
+                                fontSize: 17,
+                                color: ColorsResources.light,
+                                shadows: [
+                                  Shadow(
+                                    color: ColorsResources.light,
+                                    blurRadius: 7,
+                                    offset: Offset(0, 0)
+                                  )
+                                ]
+                              ),
+                            )
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
+                )
+              )
             ],
           )
         );

@@ -139,6 +139,11 @@ class StringsResources {
     return "مخارج کلی";
   }
 
+  static String applyAdvancedSearch() {
+
+    return "جستجو پیشرفته";
+  }
+
   /* Start - Profile String Resources */
   static String profileTitle() {
 
