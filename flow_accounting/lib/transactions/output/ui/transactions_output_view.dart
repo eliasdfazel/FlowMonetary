@@ -346,13 +346,11 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> {
 
                                     },
                                     child: const SizedBox(
-                                      height: 71,
-                                      width: 53,
+                                      height: 23,
+                                      width: 57,
                                       child: Image(
-                                        image: AssetImage("advanced_search_icon"),
-                                        height: 53,
-                                        width: 53,
-                                        color: ColorsResources.darkTransparent,
+                                        image: AssetImage("advanced_search_icon.png"),
+                                        color: ColorsResources.black,
                                       ),
                                     ),
                                   ),
@@ -1092,7 +1090,28 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> {
 
   void setupAdvanceSearch() {
 
-
+    showModalBottomSheet<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          height: 503,
+          color: Colors.amber,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                const Text('Modal BottomSheet'),
+                ElevatedButton(
+                  child: const Text('Close BottomSheet'),
+                  onPressed: () => Navigator.pop(context),
+                )
+              ],
+            ),
+          ),
+        );
+      },
+    );
 
   }
 
