@@ -1098,16 +1098,21 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
       context: context,
       enableDrag: false,
       isDismissible: true,
-      shape:  RoundedRectangleBorder(
+      shape: RoundedRectangleBorder(
         borderRadius: new BorderRadius.all(Radius.circular(19))
       ),
       elevation: 13,
       transitionAnimationController: animationController,
-      backgroundColor: ColorsResources.darkTransparent,
+      backgroundColor: Colors.transparent,
       builder: (BuildContext context) {
         return Container(
           height: 357,
           width: double.infinity,
+          margin: EdgeInsets.fromLTRB(13, 0, 13, 13),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(19),
+            color: ColorsResources.darkTransparent,
+          ),
           child: ListView(
             padding: EdgeInsets.fromLTRB(13, 0, 13, 0),
             children: [
