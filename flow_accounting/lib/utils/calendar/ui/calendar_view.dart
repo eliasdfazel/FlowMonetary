@@ -9,6 +9,7 @@
  */
 
 import 'package:flow_accounting/resources/ColorsResources.dart';
+import 'package:flow_accounting/utils/calendar/ui/persian_date_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -185,7 +186,7 @@ class _CalendarView extends State<CalendarView> {
                   /* End - Time Picker */
 
                 },
-                pickerModel: CustomDatePicker(date: widget.pickedDateTime, locale: LocaleType.fa),
+                pickerModel: PersianDatePicker(date: widget.pickedDateTime, locale: LocaleType.fa),
                 locale: LocaleType.fa,
               );
               /* End - Date Picker */
@@ -205,87 +206,6 @@ class _CalendarView extends State<CalendarView> {
             )
         ),
       ),
-    );
-  }
-
-}
-
-class CustomDatePicker extends CommonPickerModel {
-
-  CustomDatePicker({required DateTime date, required LocaleType locale}) : super(locale: locale) {
-
-    this.currentTime = date;
-
-    this.setLeftIndex(this.currentTime.year);
-
-    this.setMiddleIndex(this.currentTime.month);
-
-    this.setRightIndex(this.currentTime.day);
-
-  }
-
-  @override
-  String? leftStringAtIndex(int year) {//YEAR
-
-    Gregorian gregorianCalendar = Gregorian(year, currentMiddleIndex(), currentRightIndex());
-    var iranianCalendar = gregorianCalendar.toJalali();
-
-    return iranianCalendar.formatter.yyyy;
-  }
-
-  @override
-  String? middleStringAtIndex(int month) {//Month
-
-    Gregorian gregorianCalendar = Gregorian(currentLeftIndex(), month, currentRightIndex());
-    var iranianCalendar = gregorianCalendar.toJalali();
-
-    return iranianCalendar.formatter.mN;
-  }
-
-  @override
-  String? rightStringAtIndex(int day) {//Day
-
-    String numberOfDay = "1";
-
-    try {
-
-      Gregorian gregorianCalendar = Gregorian(currentLeftIndex(), currentMiddleIndex(), day.abs());
-      Jalali iranianCalendar = gregorianCalendar.toJalali();
-
-      numberOfDay = iranianCalendar.formatter.dd;
-
-    } on Exception {}
-
-    return numberOfDay;
-  }
-
-  @override
-  String leftDivider() {
-
-    return "/";
-  }
-
-  @override
-  String rightDivider() {
-
-    return "/";
-  }
-
-  @override
-  List<int> layoutProportions() {
-
-    return [7, 5, 3];
-  }
-
-  @override
-  DateTime finalTime() {
-
-    return DateTime(
-        this.currentLeftIndex(),
-        this.currentMiddleIndex(),
-        this.currentRightIndex(),
-        this.currentTime.hour,
-        this.currentTime.minute
     );
   }
 
