@@ -1184,7 +1184,7 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
         ),
         elevation: 0,
         transitionAnimationController: animationController,
-        barrierColor: ColorsResources.applicationDarkGeeksEmpire.withOpacity(0.37),
+        barrierColor: ColorsResources.applicationDarkGeeksEmpire.withOpacity(0.51),
         backgroundColor: Colors.transparent,
         builder: (BuildContext context) {
 
