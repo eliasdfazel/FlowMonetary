@@ -1110,21 +1110,16 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
 
     if (transactionDatabaseExist) {
 
+      TransactionsDatabaseQueries transactionsDatabaseQueries = TransactionsDatabaseQueries();
+
+      List<TransactionsData> filteredTransactionsData = await transactionsDatabaseQueries.queryTransactionByTargetTimeMoney(amountMoneyFirst, amountMoneyLast, timeFirst, timeLast, targetName,
+          TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
       List<Widget> preparedAllTransactionsItem = [];
 
-      allTransactions.forEach((element) {
+      filteredTransactionsData.forEach((element) {
 
-        if (
-        (targetName == element.targetUsername)
-            && (int.parse(element.amountMoney) >= int.parse(amountMoneyFirst))
-            && (int.parse(element.amountMoney) <= int.parse(amountMoneyLast))
-            && (element.transactionTimeMillisecond >= int.parse(timeFirst))
-            && (element.transactionTimeMillisecond <= int.parse(timeLast))
-        ) {
-
-          preparedAllTransactionsItem.add(outputItem(context, element));
-
-        }
+        preparedAllTransactionsItem.add(outputItem(context, element));
 
       });
 
