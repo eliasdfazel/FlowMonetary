@@ -586,7 +586,7 @@ class _CreditCardFrontLayout extends State<CreditCardFrontLayout> {
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: dominantColorForFrontLayout.withOpacity(0.51),
+            color: dominantColorForFrontLayout.withOpacity(0.33),
             blurRadius: 13.0,
             spreadRadius: 0.3,
             offset: const Offset(3.9, 3.9),
@@ -1029,7 +1029,7 @@ class _CreditCardBackLayout extends State<CreditCardBackLayout> {
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: dominantColorForBackLayout.withOpacity(0.51),
+            color: dominantColorForBackLayout.withOpacity(0.57),
             blurRadius: 13.0,
             spreadRadius: 0.3,
             offset: const Offset(3.9, 3.9),
