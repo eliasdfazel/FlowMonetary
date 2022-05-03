@@ -1145,6 +1145,7 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
     allTransactions.forEach((element) {
 
       allTargetsUsername.add(element.targetUsername);
+      allTargetsUsername.add(element.sourceUsername);
 
       allMoneyAmount.add(element.amountMoney);
 
