@@ -1097,7 +1097,6 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
       String amountMoneyFirst, String amountMoneyLast,
       String timeFirst, String timeLast,
       String targetName) async {
-
     debugPrint("All Picked Parameters -> First Money: ${amountMoneyFirst} - Last Money: ${amountMoneyLast}");
     debugPrint("All Picked Parameters -> First Time: ${timeFirst} - Last Time: ${timeLast}");
     debugPrint("All Picked Parameters -> Target Username: ${targetName}");
@@ -1113,6 +1112,110 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
       TransactionsDatabaseQueries transactionsDatabaseQueries = TransactionsDatabaseQueries();
 
       List<TransactionsData> filteredTransactionsData = await transactionsDatabaseQueries.queryTransactionByTargetTimeMoney(amountMoneyFirst, amountMoneyLast, timeFirst, timeLast, targetName,
+          TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+      List<Widget> preparedAllTransactionsItem = [];
+
+      filteredTransactionsData.forEach((element) {
+
+        preparedAllTransactionsItem.add(outputItem(context, element));
+
+      });
+
+      setState(() {
+
+        allTransactionsItems = preparedAllTransactionsItem;
+
+      });
+
+    }
+
+  }
+
+  void startPartialAdvancedSearchByName(String targetName) async {
+    debugPrint("All Picked Parameters -> Target Username: ${targetName}");
+
+    String databaseDirectory = await getDatabasesPath();
+
+    String transactionDatabasePath = "${databaseDirectory}/${TransactionsDatabaseInputs.transactionsDatabase()}";
+
+    bool transactionDatabaseExist = await databaseExists(transactionDatabasePath);
+
+    if (transactionDatabaseExist) {
+
+      TransactionsDatabaseQueries transactionsDatabaseQueries = TransactionsDatabaseQueries();
+
+      List<TransactionsData> filteredTransactionsData = await transactionsDatabaseQueries.queryTransactionByTarget(targetName,
+          TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+      List<Widget> preparedAllTransactionsItem = [];
+
+      filteredTransactionsData.forEach((element) {
+
+        preparedAllTransactionsItem.add(outputItem(context, element));
+
+      });
+
+      setState(() {
+
+        allTransactionsItems = preparedAllTransactionsItem;
+
+      });
+
+    }
+
+  }
+
+  void startPartialAdvancedSearchByMoneyAmount(
+      String amountMoneyFirst, String amountMoneyLast) async {
+    debugPrint("All Picked Parameters -> First Money: ${amountMoneyFirst} - Last Money: ${amountMoneyLast}");
+
+    String databaseDirectory = await getDatabasesPath();
+
+    String transactionDatabasePath = "${databaseDirectory}/${TransactionsDatabaseInputs.transactionsDatabase()}";
+
+    bool transactionDatabaseExist = await databaseExists(transactionDatabasePath);
+
+    if (transactionDatabaseExist) {
+
+      TransactionsDatabaseQueries transactionsDatabaseQueries = TransactionsDatabaseQueries();
+
+      List<TransactionsData> filteredTransactionsData = await transactionsDatabaseQueries.queryTransactionByMoney(amountMoneyFirst, amountMoneyLast,
+          TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+      List<Widget> preparedAllTransactionsItem = [];
+
+      filteredTransactionsData.forEach((element) {
+
+        preparedAllTransactionsItem.add(outputItem(context, element));
+
+      });
+
+      setState(() {
+
+        allTransactionsItems = preparedAllTransactionsItem;
+
+      });
+
+    }
+
+  }
+
+  void startPartialAdvancedSearchByTimePeriod(
+      String timeFirst, String timeLast) async {
+    debugPrint("All Picked Parameters -> First Time: ${timeFirst} - Last Time: ${timeLast}");
+
+    String databaseDirectory = await getDatabasesPath();
+
+    String transactionDatabasePath = "${databaseDirectory}/${TransactionsDatabaseInputs.transactionsDatabase()}";
+
+    bool transactionDatabaseExist = await databaseExists(transactionDatabasePath);
+
+    if (transactionDatabaseExist) {
+
+      TransactionsDatabaseQueries transactionsDatabaseQueries = TransactionsDatabaseQueries();
+
+      List<TransactionsData> filteredTransactionsData = await transactionsDatabaseQueries.queryTransactionByTime(timeFirst, timeLast,
           TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
       List<Widget> preparedAllTransactionsItem = [];
@@ -1213,25 +1316,61 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
                 children: [
                   SizedBox(
                     width: double.infinity,
-                    height: 107,
+                    height: 119,
                     child: Padding(
                         padding: const EdgeInsets.fromLTRB(13, 19, 13, 0),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Padding(
-                                padding: EdgeInsets.fromLTRB(0, 5, 7, 0),
-                                child: Align(
-                                  alignment: Alignment.centerRight,
-                                  child: Text(
-                                    StringsResources.transactionTargetName(),
-                                    textAlign: TextAlign.right,
-                                    style: TextStyle(
-                                        color: ColorsResources.lightestBlue,
-                                        fontSize: 12
-                                    ),
-                                  ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Expanded(
+                                  flex: 3,
+                                  child: Padding(
+                                    padding: EdgeInsets.fromLTRB(0, 5, 7, 0),
+                                    child: Align(
+                                      alignment: AlignmentDirectional.centerStart,
+                                      child: Material(
+                                        shadowColor: Colors.transparent,
+                                        color: Colors.transparent,
+                                        child: InkWell(
+                                          splashColor: ColorsResources.applicationGeeksEmpire.withOpacity(0.3),
+                                          splashFactory: InkRipple.splashFactory,
+                                          onTap: () {
+
+                                            startPartialAdvancedSearchByName(pickedTargetUsername);
+
+                                          },
+                                          child: Image(
+                                            image: AssetImage("go_icon.png"),
+                                            height: 31,
+                                            width: 31,
+                                            color: ColorsResources.light,
+                                          )
+                                        )
+                                      )
+                                    )
+                                  )
+                                ),
+                                Expanded(
+                                  flex: 7,
+                                  child: Padding(
+                                      padding: EdgeInsets.fromLTRB(0, 5, 7, 0),
+                                      child: Align(
+                                        alignment: Alignment.centerRight,
+                                        child: Text(
+                                          StringsResources.transactionTargetName(),
+                                          textAlign: TextAlign.right,
+                                          style: TextStyle(
+                                              color: ColorsResources.lightestBlue,
+                                              fontSize: 15
+                                          ),
+                                        ),
+                                      )
+                                  )
                                 )
+                              ],
                             ),
                             Align(
                                 alignment: AlignmentDirectional.topCenter,
@@ -1313,25 +1452,61 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
                   ),
                   SizedBox(
                     width: double.infinity,
-                    height: 107,
+                    height: 119,
                     child: Padding(
                         padding: const EdgeInsets.fromLTRB(13, 19, 13, 0),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Padding(
-                                padding: EdgeInsets.fromLTRB(0, 5, 7, 0),
-                                child: Align(
-                                  alignment: Alignment.centerRight,
-                                  child: Text(
-                                    StringsResources.transactionAmountHint(),
-                                    textAlign: TextAlign.right,
-                                    style: TextStyle(
-                                        color: ColorsResources.lightestBlue,
-                                        fontSize: 12
-                                    ),
-                                  ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Expanded(
+                                    flex: 3,
+                                    child: Padding(
+                                        padding: EdgeInsets.fromLTRB(0, 5, 7, 0),
+                                        child: Align(
+                                            alignment: AlignmentDirectional.centerStart,
+                                            child: Material(
+                                                shadowColor: Colors.transparent,
+                                                color: Colors.transparent,
+                                                child: InkWell(
+                                                    splashColor: ColorsResources.applicationGeeksEmpire.withOpacity(0.3),
+                                                    splashFactory: InkRipple.splashFactory,
+                                                    onTap: () {
+
+                                                      startPartialAdvancedSearchByMoneyAmount(pickedMoneyAmountFirst, pickedMoneyAmountLast);
+
+                                                    },
+                                                    child: Image(
+                                                      image: AssetImage("go_icon.png"),
+                                                      height: 31,
+                                                      width: 31,
+                                                      color: ColorsResources.light,
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                ),
+                                Expanded(
+                                    flex: 7,
+                                    child: Padding(
+                                        padding: EdgeInsets.fromLTRB(0, 5, 7, 0),
+                                        child: Align(
+                                          alignment: Alignment.centerRight,
+                                          child: Text(
+                                            StringsResources.transactionAmountHint(),
+                                            textAlign: TextAlign.right,
+                                            style: TextStyle(
+                                                color: ColorsResources.lightestBlue,
+                                                fontSize: 15
+                                            ),
+                                          ),
+                                        )
+                                    )
                                 )
+                              ],
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -1511,26 +1686,62 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
                     ),
                   ),
                   SizedBox(
-                      height: 151,
+                      height: 157,
                       width: double.infinity,
                       child: Padding(
                           padding: const EdgeInsets.fromLTRB(13, 13, 13, 19),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 5, 7, 0),
-                                  child: Align(
-                                    alignment: Alignment.centerRight,
-                                    child: Text(
-                                      StringsResources.transactionPeriod(),
-                                      textAlign: TextAlign.right,
-                                      style: TextStyle(
-                                          color: ColorsResources.lightestBlue,
-                                          fontSize: 12
-                                      ),
-                                    ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Expanded(
+                                      flex: 3,
+                                      child: Padding(
+                                          padding: EdgeInsets.fromLTRB(0, 5, 7, 0),
+                                          child: Align(
+                                              alignment: AlignmentDirectional.centerStart,
+                                              child: Material(
+                                                  shadowColor: Colors.transparent,
+                                                  color: Colors.transparent,
+                                                  child: InkWell(
+                                                      splashColor: ColorsResources.applicationGeeksEmpire.withOpacity(0.3),
+                                                      splashFactory: InkRipple.splashFactory,
+                                                      onTap: () {
+
+                                                        startPartialAdvancedSearchByTimePeriod(calendarViewFirst.pickedDateTime.microsecondsSinceEpoch.toString(), calendarViewLast.pickedDateTime.microsecondsSinceEpoch.toString());
+
+                                                      },
+                                                      child: Image(
+                                                        image: AssetImage("go_icon.png"),
+                                                        height: 31,
+                                                        width: 31,
+                                                        color: ColorsResources.light,
+                                                      )
+                                                  )
+                                              )
+                                          )
+                                      )
+                                  ),
+                                  Expanded(
+                                      flex: 7,
+                                      child: Padding(
+                                          padding: EdgeInsets.fromLTRB(0, 5, 7, 0),
+                                          child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: Text(
+                                              StringsResources.transactionPeriod(),
+                                              textAlign: TextAlign.right,
+                                              style: TextStyle(
+                                                  color: ColorsResources.lightestBlue,
+                                                  fontSize: 15
+                                              ),
+                                            ),
+                                          )
+                                      )
                                   )
+                                ],
                               ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,

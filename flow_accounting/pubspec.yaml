@@ -92,6 +92,7 @@ flutter:
     - sync_icon.png
     - logo.png
     - logo_background.png
+    - go_icon.png
 
   fonts:
     - family: Sans
