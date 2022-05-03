@@ -1184,7 +1184,7 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
         ),
         elevation: 0,
         transitionAnimationController: animationController,
-        barrierColor: ColorsResources.applicationDarkGeeksEmpire.withOpacity(0.31),
+        barrierColor: ColorsResources.applicationDarkGeeksEmpire.withOpacity(0.37),
         backgroundColor: Colors.transparent,
         builder: (BuildContext context) {
 
@@ -1614,12 +1614,13 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
                                           )
                                       ),
                                       borderRadius: BorderRadius.circular(51),
-                                      color: Colors.transparent
+                                      color: ColorsResources.applicationGeeksEmpire.withOpacity(0.1)
                                   ),
                                   child: Align(
-                                      alignment: AlignmentDirectional.center,
+                                      alignment: Alignment.center,
                                       child: Text(
                                         StringsResources.applyAdvancedSearch(),
+                                        textAlign: TextAlign.center,
                                         style: TextStyle(
                                             fontSize: 17,
                                             color: ColorsResources.light,
@@ -1632,7 +1633,7 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
                                             ]
                                         ),
                                       )
-                                  ),
+                                  )
                                 ),
                               ),
                             ),
