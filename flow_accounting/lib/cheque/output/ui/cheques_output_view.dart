@@ -302,7 +302,15 @@ class _ChequesOutputViewState extends State<ChequesOutputView> with TickerProvid
 
                                       String searchQuery = textEditorControllerQuery.text;
 
-                                      searchCheques(context, allCheques, searchQuery);
+                                      if (searchQuery.isEmpty) {
+
+                                        setupAdvanceSearch();
+
+                                      } else {
+
+                                        searchCheques(context, allCheques, searchQuery);
+
+                                      }
 
                                     },
                                     onLongPress: () {
@@ -1084,7 +1092,7 @@ class _ChequesOutputViewState extends State<ChequesOutputView> with TickerProvid
 
   void setupAdvanceSearch() {
 
-    if (!allCheques.isNotEmpty) {
+    if (allCheques.isNotEmpty) {
 
       AnimationController animationController = BottomSheet.createAnimationController(this);
       animationController.duration = const Duration(milliseconds: 159);
@@ -1206,7 +1214,7 @@ class _ChequesOutputViewState extends State<ChequesOutputView> with TickerProvid
                                           child: Align(
                                             alignment: Alignment.centerRight,
                                             child: Text(
-                                              StringsResources.transactionTargetName(),
+                                              StringsResources.chequeTargetName(),
                                               textAlign: TextAlign.right,
                                               style: TextStyle(
                                                   color: ColorsResources.lightestBlue,
@@ -1342,7 +1350,7 @@ class _ChequesOutputViewState extends State<ChequesOutputView> with TickerProvid
                                           child: Align(
                                             alignment: Alignment.centerRight,
                                             child: Text(
-                                              StringsResources.transactionAmountHint(),
+                                              StringsResources.chequeAmountHint(),
                                               textAlign: TextAlign.right,
                                               style: TextStyle(
                                                   color: ColorsResources.lightestBlue,
@@ -1577,7 +1585,7 @@ class _ChequesOutputViewState extends State<ChequesOutputView> with TickerProvid
                                             child: Align(
                                               alignment: Alignment.centerRight,
                                               child: Text(
-                                                StringsResources.transactionPeriod(),
+                                                StringsResources.chequeDueDatePeriod(),
                                                 textAlign: TextAlign.right,
                                                 style: TextStyle(
                                                     color: ColorsResources.lightestBlue,

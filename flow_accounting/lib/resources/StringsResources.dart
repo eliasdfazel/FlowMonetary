@@ -492,6 +492,10 @@ class StringsResources {
 
     return "تاریخ سررسید";
   }
+  static String chequeDueDatePeriod() {
+
+    return "بازه تاریخ سررسید";
+  }
 
   static String chequeCategory() {
 
@@ -575,7 +579,7 @@ class StringsResources {
 
   static String chequeTargetName() {
 
-    return "به نام";
+    return "به نام (در وجه)";
   }
   /* End - Cheque String Resources */
 
