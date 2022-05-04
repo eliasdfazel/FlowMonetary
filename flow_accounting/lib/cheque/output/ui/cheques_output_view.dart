@@ -18,6 +18,8 @@ import 'package:flow_accounting/cheque/input/ui/cheques_input_view.dart';
 import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
+import 'package:flow_accounting/utils/calendar/io/time_io.dart';
+import 'package:flow_accounting/utils/calendar/ui/calendar_view_dark.dart';
 import 'package:flow_accounting/utils/colors/color_extractor.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
 import 'package:flow_accounting/utils/extensions/BankLogos.dart';
@@ -32,7 +34,9 @@ class ChequesOutputView extends StatefulWidget {
   @override
   _ChequesOutputViewState createState() => _ChequesOutputViewState();
 }
-class _ChequesOutputViewState extends State<ChequesOutputView> {
+class _ChequesOutputViewState extends State<ChequesOutputView> with TickerProviderStateMixin {
+
+  TimeIO timeIO = TimeIO();
 
   ColorSelectorView colorSelectorView = ColorSelectorView();
 
@@ -301,15 +305,19 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
                                       searchCheques(context, allCheques, searchQuery);
 
                                     },
+                                    onLongPress: () {
+
+                                        setupAdvanceSearch();
+
+                                    },
                                     child: const SizedBox(
-                                      height: 71,
-                                      width: 53,
-                                      child: Icon(
-                                        Icons.search_rounded,
-                                        size: 23,
-                                        color: ColorsResources.darkTransparent,
-                                      ),
-                                    ),
+                                        height: 23,
+                                        width: 57,
+                                        child: Image(
+                                          image: AssetImage("advanced_search_icon.png"),
+                                          color: ColorsResources.black,
+                                        )
+                                    )
                                   ),
                                 ),
                                 Align(
@@ -926,6 +934,774 @@ class _ChequesOutputViewState extends State<ChequesOutputView> {
         }
 
       });
+
+    }
+
+  }
+
+  void startAdvancedSearch(
+      String amountMoneyFirst, String amountMoneyLast,
+      String timeFirst, String timeLast,
+      String targetName) async {
+    debugPrint("All Picked Parameters -> First Money: ${amountMoneyFirst} - Last Money: ${amountMoneyLast}");
+    debugPrint("All Picked Parameters -> First Time: ${timeFirst} - Last Time: ${timeLast}");
+    debugPrint("All Picked Parameters -> Target Username: ${targetName}");
+
+    String databaseDirectory = await getDatabasesPath();
+
+    String chequeDatabasePath = "${databaseDirectory}/${ChequesDatabaseInputs.chequesDatabase()}";
+
+    bool chequeDatabaseExist = await databaseExists(chequeDatabasePath);
+
+    if (chequeDatabaseExist) {
+
+      ChequesDatabaseQueries chequesDatabaseQueries = ChequesDatabaseQueries();
+
+      List<ChequesData> filteredChequesData = await chequesDatabaseQueries.queryChequeByTargetTimeMoney(amountMoneyFirst, amountMoneyLast, timeFirst, timeLast, targetName,
+          ChequesDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+      List<Widget> preparedAllChequesItem = [];
+
+      filteredChequesData.forEach((element) {
+
+        preparedAllChequesItem.add(outputItem(context, element));
+
+      });
+
+      setState(() {
+
+        allChequesItems = preparedAllChequesItem;
+
+      });
+
+    }
+
+  }
+
+  void startPartialAdvancedSearchByName(String targetName) async {
+    debugPrint("All Picked Parameters -> Target Username: ${targetName}");
+
+    String databaseDirectory = await getDatabasesPath();
+
+    String chequeDatabasePath = "${databaseDirectory}/${ChequesDatabaseInputs.chequesDatabase()}";
+
+    bool chequeDatabaseExist = await databaseExists(chequeDatabasePath);
+
+    if (chequeDatabaseExist) {
+
+      ChequesDatabaseQueries chequesDatabaseQueries = ChequesDatabaseQueries();
+
+      List<ChequesData> filteredChequesData = await chequesDatabaseQueries.queryChequeByTarget(targetName,
+          ChequesDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+      List<Widget> preparedAllTransactionsItem = [];
+
+      filteredChequesData.forEach((element) {
+
+        preparedAllTransactionsItem.add(outputItem(context, element));
+
+      });
+
+      setState(() {
+
+        allChequesItems = preparedAllTransactionsItem;
+
+      });
+
+    }
+
+  }
+
+  void startPartialAdvancedSearchByMoneyAmount(
+      String amountMoneyFirst, String amountMoneyLast) async {
+    debugPrint("All Picked Parameters -> First Money: ${amountMoneyFirst} - Last Money: ${amountMoneyLast}");
+
+    String databaseDirectory = await getDatabasesPath();
+
+    String transactionDatabasePath = "${databaseDirectory}/${ChequesDatabaseInputs.chequesDatabase()}";
+
+    bool transactionDatabaseExist = await databaseExists(transactionDatabasePath);
+
+    if (transactionDatabaseExist) {
+
+      ChequesDatabaseQueries chequesDatabaseQueries = ChequesDatabaseQueries();
+
+      List<ChequesData> filteredChequesData = await chequesDatabaseQueries.queryChequeByMoney(amountMoneyFirst, amountMoneyLast,
+          ChequesDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+      List<Widget> preparedAllTransactionsItem = [];
+
+      filteredChequesData.forEach((element) {
+
+        preparedAllTransactionsItem.add(outputItem(context, element));
+
+      });
+
+      setState(() {
+
+        allChequesItems = preparedAllTransactionsItem;
+
+      });
+
+    }
+
+  }
+
+  void startPartialAdvancedSearchByTimePeriod(
+      String timeFirst, String timeLast) async {
+    debugPrint("All Picked Parameters -> First Time: ${timeFirst} - Last Time: ${timeLast}");
+
+    String databaseDirectory = await getDatabasesPath();
+
+    String chequeDatabasePath = "${databaseDirectory}/${ChequesDatabaseInputs.chequesDatabase()}";
+
+    bool chequeDatabaseExist = await databaseExists(chequeDatabasePath);
+
+    if (chequeDatabaseExist) {
+
+      ChequesDatabaseQueries chequesDatabaseQueries = ChequesDatabaseQueries();
+
+      List<ChequesData> filteredChequesData = await chequesDatabaseQueries.queryChequeByTime(timeFirst, timeLast,
+          ChequesDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+      List<Widget> preparedAllTransactionsItem = [];
+
+      filteredChequesData.forEach((element) {
+
+        preparedAllTransactionsItem.add(outputItem(context, element));
+
+      });
+
+      setState(() {
+
+        allChequesItems = preparedAllTransactionsItem;
+
+      });
+
+    }
+
+  }
+
+  void setupAdvanceSearch() {
+
+    if (!allCheques.isNotEmpty) {
+
+      AnimationController animationController = BottomSheet.createAnimationController(this);
+      animationController.duration = const Duration(milliseconds: 159);
+      animationController.reverseDuration = const Duration(milliseconds: 159);
+
+      List<String> allTargetsUsername = [];
+      List<String> allMoneyAmount = [];
+
+      allCheques.forEach((element) {
+
+        allTargetsUsername.add(element.chequeTargetName);
+        allTargetsUsername.add(element.chequeSourceName);
+
+        allMoneyAmount.add(element.chequeMoneyAmount);
+
+      });
+
+      allTargetsUsername.sort();
+
+      allMoneyAmount.sort();
+
+      int timeFirst = int.parse(allCheques.first.chequeDueMillisecond);
+      int timeLast = int.parse(allCheques.last.chequeDueMillisecond);
+
+      CalendarViewDark calendarViewFirst = CalendarViewDark();
+      calendarViewFirst.inputDateTime = timeIO.humanReadableFarsi(DateTime.fromMillisecondsSinceEpoch(timeFirst));
+      calendarViewFirst.pickedDateTime = DateTime.fromMillisecondsSinceEpoch(timeFirst);
+
+      CalendarViewDark calendarViewLast = CalendarViewDark();
+      calendarViewLast.inputDateTime = timeIO.humanReadableFarsi(DateTime.fromMillisecondsSinceEpoch(timeLast));
+      calendarViewLast.pickedDateTime = DateTime.fromMillisecondsSinceEpoch(timeLast);
+
+      /* Start - Picked Data */
+      String pickedTargetUsername = allTargetsUsername.first;
+
+      String pickedMoneyAmountFirst = allMoneyAmount.first;
+      String pickedMoneyAmountLast = allMoneyAmount.last;
+      /* End - Picked Data */
+
+      showModalBottomSheet(
+          context: context,
+          enableDrag: true,
+          isDismissible: true,
+          shape: RoundedRectangleBorder(
+              borderRadius: new BorderRadius.all(Radius.circular(19))
+          ),
+          elevation: 0,
+          transitionAnimationController: animationController,
+          barrierColor: ColorsResources.applicationDarkGeeksEmpire.withOpacity(0.51),
+          backgroundColor: Colors.transparent,
+          builder: (BuildContext context) {
+
+            return Container(
+                height: 357,
+                width: double.infinity,
+                margin: EdgeInsets.fromLTRB(13, 0, 13, 19),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(19),
+                  gradient: LinearGradient(
+                      colors: [
+                        ColorsResources.blueGray,
+                        ColorsResources.black,
+                      ],
+                      begin: FractionalOffset(0.0, 0.0),
+                      end: FractionalOffset(1.0, 0.0),
+                      stops: [0.0, 1.0],
+                      transform: GradientRotation(45),
+                      tileMode: TileMode.clamp
+                  ),
+                ),
+                child: ListView(
+                  padding: EdgeInsets.fromLTRB(13, 0, 13, 0),
+                  physics: const BouncingScrollPhysics(),
+                  scrollDirection: Axis.vertical,
+                  children: [
+                    SizedBox(
+                      width: double.infinity,
+                      height: 119,
+                      child: Padding(
+                          padding: const EdgeInsets.fromLTRB(13, 19, 13, 0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Expanded(
+                                      flex: 3,
+                                      child: Padding(
+                                          padding: EdgeInsets.fromLTRB(0, 5, 7, 0),
+                                          child: Align(
+                                              alignment: AlignmentDirectional.centerStart,
+                                              child: Material(
+                                                  shadowColor: Colors.transparent,
+                                                  color: Colors.transparent,
+                                                  child: InkWell(
+                                                      splashColor: ColorsResources.applicationGeeksEmpire.withOpacity(0.3),
+                                                      splashFactory: InkRipple.splashFactory,
+                                                      onTap: () {
+
+                                                        startPartialAdvancedSearchByName(pickedTargetUsername);
+
+                                                      },
+                                                      child: Image(
+                                                        image: AssetImage("go_icon.png"),
+                                                        height: 31,
+                                                        width: 31,
+                                                        color: ColorsResources.light,
+                                                      )
+                                                  )
+                                              )
+                                          )
+                                      )
+                                  ),
+                                  Expanded(
+                                      flex: 7,
+                                      child: Padding(
+                                          padding: EdgeInsets.fromLTRB(0, 5, 7, 0),
+                                          child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: Text(
+                                              StringsResources.transactionTargetName(),
+                                              textAlign: TextAlign.right,
+                                              style: TextStyle(
+                                                  color: ColorsResources.lightestBlue,
+                                                  fontSize: 15
+                                              ),
+                                            ),
+                                          )
+                                      )
+                                  )
+                                ],
+                              ),
+                              Align(
+                                  alignment: AlignmentDirectional.topCenter,
+                                  child: Directionality(
+                                    textDirection: TextDirection.rtl,
+                                    child: DropdownButtonFormField<String>(
+                                      isDense: true,
+                                      elevation: 7,
+                                      focusColor: ColorsResources.applicationDarkGeeksEmpire,
+                                      dropdownColor: ColorsResources.dark,
+                                      decoration: InputDecoration(
+                                          border: OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                                color: ColorsResources.applicationDarkGeeksEmpire,
+                                                width: 1
+                                            ),
+                                            borderRadius: BorderRadius.circular(13),
+                                          ),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                                color: ColorsResources.applicationDarkGeeksEmpire,
+                                                width: 1
+                                            ),
+                                            borderRadius: BorderRadius.circular(13),
+                                          ),
+                                          focusedBorder: OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                                color: ColorsResources.applicationDarkGeeksEmpire,
+                                                width: 1
+                                            ),
+                                            borderRadius: BorderRadius.circular(13),
+                                          ),
+                                          errorBorder: OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                                color: ColorsResources.applicationDarkGeeksEmpire,
+                                                width: 1
+                                            ),
+                                            borderRadius: BorderRadius.circular(13),
+                                          ),
+                                          filled: true,
+                                          fillColor: ColorsResources.light.withOpacity(0.1),
+                                          focusColor: ColorsResources.dark
+                                      ),
+                                      value: allTargetsUsername.first,
+                                      items: allTargetsUsername.toSet().toList().map<DropdownMenuItem<String>>((String value) {
+
+                                        return DropdownMenuItem<String>(
+                                          value: value,
+                                          child: SizedBox(
+                                            height: 31,
+                                            child: Padding(
+                                              padding: const EdgeInsets.fromLTRB(0, 0, 11, 0),
+                                              child: Align(
+                                                alignment:
+                                                AlignmentDirectional.center,
+                                                child: Text(
+                                                  value,
+                                                  style: TextStyle(
+                                                    color: ColorsResources.light.withOpacity(0.79),
+                                                    fontSize: 15,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      }).toList(),
+                                      onChanged: (value) {
+
+                                        pickedTargetUsername = value ?? allTargetsUsername.first;
+
+                                      },
+                                    ),
+                                  )
+                              ),
+                            ],
+                          )
+                      ),
+                    ),
+                    SizedBox(
+                      width: double.infinity,
+                      height: 119,
+                      child: Padding(
+                          padding: const EdgeInsets.fromLTRB(13, 19, 13, 0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Expanded(
+                                      flex: 3,
+                                      child: Padding(
+                                          padding: EdgeInsets.fromLTRB(0, 5, 7, 0),
+                                          child: Align(
+                                              alignment: AlignmentDirectional.centerStart,
+                                              child: Material(
+                                                  shadowColor: Colors.transparent,
+                                                  color: Colors.transparent,
+                                                  child: InkWell(
+                                                      splashColor: ColorsResources.applicationGeeksEmpire.withOpacity(0.3),
+                                                      splashFactory: InkRipple.splashFactory,
+                                                      onTap: () {
+
+                                                        startPartialAdvancedSearchByMoneyAmount(pickedMoneyAmountFirst, pickedMoneyAmountLast);
+
+                                                      },
+                                                      child: Image(
+                                                        image: AssetImage("go_icon.png"),
+                                                        height: 31,
+                                                        width: 31,
+                                                        color: ColorsResources.light,
+                                                      )
+                                                  )
+                                              )
+                                          )
+                                      )
+                                  ),
+                                  Expanded(
+                                      flex: 7,
+                                      child: Padding(
+                                          padding: EdgeInsets.fromLTRB(0, 5, 7, 0),
+                                          child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: Text(
+                                              StringsResources.transactionAmountHint(),
+                                              textAlign: TextAlign.right,
+                                              style: TextStyle(
+                                                  color: ColorsResources.lightestBlue,
+                                                  fontSize: 15
+                                              ),
+                                            ),
+                                          )
+                                      )
+                                  )
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Expanded(
+                                    flex: 7,
+                                    child: Align(
+                                        alignment: AlignmentDirectional.topCenter,
+                                        child: Directionality(
+                                          textDirection: TextDirection.rtl,
+                                          child: DropdownButtonFormField<String>(
+                                            isDense: true,
+                                            elevation: 7,
+                                            focusColor: ColorsResources.applicationDarkGeeksEmpire,
+                                            dropdownColor: ColorsResources.dark,
+                                            decoration: InputDecoration(
+                                                border: OutlineInputBorder(
+                                                  borderSide: const BorderSide(
+                                                      color: ColorsResources.applicationDarkGeeksEmpire,
+                                                      width: 1
+                                                  ),
+                                                  borderRadius: BorderRadius.circular(13),
+                                                ),
+                                                enabledBorder: OutlineInputBorder(
+                                                  borderSide: const BorderSide(
+                                                      color: ColorsResources.applicationDarkGeeksEmpire,
+                                                      width: 1
+                                                  ),
+                                                  borderRadius: BorderRadius.circular(13),
+                                                ),
+                                                focusedBorder: OutlineInputBorder(
+                                                  borderSide: const BorderSide(
+                                                      color: ColorsResources.applicationDarkGeeksEmpire,
+                                                      width: 1
+                                                  ),
+                                                  borderRadius: BorderRadius.circular(13),
+                                                ),
+                                                errorBorder: OutlineInputBorder(
+                                                  borderSide: const BorderSide(
+                                                      color: ColorsResources.applicationDarkGeeksEmpire,
+                                                      width: 1
+                                                  ),
+                                                  borderRadius: BorderRadius.circular(13),
+                                                ),
+                                                filled: true,
+                                                fillColor: ColorsResources.light.withOpacity(0.1),
+                                                focusColor: ColorsResources.dark
+                                            ),
+                                            value: allMoneyAmount.last,
+                                            items: allMoneyAmount.toSet().toList().map<DropdownMenuItem<String>>((String value) {
+
+                                              return DropdownMenuItem<String>(
+                                                value: value,
+                                                child: SizedBox(
+                                                  height: 31,
+                                                  child: Padding(
+                                                    padding: const EdgeInsets.fromLTRB(0, 0, 11, 0),
+                                                    child: Align(
+                                                      alignment:
+                                                      AlignmentDirectional.center,
+                                                      child: Text(
+                                                        value,
+                                                        style: TextStyle(
+                                                          color: ColorsResources.light.withOpacity(0.79),
+                                                          fontSize: 15,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              );
+                                            }).toList(),
+                                            onChanged: (value) {
+
+                                              pickedMoneyAmountFirst = value ?? allMoneyAmount.first;
+
+                                            },
+                                          ),
+                                        )
+                                    ),
+                                  ),
+                                  Expanded(
+                                      flex: 1,
+                                      child: Align(
+                                          alignment: AlignmentDirectional.center,
+                                          child: Text(
+                                            StringsResources.toText(),
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                                fontSize: 12,
+                                                color: ColorsResources.light
+                                            ),
+                                          )
+                                      )
+                                  ),
+                                  Expanded(
+                                    flex: 7,
+                                    child: Align(
+                                        alignment: AlignmentDirectional.topCenter,
+                                        child: Directionality(
+                                          textDirection: TextDirection.rtl,
+                                          child: DropdownButtonFormField<String>(
+                                            isDense: true,
+                                            elevation: 7,
+                                            focusColor: ColorsResources.applicationDarkGeeksEmpire,
+                                            dropdownColor: ColorsResources.dark,
+                                            decoration: InputDecoration(
+                                                border: OutlineInputBorder(
+                                                  borderSide: const BorderSide(
+                                                      color: ColorsResources.applicationDarkGeeksEmpire,
+                                                      width: 1
+                                                  ),
+                                                  borderRadius: BorderRadius.circular(13),
+                                                ),
+                                                enabledBorder: OutlineInputBorder(
+                                                  borderSide: const BorderSide(
+                                                      color: ColorsResources.applicationDarkGeeksEmpire,
+                                                      width: 1
+                                                  ),
+                                                  borderRadius: BorderRadius.circular(13),
+                                                ),
+                                                focusedBorder: OutlineInputBorder(
+                                                  borderSide: const BorderSide(
+                                                      color: ColorsResources.applicationDarkGeeksEmpire,
+                                                      width: 1
+                                                  ),
+                                                  borderRadius: BorderRadius.circular(13),
+                                                ),
+                                                errorBorder: OutlineInputBorder(
+                                                  borderSide: const BorderSide(
+                                                      color: ColorsResources.applicationDarkGeeksEmpire,
+                                                      width: 1
+                                                  ),
+                                                  borderRadius: BorderRadius.circular(13),
+                                                ),
+                                                filled: true,
+                                                fillColor: ColorsResources.light.withOpacity(0.1),
+                                                focusColor: ColorsResources.dark
+                                            ),
+                                            value: allMoneyAmount.first,
+                                            items: allMoneyAmount.toSet().toList().map<DropdownMenuItem<String>>((String value) {
+
+                                              return DropdownMenuItem<String>(
+                                                value: value,
+                                                child: SizedBox(
+                                                  height: 31,
+                                                  child: Padding(
+                                                    padding: const EdgeInsets.fromLTRB(0, 0, 11, 0),
+                                                    child: Align(
+                                                      alignment:
+                                                      AlignmentDirectional.center,
+                                                      child: Text(
+                                                        value,
+                                                        style: TextStyle(
+                                                          color: ColorsResources.light.withOpacity(0.79),
+                                                          fontSize: 15,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              );
+                                            }).toList(),
+                                            onChanged: (value) {
+
+                                              pickedMoneyAmountLast = value ?? allMoneyAmount.last;
+
+                                            },
+                                          ),
+                                        )
+                                    ),
+                                  ),
+                                ],
+                              )
+                            ],
+                          )
+                      ),
+                    ),
+                    SizedBox(
+                        height: 157,
+                        width: double.infinity,
+                        child: Padding(
+                            padding: const EdgeInsets.fromLTRB(13, 13, 13, 19),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Expanded(
+                                        flex: 3,
+                                        child: Padding(
+                                            padding: EdgeInsets.fromLTRB(0, 5, 7, 0),
+                                            child: Align(
+                                                alignment: AlignmentDirectional.centerStart,
+                                                child: Material(
+                                                    shadowColor: Colors.transparent,
+                                                    color: Colors.transparent,
+                                                    child: InkWell(
+                                                        splashColor: ColorsResources.applicationGeeksEmpire.withOpacity(0.3),
+                                                        splashFactory: InkRipple.splashFactory,
+                                                        onTap: () {
+
+                                                          startPartialAdvancedSearchByTimePeriod(calendarViewFirst.pickedDateTime.microsecondsSinceEpoch.toString(), calendarViewLast.pickedDateTime.microsecondsSinceEpoch.toString());
+
+                                                        },
+                                                        child: Image(
+                                                          image: AssetImage("go_icon.png"),
+                                                          height: 31,
+                                                          width: 31,
+                                                          color: ColorsResources.light,
+                                                        )
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    ),
+                                    Expanded(
+                                        flex: 7,
+                                        child: Padding(
+                                            padding: EdgeInsets.fromLTRB(0, 5, 7, 0),
+                                            child: Align(
+                                              alignment: Alignment.centerRight,
+                                              child: Text(
+                                                StringsResources.transactionPeriod(),
+                                                textAlign: TextAlign.right,
+                                                style: TextStyle(
+                                                    color: ColorsResources.lightestBlue,
+                                                    fontSize: 15
+                                                ),
+                                              ),
+                                            )
+                                        )
+                                    )
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Expanded(
+                                        flex: 7,
+                                        child: calendarViewLast
+                                    ),
+                                    Expanded(
+                                        flex: 1,
+                                        child: Align(
+                                            alignment: AlignmentDirectional.center,
+                                            child: Text(
+                                              StringsResources.toText(),
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  fontSize: 12,
+                                                  color: ColorsResources.light
+                                              ),
+                                            )
+                                        )
+                                    ),
+                                    Expanded(
+                                        flex: 7,
+                                        child: calendarViewFirst
+                                    )
+                                  ],
+                                )
+                              ],
+                            )
+                        )
+                    ),
+                    SizedBox(
+                        height: 79,
+                        width: double.infinity,
+                        child: Padding(
+                            padding: EdgeInsets.fromLTRB(13, 13, 13, 19),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(51.0),
+                              child: Material(
+                                shadowColor: Colors.transparent,
+                                color: Colors.transparent,
+                                child: InkWell(
+                                  splashColor: ColorsResources.applicationGeeksEmpire.withOpacity(0.3),
+                                  splashFactory: InkRipple.splashFactory,
+                                  onTap: () {
+
+                                    startAdvancedSearch(
+                                        pickedMoneyAmountFirst,
+                                        pickedMoneyAmountLast,
+                                        calendarViewFirst.pickedDateTime.microsecondsSinceEpoch.toString(),
+                                        calendarViewLast.pickedDateTime.microsecondsSinceEpoch.toString(),
+                                        pickedTargetUsername
+                                    );
+
+                                    Future.delayed(Duration(milliseconds: 379), () {
+
+                                      Navigator.pop(context);
+
+                                    });
+
+                                  },
+                                  child: Container(
+                                      decoration: BoxDecoration(
+                                          border: Border(
+                                              top: BorderSide(
+                                                color: ColorsResources.lightBlue.withOpacity(0.3),
+                                                width: 1,
+                                              ),
+                                              bottom: BorderSide(
+                                                color: ColorsResources.lightBlue.withOpacity(0.3),
+                                                width: 1,
+                                              ),
+                                              left: BorderSide(
+                                                color: ColorsResources.lightBlue.withOpacity(0.3),
+                                                width: 1,
+                                              ),
+                                              right: BorderSide(
+                                                color: ColorsResources.lightBlue.withOpacity(0.3),
+                                                width: 1,
+                                              )
+                                          ),
+                                          borderRadius: BorderRadius.circular(51),
+                                          color: ColorsResources.applicationGeeksEmpire.withOpacity(0.1)
+                                      ),
+                                      child: Align(
+                                          alignment: Alignment.center,
+                                          child: Text(
+                                            StringsResources.applyAdvancedSearch(),
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                                fontSize: 17,
+                                                color: ColorsResources.light,
+                                                shadows: [
+                                                  Shadow(
+                                                      color: ColorsResources.light,
+                                                      blurRadius: 7,
+                                                      offset: Offset(0, 0)
+                                                  )
+                                                ]
+                                            ),
+                                          )
+                                      )
+                                  ),
+                                ),
+                              ),
+                            )
+                        )
+                    )
+                  ],
+                )
+            );
+          }
+      );
 
     }
 

@@ -354,8 +354,8 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
                                       child: Image(
                                         image: AssetImage("advanced_search_icon.png"),
                                         color: ColorsResources.black,
-                                      ),
-                                    ),
+                                      )
+                                    )
                                   ),
                                 ),
                                 Align(
