@@ -2197,6 +2197,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                             textDirection: TextDirection.rtl,
                                             child: Text(
                                               suggestion.cardNumber,
+                                              textAlign: TextAlign.center,
                                               style: const TextStyle(
                                                   color: ColorsResources.darkTransparent,
                                                   fontSize: 15
@@ -2226,6 +2227,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                           controller: controllerCreditCard,
                                           autofocus: false,
                                           maxLines: 1,
+                                          textAlign: TextAlign.center,
                                           cursorColor: ColorsResources.primaryColor,
                                           keyboardType: TextInputType.number,
                                           textInputAction: TextInputAction.next,
