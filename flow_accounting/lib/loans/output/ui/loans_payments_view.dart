@@ -14,6 +14,7 @@ import 'package:flow_accounting/loans/database/structure/tables_structure.dart';
 import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/utils/calendar/io/time_io.dart';
+import 'package:flow_accounting/utils/ui/Display.dart';
 import 'package:flutter/material.dart';
 import 'package:marquee/marquee.dart';
 
@@ -68,6 +69,8 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
   @override
   Widget build(BuildContext context) {
 
+    int gridColumnCount = (Display.displayWidth(context) / 173).round();
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       color: ColorsResources.black,
@@ -104,18 +107,9 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
               ),
               child: Stack(
                 children: [
-                  const Opacity(
-                    opacity: 0.07,
-                    child: Image(
-                      image: AssetImage("input_background_pattern.png"),
-                      fit: BoxFit.cover,
-                      width: double.infinity,
-                      height: double.infinity,
-                    ),
-                  ),
                   GridView(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
+                      crossAxisCount: gridColumnCount,
                       childAspectRatio: 1,
                       crossAxisSpacing: 3.0,
                       mainAxisSpacing: 7.0,
@@ -139,7 +133,7 @@ class _LoansPaymentsViewState extends State<LoansPaymentsView> {
                             borderRadius: BorderRadius.circular(17),
                             alignment: AlignmentDirectional.center,
                             blurColor: Color(widget.loansData.colorTag),
-                            colorOpacity: 0.1,
+                            colorOpacity: 0.3,
                             child: const SizedBox(
                               width: double.infinity,
                               height: 191,
