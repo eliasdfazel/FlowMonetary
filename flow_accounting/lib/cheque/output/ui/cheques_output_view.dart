@@ -1195,6 +1195,12 @@ class _ChequesOutputViewState extends State<ChequesOutputView> with TickerProvid
 
                                                         startPartialAdvancedSearchByName(pickedTargetUsername);
 
+                                                        Future.delayed(Duration(milliseconds: 379), () {
+
+                                                          Navigator.pop(context);
+
+                                                        });
+
                                                       },
                                                       child: Image(
                                                         image: AssetImage("go_icon.png"),
@@ -1330,6 +1336,12 @@ class _ChequesOutputViewState extends State<ChequesOutputView> with TickerProvid
                                                       onTap: () {
 
                                                         startPartialAdvancedSearchByMoneyAmount(pickedMoneyAmountFirst, pickedMoneyAmountLast);
+
+                                                        Future.delayed(Duration(milliseconds: 379), () {
+
+                                                          Navigator.pop(context);
+
+                                                        });
 
                                                       },
                                                       child: Image(
@@ -1565,6 +1577,12 @@ class _ChequesOutputViewState extends State<ChequesOutputView> with TickerProvid
                                                         onTap: () {
 
                                                           startPartialAdvancedSearchByTimePeriod(calendarViewFirst.pickedDateTime.microsecondsSinceEpoch.toString(), calendarViewLast.pickedDateTime.microsecondsSinceEpoch.toString());
+
+                                                          Future.delayed(Duration(milliseconds: 379), () {
+
+                                                            Navigator.pop(context);
+
+                                                          });
 
                                                         },
                                                         child: Image(

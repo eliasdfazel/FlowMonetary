@@ -1340,6 +1340,12 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
 
                                             startPartialAdvancedSearchByName(pickedTargetUsername);
 
+                                            Future.delayed(Duration(milliseconds: 379), () {
+
+                                              Navigator.pop(context);
+
+                                            });
+
                                           },
                                           child: Image(
                                             image: AssetImage("go_icon.png"),
@@ -1475,6 +1481,12 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
                                                     onTap: () {
 
                                                       startPartialAdvancedSearchByMoneyAmount(pickedMoneyAmountFirst, pickedMoneyAmountLast);
+
+                                                      Future.delayed(Duration(milliseconds: 379), () {
+
+                                                        Navigator.pop(context);
+
+                                                      });
 
                                                     },
                                                     child: Image(
@@ -1710,6 +1722,12 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
                                                       onTap: () {
 
                                                         startPartialAdvancedSearchByTimePeriod(calendarViewFirst.pickedDateTime.microsecondsSinceEpoch.toString(), calendarViewLast.pickedDateTime.microsecondsSinceEpoch.toString());
+
+                                                        Future.delayed(Duration(milliseconds: 379), () {
+
+                                                          Navigator.pop(context);
+
+                                                        });
 
                                                       },
                                                       child: Image(
