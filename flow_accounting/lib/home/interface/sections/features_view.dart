@@ -415,16 +415,6 @@ class StateFeaturesOptionsView extends State<FeaturesOptionsView> {
                             topRight: Radius.circular(7),
                             bottomLeft: Radius.circular(0),
                             bottomRight: Radius.circular(0)),
-                        gradient: LinearGradient(
-                            colors: [
-                              ColorsResources.white.withOpacity(0.3),
-                              ColorsResources.light,
-                            ],
-                            begin: const FractionalOffset(0.0, 0.0),
-                            end: const FractionalOffset(1.0, 0.0),
-                            stops: const [0.0, 1.0],
-                            transform: const GradientRotation(45),
-                            tileMode: TileMode.clamp),
                       ),
                       child: Padding(
                           padding: const EdgeInsets.fromLTRB(11, 0, 11, 0),
@@ -688,16 +678,6 @@ class FeatureDescriptionViewState extends State<FeatureDescriptionView> with Sin
                     topRight: Radius.circular(0),
                     bottomLeft: Radius.circular(0),
                     bottomRight: Radius.circular(0)),
-                gradient: LinearGradient(
-                    colors: [
-                      ColorsResources.white.withOpacity(0.3),
-                      ColorsResources.light.withOpacity(0.3),
-                    ],
-                    begin: const FractionalOffset(0.0, 0.0),
-                    end: const FractionalOffset(1.0, 0.0),
-                    stops: const [0.0, 1.0],
-                    transform: const GradientRotation(45),
-                    tileMode: TileMode.clamp),
               ),
               child: Stack(
                 children: [
