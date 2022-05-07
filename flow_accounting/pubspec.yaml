@@ -45,6 +45,7 @@ dependencies:
   status_bar_control: ^3.2.1
   currency_text_input_formatter: ^2.1.5
   intl: ^0.17.0
+  flutter_archive: ^4.2.0
 
 dev_dependencies:
   flutter_test:
