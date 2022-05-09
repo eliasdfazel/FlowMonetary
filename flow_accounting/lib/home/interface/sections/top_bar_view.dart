@@ -69,7 +69,7 @@ class _TopBarViewState extends State<TopBarView> {
 
                       },
                       child: Align(
-                        alignment: Alignment.center,
+                        alignment: Alignment.centerLeft,
                         child: SizedBox(
                           height: 43,
                           width: 43,
@@ -99,7 +99,7 @@ class _TopBarViewState extends State<TopBarView> {
 
                       },
                       child: Align(
-                        alignment: Alignment.center,
+                        alignment: Alignment.centerLeft,
                         child: SizedBox(
                           height: 43,
                           width: 43,
@@ -129,7 +129,7 @@ class _TopBarViewState extends State<TopBarView> {
 
                       },
                       child: Align(
-                        alignment: Alignment.center,
+                        alignment: Alignment.centerLeft,
                         child: SizedBox(
                             height: 43,
                             width: 43,
@@ -202,7 +202,7 @@ class _TopBarViewState extends State<TopBarView> {
 
                       },
                       child: Align(
-                        alignment: Alignment.center,
+                        alignment: Alignment.centerRight,
                         child: SizedBox(
                           height: 43,
                           width: 43,
