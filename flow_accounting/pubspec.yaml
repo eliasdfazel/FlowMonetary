@@ -44,7 +44,7 @@ dependencies:
   share_plus: ^4.0.4
   sqflite: ^2.0.2+1
   status_bar_control: ^3.2.1
-  syncfusion_flutter_barcodes: ^19.4.56
+  syncfusion_flutter_barcodes: ^20.1.52
   url_launcher: ^6.0.18
   wave: ^0.2.0
 
