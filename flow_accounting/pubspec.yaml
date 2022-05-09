@@ -42,8 +42,7 @@ dependencies:
   screenshot: ^1.2.3
   shamsi_date: ^1.0.1
   share_plus: ^4.0.4
-  simple_gradient_text: ^1.2.2
-  sqflite: ^2.0.2
+  sqflite: ^2.0.2+1
   status_bar_control: ^3.2.1
   syncfusion_flutter_barcodes: ^19.4.56
   url_launcher: ^6.0.18
