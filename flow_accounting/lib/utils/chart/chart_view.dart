@@ -100,12 +100,14 @@ class LineChartViewState extends State<LineChartView> {
           color: ColorsResources.light.withOpacity(0.39),
           offset: const Offset(0.0, 0.0),
           blurRadius: 13),
-      colors: [
-        ColorsResources.springColor.withOpacity(0.97),
-        ColorsResources.summerColor.withOpacity(0.97),
-        ColorsResources.autumnColor.withOpacity(0.97),
-        ColorsResources.winterColor.withOpacity(0.97),
-      ],
+      gradient: LinearGradient(
+        colors: [
+          ColorsResources.springColor.withOpacity(0.97),
+          ColorsResources.summerColor.withOpacity(0.97),
+          ColorsResources.autumnColor.withOpacity(0.97),
+          ColorsResources.winterColor.withOpacity(0.97),
+        ]
+      ),
       barWidth: 3,
       isStrokeCapRound: true,
       dotData: FlDotData(
@@ -114,12 +116,14 @@ class LineChartViewState extends State<LineChartView> {
       ),
       belowBarData: BarAreaData(
         show: true,
-        colors: [
-          ColorsResources.springColor.withOpacity(0.17),
-          ColorsResources.summerColor.withOpacity(0.17),
-          ColorsResources.autumnColor.withOpacity(0.17),
-          ColorsResources.winterColor.withOpacity(0.17),
-        ],
+        gradient: LinearGradient(
+            colors: [
+              ColorsResources.springColor.withOpacity(0.97),
+              ColorsResources.summerColor.withOpacity(0.97),
+              ColorsResources.autumnColor.withOpacity(0.97),
+              ColorsResources.winterColor.withOpacity(0.97),
+            ]
+        ),
       ),
     );
 
@@ -153,34 +157,54 @@ class LineChartViewState extends State<LineChartView> {
       ),
       titlesData: FlTitlesData(
         show: true,
-        rightTitles: SideTitles(showTitles: false),
-        topTitles: SideTitles(showTitles: false),
-        leftTitles: SideTitles(showTitles: false),
-        bottomTitles: SideTitles(
+        rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+        topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+        leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+        bottomTitles: AxisTitles(sideTitles: SideTitles(
           showTitles: true,
           reservedSize: 22,
           interval: 1,
-          getTextStyles: (context, value) => const TextStyle(
-            color: ColorsResources.light,
-            fontWeight: FontWeight.bold,
-            fontSize: 12,
-            decoration: TextDecoration.none,
-          ),
-          getTitles: (value) {
+          getTitlesWidget: (value, titleMeta)  {
+
+            String title = "بهار";
+
             switch (value.toInt()) {
               case 1:
-                return 'بهار';
+
+                title = 'بهار';
+
+                break;
               case 4:
-                return 'تابستان';
+
+                title =  'تابستان';
+
+                break;
               case 7:
-                return 'پاییز';
+
+                title = 'پاییز';
+
+                break;
               case 10:
-                return 'زمستان';
+
+                title = 'زمستان';
+
+                break;
             }
-            return '';
+
+            return Container(
+              padding: EdgeInsets.fromLTRB(0, 7, 0, 0),
+              child: Text(
+                title,
+                style: TextStyle(
+                  color: ColorsResources.light,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 12,
+                  decoration: TextDecoration.none,
+                ),
+              )
+            );
           },
-          margin: 7,
-        ),
+        )),
       ),
       borderData: FlBorderData(
         show: true,
