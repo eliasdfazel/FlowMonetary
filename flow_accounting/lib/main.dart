@@ -22,7 +22,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
-import 'package:local_auth/auth_strings.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:quick_actions/quick_actions.dart';
 import 'package:share_plus/share_plus.dart';
@@ -270,18 +269,11 @@ class _WelcomePageViewState extends State<WelcomePage> {
 
         WelcomePage.Authenticated = await localAuthentication.authenticate(
             localizedReason: StringsResources.securityNotice(),
-            stickyAuth: false,
-            useErrorDialogs: false,
-            androidAuthStrings: AndroidAuthMessages(
-                cancelButton: StringsResources.cancelText(),
-                goToSettingsButton: StringsResources.settingText(),
-                goToSettingsDescription: StringsResources.securityWarning()
-            ),
-            iOSAuthStrings: IOSAuthMessages(
-                cancelButton: StringsResources.cancelText(),
-                goToSettingsButton: StringsResources.settingText(),
-                goToSettingsDescription: StringsResources.securityWarning()
-            ));
+            options: const AuthenticationOptions(
+              useErrorDialogs: false,
+              stickyAuth: false,
+            )
+        );
         debugPrint("Authentication Process Started");
 
       } else {
@@ -360,20 +352,15 @@ class _WelcomePageViewState extends State<WelcomePage> {
 
       if (!WelcomePage.Authenticated) {
 
+
+
         WelcomePage.Authenticated = await localAuthentication.authenticate(
             localizedReason: StringsResources.securityNotice(),
-            stickyAuth: false,
-            useErrorDialogs: false,
-            androidAuthStrings: AndroidAuthMessages(
-                cancelButton: StringsResources.cancelText(),
-                goToSettingsButton: StringsResources.settingText(),
-                goToSettingsDescription: StringsResources.securityWarning()
-            ),
-            iOSAuthStrings: IOSAuthMessages(
-                cancelButton: StringsResources.cancelText(),
-                goToSettingsButton: StringsResources.settingText(),
-                goToSettingsDescription: StringsResources.securityWarning()
-            ));
+            options: const AuthenticationOptions(
+              useErrorDialogs: false,
+              stickyAuth: false,
+            )
+        );
         debugPrint("Authentication Process Started");
 
         if (WelcomePage.Authenticated) {

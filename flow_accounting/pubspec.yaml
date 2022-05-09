@@ -32,7 +32,7 @@ dependencies:
   fluttertoast: ^8.0.8
   image_picker: ^0.8.5
   intl: ^0.17.0
-  local_auth: ^1.1.11
+  local_auth: ^2.0.1
   lottie: ^1.2.1
   marquee: ^2.2.0
   palette_generator: ^0.3.2
