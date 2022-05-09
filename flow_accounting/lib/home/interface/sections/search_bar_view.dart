@@ -13,6 +13,7 @@ import 'dart:ui';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 
 import 'features_view.dart';
 
@@ -106,8 +107,7 @@ class _SearchBarView extends State<SearchBarView> {
                                   shadowColor: Colors.transparent,
                                   color: Colors.transparent,
                                   child: InkWell(
-                                    splashColor: ColorsResources
-                                        .applicationGeeksEmpire.withOpacity(0.5),
+                                    splashColor: ColorsResources.applicationGeeksEmpire.withOpacity(0.5),
                                     splashFactory: InkRipple.splashFactory,
                                     onDoubleTap: () {
 
@@ -153,8 +153,8 @@ class _SearchBarView extends State<SearchBarView> {
                                           color: ColorsResources.applicationDarkGeeksEmpire
                                       ),
                                     ),
-                                  ),
-                                ),
+                                  )
+                                )
                               )
                           )
                       )
@@ -175,96 +175,171 @@ class _SearchBarView extends State<SearchBarView> {
                             ),
                             child: Directionality(
                               textDirection: TextDirection.rtl,
-                              child: TextField(
-                                controller: textEditorControllerQuery,
-                                textAlign: TextAlign.right,
-                                textDirection: TextDirection.rtl,
-                                textAlignVertical: TextAlignVertical.bottom,
-                                maxLines: 1,
-                                cursorColor: ColorsResources.primaryColor,
-                                autocorrect: true,
-                                autofocus: false,
-                                keyboardType: TextInputType.text,
-                                textInputAction: TextInputAction.search,
-                                onSubmitted: (searchQuery) {
+                              child: TypeAheadField<FeaturesStructure>(
+                                  suggestionsCallback: (pattern) async {
 
-                                  List<FeaturesStructure> foundAllFeaturesStructure = [];
-                                  foundAllFeaturesStructure.clear();
+                                    return await getAllFeatures();
+                                  },
+                                  itemBuilder: (context, suggestion) {
 
-                                  for (var element in widget.initialFeaturesStructure) {
+                                    return ListTile(
+                                        title: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.fromLTRB(3, 0, 3, 0),
+                                              child: Directionality(
+                                                textDirection: TextDirection.rtl,
+                                                child: Text(
+                                                  suggestion.featuresTitle.toString(),
+                                                  style: TextStyle(
+                                                      color: ColorsResources.blueGray.withOpacity(0.79),
+                                                      fontSize: 17
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        )
+                                    );
+                                  },
+                                  onSuggestionSelected: (searchQuery) {
 
-                                    if (element.featuresTitle.contains(searchQuery) ||
-                                        element.featuresDescription.contains(searchQuery)) {
+                                    List<FeaturesStructure> foundAllFeaturesStructure = [];
+                                    foundAllFeaturesStructure.clear();
 
-                                      foundAllFeaturesStructure.add(element);
+                                    for (var element in widget.initialFeaturesStructure) {
+
+                                      if (element.featuresTitle.contains(searchQuery.featuresTitle) ||
+                                          element.featuresDescription.contains(searchQuery.featuresTitle)) {
+
+                                        foundAllFeaturesStructure.add(element);
+
+                                      }
 
                                     }
 
-                                  }
+                                    widget.searchableFeaturesList.value.clear();
 
-                                  widget.searchableFeaturesList.value.clear();
+                                    Future.delayed(const Duration(milliseconds: 199), () {
 
-                                  Future.delayed(const Duration(milliseconds: 199), () {
+                                      widget.searchableFeaturesList.value = foundAllFeaturesStructure;
 
-                                    widget.searchableFeaturesList.value = foundAllFeaturesStructure;
+                                    });
 
-                                  });
+                                  },
+                                  errorBuilder: (context, suggestion) {
 
-                                },
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                      borderSide: BorderSide(color: ColorsResources.applicationGeeksEmpire, width: 1.0),
-                                      borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(13),
-                                          topRight: Radius.circular(13),
-                                          bottomLeft: Radius.circular(13),
-                                          bottomRight: Radius.circular(13)
+                                    return Padding(
+                                        padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
+                                        child: Text(StringsResources.nothingText())
+                                    );
+                                  },
+                                  suggestionsBoxDecoration: SuggestionsBoxDecoration(
+                                      elevation: 7,
+                                      color: ColorsResources.primaryColorLightest,
+                                      shadowColor: ColorsResources.darkTransparent,
+                                      borderRadius: BorderRadius.circular(17)
+                                  ),
+                                  textFieldConfiguration: TextFieldConfiguration(
+                                    controller: textEditorControllerQuery,
+                                    textInputAction: TextInputAction.search,
+                                    cursorColor: ColorsResources.primaryColor,
+                                    autocorrect: true,
+                                    autofocus: false,
+                                    textAlignVertical: TextAlignVertical.bottom,
+                                    maxLines: 1,
+                                    keyboardType: TextInputType.text,
+                                    onSubmitted: (searchQuery) {
+
+                                      List<FeaturesStructure> foundAllFeaturesStructure = [];
+                                      foundAllFeaturesStructure.clear();
+
+                                      for (var element in widget.initialFeaturesStructure) {
+
+                                        if (element.featuresTitle.contains(searchQuery) ||
+                                            element.featuresDescription.contains(searchQuery)) {
+
+                                          foundAllFeaturesStructure.add(element);
+
+                                        }
+
+                                      }
+
+                                      widget.searchableFeaturesList.value.clear();
+
+                                      Future.delayed(const Duration(milliseconds: 199), () {
+
+                                        widget.searchableFeaturesList.value = foundAllFeaturesStructure;
+
+                                      });
+
+                                    },
+
+                                    decoration: InputDecoration(
+                                      alignLabelWithHint: true,
+                                      border: OutlineInputBorder(
+                                          borderSide: BorderSide(color: ColorsResources.applicationGeeksEmpire, width: 1.0),
+                                          borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(13),
+                                              topRight: Radius.circular(13),
+                                              bottomLeft: Radius.circular(13),
+                                              bottomRight: Radius.circular(13)
+                                          ),
+                                          gapPadding: 5
                                       ),
-                                      gapPadding: 5
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(color: ColorsResources.applicationGeeksEmpire, width: 1.0),
-                                      borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(13),
-                                          topRight: Radius.circular(13),
-                                          bottomLeft: Radius.circular(13),
-                                          bottomRight: Radius.circular(13)
+                                      enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(color: ColorsResources.applicationGeeksEmpire, width: 1.0),
+                                          borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(13),
+                                              topRight: Radius.circular(13),
+                                              bottomLeft: Radius.circular(13),
+                                              bottomRight: Radius.circular(13)
+                                          ),
+                                          gapPadding: 5
                                       ),
-                                      gapPadding: 5
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(color: ColorsResources.applicationGeeksEmpire, width: 1.0),
-                                      borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(13),
-                                          topRight: Radius.circular(13),
-                                          bottomLeft: Radius.circular(13),
-                                          bottomRight: Radius.circular(13)
+                                      focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(color: ColorsResources.applicationGeeksEmpire, width: 1.0),
+                                          borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(13),
+                                              topRight: Radius.circular(13),
+                                              bottomLeft: Radius.circular(13),
+                                              bottomRight: Radius.circular(13)
+                                          ),
+                                          gapPadding: 5
                                       ),
-                                      gapPadding: 5
-                                  ),
-                                  hintText: StringsResources.searchFeaturesText(),
-                                  hintStyle: TextStyle(
-                                      color: ColorsResources.darkTransparent,
-                                      fontSize: 13.0
-                                  ),
-                                  labelText: StringsResources.searchText(),
-                                  labelStyle: TextStyle(
-                                      color: ColorsResources.dark,
-                                      fontSize: 17.0
-                                  ),
-                                ),
-                              ),
+                                      filled: false,
+                                      fillColor: ColorsResources.lightTransparent,
+                                      labelText: StringsResources.searchText(),
+                                      labelStyle: const TextStyle(
+                                          color: ColorsResources.dark,
+                                          fontSize: 17.0
+                                      ),
+                                      hintText: StringsResources.searchFeaturesText(),
+                                      hintStyle: const TextStyle(
+                                          color: ColorsResources.darkTransparent,
+                                          fontSize: 13.0
+                                      ),
+                                    ),
+                                  )
+                              )
                             )
                         ),
                       )
                   ),
                 ],
-              ),
-            ),
+              )
+            )
           )
-        ],
+        ]
       ),
     );
+  }
+
+  Future<List<FeaturesStructure>> getAllFeatures() async {
+
+
+    return widget.initialFeaturesStructure;
   }
 
 }
