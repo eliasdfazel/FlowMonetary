@@ -272,7 +272,19 @@ class _WelcomePageViewState extends State<WelcomePage> {
             options: const AuthenticationOptions(
               useErrorDialogs: false,
               stickyAuth: false,
-            )
+            ),
+            // authMessages: [
+            //   AndroidAuthMessages: AndroidAuthMessages(
+            //       cancelButton: StringsResources.cancelText(),
+            //       goToSettingsButton: StringsResources.settingText(),
+            //       goToSettingsDescription: StringsResources.securityWarning()
+            //   ),
+            //   IOSAuthMessages: IOSAuthMessages(
+            //       cancelButton: StringsResources.cancelText(),
+            //       goToSettingsButton: StringsResources.settingText(),
+            //       goToSettingsDescription: StringsResources.securityWarning()
+            //   )
+            // ]
         );
         debugPrint("Authentication Process Started");
 
@@ -352,14 +364,24 @@ class _WelcomePageViewState extends State<WelcomePage> {
 
       if (!WelcomePage.Authenticated) {
 
-
-
         WelcomePage.Authenticated = await localAuthentication.authenticate(
-            localizedReason: StringsResources.securityNotice(),
-            options: const AuthenticationOptions(
-              useErrorDialogs: false,
-              stickyAuth: false,
-            )
+          localizedReason: StringsResources.securityNotice(),
+          options: const AuthenticationOptions(
+            useErrorDialogs: false,
+            stickyAuth: false,
+          ),
+          // authMessages: [
+          //   AndroidAuthMessages: AndroidAuthMessages(
+          //       cancelButton: StringsResources.cancelText(),
+          //       goToSettingsButton: StringsResources.settingText(),
+          //       goToSettingsDescription: StringsResources.securityWarning()
+          //   ),
+          //   IOSAuthMessages: IOSAuthMessages(
+          //       cancelButton: StringsResources.cancelText(),
+          //       goToSettingsButton: StringsResources.settingText(),
+          //       goToSettingsDescription: StringsResources.securityWarning()
+          //   )
+          // ]
         );
         debugPrint("Authentication Process Started");
 
