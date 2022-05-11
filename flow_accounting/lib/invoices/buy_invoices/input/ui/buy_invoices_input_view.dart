@@ -1043,22 +1043,6 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
                                             }
 
-                                            InvoicedProductsDatabaseInputs invoicesProductsDatabaseInputs = InvoicedProductsDatabaseInputs();
-
-                                            invoicesProductsDatabaseInputs.insertInvoicedProductData(
-                                                InvoicedProductsData(
-                                                    id: DateTime.now().millisecondsSinceEpoch,
-                                                    invoiceProductId: productData.id,
-                                                    invoiceProductName: productData.productName,
-                                                    invoiceProductQuantity: productData.productQuantity,
-                                                    invoiceProductQuantityType: productData.productQuantityType,
-                                                    invoiceProductPrice: productData.productPrice,
-                                                    invoiceProductStatus: InvoicedProductsData.Product_Purchased
-                                                ),
-                                                InvoicedProductsDatabaseInputs.invoicedProductsDatabase(timeNow),
-                                                InvoicedProductsDatabaseInputs.databaseTableName
-                                            );
-
                                             /* Start - Calculate Invoice Price */
                                             int completePrice = int.parse(controllerProductEachPrice.text.isEmpty ? "0" : controllerProductEachPrice.text.replaceAll(",", "")) * int.parse(controllerProductQuantity.text.isEmpty ? "0" : controllerProductQuantity.text);
 
@@ -2643,6 +2627,8 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
                                       databaseInputs.insertBuyInvoiceData(buyInvoicesData, BuyInvoicesDatabaseInputs.databaseTableName, UserInformation.UserId);
 
+                                      insertInvoicedProducts();
+
                                       generateBarcode(buyInvoicesData.id);
 
                                       updateProductQuantity();
@@ -2915,6 +2901,12 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
               child: InkWell(
                 onTap: () async {
 
+                  if (widget.buyInvoicesData == null) {
+
+                    selectedProductsData.remove(productsData);
+
+                  }
+
                   InvoicedProductsQueries invoicedProductsQueries = InvoicedProductsQueries();
 
                   InvoicedProductsData invoicedProductsData = await invoicedProductsQueries.queryInvoicedProductById(
@@ -3025,6 +3017,30 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
       }
 
     }
+
+  }
+
+  void insertInvoicedProducts() async {
+
+    selectedProductsData.forEach((productData) {
+
+      InvoicedProductsDatabaseInputs invoicesProductsDatabaseInputs = InvoicedProductsDatabaseInputs();
+
+      invoicesProductsDatabaseInputs.insertInvoicedProductData(
+          InvoicedProductsData(
+              id: DateTime.now().millisecondsSinceEpoch,
+              invoiceProductId: productData.id,
+              invoiceProductName: productData.productName,
+              invoiceProductQuantity: productData.productQuantity,
+              invoiceProductQuantityType: productData.productQuantityType,
+              invoiceProductPrice: productData.productPrice,
+              invoiceProductStatus: InvoicedProductsData.Product_Purchased
+          ),
+          InvoicedProductsDatabaseInputs.invoicedProductsDatabase(timeNow),
+          InvoicedProductsDatabaseInputs.databaseTableName
+      );
+
+    });
 
   }
 
