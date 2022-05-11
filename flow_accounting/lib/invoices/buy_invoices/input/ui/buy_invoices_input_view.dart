@@ -2837,6 +2837,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
       bool invoicedProductsDatabaseExist = await databaseExists(invoicedProductDatabasePath);
 
       if (invoicedProductsDatabaseExist) {
+        debugPrint("Invoiced Products Database Exists");
 
         InvoicedProductsQueries invoicedProductsQueries = InvoicedProductsQueries();
 
@@ -2845,7 +2846,6 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
         ProductsDatabaseQueries productsDatabaseQueries = ProductsDatabaseQueries();
 
         allInvoicedProducts.forEach((element) async {
-
 
           var aProduct = await productsDatabaseQueries.querySpecificProductById(element.invoiceProductId.toString(), ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
@@ -2878,16 +2878,10 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
         });
 
-        if (allProductsItem.isNotEmpty) {
-
-          selectedInvoiceProductsView = SelectedInvoiceProductsView(selectedInputProductsItem: allProductsItem);
-
-        }
-
         setState(() {
           debugPrint("Invoices Products Retrieved");
 
-          selectedInvoiceProductsView;
+          selectedInvoiceProductsView = SelectedInvoiceProductsView(selectedInputProductsItem: allProductsItem);
 
         });
 
@@ -2897,7 +2891,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
   }
 
-  Widget selectedProductView(ProductsData productsData, int invoicedProductStatus) {
+  Widget selectedProductView(ProductsData productsData, String invoicedProductStatus) {
 
     TextStyle invoicedProductStyle = TextStyle(
         color: ColorsResources.darkTransparent,
@@ -2914,8 +2908,9 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
       invoicedProductStyle = TextStyle(
           color: ColorsResources.darkTransparent,
           fontSize: 15,
-          decoration: TextDecoration.lineThrough,
-          decorationColor: ColorsResources.red.withOpacity(0.5)
+          decoration: TextDecoration.overline,
+          decorationColor: ColorsResources.red.withOpacity(0.5),
+          decorationThickness: 5
       );
 
     }
@@ -2983,7 +2978,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
             Expanded(
               flex: 11,
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(3, 0, 3, 0),
+                padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
                 child: Directionality(
                   textDirection: TextDirection.rtl,
                   child: Text(

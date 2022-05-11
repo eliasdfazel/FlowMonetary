@@ -10,8 +10,8 @@
 
 class InvoicedProductsData {
 
-  static const Product_Purchased = 0;
-  static const Product_Returned = 1;
+  static const Product_Purchased = "0";
+  static const Product_Returned = "1";
 
   final int id;
 
@@ -21,7 +21,7 @@ class InvoicedProductsData {
   final String invoiceProductQuantityType;
   final String invoiceProductPrice;
 
-  int invoiceProductStatus = InvoicedProductsData.Product_Purchased;
+  String invoiceProductStatus = InvoicedProductsData.Product_Purchased;
 
   InvoicedProductsData({
     required this.id,

@@ -39,7 +39,7 @@ class InvoicedProductsQueries {
         invoiceProductQuantity: int.parse(databaseContents[i]['invoiceProductQuantity'].toString()),
         invoiceProductQuantityType: databaseContents[i]['invoiceProductQuantityType'].toString(),
 
-        invoiceProductStatus: int.parse(databaseContents[i]['invoiceProductId'].toString()),
+        invoiceProductStatus: databaseContents[i]['invoiceProductStatus'].toString(),
       );
     });
 
@@ -73,7 +73,7 @@ class InvoicedProductsQueries {
       invoiceProductQuantity: int.parse(databaseContents[0]['invoiceProductQuantity'].toString()),
       invoiceProductQuantityType: databaseContents[0]['invoiceProductQuantityType'].toString(),
 
-      invoiceProductStatus: int.parse(databaseContents[0]['invoiceProductId'].toString()),
+      invoiceProductStatus: databaseContents[0]['invoiceProductStatus'].toString(),
     );
   }
 
