@@ -2883,7 +2883,11 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
       });
 
-      selectedInvoiceProductsView = SelectedInvoiceProductsView(selectedInputProductsItem: allProductsItem);
+      if (allProductsItem.isNotEmpty) {
+
+        selectedInvoiceProductsView = SelectedInvoiceProductsView(selectedInputProductsItem: allProductsItem);
+
+      }
 
       setState(() {
         debugPrint("Invoices Products Retrieved");
