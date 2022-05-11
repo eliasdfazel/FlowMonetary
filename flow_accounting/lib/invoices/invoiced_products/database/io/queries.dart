@@ -8,8 +8,8 @@
  * https://opensource.org/licenses/MIT
  */
 
-import 'package:flow_accounting/invoices/selected_products/database/io/inputs.dart';
-import 'package:flow_accounting/invoices/selected_products/database/structures/tables_structure.dart';
+import 'package:flow_accounting/invoices/invoiced_products/database/io/inputs.dart';
+import 'package:flow_accounting/invoices/invoiced_products/database/structures/tables_structure.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 

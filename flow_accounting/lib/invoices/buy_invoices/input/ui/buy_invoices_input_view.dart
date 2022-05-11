@@ -20,9 +20,9 @@ import 'package:flow_accounting/credit_cards/database/structures/tables_structur
 import 'package:flow_accounting/creditors/database/structures/tables_structure.dart';
 import 'package:flow_accounting/invoices/buy_invoices/database/io/inputs.dart';
 import 'package:flow_accounting/invoices/buy_invoices/database/structures/tables_structure.dart';
-import 'package:flow_accounting/invoices/selected_products/database/io/inputs.dart';
-import 'package:flow_accounting/invoices/selected_products/database/io/queries.dart';
-import 'package:flow_accounting/invoices/selected_products/database/structures/tables_structure.dart';
+import 'package:flow_accounting/invoices/invoiced_products/database/io/inputs.dart';
+import 'package:flow_accounting/invoices/invoiced_products/database/io/queries.dart';
+import 'package:flow_accounting/invoices/invoiced_products/database/structures/tables_structure.dart';
 import 'package:flow_accounting/products/database/io/inputs.dart';
 import 'package:flow_accounting/products/database/io/queries.dart';
 import 'package:flow_accounting/products/database/structures/tables_structure.dart';
@@ -2805,7 +2805,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
     for(var aProduct in inputSelectedProduct) {
       debugPrint("Product Added To Invoice -> ${aProduct.productName}");
 
-      selectedProductItem.add(selectedProductView(aProduct));
+      selectedProductItem.add(selectedProductView(aProduct, InvoicedProductsData.Product_Purchased));
 
     }
 
@@ -2846,31 +2846,35 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
         allInvoicedProducts.forEach((element) async {
 
+
           var aProduct = await productsDatabaseQueries.querySpecificProductById(element.invoiceProductId.toString(), ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
-          allProductsItem.add(selectedProductView(ProductsData(
-              id: element.invoiceProductId,
+          allProductsItem.add(selectedProductView(
+              ProductsData(
+                  id: element.invoiceProductId,
 
-              productImageUrl: aProduct.productImageUrl,
+                  productImageUrl: aProduct.productImageUrl,
 
-              productName: aProduct.productName,
-              productDescription: aProduct.productDescription,
+                  productName: aProduct.productName,
+                  productDescription: aProduct.productDescription,
 
-              productCategory: aProduct.productCategory,
+                  productCategory: aProduct.productCategory,
 
-              productBrand: aProduct.productBrand,
-              productBrandLogoUrl: aProduct.productBrandLogoUrl,
+                  productBrand: aProduct.productBrand,
+                  productBrandLogoUrl: aProduct.productBrandLogoUrl,
 
-              productPrice: aProduct.productImageUrl,
-              productProfitPercent: aProduct.productProfitPercent,
+                  productPrice: aProduct.productImageUrl,
+                  productProfitPercent: aProduct.productProfitPercent,
 
-              productTax: aProduct.productTax,
+                  productTax: aProduct.productTax,
 
-              productQuantity: aProduct.productQuantity,
-              productQuantityType: aProduct.productQuantityType,
+                  productQuantity: aProduct.productQuantity,
+                  productQuantityType: aProduct.productQuantityType,
 
-              colorTag: aProduct.colorTag
-          )));
+                  colorTag: aProduct.colorTag
+              ),
+              element.invoiceProductStatus
+          ));
 
         });
 
@@ -2893,7 +2897,28 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
   }
 
-  Widget selectedProductView(ProductsData productsData) {
+  Widget selectedProductView(ProductsData productsData, int invoicedProductStatus) {
+
+    TextStyle invoicedProductStyle = TextStyle(
+        color: ColorsResources.darkTransparent,
+        fontSize: 15,
+        fontWeight: FontWeight.bold
+    );
+
+    if (invoicedProductStatus == InvoicedProductsData.Product_Purchased) {
+
+
+
+    } else if (invoicedProductStatus == InvoicedProductsData.Product_Returned) {
+
+      invoicedProductStyle = TextStyle(
+          color: ColorsResources.darkTransparent,
+          fontSize: 15,
+          decoration: TextDecoration.lineThrough,
+          decorationColor: ColorsResources.red.withOpacity(0.5)
+      );
+
+    }
 
     return Container(
         width: 173,
@@ -2963,10 +2988,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                   textDirection: TextDirection.rtl,
                   child: Text(
                     productsData.productName,
-                    style: const TextStyle(
-                        color: ColorsResources.darkTransparent,
-                        fontSize: 15
-                    ),
+                    style: invoicedProductStyle,
                   ),
                 ),
               ),
