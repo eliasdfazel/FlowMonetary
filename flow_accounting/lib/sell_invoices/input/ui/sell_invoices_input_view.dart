@@ -205,6 +205,8 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
     prepareAllImagesCheckpoint();
 
+    prepareSelectedProducts();
+
     super.initState();
 
     BackButtonInterceptor.add(aInterceptor);
