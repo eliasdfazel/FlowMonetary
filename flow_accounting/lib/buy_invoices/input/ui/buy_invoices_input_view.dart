@@ -2517,18 +2517,6 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
                                   }
 
-                                  if (controllerInvoiceNumber.text.isEmpty) {
-
-                                    setState(() {
-
-                                      warningNoticeNumber = StringsResources.errorText();
-
-                                    });
-
-                                    noError = false;
-
-                                  }
-
                                   if (controllerInvoiceDescription.text.isEmpty) {
 
                                     setState(() {
@@ -2597,7 +2585,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                         companyName: controllerCompanyName.text.isEmpty ? UserInformation.UserId : controllerCompanyName.text,
                                         companyLogoUrl: companyLogoUrl,
 
-                                        buyInvoiceNumber: controllerInvoiceNumber.text,
+                                        buyInvoiceNumber: controllerInvoiceNumber.text.isEmpty ? timeNow.toString() : controllerInvoiceNumber.text,
 
                                         buyInvoiceDescription: controllerInvoiceDescription.text,
 
