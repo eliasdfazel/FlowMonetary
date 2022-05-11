@@ -8,14 +8,18 @@
  * https://opensource.org/licenses/MIT
  */
 
-import 'package:flow_accounting/buy_invoices/database/io/inputs.dart';
-import 'package:flow_accounting/buy_invoices/database/io/queries.dart';
-import 'package:flow_accounting/buy_invoices/database/structures/tables_structure.dart';
-import 'package:flow_accounting/buy_invoices/input/ui/buy_invoices_input_view.dart';
 import 'package:flow_accounting/credit_cards/database/io/inputs.dart';
 import 'package:flow_accounting/credit_cards/database/io/queries.dart';
 import 'package:flow_accounting/credit_cards/database/structures/tables_structure.dart';
 import 'package:flow_accounting/home/interface/sections/latest_transactions_view.dart';
+import 'package:flow_accounting/invoices/buy_invoices/database/io/inputs.dart';
+import 'package:flow_accounting/invoices/buy_invoices/database/io/queries.dart';
+import 'package:flow_accounting/invoices/buy_invoices/database/structures/tables_structure.dart';
+import 'package:flow_accounting/invoices/buy_invoices/input/ui/buy_invoices_input_view.dart';
+import 'package:flow_accounting/invoices/sell_invoices/database/io/inputs.dart';
+import 'package:flow_accounting/invoices/sell_invoices/database/io/queries.dart';
+import 'package:flow_accounting/invoices/sell_invoices/database/structures/tables_structure.dart';
+import 'package:flow_accounting/invoices/sell_invoices/input/ui/sell_invoices_input_view.dart';
 import 'package:flow_accounting/products/database/io/inputs.dart';
 import 'package:flow_accounting/products/database/io/queries.dart';
 import 'package:flow_accounting/products/database/structures/tables_structure.dart';
@@ -23,9 +27,6 @@ import 'package:flow_accounting/products/input/ui/products_input_view.dart';
 import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
-import 'package:flow_accounting/sell_invoices/database/io/queries.dart';
-import 'package:flow_accounting/sell_invoices/database/structures/tables_structure.dart';
-import 'package:flow_accounting/sell_invoices/input/ui/sell_invoices_input_view.dart';
 import 'package:flow_accounting/transactions/database/io/inputs.dart';
 import 'package:flow_accounting/transactions/database/io/queries.dart';
 import 'package:flow_accounting/transactions/database/structures/tables_structure.dart';
@@ -532,7 +533,7 @@ class FlowDashboardState extends State<FlowDashboard> {
 
       SellInvoicesDatabaseQueries sellInvoicesDatabaseQueries = SellInvoicesDatabaseQueries();
 
-      SellInvoicesData scannedSellInvoicesData = await sellInvoicesDatabaseQueries.querySpecificSellInvoiceById(sellInvoiceId, BuyInvoicesDatabaseInputs.databaseTableName, UserInformation.UserId);
+      SellInvoicesData scannedSellInvoicesData = await sellInvoicesDatabaseQueries.querySpecificSellInvoiceById(sellInvoiceId, SellInvoicesDatabaseInputs.databaseTableName, UserInformation.UserId);
 
       Future.delayed(Duration(milliseconds: 753), () {
 

@@ -11,10 +11,10 @@
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:flow_accounting/buy_invoices/database/structures/tables_structure.dart';
-import 'package:flow_accounting/buy_invoices/print/ui/print_layout.dart';
-import 'package:flow_accounting/sell_invoices/database/structures/tables_structure.dart';
-import 'package:flow_accounting/sell_invoices/print/ui/print_layout.dart';
+import 'package:flow_accounting/invoices/buy_invoices/database/structures/tables_structure.dart';
+import 'package:flow_accounting/invoices/buy_invoices/print/ui/print_layout.dart';
+import 'package:flow_accounting/invoices/sell_invoices/database/structures/tables_structure.dart';
+import 'package:flow_accounting/invoices/sell_invoices/print/ui/print_layout.dart';
 import 'package:flow_accounting/utils/io/FileIO.dart';
 import 'package:flutter/material.dart';
 import 'package:screenshot/screenshot.dart';
