@@ -14,6 +14,9 @@ import 'package:flow_accounting/invoices/buy_invoices/database/io/inputs.dart';
 import 'package:flow_accounting/invoices/buy_invoices/database/io/queries.dart';
 import 'package:flow_accounting/invoices/buy_invoices/database/structures/tables_structure.dart';
 import 'package:flow_accounting/invoices/buy_invoices/input/ui/buy_invoices_input_view.dart';
+import 'package:flow_accounting/invoices/selected_products/database/io/inputs.dart';
+import 'package:flow_accounting/invoices/selected_products/database/io/queries.dart';
+import 'package:flow_accounting/invoices/selected_products/database/structures/tables_structure.dart';
 import 'package:flow_accounting/products/database/io/inputs.dart';
 import 'package:flow_accounting/products/database/io/queries.dart';
 import 'package:flow_accounting/profile/database/io/queries.dart';
@@ -816,11 +819,7 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
       if (element.buyInvoiceNumber.contains(searchQuery) ||
           element.buyInvoiceDateText.contains(searchQuery) ||
           element.buyInvoiceDescription.contains(searchQuery) ||
-          element.boughtProductId.contains(searchQuery) ||
-          element.boughtProductName.contains(searchQuery) ||
-          element.boughtProductQuantity.contains(searchQuery) ||
           element.boughtProductPrice.contains(searchQuery) ||
-          element.boughtProductEachPrice.contains(searchQuery) ||
           element.boughtProductPriceDiscount.contains(searchQuery) ||
           element.paidBy.contains(searchQuery) ||
           element.boughtFrom.contains(searchQuery) ||
@@ -869,27 +868,17 @@ class _BuyInvoiceViewState extends State<BuyInvoicesOutputView> {
 
       ProductsDatabaseQueries productsDatabaseQueries = ProductsDatabaseQueries();
 
-      var allIds = buyInvoicesData.boughtProductId.split(",");
+      InvoicedProductsQueries invoicedProductsQueries = InvoicedProductsQueries();
 
-      var allNames = buyInvoicesData.boughtProductName.split(",");
+      List<InvoicedProductsData> allInvoicedProducts = await invoicedProductsQueries.getAllInvoicedProducts(InvoicedProductsDatabaseInputs.invoicedProductsDatabase(buyInvoicesData.id), InvoicedProductsDatabaseInputs.databaseTableName);
 
-      var allQuantities = buyInvoicesData.boughtProductQuantity.split(",");
+      allInvoicedProducts.forEach((element) async {
 
-      var allQuantitiesTypes = buyInvoicesData.productQuantityType.split(",");
+        var aProduct = await productsDatabaseQueries.querySpecificProductById(element.invoiceProductId.toString(), ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
-      var allEachPrice = buyInvoicesData.boughtProductEachPrice.split(",");
-
-      var index = 0;
-
-      allIds.forEach((element) async {
-
-        var aProduct = await productsDatabaseQueries.querySpecificProductById(element, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
-
-        aProduct.productQuantity = aProduct.productQuantity - int.parse(allQuantities[index]);
+        aProduct.productQuantity = aProduct.productQuantity - element.invoiceProductQuantity;
 
         await productsDatabaseInputs.updateProductData(aProduct, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
-
-        index++;
 
       });
 

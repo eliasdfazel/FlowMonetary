@@ -294,7 +294,7 @@ class BuyPrintLayout {
                                       child: Align(
                                           alignment: AlignmentDirectional.centerEnd,
                                           child: Text(
-                                              buyInvoicesData.boughtProductQuantity,
+                                              "buyInvoicesData.boughtProductQuantity",
                                               textAlign: TextAlign.center,
                                               maxLines: 1,
                                               style: TextStyle(
@@ -318,7 +318,7 @@ class BuyPrintLayout {
                                       child: Align(
                                           alignment: AlignmentDirectional.centerEnd,
                                           child: Text(
-                                              buyInvoicesData.boughtProductName,
+                                              "buyInvoicesData.boughtProductName",
                                               textDirection: TextDirection.rtl,
                                               maxLines: 2,
                                               style: TextStyle(
@@ -437,7 +437,7 @@ class BuyPrintLayout {
                                       child: Align(
                                           alignment: AlignmentDirectional.centerEnd,
                                           child: Text(
-                                              buyInvoicesData.boughtProductEachPrice,
+                                              "buyInvoicesData.boughtProductEachPrice",
                                               textDirection: TextDirection.rtl,
                                               maxLines: 2,
                                               style: TextStyle(
