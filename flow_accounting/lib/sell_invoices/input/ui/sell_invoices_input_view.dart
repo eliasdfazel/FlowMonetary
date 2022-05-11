@@ -3228,7 +3228,7 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
         controller: barcodeSnapshotController,
         child: SfBarcodeGenerator(
           value: "SellInvoices_${widget.sellInvoicesData!.id.toString()}",
-          symbology: EAN8(),
+          symbology: QRCode(),
           barColor: ColorsResources.primaryColor,
         ),
       );
