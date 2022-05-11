@@ -312,13 +312,13 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                                 height: 53,
                               ),
                             ),
-                            const SizedBox(
-                                width: 53,
-                                height: 53,
-                                child: Align(
-                                    alignment: AlignmentDirectional.center,
+                            const Align(
+                                alignment: AlignmentDirectional.center,
+                                child: SizedBox(
+                                    width: 53,
+                                    height: 53,
                                     child: Padding(
-                                        padding: EdgeInsets.fromLTRB(7, 7, 7, 7),
+                                        padding: EdgeInsets.fromLTRB(9, 9, 9, 9),
                                         child: Image(
                                           image: AssetImage("print_icon.png"),
                                           color: ColorsResources.lightestOrange,
