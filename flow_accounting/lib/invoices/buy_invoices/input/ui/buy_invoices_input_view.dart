@@ -2830,54 +2830,64 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
     if (widget.buyInvoicesData != null) {
 
-      InvoicedProductsQueries invoicedProductsQueries = InvoicedProductsQueries();
+      String databaseDirectory = await getDatabasesPath();
 
-      List<InvoicedProductsData> allInvoicedProducts = await invoicedProductsQueries.getAllInvoicedProducts(InvoicedProductsDatabaseInputs.invoicedProductsDatabase(timeNow), InvoicedProductsDatabaseInputs.databaseTableName);
+      String invoicedProductDatabasePath = "${databaseDirectory}/${InvoicedProductsDatabaseInputs.invoicedProductsDatabase(timeNow)}";
 
-      ProductsDatabaseQueries productsDatabaseQueries = ProductsDatabaseQueries();
+      bool invoicedProductsDatabaseExist = await databaseExists(invoicedProductDatabasePath);
 
-      allInvoicedProducts.forEach((element) async {
+      if (invoicedProductsDatabaseExist) {
 
-        var aProduct = await productsDatabaseQueries.querySpecificProductById(element.invoiceProductId.toString(), ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+        InvoicedProductsQueries invoicedProductsQueries = InvoicedProductsQueries();
 
-        allProductsItem.add(selectedProductView(ProductsData(
-            id: element.invoiceProductId,
+        List<InvoicedProductsData> allInvoicedProducts = await invoicedProductsQueries.getAllInvoicedProducts(InvoicedProductsDatabaseInputs.invoicedProductsDatabase(timeNow), InvoicedProductsDatabaseInputs.databaseTableName);
 
-            productImageUrl: aProduct.productImageUrl,
+        ProductsDatabaseQueries productsDatabaseQueries = ProductsDatabaseQueries();
 
-            productName: aProduct.productName,
-            productDescription: aProduct.productDescription,
+        allInvoicedProducts.forEach((element) async {
 
-            productCategory: aProduct.productCategory,
+          var aProduct = await productsDatabaseQueries.querySpecificProductById(element.invoiceProductId.toString(), ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
-            productBrand: aProduct.productBrand,
-            productBrandLogoUrl: aProduct.productBrandLogoUrl,
+          allProductsItem.add(selectedProductView(ProductsData(
+              id: element.invoiceProductId,
 
-            productPrice: aProduct.productImageUrl,
-            productProfitPercent: aProduct.productProfitPercent,
+              productImageUrl: aProduct.productImageUrl,
 
-            productTax: aProduct.productTax,
+              productName: aProduct.productName,
+              productDescription: aProduct.productDescription,
 
-            productQuantity: aProduct.productQuantity,
-            productQuantityType: aProduct.productQuantityType,
+              productCategory: aProduct.productCategory,
 
-            colorTag: aProduct.colorTag
-        )));
+              productBrand: aProduct.productBrand,
+              productBrandLogoUrl: aProduct.productBrandLogoUrl,
 
-      });
+              productPrice: aProduct.productImageUrl,
+              productProfitPercent: aProduct.productProfitPercent,
 
-      if (allProductsItem.isNotEmpty) {
+              productTax: aProduct.productTax,
 
-        selectedInvoiceProductsView = SelectedInvoiceProductsView(selectedInputProductsItem: allProductsItem);
+              productQuantity: aProduct.productQuantity,
+              productQuantityType: aProduct.productQuantityType,
+
+              colorTag: aProduct.colorTag
+          )));
+
+        });
+
+        if (allProductsItem.isNotEmpty) {
+
+          selectedInvoiceProductsView = SelectedInvoiceProductsView(selectedInputProductsItem: allProductsItem);
+
+        }
+
+        setState(() {
+          debugPrint("Invoices Products Retrieved");
+
+          selectedInvoiceProductsView;
+
+        });
 
       }
-
-      setState(() {
-        debugPrint("Invoices Products Retrieved");
-
-        selectedInvoiceProductsView;
-
-      });
 
     }
 
