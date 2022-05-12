@@ -155,8 +155,6 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
     ),
   );
 
-  Widget selectedInvoiceProductsView = Container();
-
   @override
   void dispose() {
 
@@ -175,6 +173,8 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
         timeNow = (widget.buyInvoicesData?.id)!;
 
       }
+
+      colorSelectorView.inputColor = Color(widget.buyInvoicesData!.colorTag);
 
     }
 
@@ -1720,7 +1720,16 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                         height: 3,
                         color: Colors.transparent,
                       ),
-                      selectedInvoiceProductsView,
+                      SizedBox(
+                          width: double.infinity,
+                          height: 57,
+                          child: ListView(
+                            physics: const BouncingScrollPhysics(),
+                            padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                            scrollDirection: Axis.horizontal,
+                            children: selectedProductWidget,
+                          )
+                      ),
                       const Divider(
                         height: 13,
                         color: Colors.transparent,
@@ -2622,6 +2631,8 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
                                         databaseInputs.updateInvoiceData(buyInvoicesData, BuyInvoicesDatabaseInputs.databaseTableName, UserInformation.UserId);
 
+                                        updateInvoicedProducts();
+
                                       }
 
                                     } else {
@@ -2632,9 +2643,10 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
                                       generateBarcode(buyInvoicesData.id);
 
-                                      updateProductQuantity();
-
                                     }
+
+                                    updateProductQuantity();
+
 
                                     Fluttertoast.showToast(
                                         msg: StringsResources.updatedText(),
@@ -2817,7 +2829,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
     setState(() {
       debugPrint("Invoices Products Updated");
 
-      selectedInvoiceProductsView = invoicedProductsView(selectedProductWidget);
+      selectedProductWidget;
 
     });
 
@@ -2867,7 +2879,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
         setState(() {
           debugPrint("Invoices Products Retrieved");
 
-          selectedInvoiceProductsView = invoicedProductsView(selectedProductWidget);
+          selectedProductWidget;
 
         });
 
@@ -2883,11 +2895,11 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
     if (invoicedProductStatus == InvoicedProductsData.Product_Purchased) {
 
-      productItemStatusColor = ColorsResources.red;
+      productItemStatusColor = ColorsResources.blueGreen;
 
     } else if (invoicedProductStatus == InvoicedProductsData.Product_Returned) {
 
-      productItemStatusColor = ColorsResources.blueGreen;
+      productItemStatusColor = ColorsResources.red;
 
     }
 
@@ -2897,7 +2909,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
         margin: EdgeInsets.fromLTRB(0, 0, 5, 0),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(51),
-            color: productItemStatusColor.withOpacity(0.17)
+            color: productItemStatusColor.withOpacity(0.13)
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -3084,20 +3096,56 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
   }
 
-  Widget invoicedProductsView(List<Widget> selectedInputProductsItem) {
+  void updateInvoicedProducts() async {
 
-    return SizedBox(
-        width: double.infinity,
-        height: 57,
-        child: Container(
-          child: ListView(
-            physics: const BouncingScrollPhysics(),
-            padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
-            scrollDirection: Axis.horizontal,
-            children: selectedInputProductsItem,
-          ),
-        )
-    );
+    InvoicedProductsQueries invoicedProductsQueries = InvoicedProductsQueries();
+
+    List<InvoicedProductsData> allInvoicedProducts = await invoicedProductsQueries.getAllInvoicedProducts(InvoicedProductsDatabaseInputs.invoicedProductsDatabase(timeNow), InvoicedProductsDatabaseInputs.databaseTableName);
+
+    selectedProductsData.forEach((productData) {
+
+      InvoicedProductsDatabaseInputs invoicesProductsDatabaseInputs = InvoicedProductsDatabaseInputs();
+
+      InvoicedProductsData? alreadyPurchasedProduct = allInvoicedProducts.singleWhere((element) => (element.invoiceProductId == productData.id), orElse: null);
+
+      if (alreadyPurchasedProduct != null) {
+
+        invoicesProductsDatabaseInputs.updateInvoicedData(
+            InvoicedProductsData(
+                id: alreadyPurchasedProduct.id,
+                invoiceProductId: alreadyPurchasedProduct.invoiceProductId,
+                invoiceProductName: alreadyPurchasedProduct.invoiceProductName,
+                invoiceProductQuantity: productData.productQuantity,
+                invoiceProductQuantityType: productData.productQuantityType,
+                invoiceProductPrice: productData.productPrice,
+                invoiceProductStatus: InvoicedProductsData.Product_Purchased
+            ),
+            InvoicedProductsDatabaseInputs.invoicedProductsDatabase(timeNow),
+            InvoicedProductsDatabaseInputs.databaseTableName
+        );
+
+      } else {
+
+
+        invoicesProductsDatabaseInputs.insertInvoicedProductData(
+            InvoicedProductsData(
+                id: DateTime.now().millisecondsSinceEpoch,
+                invoiceProductId: productData.id,
+                invoiceProductName: productData.productName,
+                invoiceProductQuantity: productData.productQuantity,
+                invoiceProductQuantityType: productData.productQuantityType,
+                invoiceProductPrice: productData.productPrice,
+                invoiceProductStatus: InvoicedProductsData.Product_Purchased
+            ),
+            InvoicedProductsDatabaseInputs.invoicedProductsDatabase(timeNow),
+            InvoicedProductsDatabaseInputs.databaseTableName
+        );
+
+
+      }
+
+    });
+
   }
 
   Future<List<CreditCardsData>> getAllCreditCards() async {
