@@ -34,6 +34,7 @@ import 'package:flow_accounting/utils/colors/color_selector.dart';
 import 'package:flow_accounting/utils/extensions/BankLogos.dart';
 import 'package:flow_accounting/utils/io/FileIO.dart';
 import 'package:flow_accounting/utils/print/printing.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -134,7 +135,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
   String? warningBoughtFrom;
 
-  List<Widget> selectedProductItem = [];
+  List<Widget> selectedProductWidget = [];
 
   Widget printingView = Container();
 
@@ -2800,25 +2801,23 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
   void updateSelectedProductsList(List<ProductsData> inputSelectedProduct) async {
 
-    selectedProductItem.clear();
+    selectedProductWidget.clear();
+
+    int index = 0;
 
     for(var aProduct in inputSelectedProduct) {
       debugPrint("Product Added To Invoice -> ${aProduct.productName}");
 
-      selectedProductItem.add(selectedProductView(aProduct, InvoicedProductsData.Product_Purchased));
+      selectedProductWidget.add(selectedProductItemView(aProduct, InvoicedProductsData.Product_Purchased, index));
 
-    }
-
-    if (selectedProductItem.isNotEmpty) {
-
-      selectedInvoiceProductsView = SelectedInvoiceProductsView(selectedInputProductsItem: selectedProductItem);
+      index++;
 
     }
 
     setState(() {
       debugPrint("Invoices Products Updated");
 
-      selectedInvoiceProductsView;
+      selectedInvoiceProductsView = invoicedProductsView(selectedProductWidget);
 
     });
 
@@ -2826,7 +2825,9 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
   void prepareSelectedProducts() async {
 
-    List<Widget> allProductsItem = [];
+    selectedProductWidget.clear();
+
+    selectedProductsData.clear();
 
     if (widget.buyInvoicesData != null) {
 
@@ -2845,43 +2846,28 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
         ProductsDatabaseQueries productsDatabaseQueries = ProductsDatabaseQueries();
 
+        int index = 0;
+
         allInvoicedProducts.forEach((element) async {
 
           var aProduct = await productsDatabaseQueries.querySpecificProductById(element.invoiceProductId.toString(), ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
-          allProductsItem.add(selectedProductView(
-              ProductsData(
-                  id: element.invoiceProductId,
-
-                  productImageUrl: aProduct.productImageUrl,
-
-                  productName: aProduct.productName,
-                  productDescription: aProduct.productDescription,
-
-                  productCategory: aProduct.productCategory,
-
-                  productBrand: aProduct.productBrand,
-                  productBrandLogoUrl: aProduct.productBrandLogoUrl,
-
-                  productPrice: aProduct.productImageUrl,
-                  productProfitPercent: aProduct.productProfitPercent,
-
-                  productTax: aProduct.productTax,
-
-                  productQuantity: aProduct.productQuantity,
-                  productQuantityType: aProduct.productQuantityType,
-
-                  colorTag: aProduct.colorTag
-              ),
-              element.invoiceProductStatus
+          selectedProductWidget.add(selectedProductItemView(
+              aProduct,
+              element.invoiceProductStatus,
+              index
           ));
+
+          selectedProductsData.add(aProduct);
+
+          index++;
 
         });
 
         setState(() {
           debugPrint("Invoices Products Retrieved");
 
-          selectedInvoiceProductsView = SelectedInvoiceProductsView(selectedInputProductsItem: allProductsItem);
+          selectedInvoiceProductsView = invoicedProductsView(selectedProductWidget);
 
         });
 
@@ -2891,27 +2877,17 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
   }
 
-  Widget selectedProductView(ProductsData productsData, String invoicedProductStatus) {
+  Widget selectedProductItemView(ProductsData productsData, String invoicedProductStatus, int index) {
 
-    TextStyle invoicedProductStyle = TextStyle(
-        color: ColorsResources.darkTransparent,
-        fontSize: 15,
-        fontWeight: FontWeight.bold
-    );
+    Color productItemStatusColor = ColorsResources.lightTransparent;
 
     if (invoicedProductStatus == InvoicedProductsData.Product_Purchased) {
 
-
+      productItemStatusColor = ColorsResources.red;
 
     } else if (invoicedProductStatus == InvoicedProductsData.Product_Returned) {
 
-      invoicedProductStyle = TextStyle(
-          color: ColorsResources.darkTransparent,
-          fontSize: 15,
-          decoration: TextDecoration.overline,
-          decorationColor: ColorsResources.red.withOpacity(0.5),
-          decorationThickness: 5
-      );
+      productItemStatusColor = ColorsResources.blueGreen;
 
     }
 
@@ -2921,7 +2897,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
         margin: EdgeInsets.fromLTRB(0, 0, 5, 0),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(51),
-            color: ColorsResources.light
+            color: productItemStatusColor.withOpacity(0.17)
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -2935,31 +2911,61 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
                     selectedProductsData.remove(productsData);
 
+                    updateSelectedProductsList(selectedProductsData);
+
+                  } else {
+
+                    String databaseDirectory = await getDatabasesPath();
+
+                    String invoicedProductDatabasePath = "${databaseDirectory}/${InvoicedProductsDatabaseInputs.invoicedProductsDatabase(timeNow)}";
+
+                    bool invoicedProductsDatabaseExist = await databaseExists(invoicedProductDatabasePath);
+
+                    if (invoicedProductsDatabaseExist) {
+
+                      InvoicedProductsQueries invoicedProductsQueries = InvoicedProductsQueries();
+
+                      InvoicedProductsData invoicedProductsData = await invoicedProductsQueries.queryInvoicedProductById(
+                          productsData.id.toString(),
+                          InvoicedProductsDatabaseInputs.invoicedProductsDatabase(timeNow),
+                          InvoicedProductsDatabaseInputs.databaseTableName
+                      );
+
+                      if (invoicedProductsData.invoiceProductStatus == InvoicedProductsData.Product_Returned) { // Product Returned
+
+                        invoicedProductsData.invoiceProductStatus = InvoicedProductsData.Product_Purchased;
+
+                        /* Start - Calculate Invoice Price */
+                        int previousInvoicePrice = int.parse(controllerInvoicePrice.text.replaceAll(",", ""));
+
+                        controllerInvoicePrice.text = (previousInvoicePrice + int.parse(productsData.productPrice.replaceAll(",", ""))).toString();
+                        /* End - Calculate Invoice Price */
+
+                      } else if (invoicedProductsData.invoiceProductStatus == InvoicedProductsData.Product_Purchased) { // Product Purchased
+
+                        invoicedProductsData.invoiceProductStatus = InvoicedProductsData.Product_Returned;
+
+                        /* Start - Calculate Invoice Price */
+                        int previousInvoicePrice = int.parse(controllerInvoicePrice.text.replaceAll(",", ""));
+
+                        controllerInvoicePrice.text = (previousInvoicePrice - int.parse(productsData.productPrice.replaceAll(",", ""))).toString();
+                        /* End - Calculate Invoice Price */
+
+                      }
+
+                      InvoicedProductsDatabaseInputs invoicedProductsDatabaseInputs = InvoicedProductsDatabaseInputs();
+
+                      invoicedProductsDatabaseInputs.updateInvoicedData(
+                          invoicedProductsData,
+                          InvoicedProductsDatabaseInputs.invoicedProductsDatabase(timeNow),
+                          InvoicedProductsDatabaseInputs.databaseTableName
+                      );
+
+                      prepareSelectedProducts();
+
+                    }
+
                   }
-
-                  InvoicedProductsQueries invoicedProductsQueries = InvoicedProductsQueries();
-
-                  InvoicedProductsData invoicedProductsData = await invoicedProductsQueries.queryInvoicedProductById(
-                      productsData.id.toString(),
-                      InvoicedProductsDatabaseInputs.invoicedProductsDatabase(timeNow),
-                      InvoicedProductsDatabaseInputs.databaseTableName
-                  );
-
-                  invoicedProductsData.invoiceProductStatus = InvoicedProductsData.Product_Returned;
-
-                  InvoicedProductsDatabaseInputs invoicedProductsDatabaseInputs = InvoicedProductsDatabaseInputs();
-
-                  invoicedProductsDatabaseInputs.updateInvoicedData(
-                      invoicedProductsData,
-                      InvoicedProductsDatabaseInputs.invoicedProductsDatabase(timeNow),
-                      InvoicedProductsDatabaseInputs.databaseTableName
-                  );
-
-                  /* Start - Calculate Invoice Price */
-                  int previousInvoicePrice = int.parse(controllerInvoicePrice.text.replaceAll(",", ""));
-
-                  controllerInvoicePrice.text = (previousInvoicePrice - int.parse(productsData.productPrice.replaceAll(",", "replace"))).toString();
-                  /* End - Calculate Invoice Price */
 
                 },
                 child: Padding(
@@ -2968,7 +2974,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                       alignment: AlignmentDirectional.center,
                       child: Icon(
                         Icons.delete_rounded,
-                        size: 17,
+                        size: 19,
                         color: ColorsResources.darkTransparent,
                       )
                   )
@@ -2978,36 +2984,43 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
             Expanded(
               flex: 11,
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
+                padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
                 child: Directionality(
                   textDirection: TextDirection.rtl,
                   child: Text(
                     productsData.productName,
-                    style: invoicedProductStyle,
+                    style: TextStyle(
+                        color: ColorsResources.darkTransparent,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold
+                    ),
                   ),
                 ),
               ),
             ),
             Expanded(
                 flex: 5,
-                child:  AspectRatio(
-                  aspectRatio: 1,
-                  child: Container(
-                    decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: ColorsResources.light
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 3, 7, 3),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(51),
-                          child: Image.file(
-                            File(productsData.productImageUrl),
-                            fit: BoxFit.cover,
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(3, 0, 7, 0),
+                  child: AspectRatio(
+                      aspectRatio: 1,
+                      child: Container(
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: productItemStatusColor.withOpacity(0.5)
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.all(1),
+                            child: ClipRRect(
+                                borderRadius: BorderRadius.circular(51),
+                                child: Image.file(
+                                  File(productsData.productImageUrl),
+                                  fit: BoxFit.cover,
+                                )
+                            )
                           )
-                      ),
-                    ),
-                  ),
+                      )
+                  )
                 )
             ),
           ],
@@ -3069,6 +3082,22 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
     });
 
+  }
+
+  Widget invoicedProductsView(List<Widget> selectedInputProductsItem) {
+
+    return SizedBox(
+        width: double.infinity,
+        height: 57,
+        child: Container(
+          child: ListView(
+            physics: const BouncingScrollPhysics(),
+            padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+            scrollDirection: Axis.horizontal,
+            children: selectedInputProductsItem,
+          ),
+        )
+    );
   }
 
   Future<List<CreditCardsData>> getAllCreditCards() async {
@@ -3405,42 +3434,6 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
     });
 
-  }
-
-}
-
-class SelectedInvoiceProductsView extends StatefulWidget {
-
-  List<Widget> selectedInputProductsItem;
-
-  SelectedInvoiceProductsView({Key? key, required this.selectedInputProductsItem}) : super(key: key);
-
-  @override
-  _SelectedInvoiceProductsViewState createState() => _SelectedInvoiceProductsViewState();
-}
-class _SelectedInvoiceProductsViewState extends State<SelectedInvoiceProductsView> {
-  @override
-  Widget build(BuildContext context) {
-    debugPrint("Selected Products Number -> ${widget.selectedInputProductsItem.length}");
-
-    setState(() {
-
-      widget.selectedInputProductsItem;
-
-    });
-
-    return SizedBox(
-        width: double.infinity,
-        height: 57,
-        child: Container(
-          child: ListView(
-            physics: const BouncingScrollPhysics(),
-            padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
-            scrollDirection: Axis.horizontal,
-            children: widget.selectedInputProductsItem,
-          ),
-        )
-    );
   }
 
 }

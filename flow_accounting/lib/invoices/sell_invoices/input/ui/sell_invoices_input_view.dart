@@ -2921,7 +2921,7 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                       /* Start - Calculate Invoice Price */
                       int previousInvoicePrice = int.parse(controllerInvoicePrice.text.replaceAll(",", ""));
 
-                      controllerInvoicePrice.text = (previousInvoicePrice - int.parse(productsData.productPrice.replaceAll(",", "replace"))).toString();
+                      controllerInvoicePrice.text = (previousInvoicePrice - int.parse(productsData.productPrice.replaceAll(",", ""))).toString();
                       /* End - Calculate Invoice Price */
 
                       updateSelectedProductsList(selectedProductsData);
