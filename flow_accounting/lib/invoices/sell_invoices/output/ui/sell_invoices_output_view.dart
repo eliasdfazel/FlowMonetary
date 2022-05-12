@@ -10,6 +10,9 @@
  */
 
 import 'package:blur/blur.dart';
+import 'package:flow_accounting/invoices/invoiced_products/database/io/inputs.dart';
+import 'package:flow_accounting/invoices/invoiced_products/database/io/queries.dart';
+import 'package:flow_accounting/invoices/invoiced_products/database/structures/tables_structure.dart';
 import 'package:flow_accounting/invoices/sell_invoices/database/io/inputs.dart';
 import 'package:flow_accounting/invoices/sell_invoices/database/io/queries.dart';
 import 'package:flow_accounting/invoices/sell_invoices/database/structures/tables_structure.dart';
@@ -30,9 +33,9 @@ class SellInvoicesOutputView extends StatefulWidget {
   const SellInvoicesOutputView({Key? key}) : super(key: key);
 
   @override
-  _SellInvoicesOutputViewState createState() => _SellInvoicesOutputViewState();
+  _SellInvoiceViewState createState() => _SellInvoiceViewState();
 }
-class _SellInvoicesOutputViewState extends State<SellInvoicesOutputView> {
+class _SellInvoiceViewState extends State<SellInvoicesOutputView> {
 
   ColorSelectorView colorSelectorView = ColorSelectorView();
 
@@ -278,111 +281,111 @@ class _SellInvoicesOutputViewState extends State<SellInvoicesOutputView> {
                     child: Align(
                         alignment: Alignment.center,
                         child: Transform.scale(
-                          scale: 1.1,
-                          child: SizedBox(
-                            height: 73,
-                            width: 219,
-                            child: Stack(
-                              children: [
-                                const Image(
-                                  image: AssetImage("search_shape.png"),
-                                  height: 73,
-                                  width: 213,
-                                  color: ColorsResources.primaryColorDark,
-                                ),
-                                Align(
-                                  alignment: Alignment.centerRight,
-                                  child: InkWell(
-                                    onTap: () {
+                            scale: 1.1,
+                            child: SizedBox(
+                              height: 73,
+                              width: 219,
+                              child: Stack(
+                                children: [
+                                  const Image(
+                                    image: AssetImage("search_shape.png"),
+                                    height: 73,
+                                    width: 213,
+                                    color: ColorsResources.primaryColorDark,
+                                  ),
+                                  Align(
+                                    alignment: Alignment.centerRight,
+                                    child: InkWell(
+                                      onTap: () {
 
-                                      String searchQuery = textEditorControllerQuery.text;
+                                        String searchQuery = textEditorControllerQuery.text;
 
-                                      searchSellInvoices(context, allSellInvoices, searchQuery);
+                                        searchSellInvoices(context, allSellInvoices, searchQuery);
 
-                                    },
-                                    child: const SizedBox(
-                                      height: 71,
-                                      width: 53,
-                                      child: Icon(
-                                        Icons.search_rounded,
-                                        size: 23,
-                                        color: ColorsResources.darkTransparent,
+                                      },
+                                      child: const SizedBox(
+                                        height: 71,
+                                        width: 53,
+                                        child: Icon(
+                                          Icons.search_rounded,
+                                          size: 23,
+                                          color: ColorsResources.darkTransparent,
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                                Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: SizedBox(
-                                      width: 153,
-                                      height: 47,
-                                      child: Directionality(
-                                        textDirection: TextDirection.rtl,
-                                        child: TextField(
-                                          controller: textEditorControllerQuery,
-                                          textAlign: TextAlign.right,
+                                  Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: SizedBox(
+                                        width: 153,
+                                        height: 47,
+                                        child: Directionality(
                                           textDirection: TextDirection.rtl,
-                                          textAlignVertical: TextAlignVertical.bottom,
-                                          maxLines: 1,
-                                          cursorColor: ColorsResources.primaryColor,
-                                          autocorrect: true,
-                                          autofocus: false,
-                                          keyboardType: TextInputType.text,
-                                          textInputAction: TextInputAction.search,
-                                          onSubmitted: (searchQuery) {
+                                          child: TextField(
+                                            controller: textEditorControllerQuery,
+                                            textAlign: TextAlign.right,
+                                            textDirection: TextDirection.rtl,
+                                            textAlignVertical: TextAlignVertical.bottom,
+                                            maxLines: 1,
+                                            cursorColor: ColorsResources.primaryColor,
+                                            autocorrect: true,
+                                            autofocus: false,
+                                            keyboardType: TextInputType.text,
+                                            textInputAction: TextInputAction.search,
+                                            onSubmitted: (searchQuery) {
 
-                                            searchSellInvoices(context, allSellInvoices, searchQuery);
+                                              searchSellInvoices(context, allSellInvoices, searchQuery);
 
-                                          },
-                                          decoration: InputDecoration(
-                                            border: OutlineInputBorder(
-                                                borderSide: BorderSide(color: Colors.transparent, width: 1.0),
-                                                borderRadius: BorderRadius.only(
-                                                    topLeft: Radius.circular(51),
-                                                    topRight: Radius.circular(51),
-                                                    bottomLeft: Radius.circular(51),
-                                                    bottomRight: Radius.circular(51)
-                                                ),
-                                                gapPadding: 5
-                                            ),
-                                            focusedBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(color: Colors.transparent, width: 1.0),
-                                                borderRadius: BorderRadius.only(
-                                                    topLeft: Radius.circular(51),
-                                                    topRight: Radius.circular(51),
-                                                    bottomLeft: Radius.circular(51),
-                                                    bottomRight: Radius.circular(51)
-                                                ),
-                                                gapPadding: 5
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(color: Colors.transparent, width: 1.0),
-                                                borderRadius: BorderRadius.only(
-                                                    topLeft: Radius.circular(51),
-                                                    topRight: Radius.circular(51),
-                                                    bottomLeft: Radius.circular(51),
-                                                    bottomRight: Radius.circular(51)
-                                                ),
-                                                gapPadding: 5
-                                            ),
-                                            hintText: StringsResources.searchHintText(),
-                                            hintStyle: TextStyle(
-                                                color: ColorsResources.darkTransparent,
-                                                fontSize: 13.0
-                                            ),
-                                            labelText: StringsResources.searchText(),
-                                            labelStyle: TextStyle(
-                                                color: ColorsResources.dark,
-                                                fontSize: 15.0
+                                            },
+                                            decoration: InputDecoration(
+                                              border: OutlineInputBorder(
+                                                  borderSide: BorderSide(color: Colors.transparent, width: 1.0),
+                                                  borderRadius: BorderRadius.only(
+                                                      topLeft: Radius.circular(51),
+                                                      topRight: Radius.circular(51),
+                                                      bottomLeft: Radius.circular(51),
+                                                      bottomRight: Radius.circular(51)
+                                                  ),
+                                                  gapPadding: 5
+                                              ),
+                                              focusedBorder: OutlineInputBorder(
+                                                  borderSide: BorderSide(color: Colors.transparent, width: 1.0),
+                                                  borderRadius: BorderRadius.only(
+                                                      topLeft: Radius.circular(51),
+                                                      topRight: Radius.circular(51),
+                                                      bottomLeft: Radius.circular(51),
+                                                      bottomRight: Radius.circular(51)
+                                                  ),
+                                                  gapPadding: 5
+                                              ),
+                                              enabledBorder: OutlineInputBorder(
+                                                  borderSide: BorderSide(color: Colors.transparent, width: 1.0),
+                                                  borderRadius: BorderRadius.only(
+                                                      topLeft: Radius.circular(51),
+                                                      topRight: Radius.circular(51),
+                                                      bottomLeft: Radius.circular(51),
+                                                      bottomRight: Radius.circular(51)
+                                                  ),
+                                                  gapPadding: 5
+                                              ),
+                                              hintText: StringsResources.searchHintText(),
+                                              hintStyle: TextStyle(
+                                                  color: ColorsResources.darkTransparent,
+                                                  fontSize: 13.0
+                                              ),
+                                              labelText: StringsResources.searchText(),
+                                              labelStyle: TextStyle(
+                                                  color: ColorsResources.dark,
+                                                  fontSize: 15.0
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      )
-                                  ),
-                                )
-                              ],
-                            ),
-                          )
+                                        )
+                                    ),
+                                  )
+                                ],
+                              ),
+                            )
                         )
                     ),
                   )
@@ -427,259 +430,245 @@ class _SellInvoicesOutputViewState extends State<SellInvoicesOutputView> {
     }
 
     return Slidable(
-      closeOnScroll: true,
-      endActionPane: ActionPane(
-        motion: const DrawerMotion(),
-        children: [
-          SlidableAction(
-            flex: 1,
-            onPressed: (BuildContext context) {
+        closeOnScroll: true,
+        endActionPane: ActionPane(
+          motion: const DrawerMotion(),
+          children: [
+            SlidableAction(
+              flex: 1,
+              onPressed: (BuildContext context) {
 
-              deleteSellInvoices(context, sellInvoicesData);
+                deleteSellInvoices(context, sellInvoicesData);
 
-            },
-            backgroundColor: Colors.transparent,
-            foregroundColor: ColorsResources.gameGeeksEmpire,
-            icon: Icons.delete_rounded,
-            label: StringsResources.deleteText(),
-            autoClose: true,
-          ),
-          SlidableAction(
-            flex: 1,
-            onPressed: (BuildContext context) {
+              },
+              backgroundColor: Colors.transparent,
+              foregroundColor: ColorsResources.gameGeeksEmpire,
+              icon: Icons.delete_rounded,
+              label: StringsResources.deleteText(),
+              autoClose: true,
+            ),
+            SlidableAction(
+              flex: 1,
+              onPressed: (BuildContext context) {
 
-              editSellInvoices(context, sellInvoicesData);
+                editSellInvoices(context, sellInvoicesData);
 
-            },
-            backgroundColor: Colors.transparent,
-            foregroundColor: ColorsResources.applicationGeeksEmpire,
-            icon: Icons.edit_rounded,
-            label: StringsResources.editText(),
-            autoClose: true,
-          ),
-        ],
-      ),
-      startActionPane: ActionPane(
-        motion: const DrawerMotion(),
-        children: [
-          SlidableAction(
-            flex: 1,
-            onPressed: (BuildContext context) async {
+              },
+              backgroundColor: Colors.transparent,
+              foregroundColor: ColorsResources.applicationGeeksEmpire,
+              icon: Icons.edit_rounded,
+              label: StringsResources.editText(),
+              autoClose: true,
+            ),
+          ],
+        ),
+        startActionPane: ActionPane(
+          motion: const DrawerMotion(),
+          children: [
+            SlidableAction(
+              flex: 1,
+              onPressed: (BuildContext context) async {
 
-              returningInvoicesProcess(sellInvoicesData);
+                returningInvoicesProcess(sellInvoicesData);
 
-            },
-            backgroundColor: Colors.transparent,
-            foregroundColor: ColorsResources.black,
-            icon: Icons.assignment_return_rounded,
-            label: StringsResources.returnInvoice(),
-            autoClose: true,
-          ),
-        ],
-      ),
-      child: Padding(
-        padding: const  EdgeInsets.fromLTRB(13, 7, 13, 13),
-        child: PhysicalModel(
-          color: ColorsResources.light,
-          elevation: 7,
-          shadowColor: Color(sellInvoicesData.colorTag).withOpacity(0.79),
-          shape: BoxShape.rectangle,
-          borderRadius: const BorderRadius.all(Radius.circular(17)),
-          child: InkWell(
-            onTap: () {
+              },
+              backgroundColor: Colors.transparent,
+              foregroundColor: ColorsResources.black,
+              icon: Icons.assignment_return_rounded,
+              label: StringsResources.returnInvoice(),
+              autoClose: true,
+            ),
+          ],
+        ),
+        child: Padding(
+            padding: const  EdgeInsets.fromLTRB(13, 7, 13, 13),
+            child: PhysicalModel(
+                color: ColorsResources.light,
+                elevation: 7,
+                shadowColor: Color(sellInvoicesData.colorTag).withOpacity(0.79),
+                shape: BoxShape.rectangle,
+                borderRadius: const BorderRadius.all(Radius.circular(17)),
+                child: InkWell(
+                    onTap: () {
 
-              editSellInvoices(context, sellInvoicesData);
+                      editSellInvoices(context, sellInvoicesData);
 
-            },
-            child: Container(
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(17),
-                    topRight: Radius.circular(17),
-                    bottomLeft: Radius.circular(17),
-                    bottomRight: Radius.circular(17)
-                ),
-                gradient: LinearGradient(
-                    colors: [
-                      ColorsResources.white,
-                      ColorsResources.light,
-                    ],
-                    begin: FractionalOffset(0.0, 0.0),
-                    end: FractionalOffset(1.0, 0.0),
-                    stops: [0.0, 1.0],
-                    transform: GradientRotation(45),
-                    tileMode: TileMode.clamp
-                ),
-              ),
-              child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                  child: Stack(
-                    children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          SizedBox(
-                            height: 59,
-                            width: double.infinity,
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(27, 17, 13, 0),
-                              child: Align(
-                                  alignment: Alignment.center,
-                                  child: Marquee(
-                                    text: sellInvoicesData.soldProductPrice,
-                                    style: const TextStyle(
-                                      color: ColorsResources.dark,
-                                      fontSize: 31,
-                                      fontFamily: "Numbers",
-                                    ),
-                                    scrollAxis: Axis.horizontal,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    blankSpace: 293.0,
-                                    velocity: 37.0,
-                                    fadingEdgeStartFraction: 0.13,
-                                    fadingEdgeEndFraction: 0.13,
-                                    startAfter: const Duration(milliseconds: 777),
-                                    numberOfRounds: 3,
-                                    pauseAfterRound: const Duration(milliseconds: 500),
-                                    showFadingOnlyWhenScrolling: true,
-                                    startPadding: 13.0,
-                                    accelerationDuration: const Duration(milliseconds: 500),
-                                    accelerationCurve: Curves.linear,
-                                    decelerationDuration: const Duration(milliseconds: 500),
-                                    decelerationCurve: Curves.easeOut,
-                                  )
-                              )
-                            )
+                    },
+                    child: Container(
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(17),
+                              topRight: Radius.circular(17),
+                              bottomLeft: Radius.circular(17),
+                              bottomRight: Radius.circular(17)
                           ),
-                          SizedBox(
-                              height: 39,
-                              width: double.infinity,
-                              child: Padding(
-                                padding: const EdgeInsets.fromLTRB(37, 11, 19, 0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Expanded(
-                                      flex: 7,
-                                      child: Directionality(
-                                        textDirection: TextDirection.rtl,
-                                        child: Align(
-                                          alignment: Alignment.centerRight,
-                                          child: Text(
-                                            sellInvoicesData.sellInvoiceNumber,
-                                            textAlign: TextAlign.center,
-                                            style: const TextStyle(
-                                              color: ColorsResources.dark,
-                                              fontSize: 19,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    Expanded(
-                                      flex: 19,
-                                      child: Directionality(
-                                        textDirection: TextDirection.rtl,
-                                        child: Align(
-                                          alignment: Alignment.centerRight,
-                                          child: Text(
-                                            sellInvoicesData.sellInvoiceDateText,
-                                            textAlign: TextAlign.right,
-                                            maxLines: 1,
-                                            style: const TextStyle(
-                                              color: ColorsResources.darkTransparent,
-                                              fontSize: 14,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              )
-                          ),
-                          SizedBox(
-                            height: 51,
-                            width: double.infinity,
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Expanded(
-                                    flex: 1,
-                                    child: Align(
-                                        alignment: Alignment.center,
-                                        child: Text(
-                                          sellInvoicesData.soldProductName,
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                              color: ColorsResources.dark.withOpacity(0.537),
-                                              fontSize: 15
-                                          ),
-                                        )
-                                    )
-                                  ),
-                                  Expanded(
-                                      flex: 1,
-                                      child: Align(
-                                          alignment: Alignment.center,
-                                          child: Text(
-                                            sellInvoicesData.soldProductQuantity,
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                                color: ColorsResources.dark.withOpacity(0.537),
-                                                fontSize: 15
-                                            ),
-                                          )
-                                      )
-                                  ),
-                                ],
-                              )
-                            )
-                          )
-                        ],
-                      ),
-                      Positioned(
-                        left: 0,
-                        bottom: 0,
-                        child: RotatedBox(
-                          quarterTurns: 3,
-                          child: SizedBox(
-                            height: 27,
-                            width: 79,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(17),
-                                    topRight: Radius.circular(0),
-                                    bottomLeft: Radius.circular(0),
-                                    bottomRight: Radius.circular(17)
-                                ),
-                                gradient: LinearGradient(
-                                    colors: [
-                                      Color(sellInvoicesData.colorTag).withOpacity(0.7),
-                                      ColorsResources.light,
-                                    ],
-                                    begin: const FractionalOffset(0.0, 0.0),
-                                    end: const FractionalOffset(1.0, 0.0),
-                                    stops: const [0.0, 1.0],
-                                    transform: const GradientRotation(45),
-                                    tileMode: TileMode.clamp
-                                ),
-                              ),
-                            ),
+                          gradient: LinearGradient(
+                              colors: [
+                                ColorsResources.white,
+                                ColorsResources.light,
+                              ],
+                              begin: FractionalOffset(0.0, 0.0),
+                              end: FractionalOffset(1.0, 0.0),
+                              stops: [0.0, 1.0],
+                              transform: GradientRotation(45),
+                              tileMode: TileMode.clamp
                           ),
                         ),
-                      ),
-                      invoiceCompleteReturned
-                    ],
-                  )
-              )
+                        child: Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                            child: Stack(
+                              children: [
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    SizedBox(
+                                        height: 59,
+                                        width: double.infinity,
+                                        child: Padding(
+                                            padding: const EdgeInsets.fromLTRB(27, 17, 13, 0),
+                                            child: Align(
+                                                alignment: Alignment.center,
+                                                child: Marquee(
+                                                  text: sellInvoicesData.soldProductPrice,
+                                                  style: const TextStyle(
+                                                    color: ColorsResources.dark,
+                                                    fontSize: 31,
+                                                    fontFamily: "Numbers",
+                                                  ),
+                                                  scrollAxis: Axis.horizontal,
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  blankSpace: 293.0,
+                                                  velocity: 37.0,
+                                                  fadingEdgeStartFraction: 0.13,
+                                                  fadingEdgeEndFraction: 0.13,
+                                                  startAfter: const Duration(milliseconds: 777),
+                                                  numberOfRounds: 3,
+                                                  pauseAfterRound: const Duration(milliseconds: 500),
+                                                  showFadingOnlyWhenScrolling: true,
+                                                  startPadding: 13.0,
+                                                  accelerationDuration: const Duration(milliseconds: 500),
+                                                  accelerationCurve: Curves.linear,
+                                                  decelerationDuration: const Duration(milliseconds: 500),
+                                                  decelerationCurve: Curves.easeOut,
+                                                )
+                                            )
+                                        )
+                                    ),
+                                    SizedBox(
+                                        height: 39,
+                                        width: double.infinity,
+                                        child: Padding(
+                                          padding: const EdgeInsets.fromLTRB(37, 11, 19, 0),
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              Expanded(
+                                                flex: 7,
+                                                child: Directionality(
+                                                  textDirection: TextDirection.rtl,
+                                                  child: Align(
+                                                    alignment: Alignment.centerRight,
+                                                    child: Text(
+                                                      sellInvoicesData.sellInvoiceNumber,
+                                                      textAlign: TextAlign.center,
+                                                      style: const TextStyle(
+                                                        color: ColorsResources.dark,
+                                                        fontSize: 19,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              Expanded(
+                                                flex: 19,
+                                                child: Directionality(
+                                                  textDirection: TextDirection.rtl,
+                                                  child: Align(
+                                                    alignment: Alignment.centerRight,
+                                                    child: Text(
+                                                      sellInvoicesData.sellInvoiceDateText,
+                                                      textAlign: TextAlign.right,
+                                                      maxLines: 1,
+                                                      style: const TextStyle(
+                                                        color: ColorsResources.darkTransparent,
+                                                        fontSize: 14,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                    ),
+                                    SizedBox(
+                                        height: 51,
+                                        width: double.infinity,
+                                        child: Padding(
+                                            padding: const EdgeInsets.fromLTRB(31, 0, 19, 0),
+                                            child: Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                              children: [
+                                                Expanded(
+                                                    flex: 1,
+                                                    child: Align(
+                                                        alignment: Alignment.centerRight,
+                                                        child: Text(
+                                                          sellInvoicesData.sellInvoiceDescription,
+                                                          textAlign: TextAlign.right,
+                                                          style: TextStyle(
+                                                              color: ColorsResources.dark.withOpacity(0.537),
+                                                              fontSize: 15
+                                                          ),
+                                                        )
+                                                    )
+                                                ),
+                                              ],
+                                            )
+                                        )
+                                    )
+                                  ],
+                                ),
+                                Positioned(
+                                  left: 0,
+                                  bottom: 0,
+                                  child: RotatedBox(
+                                    quarterTurns: 3,
+                                    child: SizedBox(
+                                      height: 27,
+                                      width: 79,
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius: const BorderRadius.only(
+                                              topLeft: Radius.circular(17),
+                                              topRight: Radius.circular(0),
+                                              bottomLeft: Radius.circular(0),
+                                              bottomRight: Radius.circular(17)
+                                          ),
+                                          gradient: LinearGradient(
+                                              colors: [
+                                                Color(sellInvoicesData.colorTag).withOpacity(0.7),
+                                                ColorsResources.light,
+                                              ],
+                                              begin: const FractionalOffset(0.0, 0.0),
+                                              end: const FractionalOffset(1.0, 0.0),
+                                              stops: const [0.0, 1.0],
+                                              transform: const GradientRotation(45),
+                                              tileMode: TileMode.clamp
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                invoiceCompleteReturned
+                              ],
+                            )
+                        )
+                    )
+                )
             )
-          )
         )
-      )
     );
 
   }
@@ -830,11 +819,7 @@ class _SellInvoicesOutputViewState extends State<SellInvoicesOutputView> {
       if (element.sellInvoiceNumber.contains(searchQuery) ||
           element.sellInvoiceDateText.contains(searchQuery) ||
           element.sellInvoiceDescription.contains(searchQuery) ||
-          element.soldProductId.contains(searchQuery) ||
-          element.soldProductName.contains(searchQuery) ||
-          element.soldProductQuantity.contains(searchQuery) ||
           element.soldProductPrice.contains(searchQuery) ||
-          element.soldProductEachPrice.contains(searchQuery) ||
           element.soldProductPriceDiscount.contains(searchQuery) ||
           element.paidTo.contains(searchQuery) ||
           element.soldTo.contains(searchQuery) ||
@@ -883,27 +868,17 @@ class _SellInvoicesOutputViewState extends State<SellInvoicesOutputView> {
 
       ProductsDatabaseQueries productsDatabaseQueries = ProductsDatabaseQueries();
 
-      var allIds = sellInvoicesData.soldProductId.split(",");
+      InvoicedProductsQueries invoicedProductsQueries = InvoicedProductsQueries();
 
-      var allNames = sellInvoicesData.soldProductName.split(",");
+      List<InvoicedProductsData> allInvoicedProducts = await invoicedProductsQueries.getAllInvoicedProducts(InvoicedProductsDatabaseInputs.invoicedProductsDatabase(sellInvoicesData.id), InvoicedProductsDatabaseInputs.databaseTableName);
 
-      var allQuantities = sellInvoicesData.soldProductQuantity.split(",");
+      allInvoicedProducts.forEach((element) async {
 
-      var allQuantitiesTypes = sellInvoicesData.productQuantityType.split(",");
+        var aProduct = await productsDatabaseQueries.querySpecificProductById(element.invoiceProductId.toString(), ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
-      var allEachPrice = sellInvoicesData.soldProductEachPrice.split(",");
-
-      var index = 0;
-
-      allIds.forEach((element) async {
-
-        var aProduct = await productsDatabaseQueries.querySpecificProductById(element, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
-
-        aProduct.productQuantity = aProduct.productQuantity + int.parse(allQuantities[index]);
+        aProduct.productQuantity = aProduct.productQuantity - element.invoiceProductQuantity;
 
         await productsDatabaseInputs.updateProductData(aProduct, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
-
-        index++;
 
       });
 

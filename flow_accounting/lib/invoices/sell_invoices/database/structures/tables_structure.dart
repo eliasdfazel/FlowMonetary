@@ -2,7 +2,7 @@
  * Copyright © 2022 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/6/22, 6:11 AM
+ * Last modified 3/30/22, 5:39 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -29,13 +29,7 @@ class SellInvoicesData {
   final String sellInvoiceDateText;
   final int sellInvoiceDateMillisecond;
 
-  final String soldProductId;
-  final String soldProductName;
-  final String soldProductQuantity;
-  final String productQuantityType;
-
   String soldProductPrice = "0";
-  String soldProductEachPrice = "0";
   String soldProductPriceDiscount = "0";
 
   String invoiceDiscount = "0";
@@ -69,13 +63,7 @@ class SellInvoicesData {
     required this.sellInvoiceDateText,
     required this.sellInvoiceDateMillisecond,
 
-    required this.soldProductId,
-    required this.soldProductName,
-    required this.soldProductQuantity,
-    required this.productQuantityType,
-
     required this.soldProductPrice,
-    required this.soldProductEachPrice,
     required this.soldProductPriceDiscount,
 
     required this.invoiceDiscount,
@@ -111,13 +99,7 @@ class SellInvoicesData {
       'sellInvoiceDateText': sellInvoiceDateText,
       'sellInvoiceDateMillisecond': sellInvoiceDateMillisecond,
 
-      'soldProductId': soldProductId,
-      'soldProductName': soldProductName,
-      'soldProductQuantity': soldProductQuantity,
-      'productQuantityType': productQuantityType,
-
       'soldProductPrice': soldProductPrice,
-      'soldProductEachPrice': soldProductEachPrice,
       'soldProductPriceDiscount': soldProductPriceDiscount,
 
       'invoiceDiscount': invoiceDiscount,
@@ -155,13 +137,7 @@ class SellInvoicesData {
         'sellInvoiceDateText: $sellInvoiceDateText,'
         'sellInvoiceDateMillisecond: $sellInvoiceDateMillisecond,'
 
-        'soldProductId: $soldProductId,'
-        'soldProductName: $soldProductName,'
-        'soldProductQuantity: $soldProductQuantity,'
-        'productQuantityType: $productQuantityType,'
-
         'soldProductPrice: $soldProductPrice,'
-        'soldProductEachPrice: $soldProductEachPrice,'
         'soldProductPriceDiscount: $soldProductPriceDiscount,'
 
         'invoiceDiscount: $invoiceDiscount,'

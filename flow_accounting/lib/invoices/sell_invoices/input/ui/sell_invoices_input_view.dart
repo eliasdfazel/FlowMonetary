@@ -20,6 +20,9 @@ import 'package:flow_accounting/credit_cards/database/structures/tables_structur
 import 'package:flow_accounting/debtors/database/io/inputs.dart';
 import 'package:flow_accounting/debtors/database/io/queries.dart';
 import 'package:flow_accounting/debtors/database/structures/tables_structure.dart';
+import 'package:flow_accounting/invoices/invoiced_products/database/io/inputs.dart';
+import 'package:flow_accounting/invoices/invoiced_products/database/io/queries.dart';
+import 'package:flow_accounting/invoices/invoiced_products/database/structures/tables_structure.dart';
 import 'package:flow_accounting/invoices/sell_invoices/database/io/inputs.dart';
 import 'package:flow_accounting/invoices/sell_invoices/database/structures/tables_structure.dart';
 import 'package:flow_accounting/products/database/io/inputs.dart';
@@ -33,6 +36,7 @@ import 'package:flow_accounting/utils/colors/color_selector.dart';
 import 'package:flow_accounting/utils/extensions/BankLogos.dart';
 import 'package:flow_accounting/utils/io/FileIO.dart';
 import 'package:flow_accounting/utils/print/printing.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -69,12 +73,6 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
   TextEditingController controllerProductName = TextEditingController();
   TextEditingController controllerProductQuantity = TextEditingController();
   TextEditingController controllerProductQuantityType = TextEditingController();
-
-  TextEditingController controllerAllProductId = TextEditingController();
-  TextEditingController controllerAllProductName = TextEditingController();
-  TextEditingController controllerAllProductQuantity = TextEditingController();
-  TextEditingController controllerAllProductQuantityType = TextEditingController();
-  TextEditingController controllerAllProductEachPrice = TextEditingController();
 
   TextEditingController controllerInvoicePrice = TextEditingController();
 
@@ -139,7 +137,7 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
   String? warningSoldTo;
 
-  List<Widget> selectedProductItem = [];
+  List<Widget> selectedProductWidget = [];
 
   Widget printingView = Container();
 
@@ -159,8 +157,6 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
     ),
   );
 
-  Widget selectedInvoiceProductsView = Container();
-
   @override
   void dispose() {
 
@@ -171,6 +167,18 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
   @override
   void initState() {
+
+    if (widget.sellInvoicesData != null) {
+
+      if ((widget.sellInvoicesData?.id)! != 0) {
+
+        timeNow = (widget.sellInvoicesData?.id)!;
+
+      }
+
+      colorSelectorView.inputColor = Color(widget.sellInvoicesData!.colorTag);
+
+    }
 
     calendarView.inputDateTime = widget.sellInvoicesData?.sellInvoiceDateText ?? StringsResources.invoicesDate();
 
@@ -185,13 +193,7 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
     controllerPreInvoice.text = widget.sellInvoicesData?.sellPreInvoice == null ? SellInvoicesData.SellInvoice_Final : (widget.sellInvoicesData?.sellPreInvoice)!;
 
-    controllerProductName.text = widget.sellInvoicesData?.soldProductName == null ? "" : (widget.sellInvoicesData?.soldProductName)!;
-    controllerProductQuantity.text = widget.sellInvoicesData?.soldProductQuantity == null ? "" : (widget.sellInvoicesData?.soldProductQuantity)!;
-    controllerProductQuantityType.text = widget.sellInvoicesData?.productQuantityType == null ? "" : (widget.sellInvoicesData?.productQuantityType.toString())!;
-
     controllerInvoicePrice.text = widget.sellInvoicesData?.soldProductPrice == null ? "" : (widget.sellInvoicesData?.soldProductPrice)!;
-    controllerProductEachPrice.text = widget.sellInvoicesData?.soldProductEachPrice == null ? "" : (widget.sellInvoicesData?.soldProductEachPrice)!;
-    controllerProductDiscount.text = widget.sellInvoicesData?.soldProductPriceDiscount == null ? "" : (widget.sellInvoicesData?.soldProductPriceDiscount)!;
 
     controllerShippingExpenses.text = widget.sellInvoicesData?.productShippingExpenses == null ? "" : (widget.sellInvoicesData?.productShippingExpenses)!;
 
@@ -1044,12 +1046,6 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
                                                     }
 
-                                                    controllerAllProductId.text += productData.id.toString() + ",";
-                                                    controllerAllProductName.text += controllerProductName.text + ",";
-                                                    controllerAllProductQuantity.text += controllerProductQuantity.text + ",";
-                                                    controllerAllProductQuantityType.text += controllerProductQuantityType.text + ",";
-                                                    controllerAllProductEachPrice.text += controllerProductEachPrice.text + ",";
-
                                                     /* Start - Calculate Invoice Price */
                                                     int completePrice = int.parse(controllerProductEachPrice.text.isEmpty ? "0" : controllerProductEachPrice.text.replaceAll(",", "")) * int.parse(controllerProductQuantity.text.isEmpty ? "0" : controllerProductQuantity.text);
 
@@ -1297,7 +1293,7 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                                                           color: ColorsResources.dark,
                                                           fontSize: 17.0
                                                       ),
-                                                      hintText: StringsResources.buyQuantityHint(),
+                                                      hintText: StringsResources.sellQuantityHint(),
                                                       hintStyle: const TextStyle(
                                                           color: ColorsResources.darkTransparent,
                                                           fontSize: 13.0
@@ -1456,7 +1452,7 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                                                               color: ColorsResources.dark,
                                                               fontSize: 17.0
                                                           ),
-                                                          hintText: StringsResources.buyInvoiceProductHint(),
+                                                          hintText: StringsResources.sellInvoiceProductHint(),
                                                           hintStyle: const TextStyle(
                                                               color: ColorsResources.darkTransparent,
                                                               fontSize: 13.0
@@ -1547,7 +1543,7 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                                                           color: ColorsResources.dark,
                                                           fontSize: 17.0
                                                       ),
-                                                      hintText: StringsResources.buyInvoiceDiscountHint(),
+                                                      hintText: StringsResources.sellInvoiceDiscountHint(),
                                                       hintStyle: const TextStyle(
                                                           color: ColorsResources.darkTransparent,
                                                           fontSize: 13.0
@@ -1726,7 +1722,16 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                         height: 3,
                         color: Colors.transparent,
                       ),
-                      selectedInvoiceProductsView,
+                      SizedBox(
+                          width: double.infinity,
+                          height: 57,
+                          child: ListView(
+                            physics: const BouncingScrollPhysics(),
+                            padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                            scrollDirection: Axis.horizontal,
+                            children: selectedProductWidget,
+                          )
+                      ),
                       const Divider(
                         height: 13,
                         color: Colors.transparent,
@@ -1912,12 +1917,12 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                                         errorText: warningProductDiscount,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.buyFullDiscount(),
+                                        labelText: StringsResources.fullDiscount(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.buyFullDiscountHint(),
+                                        hintText: StringsResources.fullDiscountHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 13.0
@@ -2114,6 +2119,7 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                                           controller: controllerPaidTo,
                                           autofocus: false,
                                           maxLines: 1,
+                                          textAlign: TextAlign.center,
                                           cursorColor: ColorsResources.primaryColor,
                                           keyboardType: TextInputType.name,
                                           textInputAction: TextInputAction.next,
@@ -2205,54 +2211,24 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                                         itemBuilder: (context, suggestion) {
 
                                           return ListTile(
-                                              title: Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                children: [
-                                                  Expanded(
-                                                    flex: 11,
-                                                    child: Padding(
-                                                      padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
-                                                      child: Directionality(
-                                                        textDirection: TextDirection.rtl,
-                                                        child: Text(
-                                                          "suggestion.creditorName",
-                                                          style: const TextStyle(
-                                                              color: ColorsResources.darkTransparent,
-                                                              fontSize: 15
-                                                          ),
-                                                        ),
-                                                      ),
+                                              title: Padding(
+                                                padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
+                                                child: Directionality(
+                                                  textDirection: TextDirection.rtl,
+                                                  child: Text(
+                                                    "suggestion.creditorName",
+                                                    style: const TextStyle(
+                                                        color: ColorsResources.darkTransparent,
+                                                        fontSize: 15
                                                     ),
                                                   ),
-                                                  Expanded(
-                                                      flex: 5,
-                                                      child:  AspectRatio(
-                                                        aspectRatio: 1,
-                                                        child: Container(
-                                                          decoration: const BoxDecoration(
-                                                              shape: BoxShape.circle,
-                                                              color: ColorsResources.light
-                                                          ),
-                                                          child: Padding(
-                                                            padding: const EdgeInsets.fromLTRB(3, 3, 3, 3),
-                                                            child: ClipRRect(
-                                                              borderRadius: BorderRadius.circular(51),
-                                                              child: Image.network(
-                                                                generateBankLogoUrl("suggestion.creditorImageUrl"),
-                                                                fit: BoxFit.cover,
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      )
-                                                  ),
-                                                ],
+                                                ),
                                               )
                                           );
                                         },
                                         onSuggestionSelected: (suggestion) {
 
-                                          controllerSoldTo.text = "suggestion.creditorName";
+                                          controllerSoldTo.text = suggestion.debtorsName;
 
                                         },
                                         errorBuilder: (context, suggestion) {
@@ -2374,38 +2350,38 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Expanded(
-                              flex: 1,
-                              child: Padding(
-                                padding: EdgeInsets.fromLTRB(13, 0, 13, 0),
-                                child: InkWell(
-                                  onTap: () {
+                                flex: 1,
+                                child: Padding(
+                                    padding: EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                    child: InkWell(
+                                        onTap: () {
 
-                                    invokeSignatureImagePicker();
+                                          invokeSignatureImagePicker();
 
-                                  },
-                                  child: AspectRatio(
-                                    aspectRatio: 1,
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(19),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          gradient: LinearGradient(
-                                            colors: [
-                                              ColorsResources.lightestBlue,
-                                              ColorsResources.white.withOpacity(0.3)
-                                            ],
-                                            transform: const GradientRotation(45),
-                                          )
-                                        ),
-                                        child: Padding(
-                                          padding: EdgeInsets.all(7),
-                                          child: imageSignaturePickerWidget
+                                        },
+                                        child: AspectRatio(
+                                            aspectRatio: 1,
+                                            child: ClipRRect(
+                                                borderRadius: BorderRadius.circular(19),
+                                                child: Container(
+                                                    decoration: BoxDecoration(
+                                                        gradient: LinearGradient(
+                                                          colors: [
+                                                            ColorsResources.lightestBlue,
+                                                            ColorsResources.white.withOpacity(0.3)
+                                                          ],
+                                                          transform: const GradientRotation(45),
+                                                        )
+                                                    ),
+                                                    child: Padding(
+                                                        padding: EdgeInsets.all(7),
+                                                        child: imageSignaturePickerWidget
+                                                    )
+                                                )
+                                            )
                                         )
-                                      )
                                     )
-                                  )
                                 )
-                              )
                             ),
                           ],
                         ),
@@ -2536,7 +2512,19 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
                                   }
 
-                                  if (controllerPaidTo.text.isEmpty) {
+                                  if (controllerInvoicePrice.text.isEmpty) {
+
+                                    setState(() {
+
+                                      warningProductPrice = StringsResources.errorText();
+
+                                    });
+
+                                    noError = false;
+
+                                  }
+
+                                  if (controllerSoldTo.text.isEmpty) {
 
                                     setState(() {
 
@@ -2587,12 +2575,6 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                                         sellInvoiceDateText: calendarView.inputDateTime ?? "",
                                         sellInvoiceDateMillisecond: calendarView.pickedDateTime.millisecondsSinceEpoch,
 
-                                        soldProductId: cleanUpCsvDatabase(controllerAllProductId.text), // CSV
-                                        soldProductName: cleanUpCsvDatabase(controllerAllProductName.text), // CSV
-                                        soldProductQuantity: controllerAllProductQuantity.text.isEmpty ? "0" : cleanUpCsvDatabase(controllerAllProductQuantity.text), // CSV
-                                        productQuantityType: controllerAllProductQuantityType.text.isEmpty ? "" : cleanUpCsvDatabase(controllerAllProductQuantityType.text), // CSV
-                                        soldProductEachPrice: controllerAllProductEachPrice.text.isEmpty ? "0" : cleanUpCsvDatabase(controllerAllProductEachPrice.text), // CSV
-
                                         soldProductPrice: controllerInvoicePrice.text.isEmpty ? "0" : controllerInvoicePrice.text,
                                         soldProductPriceDiscount: controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text,
 
@@ -2610,18 +2592,18 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
                                         companyDigitalSignature: companyDigitalSignature,
 
-                                        invoiceReturned: "",
+                                        colorTag: colorSelectorView.selectedColor.value,
 
-                                        colorTag: colorSelectorView.selectedColor.value
+                                        invoiceReturned: ""
                                     );
 
                                     if (widget.sellInvoicesData != null) {
 
                                       if ((widget.sellInvoicesData?.id)! != 0) {
 
-                                        partialReturnProcess();
-
                                         databaseInputs.updateInvoiceData(sellInvoicesData, SellInvoicesDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+                                        updateInvoicedProducts();
 
                                       }
 
@@ -2629,9 +2611,14 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
                                       databaseInputs.insertSellInvoiceData(sellInvoicesData, SellInvoicesDatabaseInputs.databaseTableName, UserInformation.UserId);
 
-                                      updateProductQuantity();
+                                      insertInvoicedProducts();
+
+                                      generateBarcode(sellInvoicesData.id);
 
                                     }
+
+                                    updateProductQuantity();
+
 
                                     Fluttertoast.showToast(
                                         msg: StringsResources.updatedText(),
@@ -2798,21 +2785,23 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
   void updateSelectedProductsList(List<ProductsData> inputSelectedProduct) async {
 
-    selectedProductItem.clear();
+    selectedProductWidget.clear();
+
+    int index = 0;
 
     for(var aProduct in inputSelectedProduct) {
       debugPrint("Product Added To Invoice -> ${aProduct.productName}");
 
-      selectedProductItem.add(selectedProductView(aProduct));
+      selectedProductWidget.add(selectedProductItemView(aProduct, InvoicedProductsData.Product_Purchased, index));
+
+      index++;
 
     }
-
-    selectedInvoiceProductsView = SelectedInvoiceProductsView(selectedInputProductsItem: selectedProductItem);
 
     setState(() {
       debugPrint("Invoices Products Updated");
 
-      selectedInvoiceProductsView;
+      selectedProductWidget;
 
     });
 
@@ -2820,79 +2809,71 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
   void prepareSelectedProducts() async {
 
-    List<Widget> allProductsItem = [];
+    selectedProductWidget.clear();
+
+    selectedProductsData.clear();
 
     if (widget.sellInvoicesData != null) {
 
-      ProductsDatabaseQueries productsDatabaseQueries = ProductsDatabaseQueries();
+      String databaseDirectory = await getDatabasesPath();
 
-      controllerAllProductId.text = widget.sellInvoicesData!.soldProductId;
-      var allIds = removeEmptyElementCsv(widget.sellInvoicesData!.soldProductId.split(","));
+      String invoicedProductDatabasePath = "${databaseDirectory}/${InvoicedProductsDatabaseInputs.invoicedProductsDatabase(timeNow)}";
 
-      controllerAllProductName.text = widget.sellInvoicesData!.soldProductName;
-      var allNames = removeEmptyElementCsv(widget.sellInvoicesData!.soldProductName.split(","));
+      bool invoicedProductsDatabaseExist = await databaseExists(invoicedProductDatabasePath);
 
-      controllerAllProductQuantity.text = widget.sellInvoicesData!.soldProductQuantity;
-      var allQuantities = removeEmptyElementCsv(widget.sellInvoicesData!.soldProductQuantity.split(","));
+      if (invoicedProductsDatabaseExist) {
+        debugPrint("Invoiced Products Database Exists");
 
-      controllerAllProductQuantityType.text = widget.sellInvoicesData!.productQuantityType;
-      var allQuantitiesTypes = removeEmptyElementCsv(widget.sellInvoicesData!.productQuantityType.split(","));
+        InvoicedProductsQueries invoicedProductsQueries = InvoicedProductsQueries();
 
-      controllerAllProductEachPrice.text = widget.sellInvoicesData!.soldProductEachPrice;
-      var allEachPrice = removeEmptyElementCsv(widget.sellInvoicesData!.soldProductEachPrice.split(","));
+        List<InvoicedProductsData> allInvoicedProducts = await invoicedProductsQueries.getAllInvoicedProducts(InvoicedProductsDatabaseInputs.invoicedProductsDatabase(timeNow), InvoicedProductsDatabaseInputs.databaseTableName);
 
-      var index = 0;
+        ProductsDatabaseQueries productsDatabaseQueries = ProductsDatabaseQueries();
 
-      allIds.forEach((element) async {
+        int index = 0;
 
-        var aProduct = await productsDatabaseQueries.querySpecificProductById(element, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+        allInvoicedProducts.forEach((element) async {
 
-        allProductsItem.add(selectedProductView(ProductsData(
-            id: int.parse(element),
+          var aProduct = await productsDatabaseQueries.querySpecificProductById(element.invoiceProductId.toString(), ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
-            productImageUrl: aProduct.productImageUrl,
+          selectedProductWidget.add(selectedProductItemView(
+              aProduct,
+              element.invoiceProductStatus,
+              index
+          ));
 
-            productName: allNames[index],
-            productDescription: aProduct.productDescription,
+          selectedProductsData.add(aProduct);
 
-            productCategory: aProduct.productCategory,
+          index++;
 
-            productBrand: aProduct.productBrand,
-            productBrandLogoUrl: aProduct.productBrandLogoUrl,
+        });
 
-            productPrice: allEachPrice[index],
-            productProfitPercent: aProduct.productProfitPercent,
+        setState(() {
+          debugPrint("Invoices Products Retrieved");
 
-            productTax: aProduct.productTax,
+          selectedProductWidget;
 
-            productQuantity: int.parse(allQuantities[index]),
-            productQuantityType: allQuantitiesTypes[index],
-
-            colorTag: aProduct.colorTag
-        )));
-
-        index++;
-
-      });
-
-      if (allProductsItem.isNotEmpty) {
-
-        selectedInvoiceProductsView = SelectedInvoiceProductsView(selectedInputProductsItem: allProductsItem);
+        });
 
       }
-
-      setState(() {
-        debugPrint("Invoices Products Retrieved");
-
-        selectedInvoiceProductsView;
-
-      });
 
     }
 
   }
 
-  Widget selectedProductView(ProductsData productsData) {
+  Widget selectedProductItemView(ProductsData productsData, String invoicedProductStatus, int index) {
+
+    Color productItemStatusColor = ColorsResources.lightTransparent;
+
+    if (invoicedProductStatus == InvoicedProductsData.Product_Purchased) {
+
+      productItemStatusColor = ColorsResources.blueGreen;
+
+    } else if (invoicedProductStatus == InvoicedProductsData.Product_Returned) {
+
+      productItemStatusColor = ColorsResources.red;
+
+    }
 
     return Container(
         width: 173,
@@ -2900,7 +2881,7 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
         margin: EdgeInsets.fromLTRB(0, 0, 5, 0),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(51),
-            color: ColorsResources.light
+            color: productItemStatusColor.withOpacity(0.13)
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -2908,23 +2889,67 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
             Expanded(
                 flex: 2,
                 child: InkWell(
-                    onTap: () {
+                    onTap: () async {
 
-                      selectedProductsData.remove(productsData);
+                      if (widget.sellInvoicesData == null) {
 
-                      controllerAllProductId.text = controllerAllProductId.text.replaceAll((productsData.id.toString() + ","), "");
-                      controllerAllProductName.text = controllerAllProductName.text.replaceAll((productsData.productName + ","), "");
-                      controllerAllProductQuantity.text = controllerAllProductQuantity.text.replaceAll((productsData.productQuantity.toString() + ","), "");
-                      controllerAllProductQuantityType.text = controllerAllProductQuantityType.text.replaceAll((productsData.productQuantityType + ","), "");
-                      controllerAllProductEachPrice.text = controllerAllProductEachPrice.text.replaceAll((productsData.productPrice + ","), "");
+                        selectedProductsData.remove(productsData);
 
-                      /* Start - Calculate Invoice Price */
-                      int previousInvoicePrice = int.parse(controllerInvoicePrice.text.replaceAll(",", ""));
+                        updateSelectedProductsList(selectedProductsData);
 
-                      controllerInvoicePrice.text = (previousInvoicePrice - int.parse(productsData.productPrice.replaceAll(",", ""))).toString();
-                      /* End - Calculate Invoice Price */
+                      } else {
 
-                      updateSelectedProductsList(selectedProductsData);
+                        String databaseDirectory = await getDatabasesPath();
+
+                        String invoicedProductDatabasePath = "${databaseDirectory}/${InvoicedProductsDatabaseInputs.invoicedProductsDatabase(timeNow)}";
+
+                        bool invoicedProductsDatabaseExist = await databaseExists(invoicedProductDatabasePath);
+
+                        if (invoicedProductsDatabaseExist) {
+
+                          InvoicedProductsQueries invoicedProductsQueries = InvoicedProductsQueries();
+
+                          InvoicedProductsData invoicedProductsData = await invoicedProductsQueries.queryInvoicedProductById(
+                              productsData.id.toString(),
+                              InvoicedProductsDatabaseInputs.invoicedProductsDatabase(timeNow),
+                              InvoicedProductsDatabaseInputs.databaseTableName
+                          );
+
+                          if (invoicedProductsData.invoiceProductStatus == InvoicedProductsData.Product_Returned) { // Product Returned
+
+                            invoicedProductsData.invoiceProductStatus = InvoicedProductsData.Product_Purchased;
+
+                            /* Start - Calculate Invoice Price */
+                            int previousInvoicePrice = int.parse(controllerInvoicePrice.text.replaceAll(",", ""));
+
+                            controllerInvoicePrice.text = (previousInvoicePrice + int.parse(productsData.productPrice.replaceAll(",", ""))).toString();
+                            /* End - Calculate Invoice Price */
+
+                          } else if (invoicedProductsData.invoiceProductStatus == InvoicedProductsData.Product_Purchased) { // Product Purchased
+
+                            invoicedProductsData.invoiceProductStatus = InvoicedProductsData.Product_Returned;
+
+                            /* Start - Calculate Invoice Price */
+                            int previousInvoicePrice = int.parse(controllerInvoicePrice.text.replaceAll(",", ""));
+
+                            controllerInvoicePrice.text = (previousInvoicePrice - int.parse(productsData.productPrice.replaceAll(",", ""))).toString();
+                            /* End - Calculate Invoice Price */
+
+                          }
+
+                          InvoicedProductsDatabaseInputs invoicedProductsDatabaseInputs = InvoicedProductsDatabaseInputs();
+
+                          invoicedProductsDatabaseInputs.updateInvoicedData(
+                              invoicedProductsData,
+                              InvoicedProductsDatabaseInputs.invoicedProductsDatabase(timeNow),
+                              InvoicedProductsDatabaseInputs.databaseTableName
+                          );
+
+                          prepareSelectedProducts();
+
+                        }
+
+                      }
 
                     },
                     child: Padding(
@@ -2933,7 +2958,7 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                             alignment: AlignmentDirectional.center,
                             child: Icon(
                               Icons.delete_rounded,
-                              size: 17,
+                              size: 19,
                               color: ColorsResources.darkTransparent,
                             )
                         )
@@ -2943,14 +2968,15 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
             Expanded(
               flex: 11,
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(3, 0, 3, 0),
+                padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
                 child: Directionality(
                   textDirection: TextDirection.rtl,
                   child: Text(
                     productsData.productName,
-                    style: const TextStyle(
+                    style: TextStyle(
                         color: ColorsResources.darkTransparent,
-                        fontSize: 15
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold
                     ),
                   ),
                 ),
@@ -2958,24 +2984,27 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
             ),
             Expanded(
                 flex: 5,
-                child:  AspectRatio(
-                  aspectRatio: 1,
-                  child: Container(
-                    decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: ColorsResources.light
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 3, 7, 3),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(51),
-                          child: Image.file(
-                            File(productsData.productImageUrl),
-                            fit: BoxFit.cover,
-                          )
-                      ),
-                    ),
-                  ),
+                child: Padding(
+                    padding: EdgeInsets.fromLTRB(3, 0, 7, 0),
+                    child: AspectRatio(
+                        aspectRatio: 1,
+                        child: Container(
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: productItemStatusColor.withOpacity(0.5)
+                            ),
+                            child: Padding(
+                                padding: EdgeInsets.all(1),
+                                child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(51),
+                                    child: Image.file(
+                                      File(productsData.productImageUrl),
+                                      fit: BoxFit.cover,
+                                    )
+                                )
+                            )
+                        )
+                    )
                 )
             ),
           ],
@@ -3015,63 +3044,79 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
   }
 
-  void partialReturnProcess() async {
+  void insertInvoicedProducts() async {
 
-    if (widget.sellInvoicesData != null) {
+    selectedProductsData.forEach((productData) {
 
-      if (widget.sellInvoicesData!.soldProductId != controllerAllProductId.text) {
+      InvoicedProductsDatabaseInputs invoicesProductsDatabaseInputs = InvoicedProductsDatabaseInputs();
 
-        ProductsDatabaseInputs productsDatabaseInputs = ProductsDatabaseInputs();
+      invoicesProductsDatabaseInputs.insertInvoicedProductData(
+          InvoicedProductsData(
+              id: DateTime.now().millisecondsSinceEpoch,
+              invoiceProductId: productData.id,
+              invoiceProductName: productData.productName,
+              invoiceProductQuantity: productData.productQuantity,
+              invoiceProductQuantityType: productData.productQuantityType,
+              invoiceProductPrice: productData.productPrice,
+              invoiceProductStatus: InvoicedProductsData.Product_Purchased
+          ),
+          InvoicedProductsDatabaseInputs.invoicedProductsDatabase(timeNow),
+          InvoicedProductsDatabaseInputs.databaseTableName
+      );
 
-        ProductsDatabaseQueries productsDatabaseQueries = ProductsDatabaseQueries();
+    });
 
-        if (widget.sellInvoicesData!.soldProductId.length > controllerAllProductId.text.length) {// New Products Added
+  }
 
-          var csvNewProductIds = controllerAllProductId.text.replaceAll(widget.sellInvoicesData!.soldProductId, "");
-          var csvNewProductQuantity = controllerAllProductQuantity.text.replaceAll(widget.sellInvoicesData!.soldProductQuantity, "");
+  void updateInvoicedProducts() async {
 
-          var allIds = removeEmptyElementCsv(csvNewProductIds.split(","));
+    InvoicedProductsQueries invoicedProductsQueries = InvoicedProductsQueries();
 
-          var index = 0;
+    List<InvoicedProductsData> allInvoicedProducts = await invoicedProductsQueries.getAllInvoicedProducts(InvoicedProductsDatabaseInputs.invoicedProductsDatabase(timeNow), InvoicedProductsDatabaseInputs.databaseTableName);
 
-          allIds.forEach((element) async {
+    selectedProductsData.forEach((productData) {
 
-            var aProduct = await productsDatabaseQueries.querySpecificProductById(element, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+      InvoicedProductsDatabaseInputs invoicesProductsDatabaseInputs = InvoicedProductsDatabaseInputs();
 
-            aProduct.productQuantity = aProduct.productQuantity - int.parse(csvNewProductQuantity[index]);
+      InvoicedProductsData? alreadyPurchasedProduct = allInvoicedProducts.singleWhere((element) => (element.invoiceProductId == productData.id), orElse: null);
 
-            await productsDatabaseInputs.updateProductData(aProduct, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+      if (alreadyPurchasedProduct != null) {
 
-            index++;
+        invoicesProductsDatabaseInputs.updateInvoicedData(
+            InvoicedProductsData(
+                id: alreadyPurchasedProduct.id,
+                invoiceProductId: alreadyPurchasedProduct.invoiceProductId,
+                invoiceProductName: alreadyPurchasedProduct.invoiceProductName,
+                invoiceProductQuantity: productData.productQuantity,
+                invoiceProductQuantityType: productData.productQuantityType,
+                invoiceProductPrice: productData.productPrice,
+                invoiceProductStatus: InvoicedProductsData.Product_Purchased
+            ),
+            InvoicedProductsDatabaseInputs.invoicedProductsDatabase(timeNow),
+            InvoicedProductsDatabaseInputs.databaseTableName
+        );
 
-          });
+      } else {
 
-        } else { // Products Removed
 
-          var csvRemovedProductIds = widget.sellInvoicesData!.soldProductId.replaceAll(controllerAllProductId.text, "");
-          var csvRemovedProductQuantity = widget.sellInvoicesData!.soldProductQuantity.replaceAll(controllerAllProductQuantity.text, "");
+        invoicesProductsDatabaseInputs.insertInvoicedProductData(
+            InvoicedProductsData(
+                id: DateTime.now().millisecondsSinceEpoch,
+                invoiceProductId: productData.id,
+                invoiceProductName: productData.productName,
+                invoiceProductQuantity: productData.productQuantity,
+                invoiceProductQuantityType: productData.productQuantityType,
+                invoiceProductPrice: productData.productPrice,
+                invoiceProductStatus: InvoicedProductsData.Product_Purchased
+            ),
+            InvoicedProductsDatabaseInputs.invoicedProductsDatabase(timeNow),
+            InvoicedProductsDatabaseInputs.databaseTableName
+        );
 
-          var allIds = removeEmptyElementCsv(csvRemovedProductIds.split(","));
-
-          var index = 0;
-
-          allIds.forEach((element) async {
-
-            var aProduct = await productsDatabaseQueries.querySpecificProductById(element, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
-
-            aProduct.productQuantity = aProduct.productQuantity + int.parse(csvRemovedProductQuantity[index]);
-
-            await productsDatabaseInputs.updateProductData(aProduct, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
-
-            index++;
-
-          });
-
-        }
 
       }
 
-    }
+    });
 
   }
 
@@ -3429,42 +3474,6 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
     });
 
-  }
-
-}
-
-class SelectedInvoiceProductsView extends StatefulWidget {
-
-  List<Widget> selectedInputProductsItem;
-
-  SelectedInvoiceProductsView({Key? key, required this.selectedInputProductsItem}) : super(key: key);
-
-  @override
-  _SelectedInvoiceProductsViewState createState() => _SelectedInvoiceProductsViewState();
-}
-class _SelectedInvoiceProductsViewState extends State<SelectedInvoiceProductsView> {
-  @override
-  Widget build(BuildContext context) {
-    debugPrint("Selected Products Number -> ${widget.selectedInputProductsItem.length}");
-
-    setState(() {
-
-      widget.selectedInputProductsItem;
-
-    });
-
-    return SizedBox(
-        width: double.infinity,
-        height: 57,
-        child: Container(
-          child: ListView(
-            physics: const BouncingScrollPhysics(),
-            padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
-            scrollDirection: Axis.horizontal,
-            children: widget.selectedInputProductsItem,
-          ),
-        )
-    );
   }
 
 }

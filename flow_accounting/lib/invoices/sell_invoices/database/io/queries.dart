@@ -43,13 +43,7 @@ class SellInvoicesDatabaseQueries {
         sellInvoiceDateText: maps[i]['sellInvoiceDateText'],
         sellInvoiceDateMillisecond: int.parse(maps[i]['sellInvoiceDateMillisecond'].toString()),
 
-        soldProductId: maps[i]['soldProductId'],
-        soldProductName: maps[i]['soldProductName'],
-        soldProductQuantity: maps[i]['soldProductQuantity'],
-        productQuantityType: maps[i]['productQuantityType'],
-
         soldProductPrice: maps[i]['soldProductPrice'],
-        soldProductEachPrice: maps[i]['soldProductEachPrice'],
         soldProductPriceDiscount: maps[i]['soldProductPriceDiscount'],
 
         invoiceDiscount: maps[i]['invoiceDiscount'],
@@ -106,13 +100,7 @@ class SellInvoicesDatabaseQueries {
       sellInvoiceDateText: databaseContents[0]['sellInvoiceDateText'].toString(),
       sellInvoiceDateMillisecond: int.parse(databaseContents[0]['sellInvoiceDateMillisecond'].toString()),
 
-      soldProductId: databaseContents[0]['soldProductId'].toString(),
-      soldProductName: databaseContents[0]['soldProductName'].toString(),
-      soldProductQuantity: databaseContents[0]['soldProductQuantity'].toString(),
-      productQuantityType: databaseContents[0]['productQuantityType'].toString(),
-
       soldProductPrice: databaseContents[0]['soldProductPrice'].toString(),
-      soldProductEachPrice: databaseContents[0]['soldProductEachPrice'].toString(),
       soldProductPriceDiscount: databaseContents[0]['soldProductPriceDiscount'].toString(),
 
       invoiceDiscount: databaseContents[0]['invoiceDiscount'].toString(),

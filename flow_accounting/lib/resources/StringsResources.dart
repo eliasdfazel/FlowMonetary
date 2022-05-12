@@ -787,11 +787,11 @@ class StringsResources {
     return "تخفیف روی فاکتور فروش";
   }
 
-  static String buyFullDiscount() {
+  static String fullDiscount() {
 
     return "تخفیف کل %";
   }
-  static String buyFullDiscountHint() {
+  static String fullDiscountHint() {
 
     return "تخفیف روی کل فاکتور";
   }

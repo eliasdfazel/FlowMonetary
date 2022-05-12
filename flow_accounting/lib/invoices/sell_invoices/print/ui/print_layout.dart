@@ -294,7 +294,7 @@ class SellPrintLayout {
                                       child: Align(
                                           alignment: AlignmentDirectional.centerEnd,
                                           child: Text(
-                                              sellInvoicesData.soldProductQuantity,
+                                              "sellInvoicesData.soldProductQuantity",
                                               textAlign: TextAlign.center,
                                               maxLines: 1,
                                               style: TextStyle(
@@ -318,7 +318,7 @@ class SellPrintLayout {
                                       child: Align(
                                           alignment: AlignmentDirectional.centerEnd,
                                           child: Text(
-                                              sellInvoicesData.soldProductName,
+                                              "sellInvoicesData.soldProductName",
                                               textDirection: TextDirection.rtl,
                                               maxLines: 2,
                                               style: TextStyle(
@@ -437,7 +437,7 @@ class SellPrintLayout {
                                       child: Align(
                                           alignment: AlignmentDirectional.centerEnd,
                                           child: Text(
-                                              sellInvoicesData.soldProductEachPrice,
+                                              "sellInvoicesData.soldProductEachPrice",
                                               textDirection: TextDirection.rtl,
                                               maxLines: 2,
                                               style: TextStyle(

@@ -1915,12 +1915,12 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                         errorText: warningProductDiscount,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.buyFullDiscount(),
+                                        labelText: StringsResources.fullDiscount(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.buyFullDiscountHint(),
+                                        hintText: StringsResources.fullDiscountHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 13.0
@@ -2209,54 +2209,24 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                         itemBuilder: (context, suggestion) {
 
                                           return ListTile(
-                                              title: Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                children: [
-                                                  Expanded(
-                                                    flex: 11,
-                                                    child: Padding(
-                                                      padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
-                                                      child: Directionality(
-                                                        textDirection: TextDirection.rtl,
-                                                        child: Text(
-                                                          "suggestion.creditorName",
-                                                          style: const TextStyle(
-                                                              color: ColorsResources.darkTransparent,
-                                                              fontSize: 15
-                                                          ),
-                                                        ),
-                                                      ),
+                                              title: Padding(
+                                                padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
+                                                child: Directionality(
+                                                  textDirection: TextDirection.rtl,
+                                                  child: Text(
+                                                    suggestion.creditorsName,
+                                                    style: const TextStyle(
+                                                        color: ColorsResources.darkTransparent,
+                                                        fontSize: 15
                                                     ),
                                                   ),
-                                                  Expanded(
-                                                      flex: 5,
-                                                      child:  AspectRatio(
-                                                        aspectRatio: 1,
-                                                        child: Container(
-                                                          decoration: const BoxDecoration(
-                                                              shape: BoxShape.circle,
-                                                              color: ColorsResources.light
-                                                          ),
-                                                          child: Padding(
-                                                            padding: const EdgeInsets.fromLTRB(3, 3, 3, 3),
-                                                            child: ClipRRect(
-                                                              borderRadius: BorderRadius.circular(51),
-                                                              child: Image.network(
-                                                                generateBankLogoUrl("suggestion.creditorImageUrl"),
-                                                                fit: BoxFit.cover,
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      )
-                                                  ),
-                                                ],
+                                                ),
                                               )
                                           );
                                         },
                                         onSuggestionSelected: (suggestion) {
 
-                                          controllerBoughtFrom.text = "suggestion.creditorName";
+                                          controllerBoughtFrom.text = suggestion.creditorsName;
 
                                         },
                                         errorBuilder: (context, suggestion) {
