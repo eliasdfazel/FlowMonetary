@@ -1056,16 +1056,18 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                             controllerInvoicePrice.text = (previousInvoicePrice + finalPrice).toString();
                                             /* End - Calculate Invoice Price */
 
+                                            productData.productQuantity = int.parse(controllerProductQuantity.text);
+
+                                            selectedProductsData.add(productData);
+
+                                            updateSelectedProductsList(selectedProductsData);
+
                                             controllerProductName.text = "";
                                             controllerProductQuantity.text = "";
                                             controllerProductQuantityType.text = "";
                                             controllerProductEachPrice.text = "";
                                             controllerProductTax.text = "";
                                             controllerProductDiscount.text = "";
-
-                                            selectedProductsData.add(productData);
-
-                                            updateSelectedProductsList(selectedProductsData);
 
                                           }
 
@@ -3443,7 +3445,6 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
                                     updateProductQuantity();
 
-
                                     Fluttertoast.showToast(
                                         msg: StringsResources.updatedText(),
                                         toastLength: Toast.LENGTH_SHORT,
@@ -3800,7 +3801,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                     child: Directionality(
                       textDirection: TextDirection.rtl,
                       child: Text(
-                        "${productsData.productName} ${productsData.productQuantityType} ${productsData.productQuantity}",
+                        "${productsData.productName} - ${productsData.productQuantityType} ${productsData.productQuantity}",
                         style: TextStyle(
                             color: ColorsResources.darkTransparent,
                             fontSize: 13,

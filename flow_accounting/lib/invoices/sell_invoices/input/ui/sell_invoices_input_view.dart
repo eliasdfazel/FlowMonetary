@@ -1058,16 +1058,18 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                                                     controllerInvoicePrice.text = (previousInvoicePrice + finalPrice).toString();
                                                     /* End - Calculate Invoice Price */
 
+                                                    productData.productQuantity = int.parse(controllerProductQuantity.text);
+
+                                                    selectedProductsData.add(productData);
+
+                                                    updateSelectedProductsList(selectedProductsData);
+
                                                     controllerProductName.text = "";
                                                     controllerProductQuantity.text = "";
                                                     controllerProductQuantityType.text = "";
                                                     controllerProductEachPrice.text = "";
                                                     controllerProductTax.text = "";
                                                     controllerProductDiscount.text = "";
-
-                                                    selectedProductsData.add(productData);
-
-                                                    updateSelectedProductsList(selectedProductsData);
 
                                                   }
 
