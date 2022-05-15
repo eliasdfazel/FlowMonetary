@@ -1188,6 +1188,11 @@ class StringsResources {
   }
   /* End - Features Descriptions */
 
+  static String bankText() {
+
+    return "بانک";
+  }
+
   static String quickSaveHint() {
 
     return "ثبت سریع";

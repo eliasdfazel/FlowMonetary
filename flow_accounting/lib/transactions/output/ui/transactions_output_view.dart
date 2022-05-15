@@ -1415,7 +1415,7 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
                                               child: Align(
                                                 alignment: Alignment.centerRight,
                                                 child: Text(
-                                                  StringsResources.chequeCategory(),
+                                                  StringsResources.bankText(),
                                                   textAlign: TextAlign.right,
                                                   maxLines: 1,
                                                   style: TextStyle(
