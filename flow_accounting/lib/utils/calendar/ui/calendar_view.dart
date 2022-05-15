@@ -19,9 +19,11 @@ class CalendarView extends StatefulWidget {
 
   String? inputDateTime;
 
+  bool timeNeeded = false;
+
   bool darkTheme = false;
 
-  CalendarView({Key? key, this.inputDateTime, this.darkTheme = false}) : super(key: key);
+  CalendarView({Key? key, this.inputDateTime, this.darkTheme = false, this.timeNeeded = false}) : super(key: key);
 
   DateTime pickedDateTime = DateTime.now();
 
@@ -156,53 +158,72 @@ class _CalendarView extends State<CalendarView> {
                   widget.pickedDataTimeYear = yearNumber;
                   widget.pickedDataTimeMonth = iranianCalendar.formatter.mm;
 
-                  /* Start - Time Picker */
-                  DatePicker.showTimePicker(
-                    context,
-                    theme: DatePickerTheme(
-                      itemHeight: 73,
-                      backgroundColor: backgroundColor,
-                      headerColor: headerColor,
-                      doneStyle: TextStyle(
-                        color: doneColor,
-                        fontSize: 19,
-                        fontFamily: 'Sans',
-                        fontWeight: FontWeight.bold
-                      ),
-                      cancelStyle: TextStyle(
-                        color: cancelColor,
-                        fontSize: 19,
-                        fontFamily: 'Sans',
-                      ),
-                      itemStyle: TextStyle(
+                  if (widget.timeNeeded) {
+
+                    /* Start - Time Picker */
+                    DatePicker.showTimePicker(
+                      context,
+                      theme: DatePickerTheme(
+                        itemHeight: 73,
+                        backgroundColor: backgroundColor,
+                        headerColor: headerColor,
+                        doneStyle: TextStyle(
+                            color: doneColor,
+                            fontSize: 19,
+                            fontFamily: 'Sans',
+                            fontWeight: FontWeight.bold
+                        ),
+                        cancelStyle: TextStyle(
+                          color: cancelColor,
+                          fontSize: 19,
+                          fontFamily: 'Sans',
+                        ),
+                        itemStyle: TextStyle(
                           color: itemColor,
                           fontSize: 23,
                           fontFamily: 'Sans',
+                        ),
                       ),
-                    ),
-                    showTitleActions: true,
-                    onConfirm: (changedTime) {
+                      showTitleActions: true,
+                      onConfirm: (changedTime) {
 
-                      setState(() {
+                        setState(() {
 
-                        widget.inputDateTime = "" +
-                            weekdayName + " " +
-                            dayNumber + " " +
-                            monthName + " " +
-                            yearNumber +
-                            "\n" +
-                            "ساعت" + " " +
-                            "${changedTime.hour}:${changedTime.minute}";
+                          widget.inputDateTime = "" +
+                              weekdayName + " " +
+                              dayNumber + " " +
+                              monthName + " " +
+                              yearNumber +
+                              "\n" +
+                              "ساعت" + " " +
+                              "${changedTime.hour}:${changedTime.minute}";
 
-                      });
+                        });
 
-                    },
-                    onCancel: () {
+                      },
+                      onCancel: () {
 
-                    },
-                    locale: LocaleType.fa,
-                  );
-                  /* End - Time Picker */
+                      },
+                      locale: LocaleType.fa,
+                    );
+                    /* End - Time Picker */
+
+                  } else {
+
+                    setState(() {
+
+                      widget.inputDateTime = "" +
+                          weekdayName + " " +
+                          dayNumber + " " +
+                          monthName + " " +
+                          yearNumber +
+                          "\n" +
+                          "ساعت" + " " +
+                          "${widget.pickedDateTime.hour}:${widget.pickedDateTime.minute}";
+
+                    });
+
+                  }
 
                 },
                 pickerModel: PersianDatePicker(date: widget.pickedDateTime, locale: LocaleType.fa),
