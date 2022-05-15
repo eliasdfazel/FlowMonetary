@@ -17,7 +17,7 @@ import 'package:flow_accounting/loans/database/structure/tables_structure.dart';
 import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
-import 'package:flow_accounting/utils/calendar/ui/calendar_view_light.dart';
+import 'package:flow_accounting/utils/calendar/ui/calendar_view.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -33,7 +33,7 @@ class LoansInputView extends StatefulWidget {
 }
 class _LoansInputViewState extends State<LoansInputView> {
 
-  CalendarViewLight loanCalendarView = CalendarViewLight();
+  CalendarView loanCalendarView = CalendarView();
 
   ColorSelectorView colorSelectorView = ColorSelectorView();
 

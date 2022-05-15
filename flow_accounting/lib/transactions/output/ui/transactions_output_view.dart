@@ -19,7 +19,7 @@ import 'package:flow_accounting/transactions/database/io/queries.dart';
 import 'package:flow_accounting/transactions/database/structures/tables_structure.dart';
 import 'package:flow_accounting/transactions/edit/ui/transactions_edit_view.dart';
 import 'package:flow_accounting/utils/calendar/io/time_io.dart';
-import 'package:flow_accounting/utils/calendar/ui/calendar_view_dark.dart';
+import 'package:flow_accounting/utils/calendar/ui/calendar_view.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
 import 'package:flow_accounting/utils/extensions/CreditCardNumber.dart';
 import 'package:flutter/material.dart';
@@ -1262,11 +1262,11 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
       int timeFirst = allTransactions.first.transactionTimeMillisecond;
       int timeLast = allTransactions.last.transactionTimeMillisecond;
 
-      CalendarViewDark calendarViewFirst = CalendarViewDark();
+      CalendarView calendarViewFirst = CalendarView(darkTheme: true);
       calendarViewFirst.inputDateTime = timeIO.humanReadableFarsi(DateTime.fromMillisecondsSinceEpoch(timeFirst));
       calendarViewFirst.pickedDateTime = DateTime.fromMillisecondsSinceEpoch(timeFirst);
 
-      CalendarViewDark calendarViewLast = CalendarViewDark();
+      CalendarView calendarViewLast = CalendarView(darkTheme: true);
       calendarViewLast.inputDateTime = timeIO.humanReadableFarsi(DateTime.fromMillisecondsSinceEpoch(timeLast));
       calendarViewLast.pickedDateTime = DateTime.fromMillisecondsSinceEpoch(timeLast);
 

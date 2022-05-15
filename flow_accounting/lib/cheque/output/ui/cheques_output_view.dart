@@ -19,7 +19,7 @@ import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/utils/calendar/io/time_io.dart';
-import 'package:flow_accounting/utils/calendar/ui/calendar_view_dark.dart';
+import 'package:flow_accounting/utils/calendar/ui/calendar_view.dart';
 import 'package:flow_accounting/utils/colors/color_extractor.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
 import 'package:flow_accounting/utils/extensions/BankLogos.dart';
@@ -1117,11 +1117,11 @@ class _ChequesOutputViewState extends State<ChequesOutputView> with TickerProvid
       int timeFirst = int.parse(allCheques.first.chequeDueMillisecond);
       int timeLast = int.parse(allCheques.last.chequeDueMillisecond);
 
-      CalendarViewDark calendarViewFirst = CalendarViewDark();
+      CalendarView calendarViewFirst = CalendarView(darkTheme: true);
       calendarViewFirst.inputDateTime = timeIO.humanReadableFarsi(DateTime.fromMillisecondsSinceEpoch(timeFirst));
       calendarViewFirst.pickedDateTime = DateTime.fromMillisecondsSinceEpoch(timeFirst);
 
-      CalendarViewDark calendarViewLast = CalendarViewDark();
+      CalendarView calendarViewLast = CalendarView(darkTheme: true);
       calendarViewLast.inputDateTime = timeIO.humanReadableFarsi(DateTime.fromMillisecondsSinceEpoch(timeLast));
       calendarViewLast.pickedDateTime = DateTime.fromMillisecondsSinceEpoch(timeLast);
 

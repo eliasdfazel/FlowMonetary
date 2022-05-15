@@ -15,11 +15,13 @@ import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:shamsi_date/shamsi_date.dart';
 
-class CalendarViewLight extends StatefulWidget {
+class CalendarView extends StatefulWidget {
 
   String? inputDateTime;
 
-  CalendarViewLight({Key? key, this.inputDateTime}) : super(key: key);
+  bool darkTheme = false;
+
+  CalendarView({Key? key, this.inputDateTime, this.darkTheme = false}) : super(key: key);
 
   DateTime pickedDateTime = DateTime.now();
 
@@ -27,11 +29,19 @@ class CalendarViewLight extends StatefulWidget {
   String pickedDataTimeMonth = "0";
 
   @override
-  _CalendarViewLight createState() => _CalendarViewLight();
+  _CalendarView createState() => _CalendarView();
 }
-class _CalendarViewLight extends State<CalendarViewLight> {
+class _CalendarView extends State<CalendarView> {
 
   String inputDateTimeUntouched = "";
+
+  Color backgroundColor = ColorsResources.light;
+  Color headerColor = ColorsResources.white;
+
+  Color doneColor = ColorsResources.applicationGeeksEmpire;
+  Color cancelColor = ColorsResources.darkTransparent;
+
+  Color itemColor = ColorsResources.applicationDarkGeeksEmpire;
 
   @override
   void initState() {
@@ -47,6 +57,28 @@ class _CalendarViewLight extends State<CalendarViewLight> {
     } else {
 
 
+
+    }
+
+    if (widget.darkTheme) {
+
+      backgroundColor = ColorsResources.dark;
+      headerColor = ColorsResources.black;
+
+      doneColor = ColorsResources.applicationLightGeeksEmpire;
+      cancelColor = ColorsResources.lightTransparent;
+
+      itemColor = ColorsResources.applicationGeeksEmpire;
+
+    } else {
+
+      backgroundColor = ColorsResources.light;
+      headerColor = ColorsResources.white;
+
+      doneColor = ColorsResources.applicationGeeksEmpire;
+      cancelColor = ColorsResources.darkTransparent;
+
+      itemColor = ColorsResources.applicationDarkGeeksEmpire;
 
     }
 
@@ -80,21 +112,21 @@ class _CalendarViewLight extends State<CalendarViewLight> {
                 context,
                 theme: DatePickerTheme(
                   itemHeight: 73,
-                  backgroundColor: ColorsResources.light,
-                  headerColor: ColorsResources.white,
-                  doneStyle: const TextStyle(
-                    color: ColorsResources.applicationGeeksEmpire,
+                  backgroundColor: backgroundColor,
+                  headerColor: headerColor,
+                  doneStyle: TextStyle(
+                    color: doneColor,
                     fontSize: 19,
                     fontFamily: 'Sans',
                     fontWeight: FontWeight.bold
                   ),
-                  cancelStyle: const TextStyle(
-                    color: ColorsResources.darkTransparent,
+                  cancelStyle: TextStyle(
+                    color: cancelColor,
                     fontSize: 19,
                     fontFamily: 'Sans',
                   ),
-                  itemStyle: const TextStyle(
-                    color: ColorsResources.applicationDarkGeeksEmpire,
+                  itemStyle: TextStyle(
+                    color: itemColor,
                     fontSize: 23,
                     fontFamily: 'Sans',
                   ),
@@ -129,21 +161,21 @@ class _CalendarViewLight extends State<CalendarViewLight> {
                     context,
                     theme: DatePickerTheme(
                       itemHeight: 73,
-                      backgroundColor: ColorsResources.light,
-                      headerColor: ColorsResources.white,
-                      doneStyle: const TextStyle(
-                        color: ColorsResources.applicationGeeksEmpire,
+                      backgroundColor: backgroundColor,
+                      headerColor: headerColor,
+                      doneStyle: TextStyle(
+                        color: doneColor,
                         fontSize: 19,
                         fontFamily: 'Sans',
                         fontWeight: FontWeight.bold
                       ),
-                      cancelStyle: const TextStyle(
-                        color: ColorsResources.darkTransparent,
+                      cancelStyle: TextStyle(
+                        color: cancelColor,
                         fontSize: 19,
                         fontFamily: 'Sans',
                       ),
-                      itemStyle: const TextStyle(
-                          color: ColorsResources.applicationDarkGeeksEmpire,
+                      itemStyle: TextStyle(
+                          color: itemColor,
                           fontSize: 23,
                           fontFamily: 'Sans',
                       ),
@@ -166,19 +198,6 @@ class _CalendarViewLight extends State<CalendarViewLight> {
 
                     },
                     onCancel: () {
-
-                      setState(() {
-
-                        inputDateTimeUntouched = "" +
-                            weekdayName + " " +
-                            dayNumber + " " +
-                            monthName + " " +
-                            yearNumber +
-                            "\n" +
-                            "ساعت" + " " +
-                            "${iranianCalendar.hour}:${iranianCalendar.minute}";
-
-                      });
 
                     },
                     locale: LocaleType.fa,

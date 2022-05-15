@@ -29,7 +29,7 @@ import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/database/io/inputs.dart';
 import 'package:flow_accounting/transactions/database/structures/tables_structure.dart';
-import 'package:flow_accounting/utils/calendar/ui/calendar_view_light.dart';
+import 'package:flow_accounting/utils/calendar/ui/calendar_view.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
 import 'package:flow_accounting/utils/extensions/BankLogos.dart';
 import 'package:flutter/material.dart';
@@ -48,7 +48,7 @@ class TransactionsEditView extends StatefulWidget {
 }
 class _TransactionsEditViewState extends State<TransactionsEditView> {
 
-  CalendarViewLight calendarView = CalendarViewLight();
+  CalendarView calendarView = CalendarView();
 
   ColorSelectorView colorSelectorView = ColorSelectorView();
 
