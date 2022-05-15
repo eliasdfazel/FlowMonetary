@@ -48,6 +48,8 @@ class BuyInvoicesData {
 
   String invoiceReturned = BuyInvoicesData.BuyInvoice_Returned;
 
+  String invoiceChequesNumbers;
+
   int colorTag = ColorsResources.dark.value;
 
   BuyInvoicesData({
@@ -81,6 +83,8 @@ class BuyInvoicesData {
     required this.companyDigitalSignature,
 
     required this.invoiceReturned,
+
+    required this.invoiceChequesNumbers,
 
     required this.colorTag,
   });
@@ -117,6 +121,8 @@ class BuyInvoicesData {
       'companyDigitalSignature': companyDigitalSignature,
 
       'invoiceReturned': invoiceReturned,
+
+      'invoiceChequesNumbers': invoiceChequesNumbers,
 
       'colorTag': colorTag,
     };
@@ -155,6 +161,8 @@ class BuyInvoicesData {
         'companyDigitalSignature: $companyDigitalSignature,'
 
         'invoiceReturned: $invoiceReturned,'
+
+        'invoiceChequesNumbers: $invoiceChequesNumbers,'
 
         'colorTag: $colorTag,'
         '}';

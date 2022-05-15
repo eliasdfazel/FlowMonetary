@@ -92,6 +92,11 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
   TextEditingController controllerSoldTo = TextEditingController();
 
+  TextEditingController controllerCheques = TextEditingController();
+  TextEditingController controllerChequeNumber = TextEditingController();
+  TextEditingController controllerChequeMoneyAmount = TextEditingController();
+  TextEditingController controllerChequeName = TextEditingController();
+
   List<ProductsData> selectedProductsData = [];
 
   ScreenshotController barcodeSnapshotController = ScreenshotController();
@@ -139,6 +144,10 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
   String? warningPaidTo;
 
   String? warningSoldTo;
+
+  String? warningChequeNumber;
+  String? warningChequeMoneyAmount;
+  String? warningChequeName;
 
   List<Widget> selectedProductWidget = [];
 
@@ -2365,11 +2374,11 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
                                                   bool noError = true;
 
-                                                  if (controllerProductName.text.isEmpty) {
+                                                  if (controllerChequeNumber.text.isEmpty) {
 
                                                     setState(() {
 
-                                                      warningNoticeProductName = StringsResources.errorText();
+                                                      warningChequeNumber = StringsResources.errorText();
 
                                                     });
 
@@ -2377,11 +2386,11 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
                                                   }
 
-                                                  if (controllerProductQuantity.text.isEmpty) {
+                                                  if (controllerChequeMoneyAmount.text.isEmpty) {
 
                                                     setState(() {
 
-                                                      warningNoticeProductQuantity = StringsResources.errorText();
+                                                      warningChequeMoneyAmount = StringsResources.errorText();
 
                                                     });
 
@@ -2389,11 +2398,11 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
                                                   }
 
-                                                  if (controllerProductQuantityType.text.isEmpty) {
+                                                  if (controllerChequeName.text.isEmpty) {
 
                                                     setState(() {
 
-                                                      warningNoticeProductQuantityType = StringsResources.errorText();
+                                                      warningChequeName = StringsResources.errorText();
 
                                                     });
 
@@ -2401,117 +2410,10 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
                                                   }
 
-                                                  if (controllerProductEachPrice.text.isEmpty) {
-
-                                                    setState(() {
-
-                                                      warningProductEachPrice = StringsResources.errorText();
-
-                                                    });
-
-                                                    noError = false;
-
-                                                  }
 
                                                   if (noError) {
 
-                                                    ProductsData productData = ProductsData(
-                                                        id: DateTime.now().millisecondsSinceEpoch,
 
-                                                        productImageUrl: "",
-
-                                                        productName: controllerProductName.text,
-                                                        productDescription: "",
-
-                                                        productCategory: "",
-
-                                                        productBrand: "",
-                                                        productBrandLogoUrl: "",
-
-                                                        productPrice: controllerProductEachPrice.text,
-                                                        productProfitPercent: "0%",
-
-                                                        productTax: "0%",
-
-                                                        productQuantity: int.parse(controllerProductQuantity.text),
-                                                        productQuantityType: controllerProductQuantityType.text.isEmpty ? "" : controllerProductQuantityType.text,
-
-                                                        colorTag: ColorsResources.white.value
-                                                    );
-
-                                                    bool productExist = false;
-
-                                                    var productQueries = ProductsDatabaseQueries();
-
-                                                    String databaseDirectory = await getDatabasesPath();
-
-                                                    String productDatabasePath = "${databaseDirectory}/${ProductsDatabaseInputs.productsDatabase()}";
-
-                                                    bool productsDatabaseExist = await databaseExists(productDatabasePath);
-
-                                                    if (productsDatabaseExist) {
-
-                                                      try {
-
-                                                        var queriedProduct = await productQueries.querySpecificProductByName(controllerProductName.text, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
-
-                                                        if (queriedProduct != null) {
-
-                                                          productData = queriedProduct;
-
-                                                          productExist = true;
-
-                                                          debugPrint("Invoice | Selected Product Exists");
-
-                                                        } else {
-
-                                                          productExist = false;
-
-                                                        }
-
-                                                      } on Exception {
-                                                        debugPrint("Invoice | Selected Product Not Exists");
-
-                                                        productExist = false;
-
-                                                      }
-
-                                                    }
-
-                                                    debugPrint("Product Exist: ${productExist}");
-                                                    if (!productExist) {
-                                                      debugPrint("Invoice | New Product Added");
-
-                                                      var databaseInputs = ProductsDatabaseInputs();
-
-                                                      databaseInputs.insertProductData(productData, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
-
-                                                    }
-
-                                                    /* Start - Calculate Invoice Price */
-                                                    int completePrice = int.parse(controllerProductEachPrice.text.isEmpty ? "0" : controllerProductEachPrice.text.replaceAll(",", "")) * int.parse(controllerProductQuantity.text.isEmpty ? "0" : controllerProductQuantity.text);
-
-                                                    int taxAmount = ((completePrice * int.parse(controllerProductTax.text.isEmpty ? "0" : controllerProductTax.text.replaceAll("%", ""))) / 100).round();
-
-                                                    int discountPrice = ((completePrice * int.parse(controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text)) / 100).round();
-
-                                                    int finalPrice = (completePrice + taxAmount) - discountPrice;
-
-                                                    int previousInvoicePrice = int.parse(controllerInvoicePrice.text.isEmpty ? "0" : controllerInvoicePrice.text.replaceAll(",", ""));
-
-                                                    controllerInvoicePrice.text = (previousInvoicePrice + finalPrice).toString();
-                                                    /* End - Calculate Invoice Price */
-
-                                                    controllerProductName.text = "";
-                                                    controllerProductQuantity.text = "";
-                                                    controllerProductQuantityType.text = "";
-                                                    controllerProductEachPrice.text = "";
-                                                    controllerProductTax.text = "";
-                                                    controllerProductDiscount.text = "";
-
-                                                    selectedProductsData.add(productData);
-
-                                                    updateSelectedProductsList(selectedProductsData);
 
                                                   }
 
@@ -3437,6 +3339,8 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                                         sellPreInvoice: controllerPreInvoice.text,
 
                                         companyDigitalSignature: companyDigitalSignature,
+
+                                        invoiceChequesNumbers: controllerCheques.text,
 
                                         colorTag: colorSelectorView.selectedColor.value,
 

@@ -60,6 +60,8 @@ class BuyInvoicesDatabaseQueries {
 
         companyDigitalSignature: maps[i]['companyDigitalSignature'],
 
+        invoiceChequesNumbers: maps[i]['invoiceChequesNumbers'],
+
         colorTag: int.parse(maps[i]['colorTag'].toString()),
 
         invoiceReturned: maps[i]['invoiceReturned'],
@@ -116,6 +118,8 @@ class BuyInvoicesDatabaseQueries {
       buyPreInvoice: databaseContents[0]['buyPreInvoice'].toString(),
 
       companyDigitalSignature: databaseContents[0]['companyDigitalSignature'].toString(),
+
+      invoiceChequesNumbers: databaseContents[0]['invoiceChequesNumbers'].toString(),
 
       colorTag: int.parse(databaseContents[0]['colorTag'].toString()),
 
