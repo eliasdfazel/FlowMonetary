@@ -15,7 +15,7 @@ import 'package:flow_accounting/invoices/buy_invoices/database/structures/tables
 import 'package:flow_accounting/invoices/buy_invoices/print/ui/print_layout.dart';
 import 'package:flow_accounting/invoices/sell_invoices/database/structures/tables_structure.dart';
 import 'package:flow_accounting/invoices/sell_invoices/print/ui/print_layout.dart';
-import 'package:flow_accounting/utils/io/FileIO.dart';
+import 'package:flow_accounting/utils/io/file_io.dart';
 import 'package:flutter/material.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';

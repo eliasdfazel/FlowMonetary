@@ -19,7 +19,7 @@ import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/utils/colors/color_extractor.dart';
-import 'package:flow_accounting/utils/extensions/BankLogos.dart';
+import 'package:flow_accounting/utils/extensions/bank_logos.dart';
 import 'package:flow_accounting/utils/navigations/navigations.dart';
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';

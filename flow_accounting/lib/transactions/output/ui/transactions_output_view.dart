@@ -21,7 +21,7 @@ import 'package:flow_accounting/transactions/edit/ui/transactions_edit_view.dart
 import 'package:flow_accounting/utils/calendar/io/time_io.dart';
 import 'package:flow_accounting/utils/calendar/ui/calendar_view.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
-import 'package:flow_accounting/utils/extensions/CreditCardNumber.dart';
+import 'package:flow_accounting/utils/extensions/credit_card_number.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:marquee/marquee.dart';

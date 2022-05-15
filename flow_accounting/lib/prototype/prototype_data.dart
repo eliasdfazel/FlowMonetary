@@ -19,7 +19,7 @@ import 'package:flow_accounting/profile/database/structures/tables_structure.dar
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/transactions/database/io/inputs.dart';
 import 'package:flow_accounting/transactions/database/structures/tables_structure.dart';
-import 'package:flow_accounting/utils/extensions/Random.dart';
+import 'package:flow_accounting/utils/extensions/random.dart';
 import 'package:flutter/material.dart';
 import 'package:shamsi_date/shamsi_date.dart';
 

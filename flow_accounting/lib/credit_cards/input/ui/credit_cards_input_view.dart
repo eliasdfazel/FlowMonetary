@@ -27,7 +27,7 @@ import 'package:flow_accounting/transactions/output/ui/transactions_output_view.
 import 'package:flow_accounting/utils/chart/chart_view.dart';
 import 'package:flow_accounting/utils/colors/color_extractor.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
-import 'package:flow_accounting/utils/extensions/BankLogos.dart';
+import 'package:flow_accounting/utils/extensions/bank_logos.dart';
 import 'package:flow_accounting/utils/navigations/navigations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

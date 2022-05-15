@@ -14,7 +14,7 @@ import 'package:flow_accounting/loans/database/structure/tables_structure.dart';
 import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/utils/calendar/io/time_io.dart';
-import 'package:flow_accounting/utils/ui/Display.dart';
+import 'package:flow_accounting/utils/ui/display.dart';
 import 'package:flutter/material.dart';
 import 'package:marquee/marquee.dart';
 
