@@ -31,7 +31,7 @@ import 'package:flow_accounting/products/database/structures/tables_structure.da
 import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
-import 'package:flow_accounting/utils/calendar/ui/calendar_view.dart';
+import 'package:flow_accounting/utils/calendar/ui/calendar_view_light.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
 import 'package:flow_accounting/utils/extensions/BankLogos.dart';
 import 'package:flow_accounting/utils/io/FileIO.dart';
@@ -58,7 +58,7 @@ class SellInvoicesInputView extends StatefulWidget {
 }
 class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
-  CalendarView calendarView = CalendarView();
+  CalendarViewLight calendarView = CalendarViewLight();
 
   ColorSelectorView colorSelectorView = ColorSelectorView();
 

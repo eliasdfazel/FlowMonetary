@@ -15,11 +15,11 @@ import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:shamsi_date/shamsi_date.dart';
 
-class CalendarView extends StatefulWidget {
+class CalendarViewLight extends StatefulWidget {
 
   String? inputDateTime;
 
-  CalendarView({Key? key, this.inputDateTime}) : super(key: key);
+  CalendarViewLight({Key? key, this.inputDateTime}) : super(key: key);
 
   DateTime pickedDateTime = DateTime.now();
 
@@ -27,9 +27,9 @@ class CalendarView extends StatefulWidget {
   String pickedDataTimeMonth = "0";
 
   @override
-  _CalendarView createState() => _CalendarView();
+  _CalendarViewLight createState() => _CalendarViewLight();
 }
-class _CalendarView extends State<CalendarView> {
+class _CalendarViewLight extends State<CalendarViewLight> {
 
   String inputDateTimeUntouched = "";
 

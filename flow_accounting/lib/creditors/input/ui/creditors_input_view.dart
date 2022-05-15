@@ -16,7 +16,7 @@ import 'package:flow_accounting/creditors/database/structures/tables_structure.d
 import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
-import 'package:flow_accounting/utils/calendar/ui/calendar_view.dart';
+import 'package:flow_accounting/utils/calendar/ui/calendar_view_light.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -32,7 +32,7 @@ class CreditorsInputView extends StatefulWidget {
 }
 class _CreditorsInputViewState extends State<CreditorsInputView> {
 
-  CalendarView calendarView = CalendarView();
+  CalendarViewLight calendarView = CalendarViewLight();
 
   ColorSelectorView colorSelectorView = ColorSelectorView();
 
