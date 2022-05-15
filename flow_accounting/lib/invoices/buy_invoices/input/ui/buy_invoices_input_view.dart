@@ -34,6 +34,7 @@ import 'package:flow_accounting/utils/colors/color_selector.dart';
 import 'package:flow_accounting/utils/extensions/BankLogos.dart';
 import 'package:flow_accounting/utils/io/FileIO.dart';
 import 'package:flow_accounting/utils/print/printing.dart';
+import 'package:flow_accounting/utils/ui/percentage_money_switcher.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
@@ -59,6 +60,8 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
   CalendarView calendarView = CalendarView(timeNeeded: false);
 
   ColorSelectorView colorSelectorView = ColorSelectorView();
+
+  PercentageMoneySwitcher percentageMoneySwitcher = PercentageMoneySwitcher(percentageEnable: true);
 
   TextEditingController controllerCompanyName = TextEditingController();
 
@@ -154,6 +157,8 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
       fit: BoxFit.contain,
     ),
   );
+
+  bool percentageEnable = true;
 
   @override
   void dispose() {
@@ -1047,7 +1052,17 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
                                             int taxAmount = ((completePrice * int.parse(controllerProductTax.text.isEmpty ? "0" : controllerProductTax.text.replaceAll("%", ""))) / 100).round();
 
-                                            int discountPrice = ((completePrice * int.parse(controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text)) / 100).round();
+                                            int discountPrice = 0;
+
+                                            if (percentageMoneySwitcher.percentageEnable) {
+
+                                              discountPrice = ((completePrice * int.parse(controllerProductDiscount.text.isEmpty ? "0" : controllerProductDiscount.text)) / 100).round();
+
+                                            } else {
+
+                                              discountPrice = int.parse(controllerDiscount.text);
+
+                                            }
 
                                             int finalPrice = (completePrice + taxAmount) - discountPrice;
 
@@ -1478,76 +1493,81 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                           flex: 1,
                                           child: Padding(
                                               padding: const EdgeInsets.fromLTRB(3, 0, 3, 0),
-                                              child: Directionality(
-                                                textDirection: TextDirection.rtl,
-                                                child: TextField(
-                                                  controller: controllerProductDiscount,
-                                                  textAlign: TextAlign.center,
-                                                  textDirection: TextDirection.rtl,
-                                                  textAlignVertical: TextAlignVertical.bottom,
-                                                  maxLines: 1,
-                                                  cursorColor: ColorsResources.primaryColor,
-                                                  autocorrect: true,
-                                                  autofocus: false,
-                                                  keyboardType: TextInputType.number,
-                                                  textInputAction: TextInputAction.next,
-                                                  decoration: InputDecoration(
-                                                    alignLabelWithHint: true,
-                                                    border: const OutlineInputBorder(
-                                                        borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                                        borderRadius: BorderRadius.only(
-                                                            topLeft: Radius.circular(13),
-                                                            topRight: Radius.circular(13),
-                                                            bottomLeft: Radius.circular(13),
-                                                            bottomRight: Radius.circular(13)
+                                              child: Stack(
+                                                children: [
+                                                  Directionality(
+                                                      textDirection: TextDirection.rtl,
+                                                      child: TextField(
+                                                        controller: controllerProductDiscount,
+                                                        textAlign: TextAlign.center,
+                                                        textDirection: TextDirection.rtl,
+                                                        textAlignVertical: TextAlignVertical.bottom,
+                                                        maxLines: 1,
+                                                        cursorColor: ColorsResources.primaryColor,
+                                                        autocorrect: true,
+                                                        autofocus: false,
+                                                        keyboardType: TextInputType.number,
+                                                        textInputAction: TextInputAction.next,
+                                                        decoration: InputDecoration(
+                                                          alignLabelWithHint: true,
+                                                          border: const OutlineInputBorder(
+                                                              borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                                              borderRadius: BorderRadius.only(
+                                                                  topLeft: Radius.circular(13),
+                                                                  topRight: Radius.circular(13),
+                                                                  bottomLeft: Radius.circular(13),
+                                                                  bottomRight: Radius.circular(13)
+                                                              ),
+                                                              gapPadding: 5
+                                                          ),
+                                                          enabledBorder: const OutlineInputBorder(
+                                                              borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                                              borderRadius: BorderRadius.only(
+                                                                  topLeft: Radius.circular(13),
+                                                                  topRight: Radius.circular(13),
+                                                                  bottomLeft: Radius.circular(13),
+                                                                  bottomRight: Radius.circular(13)
+                                                              ),
+                                                              gapPadding: 5
+                                                          ),
+                                                          focusedBorder: const OutlineInputBorder(
+                                                              borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                                                              borderRadius: BorderRadius.only(
+                                                                  topLeft: Radius.circular(13),
+                                                                  topRight: Radius.circular(13),
+                                                                  bottomLeft: Radius.circular(13),
+                                                                  bottomRight: Radius.circular(13)
+                                                              ),
+                                                              gapPadding: 5
+                                                          ),
+                                                          errorBorder: const OutlineInputBorder(
+                                                              borderSide: BorderSide(color: Colors.red, width: 1.0),
+                                                              borderRadius: BorderRadius.only(
+                                                                  topLeft: Radius.circular(13),
+                                                                  topRight: Radius.circular(13),
+                                                                  bottomLeft: Radius.circular(13),
+                                                                  bottomRight: Radius.circular(13)
+                                                              ),
+                                                              gapPadding: 5
+                                                          ),
+                                                          errorText: warningProductDiscount,
+                                                          filled: true,
+                                                          fillColor: ColorsResources.lightTransparent,
+                                                          labelText: StringsResources.invoiceDiscount(),
+                                                          labelStyle: const TextStyle(
+                                                              color: ColorsResources.dark,
+                                                              fontSize: 17.0
+                                                          ),
+                                                          hintText: StringsResources.buyInvoiceDiscountHint(),
+                                                          hintStyle: const TextStyle(
+                                                              color: ColorsResources.darkTransparent,
+                                                              fontSize: 13.0
+                                                          ),
                                                         ),
-                                                        gapPadding: 5
-                                                    ),
-                                                    enabledBorder: const OutlineInputBorder(
-                                                        borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                                        borderRadius: BorderRadius.only(
-                                                            topLeft: Radius.circular(13),
-                                                            topRight: Radius.circular(13),
-                                                            bottomLeft: Radius.circular(13),
-                                                            bottomRight: Radius.circular(13)
-                                                        ),
-                                                        gapPadding: 5
-                                                    ),
-                                                    focusedBorder: const OutlineInputBorder(
-                                                        borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
-                                                        borderRadius: BorderRadius.only(
-                                                            topLeft: Radius.circular(13),
-                                                            topRight: Radius.circular(13),
-                                                            bottomLeft: Radius.circular(13),
-                                                            bottomRight: Radius.circular(13)
-                                                        ),
-                                                        gapPadding: 5
-                                                    ),
-                                                    errorBorder: const OutlineInputBorder(
-                                                        borderSide: BorderSide(color: Colors.red, width: 1.0),
-                                                        borderRadius: BorderRadius.only(
-                                                            topLeft: Radius.circular(13),
-                                                            topRight: Radius.circular(13),
-                                                            bottomLeft: Radius.circular(13),
-                                                            bottomRight: Radius.circular(13)
-                                                        ),
-                                                        gapPadding: 5
-                                                    ),
-                                                    errorText: warningProductDiscount,
-                                                    filled: true,
-                                                    fillColor: ColorsResources.lightTransparent,
-                                                    labelText: StringsResources.invoiceDiscount(),
-                                                    labelStyle: const TextStyle(
-                                                        color: ColorsResources.dark,
-                                                        fontSize: 17.0
-                                                    ),
-                                                    hintText: StringsResources.buyInvoiceDiscountHint(),
-                                                    hintStyle: const TextStyle(
-                                                        color: ColorsResources.darkTransparent,
-                                                        fontSize: 13.0
-                                                    ),
+                                                      )
                                                   ),
-                                                ),
+                                                  percentageMoneySwitcher
+                                                ],
                                               )
                                           ),
                                         ),
