@@ -776,7 +776,7 @@ class StringsResources {
 
   static String invoiceDiscount() {
 
-    return "تخفیف %";
+    return "تخفیف";
   }
   static String buyInvoiceDiscountHint() {
 

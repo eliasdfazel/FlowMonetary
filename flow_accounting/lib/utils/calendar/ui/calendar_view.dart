@@ -23,7 +23,9 @@ class CalendarView extends StatefulWidget {
 
   bool darkTheme = false;
 
-  CalendarView({Key? key, this.inputDateTime, this.darkTheme = false, this.timeNeeded = true}) : super(key: key);
+  double fontSize = 13;
+
+  CalendarView({Key? key, this.inputDateTime, this.darkTheme = false, this.timeNeeded = true, this.fontSize = 13}) : super(key: key);
 
   DateTime pickedDateTime = DateTime.now();
 
@@ -238,8 +240,9 @@ class _CalendarView extends State<CalendarView> {
                 textDirection: TextDirection.rtl,
                 child: Text(
                   "${widget.inputDateTime}",
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: ColorsResources.dark,
+                    fontSize: widget.fontSize
                   ),
                 ),
               ),

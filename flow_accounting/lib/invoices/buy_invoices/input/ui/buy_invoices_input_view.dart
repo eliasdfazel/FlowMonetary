@@ -63,6 +63,8 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
   CalendarView calendarView = CalendarView(timeNeeded: false);
 
+  CalendarView calendarChequeDueView = CalendarView(timeNeeded: false, inputDateTime: StringsResources.chequeDueDate(), fontSize: 13);
+
   ColorSelectorView colorSelectorView = ColorSelectorView();
 
   PercentageMoneySwitcher percentageMoneySwitcher = PercentageMoneySwitcher(percentageEnable: true);
@@ -2350,7 +2352,6 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                         height: 13,
                         color: Colors.transparent,
                       ),
-
                       SizedBox(
                         width: double.infinity,
                         height: 151,
@@ -2414,10 +2415,11 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
                                                   }
 
-
                                                   if (noError) {
 
                                                     controllerCheques.text += "${controllerChequeNumber.text},";
+
+                                                    insertRelatedCheques(controllerChequeNumber.text);
 
                                                   }
 
@@ -2454,280 +2456,37 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                         children: [
                                           Expanded(
-                                              flex: 5,
-                                              child: Padding(
-                                                  padding: const EdgeInsets.fromLTRB(3, 0, 3, 0),
-                                                  child: Directionality(
-                                                      textDirection: TextDirection.rtl,
-                                                      child: TypeAheadField<String>(
-                                                          suggestionsCallback: (pattern) async {
-
-                                                            return await getQuantityTypes();
-                                                          },
-                                                          itemBuilder: (context, suggestion) {
-
-                                                            return ListTile(
-                                                                title: Row(
-                                                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                                  children: [
-                                                                    Padding(
-                                                                      padding: const EdgeInsets.fromLTRB(3, 0, 3, 0),
-                                                                      child: Directionality(
-                                                                        textDirection: TextDirection.rtl,
-                                                                        child: Text(
-                                                                          suggestion.toString(),
-                                                                          style: const TextStyle(
-                                                                              color: ColorsResources.darkTransparent,
-                                                                              fontSize: 13
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                )
-                                                            );
-                                                          },
-                                                          onSuggestionSelected: (suggestion) {
-
-                                                            controllerProductQuantityType.text = suggestion.toString();
-
-                                                          },
-                                                          errorBuilder: (context, suggestion) {
-
-                                                            return Padding(
-                                                                padding: EdgeInsets.fromLTRB(13, 7, 13, 7),
-                                                                child: Text(StringsResources.nothingText())
-                                                            );
-                                                          },
-                                                          suggestionsBoxDecoration: SuggestionsBoxDecoration(
-                                                              elevation: 7,
-                                                              color: ColorsResources.light,
-                                                              shadowColor: ColorsResources.darkTransparent,
-                                                              borderRadius: BorderRadius.circular(17)
-                                                          ),
-                                                          textFieldConfiguration: TextFieldConfiguration(
-                                                            controller: controllerProductQuantityType,
-                                                            autofocus: false,
-                                                            textAlignVertical: TextAlignVertical.bottom,
-                                                            maxLines: 1,
-                                                            cursorColor: ColorsResources.primaryColor,
-                                                            keyboardType: TextInputType.text,
-                                                            textInputAction: TextInputAction.next,
-                                                            decoration: InputDecoration(
-                                                              alignLabelWithHint: true,
-                                                              border: const OutlineInputBorder(
-                                                                  borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                                                  borderRadius: BorderRadius.only(
-                                                                      topLeft: Radius.circular(13),
-                                                                      topRight: Radius.circular(13),
-                                                                      bottomLeft: Radius.circular(13),
-                                                                      bottomRight: Radius.circular(13)
-                                                                  ),
-                                                                  gapPadding: 5
-                                                              ),
-                                                              enabledBorder: const OutlineInputBorder(
-                                                                  borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                                                  borderRadius: BorderRadius.only(
-                                                                      topLeft: Radius.circular(13),
-                                                                      topRight: Radius.circular(13),
-                                                                      bottomLeft: Radius.circular(13),
-                                                                      bottomRight: Radius.circular(13)
-                                                                  ),
-                                                                  gapPadding: 5
-                                                              ),
-                                                              focusedBorder: const OutlineInputBorder(
-                                                                  borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
-                                                                  borderRadius: BorderRadius.only(
-                                                                      topLeft: Radius.circular(13),
-                                                                      topRight: Radius.circular(13),
-                                                                      bottomLeft: Radius.circular(13),
-                                                                      bottomRight: Radius.circular(13)
-                                                                  ),
-                                                                  gapPadding: 5
-                                                              ),
-                                                              errorBorder: const OutlineInputBorder(
-                                                                  borderSide: BorderSide(color: Colors.red, width: 1.0),
-                                                                  borderRadius: BorderRadius.only(
-                                                                      topLeft: Radius.circular(13),
-                                                                      topRight: Radius.circular(13),
-                                                                      bottomLeft: Radius.circular(13),
-                                                                      bottomRight: Radius.circular(13)
-                                                                  ),
-                                                                  gapPadding: 5
-                                                              ),
-                                                              errorText: warningNoticeProductQuantityType,
-                                                              filled: true,
-                                                              fillColor: ColorsResources.lightTransparent,
-                                                              labelText: StringsResources.productQuantityType(),
-                                                              labelStyle: const TextStyle(
-                                                                  color: ColorsResources.dark,
-                                                                  fontSize: 17.0
-                                                              ),
-                                                              hintText: StringsResources.productQuantityTypeHint(),
-                                                              hintStyle: const TextStyle(
-                                                                  color: ColorsResources.darkTransparent,
-                                                                  fontSize: 13.0
-                                                              ),
-                                                            ),
-                                                          )
-                                                      )
-                                                  )
-                                              )
-                                          ),
-                                          Expanded(
-                                            flex: 5,
+                                            flex: 1,
                                             child: Padding(
-                                                padding: const EdgeInsets.fromLTRB(3, 0, 3, 0),
+                                                padding: const EdgeInsets.fromLTRB(3, 0, 2, 0),
                                                 child: Directionality(
                                                   textDirection: TextDirection.rtl,
-                                                  child: TextField(
-                                                    controller: controllerProductQuantity,
-                                                    textAlign: TextAlign.center,
-                                                    textDirection: TextDirection.rtl,
-                                                    textAlignVertical: TextAlignVertical.bottom,
-                                                    maxLines: 1,
-                                                    cursorColor: ColorsResources.primaryColor,
-                                                    autocorrect: true,
-                                                    autofocus: false,
-                                                    keyboardType: TextInputType.number,
-                                                    textInputAction: TextInputAction.next,
-                                                    decoration: InputDecoration(
-                                                      alignLabelWithHint: true,
-                                                      border: const OutlineInputBorder(
-                                                          borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                                          borderRadius: BorderRadius.only(
-                                                              topLeft: Radius.circular(13),
-                                                              topRight: Radius.circular(13),
-                                                              bottomLeft: Radius.circular(13),
-                                                              bottomRight: Radius.circular(13)
-                                                          ),
-                                                          gapPadding: 5
-                                                      ),
-                                                      enabledBorder: const OutlineInputBorder(
-                                                          borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                                          borderRadius: BorderRadius.only(
-                                                              topLeft: Radius.circular(13),
-                                                              topRight: Radius.circular(13),
-                                                              bottomLeft: Radius.circular(13),
-                                                              bottomRight: Radius.circular(13)
-                                                          ),
-                                                          gapPadding: 5
-                                                      ),
-                                                      focusedBorder: const OutlineInputBorder(
-                                                          borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
-                                                          borderRadius: BorderRadius.only(
-                                                              topLeft: Radius.circular(13),
-                                                              topRight: Radius.circular(13),
-                                                              bottomLeft: Radius.circular(13),
-                                                              bottomRight: Radius.circular(13)
-                                                          ),
-                                                          gapPadding: 5
-                                                      ),
-                                                      errorBorder: const OutlineInputBorder(
-                                                          borderSide: BorderSide(color: Colors.red, width: 1.0),
-                                                          borderRadius: BorderRadius.only(
-                                                              topLeft: Radius.circular(13),
-                                                              topRight: Radius.circular(13),
-                                                              bottomLeft: Radius.circular(13),
-                                                              bottomRight: Radius.circular(13)
-                                                          ),
-                                                          gapPadding: 5
-                                                      ),
-                                                      errorText: warningNoticeProductQuantity,
-                                                      filled: true,
-                                                      fillColor: ColorsResources.lightTransparent,
-                                                      labelText: StringsResources.quantity(),
-                                                      labelStyle: const TextStyle(
-                                                          color: ColorsResources.dark,
-                                                          fontSize: 17.0
-                                                      ),
-                                                      hintText: StringsResources.buyQuantityHint(),
-                                                      hintStyle: const TextStyle(
-                                                          color: ColorsResources.darkTransparent,
-                                                          fontSize: 13.0
-                                                      ),
-                                                    ),
-                                                  ),
-                                                )
-                                            ),
-                                          ),
-                                          Expanded(
-                                            flex: 13,
-                                            child: Padding(
-                                                padding: const EdgeInsets.fromLTRB(3, 0, 13, 0),
-                                                child: Directionality(
-                                                  textDirection: TextDirection.rtl,
-                                                  child: TypeAheadField<ProductsData>(
+                                                  child: TypeAheadField<CreditorsData>(
                                                       suggestionsCallback: (pattern) async {
 
-                                                        return await getAllProducts();
+                                                        return await getAllCreditors();
                                                       },
                                                       itemBuilder: (context, suggestion) {
 
                                                         return ListTile(
-                                                            title: Row(
-                                                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                              children: [
-                                                                Expanded(
-                                                                  flex: 11,
-                                                                  child: Padding(
-                                                                    padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
-                                                                    child: Directionality(
-                                                                      textDirection: TextDirection.rtl,
-                                                                      child: Text(
-                                                                        suggestion.productName,
-                                                                        style: const TextStyle(
-                                                                            color: ColorsResources.darkTransparent,
-                                                                            fontSize: 15
-                                                                        ),
-                                                                      ),
-                                                                    ),
+                                                            title: Padding(
+                                                              padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
+                                                              child: Directionality(
+                                                                textDirection: TextDirection.rtl,
+                                                                child: Text(
+                                                                  suggestion.creditorsName,
+                                                                  style: const TextStyle(
+                                                                      color: ColorsResources.darkTransparent,
+                                                                      fontSize: 15
                                                                   ),
                                                                 ),
-                                                                Expanded(
-                                                                    flex: 5,
-                                                                    child:  AspectRatio(
-                                                                      aspectRatio: 1,
-                                                                      child: Container(
-                                                                        decoration: const BoxDecoration(
-                                                                            shape: BoxShape.circle,
-                                                                            color: ColorsResources.light
-                                                                        ),
-                                                                        child: Padding(
-                                                                          padding: const EdgeInsets.fromLTRB(3, 3, 3, 3),
-                                                                          child: ClipRRect(
-                                                                              borderRadius: BorderRadius.circular(51),
-                                                                              child: Image.file(
-                                                                                File(suggestion.productImageUrl),
-                                                                                fit: BoxFit.cover,
-                                                                              )
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                    )
-                                                                ),
-                                                              ],
+                                                              ),
                                                             )
                                                         );
                                                       },
                                                       onSuggestionSelected: (suggestion) {
 
-                                                        controllerProductId.text = suggestion.id.toString();
-                                                        controllerProductName.text = suggestion.productName.toString();
-                                                        controllerProductQuantityType.text = suggestion.productQuantityType.toString();
-                                                        controllerProductTax.text = suggestion.productTax.toString();
-
-                                                        String percentProfit = suggestion.productProfitPercent.replaceAll("%", "");
-                                                        double profitMargin = (int.parse(suggestion.productPrice.replaceAll(",", "")) * int.parse(percentProfit)) / 100;
-
-                                                        double sellingPriceWithProfit = int.parse(suggestion.productPrice.replaceAll(",", "")) + profitMargin;
-
-                                                        String percentTax = suggestion.productTax.replaceAll("%", "");
-                                                        double taxMargin = (sellingPriceWithProfit * int.parse(percentTax)) / 100;
-
-                                                        int sellingPrice = (sellingPriceWithProfit + taxMargin).round();
-
-                                                        controllerProductEachPrice.text = sellingPrice.toString();
+                                                        controllerChequeName.text = suggestion.creditorsName;
 
                                                       },
                                                       errorBuilder: (context, suggestion) {
@@ -2744,7 +2503,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                                           borderRadius: BorderRadius.circular(17)
                                                       ),
                                                       textFieldConfiguration: TextFieldConfiguration(
-                                                        controller: controllerProductName,
+                                                        controller: controllerChequeName,
                                                         autofocus: false,
                                                         maxLines: 1,
                                                         cursorColor: ColorsResources.primaryColor,
@@ -2792,15 +2551,15 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                                               ),
                                                               gapPadding: 5
                                                           ),
-                                                          errorText: warningNoticeProductName,
+                                                          errorText: warningChequeName,
                                                           filled: true,
                                                           fillColor: ColorsResources.lightTransparent,
-                                                          labelText: StringsResources.invoiceProduct(),
+                                                          labelText: StringsResources.chequeTargetName(),
                                                           labelStyle: const TextStyle(
                                                               color: ColorsResources.dark,
                                                               fontSize: 17.0
                                                           ),
-                                                          hintText: StringsResources.buyInvoiceProductHint(),
+                                                          hintText: StringsResources.chequeTargetName(),
                                                           hintStyle: const TextStyle(
                                                               color: ColorsResources.darkTransparent,
                                                               fontSize: 13.0
@@ -2811,27 +2570,14 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                                 )
                                             ),
                                           ),
-                                        ],
-                                      ),
-                                    ),
-                                    const Divider(
-                                      height: 3,
-                                      color: Colors.transparent,
-                                    ),
-                                    SizedBox(
-                                      width: double.infinity,
-                                      height: 73,
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                        children: [
                                           Expanded(
                                             flex: 1,
                                             child: Padding(
-                                                padding: const EdgeInsets.fromLTRB(3, 0, 3, 0),
+                                                padding: const EdgeInsets.fromLTRB(3, 0, 13, 0),
                                                 child: Directionality(
                                                   textDirection: TextDirection.rtl,
                                                   child: TextField(
-                                                    controller: controllerProductDiscount,
+                                                    controller: controllerChequeNumber,
                                                     textAlign: TextAlign.center,
                                                     textDirection: TextDirection.rtl,
                                                     textAlignVertical: TextAlignVertical.bottom,
@@ -2886,12 +2632,12 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                                       errorText: warningProductDiscount,
                                                       filled: true,
                                                       fillColor: ColorsResources.lightTransparent,
-                                                      labelText: StringsResources.invoiceDiscount(),
+                                                      labelText: StringsResources.chequeNumber(),
                                                       labelStyle: const TextStyle(
                                                           color: ColorsResources.dark,
                                                           fontSize: 17.0
                                                       ),
-                                                      hintText: StringsResources.buyInvoiceDiscountHint(),
+                                                      hintText: StringsResources.chequeNumber(),
                                                       hintStyle: const TextStyle(
                                                           color: ColorsResources.darkTransparent,
                                                           fontSize: 13.0
@@ -2901,90 +2647,63 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                                 )
                                             ),
                                           ),
+                                        ],
+                                      ),
+                                    ),
+                                    const Divider(
+                                      height: 3,
+                                      color: Colors.transparent,
+                                    ),
+                                    SizedBox(
+                                      width: double.infinity,
+                                      height: 73,
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                        children: [
                                           Expanded(
-                                            flex: 1,
+                                            flex: 7,
                                             child: Padding(
-                                                padding: const EdgeInsets.fromLTRB(3, 0, 3, 0),
-                                                child: Directionality(
-                                                  textDirection: TextDirection.rtl,
-                                                  child: TextField(
-                                                    controller: controllerProductTax,
-                                                    textAlign: TextAlign.center,
-                                                    textDirection: TextDirection.ltr,
-                                                    textAlignVertical: TextAlignVertical.bottom,
-                                                    maxLines: 1,
-                                                    cursorColor: ColorsResources.primaryColor,
-                                                    autocorrect: true,
-                                                    autofocus: false,
-                                                    keyboardType: TextInputType.number,
-                                                    textInputAction: TextInputAction.next,
-                                                    decoration: InputDecoration(
-                                                      alignLabelWithHint: true,
-                                                      border: const OutlineInputBorder(
-                                                          borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                                          borderRadius: BorderRadius.only(
-                                                              topLeft: Radius.circular(13),
-                                                              topRight: Radius.circular(13),
-                                                              bottomLeft: Radius.circular(13),
-                                                              bottomRight: Radius.circular(13)
-                                                          ),
-                                                          gapPadding: 5
-                                                      ),
-                                                      enabledBorder: const OutlineInputBorder(
-                                                          borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                                          borderRadius: BorderRadius.only(
-                                                              topLeft: Radius.circular(13),
-                                                              topRight: Radius.circular(13),
-                                                              bottomLeft: Radius.circular(13),
-                                                              bottomRight: Radius.circular(13)
-                                                          ),
-                                                          gapPadding: 5
-                                                      ),
-                                                      focusedBorder: const OutlineInputBorder(
-                                                          borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
-                                                          borderRadius: BorderRadius.only(
-                                                              topLeft: Radius.circular(13),
-                                                              topRight: Radius.circular(13),
-                                                              bottomLeft: Radius.circular(13),
-                                                              bottomRight: Radius.circular(13)
-                                                          ),
-                                                          gapPadding: 5
-                                                      ),
-                                                      errorBorder: const OutlineInputBorder(
-                                                          borderSide: BorderSide(color: Colors.red, width: 1.0),
-                                                          borderRadius: BorderRadius.only(
-                                                              topLeft: Radius.circular(13),
-                                                              topRight: Radius.circular(13),
-                                                              bottomLeft: Radius.circular(13),
-                                                              bottomRight: Radius.circular(13)
-                                                          ),
-                                                          gapPadding: 5
-                                                      ),
-                                                      filled: true,
-                                                      fillColor: ColorsResources.lightTransparent,
-                                                      labelText: StringsResources.productProfitTax(),
-                                                      labelStyle: const TextStyle(
-                                                          color: ColorsResources.dark,
-                                                          fontSize: 17.0
-                                                      ),
-                                                      hintText: StringsResources.productProfitTaxHint(),
-                                                      hintStyle: const TextStyle(
-                                                          color: ColorsResources.darkTransparent,
-                                                          fontSize: 13.0
-                                                      ),
+                                                padding: const EdgeInsets.fromLTRB(3, 5, 3, 5),
+                                                child: Container(
+                                                  decoration: const BoxDecoration(
+                                                    borderRadius: BorderRadius.only(
+                                                        topLeft: Radius.circular(13),
+                                                        topRight: Radius.circular(13),
+                                                        bottomLeft: Radius.circular(13),
+                                                        bottomRight: Radius.circular(13)
                                                     ),
+                                                    border: Border(
+                                                        top: BorderSide(
+                                                          color: ColorsResources.darkTransparent,
+                                                          width: 1,
+                                                        ),
+                                                        bottom: BorderSide(
+                                                          color: ColorsResources.darkTransparent,
+                                                          width: 1,
+                                                        ),
+                                                        left: BorderSide(
+                                                          color: ColorsResources.darkTransparent,
+                                                          width: 1,
+                                                        ),
+                                                        right: BorderSide(
+                                                          color: ColorsResources.darkTransparent,
+                                                          width: 1,
+                                                        )
+                                                    ),
+                                                    color: ColorsResources.lightTransparent,
                                                   ),
+                                                  child: calendarChequeDueView,
                                                 )
                                             ),
                                           ),
                                           Expanded(
-                                            flex: 1,
+                                            flex: 11,
                                             child: Padding(
                                                 padding: const EdgeInsets.fromLTRB(3, 0, 13, 0),
                                                 child: Directionality(
                                                   textDirection: TextDirection.rtl,
                                                   child: TextField(
-                                                    controller: controllerProductEachPrice,
+                                                    controller: controllerChequeMoneyAmount,
                                                     textAlign: TextAlign.center,
                                                     textDirection: TextDirection.rtl,
                                                     textAlignVertical: TextAlignVertical.bottom,
@@ -3042,12 +2761,12 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                                       errorText: warningProductEachPrice,
                                                       filled: true,
                                                       fillColor: ColorsResources.lightTransparent,
-                                                      labelText: StringsResources.invoiceEachPrice(),
+                                                      labelText: StringsResources.chequeAmountHint(),
                                                       labelStyle: const TextStyle(
                                                           color: ColorsResources.dark,
                                                           fontSize: 17.0
                                                       ),
-                                                      hintText: StringsResources.invoiceEachPriceHint(),
+                                                      hintText: StringsResources.chequeAmountHint(),
                                                       hintStyle: const TextStyle(
                                                           color: ColorsResources.darkTransparent,
                                                           fontSize: 13.0
@@ -3370,8 +3089,6 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                       generateBarcode(buyInvoicesData.id);
 
                                     }
-
-                                    insertRelatedCheques();
 
                                     updateProductQuantity();
 
@@ -3880,7 +3597,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
   }
 
-  void insertRelatedCheques() async {
+  void insertRelatedCheques(String chequeNumber) async {
 
     if (controllerCheques.text.isNotEmpty) {
 
@@ -3896,41 +3613,37 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
         ChequesDatabaseQueries chequesDatabaseQueries = ChequesDatabaseQueries();
 
-        cleanUpCsvDatabase(controllerCheques.text).split(",").forEach((element) async {
+        ChequesData? aChequeData = await chequesDatabaseQueries.querySpecificChequesByNumber(chequeNumber, ChequesDatabaseInputs.databaseTableName, UserInformation.UserId);
 
-          ChequesData? aChequeData = await chequesDatabaseQueries.querySpecificChequesByNumber(element, ChequesDatabaseInputs.databaseTableName, UserInformation.UserId);
+        if (aChequeData == null) {
 
-          if (aChequeData == null) {
+          chequesDatabaseInputs.insertChequeData(ChequesData(id: DateTime.now().millisecondsSinceEpoch,
+              chequeTitle: "${controllerInvoiceNumber.text} ${StringsResources.invoiceNumber()}",
+              chequeDescription: "",
+              chequeNumber: controllerChequeNumber.text,
+              chequeMoneyAmount: controllerChequeMoneyAmount.text,
+              chequeTransactionType: "",
+              chequeSourceBankName: "",
+              chequeSourceBankBranch: "",
+              chequeTargetBankName: "",
+              chequeIssueDate: TimeIO().humanReadableFarsi(DateTime.now()),
+              chequeDueDate: TimeIO().humanReadableFarsi(calendarChequeDueView.pickedDateTime),
+              chequeIssueMillisecond: DateTime.now().millisecondsSinceEpoch.toString(),
+              chequeDueMillisecond: calendarChequeDueView.pickedDateTime.millisecondsSinceEpoch.toString(),
+              chequeSourceId: "",
+              chequeSourceName: "",
+              chequeSourceAccountNumber: "",
+              chequeTargetId: "",
+              chequeTargetName: controllerChequeName.text,
+              chequeTargetAccountNumber: "",
+              chequeDoneConfirmation: ChequesData.ChequesConfirmation_NOT,
+              chequeRelevantCreditCard: "",
+              chequeRelevantBudget: "",
+              chequeCategory: "",
+              colorTag: colorSelectorView.selectedColor.value),
+              ChequesDatabaseInputs.databaseTableName, UserInformation.UserId);
 
-            chequesDatabaseInputs.insertChequeData(ChequesData(id: DateTime.now().millisecondsSinceEpoch,
-                chequeTitle: "${controllerInvoiceNumber.text} ${StringsResources.invoiceNumber()}",
-                chequeDescription: "",
-                chequeNumber: controllerChequeNumber.text,
-                chequeMoneyAmount: controllerChequeMoneyAmount.text,
-                chequeTransactionType: "",
-                chequeSourceBankName: "",
-                chequeSourceBankBranch: "",
-                chequeTargetBankName: "",
-                chequeIssueDate: TimeIO().humanReadableFarsi(DateTime.now()),
-                chequeDueDate: TimeIO().humanReadableFarsi(DateTime.now()),
-                chequeIssueMillisecond: DateTime.now().millisecondsSinceEpoch.toString(),
-                chequeDueMillisecond: DateTime.now().millisecondsSinceEpoch.toString(),
-                chequeSourceId: "",
-                chequeSourceName: "",
-                chequeSourceAccountNumber: "",
-                chequeTargetId: "",
-                chequeTargetName: controllerChequeName.text,
-                chequeTargetAccountNumber: "",
-                chequeDoneConfirmation: ChequesData.ChequesConfirmation_NOT,
-                chequeRelevantCreditCard: "",
-                chequeRelevantBudget: "",
-                chequeCategory: "",
-                colorTag: colorSelectorView.selectedColor.value),
-                ChequesDatabaseInputs.databaseTableName, UserInformation.UserId);
-
-          }
-
-        });
+        }
 
       }
 
