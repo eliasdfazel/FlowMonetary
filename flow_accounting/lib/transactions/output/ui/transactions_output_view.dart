@@ -1168,6 +1168,40 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
 
   }
 
+  void startPartialAdvancedSearchByBank(String bankName) async {
+    debugPrint("All Picked Parameters -> Bank: ${bankName}");
+
+    String databaseDirectory = await getDatabasesPath();
+
+    String transactionDatabasePath = "${databaseDirectory}/${TransactionsDatabaseInputs.transactionsDatabase()}";
+
+    bool transactionDatabaseExist = await databaseExists(transactionDatabasePath);
+
+    if (transactionDatabaseExist) {
+
+      TransactionsDatabaseQueries transactionsDatabaseQueries = TransactionsDatabaseQueries();
+
+      List<TransactionsData> filteredTransactionsData = await transactionsDatabaseQueries.queryTransactionByBank(bankName,
+          TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+      List<Widget> preparedAllTransactionsItem = [];
+
+      filteredTransactionsData.forEach((element) {
+
+        preparedAllTransactionsItem.add(outputItem(context, element));
+
+      });
+
+      setState(() {
+
+        allTransactionsItems = preparedAllTransactionsItem;
+
+      });
+
+    }
+
+  }
+
   void startPartialAdvancedSearchByMoneyAmount(
       String amountMoneyFirst, String amountMoneyLast) async {
     debugPrint("All Picked Parameters -> First Money: ${amountMoneyFirst} - Last Money: ${amountMoneyLast}");
@@ -1248,12 +1282,17 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
 
       List<String> allTargetsUsername = [];
 
+      List<String> allBanks = [];
+
       List<String> allMoneyAmount = [];
 
       allTransactions.forEach((element) {
 
         allTargetsUsername.add(element.targetUsername);
         allTargetsUsername.add(element.sourceUsername);
+
+        allBanks.add(element.sourceBankName);
+        allBanks.add(element.targetBankName);
 
         allMoneyAmount.add(element.amountMoney);
 
@@ -1276,6 +1315,8 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
 
       /* Start - Picked Data */
       String pickedTargetUsername = allTargetsUsername.first;
+
+      String pickedBank = allBanks.first;
 
       String pickedMoneyAmountFirst = allMoneyAmount.first;
       String pickedMoneyAmountLast = allMoneyAmount.last;
@@ -1320,145 +1361,295 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
                   SizedBox(
                     width: double.infinity,
                     height: 119,
-                    child: Padding(
-                        padding: const EdgeInsets.fromLTRB(13, 19, 13, 0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Expanded(
-                                  flex: 3,
-                                  child: Padding(
-                                    padding: EdgeInsets.fromLTRB(0, 5, 7, 0),
-                                    child: Align(
-                                      alignment: AlignmentDirectional.centerStart,
-                                      child: Material(
-                                        shadowColor: Colors.transparent,
-                                        color: Colors.transparent,
-                                        child: InkWell(
-                                          splashColor: ColorsResources.applicationGeeksEmpire.withOpacity(0.3),
-                                          splashFactory: InkRipple.splashFactory,
-                                          onTap: () {
-
-                                            startPartialAdvancedSearchByName(pickedTargetUsername);
-
-                                            Future.delayed(Duration(milliseconds: 379), () {
-
-                                              Navigator.pop(context);
-
-                                            });
-
-                                          },
-                                          child: Image(
-                                            image: AssetImage("go_icon.png"),
-                                            height: 31,
-                                            width: 31,
-                                            color: ColorsResources.light,
-                                          )
-                                        )
-                                      )
-                                    )
-                                  )
-                                ),
-                                Expanded(
-                                  flex: 7,
-                                  child: Padding(
-                                      padding: EdgeInsets.fromLTRB(0, 5, 7, 0),
-                                      child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: Text(
-                                          StringsResources.transactionTargetName(),
-                                          textAlign: TextAlign.right,
-                                          style: TextStyle(
-                                              color: ColorsResources.lightestBlue,
-                                              fontSize: 15
-                                          ),
-                                        ),
-                                      )
-                                  )
-                                )
-                              ],
-                            ),
-                            Align(
-                                alignment: AlignmentDirectional.topCenter,
-                                child: Directionality(
-                                  textDirection: TextDirection.rtl,
-                                  child: DropdownButtonFormField<String>(
-                                    isDense: true,
-                                    elevation: 7,
-                                    focusColor: ColorsResources.applicationDarkGeeksEmpire,
-                                    dropdownColor: ColorsResources.dark,
-                                    decoration: InputDecoration(
-                                        border: OutlineInputBorder(
-                                          borderSide: const BorderSide(
-                                              color: ColorsResources.applicationDarkGeeksEmpire,
-                                              width: 1
-                                          ),
-                                          borderRadius: BorderRadius.circular(13),
-                                        ),
-                                        enabledBorder: OutlineInputBorder(
-                                          borderSide: const BorderSide(
-                                              color: ColorsResources.applicationDarkGeeksEmpire,
-                                              width: 1
-                                          ),
-                                          borderRadius: BorderRadius.circular(13),
-                                        ),
-                                        focusedBorder: OutlineInputBorder(
-                                          borderSide: const BorderSide(
-                                              color: ColorsResources.applicationDarkGeeksEmpire,
-                                              width: 1
-                                          ),
-                                          borderRadius: BorderRadius.circular(13),
-                                        ),
-                                        errorBorder: OutlineInputBorder(
-                                          borderSide: const BorderSide(
-                                              color: ColorsResources.applicationDarkGeeksEmpire,
-                                              width: 1
-                                          ),
-                                          borderRadius: BorderRadius.circular(13),
-                                        ),
-                                        filled: true,
-                                        fillColor: ColorsResources.light.withOpacity(0.1),
-                                        focusColor: ColorsResources.dark
-                                    ),
-                                    value: allTargetsUsername.first,
-                                    items: allTargetsUsername.toSet().toList().map<DropdownMenuItem<String>>((String value) {
-
-                                      return DropdownMenuItem<String>(
-                                        value: value,
-                                        child: SizedBox(
-                                          height: 31,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child:  Padding(
+                              padding: const EdgeInsets.fromLTRB(13, 19, 3, 0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Expanded(
+                                          flex: 3,
                                           child: Padding(
-                                            padding: const EdgeInsets.fromLTRB(0, 0, 11, 0),
-                                            child: Align(
-                                              alignment:
-                                              AlignmentDirectional.center,
-                                              child: Text(
-                                                value,
-                                                maxLines: 1,
-                                                style: TextStyle(
-                                                  color: ColorsResources.light.withOpacity(0.79),
-                                                  fontSize: 13,
+                                              padding: EdgeInsets.fromLTRB(0, 5, 7, 0),
+                                              child: Align(
+                                                  alignment: AlignmentDirectional.centerStart,
+                                                  child: Material(
+                                                      shadowColor: Colors.transparent,
+                                                      color: Colors.transparent,
+                                                      child: InkWell(
+                                                          splashColor: ColorsResources.applicationGeeksEmpire.withOpacity(0.3),
+                                                          splashFactory: InkRipple.splashFactory,
+                                                          onTap: () {
+
+                                                            startPartialAdvancedSearchByBank(pickedBank);
+
+                                                            Future.delayed(Duration(milliseconds: 379), () {
+
+                                                              Navigator.pop(context);
+
+                                                            });
+
+                                                          },
+                                                          child: Image(
+                                                            image: AssetImage("go_icon.png"),
+                                                            height: 31,
+                                                            width: 31,
+                                                            color: ColorsResources.light,
+                                                          )
+                                                      )
+                                                  )
+                                              )
+                                          )
+                                      ),
+                                      Expanded(
+                                          flex: 7,
+                                          child: Padding(
+                                              padding: EdgeInsets.fromLTRB(0, 5, 7, 0),
+                                              child: Align(
+                                                alignment: Alignment.centerRight,
+                                                child: Text(
+                                                  StringsResources.chequeCategory(),
+                                                  textAlign: TextAlign.right,
+                                                  maxLines: 1,
+                                                  style: TextStyle(
+                                                      color: ColorsResources.lightestBlue,
+                                                      fontSize: 15
+                                                  ),
+                                                ),
+                                              )
+                                          )
+                                      )
+                                    ],
+                                  ),
+                                  Align(
+                                      alignment: AlignmentDirectional.topCenter,
+                                      child: Directionality(
+                                        textDirection: TextDirection.rtl,
+                                        child: DropdownButtonFormField<String>(
+                                          isDense: true,
+                                          elevation: 7,
+                                          focusColor: ColorsResources.applicationDarkGeeksEmpire,
+                                          dropdownColor: ColorsResources.dark,
+                                          decoration: InputDecoration(
+                                            border: OutlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                  color: ColorsResources.applicationDarkGeeksEmpire,
+                                                  width: 1
+                                              ),
+                                              borderRadius: BorderRadius.circular(13),
+                                            ),
+                                            enabledBorder: OutlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                  color: ColorsResources.applicationDarkGeeksEmpire,
+                                                  width: 1
+                                              ),
+                                              borderRadius: BorderRadius.circular(13),
+                                            ),
+                                            focusedBorder: OutlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                  color: ColorsResources.applicationDarkGeeksEmpire,
+                                                  width: 1
+                                              ),
+                                              borderRadius: BorderRadius.circular(13),
+                                            ),
+                                            errorBorder: OutlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                  color: ColorsResources.applicationDarkGeeksEmpire,
+                                                  width: 1
+                                              ),
+                                              borderRadius: BorderRadius.circular(13),
+                                            ),
+                                            filled: true,
+                                            fillColor: ColorsResources.light.withOpacity(0.1),
+                                            focusColor: ColorsResources.dark,
+                                          ),
+                                          value: allBanks.first,
+                                          items: allBanks.toSet().toList().map<DropdownMenuItem<String>>((String value) {
+
+                                            return DropdownMenuItem<String>(
+                                              value: value,
+                                              child: SizedBox(
+                                                height: 31,
+                                                child: Padding(
+                                                  padding: const EdgeInsets.fromLTRB(0, 0, 11, 0),
+                                                  child: Align(
+                                                    alignment: AlignmentDirectional.center,
+                                                    child: Text(
+                                                      value,
+                                                      maxLines: 1,
+                                                      style: TextStyle(
+                                                        color: ColorsResources.light.withOpacity(0.79),
+                                                        fontSize: 13,
+                                                      ),
+                                                    ),
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                          ),
+                                            );
+                                          }).toList(),
+                                          onChanged: (value) {
+
+                                            pickedBank = value ?? allBanks.first;
+
+                                          },
                                         ),
-                                      );
-                                    }).toList(),
-                                    onChanged: (value) {
-
-                                      pickedTargetUsername = value ?? allTargetsUsername.first;
-
-                                    },
+                                      )
                                   ),
-                                )
-                            ),
-                          ],
+                                ],
+                              )
+                          )
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: Padding(
+                              padding: const EdgeInsets.fromLTRB(13, 19, 13, 0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Expanded(
+                                          flex: 3,
+                                          child: Padding(
+                                              padding: EdgeInsets.fromLTRB(0, 5, 7, 0),
+                                              child: Align(
+                                                  alignment: AlignmentDirectional.centerStart,
+                                                  child: Material(
+                                                      shadowColor: Colors.transparent,
+                                                      color: Colors.transparent,
+                                                      child: InkWell(
+                                                          splashColor: ColorsResources.applicationGeeksEmpire.withOpacity(0.3),
+                                                          splashFactory: InkRipple.splashFactory,
+                                                          onTap: () {
+
+                                                            startPartialAdvancedSearchByName(pickedTargetUsername);
+
+                                                            Future.delayed(Duration(milliseconds: 379), () {
+
+                                                              Navigator.pop(context);
+
+                                                            });
+
+                                                          },
+                                                          child: Image(
+                                                            image: AssetImage("go_icon.png"),
+                                                            height: 31,
+                                                            width: 31,
+                                                            color: ColorsResources.light,
+                                                          )
+                                                      )
+                                                  )
+                                              )
+                                          )
+                                      ),
+                                      Expanded(
+                                          flex: 7,
+                                          child: Padding(
+                                              padding: EdgeInsets.fromLTRB(0, 5, 7, 0),
+                                              child: Align(
+                                                alignment: Alignment.centerRight,
+                                                child: Text(
+                                                  StringsResources.transactionTargetName(),
+                                                  textAlign: TextAlign.right,
+                                                  style: TextStyle(
+                                                      color: ColorsResources.lightestBlue,
+                                                      fontSize: 15
+                                                  ),
+                                                ),
+                                              )
+                                          )
+                                      )
+                                    ],
+                                  ),
+                                  Align(
+                                      alignment: AlignmentDirectional.topCenter,
+                                      child: Directionality(
+                                        textDirection: TextDirection.rtl,
+                                        child: DropdownButtonFormField<String>(
+                                          isDense: true,
+                                          elevation: 7,
+                                          focusColor: ColorsResources.applicationDarkGeeksEmpire,
+                                          dropdownColor: ColorsResources.dark,
+                                          decoration: InputDecoration(
+                                              border: OutlineInputBorder(
+                                                borderSide: const BorderSide(
+                                                    color: ColorsResources.applicationDarkGeeksEmpire,
+                                                    width: 1
+                                                ),
+                                                borderRadius: BorderRadius.circular(13),
+                                              ),
+                                              enabledBorder: OutlineInputBorder(
+                                                borderSide: const BorderSide(
+                                                    color: ColorsResources.applicationDarkGeeksEmpire,
+                                                    width: 1
+                                                ),
+                                                borderRadius: BorderRadius.circular(13),
+                                              ),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderSide: const BorderSide(
+                                                    color: ColorsResources.applicationDarkGeeksEmpire,
+                                                    width: 1
+                                                ),
+                                                borderRadius: BorderRadius.circular(13),
+                                              ),
+                                              errorBorder: OutlineInputBorder(
+                                                borderSide: const BorderSide(
+                                                    color: ColorsResources.applicationDarkGeeksEmpire,
+                                                    width: 1
+                                                ),
+                                                borderRadius: BorderRadius.circular(13),
+                                              ),
+                                              filled: true,
+                                              fillColor: ColorsResources.light.withOpacity(0.1),
+                                              focusColor: ColorsResources.dark
+                                          ),
+                                          value: allTargetsUsername.first,
+                                          items: allTargetsUsername.toSet().toList().map<DropdownMenuItem<String>>((String value) {
+
+                                            return DropdownMenuItem<String>(
+                                              value: value,
+                                              child: SizedBox(
+                                                height: 31,
+                                                child: Padding(
+                                                  padding: const EdgeInsets.fromLTRB(0, 0, 11, 0),
+                                                  child: Align(
+                                                    alignment:
+                                                    AlignmentDirectional.center,
+                                                    child: Text(
+                                                      value,
+                                                      maxLines: 1,
+                                                      style: TextStyle(
+                                                        color: ColorsResources.light.withOpacity(0.79),
+                                                        fontSize: 13,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            );
+                                          }).toList(),
+                                          onChanged: (value) {
+
+                                            pickedTargetUsername = value ?? allTargetsUsername.first;
+
+                                          },
+                                        ),
+                                      )
+                                  ),
+                                ],
+                              )
+                          )
                         )
-                    ),
+                      ],
+                    )
                   ),
                   SizedBox(
                     width: double.infinity,
