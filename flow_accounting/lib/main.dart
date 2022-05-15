@@ -348,7 +348,7 @@ class _WelcomePageViewState extends State<WelcomePage> {
 
   void invokeSocialMedia() async {
 
-    await launch(StringsResources.instagramLink());
+    launchUrl(Uri.parse(StringsResources.instagramLink()));
 
   }
 

@@ -95,7 +95,7 @@ class _TopBarViewState extends State<TopBarView> {
                     child: GestureDetector(
                       onTap: () async {
 
-                        await launch(StringsResources.instagramLink());
+                        launchUrl(Uri.parse(StringsResources.instagramLink()));
 
                       },
                       child: Align(

@@ -683,7 +683,7 @@ class _ChequesOutputViewState extends State<ChequesOutputView> with TickerProvid
                                     child: Align(
                                         alignment: Alignment.centerRight,
                                         child: Text(
-                                            " :${StringsResources.chequeTargetName}",
+                                            " :${StringsResources.chequeTargetName()}",
                                             textAlign: TextAlign.right,
                                             maxLines: 1,
                                             style: TextStyle(

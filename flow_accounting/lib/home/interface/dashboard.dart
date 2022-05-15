@@ -292,7 +292,7 @@ class FlowDashboardState extends State<FlowDashboard> {
                                         splashFactory: InkRipple.splashFactory,
                                         onTap: () async {
 
-                                          await launch(StringsResources.supportLink());
+                                          launchUrl(Uri.parse(StringsResources.supportLink()));
 
                                         },
                                         child: Align(
