@@ -205,8 +205,6 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
     prepareAllImagesCheckpoint();
 
-    prepareSelectedProducts();
-
     super.initState();
 
     BackButtonInterceptor.add(aInterceptor);
@@ -3337,6 +3335,12 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
       imageLogoPickerWidget;
 
       imageSignaturePickerWidget;
+
+    });
+
+    Future.delayed(Duration(milliseconds: 357), () {
+
+      prepareSelectedProducts();
 
     });
 
