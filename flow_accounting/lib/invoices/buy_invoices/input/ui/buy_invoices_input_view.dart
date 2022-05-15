@@ -2629,7 +2629,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                                           ),
                                                           gapPadding: 5
                                                       ),
-                                                      errorText: warningProductDiscount,
+                                                      errorText: warningChequeNumber,
                                                       filled: true,
                                                       fillColor: ColorsResources.lightTransparent,
                                                       labelText: StringsResources.chequeNumber(),
@@ -2758,7 +2758,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                                           ),
                                                           gapPadding: 5
                                                       ),
-                                                      errorText: warningProductEachPrice,
+                                                      errorText: warningChequeMoneyAmount,
                                                       filled: true,
                                                       fillColor: ColorsResources.lightTransparent,
                                                       labelText: StringsResources.chequeAmountHint(),
