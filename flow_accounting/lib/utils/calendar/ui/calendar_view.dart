@@ -19,11 +19,11 @@ class CalendarView extends StatefulWidget {
 
   String? inputDateTime;
 
-  bool timeNeeded = false;
+  bool timeNeeded = true;
 
   bool darkTheme = false;
 
-  CalendarView({Key? key, this.inputDateTime, this.darkTheme = false, this.timeNeeded = false}) : super(key: key);
+  CalendarView({Key? key, this.inputDateTime, this.darkTheme = false, this.timeNeeded = true}) : super(key: key);
 
   DateTime pickedDateTime = DateTime.now();
 

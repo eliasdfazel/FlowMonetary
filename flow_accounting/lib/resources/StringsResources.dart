@@ -579,7 +579,7 @@ class StringsResources {
 
   static String chequeTargetName() {
 
-    return "به نام (در وجه)";
+    return "به نام";
   }
   /* End - Cheque String Resources */
 

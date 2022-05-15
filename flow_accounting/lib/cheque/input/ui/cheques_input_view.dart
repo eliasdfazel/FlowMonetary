@@ -55,8 +55,8 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
   ChequesData? chequesData;
 
-  CalendarView calendarIssueDateView = CalendarView();
-  CalendarView calendarDueDateView = CalendarView();
+  CalendarView calendarIssueDateView = CalendarView(timeNeeded: false);
+  CalendarView calendarDueDateView = CalendarView(timeNeeded: false);
 
   ColorSelectorView colorSelectorView = ColorSelectorView();
 

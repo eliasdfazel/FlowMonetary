@@ -1092,6 +1092,9 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
 
   }
 
+  /*
+   * Advanced Search
+   */
   void startAdvancedSearch(
       String amountMoneyFirst, String amountMoneyLast,
       String timeFirst, String timeLast,
@@ -1244,6 +1247,7 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
       animationController.reverseDuration = const Duration(milliseconds: 159);
 
       List<String> allTargetsUsername = [];
+
       List<String> allMoneyAmount = [];
 
       allTransactions.forEach((element) {
@@ -1433,9 +1437,10 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
                                               AlignmentDirectional.center,
                                               child: Text(
                                                 value,
+                                                maxLines: 1,
                                                 style: TextStyle(
                                                   color: ColorsResources.light.withOpacity(0.79),
-                                                  fontSize: 15,
+                                                  fontSize: 13,
                                                 ),
                                               ),
                                             ),
@@ -1580,9 +1585,10 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
                                                     AlignmentDirectional.center,
                                                     child: Text(
                                                       value,
+                                                      maxLines: 1,
                                                       style: TextStyle(
                                                         color: ColorsResources.light.withOpacity(0.79),
-                                                        fontSize: 15,
+                                                        fontSize: 13,
                                                       ),
                                                     ),
                                                   ),
@@ -1671,9 +1677,10 @@ class _TransactionsOutputViewState extends State<TransactionsOutputView> with Ti
                                                     AlignmentDirectional.center,
                                                     child: Text(
                                                       value,
+                                                      maxLines: 1,
                                                       style: TextStyle(
                                                         color: ColorsResources.light.withOpacity(0.79),
-                                                        fontSize: 15,
+                                                        fontSize: 13,
                                                       ),
                                                     ),
                                                   ),

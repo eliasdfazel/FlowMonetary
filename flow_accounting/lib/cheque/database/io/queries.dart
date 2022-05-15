@@ -226,6 +226,68 @@ class ChequesDatabaseQueries {
     });
   }
 
+  Future<List<ChequesData>> queryChequeByCategory(
+      String chequeCategory,
+      String tableName, String usernameId) async {
+
+    var databaseNameQuery = ChequesDatabaseInputs.chequesDatabase();
+    var tableNameQuery = ChequesDatabaseInputs.databaseTableName;
+
+    final database = openDatabase(
+      join(await getDatabasesPath(), databaseNameQuery),
+    );
+
+    final databaseInstance = await database;
+
+    final List<Map<String, dynamic>> databaseContents = await databaseInstance.query(
+      tableNameQuery,
+      where: 'chequeCategory = ?',
+      whereArgs: [chequeCategory],
+    );
+
+    return List.generate(databaseContents.length, (i) {
+      return ChequesData(
+        id: databaseContents[i]['id'],
+
+        chequeTitle: databaseContents[i]['chequeTitle'],
+        chequeDescription: databaseContents[i]['chequeDescription'],
+
+        chequeMoneyAmount: databaseContents[i]['chequeMoneyAmount'],
+
+        chequeNumber: databaseContents[i]['chequeNumber'],
+
+        chequeTransactionType: databaseContents[i]['chequeTransactionType'],
+
+        chequeSourceBankName: databaseContents[i]['chequeSourceBankName'],
+        chequeSourceBankBranch: databaseContents[i]['chequeSourceBankBranch'],
+
+        chequeTargetBankName: databaseContents[i]['chequeTargetBankName'],
+
+        chequeIssueDate: databaseContents[i]['chequeIssueDate'],
+        chequeDueDate: databaseContents[i]['chequeDueDate'],
+
+        chequeIssueMillisecond: databaseContents[i]['chequeIssueMillisecond'],
+        chequeDueMillisecond: databaseContents[i]['chequeDueMillisecond'],
+
+        chequeSourceId: databaseContents[i]['chequeSourceId'],
+        chequeSourceName: databaseContents[i]['chequeSourceName'],
+        chequeSourceAccountNumber: databaseContents[i]['chequeSourceAccountNumber'],
+
+        chequeTargetId: databaseContents[i]['chequeTargetId'],
+        chequeTargetName: databaseContents[i]['chequeTargetName'],
+        chequeTargetAccountNumber: databaseContents[i]['chequeTargetAccountNumber'],
+
+        chequeDoneConfirmation: databaseContents[i]['chequeTargetAccountNumber'],
+
+        chequeRelevantCreditCard: databaseContents[i]['chequeRelevantCreditCard'],
+        chequeRelevantBudget: databaseContents[i]['chequeRelevantBudget'],
+
+        chequeCategory: databaseContents[i]['chequeCategory'],
+
+        colorTag: int.parse(databaseContents[i]['colorTag'].toString()),
+      );
+    });
+  }
 
   Future<List<ChequesData>> queryChequeByMoney(
       String amountMoneyFirst, String amountMoneyLast,
