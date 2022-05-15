@@ -14,6 +14,9 @@ import 'dart:typed_data';
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:blur/blur.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
+import 'package:flow_accounting/cheque/database/io/inputs.dart';
+import 'package:flow_accounting/cheque/database/io/queries.dart';
+import 'package:flow_accounting/cheque/database/structures/table_structure.dart';
 import 'package:flow_accounting/credit_cards/database/io/inputs.dart';
 import 'package:flow_accounting/credit_cards/database/io/queries.dart';
 import 'package:flow_accounting/credit_cards/database/structures/tables_structure.dart';
@@ -29,6 +32,7 @@ import 'package:flow_accounting/products/database/structures/tables_structure.da
 import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
+import 'package:flow_accounting/utils/calendar/io/time_io.dart';
 import 'package:flow_accounting/utils/calendar/ui/calendar_view.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
 import 'package:flow_accounting/utils/extensions/bank_logos.dart';
@@ -2413,7 +2417,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
                                                   if (noError) {
 
-
+                                                    controllerCheques.text += "${controllerChequeNumber.text},";
 
                                                   }
 
@@ -3340,7 +3344,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
                                         companyDigitalSignature: companyDigitalSignature,
 
-                                        invoiceChequesNumbers: controllerCheques.text,
+                                        invoiceChequesNumbers: cleanUpCsvDatabase(controllerCheques.text),
 
                                         colorTag: colorSelectorView.selectedColor.value,
 
@@ -3366,6 +3370,8 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                       generateBarcode(buyInvoicesData.id);
 
                                     }
+
+                                    insertRelatedCheques();
 
                                     updateProductQuantity();
 
@@ -3874,6 +3880,64 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
   }
 
+  void insertRelatedCheques() async {
+
+    if (controllerCheques.text.isNotEmpty) {
+
+      String databaseDirectory = await getDatabasesPath();
+
+      String chequesDatabasePath = "${databaseDirectory}/${ChequesDatabaseInputs.chequesDatabase()}";
+
+      bool chequesDatabaseExist = await databaseExists(chequesDatabasePath);
+
+      if (chequesDatabaseExist) {
+
+        ChequesDatabaseInputs chequesDatabaseInputs = ChequesDatabaseInputs();
+
+        ChequesDatabaseQueries chequesDatabaseQueries = ChequesDatabaseQueries();
+
+        cleanUpCsvDatabase(controllerCheques.text).split(",").forEach((element) async {
+
+          ChequesData? aChequeData = await chequesDatabaseQueries.querySpecificChequesByNumber(element, ChequesDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+          if (aChequeData == null) {
+
+            chequesDatabaseInputs.insertChequeData(ChequesData(id: DateTime.now().millisecondsSinceEpoch,
+                chequeTitle: "${controllerInvoiceNumber.text} ${StringsResources.invoiceNumber()}",
+                chequeDescription: "",
+                chequeNumber: controllerChequeNumber.text,
+                chequeMoneyAmount: controllerChequeMoneyAmount.text,
+                chequeTransactionType: "",
+                chequeSourceBankName: "",
+                chequeSourceBankBranch: "",
+                chequeTargetBankName: "",
+                chequeIssueDate: TimeIO().humanReadableFarsi(DateTime.now()),
+                chequeDueDate: TimeIO().humanReadableFarsi(DateTime.now()),
+                chequeIssueMillisecond: DateTime.now().millisecondsSinceEpoch.toString(),
+                chequeDueMillisecond: DateTime.now().millisecondsSinceEpoch.toString(),
+                chequeSourceId: "",
+                chequeSourceName: "",
+                chequeSourceAccountNumber: "",
+                chequeTargetId: "",
+                chequeTargetName: controllerChequeName.text,
+                chequeTargetAccountNumber: "",
+                chequeDoneConfirmation: ChequesData.ChequesConfirmation_NOT,
+                chequeRelevantCreditCard: "",
+                chequeRelevantBudget: "",
+                chequeCategory: "",
+                colorTag: colorSelectorView.selectedColor.value),
+                ChequesDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+          }
+
+        });
+
+      }
+
+    }
+
+  }
+
   Future<List<CreditCardsData>> getAllCreditCards() async {
 
     List<CreditCardsData> allCreditCards = [];
@@ -4128,15 +4192,19 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
   String cleanUpCsvDatabase(String inputCsvData) {
 
-    List<String> csvData = removeEmptyElementCsv(inputCsvData.split(","));
-
     String clearCsvDatabase = "";
 
-    csvData.forEach((element) {
+    if (inputCsvData.isNotEmpty) {
 
-      clearCsvDatabase += "${element},";
+      List<String> csvData = removeEmptyElementCsv(inputCsvData.split(","));
 
-    });
+      csvData.forEach((element) {
+
+        clearCsvDatabase += "${element},";
+
+      });
+
+    }
 
     return clearCsvDatabase;
   }

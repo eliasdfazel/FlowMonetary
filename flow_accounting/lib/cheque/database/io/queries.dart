@@ -76,7 +76,7 @@ class ChequesDatabaseQueries {
 
   }
 
-  Future<Map<String, Object?>> querySpecificChequesByNumber(
+  Future<ChequesData?> querySpecificChequesByNumber(
       String chequeNumber,
       String tableName, String usernameId) async {
 
@@ -95,7 +95,15 @@ class ChequesDatabaseQueries {
       whereArgs: [chequeNumber],
     );
 
-    return databaseContents[0];
+    ChequesData? chequesData = null;
+
+    if (databaseContents.isNotEmpty) {
+
+      chequesData = await extractChequesQuery(databaseContents[0]);
+
+    }
+
+    return chequesData;
   }
 
   Future<List<ChequesData>> queryChequeByTargetTimeMoney(
