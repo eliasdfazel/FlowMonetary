@@ -81,10 +81,10 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
   TextEditingController controllerProductQuantity = TextEditingController();
   TextEditingController controllerProductQuantityType = TextEditingController();
 
-  TextEditingController controllerInvoicePrice = TextEditingController();
-
   TextEditingController controllerProductEachPrice = TextEditingController();
   TextEditingController controllerProductDiscount = TextEditingController();
+
+  TextEditingController controllerInvoicePrice = TextEditingController();
 
   TextEditingController controllerDiscount = TextEditingController();
 
@@ -174,8 +174,6 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
       fit: BoxFit.contain,
     ),
   );
-
-  bool percentageEnable = true;
 
   @override
   void dispose() {
@@ -1885,87 +1883,102 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                               flex: 1,
                               child: Padding(
                                   padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
-                                  child: Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: TextField(
-                                      controller: controllerDiscount,
-                                      textAlign: TextAlign.center,
-                                      textDirection: TextDirection.rtl,
-                                      textAlignVertical: TextAlignVertical.bottom,
-                                      maxLines: 1,
-                                      cursorColor: ColorsResources.primaryColor,
-                                      autocorrect: true,
-                                      autofocus: false,
-                                      keyboardType: TextInputType.number,
-                                      textInputAction: TextInputAction.next,
-                                      onChanged: (fullDiscount) {
+                                  child: Stack(
+                                    children: [
+                                      Directionality(
+                                        textDirection: TextDirection.rtl,
+                                        child: TextField(
+                                          controller: controllerDiscount,
+                                          textAlign: TextAlign.center,
+                                          textDirection: TextDirection.rtl,
+                                          textAlignVertical: TextAlignVertical.bottom,
+                                          maxLines: 1,
+                                          cursorColor: ColorsResources.primaryColor,
+                                          autocorrect: true,
+                                          autofocus: false,
+                                          keyboardType: TextInputType.number,
+                                          textInputAction: TextInputAction.next,
+                                          onChanged: (fullDiscount) {
 
-                                        String completeDiscountPercent = controllerDiscount.text.isEmpty ? "0%" : controllerDiscount.text;
+                                            int previousInvoicePrice = int.parse(controllerInvoicePrice.text.isEmpty ? "0" : controllerInvoicePrice.text.replaceAll(",", ""));
 
-                                        int previousInvoicePrice = int.parse(controllerInvoicePrice.text.isEmpty ? "0" : controllerInvoicePrice.text.replaceAll(",", ""));
+                                            int completeDiscount = 0;
 
-                                        int completeDiscount = ((previousInvoicePrice * int.parse(completeDiscountPercent.replaceAll("%", ""))) / 100).round();
+                                            if (percentageMoneySwitcher.percentageEnable) {
 
-                                        controllerInvoicePrice.text = (previousInvoicePrice - completeDiscount).toString();
+                                              String completeDiscountPercent = controllerDiscount.text.isEmpty ? "0%" : controllerDiscount.text;
 
-                                      },
-                                      decoration: InputDecoration(
-                                        alignLabelWithHint: true,
-                                        border: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
+                                              completeDiscount = ((previousInvoicePrice * int.parse(completeDiscountPercent.replaceAll("%", ""))) / 100).round();
+
+                                            } else {
+
+                                              completeDiscount = int.parse(controllerDiscount.text.isEmpty ? "0" : controllerDiscount.text);
+
+                                            }
+
+                                            controllerInvoicePrice.text = (previousInvoicePrice - completeDiscount).toString();
+
+                                          },
+                                          decoration: InputDecoration(
+                                            alignLabelWithHint: true,
+                                            border: const OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
+                                                    bottomRight: Radius.circular(13)
+                                                ),
+                                                gapPadding: 5
                                             ),
-                                            gapPadding: 5
-                                        ),
-                                        enabledBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
+                                            enabledBorder: const OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
+                                                    bottomRight: Radius.circular(13)
+                                                ),
+                                                gapPadding: 5
                                             ),
-                                            gapPadding: 5
-                                        ),
-                                        focusedBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
+                                            focusedBorder: const OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
+                                                    bottomRight: Radius.circular(13)
+                                                ),
+                                                gapPadding: 5
                                             ),
-                                            gapPadding: 5
-                                        ),
-                                        errorBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.red, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
+                                            errorBorder: const OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.red, width: 1.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
+                                                    bottomRight: Radius.circular(13)
+                                                ),
+                                                gapPadding: 5
                                             ),
-                                            gapPadding: 5
-                                        ),
-                                        errorText: warningProductDiscount,
-                                        filled: true,
-                                        fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.fullDiscount(),
-                                        labelStyle: const TextStyle(
-                                            color: ColorsResources.dark,
-                                            fontSize: 17.0
-                                        ),
-                                        hintText: StringsResources.fullDiscountHint(),
-                                        hintStyle: const TextStyle(
-                                            color: ColorsResources.darkTransparent,
-                                            fontSize: 13.0
+                                            errorText: warningProductDiscount,
+                                            filled: true,
+                                            fillColor: ColorsResources.lightTransparent,
+                                            labelText: StringsResources.fullDiscount(),
+                                            labelStyle: const TextStyle(
+                                                color: ColorsResources.dark,
+                                                fontSize: 17.0
+                                            ),
+                                            hintText: StringsResources.fullDiscountHint(),
+                                            hintStyle: const TextStyle(
+                                                color: ColorsResources.darkTransparent,
+                                                fontSize: 13.0
+                                            ),
+                                          ),
                                         ),
                                       ),
-                                    ),
+                                      percentageMoneySwitcher
+                                    ],
                                   )
                               ),
                             ),
