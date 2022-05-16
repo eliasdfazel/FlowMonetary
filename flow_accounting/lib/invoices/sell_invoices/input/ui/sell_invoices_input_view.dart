@@ -157,6 +157,8 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
   List<Widget> selectedProductWidget = [];
 
+  List<Widget> relatedChequesWidget = [];
+
   Widget printingView = Container();
 
   Widget imageLogoPickerWidget = const Opacity(
@@ -220,6 +222,8 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
     controllerPaidTo.text = widget.sellInvoicesData?.paidTo == null ? "" : (widget.sellInvoicesData?.paidTo)!;
 
     controllerSoldTo.text = widget.sellInvoicesData?.soldTo == null ? "" : (widget.sellInvoicesData?.soldTo)!;
+
+    controllerChequeNumber.text = widget.sellInvoicesData?.invoiceChequesNumbers ?? "";
 
     colorSelectorView.inputColor = Color(widget.sellInvoicesData?.colorTag ?? Colors.white.value);
 
@@ -2785,7 +2789,20 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                           ],
                         ),
                       ),
-
+                      const Divider(
+                        height: 3,
+                        color: Colors.transparent,
+                      ),
+                      SizedBox(
+                          width: double.infinity,
+                          height: 57,
+                          child: ListView(
+                            physics: const BouncingScrollPhysics(),
+                            padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                            scrollDirection: Axis.horizontal,
+                            children: relatedChequesWidget,
+                          )
+                      ),
                       const Divider(
                         height: 13,
                         color: Colors.transparent,
@@ -3626,8 +3643,8 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
         if (aChequeData == null) {
 
-          chequesDatabaseInputs.insertChequeData(ChequesData(id: DateTime.now().millisecondsSinceEpoch,
-              chequeTitle: "${controllerInvoiceNumber.text} ${StringsResources.invoiceNumber()}",
+          await chequesDatabaseInputs.insertChequeData(ChequesData(id: DateTime.now().millisecondsSinceEpoch,
+              chequeTitle: controllerInvoiceNumber.text,
               chequeDescription: "",
               chequeNumber: controllerChequeNumber.text,
               chequeMoneyAmount: controllerChequeMoneyAmount.text,
@@ -3652,12 +3669,124 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
               colorTag: colorSelectorView.selectedColor.value),
               ChequesDatabaseInputs.databaseTableName, UserInformation.UserId);
 
+          prepareRelatedCheques();
+
         }
 
       }
 
     }
 
+  }
+
+  void prepareRelatedCheques() async {
+
+    relatedChequesWidget.clear();
+
+    List<ChequesData> allRelatedCheques = [];
+
+    ChequesDatabaseQueries chequesDatabaseQueries = ChequesDatabaseQueries();
+
+    if (controllerInvoiceNumber.text.isNotEmpty) {
+
+
+      allRelatedCheques = await chequesDatabaseQueries.queryChequeBySpecificTitle(controllerInvoiceNumber.text, ChequesDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+    } else {
+
+      List<String> chequesNumbers = cleanUpCsvDatabase(controllerChequeNumber.text).split(",");
+
+      chequesNumbers.forEach((element) async {
+
+        ChequesData? chequesData = await chequesDatabaseQueries.querySpecificChequesByNumber(element, ChequesDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+        if (chequesData != null) {
+
+          allRelatedCheques.add(chequesData);
+
+        }
+
+      });
+
+    }
+
+    allRelatedCheques.forEach((relatedChequeData) {
+
+      relatedChequesWidget.add(relatedChequesItemView(relatedChequeData));
+
+    });
+
+    setState(() {
+
+      relatedChequesWidget;
+
+    });
+
+  }
+
+  Widget relatedChequesItemView(ChequesData chequesData) {
+
+    return Container(
+        width: 173,
+        height: 37,
+        margin: EdgeInsets.fromLTRB(0, 0, 5, 0),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(51),
+            color: ColorsResources.lightGreen.withOpacity(0.13)
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Expanded(
+                flex: 2,
+                child: InkWell(
+                    onTap: () async {
+
+                      controllerChequeNumber.text.replaceAll("${chequesData.chequeNumber},", "");
+
+                      ChequesDatabaseQueries chequesDatabaseQueries = ChequesDatabaseQueries();
+
+                      await chequesDatabaseQueries.queryDeleteCheque(chequesData.id, ChequesDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+                      prepareRelatedCheques();
+
+                    },
+                    child: Padding(
+                        padding: EdgeInsets.fromLTRB(3, 0, 3, 0),
+                        child: Align(
+                            alignment: AlignmentDirectional.center,
+                            child: Icon(
+                              Icons.delete_rounded,
+                              size: 19,
+                              color: ColorsResources.darkTransparent,
+                            )
+                        )
+                    )
+                )
+            ),
+            Expanded(
+              flex: 15,
+              child: Padding(
+                  padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
+                  child: Align(
+                      alignment: AlignmentDirectional.centerEnd,
+                      child: Directionality(
+                        textDirection: TextDirection.rtl,
+                        child: Text(
+                          "${chequesData.chequeMoneyAmount} - ${chequesData.chequeNumber}",
+                          style: TextStyle(
+                              color: ColorsResources.darkTransparent,
+                              fontSize: 13,
+                              fontWeight: FontWeight.bold
+                          ),
+                        ),
+                      )
+                  )
+              ),
+            ),
+          ],
+        )
+    );
   }
   /*
    * End - Related Cheques
