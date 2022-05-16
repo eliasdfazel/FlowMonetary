@@ -17,6 +17,7 @@ import 'package:currency_text_input_formatter/currency_text_input_formatter.dart
 import 'package:flow_accounting/cheque/database/io/inputs.dart';
 import 'package:flow_accounting/cheque/database/io/queries.dart';
 import 'package:flow_accounting/cheque/database/structures/table_structure.dart';
+import 'package:flow_accounting/cheque/input/ui/cheques_input_view.dart';
 import 'package:flow_accounting/credit_cards/database/io/inputs.dart';
 import 'package:flow_accounting/credit_cards/database/io/queries.dart';
 import 'package:flow_accounting/credit_cards/database/structures/tables_structure.dart';
@@ -3772,23 +3773,40 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
             ),
             Expanded(
               flex: 15,
-              child: Padding(
-                  padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
-                  child: Align(
-                      alignment: AlignmentDirectional.centerEnd,
-                      child: Directionality(
-                        textDirection: TextDirection.rtl,
-                        child: Text(
-                          "${chequesData.chequeMoneyAmount} - ${chequesData.chequeNumber}",
-                          style: TextStyle(
-                              color: ColorsResources.darkTransparent,
-                              fontSize: 13,
-                              fontWeight: FontWeight.bold
+              child: InkWell(
+                onTap: () async {
+
+                  bool chequeDataUpdated = await Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ChequesInputView(chequesData: chequesData)),
+                  );
+
+                  debugPrint("Cheque Data Update => ${chequeDataUpdated}");
+                  if (chequeDataUpdated) {
+
+                    prepareRelatedCheques();
+
+                  }
+
+                },
+                child: Padding(
+                    padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
+                    child: Align(
+                        alignment: AlignmentDirectional.centerEnd,
+                        child: Directionality(
+                          textDirection: TextDirection.rtl,
+                          child: Text(
+                            "${chequesData.chequeMoneyAmount} - ${chequesData.chequeNumber}",
+                            style: TextStyle(
+                                color: ColorsResources.darkTransparent,
+                                fontSize: 13,
+                                fontWeight: FontWeight.bold
+                            ),
                           ),
-                        ),
-                      )
-                  )
-              ),
+                        )
+                    )
+                ),
+              )
             ),
           ],
         )
