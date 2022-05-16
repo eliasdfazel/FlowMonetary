@@ -3702,28 +3702,19 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
     ChequesDatabaseQueries chequesDatabaseQueries = ChequesDatabaseQueries();
 
-    if (controllerInvoiceNumber.text.isNotEmpty) {
+    List<String> chequesNumbers = cleanUpCsvDatabase(controllerChequeNumber.text).split(",");
 
+    chequesNumbers.forEach((element) async {
 
-      allRelatedCheques = await chequesDatabaseQueries.queryChequeBySpecificTitle(controllerInvoiceNumber.text, ChequesDatabaseInputs.databaseTableName, UserInformation.UserId);
+      ChequesData? chequesData = await chequesDatabaseQueries.querySpecificChequesByNumber(element, ChequesDatabaseInputs.databaseTableName, UserInformation.UserId);
 
-    } else {
+      if (chequesData != null) {
 
-      List<String> chequesNumbers = cleanUpCsvDatabase(controllerChequeNumber.text).split(",");
+        allRelatedCheques.add(chequesData);
 
-      chequesNumbers.forEach((element) async {
+      }
 
-        ChequesData? chequesData = await chequesDatabaseQueries.querySpecificChequesByNumber(element, ChequesDatabaseInputs.databaseTableName, UserInformation.UserId);
-
-        if (chequesData != null) {
-
-          allRelatedCheques.add(chequesData);
-
-        }
-
-      });
-
-    }
+    });
 
     allRelatedCheques.forEach((relatedChequeData) {
 
