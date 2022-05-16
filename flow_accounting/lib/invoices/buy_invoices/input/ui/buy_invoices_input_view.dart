@@ -3255,6 +3255,9 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
     return allProducts;
   }
 
+  /*
+   * Start - Invoiced Products
+   */
   void updateSelectedProductsList(List<ProductsData> inputSelectedProduct) async {
 
     selectedProductWidget.clear();
@@ -3596,7 +3599,13 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
     });
 
   }
+  /*
+   * End - Invoiced Products
+   */
 
+  /*
+   * Start - Related Cheques
+   */
   void insertRelatedCheques(String chequeNumber) async {
 
     if (controllerCheques.text.isNotEmpty) {
@@ -3650,6 +3659,9 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
     }
 
   }
+  /*
+   * End - Related Cheques
+   */
 
   Future<List<CreditCardsData>> getAllCreditCards() async {
 
