@@ -89,15 +89,21 @@ class ChequesDatabaseQueries {
 
     final databaseInstance = await database;
 
-    var databaseContents = await databaseInstance.query(
-      tableNameQuery,
-      where: 'chequeNumber = ?',
-      whereArgs: [chequeNumber],
-    );
+    var databaseContents = null;
+
+    try {
+
+      databaseContents = await databaseInstance.query(
+        tableNameQuery,
+        where: 'chequeNumber = ?',
+        whereArgs: [chequeNumber],
+      );
+
+    } on Exception {}
 
     ChequesData? chequesData = null;
 
-    if (databaseContents.isNotEmpty) {
+    if (databaseContents != null) {
 
       chequesData = await extractChequesQuery(databaseContents[0]);
 

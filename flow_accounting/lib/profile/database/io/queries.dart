@@ -80,13 +80,19 @@ class ProfileDatabaseQueries {
 
       var tableNameQuery = ProfilesDatabaseInputs.databaseTableName;
 
-      List<Map<String, Object?>>? databaseContents = await databaseInstance.query(
-        tableNameQuery,
-        where: 'userSignedIn = ?',
-        whereArgs: [ProfilesData.Profile_Singed_In],
-      );
+      List<Map<String, Object?>>? databaseContents = null;
 
-      if (databaseContents.isNotEmpty) {
+      try {
+
+        databaseContents = await databaseInstance.query(
+          tableNameQuery,
+          where: 'userSignedIn = ?',
+          whereArgs: [ProfilesData.Profile_Singed_In],
+        );
+
+      } on Exception {}
+
+      if (databaseContents != null) {
 
         profilesData = ProfilesData(
           id: int.parse(databaseContents[0]['id'].toString()),

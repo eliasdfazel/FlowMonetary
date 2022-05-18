@@ -113,15 +113,21 @@ class ProductsDatabaseQueries {
 
     final databaseInstance = await database;
 
-    var databaseContents = await databaseInstance.query(
-      tableNameQuery,
-      where: 'productName = ?',
-      whereArgs: [productName],
-    );
+    var databaseContents = null;
+
+    try {
+
+      databaseContents = await databaseInstance.query(
+        tableNameQuery,
+        where: 'productName = ?',
+        whereArgs: [productName],
+      );
+
+    } on Exception {}
 
     ProductsData? queriedProduct = null;
 
-    if (databaseContents.isNotEmpty) {
+    if (databaseContents != null) {
 
       queriedProduct = ProductsData(
         id: databaseContents[0]['id'] as int,

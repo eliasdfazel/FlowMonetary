@@ -3762,6 +3762,8 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
       if (aChequeData == null) {
 
+        controllerInvoiceNumber.text = controllerInvoiceNumber.text.isEmpty ? timeNow.toString() : controllerInvoiceNumber.text;
+
         await chequesDatabaseInputs.insertChequeData(ChequesData(id: DateTime.now().millisecondsSinceEpoch,
             chequeTitle: controllerInvoiceNumber.text,
             chequeDescription: "",
@@ -3790,6 +3792,7 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
         prepareRelatedCheques();
 
+        debugPrint("Cheque Related to Invoice ${controllerInvoiceNumber.text} Added");
       }
 
     }
