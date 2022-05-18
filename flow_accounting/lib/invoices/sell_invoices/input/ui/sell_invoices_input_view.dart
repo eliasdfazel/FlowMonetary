@@ -3758,7 +3758,19 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
       ChequesDatabaseQueries chequesDatabaseQueries = ChequesDatabaseQueries();
 
-      ChequesData? aChequeData = await chequesDatabaseQueries.querySpecificChequesByNumber(chequeNumber, ChequesDatabaseInputs.databaseTableName, UserInformation.UserId);
+      ChequesData? aChequeData = null;
+
+      String databaseDirectory = await getDatabasesPath();
+
+      String chequeDatabasePath = "${databaseDirectory}/${ChequesDatabaseInputs.chequesDatabase()}";
+
+      bool chequesDatabaseExist = await databaseExists(chequeDatabasePath);
+
+      if (chequesDatabaseExist) {
+
+        await chequesDatabaseQueries.querySpecificChequesByNumber(chequeNumber, ChequesDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+      }
 
       if (aChequeData == null) {
 
