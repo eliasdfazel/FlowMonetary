@@ -51,6 +51,8 @@ class SellInvoicesDatabaseInputs {
                 'sellPreInvoice TEXT, '
                 'companyDigitalSignature TEXT, '
                 'invoiceReturned TEXT,'
+                'invoicePaidCash TEXT,'
+                'invoiceChequesNumbers TEXT,'
                 'colorTag TEXT'
                 ')',
           );

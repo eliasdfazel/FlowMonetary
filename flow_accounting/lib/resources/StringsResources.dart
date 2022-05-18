@@ -814,6 +814,16 @@ class StringsResources {
     return "قیمت کل فاکتور";
   }
 
+  static String invoiceCash() {
+
+    return "پرداخت نقدی";
+  }
+  static String invoiceCashHint() {
+
+    return "چه مقدار از این فاکتور به صورت نقدی پرداخت شده است؟";
+  }
+
+
   static String buyInvoicePaidBy() {
 
     return "پرداخت از";

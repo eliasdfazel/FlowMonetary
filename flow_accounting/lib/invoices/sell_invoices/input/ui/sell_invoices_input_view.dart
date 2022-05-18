@@ -99,6 +99,8 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
   TextEditingController controllerSoldTo = TextEditingController();
 
+  TextEditingController controllerInvoiceCash = TextEditingController();
+
   TextEditingController controllerCheques = TextEditingController();
   TextEditingController controllerChequeNumber = TextEditingController();
   TextEditingController controllerChequeMoneyAmount = TextEditingController();
@@ -151,6 +153,8 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
   String? warningPaidTo;
 
   String? warningSoldTo;
+
+  String? warningCash;
 
   String? warningChequeNumber;
   String? warningChequeMoneyAmount;
@@ -2374,6 +2378,96 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                       ),
                       SizedBox(
                         width: double.infinity,
+                        height: 73,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                  child: Directionality(
+                                    textDirection: TextDirection.rtl,
+                                    child: TextField(
+                                      controller: controllerInvoiceCash,
+                                      textAlign: TextAlign.center,
+                                      textDirection: TextDirection.rtl,
+                                      textAlignVertical: TextAlignVertical.bottom,
+                                      maxLines: 1,
+                                      cursorColor: ColorsResources.primaryColor,
+                                      autocorrect: true,
+                                      autofocus: false,
+                                      keyboardType: TextInputType.number,
+                                      textInputAction: TextInputAction.next,
+                                      decoration: InputDecoration(
+                                        alignLabelWithHint: true,
+                                        border: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        enabledBorder: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        focusedBorder: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        errorBorder: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.red, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        errorText: warningCash,
+                                        filled: true,
+                                        fillColor: ColorsResources.lightTransparent,
+                                        labelText: StringsResources.invoiceCash(),
+                                        labelStyle: const TextStyle(
+                                            color: ColorsResources.dark,
+                                            fontSize: 17.0
+                                        ),
+                                        hintText: StringsResources.invoiceCashHint(),
+                                        hintStyle: const TextStyle(
+                                            color: ColorsResources.darkTransparent,
+                                            fontSize: 13.0
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Divider(
+                        height: 13,
+                        color: Colors.transparent,
+                      ),
+                      SizedBox(
+                        width: double.infinity,
                         height: 151,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -2436,6 +2530,10 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                                                   }
 
                                                   if (noError) {
+
+                                                    controllerChequeNumber.text = "";
+                                                    controllerChequeName.text = "";
+                                                    controllerChequeMoneyAmount.text = "";
 
                                                     controllerCheques.text += "${controllerChequeNumber.text},";
 
@@ -3052,6 +3150,18 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
                                   }
 
+                                  if (controllerInvoiceCash.text.isEmpty) {
+
+                                    setState(() {
+
+                                      warningCash = StringsResources.errorText();
+
+                                    });
+
+                                    noError = false;
+
+                                  }
+
                                   if (noError) {
 
                                     if (widget.sellInvoicesData != null) {
@@ -3096,6 +3206,7 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
                                         companyDigitalSignature: companyDigitalSignature,
 
+                                        invoicePaidCash: controllerInvoiceCash.text.isEmpty ? "0" : controllerInvoiceCash.text,
                                         invoiceChequesNumbers: cleanUpCsvDatabase(controllerCheques.text),
 
                                         colorTag: colorSelectorView.selectedColor.value,
@@ -3643,51 +3754,41 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
 
     if (controllerCheques.text.isNotEmpty) {
 
-      String databaseDirectory = await getDatabasesPath();
+      ChequesDatabaseInputs chequesDatabaseInputs = ChequesDatabaseInputs();
 
-      String chequesDatabasePath = "${databaseDirectory}/${ChequesDatabaseInputs.chequesDatabase()}";
+      ChequesDatabaseQueries chequesDatabaseQueries = ChequesDatabaseQueries();
 
-      bool chequesDatabaseExist = await databaseExists(chequesDatabasePath);
+      ChequesData? aChequeData = await chequesDatabaseQueries.querySpecificChequesByNumber(chequeNumber, ChequesDatabaseInputs.databaseTableName, UserInformation.UserId);
 
-      if (chequesDatabaseExist) {
+      if (aChequeData == null) {
 
-        ChequesDatabaseInputs chequesDatabaseInputs = ChequesDatabaseInputs();
+        await chequesDatabaseInputs.insertChequeData(ChequesData(id: DateTime.now().millisecondsSinceEpoch,
+            chequeTitle: controllerInvoiceNumber.text,
+            chequeDescription: "",
+            chequeNumber: controllerChequeNumber.text,
+            chequeMoneyAmount: controllerChequeMoneyAmount.text,
+            chequeTransactionType: "",
+            chequeSourceBankName: "",
+            chequeSourceBankBranch: "",
+            chequeTargetBankName: "",
+            chequeIssueDate: TimeIO().humanReadableFarsi(DateTime.now()),
+            chequeDueDate: TimeIO().humanReadableFarsi(calendarChequeDueView.pickedDateTime),
+            chequeIssueMillisecond: DateTime.now().millisecondsSinceEpoch.toString(),
+            chequeDueMillisecond: calendarChequeDueView.pickedDateTime.millisecondsSinceEpoch.toString(),
+            chequeSourceId: "",
+            chequeSourceName: "",
+            chequeSourceAccountNumber: "",
+            chequeTargetId: "",
+            chequeTargetName: controllerChequeName.text,
+            chequeTargetAccountNumber: "",
+            chequeDoneConfirmation: ChequesData.ChequesConfirmation_NOT,
+            chequeRelevantCreditCard: "",
+            chequeRelevantBudget: "",
+            chequeCategory: "",
+            colorTag: colorSelectorView.selectedColor.value),
+            ChequesDatabaseInputs.databaseTableName, UserInformation.UserId);
 
-        ChequesDatabaseQueries chequesDatabaseQueries = ChequesDatabaseQueries();
-
-        ChequesData? aChequeData = await chequesDatabaseQueries.querySpecificChequesByNumber(chequeNumber, ChequesDatabaseInputs.databaseTableName, UserInformation.UserId);
-
-        if (aChequeData == null) {
-
-          await chequesDatabaseInputs.insertChequeData(ChequesData(id: DateTime.now().millisecondsSinceEpoch,
-              chequeTitle: controllerInvoiceNumber.text,
-              chequeDescription: "",
-              chequeNumber: controllerChequeNumber.text,
-              chequeMoneyAmount: controllerChequeMoneyAmount.text,
-              chequeTransactionType: "",
-              chequeSourceBankName: "",
-              chequeSourceBankBranch: "",
-              chequeTargetBankName: "",
-              chequeIssueDate: TimeIO().humanReadableFarsi(DateTime.now()),
-              chequeDueDate: TimeIO().humanReadableFarsi(calendarChequeDueView.pickedDateTime),
-              chequeIssueMillisecond: DateTime.now().millisecondsSinceEpoch.toString(),
-              chequeDueMillisecond: calendarChequeDueView.pickedDateTime.millisecondsSinceEpoch.toString(),
-              chequeSourceId: "",
-              chequeSourceName: "",
-              chequeSourceAccountNumber: "",
-              chequeTargetId: "",
-              chequeTargetName: controllerChequeName.text,
-              chequeTargetAccountNumber: "",
-              chequeDoneConfirmation: ChequesData.ChequesConfirmation_NOT,
-              chequeRelevantCreditCard: "",
-              chequeRelevantBudget: "",
-              chequeCategory: "",
-              colorTag: colorSelectorView.selectedColor.value),
-              ChequesDatabaseInputs.databaseTableName, UserInformation.UserId);
-
-          prepareRelatedCheques();
-
-        }
+        prepareRelatedCheques();
 
       }
 

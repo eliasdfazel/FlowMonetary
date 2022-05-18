@@ -62,6 +62,8 @@ class SellInvoicesDatabaseQueries {
 
         invoiceReturned: maps[i]['invoiceReturned'],
 
+        invoicePaidCash: maps[i]['invoicePaidCash'],
+
         invoiceChequesNumbers: maps[i]['invoiceChequesNumbers'],
 
         colorTag: int.parse(maps[i]['colorTag'].toString()),
@@ -120,6 +122,8 @@ class SellInvoicesDatabaseQueries {
       companyDigitalSignature: databaseContents[0]['companyDigitalSignature'].toString(),
 
       invoiceReturned: databaseContents[0]['invoiceReturned'].toString(),
+
+      invoicePaidCash: databaseContents[0]['invoicePaidCash'].toString(),
 
       invoiceChequesNumbers: databaseContents[0]['invoiceChequesNumbers'].toString(),
 
