@@ -2531,427 +2531,855 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                   bottom: 19,
                   left: 71,
                   right: 71,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(51.0),
-                    child: Material(
-                      shadowColor: Colors.transparent,
-                      color: Colors.transparent,
-                      child: InkWell(
-                        splashColor: ColorsResources.applicationGeeksEmpire.withOpacity(0.5),
-                        splashFactory: InkRipple.splashFactory,
-                        onTap: () {
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Expanded(
+                        flex: 13,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(51.0),
+                          child: Material(
+                            shadowColor: Colors.transparent,
+                            color: Colors.transparent,
+                            child: InkWell(
+                              splashColor: ColorsResources.applicationGeeksEmpire.withOpacity(0.5),
+                              splashFactory: InkRipple.splashFactory,
+                              onTap: () {
 
-                          bool noError = true;
+                                bool noError = true;
 
-                          if (controllerChequeNumber.text.isEmpty) {
+                                if (controllerChequeNumber.text.isEmpty) {
 
-                            setState(() {
+                                  setState(() {
 
-                              warningNoticeChequeNumber = StringsResources.errorText();
+                                    warningNoticeChequeNumber = StringsResources.errorText();
 
-                            });
+                                  });
 
-                            noError = false;
+                                  noError = false;
 
-                          }
+                                }
 
-                          if (controllerChequeSourceAccount.text.isEmpty) {
+                                if (controllerChequeSourceAccount.text.isEmpty) {
 
-                            setState(() {
+                                  setState(() {
 
-                              warningNoticeSourceAccount = StringsResources.errorText();
+                                    warningNoticeSourceAccount = StringsResources.errorText();
 
-                            });
+                                  });
 
-                            noError = false;
+                                  noError = false;
 
-                          }
+                                }
 
-                          if (controllerChequeTargetAccount.text.isEmpty) {
+                                if (controllerChequeTargetAccount.text.isEmpty) {
 
-                            setState(() {
+                                  setState(() {
 
-                              warningNoticeTargetAccount = StringsResources.errorText();
+                                    warningNoticeTargetAccount = StringsResources.errorText();
 
-                            });
+                                  });
 
-                            noError = false;
+                                  noError = false;
 
-                          }
+                                }
 
-                          if (controllerMoneyAmount.text.isEmpty) {
+                                if (controllerMoneyAmount.text.isEmpty) {
 
-                            setState(() {
+                                  setState(() {
 
-                              warningNoticeMoneyAmount = StringsResources.errorText();
+                                    warningNoticeMoneyAmount = StringsResources.errorText();
 
-                            });
+                                  });
 
-                            noError = false;
+                                  noError = false;
 
-                          }
+                                }
 
-                          if (controllerChequeTitle.text.isEmpty) {
+                                if (controllerChequeTitle.text.isEmpty) {
 
-                            setState(() {
+                                  setState(() {
 
-                              warningNoticeTitle = StringsResources.errorText();
+                                    warningNoticeTitle = StringsResources.errorText();
 
-                            });
+                                  });
 
-                            noError = false;
+                                  noError = false;
 
-                          }
+                                }
 
-                          if (controllerChequeDescription.text.isEmpty) {
+                                if (controllerChequeDescription.text.isEmpty) {
 
-                            setState(() {
+                                  setState(() {
 
-                              warningNoticeDescription = StringsResources.errorText();
+                                    warningNoticeDescription = StringsResources.errorText();
 
-                            });
+                                  });
 
-                            noError = false;
+                                  noError = false;
 
-                          }
+                                }
 
-                          if (controllerChequeSourceId.text.isEmpty) {
+                                if (controllerChequeSourceId.text.isEmpty) {
 
-                            setState(() {
+                                  setState(() {
 
-                              warningNoticeSourceId = StringsResources.errorText();
+                                    warningNoticeSourceId = StringsResources.errorText();
 
-                            });
+                                  });
 
-                            noError = false;
+                                  noError = false;
 
-                          }
+                                }
 
-                          if (controllerChequeSourceName.text.isEmpty) {
+                                if (controllerChequeSourceName.text.isEmpty) {
 
-                            setState(() {
+                                  setState(() {
 
-                              warningNoticeSourceName = StringsResources.errorText();
+                                    warningNoticeSourceName = StringsResources.errorText();
 
-                            });
+                                  });
 
-                            noError = false;
+                                  noError = false;
 
-                          }
+                                }
 
-                          if (controllerChequeBank.text.isEmpty) {
+                                if (controllerChequeBank.text.isEmpty) {
 
-                            setState(() {
+                                  setState(() {
 
-                              warningNoticeBank = StringsResources.errorText();
+                                    warningNoticeBank = StringsResources.errorText();
 
-                            });
+                                  });
 
-                            noError = false;
+                                  noError = false;
 
-                          }
+                                }
 
-                          if (controllerChequeBankBranch.text.isEmpty) {
+                                if (controllerChequeBankBranch.text.isEmpty) {
 
-                            setState(() {
+                                  setState(() {
 
-                              warningNoticeBankBranch = StringsResources.errorText();
+                                    warningNoticeBankBranch = StringsResources.errorText();
 
-                            });
+                                  });
 
-                            noError = false;
+                                  noError = false;
 
-                          }
+                                }
 
-                          if (controllerChequeSourceAccount.text.isEmpty) {
+                                if (controllerChequeSourceAccount.text.isEmpty) {
 
-                            setState(() {
+                                  setState(() {
 
-                              warningNoticeSourceAccount = StringsResources.errorText();
+                                    warningNoticeSourceAccount = StringsResources.errorText();
 
-                            });
+                                  });
 
-                            noError = false;
+                                  noError = false;
 
-                          }
+                                }
 
-                          if (controllerChequeTargetId.text.isEmpty) {
+                                if (controllerChequeTargetId.text.isEmpty) {
 
-                            setState(() {
+                                  setState(() {
 
-                              warningNoticeTargetId = StringsResources.errorText();
+                                    warningNoticeTargetId = StringsResources.errorText();
 
-                            });
+                                  });
 
-                            noError = false;
+                                  noError = false;
 
-                          }
+                                }
 
-                          if (controllerChequeTargetName.text.isEmpty) {
+                                if (controllerChequeTargetName.text.isEmpty) {
 
-                            setState(() {
+                                  setState(() {
 
-                              warningNoticeTargetName = StringsResources.errorText();
+                                    warningNoticeTargetName = StringsResources.errorText();
 
-                            });
+                                  });
 
-                            noError = false;
+                                  noError = false;
 
-                          }
+                                }
 
-                          if (controllerChequeTargetBank.text.isEmpty) {
+                                if (controllerChequeTargetBank.text.isEmpty) {
 
-                            setState(() {
+                                  setState(() {
 
-                              warningNoticeTargetBank = StringsResources.errorText();
+                                    warningNoticeTargetBank = StringsResources.errorText();
 
-                            });
+                                  });
 
-                            noError = false;
+                                  noError = false;
 
-                          }
+                                }
 
-                          if (controllerChequeTargetAccount.text.isEmpty) {
+                                if (controllerChequeTargetAccount.text.isEmpty) {
 
-                            setState(() {
+                                  setState(() {
 
-                              warningNoticeTargetAccount = StringsResources.errorText();
+                                    warningNoticeTargetAccount = StringsResources.errorText();
 
-                            });
+                                  });
 
-                            noError = false;
+                                  noError = false;
 
-                          }
+                                }
 
-                          if (controllerBudget.text.isEmpty) {
+                                if (controllerBudget.text.isEmpty) {
 
-                            setState(() {
+                                  setState(() {
 
-                              warningNoticeBudget = StringsResources.errorText();
+                                    warningNoticeBudget = StringsResources.errorText();
 
-                            });
+                                  });
 
-                            noError = false;
+                                  noError = false;
 
-                          }
+                                }
 
-                          if (controllerChequeCategory.text.isEmpty) {
+                                if (controllerChequeCategory.text.isEmpty) {
 
-                            setState(() {
+                                  setState(() {
 
-                              warningNoticeCategory = StringsResources.errorText();
+                                    warningNoticeCategory = StringsResources.errorText();
 
-                            });
+                                  });
 
-                            noError = false;
+                                  noError = false;
 
-                          }
+                                }
 
-                          if (controllerCreditCard.text.length < 16) {
+                                if (controllerCreditCard.text.length < 16) {
 
-                            setState(() {
+                                  setState(() {
 
-                              warningNoticeCreditCard = StringsResources.errorText();
+                                    warningNoticeCreditCard = StringsResources.errorText();
 
-                            });
+                                  });
 
-                            noError = false;
+                                  noError = false;
 
-                          }
+                                }
 
-                          if (noError) {
+                                if (noError) {
 
-                            var databaseInputs = ChequesDatabaseInputs();
+                                  var databaseInputs = ChequesDatabaseInputs();
 
-                            if (widget.chequesData != null) {
+                                  if (widget.chequesData != null) {
 
-                              if ((widget.chequesData?.id)! != 0) {
+                                    if ((widget.chequesData?.id)! != 0) {
 
-                                timeNow = (widget.chequesData?.id)!;
+                                      timeNow = (widget.chequesData?.id)!;
 
-                              }
+                                    }
 
-                            }
+                                  }
 
-                            chequesData = ChequesData(
-                              id: timeNow,
+                                  chequesData = ChequesData(
+                                    id: timeNow,
 
-                              chequeTitle: controllerChequeTitle.text,
-                              chequeDescription: controllerChequeDescription.text,
+                                    chequeTitle: controllerChequeTitle.text,
+                                    chequeDescription: controllerChequeDescription.text,
 
-                              chequeNumber: controllerChequeNumber.text,
+                                    chequeNumber: controllerChequeNumber.text,
 
-                              chequeMoneyAmount: controllerMoneyAmount.text,
+                                    chequeMoneyAmount: controllerMoneyAmount.text,
 
-                              chequeTransactionType: transactionType,
+                                    chequeTransactionType: transactionType,
 
-                              chequeSourceBankName: controllerChequeBank.text,
-                              chequeSourceBankBranch: controllerChequeBankBranch.text,
+                                    chequeSourceBankName: controllerChequeBank.text,
+                                    chequeSourceBankBranch: controllerChequeBankBranch.text,
 
-                              chequeTargetBankName: controllerChequeTargetBank.text,
+                                    chequeTargetBankName: controllerChequeTargetBank.text,
 
-                              chequeIssueDate: calendarIssueDateView.inputDateTime ?? "",
-                              chequeDueDate: calendarDueDateView.inputDateTime ?? "",
+                                    chequeIssueDate: calendarIssueDateView.inputDateTime ?? "",
+                                    chequeDueDate: calendarDueDateView.inputDateTime ?? "",
 
-                              chequeIssueMillisecond: calendarIssueDateView.pickedDateTime.millisecondsSinceEpoch.toString(),
-                              chequeDueMillisecond: calendarDueDateView.pickedDateTime.millisecondsSinceEpoch.toString(),
+                                    chequeIssueMillisecond: calendarIssueDateView.pickedDateTime.millisecondsSinceEpoch.toString(),
+                                    chequeDueMillisecond: calendarDueDateView.pickedDateTime.millisecondsSinceEpoch.toString(),
 
-                              chequeSourceId: controllerChequeSourceId.text,
-                              chequeSourceName: controllerChequeSourceName.text,
-                              chequeSourceAccountNumber: controllerChequeSourceAccount.text,
+                                    chequeSourceId: controllerChequeSourceId.text,
+                                    chequeSourceName: controllerChequeSourceName.text,
+                                    chequeSourceAccountNumber: controllerChequeSourceAccount.text,
 
-                              chequeTargetId: controllerChequeTargetId.text,
-                              chequeTargetName: controllerChequeTargetName.text,
-                              chequeTargetAccountNumber: controllerChequeTargetAccount.text,
+                                    chequeTargetId: controllerChequeTargetId.text,
+                                    chequeTargetName: controllerChequeTargetName.text,
+                                    chequeTargetAccountNumber: controllerChequeTargetAccount.text,
 
-                              chequeDoneConfirmation: chequeConfirmation,
+                                    chequeDoneConfirmation: chequeConfirmation,
 
-                              chequeRelevantCreditCard: controllerCreditCard.text,
-                              chequeRelevantBudget: controllerBudget.text,
+                                    chequeRelevantCreditCard: controllerCreditCard.text,
+                                    chequeRelevantBudget: controllerBudget.text,
 
-                              chequeCategory: controllerChequeCategory.text,
+                                    chequeCategory: controllerChequeCategory.text,
 
-                              colorTag: colorSelectorView.selectedColor.value,
-                            );
+                                    colorTag: colorSelectorView.selectedColor.value,
+                                  );
 
-                            databaseInputs.insertChequeData(chequesData!, ChequesDatabaseInputs.databaseTableName, UserInformation.UserId);
+                                  databaseInputs.insertChequeData(chequesData!, ChequesDatabaseInputs.databaseTableName, UserInformation.UserId);
 
-                            addChequeReminder(
-                                calendarDueDateView.pickedDateTime,
-                                controllerChequeTitle.text,
-                                controllerChequeDescription.text,
-                                "${controllerChequeBank.text} - ${controllerChequeBankBranch.text}"
-                            );
+                                  addChequeReminder(
+                                      calendarDueDateView.pickedDateTime,
+                                      controllerChequeTitle.text,
+                                      controllerChequeDescription.text,
+                                      "${controllerChequeBank.text} - ${controllerChequeBankBranch.text}"
+                                  );
 
-                            Fluttertoast.showToast(
-                                msg: StringsResources.updatedText(),
-                                toastLength: Toast.LENGTH_SHORT,
-                                gravity: ToastGravity.CENTER,
-                                timeInSecForIosWeb: 1,
-                                backgroundColor: ColorsResources.lightTransparent,
-                                textColor: ColorsResources.dark,
-                                fontSize: 16.0
-                            );
+                                  Fluttertoast.showToast(
+                                      msg: StringsResources.updatedText(),
+                                      toastLength: Toast.LENGTH_SHORT,
+                                      gravity: ToastGravity.CENTER,
+                                      timeInSecForIosWeb: 1,
+                                      backgroundColor: ColorsResources.lightTransparent,
+                                      textColor: ColorsResources.dark,
+                                      fontSize: 16.0
+                                  );
 
-                            chequeDataUpdated = true;
+                                  chequeDataUpdated = true;
 
-                          }
+                                }
 
-                        },
-                        child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(51),
-                                  topRight: Radius.circular(51),
-                                  bottomLeft: Radius.circular(51),
-                                  bottomRight: Radius.circular(51)
-                              ),
-                              border: const Border(
-                                  top: BorderSide(
-                                    color: ColorsResources.primaryColorLight,
-                                    width: 1,
-                                  ),
-                                  bottom: BorderSide(
-                                    color: ColorsResources.primaryColorLight,
-                                    width: 1,
-                                  ),
-                                  left: BorderSide(
-                                    color: ColorsResources.primaryColorLight,
-                                    width: 1,
-                                  ),
-                                  right: BorderSide(
-                                    color: ColorsResources.primaryColorLight,
-                                    width: 1,
-                                  )
-                              ),
-                              gradient: LinearGradient(
-                                  colors: [
-                                    ColorsResources.primaryColor.withOpacity(0.3),
-                                    ColorsResources.primaryColorLight.withOpacity(0.3),
-                                  ],
-                                  begin: const FractionalOffset(0.0, 0.0),
-                                  end: const FractionalOffset(1.0, 0.0),
-                                  stops: const [0.0, 1.0],
-                                  transform: const GradientRotation(45),
-                                  tileMode: TileMode.clamp
-                              ),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: ColorsResources.dark.withOpacity(0.179),
-                                  blurRadius: 13.0,
-                                  spreadRadius: 0.3,
-                                  offset: const Offset(3.0, 3.0),
-                                ),
-                              ],
-                            ),
-                            child: Stack(
-                              children: [
-                                Blur(
-                                  blur: 3.0,
-                                  borderRadius: BorderRadius.circular(51),
-                                  alignment: AlignmentDirectional.center,
-                                  blurColor: Colors.blue,
-                                  colorOpacity: 0.0,
-                                  child: const SizedBox(
-                                    width: double.infinity,
-                                    height: 53,
-                                  ),
-                                ),
-                                SizedBox(
-                                    width: double.infinity,
-                                    height: 53,
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        Expanded(
-                                          flex: 3,
-                                          child: ColoredBox(color: Colors.transparent)
+                              },
+                              child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(51),
+                                        topRight: Radius.circular(51),
+                                        bottomLeft: Radius.circular(51),
+                                        bottomRight: Radius.circular(51)
+                                    ),
+                                    border: const Border(
+                                        top: BorderSide(
+                                          color: ColorsResources.primaryColorLight,
+                                          width: 1,
                                         ),
-                                        Expanded(
-                                          flex: 3,
-                                          child: Align(
-                                            alignment: AlignmentDirectional.center,
-                                            child: Image(
-                                              image: AssetImage("submit_icon.png"),
-                                              height: 37,
-                                              width: 37,
-                                              color: ColorsResources.light,
-                                            ),
-                                          ),
+                                        bottom: BorderSide(
+                                          color: ColorsResources.primaryColorLight,
+                                          width: 1,
                                         ),
-                                        Expanded(
-                                            flex: 5,
-                                            child: Align(
-                                              alignment: AlignmentDirectional.center,
-                                              child: Text(
-                                                StringsResources.submitText(),
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                    fontSize: 19,
-                                                    color: ColorsResources.darkTransparent,
-                                                    shadows: [
-                                                      Shadow(
-                                                          color: ColorsResources.primaryColorDark,
-                                                          blurRadius: 7.0,
-                                                          offset: Offset(1, 1)
-                                                      )
-                                                    ]
+                                        left: BorderSide(
+                                          color: ColorsResources.primaryColorLight,
+                                          width: 1,
+                                        ),
+                                        right: BorderSide(
+                                          color: ColorsResources.primaryColorLight,
+                                          width: 1,
+                                        )
+                                    ),
+                                    gradient: LinearGradient(
+                                        colors: [
+                                          ColorsResources.primaryColor.withOpacity(0.3),
+                                          ColorsResources.primaryColorLight.withOpacity(0.3),
+                                        ],
+                                        begin: const FractionalOffset(0.0, 0.0),
+                                        end: const FractionalOffset(1.0, 0.0),
+                                        stops: const [0.0, 1.0],
+                                        transform: const GradientRotation(45),
+                                        tileMode: TileMode.clamp
+                                    ),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: ColorsResources.dark.withOpacity(0.179),
+                                        blurRadius: 13.0,
+                                        spreadRadius: 0.3,
+                                        offset: const Offset(3.0, 3.0),
+                                      ),
+                                    ],
+                                  ),
+                                  child: Stack(
+                                    children: [
+                                      Blur(
+                                        blur: 3.0,
+                                        borderRadius: BorderRadius.circular(51),
+                                        alignment: AlignmentDirectional.center,
+                                        blurColor: Colors.blue,
+                                        colorOpacity: 0.0,
+                                        child: const SizedBox(
+                                          width: double.infinity,
+                                          height: 53,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                          width: double.infinity,
+                                          height: 53,
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              Expanded(
+                                                  flex: 3,
+                                                  child: ColoredBox(color: Colors.transparent)
+                                              ),
+                                              Expanded(
+                                                flex: 3,
+                                                child: Align(
+                                                  alignment: AlignmentDirectional.center,
+                                                  child: Image(
+                                                    image: AssetImage("submit_icon.png"),
+                                                    height: 37,
+                                                    width: 37,
+                                                    color: ColorsResources.light,
+                                                  ),
                                                 ),
                                               ),
-                                            )
-                                        ),
-                                        Expanded(
-                                          flex: 3,
-                                          child: ColoredBox(color: Colors.transparent)
-                                        ),
-                                      ],
-                                    )
-                                )
-                              ],
-                            )
-                        ),
+                                              Expanded(
+                                                  flex: 5,
+                                                  child: Align(
+                                                    alignment: AlignmentDirectional.center,
+                                                    child: Text(
+                                                      StringsResources.submitText(),
+                                                      textAlign: TextAlign.center,
+                                                      style: TextStyle(
+                                                          fontSize: 19,
+                                                          color: ColorsResources.darkTransparent,
+                                                          shadows: [
+                                                            Shadow(
+                                                                color: ColorsResources.primaryColorDark,
+                                                                blurRadius: 7.0,
+                                                                offset: Offset(1, 1)
+                                                            )
+                                                          ]
+                                                      ),
+                                                    ),
+                                                  )
+                                              ),
+                                              Expanded(
+                                                  flex: 3,
+                                                  child: ColoredBox(color: Colors.transparent)
+                                              ),
+                                            ],
+                                          )
+                                      )
+                                    ],
+                                  )
+                              ),
+                            ),
+                          ),
+                        )
                       ),
-                    ),
+                      Expanded(
+                        flex: 1,
+                        child: ColoredBox(color: Colors.transparent),
+                      ),
+                      Expanded(
+                          flex: 3,
+                          child: Tooltip(
+                            triggerMode: TooltipTriggerMode.longPress,
+                            message: StringsResources.quickSaveHint(),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(51),
+                              gradient: const LinearGradient(
+                                colors: [
+                                  ColorsResources.black,
+                                  ColorsResources.primaryColorDark
+                                ],
+                                transform: const GradientRotation(45),
+                              ),
+                            ),
+                            height: 31,
+                            padding: const EdgeInsets.fromLTRB(13, 3, 13, 3),
+                            margin: const EdgeInsets.fromLTRB(0, 0, 0, 7),
+                            preferBelow: false,
+                            textStyle: const TextStyle(
+                              color: ColorsResources.light,
+                              fontSize: 13,
+                            ),
+                            showDuration: const Duration(seconds: 3),
+                            waitDuration: const Duration(seconds: 5),
+                            child: AspectRatio(
+                              aspectRatio: 1,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(51.0),
+                                child: Material(
+                                  shadowColor: Colors.transparent,
+                                  color: Colors.transparent,
+                                  child: InkWell(
+                                    splashColor: ColorsResources.applicationGeeksEmpire.withOpacity(0.5),
+                                    splashFactory: InkRipple.splashFactory,
+                                    onTap: () {
+
+                                      bool noError = true;
+
+                                      if (controllerChequeNumber.text.isEmpty) {
+
+                                        setState(() {
+
+                                          warningNoticeChequeNumber = StringsResources.errorText();
+
+                                        });
+
+                                        noError = false;
+
+                                      }
+
+                                      if (controllerChequeSourceAccount.text.isEmpty) {
+
+                                        setState(() {
+
+                                          warningNoticeSourceAccount = StringsResources.errorText();
+
+                                        });
+
+                                        noError = false;
+
+                                      }
+
+                                      if (controllerChequeTargetAccount.text.isEmpty) {
+
+                                        setState(() {
+
+                                          warningNoticeTargetAccount = StringsResources.errorText();
+
+                                        });
+
+                                        noError = false;
+
+                                      }
+
+                                      if (controllerMoneyAmount.text.isEmpty) {
+
+                                        setState(() {
+
+                                          warningNoticeMoneyAmount = StringsResources.errorText();
+
+                                        });
+
+                                        noError = false;
+
+                                      }
+
+                                      if (controllerChequeTitle.text.isEmpty) {
+
+                                        setState(() {
+
+                                          warningNoticeTitle = StringsResources.errorText();
+
+                                        });
+
+                                        noError = false;
+
+                                      }
+
+                                      if (controllerChequeDescription.text.isEmpty) {
+
+                                        setState(() {
+
+                                          warningNoticeDescription = StringsResources.errorText();
+
+                                        });
+
+                                        noError = false;
+
+                                      }
+
+                                      if (controllerChequeSourceId.text.isEmpty) {
+
+                                        setState(() {
+
+                                          warningNoticeSourceId = StringsResources.errorText();
+
+                                        });
+
+                                        noError = false;
+
+                                      }
+
+                                      if (controllerChequeSourceName.text.isEmpty) {
+
+                                        setState(() {
+
+                                          warningNoticeSourceName = StringsResources.errorText();
+
+                                        });
+
+                                        noError = false;
+
+                                      }
+
+                                      if (controllerChequeBank.text.isEmpty) {
+
+                                        setState(() {
+
+                                          warningNoticeBank = StringsResources.errorText();
+
+                                        });
+
+                                        noError = false;
+
+                                      }
+
+                                      if (controllerChequeBankBranch.text.isEmpty) {
+
+                                        setState(() {
+
+                                          warningNoticeBankBranch = StringsResources.errorText();
+
+                                        });
+
+                                        noError = false;
+
+                                      }
+
+                                      if (controllerChequeSourceAccount.text.isEmpty) {
+
+                                        setState(() {
+
+                                          warningNoticeSourceAccount = StringsResources.errorText();
+
+                                        });
+
+                                        noError = false;
+
+                                      }
+
+                                      if (controllerChequeTargetId.text.isEmpty) {
+
+                                        setState(() {
+
+                                          warningNoticeTargetId = StringsResources.errorText();
+
+                                        });
+
+                                        noError = false;
+
+                                      }
+
+                                      if (controllerChequeTargetName.text.isEmpty) {
+
+                                        setState(() {
+
+                                          warningNoticeTargetName = StringsResources.errorText();
+
+                                        });
+
+                                        noError = false;
+
+                                      }
+
+                                      if (controllerChequeTargetBank.text.isEmpty) {
+
+                                        setState(() {
+
+                                          warningNoticeTargetBank = StringsResources.errorText();
+
+                                        });
+
+                                        noError = false;
+
+                                      }
+
+                                      if (controllerChequeTargetAccount.text.isEmpty) {
+
+                                        setState(() {
+
+                                          warningNoticeTargetAccount = StringsResources.errorText();
+
+                                        });
+
+                                        noError = false;
+
+                                      }
+
+                                      if (controllerBudget.text.isEmpty) {
+
+                                        setState(() {
+
+                                          warningNoticeBudget = StringsResources.errorText();
+
+                                        });
+
+                                        noError = false;
+
+                                      }
+
+                                      if (controllerChequeCategory.text.isEmpty) {
+
+                                        setState(() {
+
+                                          warningNoticeCategory = StringsResources.errorText();
+
+                                        });
+
+                                        noError = false;
+
+                                      }
+
+                                      if (controllerCreditCard.text.length < 16) {
+
+                                        setState(() {
+
+                                          warningNoticeCreditCard = StringsResources.errorText();
+
+                                        });
+
+                                        noError = false;
+
+                                      }
+
+                                      if (noError) {
+
+                                        var databaseInputs = ChequesDatabaseInputs();
+
+                                        if (widget.chequesData != null) {
+
+                                          if ((widget.chequesData?.id)! != 0) {
+
+                                            timeNow = (widget.chequesData?.id)!;
+
+                                          }
+
+                                        }
+
+                                        chequesData = ChequesData(
+                                          id: DateTime.now().millisecondsSinceEpoch,
+
+                                          chequeTitle: controllerChequeTitle.text,
+                                          chequeDescription: controllerChequeDescription.text,
+
+                                          chequeNumber: controllerChequeNumber.text,
+
+                                          chequeMoneyAmount: controllerMoneyAmount.text,
+
+                                          chequeTransactionType: transactionType,
+
+                                          chequeSourceBankName: controllerChequeBank.text,
+                                          chequeSourceBankBranch: controllerChequeBankBranch.text,
+
+                                          chequeTargetBankName: controllerChequeTargetBank.text,
+
+                                          chequeIssueDate: calendarIssueDateView.inputDateTime ?? "",
+                                          chequeDueDate: calendarDueDateView.inputDateTime ?? "",
+
+                                          chequeIssueMillisecond: calendarIssueDateView.pickedDateTime.millisecondsSinceEpoch.toString(),
+                                          chequeDueMillisecond: calendarDueDateView.pickedDateTime.millisecondsSinceEpoch.toString(),
+
+                                          chequeSourceId: controllerChequeSourceId.text,
+                                          chequeSourceName: controllerChequeSourceName.text,
+                                          chequeSourceAccountNumber: controllerChequeSourceAccount.text,
+
+                                          chequeTargetId: controllerChequeTargetId.text,
+                                          chequeTargetName: controllerChequeTargetName.text,
+                                          chequeTargetAccountNumber: controllerChequeTargetAccount.text,
+
+                                          chequeDoneConfirmation: chequeConfirmation,
+
+                                          chequeRelevantCreditCard: controllerCreditCard.text,
+                                          chequeRelevantBudget: controllerBudget.text,
+
+                                          chequeCategory: controllerChequeCategory.text,
+
+                                          colorTag: colorSelectorView.selectedColor.value,
+                                        );
+
+                                        databaseInputs.insertChequeData(chequesData!, ChequesDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+                                        addChequeReminder(
+                                            calendarDueDateView.pickedDateTime,
+                                            controllerChequeTitle.text,
+                                            controllerChequeDescription.text,
+                                            "${controllerChequeBank.text} - ${controllerChequeBankBranch.text}"
+                                        );
+
+                                        Fluttertoast.showToast(
+                                            msg: StringsResources.updatedText(),
+                                            toastLength: Toast.LENGTH_SHORT,
+                                            gravity: ToastGravity.CENTER,
+                                            timeInSecForIosWeb: 1,
+                                            backgroundColor: ColorsResources.lightTransparent,
+                                            textColor: ColorsResources.dark,
+                                            fontSize: 16.0
+                                        );
+
+                                        chequeDataUpdated = true;
+
+                                      }
+
+                                    },
+                                    child: Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius: const BorderRadius.only(
+                                              topLeft: Radius.circular(51),
+                                              topRight: Radius.circular(51),
+                                              bottomLeft: Radius.circular(51),
+                                              bottomRight: Radius.circular(51)
+                                          ),
+                                          border: const Border(
+                                              top: BorderSide(
+                                                color: ColorsResources.primaryColorLight,
+                                                width: 1,
+                                              ),
+                                              bottom: BorderSide(
+                                                color: ColorsResources.primaryColorLight,
+                                                width: 1,
+                                              ),
+                                              left: BorderSide(
+                                                color: ColorsResources.primaryColorLight,
+                                                width: 1,
+                                              ),
+                                              right: BorderSide(
+                                                color: ColorsResources.primaryColorLight,
+                                                width: 1,
+                                              )
+                                          ),
+                                          gradient: LinearGradient(
+                                              colors: [
+                                                ColorsResources.primaryColor.withOpacity(0.3),
+                                                ColorsResources.primaryColorLight.withOpacity(0.3),
+                                              ],
+                                              begin: const FractionalOffset(0.0, 0.0),
+                                              end: const FractionalOffset(1.0, 0.0),
+                                              stops: const [0.0, 1.0],
+                                              transform: const GradientRotation(45),
+                                              tileMode: TileMode.clamp
+                                          ),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: ColorsResources.dark.withOpacity(0.179),
+                                              blurRadius: 13.0,
+                                              spreadRadius: 0.3,
+                                              offset: const Offset(3.0, 3.0),
+                                            ),
+                                          ],
+                                        ),
+                                        child: Stack(
+                                          children: [
+                                            Blur(
+                                              blur: 3.0,
+                                              borderRadius: BorderRadius.circular(51),
+                                              alignment: AlignmentDirectional.center,
+                                              blurColor: Colors.blue,
+                                              colorOpacity: 0.0,
+                                              child: const SizedBox(
+                                                width: 53,
+                                                height: 53,
+                                              ),
+                                            ),
+                                            Align(
+                                                alignment: AlignmentDirectional.center,
+                                                child: const SizedBox(
+                                                    width: 53,
+                                                    height: 53,
+                                                    child: Align(
+                                                        alignment: AlignmentDirectional.center,
+                                                        child: Image(
+                                                          image: AssetImage("quick_save.png"),
+                                                          color: ColorsResources.lightestOrange,
+                                                        )
+                                                    )
+                                                )
+                                            )
+                                          ],
+                                        )
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )
+                      )
+                    ],
                   )
                 )
               ],
