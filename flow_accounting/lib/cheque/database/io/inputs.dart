@@ -59,6 +59,7 @@ class ChequesDatabaseInputs {
               'chequeRelevantCreditCard TEXT, '
               'chequeRelevantBudget TEXT, '
               'chequeCategory TEXT, '
+              'chequeExtraDocument TEXT, '
               'colorTag TEXT'
               ')',
         );

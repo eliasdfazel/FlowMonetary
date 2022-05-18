@@ -3794,6 +3794,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
             chequeRelevantCreditCard: "",
             chequeRelevantBudget: "",
             chequeCategory: "",
+            chequeExtraDocument: "",
             colorTag: colorSelectorView.selectedColor.value),
             ChequesDatabaseInputs.databaseTableName, UserInformation.UserId);
 

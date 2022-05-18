@@ -70,6 +70,8 @@ class ChequesDatabaseQueries {
 
         chequeCategory: maps[i]['chequeCategory'],
 
+        chequeExtraDocument: maps[i]['chequeExtraDocument'],
+
         colorTag: int.parse(maps[i]['colorTag'].toString()),
       );
     });
@@ -170,6 +172,8 @@ class ChequesDatabaseQueries {
 
         chequeCategory: databaseContents[i]['chequeCategory'],
 
+        chequeExtraDocument: databaseContents[i]['chequeExtraDocument'],
+
         colorTag: int.parse(databaseContents[i]['colorTag'].toString()),
       );
     });
@@ -235,6 +239,8 @@ class ChequesDatabaseQueries {
 
         chequeCategory: databaseContents[i]['chequeCategory'],
 
+        chequeExtraDocument: databaseContents[i]['chequeExtraDocument'],
+
         colorTag: int.parse(databaseContents[i]['colorTag'].toString()),
       );
     });
@@ -297,6 +303,8 @@ class ChequesDatabaseQueries {
         chequeRelevantBudget: databaseContents[i]['chequeRelevantBudget'],
 
         chequeCategory: databaseContents[i]['chequeCategory'],
+
+        chequeExtraDocument: databaseContents[i]['chequeExtraDocument'],
 
         colorTag: int.parse(databaseContents[i]['colorTag'].toString()),
       );
@@ -361,6 +369,8 @@ class ChequesDatabaseQueries {
 
         chequeCategory: databaseContents[i]['chequeCategory'],
 
+        chequeExtraDocument: databaseContents[i]['chequeExtraDocument'],
+
         colorTag: int.parse(databaseContents[i]['colorTag'].toString()),
       );
     });
@@ -424,6 +434,8 @@ class ChequesDatabaseQueries {
 
         chequeCategory: databaseContents[i]['chequeCategory'],
 
+        chequeExtraDocument: databaseContents[i]['chequeExtraDocument'],
+
         colorTag: int.parse(databaseContents[i]['colorTag'].toString()),
       );
     });
@@ -486,6 +498,8 @@ class ChequesDatabaseQueries {
         chequeRelevantBudget: databaseContents[i]['chequeRelevantBudget'],
 
         chequeCategory: databaseContents[i]['chequeCategory'],
+
+        chequeExtraDocument: databaseContents[i]['chequeExtraDocument'],
 
         colorTag: int.parse(databaseContents[i]['colorTag'].toString()),
       );
@@ -553,6 +567,8 @@ class ChequesDatabaseQueries {
       chequeRelevantBudget: inputData['chequeRelevantBudget'].toString(),
 
       chequeCategory: inputData['chequeCategory'].toString(),
+
+      chequeExtraDocument: inputData['chequeExtraDocument'].toString(),
 
       colorTag: int.parse(inputData['colorTag'].toString()),
     );

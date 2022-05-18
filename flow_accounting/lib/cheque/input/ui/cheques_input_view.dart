@@ -9,6 +9,7 @@
  */
 
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:add_2_calendar/add_2_calendar.dart';
 import 'package:back_button_interceptor/back_button_interceptor.dart';
@@ -36,10 +37,13 @@ import 'package:flow_accounting/transactions/database/structures/tables_structur
 import 'package:flow_accounting/utils/calendar/ui/calendar_view.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
 import 'package:flow_accounting/utils/extensions/bank_logos.dart';
+import 'package:flow_accounting/utils/io/file_io.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
 class ChequesInputView extends StatefulWidget {
@@ -94,6 +98,8 @@ class _ChequeInputViewState extends State<ChequesInputView> {
   String chequeConfirmation = ChequesData.ChequesConfirmation_NOT;
   bool chequeConfirmed = false;
 
+  String chequeExtraDocument = "";
+
   String? warningNoticeChequeNumber;
 
   String? warningNoticeMoneyAmount;
@@ -116,6 +122,14 @@ class _ChequeInputViewState extends State<ChequesInputView> {
   String? warningNoticeBudget;
 
   String? warningNoticeCategory;
+
+  Widget imageExtraDocumentPickerWidget = const Opacity(
+    opacity: 0.3,
+    child: Image(
+      image: AssetImage("extra_document_icon.png"),
+      fit: BoxFit.contain,
+    ),
+  );
 
   @override
   void initState() {
@@ -166,6 +180,8 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
       chequeConfirmation = widget.chequesData!.chequeDoneConfirmation;
 
+      chequeExtraDocument = widget.chequesData?.chequeExtraDocument ?? "";
+
       if (chequeConfirmation == ChequesData.ChequesConfirmation_NOT) {
 
         chequeConfirmed = false;
@@ -175,6 +191,8 @@ class _ChequeInputViewState extends State<ChequesInputView> {
         chequeConfirmed = true;
 
       }
+
+      prepareAllImagesCheckpoint();
 
     }
 
@@ -2466,6 +2484,77 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
                                     child: Text(
+                                      StringsResources.extraDocumentHint(),
+                                      style: TextStyle(
+                                          fontSize: 15
+                                      ),
+                                    ),
+                                  )
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 179,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Expanded(
+                                flex: 1,
+                                child: Padding(
+                                    padding: EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                    child: InkWell(
+                                        onTap: () {
+
+                                          invokeExtraDocumentImagePicker();
+
+                                        },
+                                        child: AspectRatio(
+                                            aspectRatio: 1,
+                                            child: ClipRRect(
+                                                borderRadius: BorderRadius.circular(19),
+                                                child: Container(
+                                                    decoration: BoxDecoration(
+                                                        gradient: LinearGradient(
+                                                          colors: [
+                                                            ColorsResources.lightestBlue,
+                                                            ColorsResources.white.withOpacity(0.3)
+                                                          ],
+                                                          transform: const GradientRotation(45),
+                                                        )
+                                                    ),
+                                                    child: Padding(
+                                                        padding: EdgeInsets.fromLTRB(7, 13, 7, 13),
+                                                        child: imageExtraDocumentPickerWidget
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Divider(
+                        height: 13,
+                        color: Colors.transparent,
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 37,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: Padding(
+                                  padding: EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                  child: Directionality(
+                                    textDirection: TextDirection.rtl,
+                                    child: Text(
                                       StringsResources.colorSelectorHint(),
                                       style: TextStyle(
                                           fontSize: 15
@@ -2815,6 +2904,8 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                                     chequeRelevantBudget: controllerBudget.text,
 
                                     chequeCategory: controllerChequeCategory.text,
+
+                                    chequeExtraDocument: chequeExtraDocument,
 
                                     colorTag: colorSelectorView.selectedColor.value,
                                   );
@@ -3270,6 +3361,8 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
                                           chequeCategory: controllerChequeCategory.text,
 
+                                          chequeExtraDocument: chequeExtraDocument,
+
                                           colorTag: colorSelectorView.selectedColor.value,
                                         );
 
@@ -3717,6 +3810,27 @@ class _ChequeInputViewState extends State<ChequesInputView> {
 
   }
 
+  void prepareAllImagesCheckpoint() async {
+
+    bool extraDocumentCheckpoint = await fileExist("${controllerChequeNumber.text}_Extra_Document.PNG");
+
+    if (extraDocumentCheckpoint) {
+
+      Directory appDocumentsDirectory = await getApplicationSupportDirectory();
+
+      String appDocumentsPath = appDocumentsDirectory.path;
+
+      String filePath = '$appDocumentsPath/${controllerChequeNumber.text}_Extra_Document.PNG';
+
+      imageExtraDocumentPickerWidget = Image.file(
+        File(filePath),
+        fit: BoxFit.contain,
+      );
+
+    }
+
+  }
+
   Future addChequeReminder(DateTime reminderTime, String chequeTitle, String chequeDescription, String bankNameBranch) async {
 
     bool eventAdded = await Add2Calendar.addEvent2Cal(Event(
@@ -3740,6 +3854,56 @@ class _ChequeInputViewState extends State<ChequesInputView> {
     ));
 
     debugPrint("Event Added: ${eventAdded}");
+
+  }
+
+  void invokeExtraDocumentImagePicker() async {
+
+    final ImagePicker imagePicker = ImagePicker();
+
+    final XFile? selectedImage = await imagePicker.pickImage(source: ImageSource.gallery);
+
+    if (selectedImage != null) {
+
+      String fileName = "${controllerChequeNumber.text}_Extra_Document.PNG";
+
+      chequeExtraDocument = await getFilePath(fileName);
+
+      var imageFileByte = await selectedImage.readAsBytes();
+
+      savePickedImageFile(chequeExtraDocument, imageFileByte);
+
+      setState(() {
+
+        imageExtraDocumentPickerWidget = Image.file(
+          File(selectedImage.path),
+          fit: BoxFit.contain,
+        );
+
+      });
+
+    }
+
+    debugPrint("Picked Image Path: $chequeExtraDocument");
+
+  }
+
+  Future<String> getFilePath(String fileName) async {
+
+    Directory appDocumentsDirectory = await getApplicationSupportDirectory();
+
+    String appDocumentsPath = appDocumentsDirectory.path;
+
+    String filePath = '$appDocumentsPath/$fileName';
+
+    return filePath;
+  }
+
+  void savePickedImageFile(String imageFilePath, Uint8List imageBytes) async {
+
+    File file = File(imageFilePath);
+
+    file.writeAsBytes(imageBytes);
 
   }
 

@@ -1232,6 +1232,11 @@ class StringsResources {
     return "محل بارگذاری امضا دیجیتالی";
   }
 
+  static String extraDocumentHint() {
+
+    return "محل بارگذاری سند";
+  }
+
   static String sortHint() {
 
     return "مرتب سازی";

@@ -57,6 +57,8 @@ class ChequesData {
 
   final String chequeCategory;
 
+  final String chequeExtraDocument;
+
   int colorTag = ColorsResources.dark.value;
 
   ChequesData({
@@ -96,6 +98,8 @@ class ChequesData {
     required this.chequeRelevantBudget,
 
     required this.chequeCategory,
+
+    required this.chequeExtraDocument,
 
     required this.colorTag,
   });
@@ -138,6 +142,8 @@ class ChequesData {
       'chequeRelevantBudget': chequeRelevantBudget,
 
       'chequeCategory': chequeCategory,
+
+      'chequeExtraDocument': chequeExtraDocument,
 
       'colorTag': colorTag,
     };
@@ -182,6 +188,8 @@ class ChequesData {
         'chequeRelevantBudget: $chequeRelevantBudget,'
 
         'chequeCategory: $chequeCategory,'
+
+        'chequeExtraDocument: $chequeExtraDocument,'
 
         'colorTag: $colorTag,'
         '}';

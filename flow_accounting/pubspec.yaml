@@ -69,44 +69,45 @@ flutter:
 
   assets:
     - assets/sign_up.json
-    - pattern_card_background_one.png
-    - pattern_card_background_two.png
-    - pattern_card_background_three.png
-    - pattern_card_background_four.png
-    - pattern_card_background_five.png
-    - input_background_pattern.png
     - add_credit_card_icon.png
     - add_profile_icon.png
-    - go_previous_icon.png
-    - share_icon.png
-    - instagram_icon.png
-    - search_shape.png
     - advanced_search_icon.png
-    - coins_icon.png
-    - unknown_user.png
-    - transactions_icon.png
-    - sell_invoices_icon.png
+    - backup_icon.png
+    - budgets_icon.png
     - buy_invoices_icon.png
-    - products_icon.png
     - cheques_icon.png
-    - debtors_icon.png
+    - coins_icon.png
     - creditors_icon.png
     - customers_icon.png
-    - budgets_icon.png
+    - debtors_icon.png
+    - extra_document_icon.png
+    - go_icon.png
+    - go_previous_icon.png
+    - input_background_pattern.png
+    - instagram_icon.png
     - loans_icon.png
-    - unknown_products.png
-    - quick_save.png
-    - support_icon.png
-    - submit_icon.png
-    - qr_code_icon.png
-    - qr_scan_icon.png
-    - print_icon.png
-    - signature_icon.png
-    - sync_icon.png
     - logo.png
     - logo_background.png
-    - go_icon.png
-    - backup_icon.png
+    - pattern_card_background_five.png
+    - pattern_card_background_four.png
+    - pattern_card_background_one.png
+    - pattern_card_background_three.png
+    - pattern_card_background_two.png
+    - print_icon.png
+    - products_icon.png
+    - qr_code_icon.png
+    - qr_scan_icon.png
+    - quick_save.png
+    - search_shape.png
+    - sell_invoices_icon.png
+    - share_icon.png
+    - signature_icon.png
+    - submit_icon.png
+    - support_icon.png
+    - sync_icon.png
+    - transactions_icon.png
+    - unknown_products.png
+    - unknown_user.png
 
   fonts:
     - family: Sans
