@@ -113,7 +113,7 @@ class ProductsDatabaseQueries {
 
     final databaseInstance = await database;
 
-    var databaseContents = null;
+    List<Map<String, Object?>>? databaseContents = null;
 
     try {
 
@@ -127,7 +127,7 @@ class ProductsDatabaseQueries {
 
     ProductsData? queriedProduct = null;
 
-    if (databaseContents != null) {
+    if (databaseContents != null && databaseContents.isNotEmpty) {
 
       queriedProduct = ProductsData(
         id: databaseContents[0]['id'] as int,

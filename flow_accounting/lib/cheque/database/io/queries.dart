@@ -89,7 +89,7 @@ class ChequesDatabaseQueries {
 
     final databaseInstance = await database;
 
-    var databaseContents = null;
+    List<Map<String, Object?>>? databaseContents = null;
 
     try {
 
@@ -103,7 +103,7 @@ class ChequesDatabaseQueries {
 
     ChequesData? chequesData = null;
 
-    if (databaseContents != null) {
+    if (databaseContents != null && databaseContents.isNotEmpty) {
 
       chequesData = await extractChequesQuery(databaseContents[0]);
 

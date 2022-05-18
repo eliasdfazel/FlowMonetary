@@ -2529,10 +2529,6 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
                                                   if (noError) {
 
-                                                    controllerChequeNumber.text = "";
-                                                    controllerChequeName.text = "";
-                                                    controllerChequeMoneyAmount.text = "";
-
                                                     controllerCheques.text += "${controllerChequeNumber.text},";
 
                                                     insertRelatedCheques(controllerChequeNumber.text);
@@ -3767,7 +3763,7 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
       if (chequesDatabaseExist) {
 
-        await chequesDatabaseQueries.querySpecificChequesByNumber(chequeNumber, ChequesDatabaseInputs.databaseTableName, UserInformation.UserId);
+        aChequeData = await chequesDatabaseQueries.querySpecificChequesByNumber(chequeNumber, ChequesDatabaseInputs.databaseTableName, UserInformation.UserId);
 
       }
 
@@ -3803,6 +3799,10 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
 
 
         prepareRelatedCheques();
+
+        controllerChequeNumber.text = "";
+        controllerChequeName.text = "";
+        controllerChequeMoneyAmount.text = "";
 
         debugPrint("Cheque Related to Invoice ${controllerInvoiceNumber.text} Added");
       }

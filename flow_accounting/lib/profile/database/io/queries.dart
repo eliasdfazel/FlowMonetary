@@ -92,7 +92,7 @@ class ProfileDatabaseQueries {
 
       } on Exception {}
 
-      if (databaseContents != null) {
+      if (databaseContents != null && databaseContents.isNotEmpty) {
 
         profilesData = ProfilesData(
           id: int.parse(databaseContents[0]['id'].toString()),
