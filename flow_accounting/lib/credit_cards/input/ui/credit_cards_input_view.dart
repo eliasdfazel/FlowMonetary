@@ -14,6 +14,7 @@ import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:blur/blur.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
+import 'package:flow_accounting/cheque/output/ui/cheques_output_view.dart';
 import 'package:flow_accounting/credit_cards/database/io/inputs.dart';
 import 'package:flow_accounting/credit_cards/database/io/queries.dart';
 import 'package:flow_accounting/credit_cards/database/structures/tables_structure.dart';
@@ -257,6 +258,37 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                       ),
                       Slidable(
                         closeOnScroll: true,
+                        startActionPane: ActionPane(
+                          motion: const StretchMotion(),
+                          children: [
+                            SlidableAction(
+                              flex: 7,
+                              onPressed: (BuildContext context) {
+
+                                NavigationProcess().goTo(context, ChequesOutputView(initialSearchQuery: widget.creditCardsData.cardNumber));
+
+                              },
+                              backgroundColor: Colors.transparent,
+                              foregroundColor: ColorsResources.applicationGeeksEmpire,
+                              icon: Icons.money_rounded,
+                              label: StringsResources.chequesAll(),
+                              autoClose: true,
+                            ),
+                            SlidableAction(
+                              flex: 7,
+                              onPressed: (BuildContext context) {
+
+                                NavigationProcess().goTo(context, TransactionsOutputView(initialSearchQuery: widget.creditCardsData.cardNumber));
+
+                              },
+                              backgroundColor: Colors.transparent,
+                              foregroundColor: ColorsResources.applicationGeeksEmpire,
+                              icon: Icons.money_rounded,
+                              label: StringsResources.transactionAll(),
+                              autoClose: true,
+                            ),
+                          ],
+                        ),
                         endActionPane: ActionPane(
                           motion: const DrawerMotion(),
                           children: [
@@ -271,19 +303,6 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                               foregroundColor: ColorsResources.gameGeeksEmpire,
                               icon: Icons.delete_rounded,
                               label: StringsResources.deleteText(),
-                              autoClose: true,
-                            ),
-                            SlidableAction(
-                              flex: 7,
-                              onPressed: (BuildContext context) {
-
-                                NavigationProcess().goTo(context, TransactionsOutputView(initialSearchQuery: widget.creditCardsData.cardNumber));
-
-                              },
-                              backgroundColor: Colors.transparent,
-                              foregroundColor: ColorsResources.applicationGeeksEmpire,
-                              icon: Icons.money_rounded,
-                              label: StringsResources.transactionAll(),
                               autoClose: true,
                             ),
                           ],

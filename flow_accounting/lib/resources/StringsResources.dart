@@ -475,6 +475,11 @@ class StringsResources {
   /* End - Customer String Resources */
 
   /* Start - Cheque String Resources */
+  static String chequesAll() {
+
+    return "چک ها";
+  }
+
   static String chequeNumber() {
 
     return "شماره چک";

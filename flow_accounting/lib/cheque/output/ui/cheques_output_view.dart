@@ -9,6 +9,7 @@
  * https://opensource.org/licenses/MIT
  */
 
+import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:blur/blur.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flow_accounting/cheque/database/io/inputs.dart';
@@ -29,7 +30,10 @@ import 'package:marquee/marquee.dart';
 import 'package:sqflite/sqflite.dart';
 
 class ChequesOutputView extends StatefulWidget {
-  const ChequesOutputView({Key? key}) : super(key: key);
+
+  String? initialSearchQuery;
+
+  ChequesOutputView({Key? key, this.initialSearchQuery}) : super(key: key);
 
   @override
   _ChequesOutputViewState createState() => _ChequesOutputViewState();
@@ -50,17 +54,41 @@ class _ChequesOutputViewState extends State<ChequesOutputView> with TickerProvid
   Color bankLogoColor = Colors.white;
 
   @override
-  void dispose() {
-    super.dispose();
+  void initState() {
+
+    if (widget.initialSearchQuery != null) {
+
+      textEditorControllerQuery.text = widget.initialSearchQuery!;
+
+      searchChequesInitially(context, widget.initialSearchQuery!);
+
+    } else {
+
+      retrieveAllCheque(context);
+
+    }
+
+    super.initState();
+
+    BackButtonInterceptor.add(aInterceptor);
+
   }
 
   @override
-  void initState() {
+  void dispose() {
 
-    retrieveAllCheque(context);
+    BackButtonInterceptor.remove(aInterceptor);
 
-    super.initState();
+    super.dispose();
   }
+
+  bool aInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
+
+    Navigator.pop(context);
+
+    return true;
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -918,6 +946,71 @@ class _ChequesOutputViewState extends State<ChequesOutputView> with TickerProvid
         allChequesItems = preparedAllBudgetsItem;
 
       });
+
+    }
+
+  }
+
+  void searchChequesInitially(BuildContext context, String searchQuery) async {
+    if (allChequesItems.isNotEmpty) {
+      allChequesItems.clear();
+    }
+
+    String databaseDirectory = await getDatabasesPath();
+
+    String chequeDatabasePath = "${databaseDirectory}/${ChequesDatabaseInputs
+        .chequesDatabase()}";
+
+    bool chequesDatabaseExist = await databaseExists(chequeDatabasePath);
+
+    if (chequesDatabaseExist) {
+
+      var databaseQueries = ChequesDatabaseQueries();
+
+      allCheques = await databaseQueries.getAllCheques(ChequesDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+      List<ChequesData> searchResult = [];
+
+      for (var element in allCheques) {
+
+        if (element.chequeTitle.contains(searchQuery) ||
+            element.chequeDescription.contains(searchQuery) ||
+            element.chequeNumber.contains(searchQuery) ||
+            element.chequeMoneyAmount.contains(searchQuery) ||
+            element.chequeIssueDate.contains(searchQuery) ||
+            element.chequeDueDate.contains(searchQuery) ||
+            element.chequeSourceId.contains(searchQuery) ||
+            element.chequeSourceName.contains(searchQuery) ||
+            element.chequeSourceBankName.contains(searchQuery) ||
+            element.chequeSourceBankBranch.contains(searchQuery) ||
+            element.chequeSourceAccountNumber.contains(searchQuery) ||
+            element.chequeTargetId.contains(searchQuery) ||
+            element.chequeTargetName.contains(searchQuery) ||
+            element.chequeTargetBankName.contains(searchQuery) ||
+            element.chequeTargetAccountNumber.contains(searchQuery) ||
+            element.chequeRelevantCreditCard.contains(searchQuery) ||
+            element.chequeRelevantBudget.contains(searchQuery)
+        ) {
+
+          searchResult.add(element);
+
+        }
+
+        List<Widget> preparedAllBudgetsItem = [];
+
+        for (var element in searchResult) {
+
+          preparedAllBudgetsItem.add(outputItem(context, element));
+
+        }
+
+        setState(() {
+
+          allChequesItems = preparedAllBudgetsItem;
+
+        });
+
+      }
 
     }
 
