@@ -104,20 +104,22 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
 
   String? warningNoticeCvv;
 
+  int timeNow = DateTime.now().millisecondsSinceEpoch;
+
   @override
   void initState() {
 
-    creditCardBankNameController.text = widget.creditCardsData.bankName.isEmpty ? StringsResources.creditCardsBankName() : widget.creditCardsData.bankName;
-    creditCardNameHolderController.text = widget.creditCardsData.cardHolderName.isEmpty ? StringsResources.creditCardsNameHolder() : widget.creditCardsData.cardHolderName;
+    creditCardBankNameController.text = widget.creditCardsData.bankName.isEmpty ? "" : widget.creditCardsData.bankName;
+    creditCardNameHolderController.text = widget.creditCardsData.cardHolderName.isEmpty ? "" : widget.creditCardsData.cardHolderName;
 
-    creditCardNumberController.text = widget.creditCardsData.cardNumber.isEmpty ? "0000000000000000" : widget.creditCardsData.cardNumber;
+    creditCardNumberController.text = widget.creditCardsData.cardNumber.isEmpty ? "" : widget.creditCardsData.cardNumber;
 
-    creditCardYearController.text = widget.creditCardsData.cardExpiry.isEmpty ? "00" : widget.creditCardsData.cardExpiry.split("/")[0];
-    creditCardMonthController.text = widget.creditCardsData.cardExpiry.isEmpty ? "00" : widget.creditCardsData.cardExpiry.split("/")[1];
+    creditCardYearController.text = widget.creditCardsData.cardExpiry.isEmpty ? "" : widget.creditCardsData.cardExpiry.split("/")[0];
+    creditCardMonthController.text = widget.creditCardsData.cardExpiry.isEmpty ? "" : widget.creditCardsData.cardExpiry.split("/")[1];
 
-    creditCardBalanceController.text = widget.creditCardsData.cardBalance.isEmpty ? "0" : widget.creditCardsData.cardBalance;
+    creditCardBalanceController.text = widget.creditCardsData.cardBalance.isEmpty ? "" : widget.creditCardsData.cardBalance;
 
-    creditCardCvvController.text = widget.creditCardsData.cvv.isEmpty ? "000" : widget.creditCardsData.cvv;
+    creditCardCvvController.text = widget.creditCardsData.cvv.isEmpty ? "" : widget.creditCardsData.cvv;
 
     creditCardColorTag = widget.creditCardsData.colorTag;
 
@@ -307,10 +309,13 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                             ),
                           ],
                         ),
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 13, 0, 33),
-                          child: creditCardWidgetItem(),
-                        ),
+                        child: Align(
+                          alignment: AlignmentDirectional.center,
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 13, 0, 33),
+                            child: creditCardWidgetItem(),
+                          )
+                        )
                       ),
                       const Divider(
                         height: 1,
@@ -1196,8 +1201,6 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
 
                           if (noError) {
 
-                            int timeNow = DateTime.now().millisecondsSinceEpoch;
-
                             int id = widget.creditCardsData.id == 0 ? timeNow : widget.creditCardsData.id;
 
                             CreditCardsData creditCardsData = CreditCardsData(
@@ -1377,7 +1380,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
     return Padding(
       padding: const EdgeInsets.fromLTRB(19, 0, 19, 0),
       child: SizedBox(
-          height: 233,
+          height: 237,
           width: 391,
           child: GestureDetector(
             onTap: () {

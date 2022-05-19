@@ -208,7 +208,7 @@ class StringsResources {
   /* Start - Transaction String Resources */
   static String transactionAll() {
 
-    return "تمام تراکنش ها";
+    return "تراکنش ها";
   }
   static String transactionLatest() {
 
