@@ -658,7 +658,7 @@ class _RemoteTransactionsInputViewState extends State<RemoteTransactionsInputVie
                                       child: TypeAheadField<CustomersData>(
                                           suggestionsCallback: (pattern) async {
 
-                                            return await getCustomersNames();
+                                            return await getAllNames();
                                           },
                                           itemBuilder: (context, suggestion) {
 
@@ -803,7 +803,7 @@ class _RemoteTransactionsInputViewState extends State<RemoteTransactionsInputVie
                                       child: TypeAheadField<CustomersData>(
                                           suggestionsCallback: (pattern) async {
 
-                                            return await getCustomersNames();
+                                            return await getAllNames();
                                           },
                                           itemBuilder: (context, suggestion) {
 
@@ -2354,7 +2354,7 @@ class _RemoteTransactionsInputViewState extends State<RemoteTransactionsInputVie
     );
   }
 
-  Future<List<CustomersData>> getCustomersNames() async {
+  Future<List<CustomersData>> getAllNames() async {
 
     List<CustomersData> listOfCustomers = [];
 

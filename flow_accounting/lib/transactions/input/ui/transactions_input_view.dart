@@ -656,7 +656,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                     child: TypeAheadField<CustomersData>(
                                         suggestionsCallback: (pattern) async {
 
-                                          return await getCustomersNames();
+                                          return await getAllNames();
                                         },
                                         itemBuilder: (context, suggestion) {
 
@@ -801,7 +801,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                     child: TypeAheadField<CustomersData>(
                                         suggestionsCallback: (pattern) async {
 
-                                          return await getCustomersNames();
+                                          return await getAllNames();
                                         },
                                         itemBuilder: (context, suggestion) {
 
@@ -2351,7 +2351,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
     );
   }
 
-  Future<List<CustomersData>> getCustomersNames() async {
+  Future<List<CustomersData>> getAllNames() async {
 
     List<CustomersData> listOfCustomers = [];
 
@@ -2370,7 +2370,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
           customerStreetAddress: "",
           customerPhoneNumber: profilesData.userPhoneNumber,
           customerEmailAddress: profilesData.userEmailAddress,
-          customerAge: "100",
+          customerAge: "",
           customerBirthday: "",
           customerJob: "",
           customerMaritalStatus: "",
