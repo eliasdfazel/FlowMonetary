@@ -50,6 +50,43 @@ class CreditorsDatabaseQueries {
 
   }
 
+  Future<CreditorsData> querySpecificCreditorById(int creditorId,
+    String tableName, String usernameId) async {
+
+    var databaseNameQuery = CreditorsDatabaseInputs.creditorsDatabase();
+    var tableNameQuery = CreditorsDatabaseInputs.databaseTableName;
+
+    final database = openDatabase(
+      join(await getDatabasesPath(), databaseNameQuery),
+    );
+
+    final databaseInstance = await database;
+
+    final List<Map<String, dynamic>> databaseContents = await databaseInstance.query(
+      tableNameQuery,
+      where: 'id = ?',
+      whereArgs: [creditorId],
+    );
+
+    return CreditorsData(
+      id: databaseContents[0]['id'],
+
+      creditorsName: databaseContents[0]['creditorName'],
+      creditorsDescription: databaseContents[0]['creditorDescription'],
+
+      creditorsCompleteCredit: databaseContents[0]['creditorCompleteDebt'],
+
+      creditorsPaidCredit: databaseContents[0]['creditorPaidDebt'],
+      creditorsRemainingCredit: databaseContents[0]['creditorRemainingDebt'],
+
+      creditorsDeadline: databaseContents[0]['creditorDeadline'],
+      creditorsDeadlineText: databaseContents[0]['creditorDeadlineText'],
+
+      colorTag: int.parse(databaseContents[0]['colorTag'].toString()),
+    );
+
+  }
+
   Future<int> queryDeleteCreditor(int id,
       String tableName, String usernameId) async {
 

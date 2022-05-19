@@ -50,6 +50,43 @@ class DebtorsDatabaseQueries {
 
   }
 
+  Future<DebtorsData> querySpecificDebtorById(int debtorId,
+      String tableName, String usernameId) async {
+
+    var databaseNameQuery = DebtorsDatabaseInputs.debtorsDatabase();
+    var tableNameQuery = DebtorsDatabaseInputs.databaseTableName;
+
+    final database = openDatabase(
+      join(await getDatabasesPath(), databaseNameQuery),
+    );
+
+    final databaseInstance = await database;
+
+    final List<Map<String, dynamic>> databaseContents = await databaseInstance.query(
+      tableNameQuery,
+      where: 'id = ?',
+      whereArgs: [debtorId],
+    );
+
+    return DebtorsData(
+      id: databaseContents[0]['id'],
+
+      debtorsName: databaseContents[0]['debtorsName'],
+      debtorsDescription: databaseContents[0]['debtorsDescription'],
+
+      debtorsCompleteDebt: databaseContents[0]['debtorsCompleteDebt'],
+
+      debtorsPaidDebt: databaseContents[0]['debtorsPaidDebt'],
+      debtorsRemainingDebt: databaseContents[0]['debtorsRemainingDebt'],
+
+      debtorsDeadline: databaseContents[0]['debtorsDeadline'],
+      debtorsDeadlineText: databaseContents[0]['debtorsDeadlineText'],
+
+      colorTag: int.parse(databaseContents[0]['colorTag'].toString()),
+    );
+
+  }
+
   Future<int> queryDeleteDebtor(int id,
       String tableName, String usernameId) async {
 

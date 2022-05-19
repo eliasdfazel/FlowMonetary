@@ -2740,16 +2740,61 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
   void processDebtorsCreditors(TransactionsData transactionsData, dynamic dynamicData) async {
 
+    String databaseDirectory = await getDatabasesPath();
+
     if (transactionsData.transactionType == TransactionsData.TransactionType_Send) {
 
       if (dynamicData is CreditorsData) {
 
+        String creditorsDatabasePath = "${databaseDirectory}/${CreditorsDatabaseInputs.creditorsDatabase()}";
+
+        bool creditorsDatabaseExist = await databaseExists(creditorsDatabasePath);
+
+        if (creditorsDatabaseExist) {
+
+          var databaseQuery = CreditorsDatabaseQueries();
+
+          CreditorsData creditorsData = await databaseQuery.querySpecificCreditorById(dynamicData.id, CreditorsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+          creditorsData.creditorsPaidCredit = (int.parse(creditorsData.creditorsPaidCredit) + int.parse(transactionsData.amountMoney)).toString();
+
+          creditorsData.creditorsRemainingCredit = (int.parse(creditorsData.creditorsRemainingCredit) - int.parse(transactionsData.amountMoney)).toString();
+
+          var databaseInput = CreditorsDatabaseInputs();
+
+          databaseInput.updateCreditorData(creditorsData, CreditorsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+        }
 
       } else if (dynamicData is DebtorsData) {
 
+        String debtorsDatabasePath = "${databaseDirectory}/${DebtorsDatabaseInputs.debtorsDatabase()}";
 
-      } else if (dynamicData is CustomersData) {
+        bool debtorsDatabaseExist = await databaseExists(debtorsDatabasePath);
 
+        if (debtorsDatabaseExist) {
+
+          String creditorsDatabasePath = "${databaseDirectory}/${CreditorsDatabaseInputs.creditorsDatabase()}";
+
+          bool creditorsDatabaseExist = await databaseExists(creditorsDatabasePath);
+
+          if (creditorsDatabaseExist) {
+
+            var databaseQuery = DebtorsDatabaseQueries();
+
+            DebtorsData debtorsData = await databaseQuery.querySpecificDebtorById(dynamicData.id, DebtorsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+            debtorsData.debtorsPaidDebt = (int.parse(debtorsData.debtorsPaidDebt) + int.parse(transactionsData.amountMoney)).toString();
+
+            debtorsData.debtorsRemainingDebt = (int.parse(debtorsData.debtorsRemainingDebt) - int.parse(transactionsData.amountMoney)).toString();
+
+            var databaseInput = DebtorsDatabaseInputs();
+
+            databaseInput.updateDebtorData(debtorsData, CreditorsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+          }
+
+        }
 
       }
 
@@ -2757,12 +2802,55 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
       if (dynamicData is CreditorsData) {
 
+        String creditorsDatabasePath = "${databaseDirectory}/${CreditorsDatabaseInputs.creditorsDatabase()}";
+
+        bool creditorsDatabaseExist = await databaseExists(creditorsDatabasePath);
+
+        if (creditorsDatabaseExist) {
+
+          var databaseQuery = CreditorsDatabaseQueries();
+
+          CreditorsData creditorsData = await databaseQuery.querySpecificCreditorById(dynamicData.id, CreditorsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+          creditorsData.creditorsPaidCredit = (int.parse(creditorsData.creditorsPaidCredit) - int.parse(transactionsData.amountMoney)).toString();
+
+          creditorsData.creditorsRemainingCredit = (int.parse(creditorsData.creditorsRemainingCredit) + int.parse(transactionsData.amountMoney)).toString();
+
+          var databaseInput = CreditorsDatabaseInputs();
+
+          databaseInput.updateCreditorData(creditorsData, CreditorsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+        }
 
       } else if (dynamicData is DebtorsData) {
 
+        String debtorsDatabasePath = "${databaseDirectory}/${DebtorsDatabaseInputs.debtorsDatabase()}";
 
-      } else if (dynamicData is CustomersData) {
+        bool debtorsDatabaseExist = await databaseExists(debtorsDatabasePath);
 
+        if (debtorsDatabaseExist) {
+
+          String creditorsDatabasePath = "${databaseDirectory}/${CreditorsDatabaseInputs.creditorsDatabase()}";
+
+          bool creditorsDatabaseExist = await databaseExists(creditorsDatabasePath);
+
+          if (creditorsDatabaseExist) {
+
+            var databaseQuery = DebtorsDatabaseQueries();
+
+            DebtorsData debtorsData = await databaseQuery.querySpecificDebtorById(dynamicData.id, DebtorsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+            debtorsData.debtorsPaidDebt = (int.parse(debtorsData.debtorsPaidDebt) - int.parse(transactionsData.amountMoney)).toString();
+
+            debtorsData.debtorsRemainingDebt = (int.parse(debtorsData.debtorsRemainingDebt) + int.parse(transactionsData.amountMoney)).toString();
+
+            var databaseInput = DebtorsDatabaseInputs();
+
+            databaseInput.updateDebtorData(debtorsData, CreditorsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+          }
+
+        }
 
       }
 

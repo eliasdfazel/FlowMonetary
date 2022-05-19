@@ -19,8 +19,8 @@ class DebtorsData {
 
   final String debtorsCompleteDebt;
 
-  final String debtorsPaidDebt;
-  final String debtorsRemainingDebt;
+  String debtorsPaidDebt;
+  String debtorsRemainingDebt;
 
   final String debtorsDeadline;
   final String debtorsDeadlineText;
