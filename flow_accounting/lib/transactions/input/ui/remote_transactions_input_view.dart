@@ -77,6 +77,8 @@ class _RemoteTransactionsInputViewState extends State<RemoteTransactionsInputVie
 
   int timeNow = DateTime.now().millisecondsSinceEpoch;
 
+  dynamic selectedDynamicData = 0;
+
   bool transactionDataUpdated = false;
 
   String? warningNoticeMoneyAmount;
@@ -740,6 +742,8 @@ class _RemoteTransactionsInputViewState extends State<RemoteTransactionsInputVie
                                           },
                                           onSuggestionSelected: (suggestion) {
 
+                                            selectedDynamicData = suggestion;
+
                                             if (suggestion is CreditorsData) {
 
                                               controllerTransactionTargetName.text = suggestion.creditorsName.toString();
@@ -920,6 +924,8 @@ class _RemoteTransactionsInputViewState extends State<RemoteTransactionsInputVie
                                             );
                                           },
                                           onSuggestionSelected: (suggestion) {
+
+                                            selectedDynamicData = suggestion;
 
                                             if (suggestion is CreditorsData) {
 
@@ -1988,6 +1994,8 @@ class _RemoteTransactionsInputViewState extends State<RemoteTransactionsInputVie
 
                                         databaseInputs.insertTransactionData(transactionData, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
+                                        processDebtorsCreditors(transactionData, selectedDynamicData);
+
                                         Fluttertoast.showToast(
                                             msg: StringsResources.updatedText(),
                                             toastLength: Toast.LENGTH_SHORT,
@@ -2319,6 +2327,8 @@ class _RemoteTransactionsInputViewState extends State<RemoteTransactionsInputVie
 
                                               databaseInputs.insertTransactionData(transactionData, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
+                                              processDebtorsCreditors(transactionData, selectedDynamicData);
+
                                               Fluttertoast.showToast(
                                                   msg: StringsResources.updatedText(),
                                                   toastLength: Toast.LENGTH_SHORT,
@@ -2619,7 +2629,7 @@ class _RemoteTransactionsInputViewState extends State<RemoteTransactionsInputVie
 
       }
 
-    } else if (transactionType == TransactionsData.TransactionType_Receive) {
+    } else if (transactionsData.transactionType == TransactionsData.TransactionType_Receive) {
 
       String databaseDirectory = await getDatabasesPath();
 
@@ -2694,7 +2704,7 @@ class _RemoteTransactionsInputViewState extends State<RemoteTransactionsInputVie
 
       }
 
-    } else if (transactionType == TransactionsData.TransactionType_Receive) {
+    } else if (transactionsData.transactionType == TransactionsData.TransactionType_Receive) {
 
       String databaseDirectory = await getDatabasesPath();
 
@@ -2724,6 +2734,38 @@ class _RemoteTransactionsInputViewState extends State<RemoteTransactionsInputVie
             ),
             CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId
         );
+
+      }
+
+    }
+
+  }
+
+  void processDebtorsCreditors(TransactionsData transactionsData, dynamic dynamicData) async {
+
+    if (transactionsData.transactionType == TransactionsData.TransactionType_Send) {
+
+      if (dynamicData is CreditorsData) {
+
+
+      } else if (dynamicData is DebtorsData) {
+
+
+      } else if (dynamicData is CustomersData) {
+
+
+      }
+
+    } else if (transactionsData.transactionType == TransactionsData.TransactionType_Receive) {
+
+      if (dynamicData is CreditorsData) {
+
+
+      } else if (dynamicData is DebtorsData) {
+
+
+      } else if (dynamicData is CustomersData) {
+
 
       }
 

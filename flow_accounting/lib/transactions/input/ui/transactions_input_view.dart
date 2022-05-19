@@ -77,6 +77,8 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
   int timeNow = DateTime.now().millisecondsSinceEpoch;
 
+  dynamic selectedDynamicData = 0;
+
   bool transactionDataUpdated = false;
 
   String? warningNoticeMoneyAmount;
@@ -738,6 +740,8 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                         },
                                         onSuggestionSelected: (suggestion) {
 
+                                          selectedDynamicData = suggestion;
+
                                           if (suggestion is CreditorsData) {
 
                                             controllerTransactionTargetName.text = suggestion.creditorsName.toString();
@@ -918,6 +922,8 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                           );
                                         },
                                         onSuggestionSelected: (suggestion) {
+
+                                          selectedDynamicData = suggestion;
 
                                           if (suggestion is CreditorsData) {
 
@@ -1986,6 +1992,8 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
                                   databaseInputs.insertTransactionData(transactionData, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
+                                  processDebtorsCreditors(transactionData, selectedDynamicData);
+
                                   Fluttertoast.showToast(
                                       msg: StringsResources.updatedText(),
                                       toastLength: Toast.LENGTH_SHORT,
@@ -2317,6 +2325,8 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
                                           databaseInputs.insertTransactionData(transactionData, TransactionsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
+                                          processDebtorsCreditors(transactionData, selectedDynamicData);
+
                                           Fluttertoast.showToast(
                                               msg: StringsResources.updatedText(),
                                               toastLength: Toast.LENGTH_SHORT,
@@ -2616,7 +2626,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
       }
 
-    } else if (transactionType == TransactionsData.TransactionType_Receive) {
+    } else if (transactionsData.transactionType == TransactionsData.TransactionType_Receive) {
 
       String databaseDirectory = await getDatabasesPath();
 
@@ -2721,6 +2731,38 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
             ),
             CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId
         );
+
+      }
+
+    }
+
+  }
+
+  void processDebtorsCreditors(TransactionsData transactionsData, dynamic dynamicData) async {
+
+    if (transactionsData.transactionType == TransactionsData.TransactionType_Send) {
+
+      if (dynamicData is CreditorsData) {
+
+
+      } else if (dynamicData is DebtorsData) {
+
+
+      } else if (dynamicData is CustomersData) {
+
+
+      }
+
+    } else if (transactionsData.transactionType == TransactionsData.TransactionType_Receive) {
+
+      if (dynamicData is CreditorsData) {
+
+
+      } else if (dynamicData is DebtorsData) {
+
+
+      } else if (dynamicData is CustomersData) {
+
 
       }
 
