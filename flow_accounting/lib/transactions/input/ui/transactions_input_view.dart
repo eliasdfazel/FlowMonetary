@@ -19,9 +19,15 @@ import 'package:flow_accounting/budgets/database/structures/tables_structure.dar
 import 'package:flow_accounting/credit_cards/database/io/inputs.dart';
 import 'package:flow_accounting/credit_cards/database/io/queries.dart';
 import 'package:flow_accounting/credit_cards/database/structures/tables_structure.dart';
+import 'package:flow_accounting/creditors/database/io/inputs.dart';
+import 'package:flow_accounting/creditors/database/io/queries.dart';
+import 'package:flow_accounting/creditors/database/structures/tables_structure.dart';
 import 'package:flow_accounting/customers/database/io/inputs.dart';
 import 'package:flow_accounting/customers/database/io/queries.dart';
 import 'package:flow_accounting/customers/database/structures/table_structure.dart';
+import 'package:flow_accounting/debtors/database/io/inputs.dart';
+import 'package:flow_accounting/debtors/database/io/queries.dart';
+import 'package:flow_accounting/debtors/database/structures/tables_structure.dart';
 import 'package:flow_accounting/home/interface/dashboard.dart';
 import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/profile/database/structures/tables_structure.dart';
@@ -653,12 +659,36 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                   padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
-                                    child: TypeAheadField<CustomersData>(
+                                    child: TypeAheadField<dynamic>(
                                         suggestionsCallback: (pattern) async {
 
                                           return await getAllNames();
                                         },
                                         itemBuilder: (context, suggestion) {
+
+                                          String suggestedName = "";
+                                          int colorTag = Colors.white.value;
+                                          String imagePath = "";
+
+                                          if (suggestion is CreditorsData) {
+
+                                            suggestedName = suggestion.creditorsName.toString();
+                                            colorTag = suggestion.colorTag;
+                                            imagePath = "";
+
+                                          } else if (suggestion is DebtorsData) {
+
+                                            suggestedName = suggestion.debtorsName.toString();
+                                            colorTag = suggestion.colorTag;
+                                            imagePath = "";
+
+                                          } else if (suggestion is CustomersData) {
+
+                                            suggestedName = suggestion.customerName.toString();
+                                            colorTag = suggestion.colorTag;
+                                            imagePath = suggestion.customerImagePath;
+
+                                          }
 
                                           return ListTile(
                                               title: Row(
@@ -671,7 +701,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                                         child: Directionality(
                                                           textDirection: TextDirection.rtl,
                                                           child: Text(
-                                                            suggestion.customerName,
+                                                            suggestedName,
                                                             style: const TextStyle(
                                                                 color: ColorsResources.darkTransparent,
                                                                 fontSize: 15
@@ -682,19 +712,19 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                                   ),
                                                   Expanded(
                                                       flex: 5,
-                                                      child:  AspectRatio(
+                                                      child: AspectRatio(
                                                         aspectRatio: 1,
                                                         child: Container(
                                                           decoration: BoxDecoration(
                                                               shape: BoxShape.circle,
-                                                              color: Color(suggestion.colorTag)
+                                                              color: Color(colorTag)
                                                           ),
                                                           child: Padding(
                                                             padding: const EdgeInsets.fromLTRB(3, 3, 3, 3),
                                                             child: ClipRRect(
                                                               borderRadius: BorderRadius.circular(51),
                                                               child: Image.file(
-                                                                File(suggestion.customerImagePath),
+                                                                File(imagePath),
                                                                 fit: BoxFit.cover,
                                                               ),
                                                             ),
@@ -708,7 +738,19 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                         },
                                         onSuggestionSelected: (suggestion) {
 
-                                          controllerTransactionTargetName.text = suggestion.customerName.toString();
+                                          if (suggestion is CreditorsData) {
+
+                                            controllerTransactionTargetName.text = suggestion.creditorsName.toString();
+
+                                          } else if (suggestion is DebtorsData) {
+
+                                            controllerTransactionTargetName.text = suggestion.debtorsName.toString();
+
+                                          } else if (suggestion is CustomersData) {
+
+                                            controllerTransactionTargetName.text = suggestion.customerName.toString();
+
+                                          }
 
                                         },
                                         errorBuilder: (context, suggestion) {
@@ -798,12 +840,36 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                   padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
-                                    child: TypeAheadField<CustomersData>(
+                                    child: TypeAheadField<dynamic>(
                                         suggestionsCallback: (pattern) async {
 
                                           return await getAllNames();
                                         },
                                         itemBuilder: (context, suggestion) {
+
+                                          String suggestedName = "";
+                                          int colorTag = Colors.white.value;
+                                          String imagePath = "";
+
+                                          if (suggestion is CreditorsData) {
+
+                                            suggestedName = suggestion.creditorsName.toString();
+                                            colorTag = suggestion.colorTag;
+                                            imagePath = "";
+
+                                          } else if (suggestion is DebtorsData) {
+
+                                            suggestedName = suggestion.debtorsName.toString();
+                                            colorTag = suggestion.colorTag;
+                                            imagePath = "";
+
+                                          } else if (suggestion is CustomersData) {
+
+                                            suggestedName = suggestion.customerName.toString();
+                                            colorTag = suggestion.colorTag;
+                                            imagePath = suggestion.customerImagePath;
+
+                                          }
 
                                           return ListTile(
                                               title: Row(
@@ -816,7 +882,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                                         child: Directionality(
                                                           textDirection: TextDirection.rtl,
                                                           child: Text(
-                                                            suggestion.customerName,
+                                                            suggestedName,
                                                             style: const TextStyle(
                                                                 color: ColorsResources.darkTransparent,
                                                                 fontSize: 15
@@ -832,14 +898,14 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                                         child: Container(
                                                           decoration: BoxDecoration(
                                                               shape: BoxShape.circle,
-                                                              color: Color(suggestion.colorTag)
+                                                              color: Color(colorTag)
                                                           ),
                                                           child: Padding(
                                                             padding: const EdgeInsets.fromLTRB(3, 3, 3, 3),
                                                             child: ClipRRect(
                                                               borderRadius: BorderRadius.circular(51),
                                                               child: Image.file(
-                                                                File(suggestion.customerImagePath),
+                                                                File(imagePath),
                                                                 fit: BoxFit.cover,
                                                               ),
                                                             ),
@@ -853,7 +919,19 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
                                         },
                                         onSuggestionSelected: (suggestion) {
 
-                                          controllerTransactionSourceName.text = suggestion.customerName.toString();
+                                          if (suggestion is CreditorsData) {
+
+                                            controllerTransactionTargetName.text = suggestion.creditorsName.toString();
+
+                                          } else if (suggestion is DebtorsData) {
+
+                                            controllerTransactionTargetName.text = suggestion.debtorsName.toString();
+
+                                          } else if (suggestion is CustomersData) {
+
+                                            controllerTransactionTargetName.text = suggestion.customerName.toString();
+
+                                          }
 
                                         },
                                         errorBuilder: (context, suggestion) {
@@ -2351,9 +2429,11 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
     );
   }
 
-  Future<List<CustomersData>> getAllNames() async {
+  Future<List<dynamic>> getAllNames() async {
 
-    List<CustomersData> listOfCustomers = [];
+    String databaseDirectory = await getDatabasesPath();
+
+    List<dynamic> listOfNames = [];
 
     if (UserInformation.UserId != StringsResources.unknownText()) {
 
@@ -2361,7 +2441,7 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
       ProfilesData profilesData = (await profileDatabaseQueries.querySignedInUser())!;
 
-      listOfCustomers.add(CustomersData(
+      listOfNames.add(CustomersData(
           id: profilesData.id,
           customerName: StringsResources.mySelfText(),
           customerDescription: profilesData.userFullName,
@@ -2379,8 +2459,45 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
     }
 
-    String databaseDirectory = await getDatabasesPath();
+    // Creditors
+    String creditorDatabasePath = "${databaseDirectory}/${CreditorsDatabaseInputs.creditorsDatabase()}";
 
+    bool creditorDatabaseExist = await databaseExists(creditorDatabasePath);
+
+    if (creditorDatabaseExist) {
+
+      CreditorsDatabaseQueries creditorsDatabaseQueries = CreditorsDatabaseQueries();
+
+      var retrievedCreditors = await creditorsDatabaseQueries.getAllCreditors(CreditorsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+      if (retrievedCreditors.isNotEmpty) {
+
+        listOfNames.addAll(retrievedCreditors);
+
+      }
+
+    }
+
+    // Debtors
+    String debtorDatabasePath = "${databaseDirectory}/${DebtorsDatabaseInputs.debtorsDatabase()}";
+
+    bool debtorDatabaseExist = await databaseExists(debtorDatabasePath);
+
+    if (debtorDatabaseExist) {
+
+      DebtorsDatabaseQueries debtorsDatabaseQueries = DebtorsDatabaseQueries();
+
+      var retrievedDebtors = await debtorsDatabaseQueries.getAllDebtors(DebtorsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+      if (retrievedDebtors.isNotEmpty) {
+
+        listOfNames.addAll(retrievedDebtors);
+
+      }
+
+    }
+
+    // Customers
     String customerDatabasePath = "${databaseDirectory}/${CustomersDatabaseInputs.customersDatabase()}";
 
     bool customerDatabaseExist = await databaseExists(customerDatabasePath);
@@ -2393,13 +2510,13 @@ class _TransactionsInputViewState extends State<TransactionsInputView> {
 
       if (retrievedCustomers.isNotEmpty) {
 
-        listOfCustomers.addAll(retrievedCustomers);
+        listOfNames.addAll(retrievedCustomers);
 
       }
 
     }
 
-    return listOfCustomers;
+    return listOfNames;
   }
 
   Future<List<String>> getBanksNames() async {
