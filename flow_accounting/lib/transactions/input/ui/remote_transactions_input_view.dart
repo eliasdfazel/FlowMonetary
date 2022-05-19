@@ -2373,7 +2373,7 @@ class _RemoteTransactionsInputViewState extends State<RemoteTransactionsInputVie
           customerStreetAddress: "",
           customerPhoneNumber: profilesData.userPhoneNumber,
           customerEmailAddress: profilesData.userEmailAddress,
-          customerAge: "100",
+          customerAge: "",
           customerBirthday: "",
           customerJob: "",
           customerMaritalStatus: "",
