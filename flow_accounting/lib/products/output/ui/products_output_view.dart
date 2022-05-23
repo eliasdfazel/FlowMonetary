@@ -24,6 +24,7 @@ import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
 import 'package:flow_accounting/utils/io/file_io.dart';
+import 'package:flow_accounting/utils/ui/display.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:marquee/marquee.dart';
@@ -101,6 +102,8 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
     List<Widget> allListContentWidgets = [];
     allListContentWidgets.addAll(allProductsItems);
 
+    int gridColumnCount = (Display.displayWidth(context) / 173).round();
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       color: ColorsResources.black,
@@ -147,7 +150,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
                   ),
                   GridView(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
+                      crossAxisCount: gridColumnCount,
                       childAspectRatio: 0.7,
                       crossAxisSpacing: 3.0,
                       mainAxisSpacing: 7.0,
