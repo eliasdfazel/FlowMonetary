@@ -182,7 +182,7 @@ class ChequesDatabaseQueries {
   Future<List<ChequesData>> queryChequeByTargetTimeMoney(
       String amountMoneyFirst, String amountMoneyLast,
       String timeFirst, String timeLast,
-      String targetName,
+      String chequeCategory, String targetName,
       String tableName, String usernameId) async {
 
     var databaseNameQuery = ChequesDatabaseInputs.chequesDatabase();
@@ -196,8 +196,8 @@ class ChequesDatabaseQueries {
 
     final List<Map<String, dynamic>> databaseContents = await databaseInstance.query(
       tableNameQuery,
-      where: '(chequeMoneyAmount BETWEEN ? AND ?) AND (chequeDueMillisecond BETWEEN ? AND ?) AND (chequeTargetName = ?)',
-      whereArgs: [amountMoneyFirst, amountMoneyLast, timeFirst, timeLast, targetName],
+      where: '(chequeMoneyAmount BETWEEN ? AND ?) AND (chequeDueMillisecond BETWEEN ? AND ?) AND (chequeCategory = ?) AND (chequeTargetName = ?)',
+      whereArgs: [amountMoneyFirst, amountMoneyLast, timeFirst, timeLast, chequeCategory, targetName],
     );
 
     return List.generate(databaseContents.length, (i) {

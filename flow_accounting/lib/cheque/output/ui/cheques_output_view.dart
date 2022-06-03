@@ -1046,9 +1046,11 @@ class _ChequesOutputViewState extends State<ChequesOutputView> with TickerProvid
   void startAdvancedSearch(
       String amountMoneyFirst, String amountMoneyLast,
       String timeFirst, String timeLast,
+      String chequeCategory,
       String targetName) async {
     debugPrint("All Picked Parameters -> First Money: ${amountMoneyFirst} - Last Money: ${amountMoneyLast}");
     debugPrint("All Picked Parameters -> First Time: ${timeFirst} - Last Time: ${timeLast}");
+    debugPrint("All Picked Parameters -> Cheque Category: ${chequeCategory}");
     debugPrint("All Picked Parameters -> Target Username: ${targetName}");
 
     String databaseDirectory = await getDatabasesPath();
@@ -1061,7 +1063,7 @@ class _ChequesOutputViewState extends State<ChequesOutputView> with TickerProvid
 
       ChequesDatabaseQueries chequesDatabaseQueries = ChequesDatabaseQueries();
 
-      List<ChequesData> filteredChequesData = await chequesDatabaseQueries.queryChequeByTargetTimeMoney(amountMoneyFirst, amountMoneyLast, timeFirst, timeLast, targetName,
+      List<ChequesData> filteredChequesData = await chequesDatabaseQueries.queryChequeByTargetTimeMoney(amountMoneyFirst, amountMoneyLast, timeFirst, timeLast, chequeCategory, targetName,
           ChequesDatabaseInputs.databaseTableName, UserInformation.UserId);
 
       List<Widget> preparedAllChequesItem = [];
@@ -1956,6 +1958,7 @@ class _ChequesOutputViewState extends State<ChequesOutputView> with TickerProvid
                                         pickedMoneyAmountLast,
                                         calendarViewFirst.pickedDateTime.microsecondsSinceEpoch.toString(),
                                         calendarViewLast.pickedDateTime.microsecondsSinceEpoch.toString(),
+                                        pickedCategory,
                                         pickedTargetUsername
                                     );
 
