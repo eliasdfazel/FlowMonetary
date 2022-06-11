@@ -44,6 +44,7 @@ class CreditCardsDatabaseInputs {
               'cvv TEXT, '
               'bankName TEXT, '
               'cardBalance TEXT, '
+              'cardAccountNumber TEXT, '
               'colorTag TEXT '
               ')',
         );

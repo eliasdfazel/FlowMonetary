@@ -22,6 +22,8 @@ class CreditCardsData {
   final String bankName;
   String cardBalance = "0";
 
+  final String cardAccountNumber;
+
   int colorTag = ColorsResources.dark.value;
 
   CreditCardsData({
@@ -33,6 +35,8 @@ class CreditCardsData {
     required this.cvv,
     required this.bankName,
     required this.cardBalance,
+
+    required this.cardAccountNumber,
 
     required this.colorTag,
   });
@@ -50,6 +54,8 @@ class CreditCardsData {
       'bankName': bankName,
       'cardBalance': cardBalance,
 
+      'cardAccountNumber': cardAccountNumber,
+
       'colorTag': colorTag,
     };
   }
@@ -64,6 +70,8 @@ class CreditCardsData {
         'cvv: $cvv,'
         'bankName: $bankName,'
         'cardBalance: $cardBalance,'
+
+        'cardAccountNumber: $cardAccountNumber,'
 
         'colorTag: $colorTag,'
         '}';

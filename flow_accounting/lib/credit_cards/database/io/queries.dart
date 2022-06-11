@@ -41,6 +41,7 @@ class CreditCardsDatabaseQueries {
         cvv: maps[i]['cvv'],
         bankName: maps[i]['bankName'],
         cardBalance: maps[i]['cardBalance'],
+        cardAccountNumber: maps[i]['cardAccountNumber'],
         colorTag: int.parse(maps[i]['colorTag'].toString()),
       );
     });
@@ -117,12 +118,13 @@ class CreditCardsDatabaseQueries {
 
     return CreditCardsData(
       id: inputData["id"] as int,
-      cardNumber: inputData['sourceCardNumber'].toString(),
-      cardExpiry: inputData['sourceBankName'].toString(),
-      cardHolderName: inputData['targetBankName'].toString(),
-      cvv: inputData['sourceUsername'].toString(),
-      bankName: inputData['targetUsername'].toString(),
-      cardBalance: inputData['amountMoney'].toString(),
+      cardNumber: inputData['cardNumber'].toString(),
+      cardExpiry: inputData['cardExpiry'].toString(),
+      cardHolderName: inputData['cardHolderName'].toString(),
+      cvv: inputData['cvv'].toString(),
+      bankName: inputData['bankName'].toString(),
+      cardBalance: inputData['cardBalance'].toString(),
+      cardAccountNumber: inputData['cardAccountNumber'].toString(),
       colorTag: int.parse(inputData['colorTag'].toString()),
     );
   }
