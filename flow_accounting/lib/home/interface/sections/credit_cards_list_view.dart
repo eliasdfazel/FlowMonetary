@@ -358,12 +358,12 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
                       creditCardInputUpdateListener(context,
                           id,
                           cardNumber,
+                          cardAccountNumber,
                           cardExpiry,
                           cardHolderName,
                           cvv,
                           bankName,
                           cardBalance,
-                          cardAccountNumber,
                           colorTag
                       );
 
