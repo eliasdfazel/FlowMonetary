@@ -1047,7 +1047,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                       autocorrect: true,
                                       autofocus: false,
                                       keyboardType: TextInputType.number,
-                                      textInputAction: TextInputAction.next,
+                                      textInputAction: TextInputAction.done,
                                       inputFormatters: [
                                         CurrencyTextInputFormatter(decimalDigits: 0, symbol: "")
                                       ],
