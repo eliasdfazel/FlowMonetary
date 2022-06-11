@@ -12,7 +12,7 @@ class StringsResources {
 
   static String applicationName() {
 
-    return "حسابداری جریان";
+    return "حسابداری آنالیز";
   }
 
   static String sharingText() {

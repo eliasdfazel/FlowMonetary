@@ -14,10 +14,12 @@ import 'dart:typed_data';
 import 'package:flow_accounting/credit_cards/database/structures/tables_structure.dart';
 import 'package:flow_accounting/home/interface/sections/credit_cards_list_view.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
+import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/utils/colors/color_extractor.dart';
 import 'package:flow_accounting/utils/extensions/bank_logos.dart';
 import 'package:flow_accounting/utils/io/file_io.dart';
 import 'package:flutter/material.dart';
+import 'package:ribbon_widget/ribbon_widget.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -34,7 +36,9 @@ class ShareSnapshot {
         File invoiceSnapshotFile = await createFileOfBytes("CreditCard", "PNG", snapshotBytes);
 
         Share.shareFiles([invoiceSnapshotFile.path],
-            text: "${creditCardsData.bankName}");
+            text: "${creditCardsData.cardNumber}"
+                "\n"
+                "${creditCardsData.bankName} - ${creditCardsData.bankName}");
 
       }
 
@@ -69,7 +73,7 @@ class ShareSnapshot {
               ),
             ),
             Opacity(
-              opacity: 0.73,
+              opacity: 0.13,
               child: Image(
                 image: AssetImage(backgroundPattern),
                 fit: BoxFit.cover,
@@ -78,7 +82,7 @@ class ShareSnapshot {
               ),
             ),
             Opacity(
-                opacity: 0.73,
+                opacity: 0.19,
                 child: Image(
                   image: AssetImage("logo.png"),
                   fit: BoxFit.cover,
@@ -338,6 +342,26 @@ class ShareSnapshot {
                   ),
                 ),
               ],
+            ),
+            Ribbon(
+              color: ColorsResources.primaryColor,
+              nearLength: 53,
+              farLength: 107,
+              title: StringsResources.applicationName(),
+              titleStyle: TextStyle(
+                color: ColorsResources.light,
+                fontSize: 13,
+                fontWeight: FontWeight.bold,
+                shadows: [
+                  Shadow(
+                    color: ColorsResources.white.withOpacity(0.91),
+                    blurRadius: 13,
+                    offset: Offset(0, 0)
+                  )
+                ]
+              ),
+              location: RibbonLocation.bottomEnd,
+              child: Container(),
             )
           ]
         )

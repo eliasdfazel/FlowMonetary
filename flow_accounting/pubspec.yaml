@@ -48,6 +48,8 @@ dependencies:
 
   quick_actions: ^0.6.0+10
 
+  ribbon_widget: ^1.0.5
+
   screenshot: ^1.2.3
   shamsi_date: ^1.0.1
   share_plus: ^4.0.4
