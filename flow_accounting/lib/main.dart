@@ -118,7 +118,7 @@ class _WelcomePageViewState extends State<WelcomePage> {
       const ShortcutItem(type: QuickActionsType.ShareIt_Action, localizedTitle: 'به اشتراک بگذارید', icon: 'share_icon')
     ]);
 
-    WidgetsBinding.instance?.addObserver(
+    WidgetsBinding.instance.addObserver(
         LifecycleEventHandler(
             resumeCallBack: () async => (() {
               debugPrint("Dashboard Resumed");
