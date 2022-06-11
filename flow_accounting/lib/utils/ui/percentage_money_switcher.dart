@@ -68,7 +68,7 @@ class _PercentageMoneySwitcherState extends State<PercentageMoneySwitcher> {
               child: Text(
                 "%",
                 style: TextStyle(
-                  fontSize: 13,
+                  fontSize: 17,
                   color: percentageColor
                 ),
               )
@@ -84,7 +84,7 @@ class _PercentageMoneySwitcherState extends State<PercentageMoneySwitcher> {
             child: Text(
               "\$",
               style: TextStyle(
-                  fontSize: 13,
+                  fontSize: 17,
                   color: moneyColor
               ),
             ),
