@@ -66,6 +66,7 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
                     cvv: "",
                     cardBalance: "",
                     cardExpiry: "",
+                    cardAccountNumber: "",
                     colorTag: Colors.transparent.value
                 )
             )),
@@ -96,6 +97,7 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
         creditCardWidgets.add(creditCardWidgetItem(
           creditCardData.id,
           creditCardData.cardNumber,
+          creditCardData.cardAccountNumber,
           creditCardData.cardExpiry,
           creditCardData.cardHolderName,
           creditCardData.cvv,
@@ -122,6 +124,7 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
                         cvv: "",
                         cardBalance: "",
                         cardExpiry: "",
+                        cardAccountNumber: "",
                         colorTag: Colors.transparent.value
                     )
                 )
@@ -162,6 +165,7 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
   Widget creditCardWidgetItem(
       int id,
       String cardNumber,
+      String cardAccountNumber,
       String cardExpiry,
       String cardHolderName,
       String cvv,
@@ -359,6 +363,7 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
                           cvv,
                           bankName,
                           cardBalance,
+                          cardAccountNumber,
                           colorTag
                       );
 
@@ -455,6 +460,7 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
   void creditCardInputUpdateListener(BuildContext context,
       int id,
       String cardNumber,
+      String cardAccountNumber,
       String cardExpiry,
       String cardHolderName,
       String cvv,
@@ -473,6 +479,7 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
               cvv: cvv,
               cardBalance: cardBalance,
               cardExpiry: cardExpiry,
+              cardAccountNumber: cardAccountNumber,
               colorTag: colorTag
           )
       )),

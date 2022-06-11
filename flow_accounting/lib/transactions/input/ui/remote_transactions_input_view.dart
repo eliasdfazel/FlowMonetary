@@ -2622,6 +2622,7 @@ class _RemoteTransactionsInputViewState extends State<RemoteTransactionsInputVie
                 cvv: sourceCreditCardData.cvv,
                 bankName: sourceCreditCardData.bankName,
                 cardBalance: newCardBalance,
+                cardAccountNumber: sourceCreditCardData.cardAccountNumber,
                 colorTag: sourceCreditCardData.colorTag
             ),
             CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId
@@ -2658,6 +2659,7 @@ class _RemoteTransactionsInputViewState extends State<RemoteTransactionsInputVie
                 cvv: sourceCreditCardData.cvv,
                 bankName: sourceCreditCardData.bankName,
                 cardBalance: newCardBalance,
+                cardAccountNumber: sourceCreditCardData.cardAccountNumber,
                 colorTag: sourceCreditCardData.colorTag
             ),
             CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId

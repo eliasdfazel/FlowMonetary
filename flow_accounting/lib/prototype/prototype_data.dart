@@ -113,6 +113,7 @@ class PrototypeData {
         cvv: "179",
         bankName: "اقتصاد نوین",
         cardBalance: "1000000",
+        cardAccountNumber: "321456987",
         colorTag: listOfColors.randomItem().value
     ));
 
@@ -124,6 +125,7 @@ class PrototypeData {
         cvv: "389",
         bankName: "ملی",
         cardBalance: "2300000",
+        cardAccountNumber: "321456987",
         colorTag: listOfColors.randomItem().value
     ));
 
@@ -135,6 +137,7 @@ class PrototypeData {
         cvv: "686",
         bankName: "پاسارگاد",
         cardBalance: "3100000",
+        cardAccountNumber: "321456987",
         colorTag: listOfColors.randomItem().value
     ));
 

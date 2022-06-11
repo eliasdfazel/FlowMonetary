@@ -3651,6 +3651,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                 cvv: sourceCreditCardData.cvv,
                 bankName: sourceCreditCardData.bankName,
                 cardBalance: newCardBalance,
+                cardAccountNumber: sourceCreditCardData.cardAccountNumber,
                 colorTag: sourceCreditCardData.colorTag
             ),
             CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId
@@ -3687,6 +3688,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
                 cvv: sourceCreditCardData.cvv,
                 bankName: sourceCreditCardData.bankName,
                 cardBalance: newCardBalance,
+                cardAccountNumber: sourceCreditCardData.cardAccountNumber,
                 colorTag: sourceCreditCardData.colorTag
             ),
             CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId
