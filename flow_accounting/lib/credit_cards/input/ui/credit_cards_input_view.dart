@@ -681,7 +681,6 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                         height: 13,
                         color: Colors.transparent,
                       ),
-
                       SizedBox(
                         width: double.infinity,
                         height: 73,
@@ -772,7 +771,6 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                         height: 13,
                         color: Colors.transparent,
                       ),
-
                       SizedBox(
                         width: double.infinity,
                         height: 73,
