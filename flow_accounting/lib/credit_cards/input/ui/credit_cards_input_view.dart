@@ -702,7 +702,7 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                       cursorColor: ColorsResources.primaryColor,
                                       autocorrect: true,
                                       autofocus: false,
-                                      keyboardType: TextInputType.number,
+                                      keyboardType: TextInputType.text,
                                       textInputAction: TextInputAction.next,
                                       decoration: InputDecoration(
                                         alignLabelWithHint: true,
@@ -749,12 +749,12 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
                                         errorText: warningNoticeCardNumber,
                                         filled: true,
                                         fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.creditCardNumber(),
+                                        labelText: StringsResources.creditCardBankAccountNumber(),
                                         labelStyle: const TextStyle(
                                             color: ColorsResources.dark,
                                             fontSize: 17.0
                                         ),
-                                        hintText: StringsResources.creditCardNumberHint(),
+                                        hintText: StringsResources.creditCardBankAccountNumberHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 13.0

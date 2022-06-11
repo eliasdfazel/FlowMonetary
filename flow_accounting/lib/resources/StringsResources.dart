@@ -327,6 +327,15 @@ class StringsResources {
     return "شماره کارت";
   }
 
+  static String creditCardBankAccountNumber() {
+
+    return "شماره حساب مرتبط را وارد کنید";
+  }
+  static String creditCardBankAccountNumberHint() {
+
+    return "شماره حساب";
+  }
+
   static String creditCardExpiryMonth() {
 
     return "ماه";
