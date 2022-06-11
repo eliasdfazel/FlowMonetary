@@ -116,6 +116,8 @@ class _CreditCardsInputViewState extends State<CreditCardsInputView> with Ticker
 
     creditCardNumberController.text = widget.creditCardsData.cardNumber.isEmpty ? "" : widget.creditCardsData.cardNumber;
 
+    creditCardAccountController.text = widget.creditCardsData.cardAccountNumber.isEmpty ? "" : widget.creditCardsData.cardAccountNumber;
+
     creditCardYearController.text = widget.creditCardsData.cardExpiry.isEmpty ? "" : widget.creditCardsData.cardExpiry.split("/")[0];
     creditCardMonthController.text = widget.creditCardsData.cardExpiry.isEmpty ? "" : widget.creditCardsData.cardExpiry.split("/")[1];
 

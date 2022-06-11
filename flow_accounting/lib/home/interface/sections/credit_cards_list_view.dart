@@ -15,6 +15,7 @@ import 'package:flow_accounting/credit_cards/database/io/inputs.dart';
 import 'package:flow_accounting/credit_cards/database/io/queries.dart';
 import 'package:flow_accounting/credit_cards/database/structures/tables_structure.dart';
 import 'package:flow_accounting/credit_cards/input/ui/credit_cards_input_view.dart';
+import 'package:flow_accounting/credit_cards/utils/share_snapshot.dart';
 import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
@@ -95,15 +96,7 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
       for (var creditCardData in widget.allCreditCardsData) {
 
         creditCardWidgets.add(creditCardWidgetItem(
-          creditCardData.id,
-          creditCardData.cardNumber,
-          creditCardData.cardAccountNumber,
-          creditCardData.cardExpiry,
-          creditCardData.cardHolderName,
-          creditCardData.cvv,
-          creditCardData.bankName,
-          creditCardData.cardBalance,
-          creditCardData.colorTag
+            creditCardData
         ));
 
       }
@@ -162,16 +155,7 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
     );
   }
 
-  Widget creditCardWidgetItem(
-      int id,
-      String cardNumber,
-      String cardAccountNumber,
-      String cardExpiry,
-      String cardHolderName,
-      String cvv,
-      String bankName,
-      String cardBalance,
-      int colorTag) {
+  Widget creditCardWidgetItem(CreditCardsData creditCardsData) {
 
     var showCardsBack = false;
 
@@ -220,7 +204,7 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             behavior: SnackBarBehavior.floating,
                             content: Text(
-                              cardNumber,
+                              creditCardsData.cardNumber,
                               style: const TextStyle(
                                 color: ColorsResources.light
                               ),
@@ -245,7 +229,7 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
                                 if (creditCardDatabaseExist) {
 
                                   CreditCardsDatabaseQueries()
-                                      .queryDeleteCreditCard(id, CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId);
+                                      .queryDeleteCreditCard(creditCardsData.id, CreditCardsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
                                   prepareCreditCardsData();
 
@@ -264,20 +248,20 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
                               AwesomeCard(
                                 animation: moveToBack,
                                 child: CreditCardFrontLayout(
-                                  bankName: bankName,
-                                  cardExpiry: cardExpiry,
-                                  cardHolderName: cardHolderName,
-                                  cardNumber: cardNumber,
-                                  cvv: cvv,
-                                  colorTag: colorTag,
+                                  bankName: creditCardsData.bankName,
+                                  cardExpiry: creditCardsData.cardExpiry,
+                                  cardHolderName: creditCardsData.cardHolderName,
+                                  cardNumber: creditCardsData.cardNumber,
+                                  cvv: creditCardsData.cvv,
+                                  colorTag: creditCardsData.colorTag,
                                 ),
                               ),
                               AwesomeCard(
                                 animation: moveToFront,
                                 child: CreditCardBackLayout(
-                                  cardBankName: bankName,
-                                  cardCVV: cvv,
-                                  colorTag: colorTag,
+                                  cardBankName: creditCardsData.bankName,
+                                  cardCVV: creditCardsData.cvv,
+                                  colorTag: creditCardsData.colorTag,
                                 ),
                               ),
                             ],
@@ -330,7 +314,7 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
                                 child: Padding(
                                   padding: const EdgeInsets.fromLTRB(7, 0, 0, 0),
                                   child: Text(
-                                    cardBalance,
+                                    creditCardsData.cardBalance,
                                     style: const TextStyle(fontSize: 23, shadows: [
                                       Shadow(
                                           color: ColorsResources.light,
@@ -349,81 +333,163 @@ class _CreditCardsListView extends State<CreditCardsListView> with TickerProvide
                 ),
               ],
             ),
-            SizedBox(
-                height: 279,
-                width: 53,
-                child: InkWell(
-                    onTap: () {
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                SizedBox(
+                    height: 203,
+                    width: 53,
+                    child: InkWell(
+                        onTap: () {
 
-                      creditCardInputUpdateListener(context,
-                          id,
-                          cardNumber,
-                          cardAccountNumber,
-                          cardExpiry,
-                          cardHolderName,
-                          cvv,
-                          bankName,
-                          cardBalance,
-                          colorTag
-                      );
+                          creditCardInputUpdateListener(context,
+                              creditCardsData.id,
+                              creditCardsData.cardNumber,
+                              creditCardsData.cardAccountNumber,
+                              creditCardsData.cardExpiry,
+                              creditCardsData.cardHolderName,
+                              creditCardsData.cvv,
+                              creditCardsData.bankName,
+                              creditCardsData.cardBalance,
+                              creditCardsData.colorTag
+                          );
 
-                    },
-                    child: Stack(
-                      children: [
-                        Container(
-                          alignment: AlignmentDirectional.center,
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.only(topLeft: Radius.circular(7), topRight: Radius.circular(7), bottomLeft: Radius.circular(7), bottomRight: Radius.circular(7)),
-                            gradient: LinearGradient(
-                                colors: [
-                                  ColorsResources.white,
-                                  ColorsResources.light,
-                                ],
-                                begin: FractionalOffset(0.0, 0.0),
-                                end: FractionalOffset(1.0, 0.0),
-                                stops: [0.0, 1.0],
-                                transform: GradientRotation(45),
-                                tileMode: TileMode.clamp),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(3, 3, 3, 3),
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.only(topLeft: Radius.circular(7), topRight: Radius.circular(7), bottomLeft: Radius.circular(7), bottomRight: Radius.circular(7)),
-                              gradient: LinearGradient(
-                                  colors: [
-                                    ColorsResources.light,
-                                    ColorsResources.white,
-                                  ],
-                                  begin: FractionalOffset(0.0, 0.0),
-                                  end: FractionalOffset(1.0, 0.0),
-                                  stops: [0.0, 1.0],
-                                  transform: GradientRotation(45),
-                                  tileMode: TileMode.clamp),
+                        },
+                        child: Stack(
+                          children: [
+                            Container(
+                              alignment: AlignmentDirectional.center,
+                              decoration: const BoxDecoration(
+                                borderRadius: BorderRadius.only(topLeft: Radius.circular(7), topRight: Radius.circular(7), bottomLeft: Radius.circular(7), bottomRight: Radius.circular(7)),
+                                gradient: LinearGradient(
+                                    colors: [
+                                      ColorsResources.white,
+                                      ColorsResources.light,
+                                    ],
+                                    begin: FractionalOffset(0.0, 0.0),
+                                    end: FractionalOffset(1.0, 0.0),
+                                    stops: [0.0, 1.0],
+                                    transform: GradientRotation(45),
+                                    tileMode: TileMode.clamp),
+                              ),
                             ),
-                            alignment: AlignmentDirectional.center,
-                            child: RotatedBox(
-                                quarterTurns: 3,
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: Text(StringsResources.detailsText(),
-                                    style: TextStyle(fontSize: 23,shadows: [
-                                      Shadow(
-                                          color: ColorsResources.light,
-                                          offset: Offset(0, 0),
-                                          blurRadius: 7
-                                      )
-                                    ]),
-                                  ),
-                                )
-                            ),
-                          ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(3, 3, 3, 3),
+                              child: Container(
+                                decoration: const BoxDecoration(
+                                  borderRadius: BorderRadius.only(topLeft: Radius.circular(7), topRight: Radius.circular(7), bottomLeft: Radius.circular(7), bottomRight: Radius.circular(7)),
+                                  gradient: LinearGradient(
+                                      colors: [
+                                        ColorsResources.light,
+                                        ColorsResources.white,
+                                      ],
+                                      begin: FractionalOffset(0.0, 0.0),
+                                      end: FractionalOffset(1.0, 0.0),
+                                      stops: [0.0, 1.0],
+                                      transform: GradientRotation(45),
+                                      tileMode: TileMode.clamp),
+                                ),
+                                alignment: AlignmentDirectional.center,
+                                child: RotatedBox(
+                                    quarterTurns: 3,
+                                    child: Align(
+                                      alignment: Alignment.center,
+                                      child: Text(StringsResources.detailsText(),
+                                        style: TextStyle(fontSize: 23,shadows: [
+                                          Shadow(
+                                              color: ColorsResources.light,
+                                              offset: Offset(0, 0),
+                                              blurRadius: 7
+                                          )
+                                        ]),
+                                      ),
+                                    )
+                                ),
+                              ),
+                            )
+                          ],
                         )
-                      ],
                     )
+                ),
+                Container(
+                  height: 1,
+                  width: 53,
+                  color: Colors.transparent,
+                ),
+                SizedBox(
+                  height: 53,
+                  width: 53,
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.circular(7),
+                        child: Material(
+                            shadowColor: Colors.transparent,
+                            color: Colors.transparent,
+                            child: InkWell(
+                              splashColor: Color(creditCardsData.colorTag).withOpacity(0.3),
+                              splashFactory: InkRipple.splashFactory,
+                              onTap: () {
+
+                                ShareSnapshot()
+                                    .shareCreditCardSnapshot(creditCardsData);
+
+                              },
+                              child: Container(
+                                  alignment: AlignmentDirectional.center,
+                                  decoration: const BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(8),
+                                        topRight: Radius.circular(8),
+                                        bottomLeft: Radius.circular(8),
+                                        bottomRight: Radius.circular(8)
+                                    ),
+                                    gradient: LinearGradient(
+                                        colors: [
+                                          ColorsResources.white,
+                                          ColorsResources.light,
+                                        ],
+                                        begin: FractionalOffset(0.0, 0.0),
+                                        end: FractionalOffset(1.0, 0.0),
+                                        stops: [0.0, 1.0],
+                                        transform: GradientRotation(45),
+                                        tileMode: TileMode.clamp
+                                    ),
+                                  ),
+                                  child: Padding(
+                                      padding: EdgeInsets.fromLTRB(3, 3, 3, 3),
+                                      child: Container(
+                                          alignment: AlignmentDirectional.center,
+                                          decoration: const BoxDecoration(
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(7),
+                                                topRight: Radius.circular(7),
+                                                bottomLeft: Radius.circular(7),
+                                                bottomRight: Radius.circular(7)
+                                            ),
+                                            gradient: LinearGradient(
+                                                colors: [
+                                                  ColorsResources.light,
+                                                  ColorsResources.white,
+                                                ],
+                                                begin: FractionalOffset(0.0, 0.0),
+                                                end: FractionalOffset(1.0, 0.0),
+                                                stops: [0.0, 1.0],
+                                                transform: GradientRotation(45),
+                                                tileMode: TileMode.clamp),
+                                          ),
+                                          child: Icon(
+                                              Icons.share_rounded,
+                                              size: 27.0,
+                                              color: Color(creditCardsData.colorTag).withOpacity(0.91)
+                                          )
+                                      )
+                                  )
+                              ),
+                            )
+                        )
+                  )
                 )
-            ),
+              ]
+            )
           ],
         ),
       ),
