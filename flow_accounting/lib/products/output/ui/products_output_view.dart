@@ -686,49 +686,43 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
                   child: SizedBox(
                     height: 43,
                     width: 166,
-                    child: PhysicalModel(
-                      color: ColorsResources.light,
-                      elevation: 7,
-                      shadowColor: Color(productsData.colorTag).withOpacity(0.79),
-                      shape: BoxShape.rectangle,
-                      borderRadius: const BorderRadius.all(Radius.circular(17)),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(17),
-                              topRight: Radius.circular(17),
-                              bottomLeft: Radius.circular(17),
-                              bottomRight: Radius.circular(17)
-                          ),
-                          color: ColorsResources.light,
-                        ),
-                        child: Padding(
-                            padding: EdgeInsets.fromLTRB(7, 9, 7, 0),
-                            child: Marquee(
-                              text: "${sellingPrice.round()}",
-                              style: const TextStyle(
-                                color: ColorsResources.dark,
-                                fontSize: 17,
+                    child: Padding(
+                        padding: EdgeInsets.fromLTRB(7, 9, 7, 0),
+                        child: Marquee(
+                          text: "${sellingPrice.round()}",
+                          style: TextStyle(
+                            color: ColorsResources.dark,
+                            fontSize: 17,
+                            shadows: [
+                              Shadow(
+                                  color: Color(productsData.colorTag).withOpacity(0.79),
+                                  blurRadius: 3,
+                                  offset: Offset(1, 1)
                               ),
-                              scrollAxis: Axis.horizontal,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              blankSpace: 293.0,
-                              velocity: 19.0,
-                              fadingEdgeStartFraction: 0.13,
-                              fadingEdgeEndFraction: 0.13,
-                              startAfter: const Duration(milliseconds: 777),
-                              numberOfRounds: 3,
-                              pauseAfterRound: const Duration(milliseconds: 500),
-                              showFadingOnlyWhenScrolling: true,
-                              startPadding: 13.0,
-                              accelerationDuration: const Duration(milliseconds: 500),
-                              accelerationCurve: Curves.linear,
-                              decelerationDuration: const Duration(milliseconds: 500),
-                              decelerationCurve: Curves.easeOut,
-                            )
+                              Shadow(
+                                  color: Color(productsData.colorTag).withOpacity(0.59),
+                                  blurRadius: 7,
+                                  offset: Offset(1, 1)
+                              ),
+                            ]
+                          ),
+                          scrollAxis: Axis.horizontal,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          blankSpace: 293.0,
+                          velocity: 19.0,
+                          fadingEdgeStartFraction: 0.13,
+                          fadingEdgeEndFraction: 0.13,
+                          startAfter: const Duration(milliseconds: 777),
+                          numberOfRounds: 3,
+                          pauseAfterRound: const Duration(milliseconds: 500),
+                          showFadingOnlyWhenScrolling: true,
+                          startPadding: 13.0,
+                          accelerationDuration: const Duration(milliseconds: 500),
+                          accelerationCurve: Curves.linear,
+                          decelerationDuration: const Duration(milliseconds: 500),
+                          decelerationCurve: Curves.easeOut,
                         )
-                      ),
-                    ),
+                    )
                   )
                 )
               ],

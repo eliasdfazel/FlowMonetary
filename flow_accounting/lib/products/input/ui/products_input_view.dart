@@ -861,7 +861,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                       autocorrect: true,
                                       autofocus: false,
                                       keyboardType: TextInputType.number,
-                                      textInputAction: TextInputAction.done,
+                                      textInputAction: TextInputAction.next,
                                       inputFormatters: [
                                         CurrencyTextInputFormatter(decimalDigits: 0, symbol: "")
                                       ],
@@ -979,7 +979,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                           autocorrect: true,
                                           autofocus: false,
                                           keyboardType: TextInputType.number,
-                                          textInputAction: TextInputAction.done,
+                                          textInputAction: TextInputAction.next,
                                           onChanged: (changedValue) {
 
                                             int initialMoney = controllerProductBuyingPrice.text.isEmpty ? 0 : int.parse(controllerProductBuyingPrice.text);
@@ -1097,7 +1097,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                           autocorrect: true,
                                           autofocus: false,
                                           keyboardType: TextInputType.number,
-                                          textInputAction: TextInputAction.done,
+                                          textInputAction: TextInputAction.next,
                                           onChanged: (changedValue) {
 
                                             int initialMoney = controllerProductBuyingPrice.text.isEmpty ? 0 : int.parse(controllerProductBuyingPrice.text);
@@ -1213,7 +1213,7 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                       autocorrect: true,
                                       autofocus: false,
                                       keyboardType: TextInputType.number,
-                                      textInputAction: TextInputAction.done,
+                                      textInputAction: TextInputAction.next,
                                       inputFormatters: [
                                         CurrencyTextInputFormatter(decimalDigits: 0, symbol: "")
                                       ],
