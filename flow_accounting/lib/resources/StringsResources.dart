@@ -652,6 +652,15 @@ class StringsResources {
     return "درصد مالیات را وارد کنید";
   }
 
+  static String productFinalPrice() {
+
+    return "قیمت نهایی";
+  }
+  static String productFinalPriceHint() {
+
+    return "قیمت محصول بعد از احتساب سود و مالیات و هزینه حمل ";
+  }
+
   static String productCategory() {
 
     return "دسته بندی محصول";

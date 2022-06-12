@@ -21,7 +21,9 @@ import 'package:flow_accounting/profile/database/io/queries.dart';
 import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
+import 'package:flow_accounting/utils/extensions/numbers_operations.dart';
 import 'package:flow_accounting/utils/io/file_io.dart';
+import 'package:flow_accounting/utils/ui/percentage_money_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -47,6 +49,10 @@ class _ProductsInputViewState extends State<ProductsInputView> {
 
   ColorSelectorView colorSelectorView = ColorSelectorView();
 
+  PercentageMoneySwitcher percentageProfitSwitcher = PercentageMoneySwitcher(percentageEnable: true);
+
+  PercentageMoneySwitcher percentageTaxSwitcher = PercentageMoneySwitcher(percentageEnable: true);
+
   TextEditingController controllerProductName = TextEditingController();
   TextEditingController controllerProductDescription = TextEditingController();
 
@@ -61,6 +67,8 @@ class _ProductsInputViewState extends State<ProductsInputView> {
 
   TextEditingController controllerProductQuantity = TextEditingController();
   TextEditingController controllerProductQuantityType = TextEditingController();
+
+  TextEditingController controllerProductFinalPrice = TextEditingController();
 
   String productImageUrl = "";
 
@@ -155,6 +163,28 @@ class _ProductsInputViewState extends State<ProductsInputView> {
     productImageUrl = widget.productsData?.productImageUrl ?? "";
 
     productBrandLogoUrl = widget.productsData?.productBrandLogoUrl ?? "";
+
+    if (widget.productsData != null) {
+
+      int initialMoney = controllerProductBuyingPrice.text.isEmpty ? 0 : int.parse(controllerProductBuyingPrice.text);
+
+      int taxMoney = controllerProductTax.text.isEmpty ? 0 : int.parse(controllerProductTax.text);
+
+      if (percentageTaxSwitcher.percentageEnable) {
+
+        taxMoney = (initialMoney * taxMoney) ~/ 100;
+
+      }
+
+      int profitMoney = controllerProductProfitPercent.text.isEmpty ? 0 : int.parse(controllerProductProfitPercent.text);
+
+      if (percentageProfitSwitcher.percentageEnable) {
+
+        profitMoney = (initialMoney * profitMoney) ~/ 100;
+
+      }
+
+    }
 
     super.initState();
 
@@ -835,6 +865,29 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                       inputFormatters: [
                                         CurrencyTextInputFormatter(decimalDigits: 0, symbol: "")
                                       ],
+                                      onChanged: (changedValue) {
+
+                                        int initialMoney = controllerProductBuyingPrice.text.isEmpty ? 0 : int.parse(controllerProductBuyingPrice.text);
+
+                                        int taxMoney = controllerProductTax.text.isEmpty ? 0 : int.parse(controllerProductTax.text);
+
+                                        if (percentageTaxSwitcher.percentageEnable) {
+
+                                          taxMoney = (initialMoney * taxMoney) ~/ 100;
+
+                                        }
+
+                                        int profitMoney = controllerProductProfitPercent.text.isEmpty ? 0 : int.parse(controllerProductProfitPercent.text);
+
+                                        if (percentageProfitSwitcher.percentageEnable) {
+
+                                          profitMoney = (initialMoney * profitMoney) ~/ 100;
+
+                                        }
+
+                                        controllerProductFinalPrice.text = formatNumberToCurrency((initialMoney + taxMoney + profitMoney).toString());
+
+                                      },
                                       decoration: InputDecoration(
                                         alignLabelWithHint: true,
                                         border: const OutlineInputBorder(
@@ -925,6 +978,29 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                       autofocus: false,
                                       keyboardType: TextInputType.number,
                                       textInputAction: TextInputAction.done,
+                                      onChanged: (changedValue) {
+
+                                        int initialMoney = controllerProductBuyingPrice.text.isEmpty ? 0 : int.parse(controllerProductBuyingPrice.text);
+
+                                        int taxMoney = controllerProductTax.text.isEmpty ? 0 : int.parse(controllerProductTax.text);
+
+                                        if (percentageTaxSwitcher.percentageEnable) {
+
+                                          taxMoney = (initialMoney * taxMoney) ~/ 100;
+
+                                        }
+
+                                        int profitMoney = controllerProductProfitPercent.text.isEmpty ? 0 : int.parse(controllerProductProfitPercent.text);
+
+                                        if (percentageProfitSwitcher.percentageEnable) {
+
+                                          profitMoney = (initialMoney * profitMoney) ~/ 100;
+
+                                        }
+
+                                        controllerProductFinalPrice.text = formatNumberToCurrency((initialMoney + taxMoney + profitMoney).toString());
+
+                                      },
                                       decoration: InputDecoration(
                                         alignLabelWithHint: true,
                                         border: const OutlineInputBorder(
@@ -1015,6 +1091,29 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                       autofocus: false,
                                       keyboardType: TextInputType.number,
                                       textInputAction: TextInputAction.done,
+                                      onChanged: (changedValue) {
+
+                                        int initialMoney = controllerProductBuyingPrice.text.isEmpty ? 0 : int.parse(controllerProductBuyingPrice.text);
+
+                                        int taxMoney = controllerProductTax.text.isEmpty ? 0 : int.parse(controllerProductTax.text);
+
+                                        if (percentageTaxSwitcher.percentageEnable) {
+
+                                          taxMoney = (initialMoney * taxMoney) ~/ 100;
+
+                                        }
+
+                                        int profitMoney = controllerProductProfitPercent.text.isEmpty ? 0 : int.parse(controllerProductProfitPercent.text);
+
+                                        if (percentageProfitSwitcher.percentageEnable) {
+
+                                          profitMoney = (initialMoney * profitMoney) ~/ 100;
+
+                                        }
+
+                                        controllerProductFinalPrice.text = formatNumberToCurrency((initialMoney + taxMoney + profitMoney).toString());
+
+                                      },
                                       decoration: InputDecoration(
                                         alignLabelWithHint: true,
                                         border: const OutlineInputBorder(
@@ -1066,6 +1165,99 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                             fontSize: 17.0
                                         ),
                                         hintText: StringsResources.productProfitTaxHint(),
+                                        hintStyle: const TextStyle(
+                                            color: ColorsResources.darkTransparent,
+                                            fontSize: 13.0
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Divider(
+                        height: 13,
+                        color: Colors.transparent,
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 73,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                  child: Directionality(
+                                    textDirection: TextDirection.rtl,
+                                    child: TextField(
+                                      controller: controllerProductFinalPrice,
+                                      textAlign: TextAlign.center,
+                                      textDirection: TextDirection.ltr,
+                                      textAlignVertical: TextAlignVertical.bottom,
+                                      maxLines: 1,
+                                      cursorColor: ColorsResources.primaryColor,
+                                      autocorrect: true,
+                                      autofocus: false,
+                                      keyboardType: TextInputType.number,
+                                      textInputAction: TextInputAction.done,
+                                      inputFormatters: [
+                                        CurrencyTextInputFormatter(decimalDigits: 0, symbol: "")
+                                      ],
+                                      decoration: InputDecoration(
+                                        alignLabelWithHint: true,
+                                        border: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        enabledBorder: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        focusedBorder: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        errorBorder: const OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.red, width: 1.0),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(13),
+                                                topRight: Radius.circular(13),
+                                                bottomLeft: Radius.circular(13),
+                                                bottomRight: Radius.circular(13)
+                                            ),
+                                            gapPadding: 5
+                                        ),
+                                        errorText: warningNoticeProfitPercent,
+                                        filled: true,
+                                        fillColor: ColorsResources.lightTransparent,
+                                        labelText: StringsResources.productFinalPrice(),
+                                        labelStyle: const TextStyle(
+                                            color: ColorsResources.dark,
+                                            fontSize: 17.0
+                                        ),
+                                        hintText: StringsResources.productFinalPriceHint(),
                                         hintStyle: const TextStyle(
                                             color: ColorsResources.darkTransparent,
                                             fontSize: 13.0
