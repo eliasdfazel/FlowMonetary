@@ -965,99 +965,104 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                               flex: 1,
                               child: Padding(
                                   padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
-                                  child: Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: TextField(
-                                      controller: controllerProductProfitPercent,
-                                      textAlign: TextAlign.center,
-                                      textDirection: TextDirection.ltr,
-                                      textAlignVertical: TextAlignVertical.bottom,
-                                      maxLines: 1,
-                                      cursorColor: ColorsResources.primaryColor,
-                                      autocorrect: true,
-                                      autofocus: false,
-                                      keyboardType: TextInputType.number,
-                                      textInputAction: TextInputAction.done,
-                                      onChanged: (changedValue) {
+                                  child: Stack(
+                                    children: [
+                                      Directionality(
+                                        textDirection: TextDirection.rtl,
+                                        child: TextField(
+                                          controller: controllerProductProfitPercent,
+                                          textAlign: TextAlign.center,
+                                          textDirection: TextDirection.ltr,
+                                          textAlignVertical: TextAlignVertical.bottom,
+                                          maxLines: 1,
+                                          cursorColor: ColorsResources.primaryColor,
+                                          autocorrect: true,
+                                          autofocus: false,
+                                          keyboardType: TextInputType.number,
+                                          textInputAction: TextInputAction.done,
+                                          onChanged: (changedValue) {
 
-                                        int initialMoney = controllerProductBuyingPrice.text.isEmpty ? 0 : int.parse(controllerProductBuyingPrice.text);
+                                            int initialMoney = controllerProductBuyingPrice.text.isEmpty ? 0 : int.parse(controllerProductBuyingPrice.text);
 
-                                        int taxMoney = controllerProductTax.text.isEmpty ? 0 : int.parse(controllerProductTax.text);
+                                            int taxMoney = controllerProductTax.text.isEmpty ? 0 : int.parse(controllerProductTax.text);
 
-                                        if (percentageTaxSwitcher.percentageEnable) {
+                                            if (percentageTaxSwitcher.percentageEnable) {
 
-                                          taxMoney = (initialMoney * taxMoney) ~/ 100;
+                                              taxMoney = (initialMoney * taxMoney) ~/ 100;
 
-                                        }
+                                            }
 
-                                        int profitMoney = controllerProductProfitPercent.text.isEmpty ? 0 : int.parse(controllerProductProfitPercent.text);
+                                            int profitMoney = controllerProductProfitPercent.text.isEmpty ? 0 : int.parse(controllerProductProfitPercent.text);
 
-                                        if (percentageProfitSwitcher.percentageEnable) {
+                                            if (percentageProfitSwitcher.percentageEnable) {
 
-                                          profitMoney = (initialMoney * profitMoney) ~/ 100;
+                                              profitMoney = (initialMoney * profitMoney) ~/ 100;
 
-                                        }
+                                            }
 
-                                        controllerProductFinalPrice.text = formatNumberToCurrency((initialMoney + taxMoney + profitMoney).toString());
+                                            controllerProductFinalPrice.text = formatNumberToCurrency((initialMoney + taxMoney + profitMoney).toString());
 
-                                      },
-                                      decoration: InputDecoration(
-                                        alignLabelWithHint: true,
-                                        border: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
+                                          },
+                                          decoration: InputDecoration(
+                                            alignLabelWithHint: true,
+                                            border: const OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
+                                                    bottomRight: Radius.circular(13)
+                                                ),
+                                                gapPadding: 5
                                             ),
-                                            gapPadding: 5
-                                        ),
-                                        enabledBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
+                                            enabledBorder: const OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
+                                                    bottomRight: Radius.circular(13)
+                                                ),
+                                                gapPadding: 5
                                             ),
-                                            gapPadding: 5
-                                        ),
-                                        focusedBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
+                                            focusedBorder: const OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
+                                                    bottomRight: Radius.circular(13)
+                                                ),
+                                                gapPadding: 5
                                             ),
-                                            gapPadding: 5
-                                        ),
-                                        errorBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.red, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
+                                            errorBorder: const OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.red, width: 1.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
+                                                    bottomRight: Radius.circular(13)
+                                                ),
+                                                gapPadding: 5
                                             ),
-                                            gapPadding: 5
-                                        ),
-                                        errorText: warningNoticeProfitPercent,
-                                        filled: true,
-                                        fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.productProfitPercent(),
-                                        labelStyle: const TextStyle(
-                                            color: ColorsResources.dark,
-                                            fontSize: 17.0
-                                        ),
-                                        hintText: StringsResources.productProfitPercentHint(),
-                                        hintStyle: const TextStyle(
-                                            color: ColorsResources.darkTransparent,
-                                            fontSize: 13.0
+                                            errorText: warningNoticeProfitPercent,
+                                            filled: true,
+                                            fillColor: ColorsResources.lightTransparent,
+                                            labelText: StringsResources.productProfitPercent(),
+                                            labelStyle: const TextStyle(
+                                                color: ColorsResources.dark,
+                                                fontSize: 17.0
+                                            ),
+                                            hintText: StringsResources.productProfitPercentHint(),
+                                            hintStyle: const TextStyle(
+                                                color: ColorsResources.darkTransparent,
+                                                fontSize: 13.0
+                                            ),
+                                          ),
                                         ),
                                       ),
-                                    ),
+                                      percentageProfitSwitcher
+                                    ]
                                   )
                               ),
                             ),
@@ -1078,99 +1083,104 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                               flex: 1,
                               child: Padding(
                                   padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
-                                  child: Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: TextField(
-                                      controller: controllerProductTax,
-                                      textAlign: TextAlign.center,
-                                      textDirection: TextDirection.ltr,
-                                      textAlignVertical: TextAlignVertical.bottom,
-                                      maxLines: 1,
-                                      cursorColor: ColorsResources.primaryColor,
-                                      autocorrect: true,
-                                      autofocus: false,
-                                      keyboardType: TextInputType.number,
-                                      textInputAction: TextInputAction.done,
-                                      onChanged: (changedValue) {
+                                  child: Stack(
+                                    children: [
+                                      Directionality(
+                                        textDirection: TextDirection.rtl,
+                                        child: TextField(
+                                          controller: controllerProductTax,
+                                          textAlign: TextAlign.center,
+                                          textDirection: TextDirection.ltr,
+                                          textAlignVertical: TextAlignVertical.bottom,
+                                          maxLines: 1,
+                                          cursorColor: ColorsResources.primaryColor,
+                                          autocorrect: true,
+                                          autofocus: false,
+                                          keyboardType: TextInputType.number,
+                                          textInputAction: TextInputAction.done,
+                                          onChanged: (changedValue) {
 
-                                        int initialMoney = controllerProductBuyingPrice.text.isEmpty ? 0 : int.parse(controllerProductBuyingPrice.text);
+                                            int initialMoney = controllerProductBuyingPrice.text.isEmpty ? 0 : int.parse(controllerProductBuyingPrice.text);
 
-                                        int taxMoney = controllerProductTax.text.isEmpty ? 0 : int.parse(controllerProductTax.text);
+                                            int taxMoney = controllerProductTax.text.isEmpty ? 0 : int.parse(controllerProductTax.text);
 
-                                        if (percentageTaxSwitcher.percentageEnable) {
+                                            if (percentageTaxSwitcher.percentageEnable) {
 
-                                          taxMoney = (initialMoney * taxMoney) ~/ 100;
+                                              taxMoney = (initialMoney * taxMoney) ~/ 100;
 
-                                        }
+                                            }
 
-                                        int profitMoney = controllerProductProfitPercent.text.isEmpty ? 0 : int.parse(controllerProductProfitPercent.text);
+                                            int profitMoney = controllerProductProfitPercent.text.isEmpty ? 0 : int.parse(controllerProductProfitPercent.text);
 
-                                        if (percentageProfitSwitcher.percentageEnable) {
+                                            if (percentageProfitSwitcher.percentageEnable) {
 
-                                          profitMoney = (initialMoney * profitMoney) ~/ 100;
+                                              profitMoney = (initialMoney * profitMoney) ~/ 100;
 
-                                        }
+                                            }
 
-                                        controllerProductFinalPrice.text = formatNumberToCurrency((initialMoney + taxMoney + profitMoney).toString());
+                                            controllerProductFinalPrice.text = formatNumberToCurrency((initialMoney + taxMoney + profitMoney).toString());
 
-                                      },
-                                      decoration: InputDecoration(
-                                        alignLabelWithHint: true,
-                                        border: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
+                                          },
+                                          decoration: InputDecoration(
+                                            alignLabelWithHint: true,
+                                            border: const OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
+                                                    bottomRight: Radius.circular(13)
+                                                ),
+                                                gapPadding: 5
                                             ),
-                                            gapPadding: 5
-                                        ),
-                                        enabledBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
+                                            enabledBorder: const OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.blueGrey, width: 1.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
+                                                    bottomRight: Radius.circular(13)
+                                                ),
+                                                gapPadding: 5
                                             ),
-                                            gapPadding: 5
-                                        ),
-                                        focusedBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
+                                            focusedBorder: const OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
+                                                    bottomRight: Radius.circular(13)
+                                                ),
+                                                gapPadding: 5
                                             ),
-                                            gapPadding: 5
-                                        ),
-                                        errorBorder: const OutlineInputBorder(
-                                            borderSide: BorderSide(color: Colors.red, width: 1.0),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(13),
-                                                topRight: Radius.circular(13),
-                                                bottomLeft: Radius.circular(13),
-                                                bottomRight: Radius.circular(13)
+                                            errorBorder: const OutlineInputBorder(
+                                                borderSide: BorderSide(color: Colors.red, width: 1.0),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(13),
+                                                    topRight: Radius.circular(13),
+                                                    bottomLeft: Radius.circular(13),
+                                                    bottomRight: Radius.circular(13)
+                                                ),
+                                                gapPadding: 5
                                             ),
-                                            gapPadding: 5
-                                        ),
-                                        errorText: warningNoticeProfitPercent,
-                                        filled: true,
-                                        fillColor: ColorsResources.lightTransparent,
-                                        labelText: StringsResources.productProfitTax(),
-                                        labelStyle: const TextStyle(
-                                            color: ColorsResources.dark,
-                                            fontSize: 17.0
-                                        ),
-                                        hintText: StringsResources.productProfitTaxHint(),
-                                        hintStyle: const TextStyle(
-                                            color: ColorsResources.darkTransparent,
-                                            fontSize: 13.0
+                                            errorText: warningNoticeProfitPercent,
+                                            filled: true,
+                                            fillColor: ColorsResources.lightTransparent,
+                                            labelText: StringsResources.productProfitTax(),
+                                            labelStyle: const TextStyle(
+                                                color: ColorsResources.dark,
+                                                fontSize: 17.0
+                                            ),
+                                            hintText: StringsResources.productProfitTaxHint(),
+                                            hintStyle: const TextStyle(
+                                                color: ColorsResources.darkTransparent,
+                                                fontSize: 13.0
+                                            ),
+                                          ),
                                         ),
                                       ),
-                                    ),
+                                      percentageTaxSwitcher
+                                    ]
                                   )
                               ),
                             ),

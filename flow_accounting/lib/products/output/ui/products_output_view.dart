@@ -442,13 +442,33 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
 
   Widget outputItem(BuildContext context, ProductsData productsData) {
 
-    String percentProfit = productsData.productProfitPercent.replaceAll("%", "");
-    double profitMargin = (int.parse(productsData.productPrice.replaceAll(",", "")) * int.parse(percentProfit)) / 100;
+    double profitMargin = 0;
+
+    if (productsData.productProfitPercent.contains("%")) {
+
+      String percentProfit = productsData.productProfitPercent.replaceAll("%", "");
+      profitMargin = (int.parse(productsData.productPrice.replaceAll(",", "")) * int.parse(percentProfit)) / 100;
+
+    } else {
+
+      profitMargin = int.parse(productsData.productProfitPercent).toDouble();
+
+    }
 
     double sellingPriceWithProfit = int.parse(productsData.productPrice.replaceAll(",", "")) + profitMargin;
 
-    String percentTax = productsData.productTax.replaceAll("%", "");
-    double taxMargin = (sellingPriceWithProfit * int.parse(percentTax)) / 100;
+    double taxMargin = 0;
+
+    if (productsData.productTax.contains("%")) {
+
+      String percentTax = productsData.productTax.replaceAll("%", "");
+      taxMargin = (sellingPriceWithProfit * int.parse(percentTax)) / 100;
+
+    } else {
+
+      taxMargin = int.parse(productsData.productTax).toDouble();
+
+    }
 
     int sellingPrice = (sellingPriceWithProfit + taxMargin).round();
 
@@ -693,7 +713,7 @@ class _ProductsOutputViewState extends State<ProductsOutputView> {
                               scrollAxis: Axis.horizontal,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               blankSpace: 293.0,
-                              velocity: 37.0,
+                              velocity: 19.0,
                               fadingEdgeStartFraction: 0.13,
                               fadingEdgeEndFraction: 0.13,
                               startAfter: const Duration(milliseconds: 777),
