@@ -464,6 +464,15 @@ class StringsResources {
     return "شماره تلفن همراه یا ثابت";
   }
 
+  static String customerPurchasesText() {
+
+    return "مقدار خرید";
+  }
+  static String customerPurchasesTextHint() {
+
+    return "مقدار خرید مشتری تا کنون را وارد کنید";
+  }
+
   static String customerEmailAddressText() {
 
     return "آدرس اینترنتی";
