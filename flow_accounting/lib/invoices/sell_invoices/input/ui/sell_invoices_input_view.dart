@@ -21,6 +21,9 @@ import 'package:flow_accounting/cheque/input/ui/cheques_input_view.dart';
 import 'package:flow_accounting/credit_cards/database/io/inputs.dart';
 import 'package:flow_accounting/credit_cards/database/io/queries.dart';
 import 'package:flow_accounting/credit_cards/database/structures/tables_structure.dart';
+import 'package:flow_accounting/customers/database/io/inputs.dart';
+import 'package:flow_accounting/customers/database/io/queries.dart';
+import 'package:flow_accounting/customers/database/structures/table_structure.dart';
 import 'package:flow_accounting/debtors/database/io/inputs.dart';
 import 'package:flow_accounting/debtors/database/io/queries.dart';
 import 'package:flow_accounting/debtors/database/structures/tables_structure.dart';
@@ -2260,32 +2263,88 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                                   padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
                                   child: Directionality(
                                     textDirection: TextDirection.rtl,
-                                    child: TypeAheadField<DebtorsData>(
+                                    child: TypeAheadField<dynamic>(
                                         suggestionsCallback: (pattern) async {
 
-                                          return await getAllDebtors();
+                                          return await getAllDebtorsAndCustomers();
                                         },
                                         itemBuilder: (context, suggestion) {
 
+                                          String suggestedName = "";
+                                          int colorTag = Colors.white.value;
+                                          String imagePath = "";
+
+                                          if (suggestion is DebtorsData) {
+
+                                            suggestedName = suggestion.debtorsName.toString();
+                                            colorTag = suggestion.colorTag;
+                                            imagePath = "";
+
+                                          } else if (suggestion is CustomersData) {
+
+                                            suggestedName = suggestion.customerName.toString();
+                                            colorTag = suggestion.colorTag;
+                                            imagePath = suggestion.customerImagePath;
+
+                                          }
+
                                           return ListTile(
-                                              title: Padding(
-                                                padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
-                                                child: Directionality(
-                                                  textDirection: TextDirection.rtl,
-                                                  child: Text(
-                                                    "suggestion.creditorName",
-                                                    style: const TextStyle(
-                                                        color: ColorsResources.darkTransparent,
-                                                        fontSize: 15
-                                                    ),
+                                              title: Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                children: [
+                                                  Expanded(
+                                                      flex: 11,
+                                                      child:  Padding(
+                                                        padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
+                                                        child: Directionality(
+                                                          textDirection: TextDirection.rtl,
+                                                          child: Text(
+                                                            suggestedName,
+                                                            style: const TextStyle(
+                                                                color: ColorsResources.darkTransparent,
+                                                                fontSize: 15
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      )
                                                   ),
-                                                ),
+                                                  Expanded(
+                                                      flex: 5,
+                                                      child: AspectRatio(
+                                                        aspectRatio: 1,
+                                                        child: Container(
+                                                          decoration: BoxDecoration(
+                                                              shape: BoxShape.circle,
+                                                              color: Color(colorTag)
+                                                          ),
+                                                          child: Padding(
+                                                            padding: const EdgeInsets.fromLTRB(3, 3, 3, 3),
+                                                            child: ClipRRect(
+                                                              borderRadius: BorderRadius.circular(51),
+                                                              child: Image.file(
+                                                                File(imagePath),
+                                                                fit: BoxFit.cover,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      )
+                                                  ),
+                                                ],
                                               )
                                           );
                                         },
                                         onSuggestionSelected: (suggestion) {
 
-                                          controllerSoldTo.text = suggestion.debtorsName;
+                                          if (suggestion is DebtorsData) {
+
+                                            controllerSoldTo.text = suggestion.debtorsName;
+
+                                          } else if (suggestion is CustomersData) {
+
+                                            controllerSoldTo.text = suggestion.customerName;
+
+                                          }
 
                                         },
                                         errorBuilder: (context, suggestion) {
@@ -2575,32 +2634,88 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                                                 padding: const EdgeInsets.fromLTRB(3, 0, 2, 0),
                                                 child: Directionality(
                                                   textDirection: TextDirection.rtl,
-                                                  child: TypeAheadField<DebtorsData>(
+                                                  child: TypeAheadField<dynamic>(
                                                       suggestionsCallback: (pattern) async {
 
-                                                        return await getAllDebtors();
+                                                        return await getAllDebtorsAndCustomers();
                                                       },
                                                       itemBuilder: (context, suggestion) {
 
+                                                        String suggestedName = "";
+                                                        int colorTag = Colors.white.value;
+                                                        String imagePath = "";
+
+                                                        if (suggestion is DebtorsData) {
+
+                                                          suggestedName = suggestion.debtorsName.toString();
+                                                          colorTag = suggestion.colorTag;
+                                                          imagePath = "";
+
+                                                        } else if (suggestion is CustomersData) {
+
+                                                          suggestedName = suggestion.customerName.toString();
+                                                          colorTag = suggestion.colorTag;
+                                                          imagePath = suggestion.customerImagePath;
+
+                                                        }
+
                                                         return ListTile(
-                                                            title: Padding(
-                                                              padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
-                                                              child: Directionality(
-                                                                textDirection: TextDirection.rtl,
-                                                                child: Text(
-                                                                  suggestion.debtorsName,
-                                                                  style: const TextStyle(
-                                                                      color: ColorsResources.darkTransparent,
-                                                                      fontSize: 15
-                                                                  ),
+                                                            title: Row(
+                                                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                              children: [
+                                                                Expanded(
+                                                                    flex: 11,
+                                                                    child:  Padding(
+                                                                      padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
+                                                                      child: Directionality(
+                                                                        textDirection: TextDirection.rtl,
+                                                                        child: Text(
+                                                                          suggestedName,
+                                                                          style: const TextStyle(
+                                                                              color: ColorsResources.darkTransparent,
+                                                                              fontSize: 15
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    )
                                                                 ),
-                                                              ),
+                                                                Expanded(
+                                                                    flex: 5,
+                                                                    child: AspectRatio(
+                                                                      aspectRatio: 1,
+                                                                      child: Container(
+                                                                        decoration: BoxDecoration(
+                                                                            shape: BoxShape.circle,
+                                                                            color: Color(colorTag)
+                                                                        ),
+                                                                        child: Padding(
+                                                                          padding: const EdgeInsets.fromLTRB(3, 3, 3, 3),
+                                                                          child: ClipRRect(
+                                                                            borderRadius: BorderRadius.circular(51),
+                                                                            child: Image.file(
+                                                                              File(imagePath),
+                                                                              fit: BoxFit.cover,
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    )
+                                                                ),
+                                                              ],
                                                             )
                                                         );
                                                       },
                                                       onSuggestionSelected: (suggestion) {
 
-                                                        controllerChequeName.text = suggestion.debtorsName;
+                                                        if (suggestion is DebtorsData) {
+
+                                                          controllerSoldTo.text = suggestion.debtorsName;
+
+                                                        } else if (suggestion is CustomersData) {
+
+                                                          controllerSoldTo.text = suggestion.customerName;
+
+                                                        }
 
                                                       },
                                                       errorBuilder: (context, suggestion) {
@@ -3225,6 +3340,8 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
                                       databaseInputs.insertSellInvoiceData(sellInvoicesData, SellInvoicesDatabaseInputs.databaseTableName, UserInformation.UserId);
 
                                       insertInvoicedProducts();
+
+                                      updateCustomerPurchases(sellInvoicesData);
 
                                       generateBarcode(sellInvoicesData.id);
 
@@ -3933,6 +4050,53 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
    * End - Related Cheques
    */
 
+  /*
+   * Start - Customer Purchases
+   */
+  void updateCustomerPurchases(SellInvoicesData sellInvoicesData) async {
+
+    String databaseDirectory = await getDatabasesPath();
+
+    String customerDatabasePath = "${databaseDirectory}/${CustomersDatabaseInputs.customersDatabase()}";
+
+    bool customerDatabaseExist = await databaseExists(customerDatabasePath);
+
+    if (customerDatabaseExist) {
+
+      CustomersDatabaseQueries customersDatabaseQueries = CustomersDatabaseQueries();
+
+      List<CustomersData> retrievedCustomers = await customersDatabaseQueries.getAllCustomers(CustomersDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+      if (retrievedCustomers.isNotEmpty) {
+
+        for (int i = 0; i < retrievedCustomers.length; i++) {
+
+          if (retrievedCustomers[i].customerName == sellInvoicesData.soldTo) {
+
+            CustomersData customersData = retrievedCustomers[i];
+
+            customersData.customerPurchases = (int.parse(customersData.customerPurchases.replaceAll(",", ""))
+                + (int.parse(sellInvoicesData.soldProductPrice.replaceAll(",", "")))).toString();
+
+            CustomersDatabaseInputs customersDatabaseInputs = CustomersDatabaseInputs();
+
+            customersDatabaseInputs.updateCustomerData(customersData, CustomersDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+            break;
+
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+  /*
+   * End - Customer Purchases
+   */
+
   Future<List<CreditCardsData>> getAllCreditCards() async {
 
     List<CreditCardsData> allCreditCards = [];
@@ -3960,31 +4124,51 @@ class _SellInvoicesInputViewState extends State<SellInvoicesInputView> {
     return allCreditCards;
   }
 
-  Future<List<DebtorsData>> getAllDebtors() async {
-
-    List<DebtorsData> allDebtors = [];
+  Future<List<dynamic>> getAllDebtorsAndCustomers() async {
 
     String databaseDirectory = await getDatabasesPath();
 
-    String creditCardDatabasePath = "${databaseDirectory}/${DebtorsDatabaseInputs.debtorsDatabase()}";
+    List<dynamic> listOfNames = [];
 
-    bool creditCardDatabaseExist = await databaseExists(creditCardDatabasePath);
+    // Debtors
+    String debtorDatabasePath = "${databaseDirectory}/${DebtorsDatabaseInputs.debtorsDatabase()}";
 
-    if (creditCardDatabaseExist) {
+    bool debtorDatabaseExist = await databaseExists(debtorDatabasePath);
 
-      DebtorsDatabaseQueries databaseQueries = DebtorsDatabaseQueries();
+    if (debtorDatabaseExist) {
 
-      List<DebtorsData> listOfAllDebtors = await databaseQueries.getAllDebtors(DebtorsDatabaseInputs.databaseTableName, UserInformation.UserId);
+      DebtorsDatabaseQueries debtorsDatabaseQueries = DebtorsDatabaseQueries();
 
-      setState(() {
+      var retrievedDebtors = await debtorsDatabaseQueries.getAllDebtors(DebtorsDatabaseInputs.databaseTableName, UserInformation.UserId);
 
-        allDebtors = listOfAllDebtors;
+      if (retrievedDebtors.isNotEmpty) {
 
-      });
+        listOfNames.addAll(retrievedDebtors);
+
+      }
 
     }
 
-    return allDebtors;
+    // Customers
+    String customerDatabasePath = "${databaseDirectory}/${CustomersDatabaseInputs.customersDatabase()}";
+
+    bool customerDatabaseExist = await databaseExists(customerDatabasePath);
+
+    if (customerDatabaseExist) {
+
+      CustomersDatabaseQueries customersDatabaseQueries = CustomersDatabaseQueries();
+
+      var retrievedCustomers = await customersDatabaseQueries.getAllCustomers(CustomersDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+      if (retrievedCustomers.isNotEmpty) {
+
+        listOfNames.addAll(retrievedCustomers);
+
+      }
+
+    }
+
+    return listOfNames;
   }
 
   void invokeLogoImagePicker() async {

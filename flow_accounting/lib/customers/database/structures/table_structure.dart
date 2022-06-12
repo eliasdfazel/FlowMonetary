@@ -33,7 +33,7 @@ class CustomersData {
 
   final String customerImagePath;
 
-  final String customerPurchases;
+  String customerPurchases = "0";
 
   int colorTag = ColorsResources.dark.value;
 
