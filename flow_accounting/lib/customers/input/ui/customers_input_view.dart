@@ -56,6 +56,8 @@ class _CustomersInputViewState extends State<CustomersInputView> {
 
   TextEditingController controllerCustomerMaritalStatus = TextEditingController();
 
+  TextEditingController controllerCustomerPurchases = TextEditingController();
+
   Widget imagePickerWidget = const Opacity(
     opacity: 0.7,
     child: Image(
@@ -114,6 +116,8 @@ class _CustomersInputViewState extends State<CustomersInputView> {
     controllerCustomerJob.text = widget.customersData?.customerJob == null ? "" : (widget.customersData?.customerJob)!;
 
     controllerCustomerMaritalStatus.text = widget.customersData?.customerMaritalStatus == null ? "" : (widget.customersData?.customerMaritalStatus)!;
+
+    controllerCustomerPurchases.text = widget.customersData?.customerPurchases == null ? "" : (widget.customersData?.customerPurchases)!;
 
     colorSelectorView.inputColor = Color(widget.customersData?.colorTag ?? Colors.white.value);
 
@@ -1449,6 +1453,8 @@ class _CustomersInputViewState extends State<CustomersInputView> {
                                   customerMaritalStatus: controllerCustomerMaritalStatus.text,
 
                                   customerImagePath: customerImage,
+
+                                  customerPurchases: controllerCustomerPurchases.text,
 
                                   colorTag: colorSelectorView.selectedColor.value
                               );

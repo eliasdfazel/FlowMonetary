@@ -3534,6 +3534,7 @@ class _ChequeInputViewState extends State<ChequesInputView> {
           customerJob: "",
           customerMaritalStatus: "",
           customerImagePath: profilesData.userImage,
+          customerPurchases: "0",
           colorTag: Colors.white.value));
 
     }

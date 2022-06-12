@@ -2468,6 +2468,7 @@ class _RemoteTransactionsInputViewState extends State<RemoteTransactionsInputVie
           customerJob: "",
           customerMaritalStatus: "",
           customerImagePath: profilesData.userImage,
+          customerPurchases: "0",
           colorTag: Colors.white.value));
 
     }

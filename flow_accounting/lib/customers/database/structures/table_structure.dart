@@ -33,6 +33,8 @@ class CustomersData {
 
   final String customerImagePath;
 
+  final String customerPurchases;
+
   int colorTag = ColorsResources.dark.value;
 
   CustomersData({
@@ -56,6 +58,8 @@ class CustomersData {
     required this.customerMaritalStatus,
 
     required this.customerImagePath,
+
+    required this.customerPurchases,
 
     required this.colorTag,
   });
@@ -82,6 +86,8 @@ class CustomersData {
       'customerMaritalStatus': customerMaritalStatus,
 
       'customerImagePath': customerImagePath,
+
+      'customerPurchases': customerPurchases,
 
       'colorTag': colorTag,
     };
@@ -110,6 +116,8 @@ class CustomersData {
         'customerImagePath: $customerImagePath,'
 
         'customerMaritalStatus: $customerMaritalStatus,'
+
+        'customerPurchases: $customerPurchases,'
 
         'colorTag: $colorTag,'
         '}';

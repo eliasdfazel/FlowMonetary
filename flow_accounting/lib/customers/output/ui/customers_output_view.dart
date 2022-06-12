@@ -195,7 +195,7 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
                                     InkWell(
                                       onTap: () {
 
-                                        sortCustomersByAge(context, allCustomers);
+                                        sortCustomersByPurchases(context, allCustomers);
 
                                       },
                                       child: SizedBox(
@@ -204,7 +204,8 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
                                         child: Align(
                                           alignment: Alignment.center,
                                           child: Text(
-                                            StringsResources.sortCustomerAge(),
+                                            StringsResources.sortCustomerPurchases(),
+                                            maxLines: 1,
                                             style: TextStyle(
                                               fontSize: 13,
                                               color: ColorsResources.applicationGeeksEmpire,
@@ -793,14 +794,14 @@ class _CustomersOutputViewState extends State<CustomersOutputView> {
 
   }
 
-  void sortCustomersByAge(BuildContext context, List<CustomersData> inputCustomersList) {
+  void sortCustomersByPurchases(BuildContext context, List<CustomersData> inputCustomersList) {
 
     if (allCustomersItems.isNotEmpty) {
 
       allCustomersItems.clear();
 
     }
-    inputCustomersList.sort((a, b) => (a.customerAge).compareTo(b.customerAge));
+    inputCustomersList.sort((a, b) => (a.customerPurchases).compareTo(b.customerPurchases));
 
     List<Widget> preparedAllCustomersItem = [];
 

@@ -227,6 +227,7 @@ class PrototypeData {
       customerJob: "برنامه نویس",
       customerMaritalStatus: "مجرد",
       customerImagePath: "/data/user/0/co.geeksempire.flow.accounting.flow_accounting/files/image_picker1337937822812840444.jpg",
+      customerPurchases: "0",
       colorTag: listOfColors.randomItem().value,
     ));
 
@@ -244,6 +245,7 @@ class PrototypeData {
       customerJob: "فیزیک دان",
       customerMaritalStatus: "متاهل",
       customerImagePath: "/data/user/0/co.geeksempire.flow.accounting.flow_accounting/files/image_picker1337937822812840444.jpg",
+      customerPurchases: "0",
       colorTag: listOfColors.randomItem().value,
     ));
 
@@ -261,6 +263,7 @@ class PrototypeData {
       customerJob: " کارمند بانک",
       customerMaritalStatus: "محرد",
       customerImagePath: "/data/user/0/co.geeksempire.flow.accounting.flow_accounting/files/image_picker1337937822812840444.jpg",
+      customerPurchases: "0",
       colorTag: listOfColors.randomItem().value,
     ));
 
@@ -278,6 +281,7 @@ class PrototypeData {
       customerJob: " برنامه نویس",
       customerMaritalStatus: "متاهل",
       customerImagePath: "/data/user/0/co.geeksempire.flow.accounting.flow_accounting/files/image_picker1337937822812840444.jpg",
+      customerPurchases: "0",
       colorTag: listOfColors.randomItem().value,
     ));
 
@@ -295,6 +299,7 @@ class PrototypeData {
       customerJob: " دیجیتال مارکتینگ",
       customerMaritalStatus: "مجرد",
       customerImagePath: "/data/user/0/co.geeksempire.flow.accounting.flow_accounting/files/image_picker1337937822812840444.jpg",
+      customerPurchases: "0",
       colorTag: listOfColors.randomItem().value,
     ));
 

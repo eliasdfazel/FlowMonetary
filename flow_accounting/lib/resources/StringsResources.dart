@@ -1273,9 +1273,9 @@ class StringsResources {
     return "مرتب سازی: تراکنش زیاد";
   }
 
-  static String sortCustomerAge() {
+  static String sortCustomerPurchases() {
 
-    return "مرتب سازی: سن مشتری";
+    return "مرتب سازی: خرید";
   }
 
   static String colorSelectorHint() {

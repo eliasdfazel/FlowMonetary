@@ -52,6 +52,8 @@ class CustomersDatabaseQueries {
 
         customerImagePath: maps[i]['customerImagePath'],
 
+        customerPurchases: maps[i]['customerPurchases'],
+
         colorTag: int.parse(maps[i]['colorTag'].toString()),
       );
     });

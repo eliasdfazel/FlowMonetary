@@ -1913,6 +1913,7 @@ class _TransactionsEditViewState extends State<TransactionsEditView> {
           customerJob: "",
           customerMaritalStatus: "",
           customerImagePath: profilesData.userImage,
+          customerPurchases: "0",
           colorTag: Colors.white.value));
 
     }
