@@ -1622,6 +1622,22 @@ class _ProductsInputViewState extends State<ProductsInputView> {
 
                                     var databaseInputs = ProductsDatabaseInputs();
 
+                                    String productProfit = controllerProductProfitPercent.text;
+
+                                    if (percentageProfitSwitcher.percentageEnable) {
+
+                                      productProfit = "${controllerProductProfitPercent.text}%";
+
+                                    }
+
+                                    String productTax = controllerProductTax.text;
+
+                                    if (percentageTaxSwitcher.percentageEnable) {
+
+                                      productTax = controllerProductTax.text.isEmpty ? "0%" : "${controllerProductTax.text}%";
+
+                                    }
+
                                     ProductsData productData = ProductsData(
                                         id: timeNow,
 
@@ -1636,9 +1652,9 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                         productBrandLogoUrl: productBrandLogoUrl,
 
                                         productPrice: controllerProductBuyingPrice.text,
-                                        productProfitPercent: "${controllerProductProfitPercent.text}%",
+                                        productProfitPercent: productProfit,
 
-                                        productTax: controllerProductTax.text.isEmpty ? "0%" : "${controllerProductTax.text}%",
+                                        productTax: productTax,
 
                                         productQuantity: int.parse(controllerProductQuantity.text),
                                         productQuantityType: controllerProductQuantityType.text.isEmpty ? "" : controllerProductQuantityType.text,
