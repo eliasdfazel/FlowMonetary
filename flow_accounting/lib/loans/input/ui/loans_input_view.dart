@@ -19,6 +19,7 @@ import 'package:flow_accounting/resources/ColorsResources.dart';
 import 'package:flow_accounting/resources/StringsResources.dart';
 import 'package:flow_accounting/utils/calendar/ui/calendar_view.dart';
 import 'package:flow_accounting/utils/colors/color_selector.dart';
+import 'package:flow_accounting/utils/extensions/numbers_operations.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -622,7 +623,7 @@ class _LoansInputViewState extends State<LoansInputView> {
 
                                           int debtorPaidDebt = int.parse(loanPaid.isEmpty ? "0" : loanPaid.replaceAll(",", ""));
 
-                                          controllerLoanRemaining.text = (debtorCompleteDebt - debtorPaidDebt).toString();
+                                          controllerLoanRemaining.text = formatNumberToCurrency((debtorCompleteDebt - debtorPaidDebt).toString());
 
                                         } on Exception {
 

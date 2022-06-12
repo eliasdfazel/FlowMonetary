@@ -8,9 +8,6 @@
  * https://opensource.org/licenses/MIT
  */
 
-import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-
 double betweenZeroHundred(double maximumNumber, double inputNumber) {
 
   int length = maximumNumber.toString().split(".")[0].length;
@@ -32,15 +29,77 @@ double betweenZeroHundred(double maximumNumber, double inputNumber) {
   return result;
 }
 
-String formatNumberToCurrency(int inputNumber) {
+String formatNumberToCurrency(String inputNumber) {
+  print("Input Number To Format: ${inputNumber}");
 
-  var numberFormatter = NumberFormat.currency(
-    decimalDigits: 0,
-    symbol: "",
-    locale: "en_US"
-  );
+  StringBuffer formattedNumber = StringBuffer("");
 
-  debugPrint("Formatted Currency Number: ${numberFormatter.format(inputNumber)}");
+  if (inputNumber.length % 3 == 0) {
 
-  return numberFormatter.format(inputNumber);
+    formattedNumber = StringBuffer("");
+
+    int divideAmount = inputNumber.length ~/ 3;
+
+    int loopCounter = 1;
+
+    for (int i = 0; i < (inputNumber.length); i += 3) {
+
+      String selectedNumber = inputNumber.substring(i, i + 3);
+
+      formattedNumber.write("${selectedNumber}");
+
+      if (loopCounter < divideAmount) {
+
+        formattedNumber.write(",");
+
+      }
+
+      loopCounter++;
+
+    }
+
+  } else {
+
+    formattedNumber = StringBuffer("");
+
+    for (int i = 1; i <= 2; i++) {
+
+      String inputNumberExamination = inputNumber.substring(i, inputNumber.length);
+
+      if (inputNumberExamination.length % 3 == 0) {
+
+        String firstValues = inputNumber.replaceAll(inputNumberExamination, "");
+
+        print(firstValues);
+
+        formattedNumber.write("${firstValues},");
+
+        int divideAmount = inputNumberExamination.length ~/ 3;
+
+        int loopCounter = 1;
+
+        for (int i = 0; i < (inputNumberExamination.length); i += 3) {
+
+          String selectedNumber = inputNumberExamination.substring(i, i + 3);
+
+          formattedNumber.write("${selectedNumber}");
+
+          if (loopCounter < divideAmount) {
+
+            formattedNumber.write(",");
+
+          }
+
+          loopCounter++;
+
+        }
+
+        break;
+      }
+
+    }
+
+  }
+
+  return formattedNumber.toString().isEmpty ? inputNumber : formattedNumber.toString();
 }
