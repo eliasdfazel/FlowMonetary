@@ -32,6 +32,8 @@ class ProductsData {
   int productQuantity = 0;
   final String productQuantityType;
 
+  final String extraBarcodeData;
+
   int colorTag = ColorsResources.dark.value;
 
   ProductsData({
@@ -54,6 +56,8 @@ class ProductsData {
 
     required this.productQuantity,
     required this.productQuantityType,
+
+    required this.extraBarcodeData,
 
     required this.colorTag,
   });
@@ -79,6 +83,8 @@ class ProductsData {
 
       'productQuantity': productQuantity,
       'productQuantityType': productQuantityType,
+
+      'extraBarcodeData': extraBarcodeData,
 
       'colorTag': colorTag,
     };
@@ -106,6 +112,8 @@ class ProductsData {
 
       'productQuantity: $productQuantity,'
       'productQuantityType: $productQuantityType,'
+
+      'extraBarcodeData: $extraBarcodeData,'
 
       'colorTag: $colorTag,'
     '}';

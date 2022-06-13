@@ -25,6 +25,7 @@ import 'package:flow_accounting/utils/extensions/numbers_operations.dart';
 import 'package:flow_accounting/utils/io/file_io.dart';
 import 'package:flow_accounting/utils/ui/percentage_money_switcher.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
@@ -113,6 +114,8 @@ class _ProductsInputViewState extends State<ProductsInputView> {
         )
       )
   );
+
+  String extraBarcodeData = "";
 
   int timeNow = DateTime.now().millisecondsSinceEpoch;
 
@@ -314,7 +317,21 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                           ),
                           Positioned(
                               left: 19,
-                              child: barcodeView
+                              child: InkWell(
+                                onTap: () async {
+
+                                  String barcodeScanResult = await FlutterBarcodeScanner.scanBarcode(
+                                      "#0095ff",
+                                      StringsResources.cancelText(),
+                                      true,
+                                      ScanMode.QR
+                                  );
+
+                                  extraBarcodeData = barcodeScanResult;
+
+                                },
+                                child: barcodeView
+                              )
                           )
                         ],
                       ),
@@ -1659,6 +1676,8 @@ class _ProductsInputViewState extends State<ProductsInputView> {
                                         productQuantity: int.parse(controllerProductQuantity.text),
                                         productQuantityType: controllerProductQuantityType.text.isEmpty ? "" : controllerProductQuantityType.text,
 
+                                        extraBarcodeData: extraBarcodeData,
+
                                         colorTag: colorSelectorView.selectedColor.value
                                     );
 
@@ -1958,6 +1977,8 @@ class _ProductsInputViewState extends State<ProductsInputView> {
 
                                               productQuantity: controllerProductQuantity.text.isEmpty ? 0 : int.parse(controllerProductQuantity.text),
                                               productQuantityType: controllerProductQuantityType.text.isEmpty ? "" : controllerProductQuantityType.text,
+
+                                              extraBarcodeData: extraBarcodeData,
 
                                               colorTag: colorSelectorView.selectedColor.value
                                           );

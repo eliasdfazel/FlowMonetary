@@ -34,6 +34,7 @@ import 'package:flow_accounting/utils/navigations/navigations.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -496,53 +497,136 @@ class FlowDashboardState extends State<FlowDashboard> {
 
     if (barcodeScanResult.contains("Product_")) {
 
-      String productId = barcodeScanResult.replaceAll("Product_", "");
+      String databaseDirectory = await getDatabasesPath();
 
-      //Get Specific Product Data then Pass It to Edit
-      ProductsDatabaseQueries productsDatabaseQueries = ProductsDatabaseQueries();
+      String databasePath = "${databaseDirectory}/${ProductsDatabaseInputs.productsDatabase()}";
 
-      ProductsData scannedProductData = await productsDatabaseQueries.querySpecificProductById(productId, ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+      bool databaseExist = await databaseExists(databasePath);
 
-      Future.delayed(Duration(milliseconds: 753), () {
+      if (databaseExist) {
 
-        NavigationProcess().goTo(context, ProductsInputView(productsData: scannedProductData,));
+        String productId = barcodeScanResult.replaceAll("Product_", "");
 
-      });
+        //Get Specific Product Data then Pass It to Edit
+        ProductsDatabaseQueries productsDatabaseQueries = ProductsDatabaseQueries();
 
-      debugPrint("Product Id Detected ${productId}");
+        ProductsData? scannedProductData = await productsDatabaseQueries.querySpecificProductByBarcode(productId, barcodeScanResult,
+            ProductsDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+        if (scannedProductData != null) {
+
+          Future.delayed(Duration(milliseconds: 753), () {
+
+            NavigationProcess().goTo(context, ProductsInputView(productsData: scannedProductData));
+
+          });
+
+        } else {
+
+          Fluttertoast.showToast(
+              msg: StringsResources.noSuchProduct(),
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.CENTER,
+              timeInSecForIosWeb: 1,
+              backgroundColor: ColorsResources.lightestRed,
+              textColor: ColorsResources.dark,
+              fontSize: 16.0
+          );
+
+        }
+
+        debugPrint("Product Id Detected ${productId}");
+
+      } else {
+
+        Fluttertoast.showToast(
+            msg: StringsResources.noSuchProduct(),
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 1,
+            backgroundColor: ColorsResources.lightestRed,
+            textColor: ColorsResources.dark,
+            fontSize: 16.0
+        );
+
+      }
 
     } else if (barcodeScanResult.contains("BuyInvoices_")) {
 
-      String buyInvoiceId = barcodeScanResult.replaceAll("BuyInvoices_", "");
+      String databaseDirectory = await getDatabasesPath();
 
-      BuyInvoicesDatabaseQueries buyInvoicesDatabaseQueries = BuyInvoicesDatabaseQueries();
+      String databasePath = "${databaseDirectory}/${BuyInvoicesDatabaseInputs.buyInvoicesDatabase()}";
 
-      BuyInvoicesData scannedBuyInvoicesData = await buyInvoicesDatabaseQueries.querySpecificBuyInvoiceById(buyInvoiceId, BuyInvoicesDatabaseInputs.databaseTableName, UserInformation.UserId);
+      bool databaseExist = await databaseExists(databasePath);
+
+      if (databaseExist) {
+
+        String buyInvoiceId = barcodeScanResult.replaceAll("BuyInvoices_", "");
+
+        BuyInvoicesDatabaseQueries buyInvoicesDatabaseQueries = BuyInvoicesDatabaseQueries();
+
+        BuyInvoicesData scannedBuyInvoicesData = await buyInvoicesDatabaseQueries.querySpecificBuyInvoiceById(buyInvoiceId, BuyInvoicesDatabaseInputs.databaseTableName, UserInformation.UserId);
 
 
-      Future.delayed(Duration(milliseconds: 753), () {
+        Future.delayed(Duration(milliseconds: 753), () {
 
-        NavigationProcess().goTo(context, BuyInvoicesInputView(buyInvoicesData: scannedBuyInvoicesData));
+          NavigationProcess().goTo(context, BuyInvoicesInputView(buyInvoicesData: scannedBuyInvoicesData));
 
-      });
+        });
 
-      debugPrint("Buy Invoice Id Detected ${buyInvoiceId}");
+        debugPrint("Buy Invoice Id Detected ${buyInvoiceId}");
+
+      } else {
+
+        Fluttertoast.showToast(
+            msg: StringsResources.noSuchInvoice(),
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 1,
+            backgroundColor: ColorsResources.lightestRed,
+            textColor: ColorsResources.dark,
+            fontSize: 16.0
+        );
+
+      }
 
     } else if (barcodeScanResult.contains("SellInvoices_")) {
 
-      String sellInvoiceId = barcodeScanResult.replaceAll("SellInvoices_", "");
+      String databaseDirectory = await getDatabasesPath();
 
-      SellInvoicesDatabaseQueries sellInvoicesDatabaseQueries = SellInvoicesDatabaseQueries();
+      String databasePath = "${databaseDirectory}/${SellInvoicesDatabaseInputs.sellInvoicesDatabase()}";
 
-      SellInvoicesData scannedSellInvoicesData = await sellInvoicesDatabaseQueries.querySpecificSellInvoiceById(sellInvoiceId, SellInvoicesDatabaseInputs.databaseTableName, UserInformation.UserId);
+      bool databaseExist = await databaseExists(databasePath);
 
-      Future.delayed(Duration(milliseconds: 753), () {
+      if (databaseExist) {
 
-        NavigationProcess().goTo(context, SellInvoicesInputView(sellInvoicesData: scannedSellInvoicesData));
+        String sellInvoiceId = barcodeScanResult.replaceAll("SellInvoices_", "");
 
-      });
+        SellInvoicesDatabaseQueries sellInvoicesDatabaseQueries = SellInvoicesDatabaseQueries();
 
-      debugPrint("Buy Invoice Id Detected ${sellInvoiceId}");
+        SellInvoicesData scannedSellInvoicesData = await sellInvoicesDatabaseQueries.querySpecificSellInvoiceById(sellInvoiceId, SellInvoicesDatabaseInputs.databaseTableName, UserInformation.UserId);
+
+        Future.delayed(Duration(milliseconds: 753), () {
+
+          NavigationProcess().goTo(context, SellInvoicesInputView(sellInvoicesData: scannedSellInvoicesData));
+
+        });
+
+        debugPrint("Buy Invoice Id Detected ${sellInvoiceId}");
+
+      } else {
+
+        Fluttertoast.showToast(
+            msg: StringsResources.noSuchInvoice(),
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 1,
+            backgroundColor: ColorsResources.lightestRed,
+            textColor: ColorsResources.dark,
+            fontSize: 16.0
+        );
+
+      }
 
     }
 

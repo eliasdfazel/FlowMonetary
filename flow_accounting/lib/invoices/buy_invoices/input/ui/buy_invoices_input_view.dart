@@ -1017,6 +1017,8 @@ class _BuyInvoicesInputViewState extends State<BuyInvoicesInputView> {
                                                 productQuantity: int.parse(controllerProductQuantity.text),
                                                 productQuantityType: controllerProductQuantityType.text.isEmpty ? "" : controllerProductQuantityType.text,
 
+                                                extraBarcodeData: "",
+
                                                 colorTag: ColorsResources.white.value
                                             );
 

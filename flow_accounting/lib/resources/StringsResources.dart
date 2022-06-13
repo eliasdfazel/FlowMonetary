@@ -705,6 +705,11 @@ class StringsResources {
 
     return "واحد محصول را وارد کنید";
   }
+
+  static String noSuchProduct() {
+
+    return "محصول مورد نظر ثبت نشده است";
+  }
   /* End - Product String Resources */
 
   /* Start - Invoices String Resources */
@@ -890,6 +895,11 @@ class StringsResources {
   static String sellInvoiceSoldToHint() {
 
     return "محصولات این فاکتور به چه کسی فروخته شده است؟";
+  }
+
+  static String noSuchInvoice() {
+
+    return "فاکتور مورد نظر ثبت نشده است";
   }
   /* End - Invoices String Resources */
 

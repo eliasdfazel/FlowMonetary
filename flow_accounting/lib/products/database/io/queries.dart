@@ -50,6 +50,8 @@ class ProductsDatabaseQueries {
         productQuantity: int.parse(maps[i]['productQuantity'].toString()),
         productQuantityType: maps[i]['productQuantityType'],
 
+        extraBarcodeData: maps[i]['extraBarcodeData'],
+
         colorTag: int.parse(maps[i]['colorTag'].toString()),
       );
     });
@@ -96,8 +98,70 @@ class ProductsDatabaseQueries {
       productQuantity: int.parse(databaseContents[0]['productQuantity'].toString()),
       productQuantityType: databaseContents[0]['productQuantityType'].toString(),
 
+      extraBarcodeData: databaseContents[0]['extraBarcodeData'].toString(),
+
       colorTag: int.parse(databaseContents[0]['colorTag'].toString()),
     );
+  }
+
+  Future<ProductsData?> querySpecificProductByBarcode(
+      String productId, String extraBarcodeData,
+      String tableName, String usernameId) async {
+
+    var databaseNameQuery = ProductsDatabaseInputs.productsDatabase();
+    var tableNameQuery = ProductsDatabaseInputs.databaseTableName;
+
+    final database = openDatabase(
+      join(await getDatabasesPath(), databaseNameQuery),
+    );
+
+    final databaseInstance = await database;
+
+    List<Map<String, Object?>>? databaseContents = null;
+
+    try {
+
+      databaseContents = await databaseInstance.query(
+        tableNameQuery,
+        where: '(id = ?) OR (extraBarcodeData = ?)',
+        whereArgs: [productId, extraBarcodeData],
+      );
+
+    } on Exception {}
+
+    ProductsData? queriedProduct = null;
+
+    if (databaseContents != null && databaseContents.isNotEmpty) {
+
+      queriedProduct = ProductsData(
+        id: databaseContents[0]['id'] as int,
+
+        productImageUrl: databaseContents[0]['productImageUrl'].toString(),
+
+        productName: databaseContents[0]['productName'].toString(),
+        productDescription: databaseContents[0]['productDescription'].toString(),
+
+        productCategory: databaseContents[0]['productCategory'].toString(),
+
+        productBrand: databaseContents[0]['productBrand'].toString(),
+        productBrandLogoUrl: databaseContents[0]['productBrandLogoUrl'].toString(),
+
+        productPrice: databaseContents[0]['productPrice'].toString(),
+        productProfitPercent: databaseContents[0]['productProfitPercent'].toString(),
+
+        productTax: databaseContents[0]['productTax'].toString(),
+
+        productQuantity: int.parse(databaseContents[0]['productQuantity'].toString()),
+        productQuantityType: databaseContents[0]['productQuantityType'].toString(),
+
+        extraBarcodeData: databaseContents[0]['extraBarcodeData'].toString(),
+
+        colorTag: int.parse(databaseContents[0]['colorTag'].toString()),
+      );
+
+    }
+
+    return queriedProduct;
   }
 
   Future<ProductsData?> querySpecificProductByName(
@@ -149,6 +213,8 @@ class ProductsDatabaseQueries {
 
         productQuantity: int.parse(databaseContents[0]['productQuantity'].toString()),
         productQuantityType: databaseContents[0]['productQuantityType'].toString(),
+
+        extraBarcodeData: databaseContents[0]['extraBarcodeData'].toString(),
 
         colorTag: int.parse(databaseContents[0]['colorTag'].toString()),
       );

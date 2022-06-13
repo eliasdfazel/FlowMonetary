@@ -46,6 +46,7 @@ class ProductsDatabaseInputs {
                 'productTax TEXT, '
                 'productQuantity TEXT, '
                 'productQuantityType TEXT, '
+                'extraBarcodeData TEXT, '
                 'colorTag TEXT'
                 ')',
           );
